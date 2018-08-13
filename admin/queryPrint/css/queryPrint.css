@@ -1,0 +1,28 @@
+.res-frame
+{
+    width: 90%;
+    margin: 5%;
+    border: 2px solid firebrick;
+}
+
+table tr td
+{
+    border-bottom: 1px dotted green;
+}
+
+table tr:nth-child(2n+2)
+{
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+table td
+{
+    border-right: 1px solid silver;
+}
+
+table tr.caption td
+{
+    background-color: navy;
+    color: white;
+    font-weight: bold;
+}

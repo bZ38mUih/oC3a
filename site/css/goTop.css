@@ -1,0 +1,22 @@
+img.toTop
+{
+    position: fixed;
+    bottom: 5em;
+    right: 3em;
+    /*background: url("/source/img/goTop.png");*/
+    display: none;
+    /*background-size: 100% 100%;*/
+    width: 2em;
+    height: 2.5em;
+    cursor: pointer;
+    /*text-align: center;*/
+}
+
+/*
+.toTop img
+{
+    z-index: 1;
+    position: relative;
+    top: 40px;
+}
+*/

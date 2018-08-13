@@ -1,0 +1,49 @@
+﻿body
+{
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.descriptionFrame {
+    bottom: 0;
+    cursor: default;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    background-size: cover;
+}
+.descriptionFrame h1
+{
+    display: block;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1em;
+    font-size: 1.5em;
+    color: orange;
+    margin: 0;
+    padding: 1em;
+}
+
+.descriptionFrame p
+{
+    display: block;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 0;
+    padding: 1em;
+}
+
+
+@media screen and (orientation:portrait) {
+    body{
+        font-size: 22px;
+    }
+}
+
+/*
+@media screen and (orientation:portrait) { … }
+*/

@@ -1,0 +1,43 @@
+.remove-alb, .remove-photo, .remove-like
+{
+    width: 90%;
+    border-bottom: 1px solid midnightblue;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 5%;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    vertical-align: middle;
+}
+
+.rm-cnt, .rm-act
+{
+    width: 50%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.rm-cnt span, .rm-act span
+{
+    color: midnightblue;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.rm-act a
+{
+    color: midnightblue;
+
+}
+
+.rm-act a img
+{
+    color: midnightblue;
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+
+

@@ -1,0 +1,102 @@
+.newUsr, .usersList
+{
+    margin: 5%;
+    width: 90%;
+    border-radius: 0.2em;
+}
+
+.newUsr
+{
+    border: 2px solid navy;
+}
+
+.usersList
+{
+    border: 2px solid darkgreen;
+}
+
+.newUsr-line
+{
+    width: 100%;
+    border-bottom: 1px dotted gray;
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.newUsr-line label
+{
+    display: inline-block;
+    width: 49%;
+    font-weight: bold;
+}
+
+.newUsr-line input[type=text]
+{
+    font-size: 1em;
+    display: inline-block;
+    width: 49%;
+}
+
+.newUsr-line input[type=button]
+{
+    padding: 0.2em;
+    font-size: 1em;
+    color: white;
+    background-color: navy;
+    border-radius: 0.2em;
+    margin-right: 1em;
+}
+
+.usersList-line
+{
+    width: 100%;
+    border-bottom: 1px dotted gray;
+    margin-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+.usersList-line-name
+{
+    display: inline-block;
+    width: 50%;
+    border-left: 1px solid black;
+}
+
+.usersList-line-del
+{
+    text-align: left;
+    display: inline-block;
+    width: 20%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding-left: 1em;
+}
+.usersList-line-del img
+{
+    height: 1em;
+    width: 1em;
+    margin-left: 1em;
+}
+
+.usersList-line.caption
+{
+    background-color: lightcyan;
+}
+
+.newUsr-err
+{
+    font-weight: bold;
+    color: white;
+    width: 90%;
+    margin: 5%;
+}
+
+.newUsr-err.well
+{
+    background-color: darkgreen;
+}
+
+.newUsr-err.fail
+{
+    background-color: firebrick;
+}

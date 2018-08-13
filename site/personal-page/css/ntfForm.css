@@ -1,0 +1,28 @@
+form
+{
+    text-align: left;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.ntf-line
+{
+    margin-bottom: 0.5em;
+
+}
+
+.ntf-field
+{
+    display: block;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.ntf-val
+{
+    display: block;
+    font-style: italic;
+    margin-left: 1em;
+}

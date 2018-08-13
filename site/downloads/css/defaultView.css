@@ -1,0 +1,101 @@
+a.cat-line
+{
+    display: inline-block;
+    width: 43%;
+    vertical-align: middle;
+    text-decoration: none;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+    margin-right: 3%;
+    margin-left: 3%;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-bottom: 1px dotted midnightblue;
+    border-top: 1px dotted midnightblue;
+}
+
+.cat-line-txt
+{
+    display: inline-block;
+    width: 69%;
+    vertical-align: top;
+}
+
+.cat-line-name
+{
+    width: 100%;
+    font-weight: bold;
+    color: midnightblue;
+    background-color: LightGray;
+}
+
+.cat-line-img
+{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+
+}
+
+.cat-line-img img
+{
+    height: 5em;
+    width: 5em;
+    border: 1px solid MidnightBlue;
+    border-radius: 0.5em;
+}
+
+.cat-line-descr
+{
+    font-size: 0.8em;
+    border: 1px solid navy;
+    border-radius: 0.2em;
+    display: inline-block;
+    margin: 1%;
+    width: 94%;
+    padding: 2%;
+    font-style: italic;
+    color: black;
+}
+
+@media only screen and (max-width : 960px)
+{
+    a.cat-line
+    {
+        display: block;
+        width: 90%;
+        margin-right: 5%;
+        margin-left: 4%;
+    }
+
+    a.cat-line:not(:first-child)
+    {
+        border-top: none;
+    }
+
+    a.cat-line:first-child
+    {
+        padding-top: 1.5em;
+    }
+}
+
+@media only screen and (max-width : 1200px) and (orientation : portrait)
+{
+    a.cat-line
+    {
+        display: block;
+        width: 90%;
+        margin-right: 5%;
+        margin-left: 4%;
+    }
+
+    a.cat-line:not(:first-child)
+    {
+        border-top: none;
+    }
+
+    a.cat-line:first-child
+    {
+        padding-top: 1.5em;
+    }
+}

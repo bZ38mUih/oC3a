@@ -1,0 +1,35 @@
+.item-line-id
+{
+    width: 10%;
+}
+
+.item-line-img
+{
+    width: 7%;
+}
+
+.item-line-img img
+{
+    width: 2em;
+    height: 2em;
+}
+
+.item-line-login
+{
+    width: 30%;
+}
+
+.item-line-alias
+{
+    width: 30%;
+}
+
+.item-line-nw
+{
+    width: 10%;
+}
+
+.item-line-flag
+{
+    width: 10%;
+}

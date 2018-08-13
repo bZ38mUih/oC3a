@@ -1,0 +1,22 @@
+.subMenu
+{
+    text-align: left;
+    width: 100%;
+    border-bottom: 2px solid navy;
+    margin-top: 1em;
+}
+
+.subMenu a
+{
+    cursor: pointer;
+    margin: 0 1em 0 1em;
+    color: darkgreen;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.subMenu a.active
+{
+    color: navy;
+}

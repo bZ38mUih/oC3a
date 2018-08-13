@@ -1,0 +1,162 @@
+.checkIn-frame
+{
+    margin-top: 1em;
+    padding-top: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    width: 100%;
+    display: inline-block;
+}
+
+.checkIn-frame strong
+{
+    display: block;
+}
+
+form.checkIn
+{
+    margin-top: 2em;
+    max-width: 30em;
+    width: 100%;
+    display: inline-block;
+}
+
+form.checkIn .inputLine
+{
+    display: block;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    margin-top: 0.5em;
+}
+
+form.checkIn .inputLine.submit
+{
+    margin-top: 0.5em;
+}
+
+form.checkIn .inputLine.captcha
+{
+    margin-top: 2em;
+}
+
+form.checkIn label[for='login'], form.checkIn label[for='password'], form.checkIn label[for='eMail'],
+form.checkIn label[for='password_2']
+{
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    color: darkgray;
+    height: 1.2em;
+    visibility: visible;
+}
+
+form.checkIn input[name='login'], form.checkIn input[name='password'], form.checkIn input[name='eMail'],
+form.checkIn input[name='password_2']
+{
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    color: navy;
+    border: none;
+    border-bottom: 2px solid navy;
+    height: 1.2em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    text-align: center;
+}
+
+form.checkIn input[type='submit']
+{
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: navy;
+    color: #ffffff;
+    margin: 0;
+    padding: 0.2em;
+}
+
+.captcha_img
+{
+    width: 40%;
+    margin-right: 10%;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.captcha_img img
+{
+    height: 5em;
+    width: 8em;
+}
+
+.captcha_img a
+{
+    display: block;
+    text-align: left;
+}
+
+.captcha_code
+{
+    text-align: left;
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+    position: relative;
+}
+
+form.checkIn input[name='checkCode']
+{
+    height: 2em;
+    width: 7em;
+    border: 1px solid #000000;
+
+    display: block;
+    font-size: 1.2em;
+    color: navy;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    text-align: center;
+}
+
+form.checkIn label[for='checkCode']
+{
+    display: block;
+    height: 5em;
+    width: 8em;
+    font-size: 1.2em;
+    color: darkgray;
+}
+
+.pageErr
+{
+    color:red;
+    visibility: hidden;
+}
+
+.pageErr.active
+{
+    visibility: visible;
+}
+
+@media only screen and (max-width : 1024px)  and (orientation : portrait) {
+    body {
+        font-size: 35px;
+    }
+
+    form.checkIn
+    {
+        margin-top: 2em;
+        margin-left: 5%;
+        margin-right: 5%;
+        max-width: 30em;
+        width: 90%;
+        display: inline-block;
+    }
+}

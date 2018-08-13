@@ -1,0 +1,73 @@
+.leftPanel
+{
+    margin-left: 5%;
+    width: 20%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.rightPanel
+{
+    margin-right: 5%;
+    width: 70%;
+    display: inline-block;
+}
+
+.leftPanel h3
+{
+    background: #008000;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.subjMenu ul li li
+{
+    list-style-type: none;
+    margin-left: 1em;
+}
+
+.subjMenu a
+{
+
+}
+
+.subjMenu a.subject
+{
+    color: blue;
+}
+
+.subjMenu a.subject
+{
+    color: blue;
+}
+
+.subjMenu a.subject.active
+{
+    color: brown;
+}
+
+.subjMenu a.menu
+{
+    color: #008000;
+    text-decoration: none;
+    cursor: default;
+}
+
+@media screen and (max-width: 1024px) {
+    .leftPanel
+    {
+        margin-left: 0;
+        width: 25%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .rightPanel
+    {
+        margin-right: 0;
+        width: 75%;
+        display: inline-block;
+    }
+}

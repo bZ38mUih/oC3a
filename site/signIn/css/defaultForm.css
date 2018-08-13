@@ -1,0 +1,152 @@
+.signIn-frame
+{
+    margin-top: 1em;
+    padding-top: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    width: 80%;
+    max-width: 960px;
+    padding-left: 10%;
+    padding-right: 10%;
+    border: 1px solid #c0c0c0;
+    display: inline-block;
+}
+
+.signIn-menu
+{
+    display: inline-block;
+    width: 100%;
+    border-bottom: 2px solid darkgreen;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+
+}
+
+.signIn-menu a
+{
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    color: #008000;
+    float: right;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.signIn-menu a.active
+{
+    color: navy;
+    float: left;
+    cursor: default;
+}
+
+form.signIn
+{
+    width: 100%;
+    margin-top: 1em;
+    max-width: 30em;
+    display: inline-block;
+}
+
+form.signIn .inputLine
+{
+    width: 100%;
+    position: relative;
+    margin-bottom: 1em;
+    margin-top: 1em;
+
+}
+
+.pageErr
+{
+    color:red;
+    /*visibility: hidden;*/
+    height: 1em;
+}
+/*
+.pageErr.active
+{
+    visibility: visible;
+}
+*/
+form.signIn .inputLine.rememberMe
+{
+    margin-bottom: 0.2em;
+}
+
+form.signIn .inputLine.submit
+{
+    margin-top: 0.5em;
+}
+
+form.signIn .resErr
+{
+    display: block;
+    width: 100%;
+    height: 1em;
+    color: firebrick;
+}
+
+form.signIn label[for='login'], form.signIn label[for='password']
+{
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    color: darkgray;
+    height: 1.2em;
+    visibility: hidden;
+}
+
+form.signIn label[for='login'].shown, form.signIn label[for='password'].shown
+{
+    visibility: visible;
+}
+
+form.signIn input[type='text'], form.signIn input[type='password']
+{
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    color: navy;
+    border: none;
+    border-bottom: 2px solid navy;
+    height: 1.2em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    text-align: center;
+}
+
+form.signIn input[type='text'], form.signIn input[type='tpassword']
+{
+
+}
+
+form.signIn input[type='submit']
+{
+    font-weight: bold;
+    font-size: 1em;
+    background-color: navy;
+    color: #ffffff;
+    padding: 0.2em;
+    width: 15em;
+}
+
+a.sb_auth
+{
+    display: block;
+    text-align: left;
+    font-size: 1.5em;
+    color: navy;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid grey;
+}
+
+a.sb_auth img
+{
+    height: 2.5em;
+    width: 2.5em;
+    vertical-align: middle;
+    margin-right: 1em;
+}

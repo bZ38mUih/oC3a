@@ -1,0 +1,149 @@
+.list-frame
+{
+    width: 95%;
+    margin-left: 2%;
+    margin-top: 2em;
+}
+
+.list-frame ul li
+{
+    text-align: left;
+    list-style: none;
+    margin-bottom: 0.5em;
+}
+
+.list-frame ul ul
+{
+    display: none;
+}
+
+.list-frame ul li.cat-line
+{
+
+}
+
+.list-frame ul li.itm-line
+{
+
+}
+
+.list-frame ul li.cat-line a
+{
+    color: darkgreen;
+    display: inline-block;
+    margin-top: 0.5em;
+    width: 100%;
+    padding-bottom: 0.5em;
+}
+
+.cat-stat
+{
+    display: block;
+    width: 100%;
+    border-bottom: 1px dotted darkgreen;
+    font-size: 0.8em;
+    padding-bottom: 0.5em;
+    background-color: rgba(255,55,55,0.1);
+}
+
+.cat-stat.main
+{
+    border-bottom: 2px solid darkgreen;
+    font-size: 1.2em;
+    padding-bottom: 0.5em;
+    background-color: transparent;
+}
+
+.cat-stat span.slide-stat
+{
+    cursor: pointer;
+    margin-left: 1.5em;
+}
+
+.cat-stat span.flVal
+{
+    font-weight: bold;
+    color: midnightblue;
+    text-decoration: underline;
+    margin-right: 1em;
+    margin-left: 2em;
+}
+
+
+
+.list-frame ul li.itm-line a
+{
+    display: block;
+    width: 100%;
+    border-bottom: 1px dotted navy;
+}
+
+.list-frame ul li.itm-line a
+{
+    color: navy;
+    font-size: 0.8em;
+    display: inline-block;
+    width: 100%;
+
+    padding-bottom: 0.2em;
+}
+
+.cat-line-img, .itm-line-img
+{
+    display: inline-block;
+    vertical-align: middle;
+    /*margin-right: 1em;*/
+    width: 10%;
+    text-align: center;
+}
+
+.list-frame ul li.cat-line a img
+{
+    height: 1.5em;
+    width: 1.5em;
+    border: 1px solid silver;
+    border-radius: 0.2em;
+}
+
+.list-frame ul li.itm-line a img
+{
+    height: 1.5em;
+    width: 1.5em;
+    border: 1px solid lightgray;
+    border-radius: 0.2em;
+}
+
+.cat-line-txt, .itm-line-txt
+{
+    display: inline-block;
+    vertical-align: middle;
+    width: 90%;
+}
+
+.list-frame ul .cat-line-name, .list-frame ul .itm-line-name
+{
+    font-weight: bold;
+    display: inline-block;
+    width: 100%;
+}
+
+.list-frame ul .cat-line-descr, .list-frame ul .itm-line-descr
+{
+    font-size: 0.8em;
+    color: darkslategrey;
+    display: inline-block;
+    width: 100%;
+}
+
+@media only screen and (max-width : 960px)
+{
+    .cat-line-txt, .itm-line-txt
+    {
+        width: 80%;
+    }
+
+    .cat-line-img, .itm-line-img
+    {
+        width: 20%;
+    }
+}

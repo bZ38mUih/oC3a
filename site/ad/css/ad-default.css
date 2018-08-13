@@ -1,0 +1,83 @@
+.ad-frame
+{
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.ad-block
+{
+    width: 45%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 1px solid #c0c0c0;
+    display: inline-block;
+    visibility: hidden;
+}
+
+a.signIn-block
+{
+    width: 45%;
+
+    margin-top: 2em;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 1px solid navy;
+    display: inline-block;
+    border-radius: 0.5em;
+    color: #000000;
+}
+
+.signIn-img
+{
+    width: 20%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.signIn-img img
+{
+    height: 2.5em;
+    width: 2.5em;
+}
+
+.signIn-txt
+{
+    padding: 2%;
+    width: 70%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.signIn-txt strong
+{
+    display: block;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-decoration: underline;
+    color: #008000;
+}
+
+@media only screen and (max-width : 1024px)
+{
+    .ad-block
+    {
+        width: 90%;
+        margin-left: 4%;
+        margin-right: 5%;
+        margin-bottom: 0;
+        display: none;
+    }
+
+    a.signIn-block
+    {
+        width: 90%;
+        margin-left: 4%;
+        margin-right: 5%;
+        display: block;
+    }
+}
+
+.signIn-frame
+{
+    background-color: white;
+}

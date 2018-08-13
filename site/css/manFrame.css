@@ -1,0 +1,89 @@
+.manFrame
+{
+    /*border: 1px solid navy;*/
+    padding: 1em;
+}
+
+.manTopPanel
+{
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+/*toDo check to move /site/css/subMenu.css-->*/
+.itemsCount, .newItem
+{
+    display: inline-block;
+    width: 50%;
+}
+
+.itemsCount
+{
+    text-align: left;
+}
+
+.itemsCount span
+{
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 1em;
+}
+
+.itemsCount a
+{
+    color: darkgreen;
+    padding: 0.2em;
+    text-decoration: none;
+}
+
+.itemsCount a.active
+{
+    font-size: 1.2em;
+    text-decoration: underline;
+}
+
+.newItem
+{
+    text-align: right;
+}
+
+.newItem a
+{
+    color: navy;
+    font-weight: bold;
+}
+
+.newItem a img
+{
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+/*<-- check to move /site/css/subMenu.css*/
+
+.item-line
+{
+    width: 100%;
+    border-bottom: 1px solid navy;
+}
+
+.item-line div
+{
+    display: inline-block;
+    border-left: 1px solid DarkSlateGray;
+    border-right: 1px solid DarkSlateGray;
+    vertical-align: middle;
+    min-height: 2em;
+}
+
+.item-line.caption div
+{
+    background-color: DarkSlateGray;
+    color: white;
+    font-weight: bold;
+    border-left: 2px solid white;
+    border-right: none;
+    min-height: auto;
+}
+

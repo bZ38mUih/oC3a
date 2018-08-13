@@ -1,0 +1,107 @@
+.photo-line
+{
+    width: 90%;
+    border: 1px solid #000000;
+    display: inline-block;
+    margin: 5%;
+    border-radius: 0.5em;
+
+}
+
+.photo-line .photo-img
+{
+    width: 100%;
+    display: inline-block;
+}
+
+.photo-line .photo-img a
+{
+
+    display: inline-block;
+    width: 100%;
+}
+
+.photo-line .photo-img a img
+{
+    width: 60%;
+    max-width: 600px;
+}
+
+.photo-line .photo-context, .photo-line .photo-like, .photo-line .photo-comments
+{
+    display: inline-block;
+    width: 90%;
+    margin: 1em 0 1em 0;
+}
+
+.photo-line .photo-context
+{
+    border-bottom: 1px dotted gray;
+}
+
+.photo-line .photo-context a
+{
+    display: inline-block;
+    color: blue;
+    margin: 0.2em 0 0.2em 0;
+
+}
+
+.photo-line .photo-context strong
+{
+    display: block;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    font-size: 1.5em;
+    margin-top: 0.5em;
+}
+
+.photo-line .photo-context span.photoDescr
+{
+    display: inline-block;
+    width: 100%;
+    font-style: italic;
+}
+
+.photo-like
+{
+    width: 100%;
+    text-align: right;
+    font-size: 1.2em;
+}
+
+.photo-like a
+{
+    text-decoration: none;
+    color: red;
+}
+
+.photo-like img
+{
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-left: 1em;
+    margin-right: 0.5em;
+}
+
+.photo-like span
+{
+    vertical-align: middle;
+
+}
+
+.photo-like span.like
+{
+    color: blue;
+    cursor: pointer;
+    /*text-decoration: underline;*/
+}
+
+.photo-like span.like_qty
+{
+    color: red;
+    font-weight: bold;
+}
+

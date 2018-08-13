@@ -1,0 +1,65 @@
+.item-line-id
+{
+    width: 10%;
+}
+
+.item-line-par_id
+{
+    width: 7%;
+}
+
+.item-line-img
+{
+    width: 7%;
+}
+
+.item-line-img img
+{
+    width: 2em;
+    height: 2em;
+}
+
+.item-line-name
+{
+    width: 15%;
+}
+
+.item-line-name2
+{
+    width: 30%;
+}
+
+.item-line-alias
+{
+    width: 15%;
+}
+
+.item-line-alias2
+{
+    width: 30%;
+}
+
+.item-line-descr
+{
+    width: 38%;
+}
+
+.item-line-fCateg
+{
+    width: 23%;
+}
+
+.item-line-fVersion
+{
+    width: 22%;
+}
+/*
+.item-line-fDescr
+{
+    width: 32%;
+}
+*/
+.item-line-flag
+{
+    width: 6%;
+}

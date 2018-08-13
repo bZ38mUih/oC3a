@@ -1,0 +1,65 @@
+.item-line
+{
+    display: inline-block;
+    width: 90%;
+}
+
+.item-line.caption
+{
+
+}
+
+.item-line div
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.item-line-img
+{
+    width: 10%;
+}
+
+.item-line-img img
+{
+    height: 2em;
+    width: 2em;
+}
+
+.item-line-alias
+{
+    width: 30%;
+}
+
+.item-line-rule
+{
+    width: 55%;
+}
+
+.results-frame
+{
+    width: 96%;
+    margin: 2%;
+    border: 2px solid blue;
+    border-radius: 0.3em;
+}
+/*
+span.results
+{
+    display: block;
+    width: 96%;
+    margin: 2%;
+    font-weight: bold;
+    color: white;
+}
+
+span.results.well
+{
+    background-color: darkgreen;
+}
+
+span.results.fail
+{
+    background-color: firebrick;
+}
+*/

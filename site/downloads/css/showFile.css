@@ -1,0 +1,121 @@
+.file-frame
+{
+    width: 90%;
+    margin: 1em 5% 1em 5%;
+    padding-top: 1em;
+    border: 2px solid navy;
+    border-radius: 0.5em;
+}
+
+.file-frame div
+{
+
+}
+
+.left-block
+{
+    width: 45%;
+    margin-left: 5%;
+    float: left;
+}
+
+.right-block
+{
+    width: 45%;
+    margin-right: 5%;
+    float: left;
+    margin-bottom: 0.5em;
+}
+
+.file-img
+{
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.file-img img
+{
+    height: 7em;
+    width: 7em;
+}
+
+.file-name
+{
+    width: 45%;
+    margin-right: 5%;
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: navy;
+    color: white;
+    float: right;
+    display: inline-block;
+
+}
+
+.file-descr
+{
+    margin-top: 0.2em;
+    background: rgba(25,25,25,0.1);
+    text-align: left;
+    padding: 3%;
+}
+
+.file-version
+{
+    width: 100%;
+    text-align: left;
+}
+
+.file-licence
+{
+    width: 100%;
+    text-align: left;
+}
+
+.file-links
+{
+    text-align: left;
+    width: 95%;
+    margin-left: 2%;
+    border-top: 1px solid navy;
+    clear: left;
+}
+
+.file-links strong
+{
+    margin-top: 0.5em;
+    display: inline-block;
+}
+
+.file-links a
+{
+    margin-left: 1em;
+}
+
+@media only screen and (max-width : 960px) {
+    .left-block, .right-block
+    {
+        width: 95%;
+        margin-left: 2%;
+    }
+
+    .file-name{
+        width: 95%;
+        margin-right: 2%;
+        margin-bottom: 0.5em;
+    }
+}
+
+@media only screen and (max-width : 1200px) and (orientation : portrait){
+    .left-block, .right-block
+    {
+        width: 95%;
+        margin-left: 2%;
+    }
+
+    .file-name{
+        width: 95%;
+        margin-right: 2%;
+        margin-bottom: 0.5em;
+    }
+}

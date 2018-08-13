@@ -1,0 +1,21 @@
+.item-line-subj
+{
+    width: 65%;
+}
+
+.item-line-subj a
+{
+    color: #000000;
+    text-decoration: none;
+}
+
+.item-line-subj a.nRdn
+{
+    /*color: red;*/
+    font-weight: bold;
+}
+
+.item-line-date
+{
+    width: 25%;
+}

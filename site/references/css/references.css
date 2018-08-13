@@ -1,0 +1,392 @@
+/*ref-title-->*/
+.ref-title
+{
+    width: 93%;
+    margin: 1em  auto  1em 4%;
+    padding: 1em 0 1em 0;
+    border-left: 2px solid midnightblue;
+    border-right: 2px solid midnightblue;
+}
+
+.title-img
+{
+    width: 30%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.title-img img
+{
+    height: 5em;
+    width: 6em;
+}
+
+.title-txt
+{
+    width: 66%;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2%;
+}
+
+.title-txt span
+{
+    width: 96%;
+    display: inline-block;
+    padding: 2%;
+    color: darkblue;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.title-txt strong
+{
+    width: 100%;
+    display: inline-block;
+    margin-top: 0.5em;
+    text-decoration: underline;
+    color: rgba(25,25,50,1);
+}
+
+.ref-appr-stat
+{
+    width: 93%;
+    margin: 0 0 0 4%;
+}
+
+.ref-stat
+{
+    width: 48%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 2%;
+    border-right: 1px solid white;
+}
+
+.ref-stat span.total
+{
+    width: 90%;
+    display: block;
+    padding-left: 10%;
+    font-weight: bold;
+    text-align: left;
+    font-size: 1.1em;
+}
+
+.ref-stat span.fldName
+{
+    width: 80%;
+    display: block;
+    margin-left: 30%;
+    text-align: left;
+}
+
+.ref-stat span.fldVal
+{
+    margin-right: 1em;
+    color: lightgreen;
+    font-size: 1.2em;
+    text-decoration: underline;
+}
+
+.ref-apprec
+{
+    width: 44%;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2%;
+    margin-bottom: 0.5em;
+}
+
+.apprec-line
+{
+    width: 100%;
+    margin-top: 0.5em;
+    text-align: left;
+}
+
+.apprec-line.fine
+{
+    color: red;
+}
+
+.apprec-line.well
+{
+    color: lightgreen;
+}
+
+.apprec-line.normal
+{
+    color: lightblue;
+}
+
+.apprec-line span.apprec-val
+{
+    width: 30%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5%;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.apprec-line span.apprec-back
+{
+    width: 60%;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+}
+
+span.apprec-back-val
+{
+    text-shadow: 1px 1px 0px white, -1px -1px 0px white;
+    height: 1em;
+}
+
+.ref-frame
+{
+    width: 93%;
+    display: block;
+    margin:0 auto 1em 4%;
+    padding-top: 1em;
+}
+
+.ref-block
+{
+    width: 100%;
+    padding: 1em 0 1em 0;
+    border: 2px solid midnightblue;
+    border-radius: 0.3em;
+}
+
+.aprErrors
+{
+    width: 100%;
+    margin-top: 0.5em;
+    font-family: "Courier New";
+    color: firebrick;
+}
+
+a.signIn
+{
+    width: 90%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1em auto 1em 5%;
+    color: darkgreen;
+    text-align: left;
+    font-weight: bold;
+}
+
+a.signIn img
+{
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+/*toDo remove to commone singIn*/
+.signIn-frame
+{
+    background-color: white;
+}
+
+.ref-block hr
+{
+    border-bottom: 1px solid blue;
+    width: 90%;
+}
+
+form.cmForm
+{
+    width: 93%;
+    margin: 1em 1em 3% auto;
+    border: 2px solid darkgoldenrod;
+    border-radius: 0.3em;
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+form.cmForm h4
+{
+    padding: 1em 0 0 1em;
+    margin: 0;
+    text-align: left;
+}
+
+form.cmForm .cfForm-cp
+{
+    width: 98%;
+    margin: 1%;
+    text-align: right;
+}
+
+form.cmForm input[type=button]
+{
+    margin: 0.2em;
+    background-color: navy;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+form.cmForm .cmForm-area
+{
+    width: 96%;
+    margin: 2%;
+}
+
+.cfForm-err
+{
+    padding-left: 5%;
+    background: red;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.ref-block
+{
+    text-align: left;
+}
+
+.ref-block ul li
+{
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.ref-block .com-line
+{
+    width: 98%;
+    display: inline-block;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    border-bottom: 1px dotted gray;
+    border-left: 1px dotted gray;
+}
+
+.ref-block .com-img
+{
+    width: 15%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.ref-block .com-img img
+{
+    height: 3em;
+    width: 3em;
+    border-radius: 0.5em;
+    border: 2px solid darkgoldenrod;
+}
+
+.ref-block .com-info
+{
+    width: 85%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.ref-block .com-info a
+{
+    text-decoration: none;
+    color: #000000;
+}
+
+.ref-block .com-alias
+{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.ref-block .com-content-frame
+{
+    margin-top: 0.2em;
+}
+
+.ref-block .com-content
+{
+    display: inline-block;
+    padding: 0.5em;
+    background-color: rgba(25,25,50,1);
+    color: #ffffff;
+    font-style: italic;
+    text-align: left;
+    border: 2px solid darkgoldenrod;
+    border-radius: 0.5em;
+}
+
+
+.ref-block .com-date
+{
+    display: inline-block;
+    margin-left: 2em;
+    font-family: "courier new";
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.ref-block .com-content p
+{
+    padding: 0;
+    margin: 0;
+}
+
+.ref-block span.com-wrCm
+{
+    cursor: pointer;
+}
+
+#com_
+{
+    display: none;
+}
+
+@media only screen and (max-width : 1024px)
+{
+
+}
+
+@media only screen and (max-width : 1024px) and (orientation : portrait)
+{
+    .title-img
+    {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .title-txt
+    {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .ref-stat
+    {
+        padding-top: 2%;
+        border-bottom: 1px solid navy;
+        padding-bottom: 1em;
+    }
+    .ref-stat, .ref-apprec
+    {
+        width: 100%;
+        border-right: none;
+    }
+
+    .ref-block .com-img
+    {
+        vertical-align: top;
+    }
+
+    .ref-block .com-alias
+    {
+        margin-left: 1em;
+    }
+}

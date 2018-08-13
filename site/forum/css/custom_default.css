@@ -1,0 +1,230 @@
+.subjMenu
+{
+    margin-left: 1em;
+}
+
+ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+ul li
+{
+    margin-bottom: 0.2em;
+    list-style-type: none;
+}
+
+.subject_frame
+{
+    border: 1px solid blue;
+}
+.subjectHeader_frame
+{
+
+}
+
+.subjectHeader_frame p
+{
+    font-style: italic;
+    font-weight: bold;
+    padding: 1em;
+}
+
+
+.subjectHeader_frame a
+{
+    float: left;
+    /*display: inline-block;*/
+}
+.subjectHeader_frame img
+{
+    margin: 1em;
+    width: 10em;
+    height: 10em;
+}
+.subjectHeader_frame h2
+{
+    color: #ffffff;
+    background: navy;
+}
+
+.subjectContent_frame
+{
+
+}
+
+.subjectPhoto_frame
+{
+    width: 100%;
+    position: relative;
+    float: left;
+}
+
+span.photo_qty
+{
+    display: block;
+    width: 100%;
+    float: left;
+    color: darkblue;
+    margin-left: 1em;
+}
+
+span.moveRight, span.moveLeft
+{
+    position: absolute;
+    margin-top: 3em;
+    z-index: 1;
+    top: 0;
+}
+
+span.moveRight
+{
+    left: 1em;
+}
+
+span.moveLeft
+{
+    right: 1em;
+}
+
+span.moveLeft img, span.moveRight img
+{
+    height: 3em;
+    width: 3em;
+    cursor: pointer;
+}
+
+.subjectPhoto_frame .photoLine
+{
+    display: inline-flex;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.subjectPhoto_frame .photoLine::-webkit-scrollbar {
+    width: 0;
+}
+
+.subjectPhoto_frame img
+{
+    margin: 0.5em;
+    height: 7em;
+    width: 7em;
+}
+
+.subjectStatistic_frame
+{
+    width: 100%;
+    padding-top: 1em;
+    display: inline-block;
+}
+
+.statisticLine
+{
+    width: 100%;
+    display: block;
+}
+
+.statisticLine span.statCaption
+{
+    margin-left: 1em;
+    color: navy;
+    display: inline-block;
+}
+
+.statisticLine span.statQty
+{
+    color: #008000;
+    font-weight: bold;
+}
+
+.subjectOptions_frame
+{
+
+}
+
+.subjectPagination_frame
+{
+    width: 100%;
+    text-align: center;
+    color: #008000;
+    display: inline-block;
+}
+
+.subjectPagination_frame a
+{
+    color: blue;
+}
+
+.subjectPagination_frame a.active
+{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+
+.subjectComments_frame
+{
+    padding: 0.5em;
+}
+
+.subjectComments_frame li li
+{
+    margin-left: 1em;
+}
+
+li .info img
+{
+    height: 2em;
+    width: 2em;
+}
+
+li .info a.usrName
+{
+    vertical-align: top;
+    font-size: 1.2em;
+    display: inline-block;
+    margin-left: 1em;
+}
+
+
+li .content
+{
+    border-bottom: 1px solid #008000;
+    /*background:linear-gradient(rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,0.5), rgba(0,0,0, 0.2));*/
+    /*border-radius: 10px;*/
+    margin-right: 10px;
+    font-size: 1.2em;
+    /*color: #ffffff;*/
+    color: #000000;
+    padding-left: 10px;
+    font-style: italic;
+}
+
+li .content .date
+{
+    font-size: 0.6em;
+    color: darkgreen;
+    font-family: "courier new";
+    font-style: normal;
+    width: 100%;
+    text-align: right;
+    display: inline-block;
+}
+li .content li
+{
+    list-style: inherit;
+}
+
+li a.answer
+{
+    position: relative;
+    top: -1em;
+    color: #c0c0c0;
+}
+
+.formComment ul, .formComment li, .formComment p, .formComment a
+{
+    list-style: inherit;
+}

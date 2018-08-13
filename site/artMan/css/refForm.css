@@ -1,0 +1,102 @@
+/*
+
+.ref-list
+{
+    width: 80%;
+    display: inline-block;
+}
+
+.ref-line
+{
+    width: 100%;
+    display: inline-block;
+    border-bottom: 1px dotted #c0c0c0;
+    text-align: left;
+}
+
+.ref-line a
+{
+
+}
+
+.ref-line span
+{
+    float: right;
+    cursor: pointer;
+}
+
+.ref-line span img
+{
+    height: 1em;
+    width: 1em;
+}
+*/
+.ref-list a
+{
+    font-size: 1.2em;
+}
+
+.ref-control
+{
+    margin-top: 1em;
+    width: 100%;
+    display: inline-block;
+}
+
+.ref-control-left
+{
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.ref-control-left img
+{
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+
+.ref-control-left span
+{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.ref-control-left-input
+{
+    width: 80%;
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+/*
+.ref-control-left-input label
+{
+    width: 26%;
+    display: inline-block;
+    font-weight: bold;
+}
+*/
+.ref-control-left-input input
+{
+    width: 73%;
+    display: inline-block;
+    font-size: 1em;
+}
+
+.ref-control-right
+{
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+/*
+.ref-control-right input[type=button]
+{
+    height: 4em;
+    width: 4em;
+    background-image: url("/source/img/create-icon.png");
+    background-size: 100%;
+}
+*/

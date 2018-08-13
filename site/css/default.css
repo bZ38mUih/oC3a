@@ -1,0 +1,118 @@
+/*>---------------------------------body------------------------------>*/
+BODY
+{
+    width: 100%;
+    font-family: Cambria, Courier New, Calibri, Arial, MS Trebichet;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 25px;
+}
+/*<---------------------------------body------------------------------<*/
+
+/*>---------------------------------footer----------------------------->*/
+footer
+{
+    background-color: rgba(25,25,50,1);
+    color: #ffffff;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+footer div, footer a, footer img
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.ft-service
+{
+    width: 30%;
+}
+
+.ft-center
+{
+    width: 40%;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.ft-center hr
+{
+    border: none;
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.ft-center span
+{
+    background: radial-gradient(ellipse ,
+    rgba(25,25,50,1), rgba(25,25,50,1), rgba(25,25,50,1), rgba(255,255,255,0.2), rgba(255,255,255,0.5));
+    position: relative;
+    z-index: 1;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+.ft-like
+{
+    text-align: center;
+    width: 30%;
+}
+
+.ft-like a
+{
+    margin: 0 0.5em 0.1em 0.5em;
+}
+
+.ft-like a img
+{
+    height: 1em;
+    width: 1em;
+}
+
+footer sup
+{
+    color: white;
+    font-size: 0.5em;
+    text-decoration: none;
+    color: white;
+}
+/*<---------------------------------footer-------------------------------<*/
+
+/*>---------------------------------other-------------------------------->*/
+.contentBlock-frame
+{
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.contentBlock-center
+{
+    display: inline-block;
+    max-width: 1366px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.contentBlock-frame.dark
+{
+    background: rgba(25,25,50,1);
+    color: #ffffff;
+}
+
+
+@media only screen and (max-width : 1024px)  and (orientation : portrait) {
+    body {
+        font-size: 35px;
+    }
+}
+
+/*<---------------------------------other--------------------------------<*/

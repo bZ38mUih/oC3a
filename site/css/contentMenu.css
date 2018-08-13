@@ -1,0 +1,62 @@
+.contentMenu
+{
+    text-align: left;
+    width: 100%;
+    border-bottom: 1px dotted gray;
+    margin-top: 1em;
+}
+
+.contentMenu div
+{
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.contentMenu a
+{
+    background-color: darkgreen;
+    color: white;
+    border-radius: 0.3em;
+    padding: 0.2em;
+    margin-left: 1em;
+    font-size: 0.8em;
+}
+
+.contentMenu a.active
+{
+    background-color: navy;
+}
+
+.contentMenu-img
+{
+    text-align: right;
+}
+
+.contentMenu-img img
+{
+    height: 1.2em;
+    width: 1.2em;
+    vertical-align: middle;
+    border: 1px solid navy;
+    border-radius: 0.2em;
+}
+
+.contentMenu-img span
+{
+    vertical-align: middle;
+    font-weight: bold;
+    padding: 0 2em 0 1em;
+}
+
+@media only screen and (max-width : 1024px) and (orientation : portrait)
+{
+    .contentMenu div
+    {
+        width: 100%;
+        display: block;
+        margin-bottom: 0.2em;
+        /*vertical-align: middle;*/
+    }
+}

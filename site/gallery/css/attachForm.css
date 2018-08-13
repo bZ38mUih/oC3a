@@ -1,0 +1,177 @@
+form
+{
+    border: 2px solid green;
+    border-radius: 0.3em;
+    margin: 2em 1em 1em 1em;
+    padding: 1em 0.5em 0.5em 0.5em;
+}
+
+
+.manTopPanel
+{
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+/*toDo common with manFrame.css-->*/
+
+.itemsCount, .newItem
+{
+    display: inline-block;
+    width: 50%;
+
+}
+
+.itemsCount
+{
+    text-align: left;
+}
+
+.itemsCount span
+{
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 1em;
+}
+
+.newItem
+{
+    text-align: right;
+}
+/*<--common with manFrame.css*/
+
+.newItem input[type=file]
+{
+    background: darkgreen;
+    color: red;
+}
+
+
+
+.photo-frame
+{
+    width: 100%;
+    text-align: left;
+}
+
+.photo-item
+{
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1em;
+
+}
+
+.photo-item .photo-img
+{
+    width: 30%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+.photo-item .photo-img img
+{
+    height: 7em;
+    width: 7em;
+}
+
+.photo-item .photo-control
+{
+    display: inline-block;
+    width: 70%;
+    vertical-align: middle;
+}
+
+.photo-item .photo-control span.photoLink
+{
+    font-weight: bold;
+    width: 100%;
+    display: inline-block;
+}
+
+.photo-item .photo-control label
+{
+    font-weight: bold;
+    width: 100%;
+    display: inline-block;
+    font-size: 0.8em;
+    color: darkgray;
+}
+
+.photo-item .photo-control input[type='text'], .photo-item .photo-control input[type='date'],
+.photo-item .photo-control input[type='checkbox'], .photo-item .photo-control input[type='number']
+{
+    font-size: 0.8em;
+    display: inline-block;
+    width: 90%;
+}
+
+.photo-item .photo-control input[type='checkbox']
+{
+    margin-bottom: 1.5em;
+}
+
+
+.photo-item .photo-control .btn-line
+{
+    display: inline-block;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.photo-item .photo-control .btn-line input[type='button']
+{
+    font-size: 1.2em;
+    margin-right: 2em;
+    color: white;
+    font-weight: bold;
+}
+
+.photo-item .photo-control .btn-line input[type='button'].update
+{
+    background-color: #008000;
+}
+
+.photo-item .photo-control .btn-line input[type='button'].delete
+{
+    background-color: red;
+}
+
+@media only screen and (max-width : 1024px)
+{
+
+    .photo-item .photo-img
+    {
+        width: 100%;
+        /*display: inline-block;
+        vertical-align: middle;
+        text-align: center;*/
+    }
+
+    .photo-item .photo-img img
+    {
+        height: 7em;
+        width: 7em;
+        /*width: 100%;
+        /*display: inline-block;
+        vertical-align: middle;
+        text-align: center;*/
+    }
+
+    .photo-item .photo-control
+    {
+        width: 100%;
+        /*vertical-align: middle;
+        display: inline-block;*/
+    }
+}
+/*
+.newItem a img
+{  height: 1em;
+    width: 1em;
+    vertical-align: middle;
+}
+*/

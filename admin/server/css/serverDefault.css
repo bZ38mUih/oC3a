@@ -1,0 +1,113 @@
+hr
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: darkgreen;
+}
+
+.optionPanel input[type='button']
+{
+    color: #ffffff;
+    background-color: #000000;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.settingsPanel, .statusPanel
+{
+    display: inline-block;
+    width: 80%;
+}
+
+.statusPanel span.statusOk
+{
+    color: lime;
+    font-size: 1.2em;
+}
+
+.statusPanel span.statusFail
+{
+    color: firebrick;
+    font-size: 1.2em;
+}
+
+.lineBlock
+{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+.lineBlock.right
+{
+    text-align: right;
+}
+
+input[name='saveCon'], input[name='cancelConn'], input[name='editConn']
+{
+    font-size: 1em;
+    margin-right: 1em;
+    background-color: darkgreen;
+    color: #ffffff;
+    visibility: hidden;
+}
+
+input[name='saveCon']
+{
+    background-color: darkgreen;
+    color: #ffffff;
+}
+
+input[name='cancelConn']
+{
+    background-color: darkorange;
+    color: #ffffff;
+}
+
+input[name='editConn']
+{
+    background-color: blue;
+    color: #ffffff;
+}
+
+input[name='saveCon'].active, input[name='cancelConn'].active, input[name='editConn'].active
+{
+    visibility: visible;
+}
+
+form.serverOptions
+{
+    position: relative;
+    width: 100%;
+}
+
+.form.serverOptions .optionLine
+{
+
+}
+
+form.serverOptions label, .lineBlock span
+{
+    position: relative;
+    display: inline-block;
+    width: 49%;
+    text-align: left;
+    font-size: 1em;
+    color: blue;
+    font-weight: bold;
+}
+
+form.serverOptions input[type='text']
+{
+    display: inline-block;
+    width: 50%;
+    text-align: left;
+    font-size: 1em;
+}
+
+.feedback
+{
+    width: 100%;
+    color: red;
+}
