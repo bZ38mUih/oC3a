@@ -56,7 +56,7 @@ $appRJ->response['result'].= "Сделать пожертвование на р�
 //$appRJ->response['result'].= "<img src='/site/services/img/mazda323moon.JPG'>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<form method='POST' action='https://money.yandex.ru/quickpay/confirm.xml'>".
-    "<input type='hidden' name='receiver' value='41001xxxxxxxxxxxx'>".
+    "<input type='hidden' name='receiver' value='410017333214411'>".
     "<input type='hidden' name='formcomment' value='Проект «Железный человек»: реактор холодного ядерного синтеза'>".
     "<input type='hidden' name='short-dest' value='Проект «Железный человек»: реактор холодного ядерного синтеза'>".
     "<input type='hidden' name='label' value='".$order_id."'>".
@@ -64,8 +64,8 @@ $appRJ->response['result'].= "<form method='POST' action='https://money.yandex.r
     "<input type='hidden' name='targets' value='транзакция {order_id}'>".
     "<input type='hidden' name='sum' value='4568.25' data-type='number'>".
     "<input type='hidden' name='comment' value='Хотелось бы получить дистанционное управление.'>".
-    "<input type='hidden' name='need-fio' value='true'>".
-    "<input type='hidden' name='need-email' value='true'>".
+    "<input type='hidden' name='need-fio' value='false'>".
+    "<input type='hidden' name='need-email' value='false'>".
     "<input type='hidden' name='need-phone' value='false'>".
     "<input type='hidden' name='need-address' value='false'>".
     "<label><input type='radio' name='paymentType' value='PC'>Яндекс.Деньгами</label>".
