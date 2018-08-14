@@ -37,6 +37,7 @@ $appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/default.css
 $appRJ->response['result'].= "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
 //$appRJ->response['result'].= "<link rel='stylesheet' href='/site/status/css/status.css' type='text/css' media='screen, projection'/>";
 $appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
+$appRJ->response['result'].= "<script src='/site/donate/js/mkTransf.js'></script>";
 //$appRJ->response['result'].= "<script src='/site/status/js/status.js'></script>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
@@ -55,7 +56,15 @@ $appRJ->response['result'].= "<div class='dnt-ttl'>";
 $appRJ->response['result'].= "Сделать пожертвование на развитие проекта www.rightjoint.ru";
 //$appRJ->response['result'].= "<img src='/site/services/img/mazda323moon.JPG'>";
 $appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<form method='POST' action='https://money.yandex.ru/quickpay/confirm.xml'>".
+/*
+$appRJ->response['result'].= "<form class='dnt-form' method='POST'>".
+"<input type='text' name='test' value='xyi'>".
+"<input type='submit' value='test'>"."</form>";
+*/
+
+$appRJ->response['result'].= "<form method='POST' name='xyi' action='https://money.yandex.ru/quickpay/confirm.xml'>".
+//$appRJ->response['result'].= "<form method='POST'>".
+    "<input type='text' name='test' value='test'>".
     "<input type='hidden' name='receiver' value='410017333214411'>".
     "<input type='hidden' name='formcomment' value='Проект «Железный человек»: реактор холодного ядерного синтеза'>".
     "<input type='hidden' name='short-dest' value='Проект «Железный человек»: реактор холодного ядерного синтеза'>".
@@ -70,7 +79,9 @@ $appRJ->response['result'].= "<form method='POST' action='https://money.yandex.r
     "<input type='hidden' name='need-address' value='false'>".
     "<label><input type='radio' name='paymentType' value='PC'>Яндекс.Деньгами</label>".
     "<label><input type='radio' name='paymentType' value='AC'>Банковской картой</label>".
-    "<input type='submit' value='Перевести'>"."</form>";
+    "<input type='button' value='Перевести' onclick='mkTransf()'>"."</form>";
+
+
 /*
 $appRJ->response['result'].= "<div class='srv-ln-txt'>";
 $appRJ->response['result'].= "<span class='srv-nm'>Выезд к заказчику на час</span>";
