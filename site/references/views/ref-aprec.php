@@ -17,7 +17,6 @@ $aprArr['values']['normal']['color']="aqua";
 
 if($_SESSION['user_id']){
     $yourApr_txt="select * from refVoting_dt WHERE user_id=".$_SESSION['user_id'];
-    //$yourApr_cnt=0;
     if($yourApr_res=$DB->doQuery($yourApr_txt)){
         if(mysql_num_rows($yourApr_res)==1){
             $yourApr_row=$DB->doFetchRow($yourApr_res);
@@ -47,7 +46,6 @@ if($printApprec_cnt>0){
     }
 
     foreach($aprArr['values'] as $key=>$value){
-
         $apprRes['content'].= "<div class='apprec-line ".$key."'>";
         $apprRes['content'].= "<span class='apprec-val' ";
         if($_SESSION['user_id']){
@@ -58,15 +56,16 @@ if($printApprec_cnt>0){
         }
 
         $apprRes['content'].= ">".$aprArr['values'][$key]['alias']."</span>";
+
         $wdPr=round($aprArr['values'][$key]['qty']/$maxAprVal*100);
+
         $apprRes['content'].= "<span class='apprec-back' ".
             " style='background: linear-gradient(to right, ".
             $aprArr['values'][$key]['color']." ".$wdPr."%, rgba(25,25,50,1) ".strval(100 - $wdPr)."%); ".
-            "background-repeat: no-repeat;' >";
-
-
-        $apprRes['content'].= "<span class='apprec-back-val'>".strval(round($aprArr['values'][$key]['qty']/$aprArr['totalCnt']*100))."%</span></span>";
-        $apprRes['content'].= "</div>";
+            "background-repeat: no-repeat;' >".
+            //"<span class='apprec-back-val'>".strval(round($aprArr['values'][$key]['qty']/$aprArr['totalCnt']*100))."%</span>".
+            "</span>".
+            "</div>";
     }
 
 }else{
@@ -78,7 +77,9 @@ if($printApprec_cnt>0){
             $apprRes['content'].= "onclick='appreciate(".'"'.$key.'"'.")'";
         }
         $apprRes['content'].= ">".$aprArr['values'][$key]['alias']."</span>";
-        $apprRes['content'].= "<span class='apprec-back'><span class='apprec-back-val'>".$aprArr['values'][$key]['qty']."%</span></span>";
+        $apprRes['content'].= "<span class='apprec-back'>".
+            "<span class='apprec-back-val'>".$aprArr['values'][$key]['qty']."%</span>".
+            "</span>";
         $apprRes['content'].= "</div>";
     }
 
@@ -93,5 +94,3 @@ if($aprArr['errors']){
 
 $apprRes['err']=$aprArr['errors'];
 $apprRes['qty']=$aprArr['totalCnt'];
-
-//$apprRes['content']=;
