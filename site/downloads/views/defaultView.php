@@ -8,7 +8,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<title>Загрузки</title>".
     "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
-    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>">
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
