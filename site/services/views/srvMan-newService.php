@@ -1,0 +1,125 @@
+<?php
+$h1 ="Создание услуги";
+$appRJ->response['result'].= "<!DOCTYPE html>".
+    "<html lang='en-Us'>".
+    "<head>".
+    "<meta name='description' content='Создание услуги' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta name='robots' content='noindex'>".
+    "<title>Управление услугами</title>".
+    "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>".
+    "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/siteHeader/js/modalHeader.js'></script>".
+    "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>".
+    "<script type='text/javascript' src='/site/js/manForm.js'></script>".
+    "</head>".
+    "<body>";
+require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
+$appRJ->response['result'].= "<div class='contentBlock-frame'>".
+    "<div class='contentBlock-center'>".
+    "<div class='contentBlock-wrap'>";
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-subMenu.php");
+$appRJ->response['result'].= "<form class='newFile' method='post'>".
+    "<input type='hidden' name='flagField' value='newFile'>".
+    "<div class='input-line'>".
+    "<label>Название:</label>".
+    "<input type='text' name='cardName' id='targetName' ";
+if($Card_rd->result['cardName']){
+    $appRJ->response['result'].= "value='".$Card_rd->result['cardName']."'";
+}
+$appRJ->response['result'].= ">".
+    "<div class='field-err'>";
+if(isset($cardErr['cardName'])){
+    $appRJ->response['result'].= $cardErr['cardName'];
+}
+$appRJ->response['result'].= "</div>".
+    "</div>".
+    "<div class='input-line'>".
+    "<label>Alias:</label>".
+    "<input type='text' name='cardAliace' id='targetAlias' ";
+if($Card_rd->result['cardAliace']){
+    $appRJ->response['result'].= "value='".$Card_rd->result['cardAliace']."'";
+}
+$appRJ->response['result'].= ">".
+    "<input type='button' onclick='mkAlias()' value='mkAlias'>".
+    "<div class='field-err'>";
+if(isset($cardErr['cardAliace'])){
+    $appRJ->response['result'].= $cardErr['cardAliace'];
+}
+$appRJ->response['result'].= "</div>".
+    "</div>".
+    "<div class='input-line'>".
+    "<label>Кр. описание:</label>".
+    "<textarea name='shortDescr'>";
+if($Card_rd->result['shortDescr']){
+    $appRJ->response['result'].= $Card_rd->result['shortDescr'];
+}
+$appRJ->response['result'].= "</textarea>".
+    "</div>".
+    /*"<div class='input-line'>".
+    "<label for='fileVersion'>Версия:</label>".
+    "<input type='text' name='fileVersion' ";
+if($Card_rd->result['fileVersion']){
+    $appRJ->response['result'].= "value='".$Card_rd->result['fileVersion']."'";
+}
+$appRJ->response['result'].= ">".
+    "</div>".
+    "<div class='input-line'>".
+    "<label for='fileLicence'>Лицензия:</label>".
+    "<input type='text' name='fileLicence' ";
+if($Card_rd->result['fileLicence']){
+    $appRJ->response['result'].= "value='".$Card_rd->result['fileLicence']."'";
+}
+$appRJ->response['result'].= ">".
+    "</div>".*/
+    "<div class='input-line'>".
+    "<label>Категория:</label>".
+    "<select name='srvCat_id'>";
+/*select options-->*/
+$categList_text="select srvCat_id, srvCatPar_id, catName from srvCat_dt ORDER BY catName ";
+$categList_res=$DB->doQuery($categList_text);
+if(mysql_num_rows($categList_res)>0){
+    $findSelected=false;
+    while ($categList_row=$DB->doFetchRow($categList_res)){
+        $catSelect.= "<option value='".$categList_row['srvCat_id']."' ";
+        if($categList_row['srvCat_id'] == $Card_rd->result['srvCat_id']){
+            $findSelected=true;
+            $catSelect.= " selected";
+        }
+        $catSelect.= ">".$categList_row['catName']."</option>";
+    }
+    if($findSelected){
+        $catSelect="<option value='none' selected>---</option>".$catSelect;
+    }else{
+        $catSelect="<option value='none' selected>---</option>".$catSelect;
+    }
+}else{
+    $catSelect="<option value='none' selected>---</option>";
+}
+/*<--select options*/
+$appRJ->response['result'].= $catSelect."</select></div>".
+    "<div class='input-line'><label>Расценка:</label>".
+    "<input type='number' name='cardPrice' min='1000' max='99999' ";
+if($Card_rd->result['cardPrice']){
+    $appRJ->response['result'].="value='".$Card_rd->result['cardPrice']."'";;
+}
+$appRJ->response['result'].="></div>".
+    "<div class='input-line'><label>Валюта:</label>".
+    "<input type='number' min='1' max='1000' ";
+if($Card_rd->result['cardCurr']){
+    $appRJ->response['result'].="value='".$Card_rd->result['cardCurr']."'";;
+}
+$appRJ->response['result'].="></div>".
+"<div class='input-line'><label>Показывать:</label>".
+    "<input type='checkbox' name='cardActive' ";
+if($Card_rd->result['cardActive']){
+    $appRJ->response['result'].= "checked";
+}
+$appRJ->response['result'].= "></div><div class='input-line'><input type='submit' value='addNew'></div>".
+    "</form></div></div></div>";
+require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
+$appRJ->response['result'].= "</body></html>";

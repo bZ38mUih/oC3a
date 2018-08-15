@@ -117,8 +117,6 @@ if($selectAlbums_count>0){
         $appRJ->response['result'].= "there is no new albums here";
     }
 }
-
-
 if($catId){
     if(!$catAccess){
         $appRJ->errors['access']['description']="доступ к категории запрещен";
@@ -133,88 +131,55 @@ if($catId){
 
 $h1 ="Просмотр категории";
 $App['views']['social-block']=true;
-
-$appRJ->response['result'].= "<!DOCTYPE html>";
-$appRJ->response['result'].= "<html lang='en-Us'>";
-$appRJ->response['result'].= "<head>";
-$appRJ->response['result'].= "<meta name='description' content='";
+$appRJ->response['result'].= "<!DOCTYPE html>".
+    "<html lang='en-Us'>".
+    "<head>".
+    "<meta name='description' content='";
 foreach($catArr as $key=>$value){
     if($catArr[$key]['printFlag']==true) {
         $appRJ->response['result'] .= $value['catDescr'];
     }
 }
-$appRJ->response['result'].= "' http-equiv='Content-Type' charset='charset=utf-8'>";
-$appRJ->response['result'].= "<title>Галерея</title>";
-$appRJ->response['result'].= "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>";
-$appRJ->response['result'].= "<script src='/source/js/jquery-3.2.1.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
-
-
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/gallery/css/mainView.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
-$appRJ->response['result'].= "<script src='/site/js/goTop.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>";
-
+$appRJ->response['result'].= "' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<title>Галерея</title>".
+    "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
+    "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/gallery/css/mainView.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/siteHeader/js/modalHeader.js'></script>".
+    "<script src='/site/js/goTop.js'></script>".
+    "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }
-
-
-$appRJ->response['result'].= "</head>";
-
-$appRJ->response['result'].= "<body>";
-
+$appRJ->response['result'].= "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
-
-$appRJ->response['result'].= "<div class='contentBlock-frame'>";
-$appRJ->response['result'].= "<div class='contentBlock-center'>";
-$appRJ->response['result'].= "<div class='contentBlock-wrap'>";
-
-$appRJ->response['result'].= "<div class='cat-frame'>";
-
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
+    "<div class='contentBlock-wrap'><div class='cat-frame'>";
 foreach($catArr as $key=>$value){
     if($catArr[$key]['printFlag']==true) {
-        $appRJ->response['result'].= "<a href='/gallery/category/" . $value['catAlias'] . "' class='cat-line'>";
-        $appRJ->response['result'].= "<div class='cat-img'>";
+        $appRJ->response['result'].= "<a href='/gallery/category/" . $value['catAlias'] . "' class='cat-line'>".
+            "<div class='cat-img'>";
         if (file_exists($_SERVER['DOCUMENT_ROOT'] . GL_CATEG_IMG_PAPH . $key . "/preview/" . $value['catImg'])) {
             $appRJ->response['result'].= "<img src='" . GL_CATEG_IMG_PAPH . $key .
                 "/preview/" . $value['catImg'] . "'  id='shareImg'>";
         } else {
             $appRJ->response['result'].= "<img src='/data/default-img.png'>";
         }
-        $appRJ->response['result'].= "</div>";
-        $appRJ->response['result'].= "<div class='cat-descr'>";
-        $appRJ->response['result'].= "<span class='flName'>&laquo;</span><span class=flVal>" . $value['catName'] . "</span><span class='flName'>&raquo;</span>";
-        $appRJ->response['result'].= "<span class=flVal>" . $value['albCount'] . "</span><span class='flName'>альбом</span>";
-        $appRJ->response['result'].= "<span class=flVal>" . $value['photoCount'] . "</span><span class='flName'>фот</span>";
-        $appRJ->response['result'].= "<span class='descrTxt'>" . $value['catDescr'] . "</span>";
-        $appRJ->response['result'].= "</div>";
+        $appRJ->response['result'].= "</div><div class='cat-descr'>"."<span class='flName'>&laquo;".
+            "</span><span class=flVal>" . $value['catName'] . "</span><span class='flName'>&raquo;</span>".
+            "<span class=flVal>" . $value['albCount'] . "</span><span class='flName'>альбом</span>".
+            "<span class=flVal>" . $value['photoCount'] . "</span><span class='flName'>фот</span>".
+            "<span class='descrTxt'>" . $value['catDescr'] . "</span></div>";
     }
 }
-
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='alb-frame'>";
-$appRJ->response['result'].= $albums_print;
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "<div class='nav-frame'>";
-$appRJ->response['result'].= "<div class='toCategory'>";
-$appRJ->response['result'].= "<a href='/gallery/category/'>Все категории (".$cntCat.")</a>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='toAlbums'>";
-$appRJ->response['result'].= "<a href='/gallery/albums/'>Все альбомы (".$cntAlb.")</a>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
+$appRJ->response['result'].= "</div><div class='alb-frame'>".$albums_print."</div>".
+    "<div class='nav-frame'><div class='toCategory'>".
+    "<a href='/gallery/category/'>Все категории (".$cntCat.")</a></div>".
+    "<div class='toAlbums'><a href='/gallery/albums/'>Все альбомы (".$cntAlb.")</a></div></div>".
+    "</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
-
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
-
-$appRJ->response['result'].= "</body>";
-$appRJ->response['result'].= "</html>";
+$appRJ->response['result'].= "</body></html>";

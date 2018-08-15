@@ -1,45 +1,27 @@
 <?php
 $h1 ="Альбомы";
 $App['views']['social-block']=true;
-
-$appRJ->response['result'].= "<!DOCTYPE html>";
-$appRJ->response['result'].= "<html lang='en-Us'>";
-$appRJ->response['result'].= "<head>";
-$appRJ->response['result'].= "<meta name='description' content='Альбомы. Галерея фотографий на разные темы' http-equiv='Content-Type' charset='charset=utf-8'>";
-
-$appRJ->response['result'].= "<title>Галерея</title>";
-
-$appRJ->response['result'].= "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>";
-
-$appRJ->response['result'].= "<script src='/source/js/jquery-3.2.1.js'></script>";
-
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
-
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/gallery/css/mainView.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
-
-$appRJ->response['result'].= "<script src='/site/js/goTop.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>";
-
+$appRJ->response['result'].= "<!DOCTYPE html>".
+    "<html lang='en-Us'>".
+    "<head>".
+    "<meta name='description' content='Альбомы. Галерея фотографий на разные темы' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<title>Галерея</title>".
+    "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
+    "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/gallery/css/mainView.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/siteHeader/js/modalHeader.js'></script>".
+    "<script src='/site/js/goTop.js'></script>".
+    "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }
-
-
-$appRJ->response['result'].= "</head>";
-
-$appRJ->response['result'].= "<body>";
-
+$appRJ->response['result'].= "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
-
-$appRJ->response['result'].= "<div class='contentBlock-frame'>";
-$appRJ->response['result'].= "<div class='contentBlock-center'>";
-$appRJ->response['result'].= "<div class='contentBlock-wrap'>";
-
-$appRJ->response['result'].= "<div class='alb-frame'>";
-$appRJ->response['result'].= "<h2>Все альбомы</h2>";
-
+$appRJ->response['result'].= "<div class='contentBlock-frame'>".
+    "<div class='contentBlock-center'><div class='contentBlock-wrap'>".
+    "<div class='alb-frame'><h2>Все альбомы</h2>";
 $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id, galleryMenu_dt.catImg, galleryMenu_dt.catActive, ".
     "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, ".
     "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, ".
@@ -141,24 +123,10 @@ if($selectAlbums_count>0){
     $appRJ->response['result'].= "there is no new albums here";
 }
 
-$appRJ->response['result'].= "<div class='nav-frame'>";
-$appRJ->response['result'].= "<div class='toCategory'>";
-$appRJ->response['result'].= "<a href='/gallery/category/'>Все категории(".$cntCat.")</a>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
+$appRJ->response['result'].= "<div class='nav-frame'><div class='toCategory'>".
+    "<a href='/gallery/category/'>Все категории(".$cntCat.")</a>".
+    "</div></div></div></div></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
-
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
-
-$appRJ->response['result'].= "</body>";
-$appRJ->response['result'].= "</html>";
+$appRJ->response['result'].= "</body></html>";
