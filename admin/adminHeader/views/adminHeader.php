@@ -1,17 +1,11 @@
 <?php
-$appRJ->response['result'].= "<header>";
-
-$appRJ->response['result'].= "<div class='adminMenu'>";
-$appRJ->response['result'].= "<img src='/source/img/menu-icon.png'>";
-$appRJ->response['result'].= "<div class='adminMenu-link-frame'>";
-$appRJ->response['result'].= "<div class='adminMenu-link'>";
-$appRJ->response['result'].= "<a href='/admin/'";
+$appRJ->response['result'].= "<header>".
+    "<div class='adminMenu'><img src='/source/img/menu-icon.png'><div class='adminMenu-link-frame'>".
+    "<div class='adminMenu-link'><a href='/admin/'";
 if(!$adminModule){
     $appRJ->response['result'].= " class='disabled' ";
 }
-$appRJ->response['result'].= ">Админ</a>";
-$appRJ->response['result'].= "</div>";
-
+$appRJ->response['result'].= ">Админ</a></div>";
 foreach ($adminModules as $key=>$value){
     $printMenuItem_flag = false;
     if($adminModules[$key]['active']==true) {
@@ -34,24 +28,12 @@ foreach ($adminModules as $key=>$value){
         }
     }
 }
-$appRJ->response['result'].= "<div class='adminMenu-link'>";
-$appRJ->response['result'].= "<a href='/'>Сайт</a>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "<div class='avatar'>";
-$appRJ->response['result'].= "You are: ".$_SESSION['adminAlias'];
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<h1>";
+$appRJ->response['result'].= "<div class='adminMenu-link'><a href='/'>Сайт</a></div></div></div>".
+    "<div class='avatar'>You are: ".$_SESSION['adminAlias']."</div><h1>";
 if(!$adminModule){
     $appRJ->response['result'].= "Главная";
 }else{
     $appRJ->response['result'].= $adminModules[$adminModule]['aliasMenu'];
 }
-$appRJ->response['result'].= "</h1>";
-$appRJ->response['result'].= "<div class='btnPanel'>";
-$appRJ->response['result'].= "<a class='exit' href='?cmd=exit'><img src='/source/img/exit.png'></a>";
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "</header>";
+$appRJ->response['result'].= "</h1><div class='btnPanel'>".
+    "<a class='exit' href='?cmd=exit'><img src='/source/img/exit.png'></a></div></header>";
