@@ -1,5 +1,6 @@
 <?php
-
+define(SRV_CAT_IMG_PAPH, "/data/services/categs/");
+define(SRV_CARD_IMG_PAPH, "/data/services/cards/");
 if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10) {
 
     if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]!=null){

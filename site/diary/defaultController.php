@@ -1,4 +1,11 @@
 <?php
+
+if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
+    $appRJ->errors['stab']['description']="Администрация просит извинения за предоставленные неудобства :-(";
+    $appRJ->throwErr();
+}else{
+
+}
 /**
  * Created by PhpStorm.
  * User: AVP

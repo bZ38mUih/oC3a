@@ -26,5 +26,4 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/signIn/views/signIn-frame.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
-$appRJ->response['result'].= "</body>".
-    "</html>";
+$appRJ->response['result'].= "</body></html>";

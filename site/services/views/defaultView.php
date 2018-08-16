@@ -1,46 +1,18 @@
 <?php
-/*
-$curStatus['free']['active']=true;
-$curStatus['free']['stName']='free';
-$curStatus['free']['alias']='СВОБОДЕН';
-$curStatus['free']['descr']="<span class='phone'>8-903-888-7772</span>Ищу проект чтобы принять участие, готов приступить к работе в ближайшее время";
-$curStatus['free']['detail']='Получить консультацию о возможности выполнения, сроках и стоимости услуг вы можете по телефону или E-Mail';
-
-$curStatus['lookFor']['active']=false;
-$curStatus['lookFor']['stName']='lookFor';
-$curStatus['lookFor']['alias']='В ПОИСКЕ';
-$curStatus['lookFor']['descr']='Присматриваю варианты для взаимовыгодного сотрудничества. Готов приступить к работе по договоренности.';
-$curStatus['lookFor']['detail']='Получить консультацию о возможности выполнения, сроках и стоимости услуг вы можете по E-Mail';
-
-$curStatus['busy']['active']=false;
-$curStatus['busy']['stName']='busy';
-$curStatus['busy']['alias']='ЗАНЯТ';
-$curStatus['busy']['descr']='Сейчас у меня много работы. Не могу ответить на звонок. Рассматриваю предложения очень ограниченно';
-$curStatus['busy']['detail']='Попробуйте написать на E-Mail';
-
-file_put_contents($_SERVER['DOCUMENT_ROOT']."/site/status/status.txt", json_encode($curStatus));
-
-exit;
-*/
-
 $h1 ="Услуги";
 $App['views']['social-block']=true;
-$appRJ->response['result'].= "<!DOCTYPE html>";
-$appRJ->response['result'].= "<html lang='en-Us'>";
-$appRJ->response['result'].= "<head>";
-$appRJ->response['result'].= "<meta name='description' content='Услуги по созданию сайтов и ремонту компьютеров в г. Иваново' http-equiv='Content-Type' charset='charset=utf-8'>";
-$appRJ->response['result'].= "<meta name='yandex-verification' content='e929004ef40cae1b' />";
-$appRJ->response['result'].= "<title>Услуги</title>";
-$appRJ->response['result'].= "<link rel='SHORTCUT ICON' href='/site/status/img/favicon.png' type='image/png'>";
-$appRJ->response['result'].= "<script src='/source/js/jquery-3.2.1.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/status/css/status.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
-$appRJ->response['result'].= "<script src='/site/status/js/status.js'></script>";
-if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
-    $appRJ->response['result'].= "<script src='/site/status/js/change.js'></script>";
-}
+$appRJ->response['result'].= "<!DOCTYPE html>".
+    "<html lang='en-Us'>".
+    "<head>".
+    "<meta name='description' content='Услуги по созданию сайтов и ремонту компьютеров в г. Иваново' ".
+    "http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<title>Услуги</title>".
+    "<link rel='SHORTCUT ICON' href='/site/status/img/favicon.png' type='image/png'>".
+    "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/status/css/status.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/siteHeader/js/modalHeader.js'></script>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }

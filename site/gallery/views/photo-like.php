@@ -1,16 +1,10 @@
 <?php
 $photoLikeTxt=null;
-$photoLikeTxt.="<a onclick='setPhotoLike(".$photoPrint_row['photo_id'].")'>";
-$photoLikeTxt.="<span class='like'>".$add_txt."</span>";
-$photoLikeTxt.="<img src='/source/img/like.png'>";
-$photoLikeTxt.="<span class='like_qty'>";
-$photoLikeTxt.=" (";
+$photoLikeTxt.="<a onclick='setPhotoLike(".$photoPrint_row['photo_id'].")'>".
+    "<span class='like'>".$add_txt."</span><img src='/source/img/like.png'><span class='like_qty'> (";
 if($photoPrint_row['likeQty']){
     $photoLikeTxt.=$photoPrint_row['likeQty'];
 }else{
     $photoLikeTxt.="0";
 }
-$photoLikeTxt.=")";
-$photoLikeTxt.="</span>";
-
-$photoLikeTxt.="</a>";
+$photoLikeTxt.=")</span></a>";

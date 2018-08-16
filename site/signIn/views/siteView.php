@@ -24,5 +24,4 @@ if ($_COOKIE['rememberMe']=="on") {
 }
 $appRJ->response['result'].= ">".
     "<label for='rememberMe' title='запомнить пароль'>запомнить".
-    "<input type='submit' value='Вход' onclick='saveSignMe()'>".
-    "</form>";
+    "<input type='submit' value='Вход' onclick='saveSignMe()'></form>";

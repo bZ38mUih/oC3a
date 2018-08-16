@@ -1,12 +1,12 @@
 <?php
-$h1 ="Создание альбома";
+$h1 ="Создание категории услуг";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Создание альбома в галерее' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta name='description' content='Создание категории услуг' http-equiv='Content-Type' charset='charset=utf-8'>".
     "<meta name='robots' content='noindex'>".
-    "<title>Управление галереей</title>".
-    "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
+    "<title>Управление услугами</title>".
+    "<link rel='SHORTCUT ICON' href='/site/services/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
@@ -18,42 +18,43 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>";
-require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/views/glMan-subMenu.php");
-$appRJ->response['result'].= "<form method='post'><input type='hidden' name='flagField' value='newAlbum'>".
-    "<div class='input-line'><label for='albumName'>Название:</label>".
-    "<input type='text' name='albumName' id='targetName' ";
-if($Alb_rd->result['albumName']){
-    $appRJ->response['result'].= "value='".$Alb_rd->result['albumName']."'";
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-subMenu.php");
+$appRJ->response['result'].= "<form class='newCateg' method='post'>".
+    "<input type='hidden' name='flagField' value='newCat'>".
+    "<div class='input-line'><label>Название:</label>".
+    "<input type='text' name='catName' id='targetName' ";
+if($Cat_rd->result['catName']){
+    $appRJ->response['result'].= "value='".$Cat_rd->result['catName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
-if(isset($albErr['albumName'])){
-    $appRJ->response['result'].= $albErr['albumName'];
+if(isset($catErr['catName'])){
+    $appRJ->response['result'].= $catErr['catName'];
 }
 $appRJ->response['result'].= "</div></div>".
-    "<div class='input-line'><label for='albumAlias'>Alias:</label>".
-    "<input type='text' name='albumAlias' id='targetAlias' ";
-if($Alb_rd->result['albumAlias']){
-    $appRJ->response['result'].= "value='".$Alb_rd->result['albumAlias']."'";
+    "<div class='input-line'><label>Alias:</label>".
+    "<input type='text' name='catAlias' id='targetAlias' ";
+if($Cat_rd->result['catAlias']){
+    $appRJ->response['result'].= "value='".$Cat_rd->result['catAlias']."'";
 }
-$appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkAlbAlias'><div class='field-err'>";
-if(isset($albErr['albumAlias'])){
-    $appRJ->response['result'].= $albErr['albumAlias'];
+$appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkCatAlias'><div class='field-err'>";
+if(isset($catErr['catAlias'])){
+    $appRJ->response['result'].= $catErr['catAlias'];
 }
 $appRJ->response['result'].= "</div></div>".
-    "<div class='input-line'><label for='metaDescr'>Мета:</label><textarea name='metaDescr' rows='3' >";
-if($Alb_rd->result['metaDescr']){
-    $appRJ->response['result'].= $Alb_rd->result['metaDescr'];
+    "<div class='input-line'><label>Описание:</label><textarea rows='3' name='catDescr'>";
+if($Cat_rd->result['catDescr']){
+    $appRJ->response['result'].= $Cat_rd->result['catDescr'];
 }
-$appRJ->response['result'].= "</textarea></div>".
-    "<div class='input-line'><label for='glCat_id'>glCat_id:</label><select name='glCat_id'>";
+$appRJ->response['result'].="</textarea></div>".
+    "<div class='input-line'><label>srvCatPar_id:</label><select name='srvCatPar_id'>";
 /*select options-->*/
-$categList_text="select glCat_id, glCat_parId, catName from galleryMenu_dt ORDER BY catName ";
+$categList_text="select srvCat_id, srvCatPar_id, catName from srvCat_dt ORDER BY catName ";
 $categList_res=$DB->doQuery($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
-        $catSelect.= "<option value='".$categList_row['glCat_id']."' ";
-        if($categList_row['glCat_id'] == $Alb_rd->result['glCat_id']){
+        $catSelect.= "<option value='".$categList_row['srvCat_id']."' ";
+        if($categList_row['srvCat_id'] == $Cat_rd->result['srvCatPar_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -69,13 +70,14 @@ if(mysql_num_rows($categList_res)>0){
 }
 /*<--select options*/
 $appRJ->response['result'].= $catSelect."</select></div>".
-    "<div class='input-line'><label for='activeFlag'>Показывать:</label>".
-    "<input type='checkbox' name='activeFlag' ";
-if($Alb_rd->result['activeFlag']){
+    "<div class='input-line'><label>Показывать:</label>".
+    "<input type='checkbox' name='catActive' ";
+if($Cat_rd->result['catActive']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".
-    "<div class='input-line'><input type='submit' value='addNew'></div></form></div></div></div>";
+    "<div class='input-line'><input type='submit' value='addNew'></div></form>".
+    "</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

@@ -1,8 +1,6 @@
 <?php
 
-$appRJ->response['result'].= "<div class='statFrame'>";
-$appRJ->response['result'].= "<div class='enterFrame'>";
-$appRJ->response['result'].= "<h3>Вход на сайт:</h3>";
+$appRJ->response['result'].= "<div class='statFrame'><div class='enterFrame'><h3>Вход на сайт:</h3>";
 $selStat_query = "select * from inLog_dt INNER JOIN accounts_dt ON inLog_dt.account_id = accounts_dt.account_id ".
     "INNER JOIN users_dt ON accounts_dt.user_id = users_dt.user_id WHERE users_dt.user_id=".$_GET['user_id'].
 " ORDER BY inLog_dt.comeDate DESC limit 5";
@@ -35,37 +33,16 @@ if(mysql_num_rows($selStat_res)>0){
             $appRJ->response['result'].= "<img src='/data/avatar-default.jpg'>";
         }
 
-        $appRJ->response['result'].= "</div>";
-        $appRJ->response['result'].= "<div class='list-line-alias'>";
-        $appRJ->response['result'].= $selStat_row['accAlias'];
-        $appRJ->response['result'].= "</div>";
-        $appRJ->response['result'].= "<div class='list-line-nw'>";
-        $appRJ->response['result'].= $selStat_row['netWork'];
-        $appRJ->response['result'].= "</div>";
-        $appRJ->response['result'].= "<div class='list-line-rmAddr'>";
-        $appRJ->response['result'].= $selStat_row['rmAddr'];
-        $appRJ->response['result'].= "</div>";
-        $appRJ->response['result'].= "<div class='list-line-rmPort'>";
-        $appRJ->response['result'].= $selStat_row['rmPort'];
-        $appRJ->response['result'].= "</div>";
-        $appRJ->response['result'].= "<div class='list-line-uAgent'>";
-        $appRJ->response['result'].= $selStat_row['uAgent'];
-        $appRJ->response['result'].= "</div>";
-        $appRJ->response['result'].= "<div class='list-line-date'>";
-        $appRJ->response['result'].= $selStat_row['comeDate'];
-        $appRJ->response['result'].= "</div>";
-        $appRJ->response['result'].= "</div>";
+        $appRJ->response['result'].= "</div>".
+            "<div class='list-line-alias'>".$selStat_row['accAlias']."</div>".
+            "<div class='list-line-nw'>".$selStat_row['netWork']."</div>".
+            "<div class='list-line-rmAddr'>".$selStat_row['rmAddr']."</div>".
+            "<div class='list-line-rmPort'>".$selStat_row['rmPort']."</div>".
+            "<div class='list-line-uAgent'>".$selStat_row['uAgent']."</div>".
+            "<div class='list-line-date'>".$selStat_row['comeDate']."</div>"."</div>";
     };
 
 }else{
     $appRJ->response['result'].= "there is no statistic for this account ".$_GET['user_id']."<br>";
 }
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "<div class='blogFrame'>";
-
-$appRJ->response['result'].= "<h3>Блог:</h3>";
-
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "</div>";
+$appRJ->response['result'].= "</div><div class='blogFrame'><h3>Блог:</h3></div></div>";

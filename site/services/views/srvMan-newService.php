@@ -1,12 +1,18 @@
 <?php
 $h1 ="Создание услуги";
+if(!$Card_rd->result['cardCurr']){
+    $Card_rd->result['cardCurr']=643;
+}
+if(!$Card_rd->result['cardPrice']){
+    $Card_rd->result['cardPrice']=1000;
+}
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta name='description' content='Создание услуги' http-equiv='Content-Type' charset='charset=utf-8'>".
     "<meta name='robots' content='noindex'>".
     "<title>Управление услугами</title>".
-    "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>".
+    "<link rel='SHORTCUT ICON' href='/site/services/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
@@ -22,7 +28,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-wrap'>";
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-subMenu.php");
 $appRJ->response['result'].= "<form class='newFile' method='post'>".
-    "<input type='hidden' name='flagField' value='newFile'>".
+    "<input type='hidden' name='flagField' value='newCard'>".
     "<div class='input-line'>".
     "<label>Название:</label>".
     "<input type='text' name='cardName' id='targetName' ";
@@ -34,22 +40,20 @@ $appRJ->response['result'].= ">".
 if(isset($cardErr['cardName'])){
     $appRJ->response['result'].= $cardErr['cardName'];
 }
-$appRJ->response['result'].= "</div>".
-    "</div>".
+$appRJ->response['result'].= "</div></div>".
     "<div class='input-line'>".
     "<label>Alias:</label>".
-    "<input type='text' name='cardAliace' id='targetAlias' ";
-if($Card_rd->result['cardAliace']){
-    $appRJ->response['result'].= "value='".$Card_rd->result['cardAliace']."'";
+    "<input type='text' name='cardAlias' id='targetAlias' ";
+if($Card_rd->result['cardAlias']){
+    $appRJ->response['result'].= "value='".$Card_rd->result['cardAlias']."'";
 }
 $appRJ->response['result'].= ">".
     "<input type='button' onclick='mkAlias()' value='mkAlias'>".
     "<div class='field-err'>";
-if(isset($cardErr['cardAliace'])){
-    $appRJ->response['result'].= $cardErr['cardAliace'];
+if(isset($cardErr['cardAlias'])){
+    $appRJ->response['result'].= $cardErr['cardAlias'];
 }
-$appRJ->response['result'].= "</div>".
-    "</div>".
+$appRJ->response['result'].= "</div></div>".
     "<div class='input-line'>".
     "<label>Кр. описание:</label>".
     "<textarea name='shortDescr'>";
@@ -58,22 +62,6 @@ if($Card_rd->result['shortDescr']){
 }
 $appRJ->response['result'].= "</textarea>".
     "</div>".
-    /*"<div class='input-line'>".
-    "<label for='fileVersion'>Версия:</label>".
-    "<input type='text' name='fileVersion' ";
-if($Card_rd->result['fileVersion']){
-    $appRJ->response['result'].= "value='".$Card_rd->result['fileVersion']."'";
-}
-$appRJ->response['result'].= ">".
-    "</div>".
-    "<div class='input-line'>".
-    "<label for='fileLicence'>Лицензия:</label>".
-    "<input type='text' name='fileLicence' ";
-if($Card_rd->result['fileLicence']){
-    $appRJ->response['result'].= "value='".$Card_rd->result['fileLicence']."'";
-}
-$appRJ->response['result'].= ">".
-    "</div>".*/
     "<div class='input-line'>".
     "<label>Категория:</label>".
     "<select name='srvCat_id'>";
@@ -105,13 +93,23 @@ $appRJ->response['result'].= $catSelect."</select></div>".
 if($Card_rd->result['cardPrice']){
     $appRJ->response['result'].="value='".$Card_rd->result['cardPrice']."'";;
 }
-$appRJ->response['result'].="></div>".
+$appRJ->response['result'].=">".
+    "<div class='field-err'>";
+if(isset($cardErr['cardPrice'])){
+    $appRJ->response['result'].= $cardErr['cardPrice'];
+}
+$appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Валюта:</label>".
-    "<input type='number' min='1' max='1000' ";
+    "<input type='number' name='cardCurr' min='1' max='1000' ";
 if($Card_rd->result['cardCurr']){
     $appRJ->response['result'].="value='".$Card_rd->result['cardCurr']."'";;
 }
-$appRJ->response['result'].="></div>".
+$appRJ->response['result'].=">".
+    "<div class='field-err'>";
+if(isset($cardErr['cardCurr'])){
+    $appRJ->response['result'].= $cardErr['cardCurr'];
+}
+$appRJ->response['result'].= "</div></div>".
 "<div class='input-line'><label>Показывать:</label>".
     "<input type='checkbox' name='cardActive' ";
 if($Card_rd->result['cardActive']){

@@ -1,50 +1,36 @@
 <?php
 $h1 ="Доступы к альбому";
-$appRJ->response['result'].= "<!DOCTYPE html>";
-$appRJ->response['result'].= "<html lang='en-Us'>";
-$appRJ->response['result'].= "<head>";
-$appRJ->response['result'].= "<meta name='description' content='Редактирование доступов к альбому' http-equiv='Content-Type' charset='charset=utf-8'>";
-$appRJ->response['result'].= "<meta name='robots' content='noindex'>";
-$appRJ->response['result'].= "<title>Управление галереей</title>";
-$appRJ->response['result'].= "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>";
-$appRJ->response['result'].= "<script src='/source/js/jquery-3.2.1.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>";
-
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/contentMenu.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>";
-//$appRJ->response['result'].= "<link rel='stylesheet' href='/site/forum/css/editSubjDescrForm.css' type='text/css' media='screen, projection'/>";
-//$appRJ->response['result'].= "<link rel='stylesheet' href='/site/forum/css/subjEditMenu.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<script type='text/javascript' src='/site/js/manForm.js'></script>";
-//$appRJ->response['result'].= "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>";
-//$appRJ->response['result'].= "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>";
-//$appRJ->response['result'].= "<script src='/source/js/tinymce/tinymce.min.js'></script>";
-//$appRJ->response['result'].= "<script src='/site/forum/js/main.js'></script>";
-$appRJ->response['result'].= "</head>";
-
-$appRJ->response['result'].= "<body>";
+$appRJ->response['result'].= "<!DOCTYPE html>".
+    "<html lang='en-Us'>".
+    "<head>".
+    "<meta name='description' content='Редактирование доступов к альбому' ".
+    "http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta name='robots' content='noindex'>".
+    "<title>Управление галереей</title>".
+    "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
+    "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/siteHeader/js/modalHeader.js'></script>".
+    "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/css/contentMenu.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>".
+    "<script type='text/javascript' src='/site/js/manForm.js'></script>".
+    "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
-
-$appRJ->response['result'].= "<div class='contentBlock-frame'>";
-$appRJ->response['result'].= "<div class='contentBlock-center'>";
-$appRJ->response['result'].= "<div class='contentBlock-wrap'>";
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
+    "<div class='contentBlock-wrap'>";
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/views/glMan-subMenu.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/views/glMan-subContentMenu.php");
-
 $appRJ->response['result'].= "<form method='post'>";
 if(isset($albErr['common']) and $albErr['common']===true){
     $appRJ->response['result'].= "<div class='results success'>Updated SUCCESS</div>";
 }if(isset($albErr['common']) and $albErr['common']===false){
     $appRJ->response['result'].= "<div class='results fail'>Updated FAIL</div>";
 }
-$appRJ->response['result'].= "<input type='hidden' name='flagField' value='editAlbumAccess'>";
-//print_r($Alb_rd);
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='readRule'>Просмотр альбома:</label>";
-$appRJ->response['result'].= "<select name='readRule'>";
-$appRJ->response['result'].= "<option value='off' ";
+$appRJ->response['result'].= "<input type='hidden' name='flagField' value='editAlbumAccess'>".
+    "<div class='input-line'><label for='readRule'>Просмотр альбома:</label><select name='readRule'>".
+    "<option value='off' ";
 if($Alb_rd->result['readRule']=='off'){
     $appRJ->response['result'].= "selected";
 }
@@ -53,16 +39,12 @@ $appRJ->response['result'].= "<option value='all' ";
 if($Alb_rd->result['readRule']=='all'){
     $appRJ->response['result'].= "selected";
 }
-$appRJ->response['result'].= ">all</option>";
-$appRJ->response['result'].= "<option value='users' ";
+$appRJ->response['result'].= ">all</option><option value='users' ";
 if($Alb_rd->result['readRule']=='users'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">users</option>";
-
-
 $groups_text = "select * from usersGroups_dt WHERE activeFlag is true ORDER BY group_id ";
-
 $groups_res = $DB->doQuery($groups_text);
 $writeRule=null;
 if(mysql_num_rows($groups_res)>0){
@@ -80,39 +62,19 @@ if(mysql_num_rows($groups_res)>0){
         $writeRule.= ">".$groups_row['groupAlias']."</option>";
     }
 }
-
-$appRJ->response['result'].= "</select>";
-//$appRJ->response['result'].= "<input type='text' name='subj_id' value='".$Subj_rd->result['subject_id']."' disabled>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='writeRule'>Лайки и комменты:</label>";
-$appRJ->response['result'].= "<select name='writeRule'>";
-$appRJ->response['result'].= "<option value='off' ";
+$appRJ->response['result'].= "</select></div>".
+    "<div class='input-line'><label for='writeRule'>Лайки и комменты:</label><select name='writeRule'>".
+    "<option value='off' ";
 if($Alb_rd->result['writeRule']=='off'){
     $appRJ->response['result'].= "selected";
 }
-$appRJ->response['result'].= ">off</option>";
-$appRJ->response['result'].= "<option value='users' ";
+$appRJ->response['result'].= ">off</option><option value='users' ";
 if($Alb_rd->result['writeRule']=='users'){
     $appRJ->response['result'].= "selected";
 }
-$appRJ->response['result'].= ">users</option>";
-$appRJ->response['result'].= $writeRule;
-$appRJ->response['result'].= "</select>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<input type='submit' value='save'>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</form>";
-
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
+$appRJ->response['result'].= ">users</option>".$writeRule."</select></div>".
+    "<div class='input-line'><input type='submit' value='save'></div></form></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
-
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
-
-$appRJ->response['result'].= "</body>";
-$appRJ->response['result'].= "</html>";
+$appRJ->response['result'].= "</body></html>";

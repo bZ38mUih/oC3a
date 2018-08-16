@@ -1,34 +1,27 @@
 <?php
-
 $h1 ="Правка категории";
-$appRJ->response['result'].= "<!DOCTYPE html>";
-$appRJ->response['result'].= "<html lang='en-Us'>";
-$appRJ->response['result'].= "<head>";
-$appRJ->response['result'].= "<meta name='description' content='Создание категории загрузок' http-equiv='Content-Type' charset='charset=utf-8'>";
-$appRJ->response['result'].= "<meta name='robots' content='noindex'>";
-$appRJ->response['result'].= "<title>Правка категории</title>";
-$appRJ->response['result'].= "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>";
-$appRJ->response['result'].= "<script src='/source/js/jquery-3.2.1.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>";
-
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<script type='text/javascript' src='/site/js/manForm.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>";
-$appRJ->response['result'].= "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>";
-$appRJ->response['result'].= "</head>";
-
-$appRJ->response['result'].= "<body>";
+$appRJ->response['result'].= "<!DOCTYPE html>".
+    "<html lang='en-Us'>".
+    "<head>".
+    "<meta name='description' content='Создание категории загрузок' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta name='robots' content='noindex'>".
+    "<title>Правка категории</title>".
+    "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>".
+    "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/siteHeader/js/modalHeader.js'></script>".
+    "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>".
+    "<script type='text/javascript' src='/site/js/manForm.js'></script>".
+    "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
+    "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
+    "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
-
-$appRJ->response['result'].= "<div class='contentBlock-frame'>";
-$appRJ->response['result'].= "<div class='contentBlock-center'>";
-$appRJ->response['result'].= "<div class='contentBlock-wrap'>";
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
+    "<div class='contentBlock-wrap'>";
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/downloads/views/dwlMan-subMenu.php");
-$appRJ->response['result'].= "<form class='editImg'>";
-$appRJ->response['result'].= "<div class='img-frame'>";
+$appRJ->response['result'].= "<form class='editImg'><div class='img-frame'>";
 $delImgBtn_text=null;
 if($Cat_rd->result['catImg']){
     $appRJ->response['result'].= "<img src='".DWL_CATEG_IMG_PAPH.$_GET['cat_id']."/preview/".$Cat_rd->result['catImg']."'>";
@@ -36,70 +29,48 @@ if($Cat_rd->result['catImg']){
 }else{
     $appRJ->response['result'].= "<img src='/data/default-img.png'>";
 }
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='control-frame'>";
-$appRJ->response['result'].= "<div class='delImg-line'>";
-$appRJ->response['result'].= "<span onclick='delImg(".$_GET['cat_id'].", ".'"'."delCatImg".'"'.")' ".$delImgBtn_text.">".
-    "<img src='/source/img/drop-icon.png'>Удалить картинку</span>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='button-line'>";
-$appRJ->response['result'].= "<input type='file' onchange='loadFiles(".$_GET['cat_id'].", ".'"'."cat_id".'"'.")' accept='image/jpeg,image/png,image/gif'>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='err-line'>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</form>";
-$appRJ->response['result'].= "<form class='newCateg' method='post'>";
+$appRJ->response['result'].= "</div><div class='control-frame'><div class='delImg-line'>".
+    "<span onclick='delImg(".$_GET['cat_id'].", ".'"'."delCatImg".'"'.")' ".$delImgBtn_text.">".
+    "<img src='/source/img/drop-icon.png'>Удалить картинку</span></div>".
+    "<div class='button-line'>".
+    "<input type='file' onchange='loadFiles(".$_GET['cat_id'].", ".'"'."cat_id".'"'.
+    ")' accept='image/jpeg,image/png,image/gif'></div><div class='err-line'></div></div></form>".
+    "<form class='newCateg' method='post'>";
 if(isset($catErr['common']) and $catErr['common']===true){
     $appRJ->response['result'].= "<div class='results success'>Updated SUCCESS</div>";
 }if(isset($catErr['common']) and $catErr['common']===false){
     $appRJ->response['result'].= "<div class='results fail'>Updated FAIL</div>";
 }
-$appRJ->response['result'].= "<input type='hidden' name='flagField' value='editCat'>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='cat_id'>cat_id:</label>";
-$appRJ->response['result'].= "<input type='text' name='cat_id' value='".$Cat_rd->result['dwlCat_id']."' disabled>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='catName'>Название:</label>";
-$appRJ->response['result'].= "<input type='text' name='catName' id='targetName' ";
+$appRJ->response['result'].= "<input type='hidden' name='flagField' value='editCat'>".
+    "<div class='input-line'><label for='cat_id'>cat_id:</label>".
+    "<input type='text' name='cat_id' value='".$Cat_rd->result['dwlCat_id']."' disabled></div>".
+    "<div class='input-line'><label for='catName'>Название:</label>".
+    "<input type='text' name='catName' id='targetName' ";
 if($Cat_rd->result['catName']){
     $appRJ->response['result'].= "value='".$Cat_rd->result['catName']."'";
 }
-$appRJ->response['result'].= ">";
-$appRJ->response['result'].= "<div class='field-err'>";
+$appRJ->response['result'].= "><div class='field-err'>";
 if(isset($catErr['catName'])){
     $appRJ->response['result'].= $catErr['catName'];
 }
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='catAlias'>Alias:</label>";
-$appRJ->response['result'].= "<input type='text' name='catAlias' id='targetAlias' ";
+$appRJ->response['result'].= "</div></div>".
+    "<div class='input-line'><label for='catAlias'>Alias:</label>".
+    "<input type='text' name='catAlias' id='targetAlias' ";
 if($Cat_rd->result['catAlias']){
     $appRJ->response['result'].= "value='".$Cat_rd->result['catAlias']."'";
 }
-$appRJ->response['result'].= ">";
-$appRJ->response['result'].= "<input type='button' onclick='mkAlias()' value='mkCatAlias'>";
-$appRJ->response['result'].= "<div class='field-err'>";
+$appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkCatAlias'><div class='field-err'>";
 if(isset($catErr['catAlias'])){
     $appRJ->response['result'].= $catErr['catAlias'];
 }
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='catDescr'>Описание:</label>";
-$appRJ->response['result'].= "<input type='text' name='catDescr' ";
+$appRJ->response['result'].= "</div></div>".
+    "<div class='input-line'><label for='catDescr'>Описание:</label>".
+    "<input type='text' name='catDescr' ";
 if($Cat_rd->result['catDescr']){
     $appRJ->response['result'].= "value='".$Cat_rd->result['catDescr']."'";
 }
-$appRJ->response['result'].= ">";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='dwlCatPar_id'>dwlCatPar_id:</label>";
-
-$appRJ->response['result'].= "<select name='dwlCatPar_id'>";
-
+$appRJ->response['result'].= "></div>".
+    "<div class='input-line'><label for='dwlCatPar_id'>dwlCatPar_id:</label><select name='dwlCatPar_id'>";
 /*select options-->*/
 $categList_text="select dwlCat_id, dwlCatPar_id, catName from dwlCat_dt WHERE dwlCat_id<>".$Cat_rd->result['dwlCat_id'].
     " ORDER BY catName ";
@@ -123,33 +94,15 @@ if(mysql_num_rows($categList_res)>0){
     $catSelect="<option value='none' selected>---</option>";
 }
 /*<--select options*/
-$appRJ->response['result'].= $catSelectOptions;
-$appRJ->response['result'].= "</select>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='dwlCat_active'>Показывать:</label>";
-$appRJ->response['result'].= "<input type='checkbox' name='dwlCat_active' ";
+$appRJ->response['result'].= $catSelectOptions."</select></div>".
+    "<div class='input-line'><label for='dwlCat_active'>Показывать:</label>".
+    "<input type='checkbox' name='dwlCat_active' ";
 if($Cat_rd->result['catActive_flag']){
     $appRJ->response['result'].= "checked";
 }
-$appRJ->response['result'].= ">";
-//$appRJ->response['result'].= "<input type='checkbox'  checked>";
-$appRJ->response['result'].= "</div>";
-
-
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<input type='submit' value='save'>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</form>";
-
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
+$appRJ->response['result'].= "></div>".
+    "<div class='input-line'><input type='submit' value='save'></div></form></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
-
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
-
-$appRJ->response['result'].= "</body>";
-$appRJ->response['result'].= "</html>";
+$appRJ->response['result'].= "</body></html>";

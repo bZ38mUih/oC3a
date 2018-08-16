@@ -1,5 +1,4 @@
 <?php
-
 $catErr=null;
 $catSelectOptions=null;
 if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
@@ -10,9 +9,7 @@ if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/downloads/views/editCat.php");
     }else{
         $appRJ->response['result'].= "неправильные параметры запроса cat_id";
-        //exit;
     }
 }else{
     $appRJ->response['result'].= "zzz";
-    //exit;
 }
