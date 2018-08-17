@@ -1,7 +1,7 @@
 <?php
 $appRJ->response['result'].= "<div class='subMenu'>".
-    "<a href='/services/srvMan/' ";
-if(!$appRJ->server['reqUri_expl'][3]){
+    "<a href='/services/srvMan/cards/' ";
+if(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3] === 'cards'){
     $appRJ->response['result'].= "class='active'";
 }
 $appRJ->response['result'].= ">Услуги</a>".

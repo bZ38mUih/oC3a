@@ -1,7 +1,7 @@
 <?php
 $query_text="create table srvCards_dt (".
     "card_id int(5) AUTO_INCREMENT, ".
-    "srvCat_id int(5) not null, ".
+    "srvCat_id int(5), ".
     "cardName varchar(128) collate utf8_unicode_ci not null, ".
     "cardAlias varchar(128) collate utf8_unicode_ci not null, ".
     "shortDescr TEXT collate utf8_unicode_ci, ".

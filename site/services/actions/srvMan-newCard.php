@@ -44,7 +44,7 @@ if(isset($cardErr)){
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/services/views/srvMan-newService.php");
 }else{
     if($Card_rd->putOne()){
-        $page = "Location: /services/srvMan/editCard/?card_id=".$Card_rd->result['card_id'];
+        $page = "Location: /services/srvMan/cards/editCard/?card_id=".$Card_rd->result['card_id'];
         header($page);
     }else{
         $appRJ->response['result'].= "444-zhopa<br>";

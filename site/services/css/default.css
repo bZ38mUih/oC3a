@@ -1,0 +1,89 @@
+.srv-frame
+{
+    /*border: 1px solid blue;*/
+    width: 96%;
+    margin-left: 2%;
+}
+
+.srv-frame h2
+{
+    font-size: 1.2em;
+    color: midnightblue;
+    border-bottom: 2px solid midnightblue;
+}
+
+.srv-ln
+{
+    width: 90%;
+    margin-left: 5%;
+    border: 2px solid midnightblue;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+}
+
+.srv-ln span.srv-capt
+{
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+.srv-ln .srv-img
+{
+    display: inline-block;
+    width: 20%;
+}
+
+.srv-ln .srv-img img
+{
+    height: 5em;
+    width: 5em;
+}
+
+.srv-ln .srv-txt
+{
+    display: inline-block;
+    width: 80%;
+    vertical-align: top;
+}
+
+.srv-ln .srv-txt .srv-cntrl
+{
+    text-align: right;
+    margin-right: 1em;
+}
+
+.srv-ln .srv-txt .srv-cntrl a
+{
+    margin-right: 1em;
+}
+
+.srv-ln .srv-txt .srv-cntrl span
+{
+    color: darkgreen;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.srv-ln .srv-txt .srv-cntrl span img
+{
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+}
+
+.srv-ln .srv-txt .srv-price
+{
+    text-align: right;
+    color: red;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 1em;
+}
+
+.orderBtn span.active
+{
+    text-shadow: 2px 2px 2px aqua, -2px -2px 2px aqua, 2px -2px 2px aqua, -2px 2px 2px aqua;
+    color: navy;
+    /*font-weight: bold;*/
+}

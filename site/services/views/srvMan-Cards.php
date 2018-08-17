@@ -29,7 +29,7 @@ if(mysql_num_rows($slSrv_res)>0){
 $appRJ->response['result'].= "<div class='manFrame'><div class='manTopPanel'>".
     "<div class='itemsCount'>Всего: <span>".$srvCnt."</span> записей</div>".
     "<div class='newItem'>".
-    "<a href='/services/srvMan/newService'><img src='/source/img/create-icon.png'>Создать услугу</a></div></div>";
+    "<a href='/services/srvMan/cards/newService'><img src='/source/img/create-icon.png'>Создать услугу</a></div></div>";
 if($srvCnt>0){
     $appRJ->response['result'].= "<div class='item-line caption'>".
         "<div class='item-line-id'>srv_id</div>".
@@ -40,10 +40,10 @@ if($srvCnt>0){
         "<div class='item-line-fCateg'>categ</div></div>";
     while ($slSrv_row=$DB->doFetchRow($slSrv_res)){
         $appRJ->response['result'].= "<div class='item-line'><div class='item-line-id'>".
-            "<a href='/services/srvMan/editCard/?card_id=".$slSrv_row['card_id']."'>".
+            "<a href='/services/srvMan/cards/editCard/?card_id=".$slSrv_row['card_id']."'>".
             $slSrv_row['card_id']."</a></div>".
             "<div class='item-line-img'>";
-        if($selectFile_row['cardImg']){
+        if($slSrv_row['cardImg']){
             $appRJ->response['result'].= "<img src='".SRV_CARD_IMG_PAPH.$slSrv_row['card_id']."/preview/".
                 $slSrv_row['cardImg']."'>";
         }else{
@@ -51,7 +51,7 @@ if($srvCnt>0){
         }
         $appRJ->response['result'].= "</div>".
             "<div class='item-line-name'>".$slSrv_row['cardName']."</div>".
-            "<div class='item-line-alias'>".$slSrv_row['cardAliace']."</div>".
+            "<div class='item-line-alias'>".$slSrv_row['cardAlias']."</div>".
             "<div class='item-line-flag'><input type='checkbox' ";
         if($slSrv_row['cardActive']){
             $appRJ->response['result'].= "checked";
