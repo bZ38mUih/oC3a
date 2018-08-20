@@ -10,13 +10,19 @@ if($appRJ->server['reqUri_expl'][1] != "status"){
 $appRJ->response['result'].= "</div></div></div><div class='modal-line'><div class='modal-line-img'>".
     "<img src='/site/siteHeader/img/Email-Logo-color.png'></div><div class='modal-line-text mail'>".
     "<span>rightjoint@yandex.ru</span></div></div>";
-
+if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
+    $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
+        "<img src='/site/services/img/logo.png'></div><div class='modal-line-text srv'>".
+        "<a href='/services/' title='Все услуги'>Все услуги</a>".
+        "</div></div>";
+}
 if($appRJ->server['reqUri_expl'][1]!='references'){
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/references/img/logo.png'></div><div class='modal-line-text ref'>".
         "<a href='/references' title='Посмотреть отзывы, написать отзыв'>Отзывы</a>".
         "</div></div>";
 }
+
 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/services/img/logo.png'></div><div class='modal-line-text'>".

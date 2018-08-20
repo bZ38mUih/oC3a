@@ -1,14 +1,22 @@
 <?php
-
 $appRJ->response['result'].= "<div class='modal menu'><div class='overlay'></div><div class='contentBlock-frame'>".
     "<div class='contentBlock-center'><div class='modal-right'><div class='modal-close'></div>".
     "</div><div class='modal-left'>";
+/*Admin-->*/
 if(isset($_SESSION['groups']['root']) and $_SESSION['groups']['root']>10) {
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/admin/img/admin_logo.jpg'></div><div class='modal-line-text'>".
         "<a href='/admin/'>Admin</a></div></div>";
 }
-/*personal-page*/
+/*<--Admin*/
+/*Diary-->*/
+if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
+    $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
+    "<img src='/site/diary/img/logo.png'></div><div class='modal-line-text'>".
+    "<a href='/diary/'>Diary</a></div></div>";
+}
+/*<--Diary*/
+/*personal-page-->*/
 if($_SESSION['user_id']){
     $ntf_cnt=0;
     $ntf_qry="select count(ntfList_id) as ntfQty from ntfList_dt WHERE user_id=".$_SESSION['user_id']." and readDate is NULL";
