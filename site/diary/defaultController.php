@@ -21,7 +21,7 @@ function printDiarySubMenu($diaryType='daily', $curDate)
     //$appRJ->date['curDate'] = new datetime;
     $resp=null;
     $resp.= "<a href='#' onclick='mkDiary(".'"'.$diaryType.'"'.", null, null, null)'>mkReport</a>";
-    if ($diaryType == "yearly"){
+    if ($diaryType == "yearly" or $diaryType == "conception"){
         $resp.= "from: <input type='date' id='from' value='2013-12-31'>";
     }else{
         $resp.= "from: <input type='date' id='from' value='".date("Y-m-d", strtotime(date_format($curDate, "Y-m-d")." - 1 month"))."'>";
@@ -68,10 +68,10 @@ function printNote($diary=null, $printForm_flag=true,$activeStyle=null)
                 $prNtRes.= "Дата: <label class='curDate'>".$query_row["curDate"]."</label>";
                 $prNtRes.= "Время: <label class='curTime'>".$query_row["curTime"]."</label>";
                 $prNtRes.= "<p>".$query_row["content"]."</p>";
-                if ($query_row["diaryType"] == 'daily'){
+                //if ($query_row["diaryType"] == 'daily'){
                     $prNtRes.= "<a href='#'  id='".$query_row["diary_id"]."' onclick='mkDiary(".'"'.$query_row["diaryType"].'"'.", ".
                         $query_row["diary_id"].", null, this)'>добавить</a>";
-                }
+                //}
                 $prNtRes.= "<a href='#'  id='".$query_row["diary_id"]."' onclick='mkDiary(".'"'.$query_row["diaryType"].'"'.", ".
                     $query_row["diary_id"].", ".$query_row["note_id"].", this)'>редактировать</a>";
             }
@@ -119,6 +119,8 @@ if (isset($_GET["subMenu"]) and $_GET["subMenu"] != null){
         $appRJ->response['result'].=printDiarySubMenu("quarterly", $appRJ->date['curDate']);
     }elseif($_GET["subMenu"] == "yearly"){
         $appRJ->response['result'].=printDiarySubMenu("yearly", $appRJ->date['curDate']);
+    }elseif($_GET["subMenu"] == "conception"){
+        $appRJ->response['result'].=printDiarySubMenu("conception", $appRJ->date['curDate']);
     }
     else{
         //echo "неправильные параметры запроса subMenu";

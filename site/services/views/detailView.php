@@ -1,12 +1,13 @@
 <?php
-$pop_qry="select * from srvCards_dt INNER JOIN srvCat_dt ON srvCards_dt.srvCat_id=srvCat_dt.srvCat_id";
-$pop_res=$DB->doQuery($pop_qry);
-$pop_cnt=0;
-if(mysql_num_rows($pop_res)>0){
-    $pop_cnt=mysql_num_rows($pop_res);
+$srv_qry="select * from srvCards_dt INNER JOIN srvCat_dt ON srvCards_dt.srvCat_id=srvCat_dt.srvCat_id ".
+    "WHERE srvCards_dt.cardAlias='".$appRJ->server['reqUri_expl'][3]."'";
+$srv_res=$DB->doQuery($srv_qry);
+$srv_cnt=0;
+if(mysql_num_rows($srv_res)>0){
+    $srv_cnt=mysql_num_rows($srv_res);
 }
 
-$h1 ="Услуги";
+$h1 ="Описание услуги";
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
@@ -30,31 +31,40 @@ $appRJ->response['result'].= "<body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 
 $appRJ->response['result'].= "<div class='contentBlock-frame'>";
-$appRJ->response['result'].= "<div class='contentBlock-center'>".
-    "<div class='contentBlock-wrap'>"."<div class='srv-frame'><h2>Популярные услуги</h2>";
+$appRJ->response['result'].= "<div class='contentBlock-center'>";
+    //"<div class='contentBlock-wrap'>"."<div class='srv-frame'><h2>Популярные услуги</h2>";
 
-if($pop_cnt>0){
-    while ($pop_row=$DB->doFetchRow($pop_res)){
+if($srv_cnt>0){
+    while ($srv_row=$DB->doFetchRow($srv_res)){
         $appRJ->response['result'].="<div class='srv-ln'>".
-            "<div class='srv-capt'><span class='before'></span><span>".$pop_row['cardName'].
+            "<div class='srv-capt'><span class='before'></span><span>".$srv_row['cardName'].
             "</span><span class='after'></span></div>".
-            "<div class='srv-img'><img src='".SRV_CARD_IMG_PAPH.$pop_row['card_id']."/preview/".
-            $pop_row['cardImg']."'></div>".
+            "<div class='srv-img'><img src='".SRV_CARD_IMG_PAPH.$srv_row['card_id']."/preview/".
+            $srv_row['cardImg']."'></div>".
             "<div class='srv-txt'>".
             "<div class='srv-cntrl'>".
 
 
-            "<span class='srv-price'>от ".$pop_row['cardPrice']." руб.</span>".
-            "<span onclick='addBucket(".$pop_row['card_id'].")'><img src='/site/services/img/bucket.png'>Заказать</span>".
+            "<span class='srv-price'>от ".$srv_row['cardPrice']." руб.</span>".
+            "<span onclick='addBucket(".$srv_row['card_id'].")'><img src='/site/services/img/bucket.png'>Заказать</span>".
             "</div>".
 
 
-            "<div class='srv-descr'>".$pop_row['shortDescr'].
+            "<div class='srv-descr'>".$srv_row['shortDescr'].
             "</div>".
-            "<div class='detail'><a href='/services/detail/".$pop_row['cardAlias']."'>подробнее</a></div>".
+            //"<div class='detail'><a href='/services/detail/".$srv_row['cardAlias']."'>подробнее</a></div>".
 
             "</div>".
-            "</div>";
+            "</div>".
+        "<div class='longDescr'>";
+        if($srv_row['longDescr']){
+            $appRJ->response['result'].=$srv_row['longDescr'];
+        }else{
+            $appRJ->response['result'].="подробное описание не задано";
+        }
+        $appRJ->response['result'].="</div>";
+
+
     }
 }else{
     $appRJ->response['result'].= "thre is no active services";

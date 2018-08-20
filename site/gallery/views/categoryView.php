@@ -2,7 +2,7 @@
 
 $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id,".
     "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, ".
-    "galleryAlb_dt.album_id, galleryAlb_dt.albumName, ".
+    "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, ".
     "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, ".
     "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
     "INNER JOIN galleryAlb_dt ON galleryMenu_dt.glCat_id = galleryAlb_dt.glCat_id ".
@@ -58,9 +58,14 @@ if($selectAlbums_count>0){
                     $alb_view.="<a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-block'>";
                     $alb_view.="<div class='alb-img'>";
 
-                    if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
-                        $selectAlbums_row['albumImg'])){
-                        $alb_view.="<img src='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".$selectAlbums_row['albumImg']."'>";
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id'].
+                        "/preview/".$selectAlbums_row['albumImg'])){
+                        $alb_view.="<img src='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
+                            $selectAlbums_row['albumImg']."' ";
+                        if($selectAlbums_row['transAlbImg']){
+                            $alb_view.="style='transform: rotate(".$selectAlbums_row['transAlbImg']."deg)'";
+                        }
+                        $alb_view.=">";
                     }else{
                         $alb_view.="<img src='/data/default-img.png'>";
                     }

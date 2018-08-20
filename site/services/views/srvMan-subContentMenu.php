@@ -6,12 +6,12 @@ if(!$appRJ->server['reqUri_expl'][5]){
 }
 $appRJ->response['result'].= ">Карт.-Назв.</a>".
     "<a href='/services/srvMan/cards/editCard/longDescr?card_id=".$_GET['card_id']."'";
-if(isset($appRJ->server['reqUri_expl'][5]) and strtolower($appRJ->server['reqUri_expl'][4])=='longDescr'){
+if(isset($appRJ->server['reqUri_expl'][5]) and $appRJ->server['reqUri_expl'][5]=='longDescr'){
     $appRJ->response['result'].= " class='active'";
 }
 $appRJ->response['result'].= ">Дл. описание</a>".
     "<a href='/services/srvMan/cards/editCard/remove?card_id=".$_GET['card_id']."'";
-if(isset($appRJ->server['reqUri_expl'][5]) and strtolower($appRJ->server['reqUri_expl'][4])=='remove'){
+if(isset($appRJ->server['reqUri_expl'][5]) and strtolower($appRJ->server['reqUri_expl'][5])=='remove'){
     $appRJ->response['result'].= " class='active'";
 }
 $appRJ->response['result'].= ">Удаление</a></div><div class='contentMenu-img'>";

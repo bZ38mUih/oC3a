@@ -1,0 +1,31 @@
+form
+{
+    border: 2px solid green;
+    border-radius: 0.3em;
+    margin: 2em 1em 1em 1em;
+    padding: 1em 0.5em 0.5em 0.5em;
+}
+
+[name='longDescr']
+{
+    width: 90%;
+    display: block;
+}
+
+.input-line
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0;
+    text-align: right;
+}
+
+span.longDescr
+{
+    border: 1px solid navy;
+    border-radius: 0.2em;
+    color: white;
+    background-color: darkgreen;
+    cursor: pointer;
+    margin-right: 1em;
+}

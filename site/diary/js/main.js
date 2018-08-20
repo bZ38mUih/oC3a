@@ -50,7 +50,7 @@ function saveDiary(el)
     //alert('xyi-2');
     var url = "/diary/";
     var posting = $.post( url, $("form.mkDiary").serialize());
-    alert($("form.mkDiary").serialize());
+    //alert($("form.mkDiary").serialize());
     posting.done(function( data ) {
         tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'content');
         $(el).parent().parent("div").parent("div").html(data);

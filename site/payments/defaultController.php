@@ -1,5 +1,19 @@
 <?php
+
+
+if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10) {
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/payments/views/defaultView.php");
+}
+
+
+
+
+
 //$testArr=null;
+
+
+
+/*
 $payment = new recordDefault("payments_dt", "label");
 
 if(isset($_POST['label'])){
@@ -76,6 +90,7 @@ if(isset($_POST['label'])){
 
 
 }
+*/
 /*
 if(isset($_GET) and $_GET!=null){
     //echo "GET<br>";

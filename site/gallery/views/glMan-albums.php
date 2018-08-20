@@ -73,7 +73,11 @@ if($subjCount>0){
             "<div class='item-line-img'>";
         if($selectSubj_row['albumImg']){
             $appRJ->response['result'].= "<img src='".GL_ALBUM_IMG_PAPH.$selectSubj_row['album_id']."/preview/".
-                $selectSubj_row['albumImg']."'>";
+                $selectSubj_row['albumImg']."'  ";
+            if($selectSubj_row['transAlbImg']){
+                $appRJ->response['result'].="style='transform: rotate(".$selectSubj_row['transAlbImg']."deg)'";
+            }
+            $appRJ->response['result'].=">";
         }else{
             $appRJ->response['result'].= "<img src='/data/default-img.png'>";
         }

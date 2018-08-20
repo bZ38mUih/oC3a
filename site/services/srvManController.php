@@ -23,21 +23,29 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         $Card_rd = new recordDefault("srvCards_dt", "card_id");
         if ($appRJ->server['reqUri_expl'][4] and $appRJ->server['reqUri_expl'][4] == 'newService') {
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-newService.php");
-        } elseif($appRJ->server['reqUri_expl'][4] and $appRJ->server['reqUri_expl'][4] == 'editCard') {
+        } elseif ($appRJ->server['reqUri_expl'][4] and $appRJ->server['reqUri_expl'][4] == 'editCard') {
             if (isset($_GET['card_id']) and $_GET['card_id'] != null) {
                 $Card_rd->result['card_id'] = $_GET['card_id'];
                 if ($Card_rd->copyOne()) {
-                    if(isset($_POST['flagField']) and $_POST['flagField']=='editCard'){
-                        require_once($_SERVER['DOCUMENT_ROOT']."/site/services/actions/srvMan-editCard.php");
-                    }else{
-                        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-editCard.php");
+                    if (isset($_POST['flagField']) and $_POST['flagField'] == 'editCard') {
+                        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/actions/srvMan-editCard.php");
+                    } else {
+                        if (!$appRJ->server['reqUri_expl'][5]) {
+                            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-editCard.php");
+                        } elseif ($appRJ->server['reqUri_expl'][5] == 'longDescr') {
+                            if (isset($_POST['flagField']) and $_POST['flagField'] == 'longDescr') {
+                                $Card_rd->result['longDescr'] = $_POST['longDescr'];
+                                $Card_rd->updateOne();
+                            }
+                            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-longDescr.php");
+                        }
                     }
+                } else {
+                    $appRJ->errors['404']['description'] = 'неправильные параметры запроса card_id';
                 }
             } else {
-                $appRJ->errors['404']['description'] = 'неправильные параметры запроса card_id';
+                $appRJ->errors['404']['description'] = 'неправильные параметры запроса card_id NULL';
             }
-        }else{
-            $appRJ->errors['404']['description'] = 'неправильные параметры запроса card_id NULL';
         }
     }
 }elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['reqUri_expl'][3])=="cats"){
