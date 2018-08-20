@@ -20,7 +20,9 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/services/css/default.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
-    "<script src='/site/services/js/services.js'></script>";
+    "<script src='/site/services/js/services.js'></script>".
+    "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
+    "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }
@@ -35,7 +37,7 @@ $appRJ->response['result'].= "<div class='contentBlock-center'>".
 
 if($pop_cnt>0){
     while ($pop_row=$DB->doFetchRow($pop_res)){
-        $appRJ->response['result'].="<div class='srv-ln'>".
+        $appRJ->response['result'].="<div class='srv-ln' id='srv".$pop_row['card_id']."'>".
             "<div class='srv-capt'><span class='before'></span><span>".$pop_row['cardName'].
             "</span><span class='after'></span></div>".
             "<div class='srv-img'><img src='".SRV_CARD_IMG_PAPH.$pop_row['card_id']."/preview/".
@@ -45,7 +47,9 @@ if($pop_cnt>0){
 
 
             "<span class='srv-price'>от ".$pop_row['cardPrice']." руб.</span>".
-            "<span onclick='addBucket(".$pop_row['card_id'].")'><img src='/site/services/img/bucket.png'>Заказать</span>".
+            "<span class='addBucket' onclick='addBucket(".$pop_row['card_id'].")'><img src='/site/services/img/bucket.png'>Заказать</span>".
+            "<span class='rmBucket' onclick='rmBucket(".$pop_row['card_id'].")'><img src='/source/img/drop-icon.png'>Отменить</span>".
+            "<a class='toOrder' href='/services/order'><img src='/site/payments/img/logo.png'>Оплатить</a>".
             "</div>".
 
 

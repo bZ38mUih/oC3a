@@ -1,19 +1,22 @@
 <?php
 $h1 ="Дневник";
-$appRJ->response['result'].= "<!DOCTYPE html>";
-$appRJ->response['result'].= "<html lang='en-Us'>";
-$appRJ->response['result'].= "<head>";
-$appRJ->response['result'].= "<meta name='description' content='Заметки, планы, мировозрение' http-equiv='Content-Type' charset='charset=utf-8'>";
-$appRJ->response['result'].= "<meta name='yandex-verification' content='e929004ef40cae1b' />";
-$appRJ->response['result'].= "<title>Дневник</title>";
-$appRJ->response['result'].= "<link rel='SHORTCUT ICON' href='/site/landing/img/favicon.png' type='image/png'>";
-$appRJ->response['result'].= "<script src='/source/js/jquery-3.2.1.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/diary/styles/main.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
-$appRJ->response['result'].= "<script src='/source/js/tinymce/js/tinymce/tinymce.min.js'></script>";
-$appRJ->response['result'].= "<script src='/site/diary/js/main.js'></script>";
+$appRJ->response['result'].= "<!DOCTYPE html>".
+    "<html lang='en-Us'>";
+$appRJ->response['result'].= "<head>".
+    "<meta name='description' content='Заметки, планы, мировозрение' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta name='yandex-verification' content='e929004ef40cae1b' />".
+    "<meta name='robots' content='noindex'>".
+    "<title>Дневник</title>".
+    "<link rel='SHORTCUT ICON' href='/site/landing/img/favicon.png' type='image/png'>".
+    "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/diary/styles/main.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/siteHeader/js/modalHeader.js'></script>".
+    "<script src='/source/js/tinymce/js/tinymce/tinymce.min.js'></script>".
+    "<script src='/site/diary/js/main.js'></script>".
+    "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
+    "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>";
 $appRJ->response['result'].= "</head>";
 
 $appRJ->response['result'].= "<body>";

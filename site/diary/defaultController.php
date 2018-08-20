@@ -294,7 +294,7 @@ elseif (isset($_POST) and $_POST != null){
     }else{
         $appRJ->response['result'].=printNote($diary, true, "active");
     }
-    exit;
+    //exit;
 }else{
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/diary/views/main.php");
 }

@@ -1,4 +1,18 @@
 function addBucket(prod_id) {
+    alert(prod_id);
+    $("#srv"+prod_id).preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
+    $.get("?addBucket="+prod_id, function (data) {
+        alert(data);
+        $("#srv"+prod_id).preloader('remove');
+    });
+
+
     $(".orderBtn span").addClass("active");
     setTimeout(function () {
         $(".orderBtn span").removeClass("active");
@@ -9,10 +23,7 @@ function addBucket(prod_id) {
     }, 1000);
 }
 
-function addBucket(srv_id) {
-    alert('add-'+srv_id);
-}
+function rmBucket()
+{
 
-function addBucket(srv_id) {
-    alert('remove-'+srv_id);
 }

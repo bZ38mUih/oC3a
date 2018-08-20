@@ -10,9 +10,19 @@ $(document).ready(function(){
 function subMemu(id)
 {
     $(".mainMenu a:not(.subMenu)").removeClass("active");
+    $(".mainMenu").preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
+
+
     $.get("?subMenu="+id, function (data) {
         $(".subMenu").html(data);
         $("#"+id).addClass("active");
+        $('.mainMenu').preloader('remove');
     });
 }
 
@@ -46,6 +56,13 @@ function mkDiary(diaryType, diary_id, note_id, el)
 function saveDiary(el)
 {
 
+    $("form").preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
     tinymce.triggerSave();
     //alert('xyi-2');
     var url = "/diary/";
@@ -70,15 +87,24 @@ function saveDiary(el)
             content_css: '/modules/diary/styles/codepen.min.css'
         });
         */
+        $('form').preloader('remove');
         tinyInit();
     });
 }
 
 function applyFilter(diaryType)
 {
+    $(".leftPanel").preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
     $.get("?diaryType="+diaryType+"&dailyFrom="+$("#from").val()+"&dailyTill="+$("#till").val(), function (data) {
         //alert(data)
         $('.middlePanel').html(data);
+        $('.leftPanel').preloader('remove');
     });
 }
 

@@ -97,9 +97,25 @@
 
 .srv-ln .srv-txt .srv-cntrl span
 {
-    color: darkgreen;
+
     cursor: pointer;
     font-weight: bold;
+}
+
+span.addBucket
+{
+    color: darkgreen;
+}
+
+span.rmBucket
+{
+    color: darkred;
+}
+
+a.toOrder
+{
+    color: navy;
+    margin-left: 0.5em;
 }
 
 .srv-ln .srv-txt .srv-cntrl span.srv-price
@@ -109,7 +125,7 @@
     margin-right: 1em;
 }
 
-.srv-ln .srv-txt .srv-cntrl span img
+.srv-ln .srv-txt .srv-cntrl span img, .srv-ln .srv-txt .srv-cntrl a img
 {
     height: 1.5em;
     width: 1.5em;
