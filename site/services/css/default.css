@@ -1,42 +1,29 @@
-.srv-frame
-{
-    /*border: 1px solid blue;*/
+.srv-frame {
     width: 96%;
     margin-left: 2%;
 }
-
-.srv-frame h2
-{
+.srv-frame h2 {
     font-size: 1.2em;
     color: midnightblue;
     border-bottom: 2px solid midnightblue;
 }
-
-.srv-ln
-{
+.srv-ln {
     width: 90%;
     margin-left: 5%;
     border-bottom: 1px solid midnightblue;
-    /*border-radius: 0.5em;*/
     padding-bottom: 1em;
     margin-bottom: 1em;
 }
-
-.srv-ln .srv-capt
-{
+.srv-ln .srv-capt {
     display: block;
-    /*width: 100%;*/
     font-weight: bold;
     margin-top: 0.5em;
-    /*background-color: midnightblue;*/
     color: white;
     margin-bottom: 1em;
     text-align: left;
     padding-left: 1em;
 }
-
-.srv-ln .srv-capt span
-{
+.srv-ln .srv-capt span {
     background-color: midnightblue;
     padding-left: 0.2em;
     padding-right: 0.2em;
@@ -44,9 +31,7 @@
     height: 1.2em;
     vertical-align: middle;
 }
-
-.srv-ln .srv-capt span.before
-{
+.srv-ln .srv-capt span.before {
     display: inline-block;
     width: 0;
     height: 0;
@@ -54,11 +39,8 @@
     border-bottom: 0.6em solid transparent;
     border-left: 0.4em solid white;
     vertical-align: middle;
-    /*border-right: 1em solid yellow;*/
 }
-
-.srv-ln .srv-capt span.after
-{
+.srv-ln .srv-capt span.after {
     display: inline-block;
     width: 0;
     height: 0;
@@ -66,126 +48,80 @@
     border-bottom: 0.6em solid white;
     border-left: 0.4em solid midnightblue;
     vertical-align: middle;
-    /*border-right: 1em solid yellow;*/
 }
-
-.srv-ln .srv-img
-{
+.srv-ln .srv-img {
     display: inline-block;
     width: 20%;
     vertical-align: middle;
 }
-
-.srv-ln .srv-img img
-{
+.srv-ln .srv-img img {
     height: 5em;
     width: 5em;
 }
-
-.srv-ln .srv-txt
-{
+.srv-ln .srv-txt {
     display: inline-block;
     width: 80%;
     vertical-align: middle;
 }
-
-.srv-ln .srv-txt .srv-cntrl
-{
+.srv-ln .srv-txt .srv-cntrl {
     text-align: right;
     margin-right: 1em;
 }
 
-.srv-ln .srv-txt .srv-cntrl span.srv-price
-{
+.srv-ln .srv-txt .srv-cntrl span.srv-price {
     font-weight: bold;
 }
-
 .srv-ln .srv-txt .srv-cntrl span.addBucket,
-.srv-ln .srv-txt .srv-cntrl span.rmBucket
-{
+.srv-ln .srv-txt .srv-cntrl span.rmBucket {
     display: none;
     cursor: pointer;
     font-weight: bold;
 }
-
-.srv-ln .srv-txt .srv-cntrl span.active
-{
+.srv-ln .srv-txt .srv-cntrl span.active {
     display: inline-block;
 }
-
-span.addBucket
-{
+span.addBucket {
     color: darkgreen;
 }
-
-span.rmBucket
-{
+span.rmBucket {
     color: darkred;
 }
-
-a.toOrder
-{
+a.toOrder {
     color: navy;
     margin-left: 0.5em;
     display: none;
 }
-
-a.toOrder.active
-{
+a.toOrder.active {
     display: inline-block;
 }
-
-.srv-ln .srv-txt .srv-cntrl span.srv-price
-{
+.srv-ln .srv-txt .srv-cntrl span.srv-price {
     color: firebrick;
     font-size: 1.2em;
     margin-right: 1em;
 }
-
-.srv-ln .srv-txt .srv-cntrl span img, .srv-ln .srv-txt .srv-cntrl a img
-{
+.srv-ln .srv-txt .srv-cntrl span img, .srv-ln .srv-txt .srv-cntrl a img {
     height: 1.5em;
     width: 1.5em;
     vertical-align: middle;
 }
-
-.srv-descr
-{
+.srv-descr {
     border: 1px dotted gray;
     padding: 0.5em;
     margin: 1em;
 }
-/*
-.srv-ln .srv-txt .srv-price
-{
-    text-align: right;
-    color: red;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-right: 1em;
-}
-*/
-.srv-ln .srv-txt .detail
-{
+.srv-ln .srv-txt .detail {
     width: 95%;
     margin-right: 5%;
     text-align: right;
 }
-
-.srv-ln .srv-txt .detail a
-{
+.srv-ln .srv-txt .detail a {
     color: midnightblue;
 }
-
-.orderBtn span.active
-{
+.orderBtn span.active {
     text-shadow: 2px 2px 2px aqua, -2px -2px 2px aqua, 2px -2px 2px aqua, -2px 2px 2px aqua;
     color: navy;
-    /*font-weight: bold;*/
 }
-
-.longDescr
-{
+.longDescr {
     border: 2px solid midnightblue;
     border-radius: 0.3em;
     margin-bottom: 1em;

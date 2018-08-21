@@ -1,88 +1,66 @@
-.srv-frame, .nb
-{
+.srv-frame, .nb {
     width: 96%;
     margin-left: 2%;
     display: inline-block;
 }
-
-h2
-{
+h2 {
     text-align: left;
     font-size: 1.2em;
     margin: 1.5em 0 0 0;
 }
-
-h2 img
-{
+h2 img {
     height: 2.5em;
     width: 2.5em;
     vertical-align: middle;
 }
-
-.order-line
-{
-    width: 100%;
+.order-line {
+    width: 70%;
     text-align: left;
+    border-bottom: 1px dotted midnightblue;
+    margin-bottom: 0.2em;
 }
-
-.order-img
-{
+.order-img {
     text-align: center;
     vertical-align: middle;
     width: 20%;
     display: inline-block;
 }
-
-.order-img img
-{
+.order-img img {
     height: 1.2em;
     width: 1.2em;
     border-radius: 0.2em;
 }
-
-.order-nm
-{
+.order-nm {
+    width: 50%;
+    display: inline-block;
+}
+.order-price {
     width: 30%;
     display: inline-block;
+    text-align: right;
 }
-
-.order-price
-{
-    width: 20%;
-    display: inline-block;
-}
-
-.toSrv
-{
+.toSrv {
     width: 95%;
     text-align: right;
 }
-
-.toSrv a
-{
+.toSrv a {
     color: midnightblue;
 }
-
-form.order
-{
+form.order {
     margin: 1em 0 1em 0;
     text-align: left;
     margin-left: 10%;
     width: 50%;
 }
-form.order label
-{
+form.order label {
     display: block;
     width: 90%;
 }
-
-form.order textarea
-{
+form.order textarea {
     width: 90%;
+    font-size: 0.9em;
 }
-
-form.order input[type=button]
-{
+form.order input[type=button] {
     background-color: darkgreen;
     font-size: 0.9em;
     font-weight: bold;
@@ -91,10 +69,20 @@ form.order input[type=button]
     padding: 0.1em;
     border-radius: 0.3em;
 }
-
-.nb
-{
+.nb {
     font-size: 0.8em;
     text-align: left;
     margin-bottom: 1em;
+}
+@media only screen and (max-width : 1024px) and (orientation : portrait) {
+    .order-line     {
+        width: 100%;
+        margin-top: 0.4em;
+    }
+    .toSrv a {
+        margin-bottom: 1em;
+    }
+    form.order {
+        width: 90%;
+    }
 }
