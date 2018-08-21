@@ -10,6 +10,19 @@ if($appRJ->server['reqUri_expl'][1] != "status"){
 $appRJ->response['result'].= "</div></div></div><div class='modal-line'><div class='modal-line-img'>".
     "<img src='/site/siteHeader/img/Email-Logo-color.png'></div><div class='modal-line-text mail'>".
     "<span>rightjoint@yandex.ru</span></div></div>";
+
+$appRJ->response['result'].= "<div class='modal-line' ";
+if($_SESSION["bucket"]["total"]<1000){
+    $appRJ->response['result'].="style='display: none;' ";
+}
+
+$appRJ->response['result'].="><div class='modal-line-img'>".
+    "<img src='/site/siteHeader/img/handsShake-color.png'></div><div class='modal-line-text bucket'>".
+    "<a href='/services/mkOrder'>Ваш заказ: ".
+    "<span>".$_SESSION["bucket"]["total"]."</span> руб.</a></div></div>";
+
+
+
 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/services/img/logo.png'></div><div class='modal-line-text srv'>".

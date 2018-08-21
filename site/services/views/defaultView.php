@@ -1,4 +1,5 @@
 <?php
+//unset($_SESSION["bucket"]);
 $pop_qry="select * from srvCards_dt INNER JOIN srvCat_dt ON srvCards_dt.srvCat_id=srvCat_dt.srvCat_id";
 $pop_res=$DB->doQuery($pop_qry);
 $pop_cnt=0;
@@ -44,19 +45,27 @@ if($pop_cnt>0){
             $pop_row['cardImg']."'></div>".
             "<div class='srv-txt'>".
             "<div class='srv-cntrl'>".
-
-
             "<span class='srv-price'>от ".$pop_row['cardPrice']." руб.</span>".
-            "<span class='addBucket' onclick='addBucket(".$pop_row['card_id'].")'><img src='/site/services/img/bucket.png'>Заказать</span>".
-            "<span class='rmBucket' onclick='rmBucket(".$pop_row['card_id'].")'><img src='/source/img/drop-icon.png'>Отменить</span>".
-            "<a class='toOrder' href='/services/order'><img src='/site/payments/img/logo.png'>Оплатить</a>".
-            "</div>".
+            "<span class='addBucket ";
 
-
+        if(!$_SESSION["bucket"]["prod"][$pop_row['card_id']]){
+            $appRJ->response['result'].="active";
+        }
+        $appRJ->response['result'].="' onclick='addBucket(".$pop_row['card_id'].")'><img src='/site/services/img/bucket.png'>Заказать</span>".
+            "<span class='rmBucket ";
+        if($_SESSION["bucket"]["prod"][$pop_row['card_id']]){
+            $appRJ->response['result'].="active";
+        }
+        $appRJ->response['result'].="' onclick='rmBucket(".$pop_row['card_id'].")'><img src='/source/img/drop-icon.png'>Отменить</span>".
+                "<a class='toOrder ";
+        if($_SESSION["bucket"]["prod"][$pop_row['card_id']]){
+            $appRJ->response['result'].="active";
+        }
+        $appRJ->response['result'].="' href='/services/mkOrder'><img src='/site/siteHeader/img/handsShake-color.png'>Оформить</a>".
+        "</div>".
             "<div class='srv-descr'>".$pop_row['shortDescr'].
             "</div>".
             "<div class='detail'><a href='/services/detail/".$pop_row['cardAlias']."'>подробнее</a></div>".
-
             "</div>".
             "</div>";
     }

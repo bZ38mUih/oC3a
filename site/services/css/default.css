@@ -95,11 +95,22 @@
     margin-right: 1em;
 }
 
-.srv-ln .srv-txt .srv-cntrl span
+.srv-ln .srv-txt .srv-cntrl span.srv-price
 {
+    font-weight: bold;
+}
 
+.srv-ln .srv-txt .srv-cntrl span.addBucket,
+.srv-ln .srv-txt .srv-cntrl span.rmBucket
+{
+    display: none;
     cursor: pointer;
     font-weight: bold;
+}
+
+.srv-ln .srv-txt .srv-cntrl span.active
+{
+    display: inline-block;
 }
 
 span.addBucket
@@ -116,6 +127,12 @@ a.toOrder
 {
     color: navy;
     margin-left: 0.5em;
+    display: none;
+}
+
+a.toOrder.active
+{
+    display: inline-block;
 }
 
 .srv-ln .srv-txt .srv-cntrl span.srv-price
@@ -172,6 +189,8 @@ a.toOrder
     border: 2px solid midnightblue;
     border-radius: 0.3em;
     margin-bottom: 1em;
-    width: 90%;
+    width: 86%;
     margin-left: 5%;
+    text-align: left;
+    padding: 2%;
 }

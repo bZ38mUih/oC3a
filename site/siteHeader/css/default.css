@@ -250,7 +250,7 @@ header .rightConn
 
 }
 
-.modal-line-text.ref a, .modal-line-text.srv a
+.modal-line-text.ref a, .modal-line-text.srv a, .modal-line-text.bucket a
 {
     color: white;
     text-decoration: none;
