@@ -1,4 +1,5 @@
 <?php
+// nP79ETfWwaBJeyi/5IvBGeWY
 $payment = new recordDefault("payments_dt", "label");
 if(isset($_POST['label'])){
     if(isset($_POST['notification_type'])){
