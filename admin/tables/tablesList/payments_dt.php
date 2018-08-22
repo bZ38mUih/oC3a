@@ -3,7 +3,7 @@ $query_text="create table payments_dt (".
     "payment_id  int(5) AUTO_INCREMENT, ".
     "notification_type varchar(256), ".
     "operation_id varchar(256), ".
-    "amount DECIMAL(7,2), ".
+    "amount DECIMAL(7,2), ".//not null
     "withdraw_amount DECIMAL(7,2), ".
     "currency varchar(16), ".
     "datetime datetime, ".
