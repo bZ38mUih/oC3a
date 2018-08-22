@@ -67,7 +67,9 @@ if($srv_cnt>0){
 }else{
     $appRJ->response['result'].= "thre is no active services";
 }
-$appRJ->response['result'].="</div></div></div></div>";
+$appRJ->response['result'].=
+    "<div class='toSrv'><a href='/services'><img src='/site/services/img/logo.png'>Все услуги</a></div>".
+    "</div></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

@@ -13,13 +13,19 @@ $appRJ->response['result'].= "</div></div></div><div class='modal-line'><div cla
 
 $appRJ->response['result'].= "<div class='modal-line' ";
 if($_SESSION["bucket"]["total"]<1000){
-    $appRJ->response['result'].="style='display: none;' ";
+    $appRJ->response['result'].="style='display: none' ";
+}else{
+    $appRJ->response['result'].="style='position: relative' ";
 }
 
 $appRJ->response['result'].="><div class='modal-line-img'>".
     "<img src='/site/siteHeader/img/handsShake-color.png'></div><div class='modal-line-text bucket'>".
     "<a href='/services/mkOrder'>Ваш заказ: ".
-    "<span>".$_SESSION["bucket"]["total"]."</span> руб.</a></div></div>";
+    "<span>".$_SESSION["bucket"]["total"]."</span> руб.</a>";
+if($_SESSION['bucket']['order_id']){
+    $appRJ->response['result'].="<img src='/site/services/img/due.png' class='payStat'>";
+}
+$appRJ->response['result'].="</div></div>";
 
 
 

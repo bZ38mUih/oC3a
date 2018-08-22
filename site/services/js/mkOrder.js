@@ -7,9 +7,9 @@ function mkOrder() {
         zIndex: '',
         setRelative: true
     });
-    $.get($("form.order").serialize(), function (data) {
+    alert($("form.order").serialize());
+    $.get("?"+$("form.order").serialize(), function (data) {
         alert(data);
-        $("form.order").submit();
+        //$("form.order").submit();
     })
-
 }

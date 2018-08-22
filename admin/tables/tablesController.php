@@ -9,7 +9,7 @@ if($_GET){
     if(isset($_GET['action'])and($_GET['action']==="refreshTables")){
         require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/tables/actions/tablesView.php");
     }else{
-        $appRJ->date['curDate'] = @date_create();
+        //$appRJ->date['curDate'] = @date_create();
         $start_time = microtime(true);
         $tables->result['log'].="Action: ".$_GET['action']."<br>";
         if(isset($_GET['action'])and($_GET['action']==="upLoadAll")) {

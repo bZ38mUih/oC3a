@@ -1,4 +1,4 @@
-.srv-frame {
+.srv-frame{
     width: 96%;
     margin-left: 2%;
 }
@@ -129,4 +129,19 @@ a.toOrder.active {
     margin-left: 5%;
     text-align: left;
     padding: 2%;
+}
+.toSrv{
+    width: 86%;
+    margin-left: 5%;
+    text-align: left;
+    padding: 0 2% 2% 2%;
+}
+.toSrv a{
+    display: inline-block;
+    color: midnightblue;
+}
+.toSrv a img{
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
 }

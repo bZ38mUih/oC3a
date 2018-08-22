@@ -19,17 +19,23 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }
-$appRJ->response['result'].= "</head>";
-
-$appRJ->response['result'].= "<body>";
+$appRJ->response['result'].= "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>"."<div class='srv-frame'><h2><img src='/site/siteHeader/img/handsShake-color.png'>".
-    " Ваш заказ: <span class='totalSum'>".$_SESSION["bucket"]["total"]." руб.</span></h2>".
+    " Ваш заказ: <span class='totalSum'>".$_SESSION["bucket"]["total"]." руб.";
+if($_SESSION["bucket"]["discont"]){
+    $appRJ->response['result'].=", скидка ".$_SESSION["bucket"]["discont"]." руб.";
+}
+$appRJ->response['result'].="</span>";
+if($_SESSION['bucket']['order_id']){
+    $appRJ->response['result'].="<img src='/site/services/img/due.png'>";
+}
+$appRJ->response['result'].="</h2>".
     "<div class='toSrv'><a href='/services'>Редактировать заказ</a></div>";
 $Card_rd=new recordDefault("srvCards_dt", "card_id");
 $prod_lst=null;
-if($_SESSION['bucket']['total']>=1000){
+if($_SESSION['bucket']['total']>=100){
     foreach ($_SESSION['bucket']['prod'] as $key=>$val){
         $Card_rd->result['card_id']=$key;
         if($Card_rd->copyOne()){
@@ -51,7 +57,14 @@ if($_SESSION['bucket']['total']>=1000){
         "<input type='hidden' name='quickpay-form' value='shop'>".
         "<input type='hidden' name='targets' value='".$prod_lst."'>".
         "<input type='hidden' name='sum' value='".$_SESSION["bucket"]["total"]."' data-type='number'>".
-        "<label>Коментарий к переводу (необязательно)</label><textarea name='comment' rows='3'></textarea>".//your comment
+        "<label>Коментарий к переводу (необязательно)</label><textarea name='comment' rows='3'>";
+    if($_SESSION['bucket']['order_id']) {
+        $Order_rd = new recordDefault("ordersList_dt", "order_id");
+        $Order_rd->result["order_id"] = $_SESSION['bucket']['order_id'];
+        $Order_rd->copyOne();
+        $appRJ->response['result'].=$Order_rd->result["comment"];
+    }
+    $appRJ->response['result'].="</textarea>".//your comment
         "<input type='hidden' name='need-fio' value='false'>".
         "<input type='hidden' name='need-email' value='true'>".
         "<input type='hidden' name='need-phone' value='true'>".
@@ -60,6 +73,8 @@ if($_SESSION['bucket']['total']>=1000){
         "<label><input type='radio' name='paymentType' value='AC' checked>Банковской картой</label>".
         "<input type='button' value='Далее' onclick='mkOrder()'>".
         "</form>".
+        "<div class='att'><strong>Внимание:</strong> узнавайте возможность выполнения услуг по телефону или ".
+        "e-Mail перед оплатой.</div>".
         "<div class='nb'><strong>Примечание:</strong> платеж осуществляется через шлюз money.yandex.ru. Далее укажите ".
         "ваш E-Mail, на него в письме придет ссылка для отслеживания статуса заказа. Номер вашего мобильного ".
         "необходим обратной связи.</div>";
