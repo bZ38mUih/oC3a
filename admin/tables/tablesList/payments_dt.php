@@ -1,5 +1,6 @@
 <?php
 $query_text="create table payments_dt (".
+    "payment_id  int(5) AUTO_INCREMENT, ".
     "notification_type varchar(256), ".
     "operation_id varchar(256), ".
     "amount DECIMAL(7,2), ".
@@ -22,5 +23,5 @@ $query_text="create table payments_dt (".
     "suite varchar(64), ".
     "flat varchar(64), ".
     "zip varchar(64), ".
-    "primary key (label)".
+    "primary key (payment_id)".
     ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";

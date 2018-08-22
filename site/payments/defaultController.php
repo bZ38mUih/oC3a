@@ -69,5 +69,6 @@ if(isset($_POST['label'])){
     }
     $payment->putOne();
 }elseif(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10){
+    file_put_contents($_SERVER["DOCUMENT_ROOT"]."/site/services/post_cont.txt",json_encode($_POST));
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/payments/views/defaultView.php");
 }
