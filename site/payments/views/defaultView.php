@@ -1,5 +1,6 @@
 <?php
-
+$slPayments_qry="select * from payments_dt";
+$slPayments_res=$DB->doQuery($slPayments_qry);
 $h1 ="Оплата";
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
@@ -21,9 +22,16 @@ $appRJ->response['result'].= "</head>".
     "<body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
-    "<div class='contentBlock-wrap'></div></div></div>";
+    "<div class='contentBlock-wrap'>";
+if(mysql_num_rows($slPayments_res)>0){
+    while ($slPayments_row=$DB->doFetchRow($slPayments_res)){
+        $appRJ->response['result'].=$slPayments_row['sha1_hash']."<br>";
+    }
+}else{
+    $appRJ->response['result'].="no payments in table";
+}
+$appRJ->response['result'].="</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
-$appRJ->response['result'].= "</body>".
-    "</html>";
+$appRJ->response['result'].= "</body></html>";
