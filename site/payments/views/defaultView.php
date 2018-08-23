@@ -46,7 +46,7 @@ if(mysql_num_rows($slPayments_res)>0){
             $slPayments_row["operation_id"]."&".
             $slPayments_row["amount"]."&".
             $slPayments_row["currency"]."&".
-              substr($slPayments_row["datetime"], 0, 10).
+              $slPayments_row["datetime"]."&".
             //$slPayments_row["datetime"]."&".
               //substr($slPayments_row["datetime"], 0, 10)."T".
               //substr($slPayments_row["datetime"], 11, strlen($slPayments_row["datetime"])-11)."Z&".
