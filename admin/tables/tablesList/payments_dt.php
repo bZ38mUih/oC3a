@@ -6,7 +6,7 @@ $query_text="create table payments_dt (".
     "amount DECIMAL(7,2), ".//not null
     "withdraw_amount DECIMAL(7,2), ".
     "currency varchar(16), ".
-    "datetime datetime, ".
+    "datetime varchar(128) not null, ".
     "sender varchar(128), ".
     "codepro BOOLEAN, ".
     "label varchar(128) not null, ".
