@@ -2,6 +2,9 @@
 // nP79ETfWwaBJeyi/5IvBGeWY
 $payment = new recordDefault("payments_dt", "label");
 if(isset($_POST['label'])){
+
+    file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/ym_redir.txt", json_encode($_SERVER, true));
+
     if(isset($_POST['notification_type'])){
         $payment->result['notification_type']=$_POST['notification_type'];
     }

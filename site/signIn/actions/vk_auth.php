@@ -3,6 +3,9 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/source/_conf/site/socialAuth-vk.php");
 $tokenReq=file_get_contents("https://oauth.vk.com/access_token?client_id=".$socialConf['client_id']
     ."&client_secret=".$socialConf['client_secret']."&redirect_uri=".$socialConf['redirect_uri']."&code=".$_GET['code']);
 $tokenArr=json_decode($tokenReq, true);
+
+file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/vk_redir.txt", json_encode($_SERVER, true));
+
 if(isset($tokenArr['access_token']) and $tokenArr['access_token']!=null){
     $usrReq = @file_get_contents('https://api.vk.com/method/users.get?user_ids='. $tokenArr['user_id'].
         "&fields=photo_100,bdate&v=5.80&access_token=".$tokenArr['access_token']);

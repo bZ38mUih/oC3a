@@ -22,6 +22,8 @@ $context = stream_context_create($opts);
 
 $tokenReq = file_get_contents('https://api.ok.ru/oauth/token.do?', false, $context);
 
+file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/ok_redir.txt", json_encode($_SERVER, true));
+
 $tokenArr = json_decode($tokenReq, true);
 
 if(isset($tokenArr['access_token']) and $tokenArr['access_token']!=null){
