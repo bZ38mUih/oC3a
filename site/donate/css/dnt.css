@@ -1,0 +1,103 @@
+.dnt-ttl-frame, .dnt-thankful-frame{
+    width:100%;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+.dnt-ttl{
+    font-size: 1.2em;
+    color: firebrick;
+    display: inline-block;
+    max-width: 960px;
+}
+span.projName{
+    color: darkgreen;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+}
+span.spons{
+    color: firebrick;
+    text-shadow: 1px 1px 0 red, -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red;
+}
+.dnt-form {
+    display: inline-block;
+    max-width: 960px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: white;
+}
+.dnt-stat{
+    width: 29%;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.2em;
+    color: orange;
+}
+form.donate {
+    margin: 0;
+    text-align: left;
+    width: 70%;
+    display: inline-block;
+    vertical-align: middle;
+}
+form.donate label.dnt-sum{
+    display: inline-block;
+    font-weight: bold;
+}
+form.donate input[type=number]{
+    width: 5em;
+    font-size: 1.3em;
+}
+form.donate label {
+    margin-top: 0.5em;
+    display: block;
+    width: 90%;
+}
+form.donate textarea {
+    width: 90%;
+    font-size: 0.9em;
+    font-style: italic;
+}
+form.donate input[type=button] {
+    background-color: red;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: white;
+    margin-top: 0.5em;
+    padding: 0.1em 0.3em 0.1em 0.3em;
+    border-radius: 0.3em;
+}
+label.dnt-amount {
+    font-size: 1.5em;
+    color: limegreen;
+    display: block;
+    font-weight: bold;
+}
+label.dnt-amount:after {
+    content: " руб.";
+    font-weight: normal;
+    color: orange;
+}
+.dnt-thankful{
+    text-align: left;
+    color: red;
+    font-size: 1em;
+    display: inline-block;
+    max-width: 960px;
+    font-style: italic;
+    text-shadow: 1px 1px 0 navy;
+    width: 90%;
+    padding: 0 5% 0 5%;
+}
+.dnt-thankful span.rj_sign{
+    display: block;
+    width: 95%;
+    padding: 0 0 0 5%;
+    text-align: right;
+    color: black;
+}
+@media only screen and (max-width : 1024px) and (orientation : portrait) {
+    form.donate {
+        width: 90%;
+    }
+}

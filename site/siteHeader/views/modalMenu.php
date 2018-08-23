@@ -204,10 +204,21 @@ if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
 }
 $appRJ->response['result'].= "</ul></div></div>";
 /*<--gallery*/
+/*donate-->*/
+if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10) {
+    if ($appRJ->server['reqUri_expl'][1] != 'donate') {
+        $appRJ->response['result'] .= "<div class='modal-line'><div class='modal-line-img'>" .
+            "<img src='/site/donate/img/logo.png'></div>" .
+            "<div class='modal-line-text'><a href='/donate'>Помощь проекту</a></div></div>";
+    }
+}
+/*<--donate*/
+/*signIn-->*/
 if($appRJ->server['reqUri_expl'][1]!='signIn'){
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/signIn/img/logo.png'></div>".
         "<div class='modal-line-text'><a href='/signIn'>Вход на сайт</a></div></div>";
 }
+/*<--singIn*/
 $appRJ->response['result'].= "</div></div></div></div>";
 ?>
