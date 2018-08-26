@@ -7,9 +7,13 @@ function Donate() {
         zIndex: '',
         setRelative: true
     });
-    alert($("form.donate").serialize());
+    //alert($("form.donate").serialize());
     $.get("?"+$("form.donate").serialize(), function (data) {
-        alert(data);
-        //$("form.order").submit();
+        if(data=="yes"){
+            alert("yes");
+            //$("form.donate").submit();
+        }else{
+            alert(data);
+        }
     })
 }

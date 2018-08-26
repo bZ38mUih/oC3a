@@ -1,5 +1,5 @@
 <?php
-//unset($_SESSION["bucket"]);
+unset($_SESSION["bucket"]);
 $pop_qry="select * from srvCards_dt INNER JOIN srvCat_dt ON srvCards_dt.srvCat_id=srvCat_dt.srvCat_id";
 $pop_res=$DB->doQuery($pop_qry);
 $pop_cnt=0;

@@ -23,5 +23,6 @@ $query_text="create table payments_dt (".
     "suite varchar(64), ".
     "flat varchar(64), ".
     "zip varchar(64), ".
+    "hashEqual BOOLEAN, ".
     "primary key (payment_id)".
     ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";

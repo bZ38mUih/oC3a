@@ -1,0 +1,46 @@
+.update {
+    background-color: rgba(100, 100, 255, 0.2);
+    width: 100%;
+    margin-top: 1em;
+    text-align: left;
+    padding: 0.5em;
+}
+.update span {
+    margin: 0 1em 0 1em;
+    font-style: italic;
+}
+.update a
+{
+    margin-left: 1em;
+    color: midnightblue;
+}
+
+.paidStat {
+    width: 90%;
+    margin-lef: 5%;
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+.paidStat span.paid
+{
+    display: block;
+    margin: 1em 0 1em 0;
+    color: #00ff00;
+}
+.paidStat span.not-paid{
+    margin: 1em 0 1em 0;
+    display: block;
+    color: red;
+}
+.paidStat div{
+
+}
+.paidStat span.fldName{
+    font-weight: bold;
+    margin-left: 1em;
+}
+.paidStat span.fldVal{
+    margin-left: 1em;
+    text-decoration: underline;
+}

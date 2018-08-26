@@ -2,9 +2,6 @@
 require_once ($_SERVER['DOCUMENT_ROOT']."/source/_conf/site/socialAuth-fb.php");
 $tokenReq = file_get_contents("https://graph.facebook.com/oauth/access_token?client_id=".$socialConf['client_id'].
 "&redirect_uri=".$socialConf["redirect_uri"]."&client_secret=".$socialConf['client_secret']."&code=".$_GET['code']);
-
-file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/fb_redir.txt", json_encode($_SESSION, true));
-
 $tokenArr = json_decode($tokenReq, true);
 if(isset($tokenArr["access_token"]) and $tokenArr["access_token"]!=null){
     $usrReq=file_get_contents("https://graph.facebook.com/me?access_token=".$tokenArr["access_token"].

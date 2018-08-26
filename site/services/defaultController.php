@@ -1,6 +1,7 @@
 <?php
 define(SRV_CAT_IMG_PAPH, "/data/services/categs/");
 define(SRV_CARD_IMG_PAPH, "/data/services/cards/");
+require_once($_SERVER["DOCUMENT_ROOT"]."/source/_conf/ym.php");
 if($_GET['addBucket']){
     $addBucket=new recordDefault("srvCards_dt", "card_id");
     $addBucket->result['card_id']=$_GET['addBucket'];
@@ -12,6 +13,8 @@ if($_GET['addBucket']){
     unset($_SESSION['bucket']['prod'][$_GET['rmBucket']]);
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/services/actions/bucketCount.php");
 }elseif ($_GET['receiver']){
+    $appRJ->response['format']='ajax';
+
     $Order_rd = new recordDefault("ordersList_dt", "order_id");
     if($_SESSION["bucket"]["order_id"]){
         $rmBucket_qry="delete from ordersBucket_dt WHERE order_id=".$_SESSION["bucket"]["order_id"];
@@ -20,10 +23,11 @@ if($_GET['addBucket']){
     }
     $mkOrder_err=null;
     $mkBucket=null;
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/payments/actions/mkOrder.php");
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/services/actions/mkOrder.php");
 
-    $appRJ->response['format']='ajax';
-    $appRJ->response['result']="mkOrder=<br>".$mkOrder_err."mkBucket=<br>".$mkBucket;
+    //$appRJ->response['result']="Order err:".$mkOrder_err;
+    //$appRJ->response['result']="xyi";
 }
 elseif (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10) {
     if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]!=null){

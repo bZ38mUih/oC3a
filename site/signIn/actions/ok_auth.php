@@ -9,7 +9,6 @@ $postReq = http_build_query(
         "grant_type" => "authorization_code"
     )
 );
-
 $opts = array('http' =>
     array(
         'method' => 'POST',
@@ -17,15 +16,9 @@ $opts = array('http' =>
         'content' => $postReq
     )
 );
-
 $context = stream_context_create($opts);
-
 $tokenReq = file_get_contents('https://api.ok.ru/oauth/token.do?', false, $context);
-
-file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/ok_redir.txt", json_encode($_SERVER, true));
-
 $tokenArr = json_decode($tokenReq, true);
-
 if(isset($tokenArr['access_token']) and $tokenArr['access_token']!=null){
     $secret_key = MD5($tokenArr['access_token'] . $socialConf['client_secret']);
     $sig = MD5("application_key=" . $socialConf['application_key'] . "format=jsonmethod=users.getCurrentUser" . $secret_key);

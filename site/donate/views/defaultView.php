@@ -1,5 +1,14 @@
 <?php
-$donate_qry="select SUM(amount) as dntAmount from payments_dt";
+//unset($_SESSION["donate"]);
+if($_SESSION['donate']['order_id']) {
+    $Order_rd = new recordDefault("ordersList_dt", "order_id");
+    $Order_rd->result["order_id"] = $_SESSION['donate']['order_id'];
+    $Order_rd->copyOne();
+    $appRJ->response['result'].=$Order_rd->result["comment"];
+}
+$donate_qry="select SUM(amount) as dntAmount from payments_dt WHERE ".
+    "label IN (SELECT label FROM ordersList_dt WHERE quickpayForm='donate') and hashEqual IS TRUE";
+$DB->doQuery($donate_qry);
 $donate_res=$DB->doQuery($donate_qry);
 $donate_row=$DB->doFetchRow($donate_res);
 $h1 ="Пожертвования";
@@ -7,7 +16,10 @@ $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Пожертвования на развитие проекта' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta name='description' content='Вы можете помочь развитию проекта. www.rightjoint.ru нуждается в спонсорах ".
+    "Если вам нравится проект www.rightjoint.ru, вы можете сделать анонимное пожертвование ".
+    "чтобы поддержать его дальнейшее развитие. Буду вам очень благодарен за любую финансовую помощь.'".
+    " http-equiv='Content-Type' charset='charset=utf-8'>".
     "<title>Помощь проекту</title>".
     "<link rel='SHORTCUT ICON' href='/site/donate/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
@@ -34,17 +46,24 @@ $appRJ->response['result'].= "<div class='contentBlock-frame dark'><div class='c
     "<div class='contentBlock-wrap'>".
     "<div class='dnt-form'>".
     "<form class='donate' method='post' action='https://money.yandex.ru/quickpay/confirm.xml'>".
-    "<label class='dnt-sum'><input type='number' name='sum' value='100".$_SESSION["bucket"]["total"]."' data-type='number'> руб.</label>".
-    "<input type='hidden' name='receiver' value='410017333214411'>".//toDo move to config
+    "<label class='dnt-sum'><input type='number' name='sum' value='";
+if($Order_rd->result["orderSum"]){
+    $appRJ->response['result'].=$Order_rd->result["orderSum"];
+}else{
+    $appRJ->response['result'].='100';
+}
+$appRJ->response['result'].=$_SESSION["donate"]["total"].
+    "' data-type='number' min='100' max='10000'> руб.</label>".
+    "<input type='hidden' name='receiver' value='".$ym['receiver']."'>".
     "<input type='hidden' name='formcomment' value='Right Joint: пожертвование'>".
     "<input type='hidden' name='short-dest' value='Right Joint: пожертвование'>".
     "<input type='hidden' name='label' value='".uniqid('', true)."'>".
     "<input type='hidden' name='quickpay-form' value='donate'>".
     "<input type='hidden' name='targets' value='Right Joint: пожертвование'>".
     "<label>Коментарий к переводу (необязательно)</label><textarea name='comment' rows='3'>";
-if($_SESSION['bucket']['order_id']) {
+if($_SESSION['donate']['order_id']) {
     $Order_rd = new recordDefault("ordersList_dt", "order_id");
-    $Order_rd->result["order_id"] = $_SESSION['bucket']['order_id'];
+    $Order_rd->result["order_id"] = $_SESSION['donate']['order_id'];
     $Order_rd->copyOne();
     $appRJ->response['result'].=$Order_rd->result["comment"];
 }
@@ -57,7 +76,13 @@ $appRJ->response['result'].="</textarea>".
     "<label><input type='radio' name='paymentType' value='AC' checked>Банковской картой</label>".
     "<input type='button' value='Далее' onclick='Donate()'>".
     "</form>".
-    "<div class='dnt-stat'>Уже собрано<label class='dnt-amount'>".$donate_row['dntAmount']."</label></div></div>".
+    "<div class='dnt-stat'>Уже собрано<label class='dnt-amount'>";
+if($donate_row['dntAmount']>0){
+    $appRJ->response['result'].=$donate_row['dntAmount'];
+}else{
+    $appRJ->response['result'].="0";
+}
+$appRJ->response['result'].="</label></div></div>".
     "</div></div></div>";
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>".
