@@ -31,11 +31,16 @@ if(mysql_num_rows($scrOrder_res)!=1){
     $shortDest_txt="<div><span class='fldName'>вид платежа:</span><span class='fldVal'>";
     $sum_txt="<div><span class='fldName'>сумма:</span><span class='fldVal'>".$scrOrder_row['orderSum'].
     "</span><span class='fldName'>руб.</span></div>";
+    $comment_txt=null;
+    if($scrOrder_row['comment']){
+        $comment_txt="<div><span class='fldName'>Коментарий:</span><span class='fldVal'>".$scrOrder_row['comment'].
+        "</span></div>";
+    }
     $withdAmount_txt=null;
     $amount_txt=null;
     $bucketInfo=null;
-    $paidHash=null;
-    $unaccepted=null;
+    $paidHash_txt=null;
+    $unaccepted_txt=null;
     if($scrOrder_row['shortDest']=="Right Joint - услуги"){
         $bucketInfo.="<div class='bucketInfo'>";
         $shortDest_txt.="Услуги";
@@ -89,18 +94,19 @@ if(mysql_num_rows($scrOrder_res)!=1){
             }
             $pay_str.="&".$ym['secret']."&".$srcPayment_row["label"];
 */
-            $paidHash.="<div><span class='fldName'>hashEqual:</span><span class='fldVal'>FALSE".
+            $paidHash_txt.="<div><span class='fldName'>hashEqual:</span><span class='fldVal'>FALSE".
                 //"<br>".$srcPayment_row['sha1_hash']." / ".sha1($pay_str).
                 "</span></div>";
         }
         if($srcPayment_row["unaccepted"]){
-            $unaccepted="<div><span class='fldName'>unaccepted:</span><span class='fldVal'>не зачислен ".
+            $unaccepted_txt="<div><span class='fldName'>unaccepted:</span><span class='fldVal'>не зачислен ".
                 "(требуется освободить место в кошельке)</span></div>";
         }
     }else{
         $paidStat_txt.="<span class='not-paid'>платеж не зачислен, попробуйте обновить страницу позже.</span>";
     }
-    $appRJ->response['result'].=$paidStat_txt.$shortDest_txt.$sum_txt.$amount_txt.$withdAmount_txt.$paidHash.$unaccepted;
+    $appRJ->response['result'].=$paidStat_txt.$shortDest_txt.$sum_txt.$amount_txt.$withdAmount_txt.
+        $paidHash_txt.$unaccepted_txt.$comment_txt;
     $appRJ->response['result'].="</div>".$bucketInfo;
     $appRJ->response['result'].="</div></div></div>";
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");

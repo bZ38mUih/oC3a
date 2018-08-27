@@ -18,6 +18,7 @@
     margin-left: 5%;
     text-align: left;
     margin-bottom: 1em;
+    font-weight: bold;
 }
 .paidStat span.paid{
     display: block;
@@ -28,6 +29,7 @@
     margin: 1em 0 1em 0;
     display: block;
     color: red;
+    font-weight: bold;
 }
 .paidStat div{
     margin: 0.2em 0 0.2em 0;
