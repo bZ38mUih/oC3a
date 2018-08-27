@@ -79,4 +79,23 @@ if($payment->result['sha1_hash'] === sha1($pay_str)){
     $payment->result["hashEqual"]=true;
 }
 $payment->putOne();
-//send e-Mail to me and customers
+/*notification-->*/
+$Ntf_rd->result['ntfType']='group';
+$Ntf_rd->result['ntfSubscr']=1;
+$ntfSubj=null;
+if($payment->result['unaccepted']){
+    $Ntf_rd->result['ntfDescr']="Не зачислено (освободите место)";
+    $ntfSubj="rightjoint.ru - платеж не зачислен (недостаточно места в кошельке)";
+
+}else{
+    $Ntf_rd->result['ntfDescr']="Зачислено";
+    $ntfSubj="rightjoint.ru - платеж зачислен";
+}
+$Ntf_rd->result['ntfDescr'].=" сумма платежа: ".$payment->result['amount'];
+$Ntf_rd->result['ntfSubj']="Оплата yandex money";
+$Ntf_rd->putOne();
+if($payment->result['email']){
+    mail($payment->result['email'], $ntfSubj, "Получить дополнительную информацию ".
+        "о платеже вы можете по ссылке https://rightjoint.ru/payments/?searchPayment=".$payment->result['label'], 'From: RightJoint');
+}
+/*<--notification*/

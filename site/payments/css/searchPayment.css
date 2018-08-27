@@ -9,21 +9,17 @@
     margin: 0 1em 0 1em;
     font-style: italic;
 }
-.update a
-{
+.update a{
     margin-left: 1em;
     color: midnightblue;
 }
-
-.paidStat {
+.paidStat, .bucketInfo {
     width: 90%;
-    margin-lef: 5%;
+    margin-left: 5%;
     text-align: left;
     margin-bottom: 1em;
 }
-
-.paidStat span.paid
-{
+.paidStat span.paid{
     display: block;
     margin: 1em 0 1em 0;
     color: #00ff00;
@@ -34,7 +30,7 @@
     color: red;
 }
 .paidStat div{
-
+    margin: 0.2em 0 0.2em 0;
 }
 .paidStat span.fldName{
     font-weight: bold;
@@ -44,3 +40,45 @@
     margin-left: 1em;
     text-decoration: underline;
 }
+.bucketInfo{
+    margin-bottom: 1em;
+}
+.bucketInfo span.yBacket{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+/*like mkOrder-->*/
+.order-line {
+    width: 70%;
+    text-align: left;
+    border-bottom: 1px dotted midnightblue;
+    margin-bottom: 0.2em;
+}
+.order-img {
+    text-align: center;
+    vertical-align: middle;
+    width: 20%;
+    display: inline-block;
+}
+.order-img img {
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 0.2em;
+}
+.order-nm {
+    width: 50%;
+    display: inline-block;
+}
+.order-price {
+    width: 30%;
+    display: inline-block;
+    text-align: right;
+}
+@media only screen and (max-width : 1024px) and (orientation : portrait) {
+    .order-line {
+        width: 100%;
+        margin-top: 0.4em;
+    }
+}
+/*<!--like mkOrder*/

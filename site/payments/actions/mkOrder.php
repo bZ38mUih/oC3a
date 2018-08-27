@@ -58,11 +58,6 @@ if(isset($_GET['need-address']) and $_GET['need-address']=='true'){
 }else{
     $Order_rd->result['needAddress']=false;
 }
-if($_SESSION['bucket']['discont']){
-    $Order_rd->result['discont']=$_SESSION['bucket']['discont'];
-}else{
-    $Order_rd->result['discont']=0;
-}
 if(isset($_GET['paymentType']) and $_GET['paymentType']!=null){
     $Order_rd->result['paymentType']=$_GET['paymentType'];
 }else{
@@ -71,15 +66,4 @@ if(isset($_GET['paymentType']) and $_GET['paymentType']!=null){
 $Order_rd->result['ordDate'].= date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');
 if($_SESSION['user_id']){
     $Order_rd->result['user_id']=$_SESSION['user_id'];
-}
-if($mkOrder_err==null) {
-    if ($Order_rd->result["order_id"]) {
-        $Order_rd->updateOne();
-    } else {
-        if(!$Order_rd->putOne()){
-            $mkOrder_err=$Order_rd->err;
-        }else{
-            $mkOrder_err="well";
-        };
-    }
 }

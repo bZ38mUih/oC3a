@@ -1,0 +1,52 @@
+.ordersList{
+    width: 90%;
+    margin: 1em 5% 1em 5%;
+}
+.ordersList-line{
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid blue;
+}
+.ordersList-line.caption{
+    background-color: midnightblue;
+    color: white;
+}
+.ordersList-line div{
+     display: inline-block;
+     vertical-align: middle;
+    border-left: 1px solid midnightblue;
+ }
+.ordersList-line div:last-child{
+    border-right: 1px solid midnightblue;
+}
+.ordersList-line.caption div{
+    border-left: 1px solid white;
+}
+.ordersList-line.caption div:last-child{
+    border-right: 1px solid white;
+}
+.ordersList-line .p-type{
+    width: 15%;
+}
+.ordersList-line .p-type img{
+    height: 1.5em;
+    width: 1.5em;
+}
+.ordersList-line .p-sum{
+    width: 10%;
+}
+.ordersList-line .p-comment{
+    width: 20%;
+}
+.ordersList-line .p-amount{
+    width: 10%;
+}
+.ordersList-line .p-withdraw{
+    width: 10%;
+}
+.ordersList-line .p-hash{
+    width: 10%;
+}
+.ordersList-line .p-unaccepted{
+    width: 10%;
+}

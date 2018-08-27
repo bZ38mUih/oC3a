@@ -48,4 +48,10 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
         "<a href='/services/srvMan' title='Управление услугами' style='color: aqua'>Управление услугами</a>".
         "</div></div>";
 }
+if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
+    $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
+        "<img src='/site/payments/img/logo.png'></div><div class='modal-line-text'>".
+        "<a href='/payments/list' title='Список платежей' style='color: aqua'>Список платежей</a>".
+        "</div></div>";
+}
 $appRJ->response['result'].= "</div></div></div></div>";

@@ -85,7 +85,7 @@ if($_SESSION['bucket']['total']>=100){
     $appRJ->response['result'].="'>когда необходимо официального оформить работы, кроме стоимости услуг".
         " заказчик обязуется возместить исполнителю все расходы, понесенные им при оформлением деятельности по оказанию заказанных ".
         "услуг включая налоги, штрафы и т.п. в соответсвии с законодательством РФ.</div></div>".
-        "<input type='hidden' name='sum' value='".strval($_SESSION["bucket"]["total"]-$_SESSION["bucket"]["discont"])."' data-type='number' min='100' max='10000'>".
+        "<input type='hidden' name='sum' value='".$_SESSION["bucket"]["total"]."' data-type='number' min='100' max='10000'>".
         "<label>Коментарий к переводу (необязательно)</label><textarea name='comment' rows='3'>";
     if($Order_rd->result["comment"]) {
         $appRJ->response['result'].=$Order_rd->result["comment"];

@@ -70,50 +70,34 @@ form.order input[type=button] {
     padding: 0.1em;
     border-radius: 0.3em;
 }
-
-.paymType
-{
+.paymType{
     margin-bottom: 1em;
 }
-
-.paymType span
-{
+.paymType span{
     display: inline-block;
     width: 100%;
     font-weight: bold;
 }
-
-.paymType-selector
-{
+.paymType-selector{
     width: 40%;
     display: inline-block;
     vertical-align: top;
 }
-
-.paymType-descr
-{
+.paymType-descr{
     font-size: 0.8em;
     width: 47%;
     display: none;
     padding: 1%;
-
-    /*border-radius: 0.4em;*/
 }
-
-.paymType-descr.donate
-{
+.paymType-descr.donate{
     border: 1px solid red;
 }
-.paymType-descr.shop
-{
+.paymType-descr.shop{
     border: 1px solid green;
 }
-
-.paymType-descr.active
-{
+.paymType-descr.active{
     display: inline-block;
 }
-
 .nb, .att {
     font-size: 0.8em;
     text-align: left;
@@ -133,7 +117,6 @@ form.order input[type=button] {
     form.order textarea {
         width: 90%;
     }
-
     form.order .paymType-selector {
         width: 90%;
     }
