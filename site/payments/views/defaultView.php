@@ -8,7 +8,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<meta name='description' content='Список платежей' http-equiv='Content-Type' charset='charset=utf-8'>".
     "<meta name='robots' content='noindex'>".
     "<title>Оплата</title>".
-    "<link rel='SHORTCUT ICON' href='/site/status/img/favicon.png' type='image/png'>".
+    "<link rel='SHORTCUT ICON' href='/site/payments/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
@@ -34,7 +34,7 @@ if(mysql_num_rows($slOrders_res)>0){
         $appRJ->response['result'].="'></a></div>".
             "<div class='p-sum'>".$slOrders_row['orderSum']."</div>".
         "<div class='p-comment'>".mb_substr($slOrders_row['comment'],0, 10)."</div>";
-        $slPayment_txt="select * from payments_dt where label='".$slOrders_row['$slOrders_row']."'";
+        $slPayment_txt="select * from payments_dt where label='".$slOrders_row['label']."'";
         $slPayment_res=$DB->doQuery($slPayment_txt);
         $amount_txt="<div class='p-amount'>";
         $withdraw_txt="<div class='p-withdraw'>";

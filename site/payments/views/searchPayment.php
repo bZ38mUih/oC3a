@@ -6,7 +6,7 @@ if(mysql_num_rows($scrOrder_res)!=1){
 }else{
     $scrOrder_row=$DB->doFetchRow($scrOrder_res);
     $srcPayment_qry="select * from payments_dt where label='".$_GET['searchPayment']."'";
-    $srcPayment_res=$DB->doFetchRow($srcPayment_qry);
+    $srcPayment_res=$DB->doQuery($srcPayment_qry);
     $h1 ="Проверка платежа";
     $appRJ->response['result'].= "<!DOCTYPE html>".
         "<html lang='en-Us'>".
@@ -26,7 +26,7 @@ if(mysql_num_rows($scrOrder_res)!=1){
     $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
         "<div class='contentBlock-wrap'>";
     $appRJ->response['result'].="<div class='update'>".
-        "Обновлено: <span>менее минуты назад</span><a href='".$appRJ->server['reqUri']."'>обновить</a></div>";
+        "Обновлено: <span>менее минуты назад</span><a href='".$_SERVER['REQUEST_URI']."'>обновить</a></div>";
     $paidStat_txt=null;
     $shortDest_txt="<div><span class='fldName'>вид платежа:</span><span class='fldVal'>";
     $sum_txt="<div><span class='fldName'>сумма:</span><span class='fldVal'>".$scrOrder_row['orderSum'].

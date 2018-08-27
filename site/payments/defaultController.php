@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"]."/source/_conf/ym.php");
 $payment = new recordDefault("payments_dt", "payment_id");
 if(isset($_POST['label'])){
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/payments/actions/putPayment.php");

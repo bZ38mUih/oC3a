@@ -56,6 +56,7 @@ if($_SESSION['bucket']['total']>=100){
     $appRJ->response['result'].="</div></div>";
     $appRJ->response['result'].= "<form class='order' method='post' action='https://money.yandex.ru/quickpay/confirm.xml'>".
         "<input type='hidden' name='receiver' value='".$ym['receiver']."'>".
+        "<input type='hidden' name='successURL' value='https://".$_SERVER["HTTP_HOST"]."/payments'>".
         "<input type='hidden' name='formcomment' value='Right Joint - услуги'>".
         "<input type='hidden' name='short-dest' value='Right Joint - услуги'>".
         "<input type='hidden' name='label' value='".uniqid('', true)."'>".
