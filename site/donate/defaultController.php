@@ -19,10 +19,8 @@ if ($_GET['receiver']){
         unset($_SESSION["donate"]);
         $appRJ->response['result']="Donate err:".$mkOrder_err;
     }
-}elseif (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10) {
-    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/donate/views/defaultView.php");
 }else{
-    $appRJ->errors['stab']['description']="Администрация просит извинения за предоставленные неудобства :-(";
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/donate/views/defaultView.php");
 }
 
 

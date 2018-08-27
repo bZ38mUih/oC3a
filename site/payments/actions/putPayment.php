@@ -75,7 +75,7 @@ if($payment->result['codepro']){
     $pay_str.='false';
 }
 $pay_str.="&".$ym['secret']."&".$payment->result["label"];
-if($payment->result['sha1_hash'] === sha1($pay_str)){
+if($payment->result['sha1_hash'] == sha1($pay_str)){
     $payment->result["hashEqual"]=true;
 }
 $payment->putOne();

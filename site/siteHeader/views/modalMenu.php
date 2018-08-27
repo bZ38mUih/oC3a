@@ -12,8 +12,8 @@ if(isset($_SESSION['groups']['root']) and $_SESSION['groups']['root']>10) {
 /*Diary-->*/
 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
-    "<img src='/site/diary/img/logo.png'></div><div class='modal-line-text'>".
-    "<a href='/diary/'>Diary</a></div></div>";
+        "<img src='/site/diary/img/logo.png'></div><div class='modal-line-text'>".
+        "<a href='/diary/'>Diary</a></div></div>";
 }
 /*<--Diary*/
 /*personal-page-->*/
@@ -205,12 +205,10 @@ if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
 $appRJ->response['result'].= "</ul></div></div>";
 /*<--gallery*/
 /*donate-->*/
-if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10) {
-    if ($appRJ->server['reqUri_expl'][1] != 'donate') {
-        $appRJ->response['result'] .= "<div class='modal-line'><div class='modal-line-img'>" .
-            "<img src='/site/donate/img/logo.png'></div>" .
-            "<div class='modal-line-text'><a href='/donate'>Помощь проекту</a></div></div>";
-    }
+if ($appRJ->server['reqUri_expl'][1] != 'donate') {
+    $appRJ->response['result'] .= "<div class='modal-line'><div class='modal-line-img'>" .
+        "<img src='/site/donate/img/logo.png'></div>" .
+        "<div class='modal-line-text'><a href='/donate'>Помощь проекту</a></div></div>";
 }
 /*<--donate*/
 /*signIn-->*/

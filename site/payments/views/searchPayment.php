@@ -75,7 +75,23 @@ if(mysql_num_rows($scrOrder_res)!=1){
         $withdAmount_txt="<div><span class='fldName'>списано:</span><span class='fldVal'>".
             $srcPayment_row['withdraw_amount']."</span><span class='fldName'>руб.</span></div>";
         if(!$srcPayment_row['hashEqual']){
-            $paidHash.="<div><span class='fldName'>hashEqual:</span><span class='fldVal'>FALSE</span></div>";
+/*
+            $pay_str=$srcPayment_row["notification_type"]."&".
+                $srcPayment_row["operation_id"]."&".
+                $srcPayment_row["amount"]."&".
+                $srcPayment_row["currency"]."&".
+                $srcPayment_row["datetime"]."&".
+                $srcPayment_row["sender"]."&";
+            if($srcPayment_row['codepro']){
+                $pay_str.="true";
+            }else{
+                $pay_str.='false';
+            }
+            $pay_str.="&".$ym['secret']."&".$srcPayment_row["label"];
+*/
+            $paidHash.="<div><span class='fldName'>hashEqual:</span><span class='fldVal'>FALSE".
+                //"<br>".$srcPayment_row['sha1_hash']." / ".sha1($pay_str).
+                "</span></div>";
         }
         if($srcPayment_row["unaccepted"]){
             $unaccepted="<div><span class='fldName'>unaccepted:</span><span class='fldVal'>не зачислен ".

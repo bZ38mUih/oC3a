@@ -30,4 +30,6 @@ elseif(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10){
     if($appRJ->server['reqUri_expl'][2] and $appRJ->server['reqUri_expl'][2]=="list") {
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/payments/views/defaultView.php");
     }
+}else{
+    $appRJ->errors['404']["description"]="страница не найдена";
 }
