@@ -3,7 +3,8 @@ $h1 ="Редактирование услуги";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Редактирование услуги' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Редактирование услуги'/>".
     "<meta name='robots' content='noindex'>".
     "<title>Управление услугами</title>".
     "<link rel='SHORTCUT ICON' href='/site/services/img/favicon.png' type='image/png'>".

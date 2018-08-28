@@ -8,7 +8,8 @@ if(mysql_num_rows($selectFile_res)==1){
     $appRJ->response['result'].= "<!DOCTYPE html>".
         "<html lang='en-Us'>".
         "<head>".
-        "<meta name='description' content='".$selectFile_row['dwlFileName'].": описание, ссылки на загрузку.' http-equiv='Content-Type' charset='charset=utf-8'>".
+        "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+        "<meta name='description' content='".$selectFile_row['dwlFileName'].": описание, ссылки на загрузку.'/>".
         "<title>Загрузки - Файл</title>".
         "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>".
         "<script src='/source/js/jquery-3.2.1.js'></script>".

@@ -4,7 +4,8 @@ $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Альбомы. Галерея фотографий на разные темы' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Альбомы. Галерея фотографий на разные темы'/>".
     "<title>Галерея</title>".
     "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".

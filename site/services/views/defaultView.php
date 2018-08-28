@@ -11,8 +11,8 @@ $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Услуги по созданию сайтов и ремонту компьютеров в г. Иваново' ".
-    "http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Услуги по созданию сайтов и ремонту компьютеров в г. Иваново'/>".
     "<title>Услуги</title>".
     "<link rel='SHORTCUT ICON' href='/site/services/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".

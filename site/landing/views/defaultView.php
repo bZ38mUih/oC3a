@@ -4,8 +4,8 @@ $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Создание сайтов, ремонт компьютеров в г. Иваново' ".
-    "http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Создание сайтов, ремонт компьютеров в г. Иваново'/>".
     "<meta name='yandex-verification' content='e929004ef40cae1b' />".
     "<title>Компьютеры и разработка</title>".
     "<link rel='SHORTCUT ICON' href='/site/landing/img/favicon.png' type='image/png'>".

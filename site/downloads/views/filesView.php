@@ -3,8 +3,8 @@ $h1 ="Файлы";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Системное, офисное, популяное ПО. Ссылки на загрузки программ.' ".
-    "http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Системное, офисное, популяное ПО. Ссылки на загрузки программ.'/>".
     "<title>Файлы</title>".
     "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".

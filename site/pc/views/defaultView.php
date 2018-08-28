@@ -5,8 +5,9 @@ $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
     "<meta name='description' content='Статьи по ремонту компьютеров и компьютерным технологиям. ".
-    "Список статей и категорий' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "Список статей и категорий'/>".
     "<title>Компьютеры и технологии</title>".
     "<link rel='SHORTCUT ICON' href='/site/pc/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".

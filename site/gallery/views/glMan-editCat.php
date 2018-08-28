@@ -3,8 +3,8 @@ $h1 ="Правка категории";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Правка категории' http-equiv='Content-Type' charset='charset=utf-8'>".
-    "<meta name='robots' content='noindex'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Правка категории' http-equiv='Content-Type'/>".
     "<title>Правка категории</title>".
     "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".

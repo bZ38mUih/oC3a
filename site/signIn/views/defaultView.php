@@ -3,7 +3,8 @@ $h1='Вход на сайт';
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Вход на сайт' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Вход на сайт' />".
     "<meta name='robots' content='noindex'>".
     "<title>Вход на сайт</title>".
     "<link rel='SHORTCUT ICON' href='/site/signIn/img/favicon.png' type='image/png'>".

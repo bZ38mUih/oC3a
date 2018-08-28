@@ -139,13 +139,14 @@ $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
     "<meta name='description' content='";
 foreach($catArr as $key=>$value){
     if($catArr[$key]['printFlag']==true) {
         $appRJ->response['result'] .= $value['catDescr'];
     }
 }
-$appRJ->response['result'].= "' http-equiv='Content-Type' charset='charset=utf-8'>".
+$appRJ->response['result'].= "'/>".
     "<title>Галерея</title>".
     "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".

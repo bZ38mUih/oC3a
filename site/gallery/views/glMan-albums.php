@@ -8,7 +8,8 @@ if(isset($_GET['page']) and $_GET['page']!=null){
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Список альбомов галереи' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Список альбомов галереи'/>".
     "<meta name='robots' content='noindex'>".
     "<title>Управление галереей</title>".
     "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".

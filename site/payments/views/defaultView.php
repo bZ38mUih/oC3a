@@ -5,7 +5,8 @@ $h1 ="Список платежей";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Список платежей' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Список платежей'>".
     "<meta name='robots' content='noindex'>".
     "<title>Оплата</title>".
     "<link rel='SHORTCUT ICON' href='/site/payments/img/favicon.png' type='image/png'>".

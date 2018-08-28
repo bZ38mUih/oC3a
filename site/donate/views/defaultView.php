@@ -14,10 +14,10 @@ $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
     "<meta name='description' content='Вы можете помочь развитию проекта. www.rightjoint.ru нуждается в спонсорах ".
     "Если вам нравится проект www.rightjoint.ru, вы можете сделать анонимное пожертвование ".
-    "чтобы поддержать его дальнейшее развитие. Буду вам очень благодарен за любую финансовую помощь.'".
-    " http-equiv='Content-Type' charset='charset=utf-8'>".
+    "чтобы поддержать его дальнейшее развитие. Буду вам очень благодарен за любую финансовую помощь.'/>".
     "<title>Помощь проекту</title>".
     "<link rel='SHORTCUT ICON' href='/site/donate/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".

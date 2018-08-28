@@ -3,8 +3,8 @@ $h1 ="Доступы к альбому";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Редактирование доступов к альбому' ".
-    "http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Редактирование доступов к альбому' />".
     "<meta name='robots' content='noindex'>".
     "<title>Управление галереей</title>".
     "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".

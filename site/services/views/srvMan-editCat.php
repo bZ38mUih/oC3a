@@ -3,7 +3,8 @@ $h1 ="Правка категории";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Создание категории загрузок' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Создание категории загрузок'/>".
     "<meta name='robots' content='noindex'>".
     "<title>Правка категории</title>".
     "<link rel='SHORTCUT ICON' href='/site/services/img/favicon.png' type='image/png'>".
