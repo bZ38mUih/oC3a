@@ -23,17 +23,18 @@
 
 .title-txt
 {
+
     width: 66%;
     display: inline-block;
     vertical-align: middle;
-    padding: 2%;
+    padding-left: 2%;
 }
 
 .title-txt span
 {
     width: 96%;
     display: inline-block;
-    padding: 2%;
+    padding-left: 2%;
     color: darkblue;
     font-style: italic;
     font-weight: bold;
@@ -75,9 +76,9 @@
 
 .ref-stat span.fldName
 {
-    width: 80%;
+    width: 50%;
     display: block;
-    margin-left: 30%;
+    margin-left: 40%;
     text-align: left;
 }
 
@@ -94,7 +95,7 @@
     width: 44%;
     display: inline-block;
     vertical-align: middle;
-    padding: 2%;
+    padding-left: 2%;
     margin-bottom: 0.5em;
 }
 
