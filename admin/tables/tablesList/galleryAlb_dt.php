@@ -4,7 +4,7 @@ $query_text="create table galleryAlb_dt (".
     "user_id int(5) not null, ".
     "albumName varchar(128) collate utf8_unicode_ci not null, ".
     "albumAlias varchar(128) collate utf8_unicode_ci not null, ".
-    "metaDescr varchar(256) collate utf8_unicode_ci, ".
+    "metaDescr varchar(512) collate utf8_unicode_ci, ".
     "dateOfCr date not null, ".
     "glCat_id int(5), ".
     "albumImg varchar(128) collate utf8_unicode_ci, ".

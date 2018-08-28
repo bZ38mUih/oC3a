@@ -5,7 +5,7 @@ $query_text="create table galleryPhotos_dt (".
     "photoLink varchar(128) collate utf8_unicode_ci not null, ".
     "transPhoto int(3), ".
     "photoName varchar(128) collate utf8_unicode_ci, ".
-    "photoDescr varchar(256) collate utf8_unicode_ci, ".
+    "photoDescr varchar(512) collate utf8_unicode_ci, ".
     "uploadDate date not null, ".
     "album_id int(5) not null, ".
     "activeFlag BOOLEAN, ".
