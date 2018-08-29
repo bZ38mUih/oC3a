@@ -1,0 +1,260 @@
+<h3>Задачи социальной интеграции</h3>
+<p>
+    Сейчас большинство пользователей интернета имеют аккаунты в социальных сетях (одноклассники, фэйсбук, вконтаке и другие).
+    Эти социальные сети предоставляют свой <b>api</b> для авторизации на сторонних сайтах. Получается очень удобно имея один аккаунт
+    в социальной сети, им же подписываться на других ресурсах и постить понравившийся контент. Привязка
+    вашего сайта к социальным сетям сделает его более 'дружелюбным' к пользователям, избавит их от утомительной процедуры
+    регистрации и подтверждения E-Mail.
+</p>
+<p>
+    Под <b>api</b> (application programming interface) следует понимать набор команд (запросов, методов) и формат ответов,
+    предоставляемых соц. сетью разработчикам и описанных в документации.
+</p>
+<h3>Авторизация через социальные сети</h3>
+Существует несколько способов авторизации через социальные сети.
+<h4>С использованием api сторонних разработчиков</h4>
+<p>
+    Можно использовать виджеты сторонних разработчиков, например <b>uLogin</b> или другие.<br>
+<div class="example-img">
+    <img src="/data-arts/arts/1/img/uLogin.jpg" height="30%" width="10%">
+    <span>Виджет uLogin позволяет авторизовать пользователей почти через любую социальную сеть</span>
+</div>
+<ul>
+    <strong>Преимущества такого подхода:</strong>
+    <li>Нет необходимости собственноручно регистрировать и настраивать ваше приложение в социальной сети, можно даже
+        не заводить собственный аккаунт</li>
+    <li>Формат ответа при авторизации будет содержать набор стандартных заголовков полей, нет необходимости кастомизировать
+        скрипт авторизации для каждой социальной сети. Вам не придется изучать документацию по методами работы с api</li>
+    <li>Широкий выбор социальных сетей для авторизации. Заводить аккаунты и регистрировать свое приложение в каждой из соц. сетей
+        будет очень трудоемко, особенно если вы их собираетесь использовать только авторизации, а не для общения</li>
+</ul>
+<ul>
+    <strong>Недостатками будут:</strong>
+    <li>Проблемы с api сторонних разработчиков, как недоступность их серверов, изменение формата ответа, обязательно
+        скажутся на работе скрипта авторизации на вашем сайте и на ваших пользователях.
+    </li>
+    <li><b>api</b> самих социальных сетей дают возможность получить гораздо больше информации о пользователях,
+        чем позволяют сторонние разработки</li>
+    <li>Нет гарантии что информация пользователей будет передаваться только вам и не
+        будет использована разработчиками в своих интересах. Нет гарантии что вам дадут достоверную информацию о
+        пользователях.
+    </li>
+    <li>Для передачи данных в совокупности потребуется выполнить большее количество запросов, что скажется на времени
+        работы скрипта.
+    </li>
+</ul>
+</p>
+
+<h4>С использование api социальных сетей</h4>
+<p>
+    Принцип авторизации примерно одинаков для всех социальных сетей:
+<ul>
+    <li>При регистрации вашего приложения на <b>Одноклассниках</b>, <b>Фэйсбуке</b>, <b>ВКонтакте</b> ему
+        будет назначен <b>client_id</b> приложения и специальные ключи доступа <b>client_secret</b>.
+        В настройках необходимо указать <b>redirect_uri</b> - адрес страницы, которая будет обрабатывать <b>code</b> подтверждения.
+    </li>
+    <li>На любой странице вашего сайта вы размещаете ссылку с
+        <b>client_id</b>, как в документации на <b>api</b>.
+        При клике на ссылку, api соответствующей социальной сети загрузит виджет (окно) на javascript с предложением к пользователю авторизоваться и
+        разрешить доступ вашему приложению к его профилю. <strong>Важно, что вводимые логин и пароль не передаются
+            вашему приложению, они будут переданы к соц. сети.</strong>
+        Сам <b>client_id</b> приложения, как и ссылка авторизации, <b>не являются секретными.</b></li>
+    <li>После того как пользователь введет логин и пароль и разрешит авторизацию, на страницу, которую вы
+        указали в настройках своего приложения в параметре <b>redirect_uri</b>, api
+        социальной сети выполнит запрос с параметром <b>code</b> методом GET. Этот параметр обрабатывается и служит вашему приложению
+        сигналом для начала авторизации и получения <b>access_token</b></li>
+    <li>Далее, в целях безопасности, ваше приложение должно выполнить запрос на получение <b>access_token</b> с использованием
+        специального ключа доступа <b>client_secret</b> и кода подтверждения <b>code</b> полученного на предыдущем шаге.
+        <strong>client_secret должен храниться в секрете</strong> и быть известен
+        только вам. Ответ вернется в формате <b>json</b>, легко парсится на php, позволяет определить возникшие на этом
+        этапе ошибки </li>
+    <li>Если процесс получения <b>access_token</b> прошел успешно, используя его вы можете совершать запросы к методам
+        api социальной сети для получения данных пользователя. Ответ также возвращается в формате <b>json</b>, содержит
+        данные или коды ошибок.</li>
+</ul>
+</p>
+<h5>socialConf</h5>
+<p>
+    Настройки приложения сохраним в ассоциативном массиве <b>$socialConf</b> следующего вида:
+<div class="example">
+    $socialConf['client_id'] = YOUR_CLIENT_ID;<br>
+    $socialConf['application_key'] = YOUR_APPLICATION_KEY;<br>
+    $socialConf['client_secret'] = YOUR_CLIENT_SECRET;<br>
+    $socialConf['redirect_uri'] = YOUR_REDIRECT_URI;
+</div>
+Далее <b>$usrArr</b> - ассоциативный массив данных пользователя.
+</p>
+<h5><img src="/site/signIn/img/ok.png"> Авторизация через odnoklassniki</h5>
+<ul>
+    <li>Переходим по ссылке <a href="https://apiok.ru/dev/app/create" target="_blank">https://apiok.ru/dev/app/create</a> и
+        регистрируем свое приложение (заполняем форму), получаем <b>client_id</b> приложения и ключи доступа.</li>
+    <li> Размещаем ссылку для авторизации пользователя на вашем сайте.
+        <div class="example">
+            href='https://connect.ok.ru/oauth/authorize?client_id='.<b>$socialConf['client_id']</b>.<br>'&scope=VALUABLE_ACCESS&response_type=code&redirect_uri='.<b>$socialConf['redirect_uri']</b>.'&layout=w&state=ok'
+        </div>
+    </li>
+    <li>После клика на ссылку и разрешения пользователя авторизоваться у вас на сайте, api odnoklassniki выполнят запрос методом <b>GET</b>
+        с параметром <b>state</b> и <b>code</b> на <b>redirect_uri</b>, который вы указали в настройках вашего приложения</li>
+    <li>Далее выполняем запрос на получение <b>access_token</b> и обрабатываем ошибки следующим образом:
+        <div class="example">
+            $postReq = http_build_query(<br>
+            array(<br>
+            'code' => <b>$_GET['code']</b>,<br>
+            'client_id' => $socialConf['client_id'],<br>
+            'client_secret' => $socialConf['client_secret'],<br>
+            "redirect_uri" => $socialConf['redirect_uri'],<br>
+            "grant_type" => "authorization_code"<br>
+            )<br>
+            );<br>
+
+            $opts = array('http' =><br>
+            array(<br>
+            'method' => 'POST',<br>
+            'header' => 'Content-type: application/x-www-form-urlencoded',<br>
+            'content' => $postReq<br>
+            )<br>
+            );<br>
+
+            $context = stream_context_create($opts);<br>
+
+            <b>$tokenReq</b> = file_get_contents('https://api.ok.ru/oauth/token.do?', false, $context);<br>
+
+            <b>$tokenArr</b> = json_decode($tokenReq, true);<br>
+            //Обрабатываем ошибки<br>
+            if(isset($tokenArr['access_token']) and $tokenArr['access_token']!=null){<br>
+            //получаем данные пользователя<br>
+            }
+        </div>
+    </li>
+    <li>После получаем данные пользователя:
+        <div class="example">
+            $secret_key = MD5($tokenArr['access_token'] . $socialConf['client_secret']);<br>
+            $sig = MD5("application_key=" . $socialConf['application_key'] . "format=jsonmethod=users.getCurrentUser" . $secret_key);<br>
+
+            <b>$usrReq</b> = file_get_contents("https://api.ok.ru/fb.do?<br>application_key=" . $socialConf['application_key'] . "&format=json" .<br>
+            "&method=users.getCurrentUser&sig=" . $sig . "&access_token=" . <b>$tokenArr['access_token']</b>);<br>
+            <b>$usrArr</b> = json_decode($usrReq, true);<br>
+            //Обрабатываем ошибки<br>
+            if(isset($usrArr['uid']) and $usrArr['uid']!=null){<br>
+
+            }
+        </div>
+    </li>
+</ul>
+<h5><img src="/site/signIn/img/fb.png"> Авторизация через facebook</h5>
+<li>Переходим по ссылке <a href="https://developers.facebook.com/apps/" target="_blank">https://developers.facebook.com/apps/</a> и
+    регистрируем свое приложение (заполняем форму), получаем <b>client_id</b> приложения и ключи доступа.</li>
+<li> Размещаем ссылку для авторизации пользователя на вашем сайте.
+    <div class="example">
+        href='https://www.facebook.com/dialog/oauth?client_id='.<b>$socialConf['client_id']</b>.<br>
+        '&redirect_uri='.<b>$socialConf['redirect_uri']</b>.'&response_type=code'
+    </div>
+</li>
+<li>После клика на ссылку и разрешения пользователя авторизоваться у вас на сайте, api facebook выполнят запрос методом <b>GET</b>
+    с параметром <b>code</b> на <b>redirect_uri</b>, который вы указали в настройках вашего приложения</li>
+<li>Далее выполняем запрос на получение <b>access_token</b> и обрабатываем ошибки следующим образом:
+    <div class="example">
+        <b>$tokenReq</b> = file_get_contents("https://graph.facebook.com/oauth/access_token?client_id=".$socialConf['client_id'].<br>
+        "&redirect_uri=".$socialConf["redirect_uri"]."&client_secret=".<br>$socialConf['client_secret']."&code=".<b>$_GET['code']</b>);<br>
+        <b>$tokenArr</b> = json_decode($tokenReq, true);<br>
+        //Обрабатываем ошибки<br>
+        if(isset($tokenArr["access_token"]) and $tokenArr["access_token"]!=null){<br>
+        //получаем данные пользователя<br>
+        }
+    </div>
+</li>
+<li>После получаем данные пользователя:
+    <div class="example">
+        <b>$usrReq</b>=file_get_contents("https://graph.facebook.com/me?access_token=".<b>$tokenArr["access_token"]</b>.<br>
+        "&fields=id,first_name,last_name,link,email,gender,<br>birthday,picture.width(60).height(60)");<br>
+        <b>$usrArr</b> = json_decode($usrReq, true);<br>
+        //Обрабатываем ошибки<br>
+        if(isset($usrArr["id"]) and $usrArr["id"]!=null){<br>
+
+        }
+    </div>
+</li>
+
+<h5><img src="/site/signIn/img/vk.png"> Авторизация через vkontakte</h5>
+<li>Переходим по ссылке <a href="https://vk.com/dev/" target="_blank">https://vk.com/dev/</a> и
+    регистрируем свое приложение (заполняем форму), получаем <b>client_id</b> приложения и ключи доступа.</li>
+<li> Размещаем ссылку для авторизации пользователя на вашем сайте.
+    <div class="example">
+        https://oauth.vk.com/authorize?client_id='.<b>$socialConf['client_id']</b>.<br>
+        '&display=page&redirect_uri='.<b>$socialConf['redirect_uri']</b>.<br>'&scope=friends&response_type=code&v=5.62'<br>
+    </div>
+</li>
+<li>Далее выполняем запрос на получение <b>access_token</b> и обрабатываем ошибки следующим образом:
+    <div class="example">
+        <b>$tokenReq</b>=file_get_contents("https://oauth.vk.com/access_token?<br>
+        client_id=".$socialConf['client_id'].<br>
+        "&client_secret=".$socialConf['client_secret'].<br>"&redirect_uri=".$socialConf['redirect_uri'].<br>
+        "&code=".<b>$_GET['code']</b>);<br>
+        <b>$tokenArr</b>=json_decode($tokenReq, true);<br>
+        //Обрабатываем ошибки<br>
+        if(isset($tokenArr["access_token"]) and $tokenArr["access_token"]!=null){<br>
+        //получаем данные пользователя<br>
+        }
+    </div>
+</li>
+<li>После получаем данные пользователя:
+    <div class="example">
+        <b>$usrReq</b> = @file_get_contents('https://api.vk.com/method/users.get?user_ids='. $tokenArr['user_id'].<br>
+        "&fields=photo_100,bdate&v=5.80&access_token=".<b>$tokenArr['access_token']</b>);<br>
+        <b>$usrArr</b> = json_decode($usrReq, true);<br>
+        //Обрабатываем ошибки<br>
+        if($usrArr!=null and isset($usrArr['response']['0']['id']) <br>and $usrArr['response']['0']['id']!=null){<br>
+        }
+    </div>
+</li>
+
+<h4>Рекомендации при авторизации</h4>
+<h5>Актуальность данных пользователя</h5>
+<p>
+    Некоторы данные профиля пользователя могут быть изменены им в настройках или api самой социальной сети,
+    при этом <b>id</b> пользователя останется прежнем.
+<div class="example">
+    Например пользователь может изменить фамилию в своем аккаунте. В facebook ссылка на страницу пользователя и аватар
+    не являются постоянными.
+</div>
+Если вы сохраняете данные профиля пользователя в базу данных для последующего использования,
+например даете ссылку на профиль в коментариях, то их необходимо переодически обновлять, можно при каждой авторизации.
+</p>
+<h5>Гостевой и личный профили пользователя</h5>
+<p>
+    Приложение может получить доступ к информации гостевого или личного профилям пользователя в зависимости
+    от своих настроек и разрешений пользователя. В гостевом профиле публикуется минимум данных, доступных всем.
+    В личном профиле публикуется информация доступная друзьям. Некоторые данные (день рождения, E-Mail и другие) нельзя
+    получить без разрешений к личному профилю или открытия их для доступа всем.
+</p>
+<h5>Ссылка на станицу по id в социальной сети</h5>
+<p>
+<ul>
+    <li><b>ВКонтакте:</b> https://vk.com/id<b>YOUR_id</b></li>
+    <li><b>Одноклассники:</b> https://ok.ru/profile/<b>YOUR_uid</b></li>
+    <li><b>Фэйсбук:</b> к сожалению зная id пользователя получить ссылку на его страницу не получиться.
+    Для этого требуется запрос к api с получением <b>access_token</b> и ее необходимо периодически обновлять</li>
+</ul>
+</p>
+<h5>Один redirect_uri для всех соц. сетей</h5>
+<p>
+    Поскольку все соц. сети обращаются методом GET с параметром <b>code</b> на страницу авторизации <b>redirect_uri</b>
+    их необходимо как-то идентифицировать.
+<div class="example">
+    if (isset($_GET['state']) and $_GET['state']=='ok') {<br>
+    //В одноклассниках есть параметр state вместе с code.<br>
+    }else{<br>
+    if (strlen($_GET['code'])<300){<br>
+    //Вконтакте длина кода меньше 300 символов<br>
+    }else{<br>
+    //иначе facebook<br>
+    }<br>
+    }
+</div>
+</p>
+
+<h4>Заключение</h4>
+<p>
+    Авторизация через социальные сети не является чем-то сложным, процесс авторизации очень похож для разных
+    социальных сетей и это очень упрощает разработчикам социальную интеграцию приложений.
+</p>

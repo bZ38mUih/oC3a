@@ -1,0 +1,68 @@
+h3
+{
+	display: inline-block;
+}
+
+span.slideSign
+{
+	cursor: pointer;
+}
+
+.command-group
+{
+	display: inline-block;
+	width: 100%;
+}
+
+.command-line
+{
+	width: 100%;
+	border-bottom: 1px solid black;
+	margin-bottom: 1em;
+	display: none;
+}
+
+.command-line.cmd
+{
+	display: inline-block;
+	width: 30%;
+	border:none;
+	border-right: 1px solid silver;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.2em;
+	vertical-align: middle;
+}
+
+.command-line.descr
+{
+	display: inline-block;
+	width: 68%;
+	border:none;
+	border-right: 1px solid silver;
+	vertical-align: middle;
+}
+
+span.exmpl-btn
+{
+	display: block;
+	text-decoration: underline;
+	cursor: pointer;
+	padding-left: 1em;
+	font-style: italic;
+}
+
+.command-line.exmpl
+{
+	width: 100%;
+	display: none;
+	border: none;
+	margin-bottom: 1em;
+	margin-top: 0.5em;
+}
+
+.command-line.exmpl strong
+{
+	display: block;
+	padding-left: 1em;
+}

@@ -24,8 +24,8 @@ else{
     $Ntf_rd->result['ntfDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-m-s');
     $Ntf_rd->result['activeFlag']=true;
 
-    define(ART_CATEG_IMG_PAPH, "/data/articles/categs/");
-    define(ARTS_IMG_PAPH, "/data/articles/arts/");
+    define(ART_CATEG_IMG_PAPH, "/data-arts/categs/");
+    define(ARTS_IMG_PAPH, "/data-arts/arts/");
 
     if($appRJ->server['reqUri_expl'][1]!=null){
         if(!@include($_SERVER["DOCUMENT_ROOT"]."/site/".$appRJ->server['reqUri_expl'][1]."/defaultController.php")){

@@ -1,0 +1,232 @@
+<p>
+    Социальные кнопки like и share дают пользователям очень удобную возможность поделиться с друзьями по
+    социальной сети понравившимся контентом, ну а владельцу контента популярность и приток посетителей.
+</p>
+<p>
+    Существует несколько способов добавить социальные кнопки на сайт.
+</p>
+<h3>1. Стандартные виджеты соц. сетей</h3>
+<p>
+    Одноклассники, Фэйсбук и ВКонтакте предоставляют разработчикам уже готовый виджет, нуждающийся в минимальном
+    количестве настроек.
+</p>
+<h4>Стандартная кнопка Класс</h4>
+<p>
+<div id="ok_shareWidget"></div>
+<script>
+    !function (d, id, did, st, title, description, image) {
+        var js = d.createElement("script");
+        js.src = "https://connect.ok.ru/connect.js";
+        js.onload = js.onreadystatechange = function () {
+            if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                if (!this.executed) {
+                    this.executed = true;
+                    setTimeout(function () {
+                        OK.CONNECT.insertShareWidget(id,did,st, title, description, image);
+                    }, 0);
+                }
+            }};
+        d.documentElement.appendChild(js);
+    }(document,"ok_shareWidget",document.URL,'{"sz":30,"st":"oval","ck":1}',"","","");
+</script>
+</p>
+<h4>Стандартная кнопка Нравится в Фэйсбук</h4>
+<p>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.0&appId=647119598812596&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-like" data-href="https://rigtjoint.ru/dev/web-social-like" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+</p>
+<h4>Стандартная кнопка Нравится в ВКонтакте</h4>
+<p>
+    <!-- Put this script tag to the <head> of your page -->
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?157"></script>
+
+    <script type="text/javascript">
+        VK.init({apiId: 5869266, onlyWidgets: true});
+    </script>
+
+    <!-- Put this div tag to the place, where the Like block will be -->
+<div id="vk_like"></div>
+<script type="text/javascript">
+    VK.Widgets.Like("vk_like", {type: "button"});
+</script>
+</p>
+<h3>2. Сторонние разработки. Виджет Pluso</h3>
+<p>
+    <script type="text/javascript">(function() {
+        if (window.pluso)if (typeof window.pluso.start == "function") return;
+        if (window.ifpluso==undefined) { window.ifpluso = 1;
+            var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+            s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+            s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+            var h=d[g]('body')[0];
+            h.appendChild(s);
+        }})();</script>
+<div class="pluso" data-background="#ebebeb" data-options="big,square,line,horizontal,counter,theme=04" data-services="vkontakte,odnoklassniki,facebook"></div>
+</p>
+
+<p><strong>Опции конструкторов позволяют вносить только минимум изменений в настройки социальных кнопок.
+    При использовании стандартных социальных кнопок и социальных кнопок сторонних разработчиков их внешний вид и
+    поведение будет вне нашего контроля.</strong></p>
+
+<h3>3. Кастомные социальные кнопки с использованием RESTful API (он же HTTP GET)</h3>
+<p>
+    Существует возможность создать индивидуальные социальные кнопки с использованием собственных изображений и
+    подсчитать количество постов.
+</p>
+<div class="example">
+    Пример кастомных социальных кнопок на
+    <a href="javaScript: ($('html, body').animate({ scrollTop: $(document).height() }, 'slow'))">футере этого сайта</a>,
+    код для шаринга приведен ниже.
+</div>
+<p>
+<h4>FrontEnd</h4>
+<p>
+    Разместим на странице кнопки (ссылки) шаринга со следующими атрибутами:
+<div class="example">
+    //ссылка шаринга в одноклассниках<br>
+    href='#' class='social_share' data-type='ok' title='Одноклассники'<br>
+    //ссылка шаринга Facebook<br>
+    href='#' class='social_share' data-type='fb' title='Facebook'<br>
+    //ссылка шаринга ВКонтакте<br>
+    href='#' class='social_share' data-type='vk' title='ВКонтакте'
+</div>
+</p>
+<p>
+    Для получения красивых постов добавим изображение, описание и заголовок. Используем следующий скрипт для
+    шаринга web-страницы:
+<div class="example">
+    $('.social_share').click(function(){<br>
+    var dataType = $(this).attr('data-type');<br>
+    var shareUrl=null;<br>
+    var shareImg=null;<br>
+    if($("#shareImg").length==1){<br>
+    shareImg = 'http://'+location.hostname+$("#shareImg").attr('src');<br>
+    }else{<br>
+    shareImg = 'http://'+location.hostname+'/'+$(".imgBlock img").attr('src');<br>
+    }<br>
+    switch (dataType){<br>
+    case 'ok':<br>
+    shareUrl="https://connect.ok.ru/offer?url="+location.href+"&title="+document.title<br>
+    +"&description="+$('meta[name=description]').attr("content")<br>
+    +"&imageUrl="+<b>shareImg</b>;<br>
+    break;<br>
+    case 'vk':<br>
+    shareUrl='http://vk.com/share.php?'<br>
+    +'url='+ location.href<br>
+    +'&image='+<b>shareImg</b><br>
+    +'&title='+ $('meta[name=description]').attr("content")<br>
+    +'&noparse=true';<br>
+    break;<br>
+    case 'fb':<br>
+    shareUrl="http://www.facebook.com/sharer.php?s=100"+ '&p[url]='+ location.href;<br>
+    break;<br>
+    }<br>
+    return window.open(shareUrl,'','toolbar=0,status=0,scrollbars=1,width=626,height=436');<br>
+    });
+</div>
+В качестве изображения используется картинка с хэдера или с id=<b>shareImg</b>, для описания используется тег  meta[name=description].
+На javascript используются вызовы get api социальных сетей <b>connect.ok.ru/offer</b>, <b>vk.com/share.php</b>,
+<b>facebook.com/sharer.php</b>
+</p>
+
+<h4>BackEnd</h4>
+<p>
+    Получить количество лайков на страницу можно на <b>php</b> обращаясь к get api
+<div class="example">
+    //для Одноклассников<br>
+    $okResp = json_decode(file_get_contents("http://connect.ok.ru/dk?st.cmd=extLike&tp=json&ref=http://"<br>
+    . $_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']), true);<br>
+    echo $okResp['count'];<br>
+    <br>
+    //для Фэйсбук<br>
+    $fbResp = json_decode(file_get_contents("https://graph.facebook.com/?fields=og_object{likes.summary(total_count).limit(0)},share&id=http://"<br>
+    . $_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']), true);<br>
+    echo $fbResp['share']['share_count'];<br>
+    <br>
+    //для ВКонтакте<br>
+    $vkResp = file_get_contents("http://vk.com/share.php?act=count&url=http://".$_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']);<br>
+    $numSym = strpos($vkResp, ',');<br>
+    echo substr($vkResp, $numSym+1, strlen($vkResp)-2-$numSym-1);
+</div>
+Для Фэйсбук этот прием будет работать и на клиенте, для Одноклассников и ВКонтакте на javaScript получить количество
+лайков таким способом не получается.
+</p>
+
+</p>
+<h3>Протестируем кнопки</h3>
+<p>
+    <strong>
+        Все кнопки на этой странице рабочие. Они должны показывать одинаковое количество лайков. Примерно одинаково
+        должны выглядеть и посты на странице. На деле все не так!!!
+    </strong>
+</p>
+<p>
+    Схема теста следующая: поочередно ставлю like стандартной кнопкой, проверяю показания счетчиков и вид поста
+    на странице в профиле. Удаляю пост, проверяю сброс показаний счетчиков. Повторяю действия с Pluso и
+    кастомной социальной кнопкой.</li>
+</p>
+<p>
+    Результаты теста:
+<ul>
+    <li>Пост в Одноклассниках кастомной кнопкой выглядит на много лучше.
+        <div class="example-img">
+            <img src="/data-arts/arts/13/ok-standart.jpg" height="30%" width="30%">
+            <span>Вид поста в одноклассниках стандартной кнопкой и виджетом Pluso</span>
+        </div>
+        <div class="example-img">
+            <img src="/data-arts/arts/13/ok-custom.jpg" height="30%" width="60%">
+            <span>Вид поста в одноклассниках кастомной кнопкой</span>
+        </div>
+    </li>
+    <li>Пост любой кнопкой в Facebook получается унылым.
+        <div class="example-img">
+            <img src="/data-arts/arts/13/fb-pluso.jpg" height="30%" width="40%">
+            <span>Facebook не позволяет добавлять кастомные описание, заголовок и изображение для поста.</span>
+        </div>
+    </li>
+    <li>Пост ВКонтакте кастомной кнопкой смотрится более привлекательно.
+        <div class="example-img">
+            <img src="/data-arts/arts/13/vk-standart.jpg" height="30%" width="40%">
+            <span>Вид поста ВКонтакте стандартной кнопкой и виджетом Pluso</span>
+        </div>
+        <div class="example-img">
+            <img src="/data-arts/arts/13/vk-custom.jpg" height="30%" width="40%">
+            <span>Вид поста ВКонтакте кастомной кнопкой</span>
+        </div>
+    </li>
+</ul>
+<p>
+    <strong style="text-decoration: underline">
+    Кастомные кнопки не всегда могут добавить желаемое изображение и описание к посту, хотя все делается по
+    документации к api. Пока не понятно почему так происходит.
+    </strong>
+</p>
+
+<p>
+    Итоги подсчета количества лайков, общие замечания:
+<ul>
+    <li>Часто кнопки не изменяют счетчик при удалении поста</li>
+    <li>Кастомные кнопки чувствительны к наличию слэша в uri, стандартная кнопка в одноклассниках чувствительна
+        еще и к якорю</li>
+    <li>Бывает, что кнопки обновляют показания счетчиков с задержкой, возможно данные берутся из кэша, который
+        обновляется с задержкой</li>
+    <li>Виджет Pluso прибавляет счетчик даже после отказа разместить пост</li>
+</ul>
+</p>
+<h3>Выводы:</h3>
+<p>
+    Предпочтительно использовать кастомные социальные кнопки так как они позволяют делать красивые посты, можно по своему
+    усмотрению изменять внешний вид и поведение кнопок.
+</p>
+<p>
+    Количество лайков на страницу зависит от метода их подсчета. Все социальные кнопки показывают некорректную
+    информацию и не учитывают удаленные посты. <b>Часто отсутствует подробная документация о api методах подсчета лайков.</b>
+</p>

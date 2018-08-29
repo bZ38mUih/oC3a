@@ -1,195 +1,134 @@
-.contentBlock-wrap
-{
+.contentBlock-wrap{
     padding: 0 5% 0 5%;
     width: 90%;
 }
-
-.stat-block
-{
+.stat-block{
     width: 90%;
-    margin-left: 5%;
-
+    margin: 2em 5% 2em 0;
     border-radius: 0.5em;
-    margin-top: 2em;
-    margin-bottom: 2em;
     position: relative;
     padding: 0.5em 0 0.5em 0;
 }
-
-.stat-block.free
-{
+.stat-block.free{
     border: 2px solid limegreen;
 }
-
-.stat-block.lookFor
-{
+.stat-block.lookFor{
     border: 2px solid orange;
 }
-
-.stat-block.busy
-{
+.stat-block.busy{
     border: 2px solid firebrick;
 }
-
-span.status
-{
+span.status{
     position: absolute;
     top: -0.8em;
     background-color: white;
     font-weight: bold;
     padding: 0.2em;
-
 }
-
-.stat-block.free span.status
-{
+.stat-block.free span.status{
     color: limegreen;
 }
-
-.stat-block.lookFor span.status
-{
+.stat-block.lookFor span.status{
     color: darkgoldenrod;
 }
-
-.stat-block.busy span.status
-{
+.stat-block.busy span.status{
     color: red;
 }
-
-.stat-block-img
-{
+.stat-block-img{
     width: 20%;
     display: inline-block;
 }
-
-.stat-block-img img
-{
+.stat-block-img img{
     height: 3em;
     width: 3em;
+    padding: 0.2em;
     vertical-align: middle;
 }
-
-.stat-block-txt
-{
+.stat-block-txt{
     width: 75%;
     display: inline-block;
     vertical-align: middle;
 }
-
-.stat-block-txt span.phone
-{
+.stat-block-txt span.phone{
     display: block;
     font-size: 1.2em;
     font-weight: bold;
     color: limegreen;
 }
-
-.stat-descr
-{
+.stat-descr{
     width: 90%;
     margin-left: 5%;
     text-align: left;
     margin-bottom: 1em;
 }
-
-.yMap-frame, .descr-frame
-{
+.yMap-frame, .descr-frame{
     display: inline-block;
     width: 40%;
     margin: 1em 5% 1em 5%;
     vertical-align: middle;
     min-height: 300px;
 }
-
-.yMap-wrap
-{
+.yMap-wrap{
     display: inline-block;
     vertical-align: middle;
     padding: 0;
     margin: 0;
 }
-
-.yMap-frame
-{
+.yMap-frame{
 
 }
-
-.yMap-frame img
-{
+.yMap-frame img{
     width: 300px;
     display: none;
 }
-
-.descr-frame
-{
+.descr-frame{
     text-align: left;
 }
-
-.descr-line
-{
+.descr-line{
     margin-bottom: 0.5em;
 }
-
-.descr-line span
-{
+.descr-line span{
     font-size: 0.9em;
     font-weight: bold;
     color: Gainsboro;
 }
-
-.descr-line span.fmNm
-{
+.descr-line span.fmNm{
     font-size: 1.1em;
     color: white;
     font-weight: normal;
     vertical-align: middle;
     margin-left: 0.5em;
 }
-
-.descr-line img
-{
+.descr-line img{
     height: 1.5em;
     width: 1.5em;
     vertical-align: middle;
-
 }
-
-.locPr-block
-{
+.locPr-block{
     margin-top: 1.5em;
 }
-
-.locPr-block img
-{
+.locPr-block img{
     height: 1.5em;
     width: 1.5em;
     cursor: pointer;
     margin-right: 1em;
 }
-
-.locPr-block img.active
-{
+.locPr-block img.active{
     border: 1px solid white;
 }
-
-.add-ref
-{
+.add-ref{
     text-align: left;
     width: 90%;
     margin-left: 5%;
 }
-
-.add-ref a
-{
+.add-ref a{
     display: block;
     margin-top: 0.7em;
     margin-bottom: 0.7em;
     color: midnightblue;
     text-decoration: none;
 }
-
-.add-ref a img
-{
+.add-ref a img{
     height: 1.5em;
     width: 1.5em;
     margin-left: 1.5em;
@@ -197,27 +136,19 @@ span.status
     margin-right: 1em;
 }
 
-@media only screen and (max-width : 1024px)  and (orientation : portrait), only screen and (max-width : 960px)
-{
-    .yMap-frame
-    {
+@media only screen and (max-width : 1024px)  and (orientation : portrait), only screen and (max-width : 960px){
+    .yMap-frame    {
         width: 90%;
         margin-left: 5%;
     }
-
-    .descr-frame
-    {
+    .descr-frame    {
         width: 90%;
         margin-left: 5%;
     }
-
-    .locPr-block
-    {
+    .locPr-block    {
         float: left;
     }
-
-    .contentBlock-wrap
-    {
+    .contentBlock-wrap    {
         padding: 0 2% 0 2%;
         width: 96%;
     }

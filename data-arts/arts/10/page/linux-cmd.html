@@ -1,0 +1,358 @@
+<p>
+    Основной способ управления Linux без графического интерфейса - командная строка. Список команд linux приведен ниже.
+</p>
+
+<!--Общие-->
+<div class='command-group'>
+    <h3>Общие</h3><span class='slideSign'>[+]</span>
+    <div class='command-line'>
+        <div class='command-line cmd'>clear</div>
+        <div class='command-line descr'>clear the screen.</div>
+    </div>
+    <div class='command-line'>
+        <div class='command-line cmd'>--help</div>
+        <div class='command-line descr'>справка о команде</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>ps --help</strong>
+        </div>
+    </div>
+    <div class='command-line'>
+        <div class='command-line cmd'>man</div>
+        <div class='command-line descr'>is used to show the manual of the inputted command.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>man cd</strong>
+        </div>
+    </div>
+    <div class='command-line'>
+        <div class='command-line cmd'>grep</div>
+        <div class='command-line descr'>which stands for "global regular expression print," processes text line by line and prints
+            any lines which match a specified pattern.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>ps -A | grep sd</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>></div>
+        <div class='command-line descr'>takes the standard output of the command on the left, and redirects it to the file on the right.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>cat oceans.txt > continents.txt</strong>
+        </div>
+    </div>
+</div>
+
+<!--Файлы и папки-->
+<div class='command-group'>
+
+    <h3>Файлы и папки</h3><span class='slideSign'>[+]</span>
+    <!--The tilde (~) symbol stands for your home directory. If you are user, then the tilde (~) stands for /home/user-->
+    <div class='command-line'>
+        <div class='command-line cmd'>cp</div>
+        <div class='command-line descr'>copy files and directories.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>cd /usr/share</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>pwd</div>
+        <div class='command-line descr'>command will allow you to know in which directory you're located
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>cd</div>
+        <div class='command-line descr'>
+            change directory - will allow the user to change between file directories.
+        </div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>cd /usr/share</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>ls</div>
+        <div class='command-line descr'>
+            Lists the contents of a directory.<br>
+            Blue: Directory<br>
+            Green: Executable or recognized data file<br>
+            Sky Blue: Symbolic link file<br>
+            Yellow with black background: Device<br>
+            Pink: Graphic image file<br>
+            Red: Archive file<br>
+            Red with black background: Broken link<br>
+        </div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>ls /etc</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>mv</div>
+        <div class='command-line descr'>move - allows a user to move a file to another folder or directory.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>mv/arora/applications/majorapps /arora/applications/minorapps</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>mkdir</div>
+        <div class='command-line descr'>make directory - command allows the user to make a new directory.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>mkdir testdirectory</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>rmdir</div>
+        <div class='command-line descr'>remove directory - command allows the user to remove an existing command using the Linux CLI.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>rmdir testdirectory</strong>
+        </div>
+    </div>
+    <div class='command-line'>
+        <div class='command-line cmd'>rm</div>
+        <div class='command-line descr'>remove - like the rmdir command is meant to remove files from your Linux OS.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>rm testfile.txt</strong>
+        </div>
+    </div>
+    <div class='command-line'>
+        <div class='command-line cmd'>nano</div>
+        <div class='command-line descr'>is a command line text editor. It works just like a desktop text editor like TextEdit
+            or Notepad, except that it is accessible from the the command line and only accepts keyboard input.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>nano hello.txt</strong>
+        </div>
+    </div>
+</div>
+
+<div class='command-group'>
+    <h3>Диски, файловые системы, разделы дисков</h3><span class='slideSign'>[+]</span>
+    <div class='command-line'>
+        <div class='command-line cmd'>df</div>
+        <div class='command-line descr'>displays filesystem disk space usage for all mounted partitions.</div>
+        <div class='command-line params'>
+            <strong>-h</strong>Human Readable
+        </div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>df -h</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>du</div>
+        <div class='command-line descr'>displays the disk usage for a directory.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>du /media/floppy</strong>
+        </div>
+    </div>
+</div>
+
+<div class='command-group'>
+    <h3>Время, временные зоны, переменные окружения</h3><span class='slideSign'>[+]</span>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>env</div>
+        <div class='command-line descr'>
+            The env command stands for "environment", and returns a list of the environment variables for the current user.
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>timedatectl</div>
+        <div class='command-line descr'>may be used to query and change the system clock and its settings.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>-</strong>-<br>
+            <strong>-</strong><br>
+            <strong>-</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>zdump</div>
+        <div class='command-line descr'>time zone dumper.</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>zdump /etc/localtime </strong><br>
+            <strong>zdump /usr/share/zoneinfo/*</strong><br>
+            <strong>-</strong>
+        </div>
+    </div>
+</div>
+
+<div class='command-group'>
+    <h3>Процессы и службы</h3><span class='slideSign'>[+]</span>
+    <div class='command-line'>
+        <div class='command-line cmd'>ps</div>
+        <div class='command-line descr'>This command produces a list of the currently running processes on your computer.<br>
+            <strong>-e, -A </strong>To view all the running processes use either of the following commands/<br>
+            <strong>-ef</strong>You can get a full listing by running the following command.<br>
+            <strong>-less</strong><br>
+            <strong>-more</strong><br>
+        </div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>ps -e --format="uid uname cmd time"</strong><br>
+            <strong>ps -ef | grep chrome</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>service</div>
+        <div class='command-line descr'>
+            starts or stops a service by running an initialization script. The service command
+            references a service by using its init script, which is stored in the /etc/init.d directory.
+        </div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>service --status-all</strong>To view all the running processes use either of the following commands/<br>
+            <strong>service --status-all | more</strong><br>
+            <strong>service --status-all | grep ntpd</strong><br>
+            <strong>service sshd status</strong><br>
+            <strong>service sshd restart</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>ping</div>
+        <div class='command-line descr'>echo request - response basic on ICMP-protocol.<br>
+            <strong>-a</strong> Audible ping<br>
+            <strong>ping -4 </strong> ip v4<br>
+            <strong>ping -6 </strong> ip v6<br>
+            <strong>ping -c 4</strong> limit the number of attempts<br>
+            <strong>ping -w 10</strong> This sets a deadline for the ping to last for 10 seconds<br>
+            <strong>sudo ping -f</strong> floods the number of requests to the receiving network.<br>
+            <strong>ping -i 4</strong> to specify a longer interval between each request.<br>
+            <strong>man ping</strong> manual<br>
+        </div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>ls /etc</strong>
+        </div>
+    </div>
+</div>
+
+<div class='command-group'>
+    <h3>Интерфейсы и протоколы</h3><span class='slideSign'>[+]</span>
+    <div class='command-line'>
+        <div class='command-line cmd'> ifconfig </div>
+        <div class='command-line descr'>Аналог IPconfig Windows, с другими ключевыми параметрами и более широким функционалом. </div>
+    </div>
+    <div class='command-line'>
+        <div class='command-line cmd'> netstat </div>
+        <div class='command-line descr'>Отображение статистики протокола и текущих сетевых подключений</div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'> route </div>
+        <div class='command-line descr'>Просмотр и изменение таблиц маршрутизации</div>
+        <div class='command-line exmpl'>
+            <strong>route -n</strong>
+        </div>
+    </div>
+    <div class='command-line'>
+        <div class='command-line cmd'> iptables </div>
+        <div class='command-line descr'>Настройка межсетевого экрана</div>
+        <div class='command-line exmpl'>
+            <strong>route -n</strong>
+        </div>
+    </div>
+</div>
+
+<div class='command-group'>
+    <h3>Конфигурация системы и железа</h3><span class='slideSign'>[+]</span>
+
+    <div class='command-line'>
+        <div class='command-line cmd'> lscpu </div>
+        <div class='command-line descr'>Linux cpu/hardware information</div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'> free </div>
+        <div class='command-line descr'>Linux show free and used memory in the system</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>free</strong><br>
+            <strong>free -m</strong><br>
+            <strong>free -mt</strong>
+            <strong>free -gt</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'> uname  </div>
+        <div class='command-line descr'>current running kernel version</div>
+        <div class='command-line params'>
+            <strong>-mrs</strong><br>
+            <strong>-a</strong><br>
+        </div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>uname -mrs</strong><br>
+            <strong>uname -a</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>lspci</div>
+        <div class='command-line descr'>List all PCI devices</div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>lsusb</div>
+        <div class='command-line descr'>List all USB devices</div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>lsblk</div>
+        <div class='command-line descr'>List all block devices (hard disks, cdrom, and others)
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>top</div>
+        <div class='command-line descr'>'table of processes') command displays information on your Linux
+            system, running processes and system resources, including CPU, RAM & swap usage and total number
+            of tasks being run. To exit top, press "q".</div>
+    </div>
+
+</div>
+
+<!--Users and Groups-->
+<div class='command-group'>
+    <h3>Пользователи и группы</h3><span class='slideSign'>[+]</span>
+    <div class='command-line'>
+        <div class='command-line cmd'>adduser</div>
+        <div class='command-line descr'>command will create a new general user called "newuser" on your system</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>adduser newuser</strong>
+        </div>
+    </div>
+
+    <div class='command-line'>
+        <div class='command-line cmd'>passwd</div>
+        <div class='command-line descr'>to assign a password for the newuser account use</div>
+        <span class='exmpl-btn'>показать[+]</span>
+        <div class='command-line exmpl'>
+            <strong>passwd newuser</strong>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,482 @@
+﻿<p>Командная строка Windows - это специальная программа включенная в состав ОС windows, предназначенная для управления
+    компьютером путем текстовового ввода команд. Интерфейс командной строки - это консоль. Переимущества
+такого подхода - низкое потребление системных ресурсов. </p>
+<p>
+    Для запуска конадной строки можно испоьзовать сочетание клавиш <b>Win</b> + <b>R</b>, в окне <b>выполнить</b>
+    необходимо набрать <b>cmd</b>
+</p>
+<p>
+    Несмотря на то, что существует большое количество команд для управления практически любыми настройками операционной
+    системы, на смену командной строки приходит более современная технология <b>power shell</b>.
+</p>
+
+<strong>Список команд:</strong>
+
+<div class='command-group'>
+<h3>Общие</h3><span class='slideSign'>[+]</span>
+
+<div class='command-line'>
+<div class='command-line cmd'>Cls</div>
+<div class='command-line descr'>
+Очищает содержимое экрана.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>findstr</div>
+<div class='command-line descr'>
+Поиск строк в файлах. В качестве фильтра используется регулярное выражение.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>tasklist | findstr google</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>></div>
+<div class='command-line descr'>
+Сохраняет вывод в текстовый файл.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>tasklist > c:\tasklist.txt</strong>
+<strong>wmic /? > c:\wmic_help.txt</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>/?</div>
+<div class='command-line descr'>
+Справка о команде.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>tasklist /?</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Exit</div>
+<div class='command-line descr'>
+Завершает программу CMD.EXE (интерпретатор команд) или текущий пакетный файл-сценарий.
+</div>
+</div>
+
+</div>
+
+<div class='command-group'>
+<h3>Файлы и папки</h3><span class='slideSign'>[+]</span>
+<div class='command-line'>
+<div class='command-line cmd'>Cd</div>
+<div class='command-line descr'>
+Выводит имя или изменяет текущий каталог.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Copy</div>
+<div class='command-line descr'>
+Копирование одного или нескольких файлов в другое место.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>copy c:\test\111.txt c:\test\222.txt</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Del</div>
+<div class='command-line descr'>
+Удаление одного или нескольких файлов.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Dir</div>
+<div class='command-line descr'>
+Вывод списка файлов и подкаталогов в указанном каталоге.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Chdir</div>
+<div class='command-line descr'>
+Выводит имя или изменяет текущий каталог.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Attrib</div>
+<div class='command-line descr'>
+Отображает или изменяет атрибуты фалов.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Mkdir</div>
+<div class='command-line descr'>
+Создание каталога.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Move</div>
+<div class='command-line descr'>
+Перемещение файлов и переименование файлов и папок
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Rmdir</div>
+<div class='command-line descr'>
+Удаление каталога.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Rename</div>
+<div class='command-line descr'>
+Переименование одного или нескольких файлов.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Mklink</div>
+<div class='command-line descr'>
+Создает символьную ссылку.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Fc</div>
+<div class='command-line descr'>
+Сравнение двух файлов.
+</div>
+</div>
+
+</div>
+
+
+<div class='command-group'>
+<h3>Диски, файловые системы, разделы дисков</h3><span class='slideSign'>[+]</span>
+<div class='command-line'>
+<div class='command-line cmd'>Label</div>
+<div class='command-line descr'>
+Создание, изменение и удаление меток тома для дисков.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Defrag</div>
+<div class='command-line descr'>
+Служит для оптимизации и объединения фрагментированных файлов на локальных томах в целях 
+повышения производительности системы.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Vol</div>
+<div class='command-line descr'>
+Вывод метки и серийного номера тома для диска.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Format</div>
+<div class='command-line descr'>
+Форматирование диска для работы с Windows.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Recover</div>
+<div class='command-line descr'>
+Восстановление сохранившихся данных на поврежденном диске.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Bcdboot</div>
+<div class='command-line descr'>
+средство создания и восстановления файлов данных конфигурации загрузки.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Bcdedit</div>
+<div class='command-line descr'>
+изменяет хранилище данных конфигурации загрузки.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Bootsect</div>
+<div class='command-line descr'>
+Средство восстановления загрузочного сектора
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Diskpart</div>
+<div class='command-line descr'>
+Утилита для работы с дисковыми данными
+</div>
+</div>
+
+</div>
+
+<div class='command-group'>
+<h3>Время, временные зоны, переменные окружения</h3><span class='slideSign'>[+]</span>
+
+<div class='command-line'>
+<div class='command-line cmd'>Set</div>
+<div class='command-line descr'>
+Вывод, задание и удаление переменных среды.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Date</div>
+<div class='command-line descr'>
+Вывод или изменение даты.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Time</div>
+<div class='command-line descr'>
+Вывод или изменение времени.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'> Tzutil </div>
+<div class='command-line descr'>
+Программа Windows Time Zone
+</div>
+</div>
+
+</div>
+
+<div class='command-group'>
+<h3>Процессы и службы</h3><span class='slideSign'>[+]</span>
+
+<div class='command-line'>
+<div class='command-line cmd'>Tasklist</div>
+<div class='command-line descr'>
+Отображает список процессов, которые сейчас выполняются на локальном или удаленном компьютере.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>tasklist /m</strong>
+<strong>tasklist /v /fo csv</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Tskill</div>
+<div class='command-line descr'>
+Прекращение процесса.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Qprocess</div>
+<div class='command-line descr'>
+Отображает информацию о процессах.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Sc</div>
+<div class='command-line descr'>
+SC представляет собой программу командной строки, используемую для связи со службами и диспетчером 
+управления службами.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Start</div>
+<div class='command-line descr'>
+Запускает указанную программу или команду в отдельном окне.
+</div>
+</div>
+
+</div>
+
+<div class='command-group'>
+<h3>Интерфейсы и протоколы</h3><span class='slideSign'>[+]</span>
+
+<div class='command-line'>
+<div class='command-line cmd'>Ipconfig</div>
+<div class='command-line descr'>
+Отображает информацию по каждому адаптеру TCP/IP.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>arp</div>
+<div class='command-line descr'>
+Отображение и изменение таблиц преобразования IP-адресов в физические, используемые протоколом 
+разрешения адресов (ARP).
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>arp -a</strong>
+<strong>arp -a 100.104.12.1</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Ping</div>
+<div class='command-line descr'>
+Посылает ICMP эхо-запрос удаленному хосту для проверки IP-уровня.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Tracert</div>
+<div class='command-line descr'>
+Проверка маршрута ICMP пакета путем увеличения времени жизни пакета (TTL).
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>tracert -d -h 7 10.45.176.2</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Netstat</div>
+<div class='command-line descr'>
+Отображение статистики протокола и текущих сетевых подключений TCP/IP.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>netstat -aon</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Route</div>
+<div class='command-line descr'>
+Обработка таблиц сетевых маршрутов.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>route print</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Getmac</div>
+<div class='command-line descr'>
+Эта команда позволяет администратору отобразить MAC-адреса сетевых адаптеров компьютера.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Nslookup</div>
+<div class='command-line descr'>
+Позволяет опрашивать произвольно указываемые сервера.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>nslookup mail.ru</strong>
+</div>
+</div>
+
+</div>
+
+<div class='command-group'>
+<h3>Конфигурация системы и железа</h3><span class='slideSign'>[+]</span>
+<div class='command-line'>
+<div class='command-line cmd'>Systeminfo</div>
+<div class='command-line descr'>
+Отображает сведения о конфигурации операционной системы локальный или удаленный компьютер, включая уровни пакета обновления.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>wmic</div>
+<div class='command-line descr'>
+Windows Management Instrumentation Command line. Отображение и изменение параметров системы и аппаратуры.
+</div>
+<span class='exmpl-btn'>показать[+]</span>
+<div class='command-line exmpl'>
+<strong>wmic memorychip list</strong>
+<strong>wmic path win32_VideoController get name</strong>
+<strong>wmic computersystem list</strong>
+<strong>wmic nic where NetEnabled=true get Name, Speed</strong>
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>mem</div>
+<div class='command-line descr'>
+Показывает количество использованной и свободной памяти.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Schtasks</div>
+<div class='command-line descr'>
+Позволяет администратору создавать, удалять, изменять и опрашивать запланированные задачи в локальной или удаленной системе.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Driverquery</div>
+<div class='command-line descr'>
+Эта команда позволяет администратору просмотреть список установленных драйверов устройств.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Licensingdiag</div>
+<div class='command-line descr'>
+Инструмент для создания лог-файлов содержащих информацию о лицензии и активации Windows.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'>Reg</div>
+<div class='command-line descr'>
+Используется для работы с реестром Windows. Позволяет добавлять, изменять, экспортировать реестр.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'> Shutdown </div>
+<div class='command-line descr'>
+Задание параметров выхода из системы и перезагрузки компьютера.
+</div>
+</div>
+
+</div>
+
+
+<div class='command-group'>
+<h3>Пользователи и группы</h3><span class='slideSign'>[+]</span>
+<div class='command-line'>
+<div class='command-line cmd'>Gpresult</div>
+<div class='command-line descr'>
+Отображает результирующую политику (RSoP) для указанного пользователя и компьютера.
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'> Quser </div>
+<div class='command-line descr'>
+Отображение информации о пользователях, вошедших в систему. 
+</div>
+</div>
+
+<div class='command-line'>
+<div class='command-line cmd'> Qwinsta </div>
+<div class='command-line descr'> The qwinsta command is used to display information about open Remote Desktop Sessions. 
+The qwinsta command is available in Windows 8, Windows 7, Windows Vista, and Windows XP. 
+</div>
+</div>
+
+</div>
