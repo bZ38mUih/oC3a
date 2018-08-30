@@ -10,7 +10,7 @@ if(mysql_num_rows($srv_res)==1){
         "<html lang='en-Us'>".
         "<head>".
         "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-        "<meta name='description' content='".$srv_row['shortDescr']."'/>".
+        "<meta name='description' content='".$srv_row['shortDescr']." - от ".$srv_row['cardPrice']." руб.'/>".
         "<title>Услуги</title>".
         "<link rel='SHORTCUT ICON' href='/site/services/img/favicon.png' type='image/png'>".
         "<script src='/source/js/jquery-3.2.1.js'></script>".
@@ -28,7 +28,8 @@ if(mysql_num_rows($srv_res)==1){
         "</head><body>";
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
     $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>";
-    $appRJ->response['result'].="<div class='srv-ln' id='srv".$srv_row['card_id']."' style='margin-top: 1em'>".
+    $appRJ->response['result'].="<div class='srv-frame ".$srv_row['catAlias']."'>".
+        "<div class='srv-ln' id='srv".$srv_row['card_id']."' style='margin-top: 1em'>".
         "<div class='srv-capt'><span class='before'></span><span>".$srv_row['cardName'].
         "</span><span class='after'></span></div>".
         "<div class='srv-img'><img src='".SRV_CARD_IMG_PAPH.$srv_row['card_id']."/preview/".
@@ -61,7 +62,7 @@ if(mysql_num_rows($srv_res)==1){
     $appRJ->response['result'].="</div>";
     $appRJ->response['result'].=
         "<div class='toSrv'><a href='/services'><img src='/site/services/img/logo.png'>Все услуги</a></div>".
-        "</div></div></div></div>";
+        "</div></div></div></div></div>";
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

@@ -45,7 +45,7 @@ if($appRJ->server['reqUri_expl'][1]!='references'){
 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/services/img/logo.png'></div><div class='modal-line-text'>".
-        "<a href='/services/srvMan' title='Управление услугами' style='color: aqua'>Управление услугами</a>".
+        "<a href='/services/srvMan/cards/' title='Управление услугами' style='color: aqua'>Управление услугами</a>".
         "</div></div>";
 }
 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {

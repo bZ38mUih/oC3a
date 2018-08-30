@@ -108,7 +108,7 @@ if($_SESSION['bucket']['total']>=100){
     $appRJ->response['result'].=">Банковской картой</label>".
         "<input type='button' value='Далее' onclick='mkOrder()'>".
         "</form>".
-        "<div class='att'><strong>Внимание:</strong> узнавайте возможность выполнения услуг по телефону или ".
+        "<div class='att'><strong>Внимание:</strong> узнавайте <a href='/status'>возможность</a> выполнения услуг по телефону или ".
         "e-Mail перед оплатой.</div>".
         "<div class='nb'><strong>Примечание:</strong> платеж осуществляется через шлюз money.yandex.ru. Далее укажите ".
         "ваш E-Mail, на него в письме придет ссылка для отслеживания статуса заказа. Номер вашего мобильного ".

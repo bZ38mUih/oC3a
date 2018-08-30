@@ -150,3 +150,19 @@ a.toOrder.active {
     color: Chocolate;
     border-bottom: 2px solid Chocolate;
 }
+
+.srv-frame.dev .srv-ln .srv-capt span.before {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 0.6em solid transparent;
+    border-bottom: 0.6em solid transparent;
+    border-left: 0.4em solid white;
+    vertical-align: middle;
+}
+.srv-frame.dev .srv-ln .srv-capt span {
+    background-color: Chocolate;
+}
+.srv-frame.dev .srv-ln .srv-capt span.after {
+    border-left: 0.4em solid Chocolate;
+}
