@@ -10,7 +10,7 @@
 .srv-ln {
     width: 90%;
     margin-left: 5%;
-    border-bottom: 1px solid midnightblue;
+    border-bottom: 1px dotted midnightblue;
     padding-bottom: 1em;
     margin-bottom: 1em;
 }
@@ -144,4 +144,9 @@ a.toOrder.active {
     height: 1.5em;
     width: 1.5em;
     vertical-align: middle;
+}
+
+.srv-frame.dev h2 {
+    color: Chocolate;
+    border-bottom: 2px solid Chocolate;
 }
