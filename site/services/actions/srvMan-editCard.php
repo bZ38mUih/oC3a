@@ -22,7 +22,7 @@ if(isset($_POST['srvCat_id'])){
         $Card_rd->result['srvCat_id']=$_POST['srvCat_id'];
     }
 }
-if(isset($_POST['cardPrice']) and $_POST['cardPrice']>=1000){
+if(isset($_POST['cardPrice']) and $_POST['cardPrice']>=50){
     $Card_rd->result['cardPrice']=htmlspecialchars($_POST['cardPrice']);
 }else{
     $cardErr['cardPrice']='недопустимая цена';

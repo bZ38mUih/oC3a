@@ -100,7 +100,7 @@ if(mysql_num_rows($categList_res)>0){
 /*<--select options*/
 $appRJ->response['result'].= $catSelectOptions."</select></div>".
     "<div class='input-line'><label>Расценка:</label>".
-    "<input type='number' name='cardPrice' min='1000' max='99999' ";
+    "<input type='number' name='cardPrice' min='50' max='99999' ";
 if($Card_rd->result['cardPrice']){
     $appRJ->response['result'].="value='".$Card_rd->result['cardPrice']."'";;
 }
