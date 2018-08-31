@@ -80,7 +80,7 @@ if(mysql_num_rows($scrOrder_res)!=1){
         $withdAmount_txt="<div><span class='fldName'>списано:</span><span class='fldVal'>".
             $srcPayment_row['withdraw_amount']."</span><span class='fldName'>руб.</span></div>";
         if(!$srcPayment_row['hashEqual']){
-            /*
+
             $pay_str=$srcPayment_row["notification_type"]."&".
                 $srcPayment_row["operation_id"]."&".
                 $srcPayment_row["amount"]."&".
@@ -97,9 +97,8 @@ if(mysql_num_rows($scrOrder_res)!=1){
             if(hash_equals(sha1($pay_str), $srcPayment_row['sha1_hash'])){
                 $hashRes="-OK!!!-";
             }
-            */
             $paidHash_txt.="<div><span class='fldName'>hashEqual:</span><span class='fldVal'>FALSE".
-              //  "<br>".$srcPayment_row['sha1_hash']." / ".sha1($pay_str).$hashRes.
+                "<br>".$srcPayment_row['sha1_hash']." / ".sha1($pay_str).$hashRes.
                 "</span></div>";
         }
         if($srcPayment_row["unaccepted"]){
