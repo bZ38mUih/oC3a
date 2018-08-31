@@ -63,6 +63,8 @@ if(isset($_POST['flat'])){
 if(isset($_POST['zip'])){
     $payment->result['zip']=$_POST['zip'];
 }
+$payment->putOne();
+$payment->copyOne();
 $pay_str=$payment->result["notification_type"]."&".
     $payment->result["operation_id"]."&".
     $payment->result["amount"]."&".
@@ -75,10 +77,11 @@ if($payment->result['codepro']){
     $pay_str.='false';
 }
 $pay_str.="&".$ym['secret']."&".$payment->result["label"];
+
 if(hash_equals(sha1($pay_str), $payment->result['sha1_hash'])){
     $payment->result["hashEqual"]=true;
 }
-$payment->putOne();
+
 /*notification-->*/
 $Ntf_rd->result['ntfType']='group';
 $Ntf_rd->result['ntfSubscr']=1;
@@ -98,4 +101,5 @@ if($payment->result['email']){
     mail($payment->result['email'], $ntfSubj, "Получить дополнительную информацию ".
         "о платеже вы можете по ссылке https://rightjoint.ru/payments/?searchPayment=".$payment->result['label'], 'From: RightJoint');
 }
+$payment->updateOne();
 /*<--notification*/
