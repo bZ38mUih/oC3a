@@ -29,10 +29,10 @@ $appRJ->response['result'].="</div></div>";
 
 
 
-if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
+if($appRJ->server['reqUri_expl'][1]!='services') {
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/services/img/logo.png'></div><div class='modal-line-text srv'>".
-        "<a href='/services/' title='Все услуги'>Все услуги</a>".
+        "<a href='/services' title='Все услуги'>Все услуги</a>".
         "</div></div>";
 }
 if($appRJ->server['reqUri_expl'][1]!='references'){

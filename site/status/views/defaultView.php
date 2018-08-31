@@ -3,7 +3,7 @@
 $curStatus['free']['active']=true;
 $curStatus['free']['stName']='free';
 $curStatus['free']['alias']='СВОБОДЕН';
-$curStatus['free']['descr']="<span class='phone'>8-903-888-7772</span>Ищу проект чтобы принять участие, готов приступить к работе в ближайшее время";
+$curStatus['free']['descr']="<span class=".'"'."phone".'"'.">8-903-888-7772</span>Ищу проект чтобы принять участие, готов приступить к работе в ближайшее время";
 $curStatus['free']['detail']='Получить консультацию о возможности выполнения, сроках и стоимости услуг вы можете по телефону или E-Mail';
 
 $curStatus['lookFor']['active']=false;
