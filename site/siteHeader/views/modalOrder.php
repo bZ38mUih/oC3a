@@ -12,7 +12,7 @@ $appRJ->response['result'].= "</div></div></div><div class='modal-line'><div cla
     "<span>rightjoint@yandex.ru</span></div></div>";
 
 $appRJ->response['result'].= "<div class='modal-line' ";
-if($_SESSION["bucket"]["total"]<1000){
+if($_SESSION["bucket"]["total"]<50){
     $appRJ->response['result'].="style='display: none' ";
 }else{
     $appRJ->response['result'].="style='position: relative' ";
