@@ -1,60 +1,43 @@
-.art-header
-{
+.art-header{
     width: 88%;
     margin-left: 5%;
     border-bottom: 1px solid midnightblue;
     margin-bottom: 1em;
     padding-left: 2%;
 }
-
-.art-header-img
-{
+.art-header-img{
     display: inline-block;
     width: 20%;
     vertical-align: middle;
 }
-
-.art-header-img img
-{
+.art-header-img img{
     height: 3em;
     width: 3em;
 }
-
-.art-header-descr
-{
+.art-header-descr{
     display: inline-block;
     width: 80%;
     vertical-align: middle;
 }
-
-.art-header-descr h2
-{
+.art-header-descr h2{
     color: midnightblue;
 }
-
-.art-header .dateLine
-{
+.art-header .dateLine{
     width: 100%;
     text-align: left;
 }
-
-span.dateFld
-{
+span.dateFld{
     font-weight: bold;
     font-size: 0.8em;
     min-width: 10em;
     display: inline-block;
     color: midnightblue;
 }
-
-span.dateVal
-{
+span.dateVal{
     font-weight: bold;
     font-size: 0.8em;
 }
-
-.art-content
-{
+.art-content{
     width: 88%;
     margin-left: 5%;
     border-bottom: 1px solid midnightblue;
@@ -63,18 +46,14 @@ span.dateVal
     text-align: left;
     padding-left: 2%;
 }
-
-.art-ref
-{
+.art-ref{
     width: 88%;
     margin-left: 5%;
     margin-bottom: 2em;
     text-align: left;
     padding-left: 2%;
 }
-
-.example
-{
+.example{
     width: 90%;
     border: 1px solid silver;
     margin: 0.5em;
@@ -83,28 +62,24 @@ span.dateVal
     font-size: 0.8em;
     overflow-x: scroll;
 }
-
-.example-img
-{
+.example-img{
     margin: 0.5em;
     width: 90%;
     text-align: center;
 }
-
-.example-img img
-{
+.example-img img{
     padding: 0.5em;
     border: 1px solid silver;
 }
-
-.example-img span
-{
+.example-img span{
     display: block;
     font-style: italic;
 }
-
-ul li
-{
+.example span.nb_red{
+    color: firebrick;
+    font-weight: bold;
+}
+ul li{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }

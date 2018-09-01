@@ -142,17 +142,17 @@
     Получить количество лайков на страницу можно на <b>php</b> обращаясь к get api
 <div class="example">
     //для Одноклассников<br>
-    $okResp = json_decode(file_get_contents("http://connect.ok.ru/dk?st.cmd=extLike&tp=json&ref=http://"<br>
+    $okResp = json_decode(file_get_contents("http://connect.ok.ru/dk?st.cmd=extLike&tp=json&ref=<span class="nb_red">http</span>://"<br>
     . $_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']), true);<br>
     echo $okResp['count'];<br>
     <br>
     //для Фэйсбук<br>
-    $fbResp = json_decode(file_get_contents("https://graph.facebook.com/?fields=og_object{likes.summary(total_count).limit(0)},share&id=http://"<br>
+    $fbResp = json_decode(file_get_contents("https://graph.facebook.com/?fields=og_object{likes.summary(total_count).limit(0)},share&id=<span class="nb_red">http:</span>//<br>
     . $_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']), true);<br>
     echo $fbResp['share']['share_count'];<br>
     <br>
     //для ВКонтакте<br>
-    $vkResp = file_get_contents("http://vk.com/share.php?act=count&url=http://".$_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']);<br>
+    $vkResp = file_get_contents("http://vk.com/share.php?act=count&url=<span class="nb_red">http</span>://".$_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']);<br>
     $numSym = strpos($vkResp, ',');<br>
     echo substr($vkResp, $numSym+1, strlen($vkResp)-2-$numSym-1);
 </div>
@@ -216,6 +216,8 @@
     <li>Часто кнопки не изменяют счетчик при удалении поста</li>
     <li>Кастомные кнопки чувствительны к наличию слэша в uri, стандартная кнопка в одноклассниках чувствительна
         еще и к якорю</li>
+    <li>Для кастомных кнопок Facebook и VKontakte имеет значение вид протокола, при переходе с
+    http на защищенное соединение в backEnd-скрипте также следует указывать <b>https</b> адрес страницы</li>
     <li>Бывает, что кнопки обновляют показания счетчиков с задержкой, возможно данные берутся из кэша, который
         обновляется с задержкой</li>
     <li>Виджет Pluso прибавляет счетчик даже после отказа разместить пост</li>
