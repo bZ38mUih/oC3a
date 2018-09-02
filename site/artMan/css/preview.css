@@ -75,10 +75,6 @@ span.dateVal{
     display: block;
     font-style: italic;
 }
-.example span.nb_red{
-    color: firebrick;
-    font-weight: bold;
-}
 ul li{
     margin-top: 0.5em;
     margin-bottom: 0.5em;

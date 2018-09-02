@@ -54,7 +54,12 @@ span.status{
     display: block;
     font-size: 1.2em;
     font-weight: bold;
+}
+.stat-block.free .stat-block-txt span.phone{
     color: limegreen;
+}
+.stat-block.lookFor .stat-block-txt span.phone{
+    color: Chocolate;
 }
 .stat-descr{
     width: 90%;

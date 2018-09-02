@@ -108,9 +108,9 @@
     var shareUrl=null;<br>
     var shareImg=null;<br>
     if($("#shareImg").length==1){<br>
-    shareImg = 'http://'+location.hostname+$("#shareImg").attr('src');<br>
+    shareImg = '<b>http</b>://'+location.hostname+$("#shareImg").attr('src');<br>
     }else{<br>
-    shareImg = 'http://'+location.hostname+'/'+$(".imgBlock img").attr('src');<br>
+    shareImg = '<b>http</b>://'+location.hostname+'/'+$(".imgBlock img").attr('src');<br>
     }<br>
     switch (dataType){<br>
     case 'ok':<br>
@@ -142,17 +142,17 @@
     Получить количество лайков на страницу можно на <b>php</b> обращаясь к get api
 <div class="example">
     //для Одноклассников<br>
-    $okResp = json_decode(file_get_contents("http://connect.ok.ru/dk?st.cmd=extLike&tp=json&ref=<span class="nb_red">http</span>://"<br>
+    $okResp = json_decode(file_get_contents("http://connect.ok.ru/dk?st.cmd=extLike&tp=json&ref=<b>http</b>://"<br>
     . $_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']), true);<br>
     echo $okResp['count'];<br>
     <br>
     //для Фэйсбук<br>
-    $fbResp = json_decode(file_get_contents("https://graph.facebook.com/?fields=og_object{likes.summary(total_count).limit(0)},share&id=<span class="nb_red">http:</span>//<br>
+    $fbResp = json_decode(file_get_contents("https://graph.facebook.com/?fields=og_object{likes.summary(total_count).limit(0)},share&id=<b>http:</b>//<br>
     . $_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']), true);<br>
     echo $fbResp['share']['share_count'];<br>
     <br>
     //для ВКонтакте<br>
-    $vkResp = file_get_contents("http://vk.com/share.php?act=count&url=<span class="nb_red">http</span>://".$_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']);<br>
+    $vkResp = file_get_contents("http://vk.com/share.php?act=count&url=<b>http</b>://".$_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL']);<br>
     $numSym = strpos($vkResp, ',');<br>
     echo substr($vkResp, $numSym+1, strlen($vkResp)-2-$numSym-1);
 </div>

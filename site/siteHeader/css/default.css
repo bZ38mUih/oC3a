@@ -169,10 +169,15 @@ header .rightConn{
     display: block;
     font-size: 1.2em;
     font-weight: bold;
+}
+.modal-line-text.free span.phone{
     color: limegreen;
 }
-.modal-line-text.mail span{
-    color: #add8e6;
+.modal-line-text.free span.phone{
+    color: limegreen;
+}
+.modal-line-text.lookFor span{
+    color: orange;
 }
 .modal.order .details a{
     display: inline-block;
