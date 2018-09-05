@@ -12,7 +12,6 @@ $query_text="create table accounts_dt (".
     "accLogin varchar(128) collate utf8_unicode_ci not null, ".
     "accAlias varchar(128) collate utf8_unicode_ci not null, ".
     "pw_hash varchar(256) collate utf8_unicode_ci, ".
-    "pw_salt varchar(16) collate utf8_unicode_ci, ".
     "vldCode varchar(16) collate utf8_unicode_ci, ".
     "regDate datetime not null, ".
     "netWork varchar(16) collate utf8_unicode_ci not null, ".

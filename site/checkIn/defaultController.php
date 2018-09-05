@@ -85,8 +85,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         $RD_accounts->result['accLogin']=$requiredFields['login']['val'];
         $RD_accounts->result['accAlias']=$requiredFields['login']['val'];
         $RD_accounts->result['eMail']=$requiredFields['eMail']['val'];
-        $RD_accounts->result['pw_salt']=requiredFields::mkSalt();
-        $RD_accounts->result['pw_hash']=hash('md5', $requiredFields['password']['val'].$RD_accounts->result['pw_salt']);
+        $RD_accounts->result['pw_hash']=password_hash($requiredFields['password']['val'], PASSWORD_DEFAULT);
         $RD_accounts->result['vldCode']=$vldCode;
         $appRJ->date['curDate'] = @date_create();
         $RD_accounts->result['regDate']=date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');

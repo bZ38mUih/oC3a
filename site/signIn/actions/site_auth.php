@@ -17,12 +17,11 @@ if($validErr == null){
     $queryRes = $DB->doQuery($queryText);
     if(mysql_num_rows($queryRes) === 1){
         $queryRow = $DB->doFetchRow($queryRes);
-        if(hash('md5', $_POST['password'].$queryRow['pw_salt']) === $queryRow['pw_hash']){
-            $newSalt=requiredFields::mkSalt();
-            $newHash=hash('md5', $_POST['password'].$newSalt);
-            $updateSalt_query = "update accounts_dt set pw_hash='".$newHash."', pw_salt='".$newSalt."' ".
+        if(password_verify($_POST['password'], $queryRow['pw_hash'])){
+            $newHash=password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $updateHash_qry = "update accounts_dt set pw_hash='".$newHash."' ".
                 "where accAlias='".$_POST['login']."' and netWork='site'";
-            $DB->doQuery($updateSalt_query);
+            $DB->doQuery($updateHash_qry);
             if($queryRow['validDate']===null){
                 $validErr = "eMail не подтвержден";
             }elseif ($queryRow['blackList'] == true){

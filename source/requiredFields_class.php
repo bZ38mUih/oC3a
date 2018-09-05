@@ -30,17 +30,6 @@ class requiredFields //extends recordDefault
             return true;
     }
 
-    function mkSalt()
-    {
-        $salt=null;
-        $letters = array("3","$","p","*","r","t",")","=","Z","^","7","S","n","j","6","8","P","5","I","b","?","W","m");
-        for($i=0;$i < 10;$i++)
-        {
-            $salt .= $letters[rand(0,sizeof($letters)-1)];
-        }
-        return($salt);
-    }
-
     function checkPassword($pass)
     {
         if (preg_match('/^[a-z]{1}[0-9a-z-._]{2,15}$/imsiu', $pass) == 0){
