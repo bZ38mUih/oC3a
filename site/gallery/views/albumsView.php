@@ -25,7 +25,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='alb-frame'><h2>Все альбомы</h2>";
 $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id, galleryMenu_dt.catImg, galleryMenu_dt.catActive, ".
     "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, ".
-    "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, ".
+    "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, galleryAlb_dt.refreshDate, ".
     "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
     "INNER JOIN galleryAlb_dt ON galleryMenu_dt.glCat_id = galleryAlb_dt.glCat_id ".
     "INNER JOIN galleryPhotos_dt ON galleryAlb_dt.album_id = galleryPhotos_dt.album_id ".
@@ -101,9 +101,12 @@ if($selectAlbums_count>0){
             $alb_view.="<span class='flName'>Опубликовано: </span>" .
                 "<span class=flVal>".$selectAlbums_row['dateOfCr']."</span>";
             $alb_view.="</div>";
-
-            $alb_view.="</div>";
-            $alb_view.="</a>";
+            if($selectAlbums_row['refreshDate']){
+                $alb_view.="<div class='alb-publDt'><span class='flName'>Обновлено: </span>" .
+                    "<span class=flVal>".$selectAlbums_row['refreshDate']."</span></div>";
+            }
+            $alb_view.="</div>".
+                "</a>";
             $albums_print.=$alb_view;
 
             if(isset($catArr[$selectAlbums_row['glCat_id']]['photoCount'])){

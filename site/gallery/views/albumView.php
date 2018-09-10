@@ -1,9 +1,25 @@
 <?php
-
+/*
 $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id,".
     "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, ".
     "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, ".
     "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, ".
+    "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
+    "INNER JOIN galleryAlb_dt ON galleryMenu_dt.glCat_id = galleryAlb_dt.glCat_id ".
+    "INNER JOIN galleryPhotos_dt ON galleryAlb_dt.album_id = galleryPhotos_dt.album_id ".
+    "WHERE galleryAlb_dt.activeFlag is TRUE ".
+    "AND galleryMenu_dt.catActive is TRUE ".
+    "AND galleryPhotos_dt.activeFlag is TRUE ".
+    "AND galleryAlb_dt.readRule <> 'off' ".
+    "AND galleryAlb_dt.readRule <> '' ".
+    //"AND galleryAlb_dt.albumAlias = '".$appRJ->server['reqUri_expl'][2]."' ".
+    "GROUP BY galleryAlb_dt.album_id ".
+    "ORDER BY galleryAlb_dt.dateOfCr DESC, galleryAlb_dt.album_id DESC";
+*/
+$selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id,".
+    "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, ".
+    "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, ".
+    "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, galleryAlb_dt.refreshDate, ".
     "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
     "INNER JOIN galleryAlb_dt ON galleryMenu_dt.glCat_id = galleryAlb_dt.glCat_id ".
     "INNER JOIN galleryPhotos_dt ON galleryAlb_dt.album_id = galleryPhotos_dt.album_id ".
@@ -98,11 +114,12 @@ if($selectAlbums_count>0){
                 $alb_view .= "<span class='flName'>В альбоме: </span>" .
                     "<span class=flVal>" . $selectAlbums_row['phQty'] . "</span><span class='flName'>фото</span>";
                 $alb_view .= "</div>";
-                $alb_view .= "<div class='alb-publDt'>";
-                $alb_view .= "<span class='flName'>Опубликовано: </span>" .
-                    "<span class=flVal>" . $selectAlbums_row['dateOfCr'] . "</span>";
-                $alb_view .= "</div>";
-
+                $alb_view .= "<div class='alb-publDt'><span class='flName'>Опубликовано: </span>" .
+                    "<span class=flVal>" . $selectAlbums_row['dateOfCr'] . "</span></div>";
+                if($selectAlbums_row['refreshDate']){
+                    $alb_view .= "<div class='alb-publDt'><span class='flName'>Обновлено: </span>" .
+                        "<span class=flVal>" . $selectAlbums_row['refreshDate'] . "</span></div>";
+                }
                 $alb_view .= "</div>";
                 $alb_view .= "</div>";
                 $albums_print .= $alb_view;

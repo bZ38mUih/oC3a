@@ -53,7 +53,8 @@ $tables->result['log'].="Action: upLoadAllTables<br>";
 
 
 $orderBy=null;
-
+mkdir("/home/p264533/public_html/rightjoint.ru/data/db/".date_format($CurDate, 'Ymd'),
+    0777, true);
 foreach ($tables->tables as $table => $value) {
     if ($tables->tables[$table]['exist']===true) {
         $query_text = "select * from ".$table." ".$orderBy;
@@ -92,7 +93,8 @@ foreach ($tables->tables as $table => $value) {
             $file="auto_".$table;
             $file .="_".date_format($CurDate, 'Ymd_His');
             $file.=".php";
-            if(!file_put_contents("/home/p264533/public_html/rightjoint.ru/data/db/".$file, $queryToInsert)){
+            if(!file_put_contents("/home/p264533/public_html/rightjoint.ru/data/db/".
+                date_format($CurDate, 'Ymd')."/".$file, $queryToInsert)){
                 $tables->result['err']= $table."-->> невозможно создать файл<br>";
             }else{
                 $tables->result['log'].= $table."-->> success<br>";

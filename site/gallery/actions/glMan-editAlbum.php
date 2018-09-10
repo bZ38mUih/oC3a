@@ -42,6 +42,14 @@ if(isset($_GET['alb_id']) and $_GET['alb_id']!=null){
     if(isset($_POST['dateOfCr']) and $_POST['dateOfCr']!=null){
         $Alb_rd->result['dateOfCr']=$_POST['dateOfCr'];
     }
+    if(isset($_POST['refreshDate']) and $_POST['refreshDate']!=null){
+        $Alb_rd->result['refreshDate']=$_POST['refreshDate'];
+        if($Alb_rd->result['refreshDate']<=$Alb_rd->result['dateOfCr']){
+            $albErr['refreshDate']="меньше даты создания";
+        }
+    }else{
+        $Alb_rd->result['refreshDate']=null;
+    }
     if(isset($_POST['transAlbImg']) and $_POST['transAlbImg']!=null){
         $Alb_rd->result['transAlbImg']=$_POST['transAlbImg'];
     }else{

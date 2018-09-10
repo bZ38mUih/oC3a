@@ -12,5 +12,6 @@ $query_text="create table galleryAlb_dt (".
     "activeFlag BOOLEAN, ".
     "readRule varchar(8) collate utf8_unicode_ci not null, ".
     "writeRule varchar(8) collate utf8_unicode_ci not null, ".
+    "refreshDate date, ".
     "primary key (album_id)".
     ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
