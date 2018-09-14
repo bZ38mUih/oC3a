@@ -1,11 +1,13 @@
 <?php
 if(isset($this->errors['404'])){
+    http_response_code(404);
     require_once($_SERVER["DOCUMENT_ROOT"] . "/source/alerts/views/err404.php");
 }
 elseif(isset($this->errors['stab'])){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/source/alerts/views/stabErr.php");
 }
 elseif(isset($this->errors['access'])) {
+    http_response_code(403);
     require_once($_SERVER["DOCUMENT_ROOT"] . "/source/alerts/views/accessErr.php");;
 }
 elseif(isset($this->errors['connection'])){
@@ -18,7 +20,6 @@ elseif($this->errors['config']){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/source/alerts/views/configErr.php");
 }
 else{
-
     require_once($_SERVER["DOCUMENT_ROOT"] . "/source/alerts/views/XXX.php");
 }
 exit;

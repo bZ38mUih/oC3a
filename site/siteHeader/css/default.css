@@ -256,7 +256,6 @@ header .rightConn{
 /*<--modal signIn*/
 /*modal.menu-->*/
 .modal-line:first-child{
-    border-top: 1px dotted silver;
     margin-top: 1em;
 }
 .modal.menu a{

@@ -1,0 +1,78 @@
+<p>Когда вы посылаете запрос на web-сервер Apache, сервер в ответ посылает код HTTP статуса. Коды статуса состоят из
+    трех цифр и сгруппированы в пять различных классов:
+<ul>
+    <li>1xx: Информационные</li>
+    <li>2xx: Успешно</li>
+    <li>3xx: Переадресация</li>
+    <li>4xx: Ошибки клиента</li>
+    <li>5xx: Ошибки сервера</li>
+</ul>
+</p>
+<p>
+    Задать или получить код ответа HTTP-сервера на php можно используя функцию <b>response_code</b>
+</p>
+<p>
+<h3>Collaboration diagram for HTTP Status Codes</h3>
+<ul>
+    <li>103 - RESPONSE_CODES</li>
+    <li>100 - HTTP_CONTINUE</li>
+    <li>101 - HTTP_SWITCHING_PROTOCOLS</li>
+    <li>102 - HTTP_PROCESSING</li>
+    <li>200 - HTTP_OK</li>
+    <li>201 - HTTP_CREATED</li>
+    <li>202 - TTP_ACCEPTED</li>
+    <li>203 - HTTP_NON_AUTHORITATIVE</li>
+    <li>204 - HTTP_NO_CONTENT</li>
+    <li>205 - HTTP_RESET_CONTENT</li>
+    <li>206 - HTTP_PARTIAL_CONTENT</li>
+    <li>207 - HTTP_MULTI_STATUS</li>
+    <li>208 - HTTP_ALREADY_REPORTED</li>
+    <li>226 - TTP_IM_USED</li>
+    <li>300 - HTTP_MULTIPLE_CHOICES</li>
+    <li>301 - HTTP_MOVED_PERMANENTLY</li>
+    <li>302 - HTTP_MOVED_TEMPORARILY</li>
+    <li>303 - HTTP_SEE_OTHER</li>
+    <li>304 - HTTP_NOT_MODIFIED</li>
+    <li>305 - HTTP_USE_PROXY</li>
+    <li>307 - HTTP_TEMPORARY_REDIRECT</li>
+    <li>308 - HTTP_PERMANENT_REDIRECT</li>
+    <li>400 - HTTP_BAD_REQUEST</li>
+    <li>401 - HTTP_UNAUTHORIZED</li>
+    <li>402 - HTTP_PAYMENT_REQUIRED</li>
+    <li>403 - HTTP_FORBIDDEN</li>
+    <li>404 - HTTP_NOT_FOUND</li>
+    <li>405 - HTTP_METHOD_NOT_ALLOWED</li>
+    <li>406 - HTTP_NOT_ACCEPTABLE</li>
+    <li>407 - HTTP_PROXY_AUTHENTICATION_REQUIRED</li>
+    <li>408 - HTTP_REQUEST_TIME_OUT</li>
+    <li>409 - HTTP_CONFLICT</li>
+    <li>410 - HTTP_GONE</li>
+    <li>411 - HTTP_LENGTH_REQUIRED</li>
+    <li>412 - HTTP_PRECONDITION_FAILED</li>
+    <li>413 - HTTP_REQUEST_ENTITY_TOO_LARGE</li>
+    <li>414 - HTTP_REQUEST_URI_TOO_LARGE</li>
+    <li>415 - HTTP_UNSUPPORTED_MEDIA_TYPE</li>
+    <li>416 - HTTP_RANGE_NOT_SATISFIABLE</li>
+    <li>417 - HTTP_EXPECTATION_FAILED</li>
+    <li>418 - HTTP_IM_A_TEAPOT</li>
+    <li>421 - HTTP_MISDIRECTED_REQUEST</li>
+    <li>422 - HTTP_UNPROCESSABLE_ENTITY</li>
+    <li>423 - HTTP_LOCKED</li>
+    <li>424 - HTTP_FAILED_DEPENDENCY</li>
+    <li>426 - HTTP_UPGRADE_REQUIRED</li>
+    <li>428 - HTTP_PRECONDITION_REQUIRED</li>
+    <li>429 - HTTP_TOO_MANY_REQUESTS</li>
+    <li>431 - HTTP_REQUEST_HEADER_FIELDS_TOO_LARGE</li>
+    <li>451 - HTTP_UNAVAILABLE_FOR_LEGAL_REASONS</li>
+    <li>500 - HTTP_INTERNAL_SERVER_ERROR</li>
+    <li>501 - HTTP_NOT_IMPLEMENTED</li>
+    <li>502 - HTTP_BAD_GATEWAY</li>
+    <li>503 - HTTP_SERVICE_UNAVAILABLE</li>
+    <li>504 - HTTP_GATEWAY_TIME_OUT</li>
+    <li>505 - HTTP_VERSION_NOT_SUPPORTED</li>
+    <li>506 - HTTP_VARIANT_ALSO_VARIES</li>
+    <li>507 - HTTP_INSUFFICIENT_STORAGE</li>
+    <li>508 - HTTP_LOOP_DETECTED</li>
+    <li>510 - HTTP_NOT_EXTENDED</li>
+    <li>511 - HTTP_NETWORK_AUTHENTICATION_REQUIRED</li>
+</ul>
