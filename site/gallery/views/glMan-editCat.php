@@ -107,6 +107,11 @@ if($Cat_rd->result['catActive']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".
+    "<div class='input-line'><label for='catIndex'>Индексировать:</label><input type='checkbox' name='catIndex' ";
+if($Cat_rd->result['catIndex']){
+    $appRJ->response['result'].= "checked";
+}
+$appRJ->response['result'].= "></div>".
     "<div class='input-line'><input type='submit' value='save'></div></form></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");

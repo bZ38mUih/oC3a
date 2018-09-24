@@ -39,6 +39,11 @@ if(isset($_GET['alb_id']) and $_GET['alb_id']!=null){
     }else{
         $Alb_rd->result['activeFlag']=false;
     }
+    if(isset($_POST['robIndex']) and $_POST['robIndex']=='on'){
+        $Alb_rd->result['robIndex']=true;
+    }else{
+        $Alb_rd->result['robIndex']=false;
+    }
     if(isset($_POST['dateOfCr']) and $_POST['dateOfCr']!=null){
         $Alb_rd->result['dateOfCr']=$_POST['dateOfCr'];
     }

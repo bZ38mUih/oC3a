@@ -18,7 +18,7 @@ $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, gal
 */
 $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id,".
     "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, ".
-    "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, ".
+    "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, galleryAlb_dt.robIndex, ".
     "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, galleryAlb_dt.refreshDate, ".
     "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
     "INNER JOIN galleryAlb_dt ON galleryMenu_dt.glCat_id = galleryAlb_dt.glCat_id ".
@@ -52,6 +52,7 @@ if($selectAlbums_count>0){
 
 
     $albDescr=null;
+    $robIndex=null;
 
     while($selectAlbums_row=$DB->doFetchRow($selectAlbums_res)){
 
@@ -106,6 +107,7 @@ if($selectAlbums_count>0){
                 if ($selectAlbums_row['metaDescr']) {
                     $alb_view .= $selectAlbums_row['metaDescr'];
                     $albDescr=$selectAlbums_row['metaDescr'];
+                    $robIndex=$selectAlbums_row['robIndex'];
                 } else {
                     $alb_view .= "Описание не задано";
                 }
@@ -229,8 +231,11 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='".$albDescr."'/>".
-    "<title>Галерея</title>".
+    "<meta name='description' content='".$albDescr."'/>";
+if(!$robIndex){
+    $appRJ->response['result'].= "<meta name='robots' content='noindex'>";
+}
+$appRJ->response['result'].= "<title>Галерея</title>".
     "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".

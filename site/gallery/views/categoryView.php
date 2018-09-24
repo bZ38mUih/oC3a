@@ -1,7 +1,7 @@
 <?php
 
 $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id,".
-    "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, ".
+    "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, galleryMenu_dt.catIndex, ".
     "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, ".
     "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, ".
     "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
@@ -108,6 +108,7 @@ if($selectAlbums_count>0){
                     $catArr[$selectAlbums_row['glCat_id']]['catImg'] = $selectAlbums_row['catImg'];
                     $catArr[$selectAlbums_row['glCat_id']]['photoCount'] = $selectAlbums_row['phQty'];
                     $catArr[$selectAlbums_row['glCat_id']]['albCount'] = 1;
+                    $catArr[$selectAlbums_row['glCat_id']]['catIndex'] = $selectAlbums_row['catIndex'];
                     if($selectAlbums_row['catAlias']==$appRJ->server['reqUri_expl'][3]) {
                         $catAccess=true;
                         $catArr[$selectAlbums_row['glCat_id']]['printFlag'] = true;
@@ -131,23 +132,21 @@ if($catId){
     $appRJ->errors['404']['description']="категории не существует";
     $appRJ->throwErr();
 }
-
-
-
 $h1 ="Просмотр категории";
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
-    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='";
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>";
 foreach($catArr as $key=>$value){
     if($catArr[$key]['printFlag']==true) {
-        $appRJ->response['result'] .= $value['catDescr'];
+        $appRJ->response['result'] .= "<meta name='description' content='".$value['catDescr']. "'/>";
+        if(!$catArr[$key]['catIndex']){
+            $appRJ->response['result'].= "<meta name='robots' content='noindex'>";
+        }
     }
 }
-$appRJ->response['result'].= "'/>".
-    "<title>Галерея</title>".
+$appRJ->response['result'].="<title>Галерея</title>".
     "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".

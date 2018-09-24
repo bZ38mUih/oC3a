@@ -124,6 +124,12 @@ if($Alb_rd->result['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".
+    "<div class='input-line'><label for='robIndex'>Индексировать:</label>";
+$appRJ->response['result'].= "<input type='checkbox' name='robIndex' ";
+if($Alb_rd->result['robIndex']){
+    $appRJ->response['result'].= "checked";
+}
+$appRJ->response['result'].= "></div>".
     "<div class='input-line'><input type='submit' value='save'></div></form></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");

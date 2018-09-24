@@ -35,6 +35,11 @@ if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
     }else{
         $Cat_rd->result['catActive']=false;
     }
+    if(isset($_POST['catIndex']) and $_POST['catIndex']=='on'){
+        $Cat_rd->result['catIndex']=true;
+    }else{
+        $Cat_rd->result['catIndex']=false;
+    }
     //exit;
 }else{
     $catErr['glCat_id']='недопустимое cat_id';
