@@ -30,7 +30,7 @@ if(file_exists($_SERVER['DOCUMENT_ROOT']."/".$_GET['uploadAlbums'])){
                 $albPhoto_cnt=0;
                 foreach (glob($_SERVER['DOCUMENT_ROOT'] . "/".$_GET['uploadAlbums'] . "/".$curFld_name."/*jpg") as $photoFile){
                     $albPhoto_cnt++;
-                    $path_parts = pathinfo(basename($photoFile['name']));
+                    $path_parts = pathinfo(basename($photoFile));
                     if(basename($photoFile)=='cover.jpg'){
                         $Alb_rd->result['albumImg']=uniqid().".".$path_parts['extension'];
                         if (copy($photoFile, $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.

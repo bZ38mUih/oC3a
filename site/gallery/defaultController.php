@@ -33,6 +33,38 @@ if ($_POST['setLike'] and $_POST['setLike']!=null){
     include ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/views/photo-like.php");
     $appRJ->response['result'].= $photoLikeTxt;
 }
+elseif(isset($_GET['writeComment']) and $_GET['writeComment']=='true'){
+    $appRJ->response['format']="ajax";
+    $glComment = new recordDefault("galleryComments_dt", "comment_id");
+    $glComment->result['photo_id']=$_GET['photo_id'];
+    $glComment->result['user_id']=$_SESSION['user_id'];
+    if($_GET['comPar_id']=="null"){
+        $glComment->result['commentPar_id']=null;
+    }else{
+        $glComment->result['commentPar_id']=$_GET['comPar_id'];
+    }
+
+    $glComment->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-m-s');
+    //$glComment->result['writeDate']=$appRJ->date['curDate'];
+    $glComment->result['commmentCont']=$_GET['comment'];
+    if($glComment->putOne()){
+        /*$appRJ->response['result'].="success | commmentCont=".$glComment->result['commmentCont']." | photo_id=".
+            $glComment->result['photo_id'].
+            "| user_id=".$glComment->result['user_id']." | commentPar_id=".$glComment->result['commentPar_id']." | ".
+            "writeDate=".$glComment->result['writeDate'];*/
+        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/actions/printComments.php");
+        $printComments=prtPhCm($glComment->result['photo_id'] ,null, $DB);
+        $appRJ->response['result'].=$printComments['text'];
+    }else{
+        $appRJ->response['result'].="fail | commmentCont=".$glComment->result['commmentCont']." | photo_id=".
+            $glComment->result['photo_id'].
+            "| user_id=".$glComment->result['user_id']." | commentPar_id=".$glComment->result['commentPar_id']." | ".
+        "writeDate=".$glComment->result['writeDate'];
+    }
+
+
+    //print_r($_GET);
+}
 elseif(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]!=null){
     if(strtolower($appRJ->server['reqUri_expl'][2])=="glmanager"){
         if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {

@@ -4,6 +4,9 @@ $albLnP=10;
 $h1 ="Альбомы";
 if(isset($_GET['page']) and $_GET['page']!=null){
     $albPage = $_GET['page'];
+    setcookie('gallery-man-alb-cupP', $albPage, time() + 3600, "/");
+}elseif($_COOKIE['gallery-man-alb-cupP'] and $_COOKIE['gallery-man-alb-cupP']!=null){
+    $albPage = $_COOKIE['gallery-man-alb-cupP'];
 }
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
@@ -34,7 +37,7 @@ if($cntSubj_row['cntSubj']>0){
     $cntSubj=$cntSubj_row['cntSubj'];
 }
 $selectSubj_query = "select * from galleryAlb_dt LEFT JOIN galleryMenu_dt ON ".
-    "galleryAlb_dt.glCat_id=galleryMenu_dt.glCat_id order by galleryAlb_dt.album_id DESC limit ".strval(($albPage-1)*$albLnP).
+    "galleryAlb_dt.glCat_id=galleryMenu_dt.glCat_id order by galleryAlb_dt.dateOfCr DESC limit ".strval(($albPage-1)*$albLnP).
     ", ".$albLnP;
 $selectSubj_res=$DB->doQuery($selectSubj_query);
 $subjCount=0;

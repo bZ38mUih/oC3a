@@ -1,9 +1,9 @@
 <?php
 $query_text="create table galleryComments_dt (".
-    "comment_id int(5) not null, ".
+    "comment_id int(5) AUTO_INCREMENT, ".
     "photo_id int(5) not null, ".
     "user_id int(5) not null, ".
-    "commentPar_id int(5) not null, ".
+    "commentPar_id int(5), ".
     "writeDate datetime not null, ".
     "commmentCont TEXT not null, ".
     "primary key (comment_id)".

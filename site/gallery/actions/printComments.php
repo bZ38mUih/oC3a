@@ -1,6 +1,6 @@
 <?php
 
-function prtPhCm($comPar_id=null, $DB)
+function prtPhCm($photo_id, $comPar_id=null, $DB)
 {
     $tmpRes['text']=null;
     $tmpRes['cntCom']=null;
@@ -10,8 +10,8 @@ function prtPhCm($comPar_id=null, $DB)
             "galleryComments_dt.commmentCont, ".
             "galleryComments_dt.writeDate, accounts_dt.photoLink, accounts_dt.accAlias, accounts_dt.socProf from galleryComments_dt ".
             "INNER JOIN accounts_dt ON accounts_dt.user_id=galleryComments_dt.user_id ".
-            "WHERE galleryComments_dt.commentPar_id IS NULL ".
-            "ORDER BY galleryComments_dt.writeDate DESC";
+            "WHERE galleryComments_dt.commentPar_id IS NULL and galleryComments_dt.photo_id=".$photo_id.
+            " ORDER BY galleryComments_dt.writeDate DESC";
     }else{
         $slCm_qry = "select galleryComments_dt.comment_id, galleryComments_dt.commentPar_id, galleryComments_dt.user_id, ".
             "galleryComments_dt.commmentCont, ".
@@ -64,7 +64,8 @@ function prtPhCm($comPar_id=null, $DB)
 
             $tmpCm.="<div class='com-lv'>";
             if($_SESSION['user_id']){
-                $tmpCm.="<span class='com-wrCm' id='com_".$slCm_row['comment_id']."' onclick='newAnsw(".$slCm_row['comment_id'].")'>Ответить</span>";
+                //$tmpCm.="<span class='com-wrCm' id='com_".$slCm_row['comment_id']."' onclick='newAnsw(".$slCm_row['comment_id'].")'>Ответить</span>";
+                $tmpCm.="<span class='newComment' comm-id='".$slCm_row['comment_id']."' onclick='addComment(this)'>Ответить</span>";
             }
             $tmpCm.="</div>";
             $tmpCm.="</div>";
@@ -72,7 +73,7 @@ function prtPhCm($comPar_id=null, $DB)
 
             $tmpRes['text'].=$tmpCm;
 
-            $responce=prtCm($slCm_row['comment_id'], $DB);
+            $responce=prtPhCm($photo_id, $slCm_row['comment_id'], $DB);
             if($comPar_id==null){
                 $tmpRes['cntCom']++;
             }
