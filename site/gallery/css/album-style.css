@@ -64,11 +64,31 @@
     font-style: italic;
 }
 
-.photo-like
-{
+.photo-addContent {
+    width: 100%;
+}
+
+.photo-addContent .photo-comments{
+    width: 70%;
+    text-align: left;
+    /*
+    text-align: right;
+    font-size: 1.2em;
+    */
+    display: inline-block;
+}
+
+.photo-addContent  .photo-like {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    /*text-align: center;*/
+    font-size: 1.2em;
+    /*
     width: 100%;
     text-align: right;
     font-size: 1.2em;
+    */
 }
 
 .photo-like a
@@ -105,3 +125,21 @@
     font-weight: bold;
 }
 
+span.newComment {
+    display: block;
+    text-decoration: underline;
+    color: midnightblue;
+    cursor: pointer;
+}
+form.addComment{
+    width: 100%;
+    display: block;
+}
+
+form.addComment textarea {
+    width: 100%;
+}
+
+form.addComment input[type=button] {
+    float: right;
+}

@@ -20,7 +20,7 @@ $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, gal
     "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, ".
     "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, galleryAlb_dt.robIndex, ".
     "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, galleryAlb_dt.refreshDate, ".
-    "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
+    "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, galleryAlb_dt.writeRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
     "INNER JOIN galleryAlb_dt ON galleryMenu_dt.glCat_id = galleryAlb_dt.glCat_id ".
     "INNER JOIN galleryPhotos_dt ON galleryAlb_dt.album_id = galleryPhotos_dt.album_id ".
     "WHERE galleryAlb_dt.activeFlag is TRUE ".
@@ -39,6 +39,9 @@ $selectAlbums_count = mysql_num_rows($selectAlbums_res);
 
 $foundAlb=false;
 
+$wrAccRes = false;
+$allowWrComm=false;
+
 if($selectAlbums_count>0){
     $cntAlb=0;
     $albums_print=null;
@@ -48,16 +51,11 @@ if($selectAlbums_count>0){
     $cntCat=0;
 
     $catId=null;
-
-
-
     $albDescr=null;
     $robIndex=null;
 
     while($selectAlbums_row=$DB->doFetchRow($selectAlbums_res)){
-
         $alb_view=null;
-
         //read access-->
         $rdAccRes=false;
         if($selectAlbums_row['readRule']){
@@ -77,15 +75,22 @@ if($selectAlbums_count>0){
         if($rdAccRes){
             $cntAlb++;
             if ($selectAlbums_row['albumAlias'] == $appRJ->server['reqUri_expl'][2]) {
+                //write access-->
+                //$wrAccRes=false;
+                if($selectAlbums_row['writeRule'] and $selectAlbums_row['writeRule']!='off'){
+                    $allowWrComm=true;
+                    if($selectAlbums_row['writeRule']=='users' and isset($_SESSION['alias'])){
+                        $wrAccRes=true;
+                    }elseif(isset($_SESSION['groups'][$selectAlbums_row['writeRule']])){
+                        $wrAccRes=true;
+                    }
+                }
+                //<--write access
                 $catId=$selectAlbums_row['glCat_id'];
 
                 $catAlbName=$selectAlbums_row['glCat_id'];
-                $alb_view .= "<div class='alb-block'>";
-                $alb_view .= "<div class='alb-img'>";
-
-                $alb_view .="<a href='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/".$selectAlbums_row['albumImg']."'>";
-
-
+                $alb_view .= "<div class='alb-block'>"."<div class='alb-img'>".
+                    "<a href='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/".$selectAlbums_row['albumImg']."'>";
                 if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
                     $selectAlbums_row['albumImg'])){
                     $alb_view.="<img src='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id'].
@@ -97,13 +102,8 @@ if($selectAlbums_count>0){
                 }else{
                     $alb_view.="<img src='/data/default-img.png'>";
                 }
-                $alb_view .="</a>";
-                $alb_view .= "</div>";
-                $alb_view .= "<div class='alb-txt'>";
-                $alb_view .= "<div class='alb-name'>";
-                $alb_view .= $selectAlbums_row['albumName'];
-                $alb_view .= "</div>";
-                $alb_view .= "<div class='alb-descr'>";
+                $alb_view .="</a></div><div class='alb-txt'><div class='alb-name'>".$selectAlbums_row['albumName'].
+                    "</div><div class='alb-descr'>";
                 if ($selectAlbums_row['metaDescr']) {
                     $alb_view .= $selectAlbums_row['metaDescr'];
                     $albDescr=$selectAlbums_row['metaDescr'];
@@ -111,21 +111,16 @@ if($selectAlbums_count>0){
                 } else {
                     $alb_view .= "Описание не задано";
                 }
-                $alb_view .= "</div>";
-                $alb_view .= "<div class='alb-count'>";
-                $alb_view .= "<span class='flName'>В альбоме: </span>" .
-                    "<span class=flVal>" . $selectAlbums_row['phQty'] . "</span><span class='flName'>фото</span>";
-                $alb_view .= "</div>";
-                $alb_view .= "<div class='alb-publDt'><span class='flName'>Опубликовано: </span>" .
+                $alb_view .= "</div><div class='alb-count'><span class='flName'>В альбоме: </span>" .
+                    "<span class=flVal>" . $selectAlbums_row['phQty'] . "</span><span class='flName'>фото</span></div>".
+                    "<div class='alb-publDt'><span class='flName'>Опубликовано: </span>" .
                     "<span class=flVal>" . $selectAlbums_row['dateOfCr'] . "</span></div>";
                 if($selectAlbums_row['refreshDate']){
                     $alb_view .= "<div class='alb-publDt'><span class='flName'>Обновлено: </span>" .
                         "<span class=flVal>" . $selectAlbums_row['refreshDate'] . "</span></div>";
                 }
-                $alb_view .= "</div>";
-                $alb_view .= "</div>";
+                $alb_view .= "</div></div>";
                 $albums_print .= $alb_view;
-
                 $album_id=$selectAlbums_row['album_id'];
                 $cntPh = $selectAlbums_row['phQty'];
             }
@@ -157,9 +152,7 @@ if($foundAlb){
 }
 
 if(isset($appRJ->errors)){
-    //echo 'qqq';
     $appRJ->throwErr();
-    //require_once($_SERVER["DOCUMENT_ROOT"]."/source/alerts/alertsController.php");
 }
 
 $photoPrint_query="select galleryPhotos_dt.photoName, galleryPhotos_dt.photoDescr, galleryPhotos_dt.album_id, ".
@@ -173,33 +166,28 @@ $photoPrint_res=$DB->doQuery($photoPrint_query);
 
 $photoPrint_count=mysql_num_rows($photoPrint_res);
 
+if($allowWrComm){
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/actions/printComments.php");
+}
+
 $albums_print_txt=null;
 if($photoPrint_count==$cntPh){
     while($photoPrint_row=$DB->doFetchRow($photoPrint_res))
     {
-
-        $albums_print_txt.="<div class='photo-line' id='photo_".$photoPrint_row['photo_id']."'>";
-        $albums_print_txt.="<div class='photo-context'>";
+        $albums_print_txt.="<div class='photo-line' id='photo_".$photoPrint_row['photo_id']."'>".
+            "<div class='photo-context'>";
         if($photoPrint_row['photoName']){
             $albums_print_txt.= "<strong>".$photoPrint_row['photoName']."</strong>";
-
         }
-
         if($photoPrint_row['photoDescr']){
             $albums_print_txt.= "<span class='photoDescr'>".$photoPrint_row['photoDescr']."</span>";
         }
-
         $albums_print_txt.="<a href='".GL_ALBUM_IMG_PAPH.$photoPrint_row['album_id']."/photoAttach/".
-            $photoPrint_row['photoLink']."' download>";
-        $albums_print_txt.= "скачать - ";
-        $albums_print_txt.= strval(round(filesize ($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.
+            $photoPrint_row['photoLink']."' download>"."скачать - ".
+            strval(round(filesize ($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.
                         $photoPrint_row['album_id']."/photoAttach/".
-                        $photoPrint_row['photoLink'])/100000)/10)." MB";
-        $albums_print_txt.="</a>";
-
-        $albums_print_txt.="</div>";
-        $albums_print_txt.="<div class='photo-img'>";
-        $albums_print_txt.="<a href = '".GL_ALBUM_IMG_PAPH.$photoPrint_row['album_id']."/photoAttach/".
+                        $photoPrint_row['photoLink'])/100000)/10)." MB"."</a>"."</div>".
+            "<div class='photo-img'>"."<a href = '".GL_ALBUM_IMG_PAPH.$photoPrint_row['album_id']."/photoAttach/".
             $photoPrint_row['photoLink']."'>";
         if(file_exists($_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$photoPrint_row['album_id']."/photoAttach/preview/".
             $photoPrint_row['photoLink'])){
@@ -212,14 +200,22 @@ if($photoPrint_count==$cntPh){
         }else{
             $albums_print_txt.="<img src='/data/default-img.png'>";
         }
+        $albums_print_txt.="</a>"."</div>".
+            "<div class='photo-addContent'>";
 
-        $albums_print_txt.="</a>";
-        $albums_print_txt.="</div>";
+        if($allowWrComm){
+            $photoCommentsTxt=null;
+
+            $albums_print_txt.="<div class='photo-comments'>";
+            include ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/views/photoComments.php");
+            $albums_print_txt.=$photoCommentsTxt."</div>";
+        }
+
         $albums_print_txt.="<div class='photo-like'>";
         include ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/views/photo-like.php");
-        $albums_print_txt.=$photoLikeTxt;
-        $albums_print_txt.="</div>";
-        $albums_print_txt.="</div>";
+        $albums_print_txt.=$photoLikeTxt."</div>";
+
+        $albums_print_txt.="</div></div>";
     }
 }else{
     $albums_print_txt.="not equal ".$photoPrint_count." / ".$cntPh;
