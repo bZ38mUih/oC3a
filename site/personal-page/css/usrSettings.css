@@ -1,69 +1,26 @@
-form
-{
-    border: 2px solid darkgreen;
-    border-radius: 0.5em;
-    width: 95%;
-    margin: 1em 1em 1em 2%;
-}
-
-.accnt
-{
-    width: 95%;
-    margin: 1em 1em 1em 2%;
-}
-
-.accnt-title
-{
-
-}
-
-.accnt-title-avatar
-{
-    width: 30%;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.accnt-title-avatar img
-{
-    height: 4em;
-    width: 4em;
-}
-
-.accnt-title-txt
-{
+.accnt-title-txt{
     width: 70%;
     display: inline-block;
     vertical-align: middle;
 }
-
-.accnt-title-txt span
-{
+.accnt-title-txt span{
     font-size: 1.5em;
     color: midnightblue;
     font-weight: bold;
 }
-
-.accnt-info, .accnt-pr
-{
+.accnt-info, .accnt-pr{
     text-align: left;
     margin-top: 1.5em;
 }
-
-h4
-{
+h4{
     margin-bottom: 0.5em;
     text-decoration: underline;
 }
-
-.accnt label
-{
+.accnt label{
     font-weight: bold;
     margin-right: 1em;
 }
-
-.accnt span
-{
+.accnt span{
     font-size: 1.2em;
     font-style: italic;
 }

@@ -14,7 +14,9 @@ function addComment(el) {
         $("span.newComment").show();
         $("form.addComment").remove();
     }
-    $(el).after("<form class='addComment'><textarea name='phComment' rows='4'>"+"" +
+    $(el).after("<form class='addComment'>"+
+        "<div class='writeErr'></div>"+
+        "<textarea name='phComment' rows='4'>"+"" +
         "</textarea><input type='button' value='написать' onclick='writeComment("+photo_id+","+$(el).attr("comm-id")+")'>"+
         "</form>");
     $(el).hide();
@@ -37,9 +39,12 @@ function writeComment(photo_id, comPar_id) {
 
     $.get("?writeComment=true&photo_id="+photo_id+"&comPar_id="+comPar_id+"&comment="+$("[name='phComment']").val(),
         function(data){
-            $("#photo_"+photo_id+" .photo-comments").html(data);
+            var response=JSON.parse(data);
+            if(response.error==null){
+                $("#photo_"+photo_id+" .photo-comments").html(response.comments);
+            }else{
+                $("form.addComment .writeErr").html(response.error);
+            }
             $("#photo_"+photo_id+" .photo-comments").preloader('remove');
-            //alert(data);
-
         })
 }

@@ -1,21 +1,4 @@
 <?php
-/*
-$selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id,".
-    "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, ".
-    "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, ".
-    "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, ".
-    "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
-    "INNER JOIN galleryAlb_dt ON galleryMenu_dt.glCat_id = galleryAlb_dt.glCat_id ".
-    "INNER JOIN galleryPhotos_dt ON galleryAlb_dt.album_id = galleryPhotos_dt.album_id ".
-    "WHERE galleryAlb_dt.activeFlag is TRUE ".
-    "AND galleryMenu_dt.catActive is TRUE ".
-    "AND galleryPhotos_dt.activeFlag is TRUE ".
-    "AND galleryAlb_dt.readRule <> 'off' ".
-    "AND galleryAlb_dt.readRule <> '' ".
-    //"AND galleryAlb_dt.albumAlias = '".$appRJ->server['reqUri_expl'][2]."' ".
-    "GROUP BY galleryAlb_dt.album_id ".
-    "ORDER BY galleryAlb_dt.dateOfCr DESC, galleryAlb_dt.album_id DESC";
-*/
 $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id,".
     "galleryMenu_dt.catImg, galleryMenu_dt.catActive, galleryMenu_dt.catDescr, ".
     "galleryAlb_dt.album_id, galleryAlb_dt.albumName, galleryAlb_dt.transAlbImg, galleryAlb_dt.robIndex, ".
@@ -79,7 +62,7 @@ if($selectAlbums_count>0){
                 //$wrAccRes=false;
                 if($selectAlbums_row['writeRule'] and $selectAlbums_row['writeRule']!='off'){
                     $allowWrComm=true;
-                    if($selectAlbums_row['writeRule']=='users' and isset($_SESSION['alias'])){
+                    if($selectAlbums_row['writeRule']=='users' and isset($_SESSION['user_id'])){
                         $wrAccRes=true;
                     }elseif(isset($_SESSION['groups'][$selectAlbums_row['writeRule']])){
                         $wrAccRes=true;
@@ -167,7 +150,7 @@ $photoPrint_res=$DB->doQuery($photoPrint_query);
 $photoPrint_count=mysql_num_rows($photoPrint_res);
 
 if($allowWrComm){
-    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/actions/printComments.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/site/gallery/actions/printComments_func.php");
 }
 
 $albums_print_txt=null;
@@ -202,19 +185,21 @@ if($photoPrint_count==$cntPh){
         }
         $albums_print_txt.="</a>"."</div>".
             "<div class='photo-addContent'>";
-
+        $photoCommentsTxt=null;
+        $albums_print_txt.="<div class='photo-comments'>";
         if($allowWrComm){
-            $photoCommentsTxt=null;
-
-            $albums_print_txt.="<div class='photo-comments'>";
-            include ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/views/photoComments.php");
-            $albums_print_txt.=$photoCommentsTxt."</div>";
+            $printComments=prtPhCm($photoPrint_row['photo_id'] ,null, $DB, $wrAccRes);
+            if($printComments['cntCom']>0){
+                $albums_print_txt.="<span class='cntCcomments'>Всего :<span class='cntComm-val'>".
+                    $printComments['cntCom']."</span>коммент.</span>".$printComments['text'];
+            }else{
+                $albums_print_txt.="<span class='cntCcomments'>Пока никто не написал коммент.</span>".$printComments['text'];
+            }
         }
-
+        $albums_print_txt.="</div>";
         $albums_print_txt.="<div class='photo-like'>";
         include ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/views/photo-like.php");
         $albums_print_txt.=$photoLikeTxt."</div>";
-
         $albums_print_txt.="</div></div>";
     }
 }else{

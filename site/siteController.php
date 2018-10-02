@@ -26,6 +26,8 @@ else{
 
     define(ART_CATEG_IMG_PAPH, "/data-arts/categs/");
     define(ARTS_IMG_PAPH, "/data-arts/arts/");
+    define(PP_USRGR_IMG_PAPH, '/data/usersGroups/');
+    define(PP_USR_IMG_PAPH, '/data/users/');
 
     if($appRJ->server['reqUri_expl'][1]!=null){
         if(!@include($_SERVER["DOCUMENT_ROOT"]."/site/".$appRJ->server['reqUri_expl'][1]."/defaultController.php")){

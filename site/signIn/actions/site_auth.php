@@ -30,13 +30,11 @@ if($validErr == null){
                 $_SESSION['alias']=$queryRow['accAlias'];
                 $_SESSION['account_id'] = $queryRow['account_id'];
                 $_SESSION['user_id'] = $queryRow['user_id'];
-                $_SESSION['photoLink'] = $queryRow['photoLink'];
-
+                $_SESSION['photoLink'] = PP_USR_IMG_PAPH.$queryRow['account_id']."/preview/".$queryRow['photoLink'];
                 $queryLog_text="insert into inLog_dt (account_id, comeDate, uAgent, rmAddr, rmPort) values".
                     " ('".$queryRow['account_id']."', '".date_format($appRJ->date['curDate'], 'Y-m-d H:i:s')."', ".
                     "'".$_SERVER['HTTP_USER_AGENT']."', '".$_SERVER['REMOTE_ADDR']."', '".$_SERVER['REMOTE_PORT']."')";
                 $DB->doQuery($queryLog_text);
-
                 $usrGroups_text="select * from usersGroups_dt INNER JOIN usersToGroups_dt ON usersGroups_dt.group_id = ".
                     "usersToGroups_dt.group_id WHERE usersToGroups_dt.user_id = ".$queryRow['user_id'];
                 $usrGroups_res = $DB->doQuery($usrGroups_text);

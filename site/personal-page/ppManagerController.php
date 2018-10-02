@@ -1,5 +1,4 @@
 <?php
-
 if($_POST){
     //require_once ($_SERVER['DOCUMENT_ROOT']."/source/recordDefault_class.php");
     if(isset($_POST['flagField']) and $_POST['flagField']=='newGroup'){

@@ -1,54 +1,37 @@
-.photo-line
-{
+.photo-line{
     width: 90%;
     border: 1px solid #000000;
     display: inline-block;
     margin: 5%;
     border-radius: 0.5em;
-
 }
-
-.photo-line .photo-img
-{
+.photo-line .photo-img{
     width: 100%;
     display: inline-block;
 }
-
-.photo-line .photo-img a
-{
+.photo-line .photo-img a{
 
     display: inline-block;
     width: 100%;
 }
-
-.photo-line .photo-img a img
-{
+.photo-line .photo-img a img{
     width: 60%;
     max-width: 600px;
 }
-
-.photo-line .photo-context, .photo-line .photo-like, .photo-line .photo-comments
-{
+.photo-line .photo-context, .photo-line .photo-like, .photo-line .photo-comments{
     display: inline-block;
     width: 90%;
     margin: 1em 0 1em 0;
 }
-
-.photo-line .photo-context
-{
+.photo-line .photo-context{
     border-bottom: 1px dotted gray;
 }
-
-.photo-line .photo-context a
-{
+.photo-line .photo-context a{
     display: inline-block;
     color: blue;
     margin: 0.2em 0 0.2em 0;
-
 }
-
-.photo-line .photo-context strong
-{
+.photo-line .photo-context strong{
     display: block;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.7);
@@ -56,77 +39,50 @@
     font-size: 1.5em;
     margin-top: 0.5em;
 }
-
-.photo-line .photo-context span.photoDescr
-{
+.photo-line .photo-context span.photoDescr{
     display: inline-block;
     width: 100%;
     font-style: italic;
 }
-
 .photo-addContent {
     width: 100%;
 }
-
 .photo-addContent .photo-comments{
-    width: 70%;
+    width: 65%;
+    margin-left: 5%;
     text-align: left;
-    /*
-    text-align: right;
-    font-size: 1.2em;
-    */
     display: inline-block;
 }
-
 .photo-addContent  .photo-like {
     width: 30%;
     display: inline-block;
     vertical-align: top;
-    /*text-align: center;*/
     font-size: 1.2em;
-    /*
-    width: 100%;
-    text-align: right;
-    font-size: 1.2em;
-    */
 }
-
-.photo-like a
-{
+.photo-like a{
     text-decoration: none;
     color: red;
 }
-
-.photo-like img
-{
+.photo-like img{
     height: 1.5em;
     width: 1.5em;
     vertical-align: middle;
     margin-left: 1em;
     margin-right: 0.5em;
 }
-
-.photo-like span
-{
+.photo-like span{
     vertical-align: middle;
-
 }
-
-.photo-like span.like
-{
+.photo-like span.like{
     color: blue;
     cursor: pointer;
-    /*text-decoration: underline;*/
 }
-
-.photo-like span.like_qty
-{
+.photo-like span.like_qty{
     color: red;
     font-weight: bold;
 }
-
 span.newComment {
-    display: block;
+    display: inline-block;
     text-decoration: underline;
     color: midnightblue;
     cursor: pointer;
@@ -135,11 +91,102 @@ form.addComment{
     width: 100%;
     display: block;
 }
-
 form.addComment textarea {
     width: 100%;
+    font-size: 1em;
+    margin-top: 1em;
 }
-
 form.addComment input[type=button] {
     float: right;
+}
+form.addComment .writeErr{
+    color: darkred;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+.photo-comments ul li{
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 0.8em;
+}
+.photo-comments ul:first-child{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1em;
+}
+.photo-comments .com-line{
+    width: 98%;
+    display: inline-block;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    border-bottom: 1px dotted gray;
+    border-left: 1px dotted gray;
+}
+.photo-comments .com-img{
+    width: 15%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+.photo-comments .com-img img{
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 0.6em;
+    border: 1px solid silver;
+}
+.photo-comments .com-info{
+    width: 85%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.photo-comments .com-info a{
+    text-decoration: none;
+    color: #000000;
+}
+.photo-comments .com-alias{
+    color: firebrick;
+    display: inline-block;
+    font-weight: bold;
+}
+.photo-comments .com-content-frame{
+    margin-top: 0.2em;
+}
+.photo-comments .com-content{
+    display: inline-block;
+    padding: 0.2em;
+    font-size: 1.2em;
+    color: blue;
+    font-style: italic;
+    text-align: left;
+}
+.photo-comments .com-date{
+    display: inline-block;
+    margin-left: 2em;
+    font-family: "courier new";
+    font-size: 0.8em;
+    font-weight: bold;
+}
+.photo-comments .com-content p{
+    padding: 0;
+    margin: 0;
+}
+span.cntCcomments{
+    font-style: italic;
+    font-weight: bold;
+    color: darkcyan;
+}
+span.cntCcomments span.cntComm-val{
+    font-size: 1.2em;
+    text-shadow: 2px 2px 2px silver;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}
+
+@media only screen and (max-width : 1024px) and (orientation : portrait) {
+    .photo-like a{
+        font-size: 0.7em;
+    }
 }
