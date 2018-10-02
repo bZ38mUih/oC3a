@@ -110,7 +110,7 @@ form.addComment .writeErr{
     padding: 0;
     margin: 0;
     list-style: none;
-    font-size: 0.8em;
+
 }
 .photo-comments ul:first-child{
     margin: 0;
@@ -118,6 +118,7 @@ form.addComment .writeErr{
     margin-bottom: 1em;
 }
 .photo-comments .com-line{
+    font-size: 0.8em;
     width: 98%;
     display: inline-block;
     padding-bottom: 1em;
