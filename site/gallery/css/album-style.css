@@ -177,6 +177,8 @@ span.cntCcomments{
     font-style: italic;
     font-weight: bold;
     color: darkcyan;
+    display: block;
+    margin-bottom: 0.5em;
 }
 span.cntCcomments span.cntComm-val{
     font-size: 1.2em;
