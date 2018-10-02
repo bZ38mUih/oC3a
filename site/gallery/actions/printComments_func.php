@@ -67,7 +67,9 @@ function prtPhCm($photo_id, $comPar_id=null, $DB, $wrAccRes, $cntComm=0)
         }
         $tmpRes['text'].="</ul>";
         if($comPar_id==null) {
-            $tmpRes['text'].="<span class='newComment' comm-id='null' onclick='addComment(this)'>Написать комментарий</span>";
+            if($wrAccRes) {
+                $tmpRes['text'] .= "<span class='newComment' comm-id='null' onclick='addComment(this)'>Написать комментарий</span>";
+            }
         }
     }elseif($comPar_id==null){
         if($wrAccRes){
