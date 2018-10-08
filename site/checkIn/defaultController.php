@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         $RD_accounts->result['netWork']="site";
         $RD_accounts->result['validDate']=null;
         $RD_accounts->result['birthDay']=null;
+        $RD_accounts->result['accMain_flag']=true;
         $RD_accounts->putOne();
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/checkIn/views/registrationSuccess.php");
     }else{

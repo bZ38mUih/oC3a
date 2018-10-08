@@ -1,9 +1,5 @@
 <?php
-if($_POST){
-    if (isset($_POST['avatar_id']) and $_POST['avatar_id']!==null){
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/personal-page/actions/editUsrAvatar.php");
-    }
-}elseif(strtolower($appRJ->server['reqUri_expl'][2])=="ppmanager"){
+if(strtolower($appRJ->server['reqUri_expl'][2])=="ppmanager"){
     if(isset($_SESSION['groups'][1]) and $_SESSION['groups'][1]>10) {
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/ppManagerController.php");
     }else{
@@ -19,9 +15,13 @@ if($_POST){
             require_once($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/views/ntfRead.php");
         }
     }elseif(strtolower($appRJ->server['reqUri_expl'][2])=="settings"){
-        //if($appRJ->server['reqUri_expl'][3]=="read"){
+        if($_POST){
+            if (isset($_POST['avatar_id']) and $_POST['avatar_id']!==null){
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/site/personal-page/actions/editUsrAvatar.php");
+            }
+        }else{
             require_once($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/views/usrSettings.php");
-        //}
+        }
     }
 }
 else{

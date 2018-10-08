@@ -7,7 +7,6 @@ foreach ($_POST as $key=>$value){
             $groupRD = new recordDefault("usersGroups_dt", "group_id");
             $groupRD->result['group_id']=$grId;
             if($groupRD->copyOne()){
-
                 if($value=="OFF"){
                     $delUserGr_text="delete from usersToGroups_dt where user_id=".$_GET['user_id'].
                         " and group_id=".$grId;
@@ -38,18 +37,9 @@ foreach ($_POST as $key=>$value){
                         }
                     }
                 }
-
-
             }else{
                 $editUsrGrLog['log'].= "не найдена группа - > group_id = ".$grId."<br>";
             }
-
-
-            //if()
-
-
-
-
         }
     }else{
         //$editUsrGrLog['log'].= "неправильный параметр group_id - > ".$key."<br>";

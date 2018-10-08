@@ -1,6 +1,5 @@
 <?php
 if($_POST){
-    //require_once ($_SERVER['DOCUMENT_ROOT']."/source/recordDefault_class.php");
     if(isset($_POST['flagField']) and $_POST['flagField']=='newGroup'){
         require_once($_SERVER['DOCUMENT_ROOT']."/site/personal-page/actions/ppMan-newGroup.php");
     }elseif(isset($_POST['flagField']) and $_POST['flagField']=='editGroup') {
@@ -8,15 +7,12 @@ if($_POST){
     }elseif(isset($_POST['group_id']) and $_POST['group_id']!==null) {
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/personal-page/actions/ppMan-editGroupImg.php");
     }elseif (isset($_POST['editUsrGr_flag']) and $_POST['editUsrGr_flag']=='Yes'){
-
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/actions/ppMan-prepareUsrGr.php");
-
         if($editUsrGrLog['result']!==false){
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/personal-page/actions/ppMan-editUsrGroups.php");
         }
     }
 }
-
 elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['reqUri_expl'][3])=="groups"){
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/views/ppMan-groups.php");
 }elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['reqUri_expl'][3])=="newgroup"){
@@ -26,9 +22,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['re
 }elseif (isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['reqUri_expl'][3])=="notifications"){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/personal-page/views/ppMan-ntfDefView.php");
 }elseif (isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['reqUri_expl'][3])=="edituser"){
-
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/actions/ppMan-prepareUsrGr.php");
-
     if($editUsrGrLog['result']!==false){
         if($appRJ->server['reqUri_expl'][4]==null){
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/personal-page/views/ppMan-manDefView.php");
