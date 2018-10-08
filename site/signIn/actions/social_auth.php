@@ -53,7 +53,6 @@ if($socialAuth_err ===true){
         $RD_users->putOne();
         $RD_accounts->result['user_id']=$RD_users->result['user_id'];
         $RD_accounts->result['pw_hash']=null;
-        $RD_accounts->result['pw_salt']=null;
         $RD_accounts->result['eMail']=null;
         $RD_accounts->result['accMain_flag']=true;
         $RD_accounts->putOne();
