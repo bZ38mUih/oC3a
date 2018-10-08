@@ -1,5 +1,4 @@
 <?php
-//unset($_SESSION["donate"]);
 if($_SESSION['donate']['order_id']) {
     $Order_rd->result["order_id"] = $_SESSION['donate']['order_id'];
     $Order_rd->copyOne();

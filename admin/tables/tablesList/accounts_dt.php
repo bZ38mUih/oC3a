@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dorian Gray
- * Date: 09.01.2018
- * Time: 22:57
- */
-
 $query_text="create table accounts_dt (".
     "account_id int(5) AUTO_INCREMENT, ".
     "user_id int(5) not null, ".
