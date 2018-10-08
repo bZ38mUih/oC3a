@@ -54,7 +54,7 @@ if($usrCount>0){
         $appRJ->response['result'].= "<div class='item-line-img'>";
         if($slUsr_row['photoLink']){
             if($slUsr_row['netWork']=='site'){
-                $appRJ->response['result'].= "<img src='".PP_USR_IMG_PAPH.$slUsr_row['user_id']."/preview/".$slUsr_row['photoLink']."'>";
+                $appRJ->response['result'].= "<img src='".PP_USR_IMG_PAPH.$slUsr_row['account_id']."/preview/".$slUsr_row['photoLink']."'>";
             }else{
                 $appRJ->response['result'].= "<img src='".$slUsr_row['photoLink']."'>";
             }
