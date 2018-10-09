@@ -1,0 +1,149 @@
+form.diagSl{
+    text-align: left;
+    margin-top: 1em;
+    width: 90%;
+    margin-left: 5%;
+    border-bottom: 2px solid navy;
+}
+form.diagSl .input-line{
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    display: inline-block;
+    width: 50%;
+}
+form.diagSl .input-line label{
+    display: inline-block;
+    width: 50%;
+}
+.wdSearch{
+    display: none;
+    text-align: left;
+    margin-top: 1em;
+    width: 90%;
+    margin-left: 5%;
+    border-top: 1px solid navy;
+    border-bottom: 1px solid navy;
+    margin-bottom: 1em;
+}
+.wdSearch.active{
+    display: block;
+}
+.search-line, .dgr-line{
+    display: inline-block;
+    width: 100%;
+}
+.search-line{
+    text-align: center;
+}
+.search-line div, .dgr-line div{
+    display: inline-block;
+    border-right: 1px solid blue;
+}
+.search-line div:first-child, .dgr-line div:first-child {
+    border-left: 1px solid blue;
+}
+/*.search-line.caption{*/
+.caption{
+    background-color: navy;
+    color: white;
+    font-weight: bold;
+}
+/*.search-line.caption div{*/
+.caption div{
+    border-right: 1px solid white;
+}
+/*.search-line.caption div:first-child{*/
+.caption div:first-child{
+    border-left: 1px solid white;
+}
+.search-line .s-l-id{
+    width: 15%;
+}
+.search-line .s-l-tag{
+    width: 45%;
+}
+.search-line .s-l-date{
+    width: 30%;
+}
+a.showRes{
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+.diagResults{
+    text-align: left;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.diagResults .diag-info{
+    border-bottom: 1px solid navy;
+    padding-bottom: 0.5em;
+    /*margin-bottom: 2em;*/
+}
+.diagResults .diag-info span.fName{
+    min-width: 15em;
+    display: inline-block;
+}
+.diagResults .diag-info span.fVal{
+    text-decoration: underline;
+    font-style: italic;
+}
+/*
+.dgr-line {
+    display: inline-block;
+    width: 100%;
+}
+*/
+/*
+.dgr-line.caption{
+    background-color: navy;
+}
+*/
+/*
+.dgr-line div{
+
+}
+*/
+/*
+.dgr-line.caption div{
+    color: white;
+}
+*/
+.dgr-line.top{
+    margin-bottom: 1em;
+}
+
+.dgr-line div{
+    padding-left: 1em;
+    border-bottom: 1px solid navy;
+}
+.dgr-line .p-name{
+    /*display: inline-block;*/
+    width: 40%;
+}
+.dgr-line .p-pid{
+    /*display: inline-block;*/
+    width: 20%;
+    padding-left: 1em;
+}
+.dgr-line .p-res {
+    /*display: inline-block;*/
+    width: 30%;
+    padding-left: 1em;
+}
+.dgr-line .sd-name {
+    padding-left: 1em;
+    width: 35%;
+
+}
+.dgr-line .s-name{
+    padding-left: 1em;
+    width: 35%;
+}
+.dgr-line .s-res{
+    padding-left: 1em;
+    width: 20%;
+}
