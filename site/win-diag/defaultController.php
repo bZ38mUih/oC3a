@@ -63,7 +63,7 @@ if(isset($_FILES) and $_FILES!=null){
         if(isset($diagArr['procList'])){
             $insProc_qry.=insertArray("wdProc_dt", $bindFld, $bindVal, $diagArr['procList']);
             if($DB->doQuery($insProc_qry)){
-                //$difProc="select wdProc_dt.pName from wdProc_dt INNER JOIN ON wdProc_dt.pName=wdProcList_dt.pName";
+
 
 
 
@@ -110,14 +110,13 @@ elseif (isset($_GET['wdSearch'])){
     }
 }
 else{
+
     if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
+        $wdList_rd = new recordDefault("wdList_dt", "wd_id");
         if(!$appRJ->server['reqUri_expl'][2]){
-
-
             if(isset($_GET['wd_id']) and $_GET['wd_id']!=null){
                 $wdList_rd->result['wd_id']=$_GET['wd_id'];
             }
-
             require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/defaultView.php");
         }elseif ($appRJ->server['reqUri_expl'][2]==="enviropment"){
             if(isset($_GET['wd_id']) and $_GET['wd_id']!=null){
@@ -128,8 +127,8 @@ else{
 
             }
         }elseif ($appRJ->server['reqUri_expl'][2]==="process"){
-            
-            $wdList_rd = new recordDefault("wdList_dt", "wd_id");
+            require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/process.php");
+
             /*
             if(isset($_GET['wd_id']) and $_GET['wd_id']!=null){
 

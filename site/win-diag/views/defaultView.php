@@ -107,7 +107,9 @@ if($wdList_rd->copyOne()){
     //$appRJ->response['result'].="well copy one";
 
 }else{
-    $appRJ->response['result'].="invalid wd_id";
+    if(isset($wdList_rd->result['wd_id'])){
+        $appRJ->response['result'].="invalid wd_id";
+    }
 }
 $appRJ->response['result'].= "</div>";
 /*
