@@ -60,9 +60,18 @@ if($wdList_rd->copyOne()){
     if(mysql_num_rows($wdHw_res)>0){
         $appRJ->response['result'].="<div class='diag-info'><h3>Hardware</h3>";
         while ($wdHw_row=$DB->doFetchRow($wdHw_res)){
+
             $appRJ->response['result'].=
-                "<div class='dgr-line'><span class='fName'>".$wdHw_row['paramName'].
-                "</span><span class='fVal'>".$wdHw_row['paramVal']."</span></div>";
+                "<div class='dgr-line'><span class='fName'>".$wdHw_row['paramName']."</span><a class='fVal'>";
+            /*
+                "<a href='/win-diag/hardware?hwList_id=".$wdHw_row['paramVal']."'>".$wdHw_row['paramVal']."</a></div>";
+            */
+            if ($wdHw_row['paramName'] != "RAM") {
+                $appRJ->response['result'] .= "<a href='/win-diag/hardware?hwList_id=" . $wdHw_row['paramVal'] . "'>" .
+                    $wdHw_row['paramVal'] . "</a></div>";
+            } else {
+                $appRJ->response['result'] .= "<span class='fVal'>" . $wdHw_row['paramVal'] . "</a></div>";
+            }
         }
         $appRJ->response['result'].="</div>";
     }
@@ -77,7 +86,8 @@ if($wdList_rd->copyOne()){
             "<div class='p-pid'>PID</div><div class='p-res'>Result</div></div>";
         while ($wdProc_row=$DB->doFetchRow($wdProc_res)){
             $appRJ->response['result'].=
-                "<div class='dgr-line'><div class='p-name'>".$wdProc_row['pName'].
+                "<div class='dgr-line'><div class='p-name'>".
+                "<a href='/win-diag/process?pList_id=".$wdProc_row['pList_id']."'>".$wdProc_row['pName']."</a>".
                 "</div><div class='p-pid'>".$wdProc_row['PID']."</div><div class='p-res'>-</div></div>";
         }
         $appRJ->response['result'].="</div>";

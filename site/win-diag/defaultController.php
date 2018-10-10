@@ -63,11 +63,6 @@ if(isset($_FILES) and $_FILES!=null){
         if(isset($diagArr['procList'])){
             $insProc_qry.=insertArray("wdProc_dt", $bindFld, $bindVal, $diagArr['procList']);
             if($DB->doQuery($insProc_qry)){
-
-
-
-
-
                 $diagRes['data'].="processList-WELL<hr>";
             }else{
                 $diagRes['data'].="processList-FAIL<hr>";
@@ -123,9 +118,7 @@ else{
 
             }
         }elseif ($appRJ->server['reqUri_expl'][2]==="hardware"){
-            if(isset($_GET['wd_id']) and $_GET['wd_id']!=null){
-
-            }
+            require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/hardware.php");
         }elseif ($appRJ->server['reqUri_expl'][2]==="process"){
             require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/process.php");
 
