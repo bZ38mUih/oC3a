@@ -27,7 +27,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>";
 require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/diagMenu.php");
-//$appRJ->response['result'].= "<form><input type='file' onchange='loadDiagFile()' accept='file_extension image/jpeg,image/png,image/gif'></form>";
 $appRJ->response['result'].= "<form class='diagSl'>".
     "<div class='input-line'><label>Загрузите json-файл</label>".
     "<input type='file' onchange='loadDiagFile()' accept='application/JSON'></div>".
@@ -60,15 +59,21 @@ if($wdList_rd->copyOne()){
     if(mysql_num_rows($wdHw_res)>0){
         $appRJ->response['result'].="<div class='diag-info'><h3>Hardware</h3>";
         while ($wdHw_row=$DB->doFetchRow($wdHw_res)){
-
+            $dwManHw=null;
             $appRJ->response['result'].=
                 "<div class='dgr-line'><span class='fName'>".$wdHw_row['paramName']."</span><a class='fVal'>";
-            /*
-                "<a href='/win-diag/hardware?hwList_id=".$wdHw_row['paramVal']."'>".$wdHw_row['paramVal']."</a></div>";
-            */
             if ($wdHw_row['paramName'] != "RAM") {
-                $appRJ->response['result'] .= "<a href='/win-diag/hardware?hwList_id=" . $wdHw_row['paramVal'] . "'>" .
-                    $wdHw_row['paramVal'] . "</a></div>";
+                //$appRJ->response['result'] .= "<a href='/win-diag/hardware?hwList_id=" . $wdHw_row['paramVal'] . "'>" .
+                //$appRJ->response['result'] .= "<a href='/win-diag/hardware/" . $wdHw_row['paramVal'] . "'>" .
+                if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
+
+                    $dwManHw="<div class='dgr-line'><span class='fName'> </span><a class='fVal'>".
+                        "<a href='/win-diag/wdMan/hardware/" . urlencode($wdHw_row['paramVal']) . "'>" .
+                        "Edit</a></div>";
+                }
+                $appRJ->response['result'] .= "<a href='/win-diag/hardware/" . urlencode($wdHw_row['paramVal']) . "'>" .
+                    $wdHw_row['paramVal'] . "</a></div>".$dwManHw;
+
             } else {
                 $appRJ->response['result'] .= "<span class='fVal'>" . $wdHw_row['paramVal'] . "</a></div>";
             }
@@ -79,7 +84,7 @@ if($wdList_rd->copyOne()){
     if(mysql_num_rows($wdProc_res)>0){
         $appRJ->response['result'].="<div class='diag-info'><h3>Process</h3>".
 
-        "<div class='dgr-line top'><span class='fName'>Процессов:</span>".
+            "<div class='dgr-line top'><span class='fName'>Процессов:</span>".
             "<span class='fVal'>".mysql_num_rows($wdProc_res)."</span> </div>";
         $appRJ->response['result'].=
             "<div class='dgr-line caption'><div class='p-name'>p-name</div>".
@@ -95,7 +100,7 @@ if($wdList_rd->copyOne()){
     $wdSrv_res=$DB->doQuery($wdSrv_qry);
     if(mysql_num_rows($wdSrv_res)>0){
         $appRJ->response['result'].="<div class='diag-info'><h3>Services</h3>".
-        "<div class='dgr-line top'><span class='fName'>Служб:</span>".
+            "<div class='dgr-line top'><span class='fName'>Служб:</span>".
             "<span class='fVal'>".mysql_num_rows($wdSrv_res)."</span> </div>";
         $appRJ->response['result'].=
             "<div class='dgr-line caption'><div class='s-name'>s-name</div>".
@@ -108,28 +113,12 @@ if($wdList_rd->copyOne()){
         }
         $appRJ->response['result'].="</div>";
     }
-
-
-
-    //$appRJ->response['result'].="</div>";
-
-
-    //$appRJ->response['result'].="well copy one";
-
 }else{
     if(isset($wdList_rd->result['wd_id'])){
         $appRJ->response['result'].="invalid wd_id";
     }
 }
 $appRJ->response['result'].= "</div>";
-/*
-$appRJ->response['result'].= "<div class='diagMenu'>".
-    "<a href='/win-diag'>Анализ</a>".
-    "<a href='/win-diag/enviropment'>перОкружения</a>".
-    "<a href='/win-diag/hardware'>Аппаратура</a>".
-    "<a href='/win-diag/process'>Процессы</a>".
-    "<a href='/win-diag/services'>Службы</a>";
-*/
 $appRJ->response['result'].= "</div></div></div>";
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");

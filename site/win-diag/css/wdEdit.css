@@ -1,0 +1,26 @@
+.wdEdit{
+    text-align: left;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1em;
+}
+.info-line{
+    display: inline-block;
+    width: 100%;
+}
+.info-line span.fName, .info-line span.fVal{
+    display: inline-block;
+    width: 50%;
+}
+.info-line span.fName{
+    font-weight: bold;
+}
+.info-line span.fVal{
+    font-style: italic;
+}
+form{
+    border: 2px solid green;
+    border-radius: 0.3em;
+    margin: 2em 1em 0 0;
+    padding: 1em 0.5em 0.5em 0.5em;
+}

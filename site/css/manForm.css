@@ -1,135 +1,90 @@
-form
-{
+form{
     border: 2px solid green;
     border-radius: 0.3em;
     margin: 2em 1em 1em 1em;
     padding: 1em 0.5em 0.5em 0.5em;
 }
-
-.input-line
-{
+.input-line{
     width: 100%;
     border-bottom: 1px dotted black;
     margin-bottom: 1em;
     padding-bottom: 0.5em;
 }
-
-.input-line:last-child
-{
+.input-line:last-child{
     border: none;
     margin-bottom: 2em;
 }
-
-.input-line label
-{
+.input-line label{
     display: inline-block;
     width: 49%;
     font-weight: bold;
 }
-
 .input-line input[type=text], .input-line select,  input[type=checkbox], .input-line textarea,
-.input-line input[type=date], .input-line input[type=number]
-{
+.input-line input[type=date], .input-line input[type=number]{
     font-size: 1em;
     width: 50%;
 }
-
-.input-line input[type=button]
-{
+.input-line input[type=button]{
     float: right;
     margin: 0.5em;
     color: blue;
 }
-
-input[type=submit], input[type=file]
-{
+input[type=submit], input[type=file]{
     float: right;
     margin: 0.5em;
     font-size: 1em;
     color: darkorange;
     background: green;
 }
-
-.field-err
-{
+.field-err{
     font-size: 0.8em;
     font-family: "Courier New";
     color: red;
 }
-
-.results
-{
+.results{
     width: 100%;
     color: white;
     font-weight: bold;
     margin: 0 0 1em 0;
 }
-
-.results.success
-{
+.results.success{
     background-color: darkgreen;
 }
-
-.results.fail
-{
+.results.fail{
     background-color: firebrick;
 }
-
-
-/*edit img*/
-form.editImg .img-frame
-{
+/*editImg-->*/
+form.editImg .img-frame{
     width: 50%;
     display: inline-block;
 }
-
-form.editImg .img-frame img
-{
+form.editImg .img-frame img{
     height: 5em;
     width: 5em;
 }
-
-
-form.editImg .control-frame
-{
+form.editImg .control-frame{
     width: 49%;
     display: inline-block;
 }
-
-form.editImg div
-{
+form.editImg div{
     width: 100%;
     display: inline-block;
     margin: 0 0 1em 0;
 }
-/*
-form.editImg .control-frame .err-line
-{
-    width: 100%;
-    display: inline-block;
-}
-*/
-.delImg-line
-{
+.delImg-line{
     text-align: right;
 }
-
-.delImg-line span
-{
+.delImg-line span{
     color: navy;
     font-weight: bold;
     cursor: pointer;
     visibility: hidden;
 }
-
-.delImg-line span.active
-{
+.delImg-line span.active{
     visibility: visible;
 }
-
-
-.delImg-line span img
-{  height: 1em;
+.delImg-line span img{  height: 1em;
     width: 1em;
     vertical-align: middle;
 }
+/*editImg--<*/

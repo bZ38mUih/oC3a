@@ -1,7 +1,5 @@
 $(document).ready(function(){
-
     $('a.signIn').click(function (e) {
-
         $('.modal.signIn, .modal.signIn .overlay').css({'opacity': 1, 'visibility': 'visible'});
         e.preventDefault();
         $(".modal.signIn .modal-left").preloader({
@@ -11,7 +9,6 @@ $(document).ready(function(){
             zIndex: '',
             setRelative: true
         });
-
         $.get("/signIn/?auth=try", function(data){
             $(".modal.signIn .modal-left").html(data);
             $("head").append("<link rel='stylesheet' href='/site/signIn/css/defaultForm.css' type='text/css' media='screen, projection'/>");
@@ -21,9 +18,7 @@ $(document).ready(function(){
             $('.modal.signIn .modal-left').preloader('remove');
         })
     });
-
     tinyInit();
-
 })
 
 function appreciate(aprVal)
@@ -35,7 +30,6 @@ function appreciate(aprVal)
         zIndex: '',
         setRelative: true
     });
-
     $.get("?aprVal="+aprVal, function(data){
         var obj = JSON.parse(data);
         $(".ref-apprec").html(obj.content);
@@ -53,17 +47,12 @@ function writeCom(com_id)
         zIndex: '',
         setRelative: true
     });
-
     tinymce.triggerSave();
-
     var formComment=$('form.cmForm');
-
     var posting = $.post( "", formComment.serialize());
-
     posting.done(function( data ) {
         $('.ref-block').preloader('remove');
         var responce=JSON.parse(data);
-
         if(responce.err!=null){
             $(".cfForm-err").html(responce.err);
         }else{
@@ -73,16 +62,12 @@ function writeCom(com_id)
             tinymce.EditorManager.execCommand('mceAddEditor',true, 'yCm');
             tinyInit();
         }
-
     });
-
 }
 
 function newAnsw(com_id)
 {
-
     if(com_id != null){
-
         $("#com_").css("display", "block");
         $("form.cmForm h4").html("Ваш ответ:");
         $("#com_"+com_id).hide();
@@ -102,7 +87,6 @@ function newAnsw(com_id)
     }else{
         $("#com_").after(formComment);
     }
-
     tinyInit();
 }
 

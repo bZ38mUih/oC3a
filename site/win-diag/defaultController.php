@@ -22,8 +22,9 @@ function insertArray($tblName, $bindFld, $bindVal, $tgArr)
     $insVals=substr($insVals, 0, strlen($insVals)-2);
     return "insert into ".$tblName." \n".$insFld.$insVals;
 }
-
-if(isset($_FILES) and $_FILES!=null){
+if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=="wdMan"){
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/wdManController.php");
+}elseif(isset($_FILES) and $_FILES!=null){
     $appRJ->response['format']='json';
     $diagRes['data']=null;
     $fileContent=null;
