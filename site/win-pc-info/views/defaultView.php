@@ -6,15 +6,15 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
     "<meta name='description' content='Проверка процессов и служб windows'/>".
-    "<title>Win-diag</title>".
-    "<link rel='SHORTCUT ICON' href='/site/win-diag/img/favicon.png' type='image/png'>".
+    "<title>Win-pc-info</title>".
+    "<link rel='SHORTCUT ICON' href='/site/win-pc-info/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
-    "<script src='/site/win-diag/js/win-diag.js'></script>".
-    "<link rel='stylesheet' href='/site/win-diag/css/wd-analisyst.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/win-pc-info/js/win-diag.js'></script>".
+    "<link rel='stylesheet' href='/site/win-pc-info/css/wd-analisyst.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
@@ -26,7 +26,7 @@ $appRJ->response['result'].= "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>";
-require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/diagMenu.php");
+require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/diagMenu.php");
 $appRJ->response['result'].= "<form class='diagSl'>".
     "<div class='input-line'><label>Загрузите json-файл</label>".
     "<input type='file' onchange='loadDiagFile()' accept='application/JSON'></div>".
@@ -68,10 +68,10 @@ if($wdList_rd->copyOne()){
                 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
 
                     $dwManHw="<div class='dgr-line'><span class='fName'> </span><a class='fVal'>".
-                        "<a href='/win-diag/wdMan/hardware/" . urlencode($wdHw_row['paramVal']) . "'>" .
+                        "<a href='/win-pc-info/wdMan/hardware/" . urlencode($wdHw_row['paramVal']) . "'>" .
                         "Edit</a></div>";
                 }
-                $appRJ->response['result'] .= "<a href='/win-diag/hardware/" . urlencode($wdHw_row['paramVal']) . "'>" .
+                $appRJ->response['result'] .= "<a href='/win-pc-info/hardware/" . urlencode($wdHw_row['paramVal']) . "'>" .
                     $wdHw_row['paramVal'] . "</a></div>".$dwManHw;
 
             } else {
@@ -92,7 +92,7 @@ if($wdList_rd->copyOne()){
         while ($wdProc_row=$DB->doFetchRow($wdProc_res)){
             $appRJ->response['result'].=
                 "<div class='dgr-line'><div class='p-name'>".
-                "<a href='/win-diag/process?pList_id=".$wdProc_row['pList_id']."'>".$wdProc_row['pName']."</a>".
+                "<a href='/win-pc-info/process?pList_id=".$wdProc_row['pList_id']."'>".$wdProc_row['pName']."</a>".
                 "</div><div class='p-pid'>".$wdProc_row['PID']."</div><div class='p-res'>-</div></div>";
         }
         $appRJ->response['result'].="</div>";

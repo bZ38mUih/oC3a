@@ -7,7 +7,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<meta name='description' content='Редактирование аппаратуры'/>".
     "<meta name='robots' content='noindex'>".
     "<title>wdMan-editHardware</title>".
-    "<link rel='SHORTCUT ICON' href='/site/win-diag/img/favicon.png' type='image/png'>".
+    "<link rel='SHORTCUT ICON' href='/site/win-pc-info/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
@@ -16,8 +16,8 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     //"<script src='/site/win-diag/js/win-diag.js'></script>".
     "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>".
     "<script type='text/javascript' src='/site/js/manForm.js'></script>".
-    "<script type='text/javascript' src='/site/win-diag/js/win-diag.js'></script>".
-    //"<link rel='stylesheet' href='/site/win-diag/css/wdEdit.css' type='text/css' media='screen, projection'/>".
+    "<script type='text/javascript' src='/site/win-pc-info/js/win-diag.js'></script>".
+    "<link rel='stylesheet' href='/site/win-pc-info/css/wdEdit.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
@@ -55,7 +55,12 @@ $appRJ->response['result'].=  "<div class='delImg-line'>".
 $appRJ->response['result'].= "</div>".
     "</form>";
 $appRJ->response['result'].= "<form class='wdEditParams'>".
-    "<textarea>".$slHw_row['hwDescr']."</textarea>".
+    "<div class='field-err'></div>".
+    "<textarea name='hwDescr'>".$slHw_row['hwDescr']."</textarea>".
+    "<input type='hidden' name='hwEdit' value='yyy'>".
+    "<input type='hidden' name='pName' value='".$slHw_row['paramName']."'>".
+    "<input type='hidden' name='pVal' value='".$slHw_row['paramVal']."'>".
+    "<div class='input-line'><input type='button' value='Сохранить' onclick='editDescr()'></div>".
     "</form>";
 $appRJ->response['result'].="</div>";
 //require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/diagMenu.php");

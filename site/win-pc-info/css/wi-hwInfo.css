@@ -1,0 +1,13 @@
+.hwInfo-line{
+    text-align: left;
+}
+.hwInfo-line span.fName{
+    font-weight: bold;
+}
+.hwInfo-line span.fVal{
+    font-style: italic;
+}
+.hwInfo-line img{
+    height: 2em;
+    width: 2em;
+}

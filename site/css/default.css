@@ -2,17 +2,16 @@
 BODY {
     width: 100%;
     font-family: Cambria, Courier New, Calibri, Arial, MS Trebichet;
-    margin: 0 auto;
+    margin: 0;
     text-align: center;
     font-size: 25px;
 }
-/*body<--*/
+/*body--<*/
 /*footer-->*/
 footer{
     background-color: rgba(25,25,50,1);
     color: #ffffff;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+    padding: 0.2em 0;
 }
 footer div, footer a, footer img{
     display: inline-block;
@@ -40,11 +39,9 @@ footer div, footer a, footer img{
     rgba(25,25,50,1), rgba(25,25,50,1), rgba(25,25,50,1), rgba(255,255,255,0.2), rgba(255,255,255,0.5));
     position: relative;
     z-index: 1;
-    padding-left: 0.2em;
-    padding-right: 0.2em;
+    padding: 0.2em 0;
 }
 .ft-like{
-    text-align: center;
     width: 30%;
 }
 .ft-like a{
@@ -63,18 +60,13 @@ footer sup{
 /*footer<--*/
 /*contentBlock-->*/
 .contentBlock-frame{
-    text-align: center;
     width: 100%;
-    margin: 0;
-    padding: 0;
     display: inline-block;
 }
 .contentBlock-center{
     display: inline-block;
     max-width: 1366px;
     width: 100%;
-    margin: 0;
-    padding: 0;
 }
 .contentBlock-frame.dark{
     background: rgba(25,25,50,1);
@@ -85,4 +77,18 @@ footer sup{
         font-size: 35px;
     }
 }
-/*contentBlock<--*/
+/*contentBlock--<*/
+.lrp-wrap{
+    width: 90%;
+    margin: 0 0 5% 5%;
+}
+.ta-left{
+    text-align: left;
+}
+.ta-right{
+    text-align: right;
+}
+.line{
+    display: inline-block;
+    width: 100%;
+}

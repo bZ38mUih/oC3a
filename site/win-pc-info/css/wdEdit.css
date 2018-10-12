@@ -1,0 +1,19 @@
+.info-line{
+    text-align: left;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 0.5em;
+}
+.info-line:first-child{
+    margin-top: 1em;
+}
+span.fName{
+    font-weight: bold;
+    display: inline-block;
+    min-width: 10em;
+}
+span.fVal{
+    display: inline-block;
+    font-style: italic;
+    text-decoration: underline;
+}
