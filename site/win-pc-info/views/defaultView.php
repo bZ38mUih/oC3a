@@ -1,5 +1,5 @@
 <?php
-$h1 ="Диагностика Windows - Анализ";
+$h1 ="Windows PC Info";
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
@@ -9,13 +9,15 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<title>Win-pc-info</title>".
     "<link rel='SHORTCUT ICON' href='/site/win-pc-info/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<script src='/source/js/jquery.cookie.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
-    "<script src='/site/win-pc-info/js/win-diag.js'></script>".
-    "<link rel='stylesheet' href='/site/win-pc-info/css/wd-analisyst.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/win-pc-info/js/wi-edit.js'></script>" .
+    "<link rel='stylesheet' href='/site/win-pc-info/css/wd-default.css' type='text/css' media='screen, projection'/>" .
     "<script src='/site/js/goTop.js'></script>".
+    "<script src='/site/signIn/js/extAuth.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>";
@@ -23,17 +25,41 @@ if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }
 $appRJ->response['result'].= "</head><body>";
+$appRJ->response['result'].="<div class='modal signIn'><div class='overlay'></div><div class='contentBlock-frame'>".
+    "<div class='contentBlock-center'><div class='modal-right'><div class='modal-close'></div></div>".
+    "<div class='modal-left'></div></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
-    "<div class='contentBlock-wrap'>";
+    "<div class='contentBlock-wrap lrp-wrap'>";
 require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/diagMenu.php");
 $appRJ->response['result'].= "<form class='diagSl'>".
+    "<h3>Загрузите диагностический файл или воспользуйтсь поиском.</h3>".
+    "<div class='input-line'>";
+if($_SESSION['user_id']){
+    $appRJ->response['result'].= "<label>Загрузите json-файл</label>".
+        "<input type='file' onchange='loadDiagFile()' accept='application/JSON'>";
+}else{
+    $appRJ->response['result'].= "<a href='/signIn' class='signIn'><img src='/site/signIn/img/logo.png'>Авторизуйтесь".
+        " чтобы загрузить файл</a>";
+}
+$appRJ->response['result'].= "</div>".
+    "<div class='input-line'><label>или воспользуйтесь поиском</label><input type='text' value='%'>".
+    "<input type='button' value='Поиск' onclick='searchDiag()'></div>".
+    "</form>".
+    "<div class='wdSearch'></div>";
+
+/*
+$appRJ->response['result'].= "<form class='diagSl'>".
+    "<h3>Загрузите диагностический файл или воспользуйтсь поиском.</h3>".
     "<div class='input-line'><label>Загрузите json-файл</label>".
     "<input type='file' onchange='loadDiagFile()' accept='application/JSON'></div>".
     "<div class='input-line'><label>или воспользуйтесь поиском</label><input type='text' value='%'>".
     "<input type='button' value='Поиск' onclick='searchDiag()'></div>".
     "</form>".
     "<div class='wdSearch'></div>";
+*/
+
+
 $appRJ->response['result'].= "<div class='diagResults'>";
 if($wdList_rd->copyOne()){
     $wdEnv_qry="select * from wdEnv_dt where wd_id=".$wdList_rd->result['wd_id'];
@@ -120,6 +146,7 @@ if($wdList_rd->copyOne()){
 }
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "</div></div></div>";
+
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");

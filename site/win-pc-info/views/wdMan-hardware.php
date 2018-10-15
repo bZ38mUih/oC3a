@@ -16,7 +16,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     //"<script src='/site/win-diag/js/win-diag.js'></script>".
     "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>".
     "<script type='text/javascript' src='/site/js/manForm.js'></script>".
-    "<script type='text/javascript' src='/site/win-pc-info/js/win-diag.js'></script>".
+    "<script type='text/javascript' src='/site/win-pc-info/js/wi-edit.js'></script>" .
     "<link rel='stylesheet' href='/site/win-pc-info/css/wdEdit.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".

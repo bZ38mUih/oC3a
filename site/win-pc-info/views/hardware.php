@@ -13,7 +13,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     //"<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
-    "<script src='/site/win-pc-info/js/wdSearch.js'></script>".
+    "<script src='/site/win-pc-info/js/wi-search.js'></script>" .
     "<link rel='stylesheet' href='/site/win-pc-info/css/wiSearch.css' type='text/css' media='screen, projection'/>" .
     "<link rel='stylesheet' href='/site/win-pc-info/css/wi-hwInfo.css' type='text/css' media='screen, projection'/>".
     //"<script src='/site/js/goTop.js'></script>".

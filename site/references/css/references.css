@@ -1,133 +1,89 @@
-/*ref-title-->*/
-.ref-title
-{
-    width: 93%;
-    margin: 1em  auto  1em 4%;
-    padding: 3em 0 3em 0;
+.ref-title{
+    width: 96%;
+    margin: 1em  2%;
+    padding: 3em 0;
     border-left: 2px solid midnightblue;
     border-right: 2px solid midnightblue;
 }
-
-.title-img
-{
+.title-img{
     width: 30%;
     display: inline-block;
     vertical-align: middle;
 }
-
-.title-img img
-{
+.title-img img{
     height: 5em;
     width: 6em;
 }
-
-.title-txt
-{
-
+.title-txt{
     width: 66%;
     display: inline-block;
     vertical-align: middle;
-    padding-left: 2%;
+    padding: 0 2%;
 }
-
-.title-txt span
-{
+.title-txt span{
     width: 96%;
     display: inline-block;
-    padding-left: 2%;
+    padding: 0 2%;
     color: darkblue;
     font-style: italic;
     font-weight: bold;
 }
-
-.title-txt strong
-{
+.title-txt strong{
     width: 100%;
     display: inline-block;
     margin-top: 1em;
     text-decoration: underline;
     color: rgba(25,25,50,1);
 }
-
-.ref-appr-stat
-{
-    width: 93%;
-    margin: 1.5em 0 1.5em 4%;
+.ref-appr-stat{
+    width: 94%;
+    margin: 1.5em 3%;
 }
-
-.ref-stat
-{
+.ref-stat{
     width: 48%;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 2%;
+    margin: 0 1%;
     border-right: 1px solid white;
 }
-
-.ref-stat span.total
-{
+.ref-stat span.total{
     width: 90%;
     display: block;
     padding-left: 10%;
     font-weight: bold;
-    text-align: left;
     font-size: 1.1em;
 }
-
-.ref-stat span.fldName
-{
+.ref-stat span.fldName{
     width: 50%;
     display: block;
-    /*
-    margin-left:40%;
-    margin-top:1em;
-    margin-bottom:1em;
-    */
     margin: 1em 0 1em 40%;
-    text-align: left;
 }
-
-.ref-stat span.fldVal
-{
+.ref-stat span.fldVal{
     margin-right: 1em;
     color: lightgreen;
     font-size: 1.2em;
     text-decoration: underline;
 }
-
-.ref-apprec
-{
-    width: 44%;
+.ref-apprec{
+    width: 47%;
     display: inline-block;
     vertical-align: middle;
-    padding-left: 2%;
-    margin-bottom: 0.5em;
+    margin: 0 1% 0.5em 1%;
 }
-
-.apprec-line
-{
+.apprec-line{
     width: 100%;
-    margin: 1em 0 1em 0;
-    text-align: left;
+    margin: 1em 0;
 }
-
-.apprec-line.fine
-{
+.apprec-line.fine{
     color: red;
 }
-
-.apprec-line.well
-{
+.apprec-line.well{
     color: lightgreen;
 }
-
-.apprec-line.normal
-{
+.apprec-line.normal{
     color: lightblue;
 }
-
-.apprec-line span.apprec-val
-{
+.apprec-line span.apprec-val{
     width: 30%;
     display: inline-block;
     vertical-align: middle;
@@ -135,264 +91,179 @@
     font-weight: bold;
     cursor: pointer;
 }
-
-.apprec-line span.apprec-back
-{
+.apprec-line span.apprec-back{
     width: 60%;
     height: 1em;
     display: inline-block;
     vertical-align: middle;
-    text-align: right;
 }
-
-span.apprec-back-val
-{
-    text-shadow: 1px 1px 0px white, -1px -1px 0px white;
-    height: 1em;
-}
-
-.ref-frame
-{
-    width: 93%;
+.ref-frame{
+    width: 96%;
     display: block;
-    margin:0 auto 1em 4%;
+    margin:0 2% 1em 2%;
     padding-top: 1em;
 }
+.ref-block{
 
-.ref-block
-{
-    width: 100%;
-    padding: 1em 0 1em 0;
+    width: 94%;
+    padding: 1em 3%;
     border: 2px solid midnightblue;
     border-radius: 0.3em;
 }
-
-.aprErrors
-{
+.aprErrors{
     width: 100%;
     margin-top: 0.5em;
     font-family: "Courier New";
     color: firebrick;
 }
-
-a.signIn
-{
+a.signIn{
     width: 90%;
     display: inline-block;
     vertical-align: middle;
-    margin: 1em auto 1em 5%;
+    margin: 1em 5%;
     color: darkgreen;
-    text-align: left;
     font-weight: bold;
 }
-
-a.signIn img
-{
+a.signIn img{
     height: 1.5em;
     width: 1.5em;
     vertical-align: middle;
     margin-right: 1em;
 }
-
-/*toDo remove to commone singIn*/
-.signIn-frame
-{
-    background-color: white;
-}
-
-.ref-block hr
-{
+.ref-block hr{
     border-bottom: 1px solid blue;
     width: 90%;
 }
-
-form.cmForm
-{
-    width: 93%;
-    margin: 1em 1em 3% auto;
+form.cmForm{
+    width: 94%;
+    margin: 1em 3%;
     border: 2px solid darkgoldenrod;
     border-radius: 0.3em;
     background-color: rgba(0, 0, 255, 0.1);
 }
-
-form.cmForm h4
-{
+form.cmForm h4{
     padding: 1em 0 0 1em;
     margin: 0;
-    text-align: left;
 }
-
-form.cmForm .cfForm-cp
-{
+form.cmForm .cfForm-cp{
     width: 98%;
     margin: 1%;
-    text-align: right;
 }
-
-form.cmForm input[type=button]
-{
+form.cmForm input[type=button]{
     margin: 0.2em;
     background-color: navy;
     color: #ffffff;
     font-weight: bold;
     font-size: 1em;
 }
-
-form.cmForm .cmForm-area
-{
+form.cmForm .cmForm-area{
     width: 96%;
     margin: 2%;
 }
-
-.cfForm-err
-{
+.cfForm-err{
     padding-left: 5%;
     background: red;
     color: #ffffff;
     font-weight: bold;
 }
-
-.ref-block
-{
-    text-align: left;
+.ref-block ul:first-child{
+    margin: 0;
+    padding: 0;
 }
-
-.ref-block ul li
-{
+.ref-block ul li{
     width: 100%;
     display: inline-block;
-    padding: 0;
-    margin: 0;
     list-style: none;
 }
-
-.ref-block .com-line
-{
+.ref-block .com-line{
     width: 98%;
     display: inline-block;
-    padding-bottom: 1em;
-    padding-top: 1em;
+    padding: 1em 1%;
     border-bottom: 1px dotted gray;
     border-left: 1px dotted gray;
 }
-
-.ref-block .com-img
-{
+.ref-block .com-img{
     width: 15%;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
 }
-
-.ref-block .com-img img
-{
+.ref-block .com-img img{
     height: 3em;
     width: 3em;
     border-radius: 0.5em;
     border: 2px solid darkgoldenrod;
 }
-
-.ref-block .com-info
-{
+.ref-block .com-info{
     width: 85%;
     display: inline-block;
     vertical-align: middle;
 }
-
-.ref-block .com-info a
-{
+.ref-block .com-info a{
     text-decoration: none;
     color: #000000;
 }
-
-.ref-block .com-alias
-{
+.ref-block .com-alias{
     display: inline-block;
     font-weight: bold;
     font-size: 1.2em;
 }
-
-.ref-block .com-content-frame
-{
+.ref-block .com-content-frame{
     margin-top: 0.2em;
 }
-
-.ref-block .com-content
-{
+.ref-block .com-content{
     display: inline-block;
     padding: 0.5em;
     background-color: rgba(25,25,50,1);
     color: #ffffff;
     font-style: italic;
-    text-align: left;
     border: 2px solid darkgoldenrod;
     border-radius: 0.5em;
 }
-
-
-.ref-block .com-date
-{
+.ref-block .com-date{
     display: inline-block;
     margin-left: 2em;
     font-family: "courier new";
     font-size: 0.8em;
     font-weight: bold;
 }
-
-.ref-block .com-content p
-{
+.ref-block .com-content p{
     padding: 0;
     margin: 0;
 }
-
-.ref-block span.com-wrCm
-{
+.ref-block span.com-wrCm{
     cursor: pointer;
 }
-
-#com_
-{
+#com_{
     display: none;
 }
 
-@media only screen and (max-width : 1024px)
-{
+@media only screen and (max-width : 1024px){
 
 }
 
-@media only screen and (max-width : 1024px) and (orientation : portrait)
-{
-    .title-img
-    {
+@media only screen and (max-width : 1024px) and (orientation : portrait){
+    .title-img    {
         width: 100%;
         margin-bottom: 1em;
     }
-
-    .title-txt
-    {
-        width: 100%;
+    .title-txt    {
+        width: 96%;
         margin-bottom: 1em;
     }
-
-    .ref-stat
-    {
+    .ref-stat    {
         padding-top: 2%;
-        border-bottom: 1px solid navy;
         padding-bottom: 1em;
+        border-bottom: 1px solid navy;
     }
-    .ref-stat, .ref-apprec
-    {
+    .ref-stat, .ref-apprec    {
         width: 100%;
         border-right: none;
     }
-
-    .ref-block .com-img
-    {
+    .ref-block .com-img    {
         vertical-align: top;
     }
-
-    .ref-block .com-alias
-    {
+    .ref-block .com-alias    {
         margin-left: 1em;
     }
 }

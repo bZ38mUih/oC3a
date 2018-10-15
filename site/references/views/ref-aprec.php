@@ -46,7 +46,7 @@ if($printApprec_cnt>0){
     }
 
     foreach($aprArr['values'] as $key=>$value){
-        $apprRes['content'].= "<div class='apprec-line ".$key."'>";
+        $apprRes['content'].= "<div class='apprec-line ta-left ".$key."'>";
         $apprRes['content'].= "<span class='apprec-val' ";
         if($_SESSION['user_id']){
             $apprRes['content'].= "onclick='appreciate(".'"'.$key.'"'.")'";
@@ -71,7 +71,7 @@ if($printApprec_cnt>0){
 }else{
 
     foreach($aprArr['values'] as $key=>$value){
-        $apprRes['content'].= "<div class='apprec-line ".$key."'>";
+        $apprRes['content'].= "<div class='apprec-line ta-left ".$key."'>";
         $apprRes['content'].= "<span class='apprec-val' ";
         if($_SESSION['user_id']){
             $apprRes['content'].= "onclick='appreciate(".'"'.$key.'"'.")'";

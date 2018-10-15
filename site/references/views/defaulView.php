@@ -15,6 +15,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<link rel='stylesheet' href='/site/references/css/references.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/references/js/ref.js'></script>".
+    "<script src='/site/signIn/js/extAuth.js'></script>".
     "<script src='/site/js/social-block.js'></script>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
@@ -34,12 +35,12 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/references/views/ref-aprec.php")
 $prtLst= prtCm(null, $DB);
 $appRJ->response['result'].= "<div class='contentBlock-frame dark'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><div class='ref-appr-stat'><div class='ref-stat'>".
-    "<span class='total'>Всего:</span>".
-    "<span class='fldName'><span class='fldVal'>".$prtLst['cntCom']."</span>отзыв.</span>".
-    "<span class='fldName'><span class='fldVal'>".$apprRes['qty']."</span>оцен.</span>".
+    "<span class='total ta-left'>Всего:</span>".
+    "<span class='fldName ta-left'><span class='fldVal'>".$prtLst['cntCom']."</span>отзыв.</span>".
+    "<span class='fldName ta-left'><span class='fldVal'>".$apprRes['qty']."</span>оцен.</span>".
     "</div><div class='ref-apprec'>".$apprRes['content']."</div></div></div></div></div>".
     "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
-    "<div class='ref-frame'><div class='ref-block'>".$prtLst['text']."</div></div></div></div></div>".
+    "<div class='ref-frame'><div class='ref-block ta-left'>".$prtLst['text']."</div></div></div></div></div>".
     "<div class='modal signIn'><div class='overlay'></div><div class='contentBlock-frame'>".
     "<div class='contentBlock-center'><div class='modal-right'><div class='modal-close'></div></div>".
     "<div class='modal-left'></div></div></div></div>";

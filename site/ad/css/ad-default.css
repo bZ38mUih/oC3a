@@ -14,7 +14,7 @@
     visibility: hidden;
 }
 
-a.signIn-block
+a.signIn
 {
     width: 45%;
 
@@ -68,7 +68,7 @@ a.signIn-block
         display: none;
     }
 
-    a.signIn-block
+    a.signIn
     {
         width: 90%;
         margin-left: 4%;

@@ -1,15 +1,32 @@
+a.signIn img
+{
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+/*toDo remove to commone singIn*/
+.signIn-frame
+{
+    background-color: white;
+}
+
 form.diagSl{
     text-align: left;
     margin-top: 1em;
-    width: 90%;
-    margin-left: 5%;
-    border-bottom: 2px solid navy;
+    width: 100%;
+    /*border-bottom: 2px solid navy;*/
+}
+form.diagSl h3{
+    font-size: 1em;
 }
 form.diagSl .input-line{
-    margin-top: 0.5em;
-    margin-bottom: 1em;
+    margin: 0.5em 2% 1em 2%;
+    /*margin-bottom: 1em;*/
     display: inline-block;
-    width: 50%;
+    width: 46%;
+    vertical-align: middle;
 }
 form.diagSl .input-line label{
     display: inline-block;

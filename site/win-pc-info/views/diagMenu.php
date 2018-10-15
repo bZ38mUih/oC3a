@@ -3,7 +3,7 @@ $appRJ->response['result'].= "<div class='subMenu'><a href='/win-pc-info' ";
 if(!$appRJ->server['reqUri_expl'][2]){
     $appRJ->response['result'].= "class='active'";
 }
-$appRJ->response['result'].= ">Анализ</a>".
+$appRJ->response['result'].= ">Выбор</a>".
     "<a href='/win-pc-info/enviropment' ";
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] === 'enviropment'){
     $appRJ->response['result'].= "class='active'";
