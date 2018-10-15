@@ -6,24 +6,16 @@ a.signIn img
     margin-right: 1em;
 }
 
-/*toDo remove to commone singIn*/
-.signIn-frame
-{
-    background-color: white;
-}
-
 form.diagSl{
     text-align: left;
     margin-top: 1em;
     width: 100%;
-    /*border-bottom: 2px solid navy;*/
 }
 form.diagSl h3{
     font-size: 1em;
 }
 form.diagSl .input-line{
     margin: 0.5em 2% 1em 2%;
-    /*margin-bottom: 1em;*/
     display: inline-block;
     width: 46%;
     vertical-align: middle;
@@ -43,60 +35,45 @@ form.diagSl .input-line label{
 .wdSearch.active{
     display: block;
 }
-.search-line, .dgr-line{
-    display: inline-block;
-    width: 100%;
-}
-.search-line{
-    text-align: center;
-}
-.search-line div, .dgr-line div{
+.search-line div, .line div{
     display: inline-block;
     border-right: 1px solid blue;
 }
-.search-line div:first-child, .dgr-line div:first-child {
+.search-line div:first-child, .line div:first-child {
     border-left: 1px solid blue;
 }
-/*.search-line.caption{*/
+a.editP{
+    color: midnightblue;
+}
+a.editP img{
+    vertical-align: middle;
+    height: 1.2em;
+    width: 1.2em;
+    margin-right: 1em;
+}
 .caption{
     background-color: navy;
     color: white;
     font-weight: bold;
 }
-/*.search-line.caption div{*/
 .caption div{
     border-right: 1px solid white;
 }
-/*.search-line.caption div:first-child{*/
 .caption div:first-child{
     border-left: 1px solid white;
-}
-.search-line .s-l-id{
-    width: 15%;
-}
-.search-line .s-l-tag{
-    width: 45%;
-}
-.search-line .s-l-date{
-    width: 30%;
 }
 a.showRes{
     cursor: pointer;
     color: blue;
     text-decoration: underline;
 }
-
 .diagResults{
     text-align: left;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin: 1em 0;
 }
 .diagResults .diag-info{
     border-bottom: 1px solid navy;
     padding-bottom: 0.5em;
-    /*margin-bottom: 2em;*/
 }
 .diagResults .diag-info span.fName{
     min-width: 15em;
@@ -106,59 +83,32 @@ a.showRes{
     text-decoration: underline;
     font-style: italic;
 }
-/*
-.dgr-line {
-    display: inline-block;
-    width: 100%;
-}
-*/
-/*
-.dgr-line.caption{
-    background-color: navy;
-}
-*/
-/*
-.dgr-line div{
-
-}
-*/
-/*
-.dgr-line.caption div{
-    color: white;
-}
-*/
-.dgr-line.top{
+.line.top{
     margin-bottom: 1em;
 }
-
-.dgr-line div{
+.line div{
     padding-left: 1em;
     border-bottom: 1px solid navy;
 }
-.dgr-line .p-name{
-    /*display: inline-block;*/
+.line .td-15{
+    width: 15%;
+}
+.line .td-40{
     width: 40%;
 }
-.dgr-line .p-pid{
-    /*display: inline-block;*/
+.line .td-45{
+    width: 45%;
+}
+.line .td-20{
     width: 20%;
     padding-left: 1em;
 }
-.dgr-line .p-res {
-    /*display: inline-block;*/
+.line .td-30 {
     width: 30%;
     padding-left: 1em;
 }
-.dgr-line .sd-name {
+.line .td-35 {
     padding-left: 1em;
     width: 35%;
 
-}
-.dgr-line .s-name{
-    padding-left: 1em;
-    width: 35%;
-}
-.dgr-line .s-res{
-    padding-left: 1em;
-    width: 20%;
 }

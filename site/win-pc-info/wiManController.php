@@ -1,6 +1,5 @@
 <?php
 define(WD_HW_IMG, "/data/win-diag/hardware/");
-//define(GL_ALBUM_IMG_PAPH, "/data/gallery/albums/");
 if($_POST){
     if(isset($_POST['hwEdit']) and $_POST['hwEdit']=='yyy'){
         $appRJ->response['format']='json';
@@ -53,7 +52,7 @@ if($_POST){
 
         }
         if ($paramName!=null and  $paramVal!=null){
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-diag/actions/editHwImg.php");
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/editHwImg.php");
         }
     }
 }
@@ -67,7 +66,7 @@ elseif ($_GET){
 
     }
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-diag/actions/delHwImg.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/delHwImg.php");
 }
 elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="hardware"){
     if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
@@ -76,9 +75,22 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         $slHw_res=$DB->doQuery($slHw_qry);
         if(mysql_num_rows($slHw_res)==1){
             $slHw_row=$DB->doFetchRow($slHw_res);
-            require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/wdMan-hardware.php");
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-hardware.php");
         }else{
             $appRJ->errors['404']['description']="wrong paramName";
         }
     }
+}elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="environment"){
+    if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
+        $urlDec=urldecode($appRJ->server['reqUri_expl'][4]);
+        $slHw_qry="select * from wdHwList_dt WHERE paramVal='".$urlDec."'";
+        $slHw_res=$DB->doQuery($slHw_qry);
+        if(mysql_num_rows($slHw_res)==1){
+            $slHw_row=$DB->doFetchRow($slHw_res);
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-hardware.php");
+        }else{
+            $appRJ->errors['404']['description']="wrong paramName";
+        }
+    }
+    
 }
