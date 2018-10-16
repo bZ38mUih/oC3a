@@ -1,34 +1,25 @@
-BODY
-{
-    padding-top: 0.1em;
+BODY{
     width: 100%;
     font-family: Cambria, Courier New, Calibri, Arial, MS Trebichet;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
     text-align: center;
     font-size: 25px;
 }
-
-footer
-{
+footer{
     background-color: rgba(25,25,50,1);
     color: #ffffff;
 }
-
-.contentBlock-frame
-{
+.contentBlock-frame{
     text-align: center;
     width: 100%;
 }
-
-.contentBlock-center
-{
+.contentBlock-center{
     display: inline-block;
     max-width: 1366px;
     width: 100%;
 }
-
-.contentBlock-frame.dark
-{
+.contentBlock-frame.dark{
     background: rgba(25,25,50,1);
     color: #ffffff;
 }

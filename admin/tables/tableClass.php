@@ -13,6 +13,7 @@ class tablesClass
 
     public function dbCompare()
     {
+        //$this->tables=null;
         $DB = new DB();
         $DB->readSettings();
         $DB->connect_db();

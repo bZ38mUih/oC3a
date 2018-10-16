@@ -1,28 +1,4 @@
 <?php
-function insertArray($tblName, $bindFld, $bindVal, $tgArr)
-{
-    $insVals=null;
-    $insFld="(".$bindFld.", ";
-    foreach ($tgArr as $key=>$val){
-        foreach ($val as $kKey=>$kVal){
-            $insFld.=$kKey.", ";
-        }
-        break;
-    }
-    $insFld=substr($insFld, 0, strlen($insFld)-2);
-    $insFld.=")\n values \n";
-    foreach ($tgArr as $key=>$val){
-        $insVals.="(".$bindVal.", ";
-        foreach ($val as $kKey=>$kVal){
-            $insVals.="'".$kVal."', ";
-        }
-        $insVals=substr($insVals, 0, strlen($insVals)-2);
-        $insVals.="),\n";
-    }
-    $insVals=substr($insVals, 0, strlen($insVals)-2);
-    return "insert into ".$tblName." \n".$insFld.$insVals;
-}
-
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=="wiMan"){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/wiManController.php");
 }elseif(isset($_FILES) and $_FILES!=null){
@@ -94,9 +70,34 @@ else{
             }
             require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/defaultView.php");
         }elseif ($appRJ->server['reqUri_expl'][2]==="environment"){
-            if(isset($_GET['wd_id']) and $_GET['wd_id']!=null){
-
+            $wdInfo=null;
+            if(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]!=null){
+                $wdInfo.="<div class='wdInfo'>";
+                $vVal=urldecode($appRJ->server['reqUri_expl'][3]);
+                $wdInfo_qry="select * from wdEnvList_dt WHERE vVal='".$vVal."'";
+                $wdInfo_res=$DB->doQuery($wdInfo_qry);
+                if(mysql_num_rows($wdInfo_res)==1){
+                    $wdInfo_row=$DB->doFetchRow($wdInfo_res);
+                    $wdInfo.="<div class='line ta-left'><span class='fName'>".$wdInfo_row['vName'].": "."</span>".
+                        "<span class='fVal'>".$wdInfo_row['vVal']."</span> </div>";
+                    /*
+                    $wdInfo.="<div class='hwInfo-line'><img src='/data/win-pc-info/hardware/".$wdInfo_row['vName'].
+                        "/preview/".$wdInfo_row['hwImg']."'>".
+                    */
+                    $wdInfo.=    "<span class='fVal'>".$wdInfo_row['paramVal']."</span> </div><div class='whDescr'>";
+                    if($wdInfo_row['vDescr']){
+                        $wdInfo.=$wdInfo_row['vDescr'];
+                    }else{
+                        $wdInfo.="описание не задано";
+                    }
+                }else{
+                    $appRJ->errors['404']['description']="invalid vName";
+                    //$wdInfo.="i"
+                }
+                $wdInfo.="</div></div>";
             }
+
+            require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/environment.php");
         }elseif ($appRJ->server['reqUri_expl'][2]==="hardware"){
             $wdInfo=null;
             if(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]!=null){
@@ -106,9 +107,9 @@ else{
                 $wdInfo_res=$DB->doQuery($wdInfo_qry);
                 if(mysql_num_rows($wdInfo_res)==1){
                     $wdInfo_row=$DB->doFetchRow($wdInfo_res);
-                    $wdInfo.="<div class='hwInfo-line'><span class='fName'>Тип: "."</span>".
+                    $wdInfo.="<div class='line ta-left'><span class='fName'>Тип: "."</span>".
                         "<span class='fVal'>".$wdInfo_row['paramName']."</span> </div>";
-                    $wdInfo.="<div class='hwInfo-line'><img src='/data/win-pc-info/hardware/".$wdInfo_row['paramName'].
+                    $wdInfo.="<div class='line ta-left'><img src='/data/win-pc-info/hardware/".$wdInfo_row['paramName'].
                         "/preview/".$wdInfo_row['hwImg']."'>".
                         "<span class='fVal'>".$wdInfo_row['paramVal']."</span> </div><div class='whDescr'>";
                     if($wdInfo_row['hwDescr']){
@@ -138,7 +139,7 @@ else{
             }
         }
     }else{
-        $appRJ->errors['stab']="сервис временно на реконструкции";
+        $appRJ->errors['stab']['description']="сервис временно на реконструкции";
     }
 }
 

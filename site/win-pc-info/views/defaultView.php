@@ -17,7 +17,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/site/win-pc-info/js/wi-default.js'></script>" .
     "<link rel='stylesheet' href='/site/win-pc-info/css/wd-default.css' type='text/css' media='screen, projection'/>" .
     "<script src='/site/js/goTop.js'></script>".
-    "<script src='/site/signIn/js/extAuth.js'></script>".
+    //"<script src='/site/signIn/js/extAuth.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>";
@@ -63,15 +63,21 @@ if($wdList_rd->copyOne()){
         $appRJ->response['result'].="<div class='diag-info'><h3>EnvVars</h3>";
         while ($wdEnv_row=$DB->doFetchRow($wdEnv_res)){
             $dwManEnv=null;
-            $appRJ->response['result'].=
-                "<div class='dgr-line'><span class='fName'>".$wdEnv_row['vName'].
-                "</span><span class='fVal'>".$wdEnv_row['vVal']."</span></div>";
+
             if($wdEnv_row['vName']!='MachineName' and $wdEnv_row['vName']!='UserName'){
+                $appRJ->response['result'].=
+                    "<div class='line'><span class='fName'>".$wdEnv_row['vName'].
+                    "</span><a href='/win-pc-info/environment/".$wdEnv_row['vVal']."'>".$wdEnv_row['vVal']."</a></div>";
+
                 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
-                    $dwManEnv="<div class='dgr-line'><span class='fName'> </span><a class='fVal'>".
-                        "<a href='/win-pc-info/wiMan/enviropment/" . urlencode($wdEnv_row['vVal']) . "' class='editP'>" .
+                    $dwManEnv="<div class='line'><span class='fName'> </span><a class='fVal'>".
+                        "<a href='/win-pc-info/wiMan/environment/" . urlencode($wdEnv_row['vVal']) . "' class='editP'>" .
                         "<img src='/source/img/edit-icon.png'> - Edit</a></div>";
                 }
+            }else{
+                $appRJ->response['result'].=
+                    "<div class='line'><span class='fName'>".$wdEnv_row['vName'].
+                    "</span><span class='fVal'>".$wdEnv_row['vVal']."</span></div>";
             }
             $appRJ->response['result'].=$dwManEnv;
         }
@@ -83,13 +89,13 @@ if($wdList_rd->copyOne()){
         while ($wdHw_row=$DB->doFetchRow($wdHw_res)){
             $dwManHw=null;
             $appRJ->response['result'].=
-                "<div class='dgr-line'><span class='fName'>".$wdHw_row['paramName']."</span><a class='fVal'>";
+                "<div class='line'><span class='fName'>".$wdHw_row['paramName']."</span><a class='fVal'>";
             if ($wdHw_row['paramName'] != "RAM") {
                 //$appRJ->response['result'] .= "<a href='/win-diag/hardware?hwList_id=" . $wdHw_row['paramVal'] . "'>" .
                 //$appRJ->response['result'] .= "<a href='/win-diag/hardware/" . $wdHw_row['paramVal'] . "'>" .
                 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
 
-                    $dwManHw="<div class='dgr-line'><span class='fName'> </span><a class='fVal'>".
+                    $dwManHw="<div class='line'><span class='fName'> </span>".
                         "<a href='/win-pc-info/wiMan/hardware/" . urlencode($wdHw_row['paramVal']) . "' class='editP'>" .
                         "<img src='/source/img/edit-icon.png'> - Edit</a></div>";
                 }

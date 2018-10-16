@@ -1,4 +1,27 @@
 <?php
+function insertArray($tblName, $bindFld, $bindVal, $tgArr)
+{
+    $insVals=null;
+    $insFld="(".$bindFld.", ";
+    foreach ($tgArr as $key=>$val){
+        foreach ($val as $kKey=>$kVal){
+            $insFld.=$kKey.", ";
+        }
+        break;
+    }
+    $insFld=substr($insFld, 0, strlen($insFld)-2);
+    $insFld.=")\n values \n";
+    foreach ($tgArr as $key=>$val){
+        $insVals.="(".$bindVal.", ";
+        foreach ($val as $kKey=>$kVal){
+            $insVals.="'".$kVal."', ";
+        }
+        $insVals=substr($insVals, 0, strlen($insVals)-2);
+        $insVals.="),\n";
+    }
+    $insVals=substr($insVals, 0, strlen($insVals)-2);
+    return "insert into ".$tblName." \n".$insFld.$insVals;
+}
 $fileContent=null;
 foreach ($_FILES as $file){
     $fileContent = file_get_contents($file['tmp_name']);

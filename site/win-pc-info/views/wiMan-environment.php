@@ -1,12 +1,12 @@
 <?php
-$h1 ="wiMan - editEnvironments";
+$h1 ="wiMan - edit Environments";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
     "<meta name='description' content='Редактирование окружения'/>".
     "<meta name='robots' content='noindex'>".
-    "<title>wiMan-editEnvironments</title>".
+    "<title>wiMan-edit Environments</title>".
     "<link rel='SHORTCUT ICON' href='/site/win-pc-info/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
@@ -32,9 +32,10 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
     "<div class='contentBlock-wrap'>";
 $appRJ->response['result'].="<div class='wdEdit'>";
 $appRJ->response['result'].= "<div class='info-line'><span class='fName'>paramName:</span><span class='fVal'>".
-    $slHw_row['paramName']."</span></div>".
+    $slEnv_row['vName']."</span></div>".
     "<div class='info-line'><span class='fName'>paramVal:</span><span class='fVal'>".
-    $slHw_row['paramVal']."</span></div>";
+    $slEnv_row['vVal']."</span></div>";
+/*
 $appRJ->response['result'].= "<form class='editImg'>".
     "<div class='img-frame'>";
 $delImgBtn_text=null;
@@ -54,12 +55,13 @@ $appRJ->response['result'].=  "<div class='delImg-line'>".
     "<div class='results'></div>";
 $appRJ->response['result'].= "</div>".
     "</form>";
+*/
 $appRJ->response['result'].= "<form class='wdEditParams'>".
     "<div class='field-err'></div>".
-    "<textarea name='hwDescr'>".$slHw_row['hwDescr']."</textarea>".
-    "<input type='hidden' name='hwEdit' value='yyy'>".
-    "<input type='hidden' name='pName' value='".$slHw_row['paramName']."'>".
-    "<input type='hidden' name='pVal' value='".$slHw_row['paramVal']."'>".
+    "<textarea name='vDescr'>".$slEnv_row['vDescr']."</textarea>".
+    "<input type='hidden' name='envEdit' value='yyy'>".
+    "<input type='hidden' name='vName' value='".$slEnv_row['vName']."'>".
+    "<input type='hidden' name='vVal' value='".$slEnv_row['vVal']."'>".
     "<div class='input-line'><input type='button' value='Сохранить' onclick='editDescr()'></div>".
     "</form>";
 $appRJ->response['result'].="</div>";

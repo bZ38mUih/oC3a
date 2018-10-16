@@ -25,7 +25,8 @@ $(document).ready(function(){
 function tinyInit()
 {
     tinymce.init({
-        selector: "[name=hwDescr]",
+        //selector: "[name=hwDescr]",
+        selector: "form textarea",
         height: '20em',
         theme: 'modern',
         plugins:             'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table contextmenu paste code',

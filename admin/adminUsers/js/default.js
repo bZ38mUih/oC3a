@@ -5,35 +5,23 @@ function addNewUser()
 
     var posting = $.post( "", "addAdmUsrFlag=y&newUsrName="+$("[name='newUsrName']").val()+"&newUsrPass="+$("[name='newUsrPass']").val());
     $(".newUsr-err").preloader({
-        // loading text
         text: 'loading',
-        // from 0 to 100
         percent: '',
-        // duration in ms
         duration: '',
-        // z-index property
         zIndex: '',
-        // sets relative position to preloader's parent
         setRelative: true
     });
-
     posting.done(function( data ) {
-        //alert(data);
         var response=JSON.parse(data);
         $('.newUsr-err').html(response.log);
         if(response.result == true){
             $('.newUsr-err').removeClass("fail");
             $('.newUsr-err').addClass("well");
             $(".usersList").preloader({
-                // loading text
                 text: 'loading',
-                // from 0 to 100
                 percent: '',
-                // duration in ms
                 duration: '',
-                // z-index property
                 zIndex: '',
-                // sets relative position to preloader's parent
                 setRelative: true
             });
             $.get( "", {action: "refreshUsers"} )
@@ -50,22 +38,17 @@ function addNewUser()
     });
 }
 
-function dropAdminUsr(usrName) {
+function dropAdminUsr(usrName)
+{
     $(".usersList").preloader({
-        // loading text
         text: 'loading',
-        // from 0 to 100
         percent: '',
-        // duration in ms
         duration: '',
-        // z-index property
         zIndex: '',
-        // sets relative position to preloader's parent
         setRelative: true
     });
     $.get( "", {dropUser: usrName} )
         .done(function( data ) {
-            //var response=JSON.parse(data);
             $('.usersList').html(data);
             $('.usersList').preloader('remove');
         });

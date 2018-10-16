@@ -1,20 +1,52 @@
-
 $(document).ready(function(){
     $('.modal-right').click(function (){
         $('.modal, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
     });
 })
-function tables(action, tableName)
-{
-    if (tableName === undefined) {
-        tableName='';
+
+function tables(el){
+    var tableName=null;
+    if($(el).parent().parent().find("div:first").html()!==undefined){
+        tableName=$(el).parent().parent().find("div:first").html();
     }
+    var action = $(el).attr("action");
+    $(el).parent().preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    })
+    var dwlTable=null;
     if(action=='download'){
-        tableName=($(tableName).parent().parent().find("option:selected").val());
+        dwlTable=($(el).parent().parent().find("option:selected").val());
     }
-    $.get( "?action="+action+"&tableName="+tableName+
+    $.get( "?action="+action+"&tableName="+tableName+"&dwlTable="+dwlTable+
     "&prefixTag="+$(".optionsPanel [name='prefixTag']").val()+"&dateTag="+$(".optionsPanel [name='dateTag']").prop("checked") )
         .done(function( data ) {
+            $(el).parent().preloader("remove");
+            var response=JSON.parse(data);
+            if(response.err==false){
+                $('.logPanel h3').after("<div class='success'>"+response.log+"</div>");
+            }else{
+                $('.logPanel h3').after("<div class='fail'>"+response.log+"<span>"+response.err+"</span></div>");
+            }
+            $(el).parent().parent().html(response.row);
+        });
+}
+
+function upLoadAll() {
+    $(".optionsPanel").preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    })
+    $.get( "?action=upLoadAll"+"&prefixTag="+$(".optionsPanel [name='prefixTag']").val()+
+        "&dateTag="+$(".optionsPanel [name='dateTag']").prop("checked") )
+        .done(function( data ) {
+            $(".optionsPanel").preloader("remove");
             var response=JSON.parse(data);
             if(response.err==false){
                 $('.logPanel h3').after("<div class='success'>"+response.log+"</div>");
@@ -22,23 +54,18 @@ function tables(action, tableName)
                 $('.logPanel h3').after("<div class='fail'>"+response.log+"<span>"+response.err+"</span></div>");
             }
         });
+    refreshTables();
 }
 
-function refreshTables()
-{
+function refreshTables(){
     $('.tablesList').preloader({
-        // loading text
         text: 'loading',
-        // from 0 to 100
         percent: '',
-        // duration in ms
         duration: '',
-        // z-index property
         zIndex: '',
-        // sets relative position to preloader's parent
         setRelative: true
     });
-    $.get( "", {action: "refreshTables"} )
+    $.get( "/admin/tables/", {action: "refreshTables"} )
         .done(function( data ) {
             var response=JSON.parse(data);
             $('.tablesList').html(response.log);
@@ -46,7 +73,6 @@ function refreshTables()
         });
 }
 
-function showLog()
-{
+function showLog(){
     $('.modal, .modal .overlay').css({'opacity': 1, 'visibility': 'visible'});
 }

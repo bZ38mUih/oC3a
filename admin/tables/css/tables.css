@@ -1,197 +1,127 @@
-.optionsPanel
-{
-    border-bottom: 2px solid darkgreen;
+.optionsPanel{
     color: darkgreen;
-    padding-top: 1em;
-    margin-bottom: 0.2em;
-    padding-bottom: 0.2em;
+    margin: 1em 2%;
     display: inline-block;
-    width: 100%;
+    width: 96%;
     text-align: left;
-
 }
-
-.uploadOptions
-{
+.uploadOptions{
     display: inline-block;
     width: 50%;
 }
-
-.optionsPanel .btnPanel
-{
+.optionsPanel .btnPanel{
     display: inline-block;
     width: 50%;
 }
-
-.uploadAll
-{
+.uploadAll{
     color: #008000;
 }
-
-.optionsPanel .refresh
-{
+.optionsPanel .refresh{
     color: lightgreen;
 }
-
-.optionsPanel .showLog
-{
+.optionsPanel .showLog{
     color: firebrick;
 }
-
-.btnPanel input[type='button']
-{
+.btnPanel input[type='button']{
     margin-right: 1em;
     font-weight: bold;
     font-size: 0.8em;
 }
-
-.optionsPanel input[name='prefixTag']
-{
+.optionsPanel input[name='prefixTag']{
     border: none;
     border-bottom: 1px solid blue;
     font-size: 1em;
 }
-
-label[for=prefixTag]
-{
+label[for=prefixTag]{
     margin-right: 1em;
     font-weight: bold;
 }
-
-label [for=dateTag]
-{
+label [for=dateTag]{
     font-weight: bold;
 }
-
-.tablesList
-{
-   display: inline-block;
+.tablesList{
+    display: inline-block;
     width: 100%;
     text-align: center;
-
 }
-
-.tablesList img
-{
+.tablesList img{
     height: 1em;
     width: 1em;
     cursor: pointer;
 }
-
-.table-line
-{
+.table-line{
     display: inline-block;
     width: 100%;
     padding: 0.1em;
     border-bottom: 1px solid silver;
 }
-
-.table-line div:first-child
-{
+.table-line div:first-child{
     border-left: 1px solid silver;
 }
-
-
-.table-line:nth-child(2n+2)
-{
+.table-line:nth-child(2n+2){
     background-color: rgba(0, 255, 0, 0.1);
 }
-
-
-.table-line.caption
-{
+.table-line.caption{
     background: navy;
     font-weight: bold;
     color: #ffffff;
     text-align: center;
 }
-
-.table-cell
-{
+.table-cell{
     display: inline-block;
     border-right: 1px solid gray;
 }
-
-.table-line.caption .table-cell
-{
+.table-line.caption .table-cell{
     border-bottom: 1px solid gray;
     border-right: 1px solid white;
 }
-
-.table-cell.tblName
-{
+.table-cell.tblName{
     width: 25%;
 }
-
-.table-cell.tblLst
-{
+.table-cell.tblLst{
     width: 10%;
 }
-
-.table-cell.tblExt
-{
+.table-cell.tblExt{
     width: 10%;
 }
-
-.table-cell.tblAct
-{
+.table-cell.tblAct{
     width: 25%;
 }
-
-.table-cell.tblDwlTag
-{
+.table-cell.tblDwlTag{
     width: 20%;
 }
-
-.table-cell.action-icon
-{
+.table-cell.action-icon{
     width: 5%;
 }
-
-.table-cell.action-icon img
-{
+.table-cell.action-icon img{
     height: 1em;
     width: 1em;
     cursor: pointer;
 }
-
-
-.table-cell.action-icon span
-{
+.table-cell.action-icon span{
     background-image: url("/source/img/clear-icon.png");
     background-size: 100% 100%;
     cursor: pointer;
 }
-
-input
-{
+input{
     color: navy;
 }
-
-input:disabled
-{
+input:disabled{
     color: #000000;
     font-style: italic;
 }
-
-
-
-.tablesList select
-{
+.tablesList select{
     font-size: 0.8em;
     border: none;
     border-bottom: 1px solid blue;
     width: 100%;
     display: block;
 }
-
-/*modal->-------------------------------------------------------------------------------------------------------------*/
-.modal
-{
+/*modal-->*/
+.modal{
     visibility: hidden;
     vertical-align: top;
 }
-
 .overlay {
     background-color: rgba(255, 255, 255, 0.8);
     bottom: 0;
@@ -204,22 +134,16 @@ input:disabled
     visibility: hidden;
     z-index: 1;
 }
-
-.modal .contentBlock-frame
-{
+.modal .contentBlock-frame{
     position: fixed;
     left: 0;
     top: 0;
     z-index: 2;
 }
-
-.modal .contentBlock-center
-{
+.modal .contentBlock-center{
     z-index: 3;
 }
-
-.logPanel
-{
+.logPanel{
     width: 70%;
     display: inline-block;
     background-color: rgba(25,25,50,1);
@@ -229,102 +153,54 @@ input:disabled
     overflow-y: scroll;
     height: 100vh;
 }
-
-.logPanel div
-{
+.logPanel div{
     width: 90%;
     margin-top: 1em;
     padding-left: 10%;
 }
-
-.logPanel div.success
-{
+.logPanel div.success{
     border-bottom: 1px solid lightgreen;
 }
-
-.logPanel div.fail
-{
+.logPanel div.fail{
     border-bottom: 1px solid red;
 }
-
-.logPanel div span
-{
+.logPanel div span{
     color: red;
     display: block;
 }
-
-.logPanel h3
-{
+.logPanel h3{
     background: navy;
     color: #ffffff;
     margin: 0;
     text-align: center;
 }
-
-.modal-right
-{
+.modal-right{
     width: 30%;
     text-align: left;
     display: inline-block;
 }
-
-/*modalMenu*/
-
-.modal-right img
-{
+/*modalMenu-->*/
+.modal-right img{
     height: 3em;
     width: 3em;
     cursor: pointer;
 }
 
-@media only screen and (max-width : 1024px)
-    /*<1024*/
-{
-    body
-    {
-        /*background-color: red;*/
-    }
-}
-@media only screen and (max-width : 768px)
-    /*<768*/
-{
-    body
-    {
-        /*background-color: darkgreen;*/
-    }
-
-    .logPanel, .modal-right
-    {
-        /*display: block;*/
+@media only screen and (max-width : 768px){
+    .logPanel, .modal-right    {
         width: 100%;
         position: relative;
     }
-
-    .logPanel
-    {
+    .logPanel    {
         float: right;
     }
-
-    .modal-right
-    {
+    .modal-right    {
         float: left;
         text-align: right;
     }
-
-    .uploadOptions, .btnPanel
-    {
+    .uploadOptions, .btnPanel    {
         display: block;
         width: 100%;
         margin-top: 0.5em;
     }
-
 }
-@media only screen and (max-width : 300px)
-    /*<300*/
-{
-    body
-    {
-        /*background-color: yellow;*/
-    }
-}
-
