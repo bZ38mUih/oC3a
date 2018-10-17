@@ -1,27 +1,27 @@
 <?php
-$appRJ->response['result'].= "<div class='subMenu'><a href='/win-pc-info' ";
+$appRJ->response['result'].= "<div class='wi-menu'><a href='/win-pc-info' ";
 if(!$appRJ->server['reqUri_expl'][2]){
     $appRJ->response['result'].= "class='active'";
 }
-$appRJ->response['result'].= ">Выбор</a>".
+$appRJ->response['result'].= "><img src='/site/win-pc-info/img/choice.jpg'>Выбор</a>".
     "<a href='/win-pc-info/environment' ";
-if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] === 'enviropment'){
+if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] === 'environment'){
     $appRJ->response['result'].= "class='active'";
 }
-$appRJ->response['result'].= ">перОкруж</a>".
+$appRJ->response['result'].= "><img src='/site/win-pc-info/img/env.png'>перОкруж</a>".
     "<a href='/win-pc-info/hardware' ";
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] === 'hardware'){
     $appRJ->response['result'].= "class='active'";
 }
-$appRJ->response['result'].= ">Аппаратура</a>".
+$appRJ->response['result'].= "><img src='/site/win-pc-info/img/hardware.png'>Аппаратура</a>".
 "<a href='/win-pc-info/process'";
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] === 'process'){
     $appRJ->response['result'].= "class='active'";
 }
-$appRJ->response['result'].= ">Процессы</a>".
+$appRJ->response['result'].= "><img src='/site/win-pc-info/img/process.png'>Процессы</a>".
 "<a href='/win-pc-info/services'";
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] === 'services'){
     $appRJ->response['result'].= "class='active'";
 }
-$appRJ->response['result'].= ">Службы</a>".
+$appRJ->response['result'].= "><img src='/site/win-pc-info/img/services.png'>Службы</a>".
 "</div>";

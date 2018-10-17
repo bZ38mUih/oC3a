@@ -1,5 +1,4 @@
 <?php
-define(WD_HW_IMG, "/data/win-diag/hardware/");
 //define(WD_EN_IMG, "/data/win-diag/hardware/");
 if($_POST){
     if(isset($_POST['hwEdit']) and $_POST['hwEdit']=='yyy'){
@@ -16,7 +15,8 @@ if($_POST){
             $paramName="processor";
             $paramVal=$_POST['processor'];
         }elseif(isset($_POST['graphic']) and $_POST['graphic']!=null){
-
+            $paramName="graphic";
+            $paramVal=$_POST['graphic'];
         }
         if ($paramName!=null and  $paramVal!=null){
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/editHwImg.php");

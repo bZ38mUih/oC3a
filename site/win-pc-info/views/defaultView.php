@@ -12,12 +12,13 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/source/js/jquery.cookie.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
-    "<script src='/site/win-pc-info/js/wi-default.js'></script>" .
-    "<link rel='stylesheet' href='/site/win-pc-info/css/wd-default.css' type='text/css' media='screen, projection'/>" .
+    "<script src='/site/win-pc-info/js/wi-loadDFile.js'></script>" .
+    "<script src='/site/win-pc-info/js/wi-search.js'></script>" .
+    "<link rel='stylesheet' href='/site/win-pc-info/css/wi-menu.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/win-pc-info/css/wi-default.css' type='text/css' media='screen, projection'/>" .
     "<script src='/site/js/goTop.js'></script>".
-    //"<script src='/site/signIn/js/extAuth.js'></script>".
+    "<script src='/site/signIn/js/extAuth.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>";
@@ -43,41 +44,47 @@ if($_SESSION['user_id']){
         " чтобы загрузить файл</a>";
 }
 $appRJ->response['result'].= "</div>".
-    "<div class='input-line'><label>или воспользуйтесь поиском</label><input type='text' value='%'>".
-    "<input type='button' value='Поиск' onclick='searchDiag()'></div>".
+    "<div class='input-line'><label>или воспользуйтесь поиском</label><input type='text' name='tpSearch' value='%'>".
+    "<button onclick='wiSearch(".'"wiFile"'.")'><img src='/source/img/search-icon.png'></button></div>".
     "</form>".
-    "<div class='wdSearch'></div>";
+    "<div class='wiSearch'>";
+/*
+if(!$_GET and !$appRJ->server['reqUri_expl'][2]){
+    $appRJ->response['result'].="<h4>Все загруженные файлы:</h4>";
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/searchDFile.php");
+}
+*/
+$appRJ->response['result'].="</div>";
 $appRJ->response['result'].= "<div class='diagResults'>";
 if($wdList_rd->copyOne()){
     $wdEnv_qry="select * from wdEnv_dt where wd_id=".$wdList_rd->result['wd_id'];
     $wdHw_qry="select * from wdHw_dt where wd_id=".$wdList_rd->result['wd_id'];
     $wdProc_qry="select * from wdProc_dt where wd_id=".$wdList_rd->result['wd_id']." order by pName";
     $wdSrv_qry="select * from wdSrv_dt WHERE wd_id=".$wdList_rd->result['wd_id']." order by sSTName, sName";
-    $appRJ->response['result'].="<div class='diag-info'><h3>Diag-info</h3>".
-        "<div class='line'><span class='fName'>wd_id</span><span class='fVal'>".$wdList_rd->result['wd_id']."</span></div>".
-        "<div class='line'><span class='fName'>wdTag</span><span class='fVal'>".$wdList_rd->result['wdTag']."</span> </div>".
-        "<div class='line'><span class='fName'>diagDate</span><span class='fVal'>".$wdList_rd->result['diagDate']."</span> </div>".
-        "</div>";
+    $appRJ->response['result'].="<div class='wi-block'><h3>Инфо:</h3>".
+        "<div class='line btMg2'><span class='fName'>wd_id:</span><span class='fVal'>".$wdList_rd->result['wd_id'].
+        "</span></div><div class='line btMg2'><span class='fName'>wdTag:</span><span class='fVal'>".
+        $wdList_rd->result['wdTag']."</span> </div><div class='line btMg2'><span class='fName'>diagDate:</span>".
+        "<span class='fVal'>".$wdList_rd->result['diagDate']."</span></div></div>";
     $wdEnv_res=$DB->doQuery($wdEnv_qry);
     if(mysql_num_rows($wdEnv_res)>0){
-        $appRJ->response['result'].="<div class='diag-info'><h3>EnvVars</h3>";
+        $appRJ->response['result'].="<div class='wi-block'><h3>перОкруж</h3>";
         while ($wdEnv_row=$DB->doFetchRow($wdEnv_res)){
             $dwManEnv=null;
-
             if($wdEnv_row['vName']!='MachineName' and $wdEnv_row['vName']!='UserName'){
                 $appRJ->response['result'].=
-                    "<div class='line'><span class='fName'>".$wdEnv_row['vName'].
-                    "</span><a href='/win-pc-info/environment/".$wdEnv_row['vVal']."'>".$wdEnv_row['vVal']."</a></div>";
+                    "<div class='line btMg2'><span class='fName'>".$wdEnv_row['vName'].
+                    ":</span><a href='/win-pc-info/environment?envList_id=".$wdEnv_row['envList_id']."'>".$wdEnv_row['vVal']."</a></div>";
 
                 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
-                    $dwManEnv="<div class='line'><span class='fName'> </span><a class='fVal'>".
+                    $dwManEnv="<div class='line btMg2'><span class='fName'> </span><a class='fVal'>".
                         "<a href='/win-pc-info/wiMan/environment/" . urlencode($wdEnv_row['vVal']) . "' class='editP'>" .
                         "<img src='/source/img/edit-icon.png'> - Edit</a></div>";
                 }
             }else{
                 $appRJ->response['result'].=
-                    "<div class='line'><span class='fName'>".$wdEnv_row['vName'].
-                    "</span><span class='fVal'>".$wdEnv_row['vVal']."</span></div>";
+                    "<div class='line btMg2'><span class='fName'>".$wdEnv_row['vName'].
+                    ":</span><span class='fVal'>".$wdEnv_row['vVal']."</span></div>";
             }
             $appRJ->response['result'].=$dwManEnv;
         }
@@ -85,17 +92,17 @@ if($wdList_rd->copyOne()){
     }
     $wdHw_res=$DB->doQuery($wdHw_qry);
     if(mysql_num_rows($wdHw_res)>0){
-        $appRJ->response['result'].="<div class='diag-info'><h3>Hardware</h3>";
+        $appRJ->response['result'].="<div class='wi-block'><h3>Аппаратура</h3>";
         while ($wdHw_row=$DB->doFetchRow($wdHw_res)){
             $dwManHw=null;
             $appRJ->response['result'].=
-                "<div class='line'><span class='fName'>".$wdHw_row['paramName']."</span><a class='fVal'>";
+                "<div class='line btMg2'><span class='fName'>".$wdHw_row['paramName']."</span><a class='fVal'>";
             if ($wdHw_row['paramName'] != "RAM") {
                 //$appRJ->response['result'] .= "<a href='/win-diag/hardware?hwList_id=" . $wdHw_row['paramVal'] . "'>" .
                 //$appRJ->response['result'] .= "<a href='/win-diag/hardware/" . $wdHw_row['paramVal'] . "'>" .
                 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
 
-                    $dwManHw="<div class='line'><span class='fName'> </span>".
+                    $dwManHw="<div class='line btMg2'><span class='fName'> </span>".
                         "<a href='/win-pc-info/wiMan/hardware/" . urlencode($wdHw_row['paramVal']) . "' class='editP'>" .
                         "<img src='/source/img/edit-icon.png'> - Edit</a></div>";
                 }
@@ -110,9 +117,9 @@ if($wdList_rd->copyOne()){
     }
     $wdProc_res=$DB->doQuery($wdProc_qry);
     if(mysql_num_rows($wdProc_res)>0){
-        $appRJ->response['result'].="<div class='diag-info'><h3>Process</h3>".
+        $appRJ->response['result'].="<div class='wi-block'><h3>Процессы</h3>".
 
-            "<div class='line top'><span class='fName'>Процессов:</span>".
+            "<div class='line btMg1'><span class='fName'>Процессов:</span>".
             "<span class='fVal'>".mysql_num_rows($wdProc_res)."</span> </div>";
         $appRJ->response['result'].=
             "<div class='line caption'><div class='td-40'>p-name</div>".
@@ -127,8 +134,8 @@ if($wdList_rd->copyOne()){
     }
     $wdSrv_res=$DB->doQuery($wdSrv_qry);
     if(mysql_num_rows($wdSrv_res)>0){
-        $appRJ->response['result'].="<div class='diag-info'><h3>Services</h3>".
-            "<div class='line top'><span class='fName'>Служб:</span>".
+        $appRJ->response['result'].="<div class='wi-block'><h3>Службы</h3>".
+            "<div class='line btMg1'><span class='fName'>Служб:</span>".
             "<span class='fVal'>".mysql_num_rows($wdSrv_res)."</span> </div>";
         $appRJ->response['result'].=
             "<div class='line caption'><div class='td-35'>s-name</div>".

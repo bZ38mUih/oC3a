@@ -13,6 +13,8 @@ form.diagSl{
 }
 form.diagSl h3{
     font-size: 1em;
+    font-weight: normal;
+    text-shadow: -2px -2px 1px lightblue;
 }
 form.diagSl .input-line{
     margin: 0.5em 2% 1em 2%;
@@ -24,7 +26,8 @@ form.diagSl .input-line label{
     display: inline-block;
     width: 50%;
 }
-.wdSearch{
+/*
+.wiSearch{
     display: none;
     text-align: left;
     margin-top: 1em;
@@ -32,9 +35,12 @@ form.diagSl .input-line label{
     border-bottom: 1px solid navy;
     margin-bottom: 1em;
 }
-.wdSearch.active{
+*/
+/*
+.wiSearch.active{
     display: block;
 }
+*/
 .search-line div, .line div{
     display: inline-block;
     border-right: 1px solid blue;
@@ -71,23 +77,43 @@ a.showRes{
     text-align: left;
     margin: 1em 0;
 }
-.diagResults .diag-info{
+.diagResults .wi-block{
     border-bottom: 1px solid navy;
     padding-bottom: 0.5em;
 }
-.diagResults .diag-info span.fName{
+/*.diagResults .wi-block */span.fName{
+    font-weight: bold;
+    color: darkgreen;
     min-width: 15em;
     display: inline-block;
 }
-.diagResults .diag-info span.fVal{
-    text-decoration: underline;
+/*.diagResults .wi-block */span.fVal{
+    /*text-decoration: underline;*/
     font-style: italic;
 }
-.line.top{
+/*
+.wi-block .line{
     margin-bottom: 1em;
 }
+*/
+
+.line.btMg1{
+    margin-bottom: 1em;
+}
+.line.btMg2{
+    margin-bottom: 0.5em;
+}
+
+.wiInfo{
+    margin-top: 1em;
+    border-top: 1px solid midnightblue;
+    width: 90%;
+    padding: 1em 5% 1em 5%;
+}
+.wiInfo p{
+    font-style: italic;
+}
 .line div{
-    padding-left: 1em;
     border-bottom: 1px solid navy;
 }
 .line .td-15{
@@ -111,4 +137,36 @@ a.showRes{
     padding-left: 1em;
     width: 35%;
 
+}
+.line img{
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+.wiSearch h4{
+    text-align: left;
+    /*padding: 0;*/
+    margin: 1em 0 0.5em 0;
+    color: midnightblue;
+}
+.wiSearch .line div{
+    padding: 0.2em 0;
+}
+input[name='tpSearch']{
+    border: 1px solid midnightblue;
+    border-radius: 0.2em;
+    font-size: 1em;
+    width: 5em;
+    margin-right: 0.2em;
+}
+.diagSl button{
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 0.2em;
+}
+.diagSl button img{
+    height: 1.2em;
+    width: 1.2em;
 }
