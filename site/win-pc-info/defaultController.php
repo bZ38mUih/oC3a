@@ -1,6 +1,6 @@
 <?php
 if(!$_SESSION['user_id']){
-    $appRJ->errors['404']['description']="сервис времеено на реконструкции";
+    $appRJ->errors['404']['description']="сервис временно на реконструкции";
 }
 if(isset($appRJ->errors)){
     $appRJ->throwErr();

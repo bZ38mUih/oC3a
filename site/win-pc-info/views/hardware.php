@@ -37,8 +37,6 @@ if(!$_GET['hwList_id'] and !$appRJ->server['reqUri_expl'][3]){
 $appRJ->response['result'].="</div>";
 $appRJ->response['result'].= "<div class='wi-results ta-left'>";
 $appRJ->response['result'].=$wdInfo;
-//$appRJ->response['result'].=$wdInfo;
-//$appRJ->response['result'].=""
 $appRJ->response['result'].= "</div></div></div></div>";
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
