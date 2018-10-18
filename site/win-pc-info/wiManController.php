@@ -37,27 +37,38 @@ elseif ($_GET){
 }
 elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="hardware"){
     if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
-        $urlDec=urldecode($appRJ->server['reqUri_expl'][4]);
-        $slHw_qry="select * from wdHwList_dt WHERE paramVal='".$urlDec."'";
-        $slHw_res=$DB->doQuery($slHw_qry);
-        if(mysql_num_rows($slHw_res)==1){
-            $slHw_row=$DB->doFetchRow($slHw_res);
-            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-hardware.php");
+        if(isset($appRJ->server['reqUri_expl'][5]) and $appRJ->server['reqUri_expl'][5]!=null){
+            $urlDec=urldecode($appRJ->server['reqUri_expl'][5]);
+            $slHw_qry="select * from wdHwList_dt WHERE paramVal='".$urlDec."'";
+            $slHw_res=$DB->doQuery($slHw_qry);
+            if(mysql_num_rows($slHw_res)==1){
+                $slHw_row=$DB->doFetchRow($slHw_res);
+                require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-hardware.php");
+            }else{
+                $appRJ->errors['404']['description']="invalid paramName or invalid";
+            }
         }else{
-            $appRJ->errors['404']['description']="wrong paramName";
+            $appRJ->errors['404']['description']="invalid invalid";
         }
+    }else{
+        $appRJ->errors['404']['description']="invalid paramName";
     }
 }elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="environment"){
     if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
-        $urlDec=urldecode($appRJ->server['reqUri_expl'][4]);
-        $slEnv_qry="select * from wdEnvList_dt WHERE vVal='".$urlDec."'";
-        $slEnv_res=$DB->doQuery($slEnv_qry);
-        if(mysql_num_rows($slEnv_res)==1){
-            $slEnv_row=$DB->doFetchRow($slEnv_res);
-            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-environment.php");
+        if(isset($appRJ->server['reqUri_expl'][5]) and $appRJ->server['reqUri_expl'][5]!=null){
+            $urlDec=urldecode($appRJ->server['reqUri_expl'][5]);
+            $slEnv_qry="select * from wdEnvList_dt WHERE vVal='".$urlDec."' and vName='".$appRJ->server['reqUri_expl'][4]."'";
+            $slEnv_res=$DB->doQuery($slEnv_qry);
+            if(mysql_num_rows($slEnv_res)==1){
+                $slEnv_row=$DB->doFetchRow($slEnv_res);
+                require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-environment.php");
+            }else{
+                $appRJ->errors['404']['description']="invalid vName or vVal";
+            }
         }else{
-            $appRJ->errors['404']['description']="wrong paramName";
+            $appRJ->errors['404']['description']="invalid vVal";
         }
+    }else{
+        $appRJ->errors['404']['description']="invalid vName";
     }
-
 }

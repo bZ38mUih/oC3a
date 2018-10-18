@@ -1,6 +1,12 @@
+$(document).ready(function () {
+    $("button").click(function () {
+        event.preventDefault();
+    });
+})
+
 function wiSearch(wiSearch)
 {
-    $("form.diagSl").preloader({
+    $("form.wi-form").preloader({
         text: 'loading',
         percent: '',
         duration: '',
@@ -8,9 +14,7 @@ function wiSearch(wiSearch)
         setRelative: true
     });
     $.get("?wiSearch="+wiSearch+"&searchArg="+$("[name='tpSearch']").val(), function (data) {
-        $('form.diagSl').preloader('remove');
-        //$(".wiSearch").addClass("active");
-        alert(data);
+        $('form.wi-form').preloader('remove');
         $(".wiSearch").html(data);
     })
 }

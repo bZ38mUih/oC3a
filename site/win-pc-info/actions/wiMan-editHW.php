@@ -19,8 +19,6 @@ if(isset($_POST['pVal']) and $_POST['pVal']!=null){
 }
 if(isset($_POST['hwDescr']) and  $_POST['hwDescr']!=null){
     $hwDescr=$_POST['hwDescr'];
-}else{
-    $hwEdit['err']="null Description; ";
 }
 if(is_null($hwEdit['err'])){
     $slHw_qry="select * from wdHwList_dt WHERE paramVal='".$paramVal."' and paramName='".$paramName."'";

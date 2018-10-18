@@ -16,7 +16,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     //"<script src='/site/win-diag/js/win-diag.js'></script>".
     "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>".
     "<script type='text/javascript' src='/site/js/manForm.js'></script>".
-    "<script type='text/javascript' src='/site/win-pc-info/js/wi-edit.js'></script>" .
+    "<script type='text/javascript' src='/site/win-pc-info/js/wiMan-edit.js'></script>" .
     "<link rel='stylesheet' href='/site/win-pc-info/css/wdEdit.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
@@ -35,27 +35,6 @@ $appRJ->response['result'].= "<div class='info-line'><span class='fName'>paramNa
     $slEnv_row['vName']."</span></div>".
     "<div class='info-line'><span class='fName'>paramVal:</span><span class='fVal'>".
     $slEnv_row['vVal']."</span></div>";
-/*
-$appRJ->response['result'].= "<form class='editImg'>".
-    "<div class='img-frame'>";
-$delImgBtn_text=null;
-if($slHw_row['hwImg']){
-    $appRJ->response['result'].= "<img src='".WD_HW_IMG.$slHw_row['paramName']."/preview/".
-        $slHw_row['hwImg']."' ";
-    $appRJ->response['result'].=">";
-    $delImgBtn_text= "class='active'";
-}else{
-    $appRJ->response['result'].= "<img src='/data/default-img.png'>";
-}
-$appRJ->response['result'].= "</div><div class='control-frame'>";
-$appRJ->response['result'].=  "<div class='delImg-line'>".
-    "<span onclick='delImg(".'"'.$slHw_row['paramVal'].'"'.", ".'"'.$slHw_row['paramName'].'"'.")' ".$delImgBtn_text.">".
-    "<img src='/source/img/drop-icon.png'>Удалить картинку</span></div><div class='button-line'>".
-    "<input type='file' onchange='loadFiles(".'"'.$slHw_row['paramVal'].'"'.", ".'"'.$slHw_row['paramName'].'"'.")' accept='image/jpeg,image/png,image/gif'></div>".
-    "<div class='results'></div>";
-$appRJ->response['result'].= "</div>".
-    "</form>";
-*/
 $appRJ->response['result'].= "<form class='wdEditParams'>".
     "<div class='field-err'></div>".
     "<textarea name='vDescr'>".$slEnv_row['vDescr']."</textarea>".

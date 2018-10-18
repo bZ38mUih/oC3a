@@ -19,8 +19,6 @@ if(isset($_POST['vVal']) and $_POST['vVal']!=null){
 }
 if(isset($_POST['vDescr']) and  $_POST['vDescr']!=null){
     $vDescr=$_POST['vDescr'];
-}else{
-    $envEdit['err']="null Description; ";
 }
 if(is_null($envEdit['err'])){
     $slEnv_qry="select * from wdEnvList_dt WHERE vVal='".$vVal."' and vName='".$vName."'";
