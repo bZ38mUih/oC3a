@@ -23,7 +23,7 @@ if($envSearch_res=$DB->doQuery($envSearch_qry)){
             $appRJ->response['result'].="</div></div>";
         }
     }else{
-        $appRJ->response['result']="<div class='pageErr'>envList with varValue like %".$_GET['searchArg']."% not found</div>";
+        $appRJ->response['result'].="<div class='pageErr'>envList with varValue like %".$_GET['searchArg']."% not found</div>";
     }
 }else{
     $appRJ->errors['request']['description']="select from wdEnvList_dt error";

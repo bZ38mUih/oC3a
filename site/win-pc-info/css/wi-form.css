@@ -92,6 +92,9 @@ span.fVal{
 .line .td-55{
     width: 55%;
 }
+.line .td-90{
+    width: 90%;
+}
 .line.caption{
 
     color: white;
@@ -129,6 +132,8 @@ a.deactive{
     color: midnightblue;
 }
 .wi-block{
+    width: 95%;
+    padding-left: 5%;
     border-bottom: 1px solid navy;
     padding-bottom: 0.5em;
     border-bottom: 1px solid midnightblue;
@@ -145,6 +150,13 @@ a.deactive{
 }
 .line.btMg2 a:not(a.deactive){
     color: blue;
+}
+.line img {
+    vertical-align: middle;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 0.2em;
+    margin-right: 1em;
 }
 .wi-block .wi-table{
     text-align: center;
@@ -164,89 +176,5 @@ a.editP img{
     width: 1em;
     margin-right: 0.5em;
 }
-/*
-
-*/
-
-
-
-/*
-.wiSearchMenu{
-    margin: 1em 0;
-}
-.wiSearchRes{
-    display: none;
-}
-*/
-
-
-
-/*
-.wiSearch{
-    display: none;
-    text-align: left;
-    margin-top: 1em;
-    border-top: 1px solid navy;
-    border-bottom: 1px solid navy;
-    margin-bottom: 1em;
-}
-*/
-/*
-.wiSearch.active{
-    display: block;
-}
-*/
-/*
-.search-line div, .line div{
-    display: inline-block;
-    border-right: 1px solid blue;
-}
-.search-line div:first-child, .line div:first-child {
-    border-left: 1px solid blue;
-}
-a.editP{
-    color: midnightblue;
-}
-a.editP img{
-    vertical-align: middle;
-    height: 1.2em;
-    width: 1.2em;
-    margin-right: 1em;
-}
-
-a.showRes{
-    cursor: pointer;
-    color: blue;
-    text-decoration: underline;
-}
-
-*/
-
-
-/*
-.wi-block .line{
-    margin-bottom: 1em;
-}
-*/
-
-
-/*
-.wiInfo{
-    margin-top: 1em;
-    border-top: 1px solid midnightblue;
-    width: 90%;
-    padding: 1em 5% 1em 5%;
-}
-.wiInfo p{
-    font-style: italic;
-}
-
-.line img{
-    height: 1.5em;
-    width: 1.5em;
-    vertical-align: middle;
-    margin-right: 1em;
-}
-*/
 
 

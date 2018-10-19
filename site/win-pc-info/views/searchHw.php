@@ -2,7 +2,6 @@
 $hwSearch_qry="select * from wdHwList_dt WHERE paramVal LIKE '%".$_GET['searchArg']."%' ORDER BY paramName, paramVal";
 if($hwSearch_res=$DB->doQuery($hwSearch_qry)){
     if(mysql_num_rows($hwSearch_res)>0){
-//        echo "xxx";
         $appRJ->response['result'].="<div class='line caption'>".
             "<div class='td-45'>hwType</div><div class='td-45'>hwName</div></div>";
         while ($hwSearch_row=$DB->doFetchRow($hwSearch_res)){
@@ -17,35 +16,15 @@ if($hwSearch_res=$DB->doQuery($hwSearch_qry)){
                     $hwSearch_row['paramVal']."</a>";
             }
             if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
-                $appRJ->response['result'].=
-                    "<br><a href='/win-pc-info/wiMan/hardware/".$hwSearch_row['paramName']."/" .
+                $appRJ->response['result'].="<a href='/win-pc-info/wiMan/hardware/".$hwSearch_row['paramName']."/".
                     urlencode($hwSearch_row['paramVal']) . "' class='editP'>" .
-                    "<img src='/source/img/edit-icon.png'> - Edit</a></div>";
+                    "<img src='/source/img/edit-icon.png'> - Edit</a>";
             }
             $appRJ->response['result'].="</div></div>";
         }
     }else{
-  //      echo "yyy";
-
-        //if($_GET['searchArg']){
             $appRJ->response['result'] .= "<div class='pageErr'>hwList with varValue like %" . $_GET['searchArg'] . "% not found</div>";
-        //}else{
-        //    $appRJ->response['result'] .= "<div class='pageErr'>hwList is empty</div>";
-        //}
-
-        //
   }
-   // exit;
-
-    /*
-    if(mysql_num_rows($hwSearch_res)>0){
-
-
-
-    }else{
-
-    }
-    */
 }else{
     $appRJ->errors['request']['description']="select from wdHwList_dt error";
 }

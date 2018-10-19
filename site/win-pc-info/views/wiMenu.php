@@ -8,7 +8,7 @@ $appRJ->response['result'].= "><img src='/site/win-pc-info/img/choice.jpg'>Вы�
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] === 'environment'){
     $appRJ->response['result'].= "class='active'";
 }
-$appRJ->response['result'].= "><img src='/site/win-pc-info/img/env.png'>перОкруж</a>".
+$appRJ->response['result'].= "><img src='/site/win-pc-info/img/env.png'>Окружение</a>".
     "<a href='/win-pc-info/hardware' ";
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] === 'hardware'){
     $appRJ->response['result'].= "class='active'";

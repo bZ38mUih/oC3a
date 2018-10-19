@@ -1,11 +1,14 @@
 <?php
+/*
 if(!$_SESSION['user_id']){
     $appRJ->errors['404']['description']="сервис временно на реконструкции";
 }
 if(isset($appRJ->errors)){
     $appRJ->throwErr();
 }
+*/
 define(WD_HW_IMG, "/data/win-pc-info/hardware/");
+define(WD_PROC_IMG, "/data/win-pc-info/process/");
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=="wiMan"){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/wiManController.php");
 }elseif(isset($_FILES) and $_FILES!=null){
@@ -27,9 +30,10 @@ elseif (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchHw.php");
     }
     else{
-        $appRJ->response['result']="wrong search param";
+        $appRJ->response['result'].="wrong search param";
     }
 }
+/*
 elseif (isset($_GET['sInfo'])){
 
     if(isset($_GET['pVal']) and $_GET['pVal']!=null){
@@ -59,6 +63,7 @@ elseif (isset($_GET['sInfo'])){
         //null pVal
     }
 }
+*/
 else{
     $wdInfo=null;
     $wdList_rd = new recordDefault("wdList_dt", "wd_id");
@@ -72,11 +77,16 @@ else{
     }elseif ($appRJ->server['reqUri_expl'][2]==="hardware"){
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/showHardware.php");
     }elseif ($appRJ->server['reqUri_expl'][2]==="process"){
-        require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/process.php");
+        require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/showProcess.php");
     }elseif ($appRJ->server['reqUri_expl'][2]==="services"){
         if(isset($_GET['wd_id']) and $_GET['wd_id']!=null){
 
         }
+    }elseif ($appRJ->server['reqUri_expl'][2]==="compare"){
+        require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareView.php");
+    }
+    else{
+
     }
 }
 

@@ -1,13 +1,10 @@
 <?php
-//define(WD_EN_IMG, "/data/win-diag/hardware/");
 if($_POST){
     if(isset($_POST['hwEdit']) and $_POST['hwEdit']=='yyy'){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editHW.php");
     }elseif(isset($_POST['envEdit']) and $_POST['envEdit']=='yyy'){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editEnv.php");
     }
-
-
     else{
         $paramName=null;
         $paramVal=null;
@@ -70,5 +67,16 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         }
     }else{
         $appRJ->errors['404']['description']="invalid vName";
+    }
+}elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="process"){
+    if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
+        $slProcess_qry="select * from wdProcList_dt where pName='".$appRJ->server['reqUri_expl'][4]."'";
+        $slProcess_res=$DB->doQuery($slProcess_qry);
+        if(mysql_num_rows($slProcess_res)==1){
+            $slProcess_row=$DB->doFetchRow($slProcess_res);
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-process.php");
+        }
+    }else{
+        $appRJ->errors['404']['description']="invalid pName";
     }
 }
