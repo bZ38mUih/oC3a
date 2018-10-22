@@ -82,5 +82,5 @@ if(mysql_num_rows($selectFile_res)==1){
     $appRJ->response['result'].= "</body></html>";
 
 }else{
-
+    $appRJ->errors['404']['description']="Файл ".$appRJ->server['reqUri_expl'][3]." не найден";
 }

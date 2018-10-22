@@ -61,7 +61,7 @@ if($wdList_rd->copyOne()){
         "<span class='fVal'>".$wdList_rd->result['diagDate']."</span></div></div>";
     $wdEnv_res=$DB->doQuery($wdEnv_qry);
     if(mysql_num_rows($wdEnv_res)>0){
-        $appRJ->response['result'].="<div class='wi-block'><h3>перОкруж</h3>";
+        $appRJ->response['result'].="<div class='wi-block'><h3>Окружение</h3>";
         while ($wdEnv_row=$DB->doFetchRow($wdEnv_res)){
             $dwManEnv=null;
             if($wdEnv_row['vName1']!='MachineName' and $wdEnv_row['vName1']!='UserName'){
@@ -120,9 +120,8 @@ if($wdList_rd->copyOne()){
     }
     $wdProc_res=$DB->doQuery($wdProc_qry);
     if(mysql_num_rows($wdProc_res)>0){
-        $appRJ->response['result'].="<div class='wi-block '><h3>Процессы</h3>".
-            "<div class='line btMg1'><span class='fName'>Процессов:</span>".
-            "<span class='fVal'>".mysql_num_rows($wdProc_res)."</span> </div>";
+        $appRJ->response['result'].="<div class='wi-block '><h3><span class='fName'>Процессы</span>".
+            "<span class='fVal'>".mysql_num_rows($wdProc_res)."</span></h3>";
         $appRJ->response['result'].=
             "<div class='wi-table'><div class='line caption'><div class='td-40'>p-name</div>".
             "<div class='td-20'>PID</div><div class='td-30'>Result</div></div>";
@@ -154,7 +153,11 @@ if($wdList_rd->copyOne()){
         $appRJ->response['result'].="invalid wd_id";
     }
 }
-$appRJ->response['result'].= "</div></div></div></div>";
+$appRJ->response['result'].= "</div>".
+    "<div class='info-app ta-left'><p>Создать диагностический файл можно используя программу - утилиту ".
+    "<a href='/downloads/file/win-pc-info'>win-pc-info</a></p><p>Описание сервиса можно прочитать по ссылке ".
+    "<a href='/pc/win-pc-info'>win-pc-info</a></p></div>".
+    "</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

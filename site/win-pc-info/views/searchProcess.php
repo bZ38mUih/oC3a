@@ -3,9 +3,15 @@ $hwProcess_qry="select * from wdProcList_dt WHERE pName LIKE '%".$_GET['searchAr
 if($hwProcess_res=$DB->doQuery($hwProcess_qry)){
     if(mysql_num_rows($hwProcess_res)>0){
         $appRJ->response['result'].="<div class='line caption'>".
-            "<div class='td-90'>pName</div></div>";
+            "<div class='td-20'>pImg</div><div class='td-75'>pName</div></div>";
         while ($hwProcess_row=$DB->doFetchRow($hwProcess_res)){
-            $appRJ->response['result'].="<div class='line'><div class='td-90'>";
+            $appRJ->response['result'].="<div class='line'><div class='td-20'>";
+            if($hwProcess_row['pImg']){
+                $appRJ->response['result'].="<img src='".WD_PROC_IMG.$hwProcess_row['pImg']."'>";
+            }else{
+                $appRJ->response['result'].="-";
+            }
+            $appRJ->response['result'].="</div><div class='td-75'>";
             //.$hwSearch_row['pName']."</div>";
             if($hwProcess_row['pDescr']){
                 $appRJ->response['result'].="<a href='/win-pc-info/process/".$hwProcess_row['pName'].

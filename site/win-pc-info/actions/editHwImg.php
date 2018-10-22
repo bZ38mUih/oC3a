@@ -32,7 +32,6 @@ if(mysql_num_rows($slHw_res)==1){
                 if($DB->doQuery($updateHw_qry)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".WD_HW_IMG.$paramName."/preview/".$paramVal.".".$path_parts['extension']."'>";
-                    $_SESSION['photoLink'] = "/data/users/".$paramName."/preview/".$paramVal.".".$path_parts['extension'];
                 }
             } else {
                 $editImg['data']= "Возможная атака с помощью файловой загрузки!\n";

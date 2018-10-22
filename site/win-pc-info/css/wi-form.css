@@ -44,6 +44,10 @@ a.signIn{
     color: darkgreen;
     font-weight: bold;
 }
+.info-app{
+    padding: 1em 0;
+    margin-left: 1em;
+}
 /*toDo move pageErr to common styleTable-->*/
 .pageErr{
     color:red;
@@ -51,12 +55,13 @@ a.signIn{
 }
 
 span.fName{
-    font-weight: bold;
-    color: darkgreen;
+
     min-width: 15em;
     display: inline-block;
 }
 span.fVal{
+    font-weight: bold;
+    color: darkgreen;
     font-style: italic;
 }
 
@@ -91,6 +96,9 @@ span.fVal{
 }
 .line .td-55{
     width: 55%;
+}
+.line .td-75{
+    width: 75%;
 }
 .line .td-90{
     width: 90%;
@@ -175,6 +183,13 @@ a.editP img{
     height: 1em;
     width: 1em;
     margin-right: 0.5em;
+}
+.wi-descr{
+    text-shadow: 2px 2px 2px lightblue;
+    padding: 1em 5% 1em 5%;
+    border: 2px solid midnightblue;
+    border-radius: 0.5em;
+    background-color: rgba(255, 255, 0, 0.2);
 }
 
 

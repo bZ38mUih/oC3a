@@ -47,7 +47,7 @@ $appRJ->response['result'].= "<form class='editImg'>".
     "<div class='img-frame'>";
 $delImgBtn_text=null;
 if($slProcess_row['pImg']){
-    $appRJ->response['result'].= "<img src='".WD_PROC_IMG."preview/".$slProcess_row['pImg']."' ";
+    $appRJ->response['result'].= "<img src='".WD_PROC_IMG.$slProcess_row['pImg']."' ";
     $appRJ->response['result'].=">";
     $delImgBtn_text= "class='active'";
 }else{
@@ -55,9 +55,9 @@ if($slProcess_row['pImg']){
 }
 $appRJ->response['result'].= "</div><div class='control-frame'>";
 $appRJ->response['result'].=  "<div class='delImg-line'>".
-    "<span onclick='delImg(".'"process"'.", ".'"'.$slProcess_row['pName'].'"'.")' ".$delImgBtn_text.">".
+    "<span onclick='delImg(".'"'.$slProcess_row['pName'].'", "process"'.")' ".$delImgBtn_text.">".
     "<img src='/source/img/drop-icon.png'>Удалить картинку</span></div><div class='button-line'>".
-    "<input type='file' onchange='loadFiles(".'"process"'.", ".'"'.$slProcess_row['pName'].'"'.")' accept='image/jpeg,image/png,image/gif'></div>".
+    "<input type='file' onchange='loadFiles(".'"'.$slProcess_row['pName'].'"'.', "process"'.")' accept='image/jpeg,image/png,image/gif'></div>".
     "<div class='results'></div>";
 $appRJ->response['result'].= "</div>".
     "</form>";

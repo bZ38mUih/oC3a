@@ -4,6 +4,8 @@ if($_POST){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editHW.php");
     }elseif(isset($_POST['envEdit']) and $_POST['envEdit']=='yyy'){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editEnv.php");
+    }elseif(isset($_POST['pEdit']) and $_POST['pEdit']=='yyy'){
+        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editProcess.php");
     }
     else{
         $paramName=null;
@@ -11,13 +13,25 @@ if($_POST){
         if(isset($_POST['processor']) and $_POST['processor']!=null){
             $paramName="processor";
             $paramVal=$_POST['processor'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/editHwImg.php");
         }elseif(isset($_POST['graphic']) and $_POST['graphic']!=null){
             $paramName="graphic";
             $paramVal=$_POST['graphic'];
-        }
-        if ($paramName!=null and  $paramVal!=null){
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/editHwImg.php");
+        }elseif (isset($_POST['process'])){
+            //$editImg['result'] = false;
+            //$editImg['data'] = 'ddddd';
+            //$appRJ->response['format']='json';
+            //$appRJ->response['result'] = $editImg;
+
+            $paramVal=$_POST['process'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editProcessImg.php");
         }
+        /*
+        if ($paramName!=null and  $paramVal!=null){
+
+        }
+        */
     }
 }
 elseif ($_GET){
@@ -26,11 +40,24 @@ elseif ($_GET){
     if(isset($_GET['processor']) and $_GET['processor']!=null){
         $paramName="processor";
         $paramVal=$_GET['processor'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/delHwImg.php");
     }elseif(isset($_GET['graphic']) and $_GET['graphic']!=null){
+        $paramName="graphic";
+        $paramVal=$_GET['graphic'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/delHwImg.php");
+    }elseif (isset($_GET['process']) and $_GET['process']!=null){
+        $paramVal=$_GET['process'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delProcessImg.php");
+/*
+        $delImg['result'] = false;
+        $delImg['data'] = "xyi";
+        $appRJ->response['format']='json';
+        $appRJ->response['result'] = $delImg;
+*/
 
     }
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/delHwImg.php");
+
 }
 elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="hardware"){
     if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){

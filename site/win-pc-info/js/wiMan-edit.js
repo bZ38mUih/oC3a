@@ -54,6 +54,7 @@ function editDescr()
     tinymce.triggerSave();
     var formComment=$('form.wdEditParams');
     var posting = $.post( "", formComment.serialize());
+    //alert(formComment.serialize());
     posting.done(function( data ) {
         $('form.wdEditParams').preloader('remove');
         var responce=JSON.parse(data);
@@ -61,4 +62,5 @@ function editDescr()
             $(".field-err").html(responce.err);
         }
     });
+
 }
