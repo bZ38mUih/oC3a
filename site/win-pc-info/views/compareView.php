@@ -12,13 +12,17 @@ if($_GET['envList_id']){
 $appRJ->response['result'].= "<title>Compare</title>".
     "<link rel='SHORTCUT ICON' href='/site/win-pc-info/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<script src='/source/js/jquery.cookie.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<script src='/site/win-pc-info/js/wi-form.js'></script>" .
+    "<script src='/site/win-pc-info/js/wdCompare.js'></script>" .
     "<link rel='stylesheet' href='/site/win-pc-info/css/wi-menu.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/win-pc-info/css/wi-form.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/win-pc-info/css/test.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/win-pc-info/css/compareView.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/js/goTop.js'></script>".
+    "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>";
 if($App['views']['social-block']){
@@ -28,13 +32,14 @@ $appRJ->response['result'].= "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><div class='lrp-wrap'>";
-//21, 24
-$wdCompLeft=21;
-$wdCompRight=24;
+require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMenu.php");
+require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareMenu.php");
 
-//$slProcLeft_qry="select pName as pNameLeft, pPath AS pPathLeft from wdProc_dt as wdProcLeft WHERE wd_id=".$wdCompLeft;
-$slProcLeft_qry="select DISTINCT pName as pNameLeft, pPath AS pPathLeft from wdProc_dt WHERE wd_id=".$wdCompLeft;
-$slProcRight_qry="select DISTINCT pName as pNameRight, pPath AS pPathRight from wdProc_dt WHERE wd_id=".$wdCompRight;
+require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareEnv.php");
+require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareHw.php");
+
+$slProcLeft_qry="select DISTINCT pName as pNameLeft, pPath AS pPathLeft from wdProc_dt WHERE wd_id=".$cmpLeft;
+$slProcRight_qry="select DISTINCT pName as pNameRight, pPath AS pPathRight from wdProc_dt WHERE wd_id=".$cmpRight;
 
 $slDifProc_qry="select * from (".$slProcLeft_qry.") as wdProcLeft left join (".$slProcRight_qry.") as wdProcRight".
     " on wdProcLeft.pNameLeft = wdProcRight.pNameRight ".
@@ -47,13 +52,46 @@ $slDifProc_qry="select * from (".$slProcLeft_qry.") as wdProcLeft left join (".$
 
 $slDifProc_res=$DB->doQuery($slDifProc_qry);
 if(mysql_num_rows($slDifProc_res)>0){
-    $appRJ->response['result'].="<div class='line'>rows=".mysql_num_rows($slDifProc_res)."</div>";
+    $appRJ->response['result'].="<h3>Процессы:</h3>";
+    $appRJ->response['result'].="<div class='line caption'><div class='td-48'>".$wdLeftName_row['wdTag'].
+        "</div><div class='td-48'>".$wdRightName_row['wdTag']."</div></div>";
+    $appRJ->response['result'].="<div class='line caption'><div class='td-24'>pName-left</div>".
+        "<div class='td-24'>pPath-left</div><div class='td-24'>pName-right</div><div class='td-24'>pPath-right</div></div>";
+    //$appRJ->response['result'].="<div class='line'>rows=".mysql_num_rows($slDifProc_res)."</div>";
     while ($slDifProc_row=$DB->doFetchRow($slDifProc_res)){
-
-        $appRJ->response['result'].="<div class='line'><div class='td-20'>".$slDifProc_row['pNameLeft']."</div>".
-            "<div class='td-20'>".$slDifProc_row['pPathLeft']."</div><div class='td-20'>".$slDifProc_row['pNameRight']."</div>".
-            "<div class='td-20'>".$slDifProc_row['pPathRight']."</div></div>";
+        $pLineClass=null;
+        $pLine=null;
+        $pLine.="<div class='td-24'>";
+        if($slDifProc_row['pNameLeft']){
+            $pLine.=$slDifProc_row['pNameLeft'];
+        }else{
+            $pLine.="-";
+            $pLineClass="no-left";
+        }
+        $pLine.="</div><div class='td-24'>";
+        if($slDifProc_row['pPathLeft']){
+            $pLine.=$slDifProc_row['pPathLeft'];
+        }else{
+            $pLine.="-";
+        }
+        $pLine.="</div><div class='td-24'>";
+        if($slDifProc_row['pNameRight']){
+            $pLine.=$slDifProc_row['pNameRight'];
+        }else{
+            $pLine.="-";
+            $pLineClass="no-right";
+        }
+        $pLine.="</div><div class='td-24'>";
+        //$slDifProc_row['pNameRight'].="</div><div class='td-20'>";
+        if($slDifProc_row['pPathRight']){
+            $pLine.=$slDifProc_row['pPathRight'];
+        }else{
+            $pLine.="-";
+        }
+        $pLine.="</div>";
+        $appRJ->response['result'].="<div class='line ".$pLineClass."'>".$pLine."</div>";
     }
+
 }
 
 /*

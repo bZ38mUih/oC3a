@@ -1,0 +1,58 @@
+.compare-menu{
+    width: 100%;
+    border-bottom: 1px solid midnightblue;
+    padding: 1em 0;
+}
+.compare-menu .sl-left{
+    width: 30%;
+    display: inline-block;
+}
+.compare-menu .compare-btn{
+    width: 20%;
+    display: inline-block;
+}
+.compare-menu .sl-right{
+    width: 30%;
+    display: inline-block;
+}
+.compare-menu select{
+    font-size: 1em;
+    color: midnightblue;
+    min-width: 7em;
+}
+.compare-menu button{
+    text-align: center;
+    font-weight: bold;
+}
+.compare-menu button span{
+    display: inline-block;
+    width: 100%;
+}
+.compare-menu button img{
+    display: inline-block;
+    height: 2em;
+    width: 2em;
+}
+.compare-menu .option-panel{
+    width: 100%;
+}
+span.option-pannel-caption{
+    display: block;
+    font-weight: bold;
+}
+.option-panel .line{
+    font-size: 0.9em;
+    border-bottom: 1px dotted midnightblue;
+}
+.option-panel .line span{
+    display: inline-block;
+    margin-left: 1em;
+    min-width: 10em;
+}
+
+.no-left{
+    background-color: rgba(0,0,255,0.2);
+}
+.no-right{
+    background-color: rgba(0,255,0,0.2);
+}

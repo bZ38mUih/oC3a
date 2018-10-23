@@ -83,6 +83,31 @@ else{
 
         }
     }elseif ($appRJ->server['reqUri_expl'][2]==="compare"){
+        $cmpRight=24;
+        $cmpLeft=21;
+
+        if($_COOKIE['cmpRight']){
+            $cmpRight=$_COOKIE['cmpRight'];
+        }
+        if($_COOKIE['cmpLeft']){
+            $cmpLeft=$_COOKIE['cmpLeft'];
+        }
+        $wdLeftName_qry="select * from wdList_dt WHERE wd_id=".$cmpLeft;
+        $wdRightName_qry="select * from wdList_dt WHERE wd_id=".$cmpRight;
+        $wdLeftName_res=$DB->doQuery($wdLeftName_qry);
+        $wdRightName_res=$DB->doQuery($wdRightName_qry);
+        if(mysql_num_rows($wdLeftName_res)==1){
+            $wdLeftName_row=$DB->doFetchRow($wdLeftName_res);
+        }else{
+            //throw err
+        }
+        if(mysql_num_rows($wdRightName_res)==1){
+            $wdRightName_row=$DB->doFetchRow($wdRightName_res);
+        }else{
+            //throw err
+        }
+
+
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareView.php");
     }
     else{
