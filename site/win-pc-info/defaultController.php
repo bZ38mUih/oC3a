@@ -1,12 +1,12 @@
 <?php
-/*
+
 if(!$_SESSION['user_id']){
     $appRJ->errors['404']['description']="сервис временно на реконструкции";
 }
 if(isset($appRJ->errors)){
     $appRJ->throwErr();
 }
-*/
+
 define(WD_HW_IMG, "/data/win-pc-info/hardware/");
 define(WD_PROC_IMG, "/data/win-pc-info/process/");
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=="wiMan"){
