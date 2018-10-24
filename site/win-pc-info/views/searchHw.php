@@ -1,5 +1,6 @@
 <?php
 $hwSearch_qry="select * from wdHwList_dt WHERE paramVal LIKE '%".$_GET['searchArg']."%' ORDER BY paramName, paramVal";
+$appRJ->response['result'].="<h4>Результаты поиска:</h4>";
 if($hwSearch_res=$DB->doQuery($hwSearch_qry)){
     if(mysql_num_rows($hwSearch_res)>0){
         $appRJ->response['result'].="<div class='line caption'>".

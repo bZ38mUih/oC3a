@@ -1,11 +1,12 @@
 <?php
-
+/*
 if(!$_SESSION['user_id']){
     $appRJ->errors['404']['description']="сервис временно на реконструкции";
 }
 if(isset($appRJ->errors)){
     $appRJ->throwErr();
 }
+*/
 
 define(WD_HW_IMG, "/data/win-pc-info/hardware/");
 define(WD_PROC_IMG, "/data/win-pc-info/process/");
@@ -21,13 +22,15 @@ if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=
 }
 elseif (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
     $appRJ->response['format']="ajax";
-    $appRJ->response['result'].="<h4>Результаты поиска:</h4>";
+    //$appRJ->response['result'].="<h4>Результаты поиска: </h4>";
     if($_GET['wiSearch']=="wiFile"){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchDFile.php");
     }elseif($_GET['wiSearch']=="environment"){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchEnvir.php");
     }elseif($_GET['wiSearch']=="hardware"){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchHw.php");
+    }elseif($_GET['wiSearch']=="process"){
+        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchProcess.php");
     }
     else{
         $appRJ->response['result'].="wrong search param";

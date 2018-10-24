@@ -1,5 +1,6 @@
 <?php
 $envSearch_qry="select * from wdEnvList_dt  WHERE vVal LIKE '%".$_GET['searchArg']."%' order by vName, vVal";
+$appRJ->response['result'].="<h4>Результаты поиска:</h4>";
 if($envSearch_res=$DB->doQuery($envSearch_qry)){
     if(mysql_num_rows($envSearch_res)>0){
         $appRJ->response['result'].="<div class='line caption'>".

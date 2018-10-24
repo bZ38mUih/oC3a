@@ -7,6 +7,7 @@ if(isset($_GET['pList_id']) and $_GET['pList_id']!=null){
     $wdInfo_res=$DB->doQuery($wdInfo_qry);
     if(mysql_num_rows($wdInfo_res)==1){
         $wdInfo_row=$DB->doFetchRow($wdInfo_res);
+        /*?????--->*/
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/hwPrint.php");
     }else{
         $appRJ->errors['404']['description']="invalid hwList_id";

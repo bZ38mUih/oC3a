@@ -39,7 +39,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMenu.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wi-form.php");
 $appRJ->response['result'].="<div class='wiSearch'>";
 if(!$_GET['wd_id']){
-    $appRJ->response['result'].="<h4>Список диаг-файлов:</h4>";
+    //$appRJ->response['result'].="<h4>Список диаг-файлов:</h4>";
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/searchDFile.php");
 }
 $appRJ->response['result'].="</div>";

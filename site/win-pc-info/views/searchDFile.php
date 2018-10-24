@@ -1,7 +1,15 @@
 <?php
 $wdList_qry="select * from wdList_dt WHERE wdTag LIKE '%".$_GET['searchArg']."%' order by diagDate DESC";
+if($_GET['searchArg']){
+    $appRJ->response['result'].="<h4>Результаты поиска ( ";
+}else{
+    $appRJ->response['result'].="<h4>Список диаг-файлов ( ";
+}
+
 if($wdList_res=$DB->doQuery($wdList_qry)){
     if(mysql_num_rows($wdList_res)>0){
+        $appRJ->response['result'].=mysql_num_rows($wdList_res)." )</h4>";
+
         $appRJ->response['result'].="<div class='line caption'>".
             "<div class='td-45'>Tag</div><div class='td-45'>Date</div></div>";
         while ($wdList_row=$DB->doFetchRow($wdList_res)){
@@ -12,5 +20,6 @@ if($wdList_res=$DB->doQuery($wdList_qry)){
         $appRJ->response['result']="<div class='pageErr'>wdList with tag like %".$_GET['searchArg']."% not found</div>";
     }
 }else{
+    $appRJ->response['result']="- )</h4>";
     $appRJ->errors['request']['description']="select from wdList_dt error";
 }
