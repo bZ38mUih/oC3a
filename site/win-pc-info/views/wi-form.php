@@ -17,8 +17,8 @@ $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'><label>";
 if(!$appRJ->server['reqUri_expl'][2]){
     $appRJ->response['result'].="или воспользуйтесь поиском";
-}else{
-    $appRJ->response['result'].="поиск параметра";
+}elseif($appRJ->server['reqUri_expl'][2]=='process'){
+    $appRJ->response['result'].="поиск процесса";
 }
 $appRJ->response['result'].="</label><input type='text' name='tpSearch' value='%'>".
     "<button onclick='wiSearch(".'"';

@@ -33,7 +33,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMenu.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wi-form.php");
 $appRJ->response['result'].="<div class='wiSearch'>";
 if(!$_GET['hwList_id'] and !$appRJ->server['reqUri_expl'][3]){
-    $appRJ->response['result'].="<h4>Список процессов:</h4>";
+    //$appRJ->response['result'].="<h4>Список процессов:</h4>";
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/searchProcess.php");
 }
 $appRJ->response['result'].="</div>";

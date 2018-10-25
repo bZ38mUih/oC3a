@@ -200,17 +200,19 @@ a.editP img{
     background-color: rgba(255, 255, 0, 0.2);
 }
 
+
+/*processSearch-->*/
 li {
     list-style: none;
     text-align: left;
     padding: 0.2em;
-    margin-left: 10%;
-    /*vertical-align: middle;*/
+    margin-left: 5%;
+    font-size: 1.2em;
 }
-
 li img{
-    height: 1.2em;
-    width: 1.2em;
+    height: 1.5em;
+    width: 1.5em;
     margin-right: 1em;
     vertical-align: middle;
 }
+/*processSearch--<*/
