@@ -7,7 +7,7 @@ if($_GET['searchArg']){
 }
 if($hwProcess_res=$DB->doQuery($hwProcess_qry)){
     if(mysql_num_rows($hwProcess_res)>0){
-        $appRJ->response['result'].=mysql_num_rows($hwProcess_res)." )</h4>";
+        $appRJ->response['result'].=mysql_num_rows($hwProcess_res)." )</h4><ul>";
         while ($hwProcess_row=$DB->doFetchRow($hwProcess_res)){
             $appRJ->response['result'].="<li>";
             if($hwProcess_row['pImg']){

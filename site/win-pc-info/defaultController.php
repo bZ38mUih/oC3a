@@ -88,6 +88,8 @@ else{
     }elseif ($appRJ->server['reqUri_expl'][2]==="compare"){
         $cmpRight=24;
         $cmpLeft=21;
+        $cmpProc=false;
+        $cmpProcPath=false;
 
         if($_COOKIE['cmpRight']){
             $cmpRight=$_COOKIE['cmpRight'];
@@ -95,6 +97,15 @@ else{
         if($_COOKIE['cmpLeft']){
             $cmpLeft=$_COOKIE['cmpLeft'];
         }
+        if($_COOKIE['opt-process']){
+            $cmpProc=true;
+            if($_COOKIE['opt-pr-path']){
+                $cmpProcPath=true;
+            }
+        }
+
+
+
         $wdLeftName_qry="select * from wdList_dt WHERE wd_id=".$cmpLeft;
         $wdRightName_qry="select * from wdList_dt WHERE wd_id=".$cmpRight;
         $wdLeftName_res=$DB->doQuery($wdLeftName_qry);

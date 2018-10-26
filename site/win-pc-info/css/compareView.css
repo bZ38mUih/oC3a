@@ -49,10 +49,55 @@ span.option-pannel-caption{
     margin-left: 1em;
     min-width: 10em;
 }
-
 .no-left{
     background-color: rgba(0,0,255,0.2);
 }
 .no-right{
     background-color: rgba(0,255,0,0.2);
+}
+.line{
+    padding: 0.2em 0;
+    display: inline-block;
+    width: 100%;
+    border: 1px dotted midnightblue;
+}
+.line div{
+    vertical-align: middle;
+}
+/*
+div{
+    vertical-align: middle;
+}
+*/
+.line a:not(.deactive){
+    text-decoration: none;
+    font-weight: bold;
+    color: blue;
+}
+.line .td-48{
+    width: 48%;
+}
+
+.td-24{
+    border-left: 1px solid midnightblue;
+    display: inline-block;
+    width: 24%;
+    word-wrap: break-word;
+}
+.td-24:last-child{
+    border-right: 1px solid midnightblue;
+}
+.td-24 .pCell-img, .td-48 .pCell-img{
+    width: 29%;
+
+    display: inline-block;
+}
+.td-24 .pCell-name, .td-48 .pCell-name{
+    width: 70%;
+    border: none;
+    display: inline-block;
+}
+.td-24 img, .td-48 img{
+    height: 1.2em;
+    width: 1.2em;
 }
