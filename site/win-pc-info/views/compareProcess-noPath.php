@@ -16,7 +16,7 @@ $slDifProc_qry="select * from (".$slProcLeft_qry.") as wdProcLeft left join (".$
 
 $slDifProc_res=$DB->doQuery($slDifProc_qry);
 if(mysql_num_rows($slDifProc_res)>0){
-    $appRJ->response['result'].="<h3>Процессы not-path (".mysql_num_rows($slDifProc_res).")</h3>";
+    $appRJ->response['result'].="<h3>Процессы (".mysql_num_rows($slDifProc_res).")</h3>";
     $leftDifCnt=0;
     $rightDifCnt=0;
     $pLines=null;

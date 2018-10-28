@@ -1,4 +1,6 @@
 <?php
+$appRJ->response['result'].="<form class='wdCmp'>".
+"<input type='hidden' name='wdCmp' value=true>";
 $slDFiles_qry="select * from wdList_dt ORDER by diagDate DESC";
 $slDFiles_res=$DB->doQuery($slDFiles_qry);
 
@@ -69,7 +71,7 @@ $appRJ->response['result'].="></div>".
     "</div>".
 
 
-    "</div>";
+    "</div></form>";
 
 
 /**

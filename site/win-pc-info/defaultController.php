@@ -91,6 +91,9 @@ else{
         $cmpProc=false;
         $cmpProcPath=false;
 
+        if($_GET['wdCmp']){
+            $appRJ->response['result'].="<br>wdCmp<br>";
+        }
         if($_COOKIE['cmpRight']){
             $cmpRight=$_COOKIE['cmpRight'];
         }

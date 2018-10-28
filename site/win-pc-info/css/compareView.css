@@ -1,6 +1,6 @@
 .compare-menu{
     width: 100%;
-    border-bottom: 1px solid midnightblue;
+    /*border-bottom: 1px solid midnightblue;*/
     padding: 1em 0;
 }
 .compare-menu .sl-left{
@@ -42,7 +42,7 @@ span.option-pannel-caption{
 }
 .option-panel .line{
     font-size: 0.9em;
-    border-bottom: 1px dotted midnightblue;
+    /*border-bottom: 1px dotted midnightblue;*/
 }
 .option-panel .line span{
     display: inline-block;
@@ -59,7 +59,7 @@ span.option-pannel-caption{
     padding: 0.2em 0;
     display: inline-block;
     width: 100%;
-    border: 1px dotted midnightblue;
+    border-bottom: 1px dotted midnightblue;
 }
 .line div{
     vertical-align: middle;

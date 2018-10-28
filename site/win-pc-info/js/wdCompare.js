@@ -25,10 +25,17 @@ $(document).ready(function () {
 function wiCompare() {
     //alert($("[name='cmpLeft'] option:selected").val());
     //alert(
-    if($("[name='opt-envir']").prop("checked")==true){
-        alert('y');
-    }else{
+    //alert($("form.wdCmp").serialize());
+    $.get($("form.wdCmp").serialize())
+        .done(function( data ) {
+            alert(data);
+        });
 
-        alert('n');
-    };
+
+    //if($("[name='opt-envir']").prop("checked")==true){
+        //alert('y');
+    //}else{
+
+        //alert('n');
+    //};
 }
