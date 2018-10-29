@@ -3,11 +3,8 @@ $appRJ->response['result'].="<form class='wdCmp'>".
 "<input type='hidden' name='wdCmp' value=true>";
 $slDFiles_qry="select * from wdList_dt ORDER by diagDate DESC";
 $slDFiles_res=$DB->doQuery($slDFiles_qry);
-
 $selTxtLeft="<select name='cmpLeft'>";
-//$selTxtLeft=null;
 $selTxtRight="<select name='cmpRight'>";
-
 if(mysql_num_rows($slDFiles_res)>0){
     while ($slDFiles_row=$DB->doFetchRow($slDFiles_res)){
         $selTxtLeft.="<option value='".$slDFiles_row['wd_id']."'";
@@ -18,7 +15,6 @@ if(mysql_num_rows($slDFiles_res)>0){
         if($cmpRight == $slDFiles_row['wd_id']){
             $selTxtRight.=" selected";
         }
-
         $selTxtLeft.=">".$slDFiles_row['wdTag']."</option>";
         $selTxtRight.=">".$slDFiles_row['wdTag']."</option>";
     }
@@ -28,7 +24,7 @@ $selTxtRight.="</select>";
 $appRJ->response['result'].="<div class='compare-menu'><div class='sl-left'>".
     $selTxtLeft.
     "</div>".
-    "<div class='compare-btn'><button onclick='wiCompare()'><img src='/site/win-pc-info/img/compare.png'><span>Compare</span></button> </div><div class='sl-right'>".
+    "<div class='compare-btn'><button onclick='wiCompare()'><img src='/site/win-pc-info/img/compare.png'><span>Сравнить</span></button> </div><div class='sl-right'>".
     $selTxtRight."</div>".
     "<div class='option-panel ta-left'>".
     "<span class='option-pannel-caption'>Опции:</span>".
@@ -67,16 +63,4 @@ $appRJ->response['result'].=">".
 if($_COOKIE['opt-srv-path']){
     $appRJ->response['result'].="checked".$prSrvEnbl;
 }
-$appRJ->response['result'].="></div>".
-    "</div>".
-
-
-    "</div></form>";
-
-
-/**
- * Created by PhpStorm.
- * User: Alexey
- * Date: 23.10.2018
- * Time: 10:10
- */
+$appRJ->response['result'].="></div></div></div></form>";

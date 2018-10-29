@@ -23,19 +23,16 @@ $(document).ready(function () {
 })
 
 function wiCompare() {
-    //alert($("[name='cmpLeft'] option:selected").val());
-    //alert(
-    //alert($("form.wdCmp").serialize());
-    $.get($("form.wdCmp").serialize())
+    $("form.wdCmp").preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
+    $.get("?"+$("form.wdCmp").serialize())
         .done(function( data ) {
-            alert(data);
-        });
-
-
-    //if($("[name='opt-envir']").prop("checked")==true){
-        //alert('y');
-    //}else{
-
-        //alert('n');
-    //};
+            $(".cmp-res").html(data);
+            $('form.wdCmp').preloader('remove');
+    });
 }

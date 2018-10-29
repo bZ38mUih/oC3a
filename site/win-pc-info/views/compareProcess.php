@@ -25,10 +25,8 @@ if(mysql_num_rows($slDifProc_res)>0){
         $pLine.="<div class='td-24'>";
         if($slDifProc_row['pNameLeft']){
             $pLine.="<div class='pCell-img'>";
-
             if($slDifProc_row['pImgLeft']){
                 $pLine.="<img src='".WD_PROC_IMG.$slDifProc_row['pImgLeft']."'>";
-                //$pLine.="y-";
             }else{
                 $pLine.="<img src='/data/default-img.png'>";
             }
@@ -38,10 +36,8 @@ if(mysql_num_rows($slDifProc_res)>0){
             }else{
                 $pLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }
-
             $pLine.=$slDifProc_row['pNameLeft'];
             $pLine.="</a></div>";
-
         }else{
             $leftDifCnt++;
             $pLine.="-";

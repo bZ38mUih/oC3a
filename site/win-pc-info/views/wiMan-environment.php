@@ -13,7 +13,6 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
-    //"<script src='/site/win-diag/js/win-diag.js'></script>".
     "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>".
     "<script type='text/javascript' src='/site/js/manForm.js'></script>".
     "<script type='text/javascript' src='/site/win-pc-info/js/wiMan-edit.js'></script>" .
@@ -44,12 +43,7 @@ $appRJ->response['result'].= "<form class='wdEditParams'>".
     "<div class='input-line'><input type='button' value='Сохранить' onclick='editDescr()'></div>".
     "</form>";
 $appRJ->response['result'].="</div>";
-//require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/diagMenu.php");
 $appRJ->response['result'].= "</div></div></div>";
-
-
-
-
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

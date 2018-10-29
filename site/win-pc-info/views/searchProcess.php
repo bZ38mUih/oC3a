@@ -7,7 +7,7 @@ if($_GET['searchArg']){
 }
 if($hwProcess_res=$DB->doQuery($hwProcess_qry)){
     if(mysql_num_rows($hwProcess_res)>0){
-        $appRJ->response['result'].=mysql_num_rows($hwProcess_res)." )</h4><ul>";
+        $appRJ->response['result'].=mysql_num_rows($hwProcess_res)." )</h3><ul>";
         while ($hwProcess_row=$DB->doFetchRow($hwProcess_res)){
             $appRJ->response['result'].="<li>";
             if($hwProcess_row['pImg']){
@@ -29,10 +29,10 @@ if($hwProcess_res=$DB->doQuery($hwProcess_qry)){
             $appRJ->response['result'].="</li>";
         }
     }else{
-        $appRJ->response['result']="0 )</h4>";
+        $appRJ->response['result']="0 )</h3>";
         $appRJ->response['result'] .= "</ul><div class='pageErr'>hwList with varValue like %" . $_GET['searchArg'] . "% not found</div>";
     }
 }else{
-    $appRJ->response['result']="- )</h4>";
+    $appRJ->response['result']="- )</h3>";
     $appRJ->errors['request']['description']="select from wdProcList_dt error";
 }

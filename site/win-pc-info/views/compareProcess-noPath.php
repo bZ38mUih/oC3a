@@ -8,10 +8,8 @@ $slProcRight_qry="select DISTINCT wdProc_dt.pName as pNameRight, ".
 
 $slDifProc_qry="select * from (".$slProcLeft_qry.") as wdProcLeft left join (".$slProcRight_qry.") as wdProcRight".
     " on wdProcLeft.pNameLeft = wdProcRight.pNameRight ".
-    //"and wdProcLeft.pPathLeft=wdProcRight.pPathRight ".
     "union select * from (".$slProcLeft_qry.") as wdProcLeft right join (".$slProcRight_qry.") as wdProcRight".
     " on wdProcLeft.pNameLeft = wdProcRight.pNameRight ".
-    //"and wdProcLeft.pPathLeft=wdProcRight.pPathRight ".
     "order by pNameLeft, pNameRight";
 
 $slDifProc_res=$DB->doQuery($slDifProc_qry);
@@ -26,10 +24,8 @@ if(mysql_num_rows($slDifProc_res)>0){
         $pLine.="<div class='td-48'>";
         if($slDifProc_row['pNameLeft']){
             $pLine.="<div class='pCell-img'>";
-
             if($slDifProc_row['pImgLeft']){
                 $pLine.="<img src='".WD_PROC_IMG.$slDifProc_row['pImgLeft']."'>";
-                //$pLine.="y-";
             }else{
                 $pLine.="<img src='/data/default-img.png'>";
             }
@@ -39,7 +35,6 @@ if(mysql_num_rows($slDifProc_res)>0){
             }else{
                 $pLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }
-
             $pLine.=$slDifProc_row['pNameLeft'];
             $pLine.="</a></div>";
 
@@ -75,7 +70,7 @@ if(mysql_num_rows($slDifProc_res)>0){
     }
     $appRJ->response['result'].="<div class='line caption'><div class='td-48'>".$wdLeftName_row['wdTag'].
         " (".$leftDifCnt." dif)</div><div class='td-48'>".$wdRightName_row['wdTag']." (".$rightDifCnt." dif)</div></div>";
-    $appRJ->response['result'].="<div class='line caption'><div class='td-24'>pName-left</div>".
-        "<div class='td-24'>pPath-left</div><div class='td-24'>pName-right</div><div class='td-24'>pPath-right</div></div>";
+    $appRJ->response['result'].="<div class='line caption'><div class='td-48'>pName-left</div>".
+        "<div class='td-48'>pName-right</div></div>";
     $appRJ->response['result'].=$pLines;
 }

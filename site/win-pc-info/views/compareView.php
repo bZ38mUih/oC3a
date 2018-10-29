@@ -18,9 +18,8 @@ $appRJ->response['result'].= "<title>Compare</title>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<script src='/site/win-pc-info/js/wi-form.js'></script>" .
     "<script src='/site/win-pc-info/js/wdCompare.js'></script>" .
-    "<link rel='stylesheet' href='/site/win-pc-info/css/wi-menu.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/win-pc-info/css/wi-form.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/win-pc-info/css/compareView.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/win-pc-info/css/wi-default.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
@@ -34,17 +33,9 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
     "<div class='contentBlock-wrap'><div class='lrp-wrap'>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMenu.php");
 require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareMenu.php");
-
-//require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareEnv.php");
-//require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareHw.php");
-if($cmpProc){
-    if($cmpProcPath){
-        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareProcess.php");
-    }else{
-        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareProcess-noPath.php");
-    }
-}
-$appRJ->response['result'].= "</div></div></div></div>";
+$appRJ->response['result'].="<div class='cmp-res'>";
+require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareResults.php");
+$appRJ->response['result'].= "</div></div></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

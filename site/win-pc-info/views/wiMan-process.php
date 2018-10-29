@@ -96,12 +96,7 @@ $appRJ->response['result'].="</form>";
 
 
 $appRJ->response['result'].="</div>";
-//require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-diag/views/diagMenu.php");
 $appRJ->response['result'].= "</div></div></div>";
-
-
-
-
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
