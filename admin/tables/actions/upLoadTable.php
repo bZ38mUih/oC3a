@@ -1,6 +1,5 @@
 <?php
 $orderBy=null;
-
 $tables->result['log'].="prefixTag=".$_GET['prefixTag']."<br>dateTag=".$_GET['dateTag']."<br>";
 $query_text = "select * from ".$_GET['tableName']." ".$orderBy;
 $query_res = $DB->doQuery($query_text);
@@ -29,7 +28,7 @@ if (mysql_num_rows($query_res)==0){
             if ($value == null) {
                 $queryToInsert .= "null, ";
             } else {
-                $queryToInsert .= "'" . $value . "', ";
+                $queryToInsert .= "'" . mysql_real_escape_string($value)  . "', ";
             }
         }
         $queryToInsert = substr($queryToInsert, 0, strlen($queryToInsert) - 2) . "), \r";
@@ -41,7 +40,6 @@ if (mysql_num_rows($query_res)==0){
     }else{
         $file = $_GET['tableName'];
     }
-
     if($_GET['dateTag']=='true'){
         $file .="_".date_format($appRJ->date['curDate'], 'Ymd_His');
     }

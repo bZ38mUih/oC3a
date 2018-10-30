@@ -14,7 +14,7 @@ function insertArray($tblName, $bindFld, $bindVal, $tgArr)
     foreach ($tgArr as $key=>$val){
         $insVals.="(".$bindVal.", ";
         foreach ($val as $kKey=>$kVal){
-            $insVals.="'".$kVal."', ";
+            $insVals.="'".mysql_real_escape_string($kVal)."', ";
         }
         $insVals=substr($insVals, 0, strlen($insVals)-2);
         $insVals.="),\n";

@@ -1,5 +1,5 @@
 function loadDiagFile(){
-    $("form.diagSl").preloader({
+    $("form.wi-form").preloader({
         text: 'loading',
         percent: '',
         duration: '',
@@ -8,7 +8,7 @@ function loadDiagFile(){
     });
 
     var form_data = new FormData();
-    var file_data = $("form.diagSl input[type='file']").prop('files')[0];
+    var file_data = $("form.wi-form input[type='file']").prop('files')[0];
     form_data.append(0, file_data);
     $.ajax({
         url: '', // point to server-side PHP script
@@ -20,7 +20,7 @@ function loadDiagFile(){
         type: 'post',
         success: function(php_script_response){
             var response=JSON.parse(php_script_response);
-            $('form.diagSl').preloader('remove');
+            $('form.wi-form').preloader('remove');
             if(response.err != null){
                 $(".diagResults").html(response.err);
             }else {
