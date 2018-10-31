@@ -6,6 +6,8 @@ if($_POST){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editEnv.php");
     }elseif(isset($_POST['pEdit']) and $_POST['pEdit']=='yyy'){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editProcess.php");
+    }elseif(isset($_POST['sEdit']) and $_POST['sEdit']=='yyy'){
+        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editService.php");
     }
     else{
         $paramName=null;
@@ -13,20 +15,24 @@ if($_POST){
         if(isset($_POST['processor']) and $_POST['processor']!=null){
             $paramName="processor";
             $paramVal=$_POST['processor'];
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/editHwImg.php");
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
         }elseif(isset($_POST['graphic']) and $_POST['graphic']!=null){
             $paramName="graphic";
             $paramVal=$_POST['graphic'];
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/editHwImg.php");
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
         }elseif (isset($_POST['process'])){
-            //$editImg['result'] = false;
-            //$editImg['data'] = 'ddddd';
-            //$appRJ->response['format']='json';
-            //$appRJ->response['result'] = $editImg;
-
+            $paramVal=$_POST['process'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editProcessImg.php");
+        }elseif (isset($_POST['service'])){
+            $paramVal=$_POST['service'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editSrvImg.php");
+        }
+        /*
+        elseif (isset($_POST['process'])){
             $paramVal=$_POST['process'];
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editProcessImg.php");
         }
+        */
         /*
         if ($paramName!=null and  $paramVal!=null){
 
@@ -40,22 +46,24 @@ elseif ($_GET){
     if(isset($_GET['processor']) and $_GET['processor']!=null){
         $paramName="processor";
         $paramVal=$_GET['processor'];
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/delHwImg.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
     }elseif(isset($_GET['graphic']) and $_GET['graphic']!=null){
         $paramName="graphic";
         $paramVal=$_GET['graphic'];
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/delHwImg.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
     }elseif (isset($_GET['process']) and $_GET['process']!=null){
         $paramVal=$_GET['process'];
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delProcessImg.php");
-/*
-        $delImg['result'] = false;
-        $delImg['data'] = "xyi";
-        $appRJ->response['format']='json';
-        $appRJ->response['result'] = $delImg;
-*/
-
+    }elseif (isset($_GET['service']) and $_GET['service']!=null){
+        $paramVal=$_GET['service'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delSrvImg.php");
     }
+    /*
+    elseif (isset($_GET['service']) and $_GET['service']!=null){
+        $paramVal=$_GET['service'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delProcessImg.php");
+    }
+    */
 
 
 }
@@ -105,5 +113,16 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         }
     }else{
         $appRJ->errors['404']['description']="invalid pName";
+    }
+}elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="services"){
+    if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
+        $slSrv_qry="select * from wdSrvList_dt where sName='".urldecode($appRJ->server['reqUri_expl'][4])."'";
+        $slSrv_res=$DB->doQuery($slSrv_qry);
+        if(mysql_num_rows($slSrv_res)==1){
+            $slSrv_row=$DB->doFetchRow($slSrv_res);
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-services.php");
+        }
+    }else{
+        $appRJ->errors['404']['description']="invalid sName";
     }
 }

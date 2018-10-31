@@ -3,15 +3,8 @@ $appRJ->response['format']='json';
 $hwEdit['data']=null;
 $hwEdit['err']=null;
 
-$paramName=null;
 $paramVal=null;
 $hwDescr=null;
-//pName=process&pVal=ApplicationFrameHost
-if(isset($_POST['pName']) and $_POST['pName']!=null){
-    $paramName=$_POST['pName'];
-}else{
-    $hwEdit['err']="null pName; ";
-}
 if(isset($_POST['pVal']) and $_POST['pVal']!=null){
     $paramVal=$_POST['pVal'];
 }else{

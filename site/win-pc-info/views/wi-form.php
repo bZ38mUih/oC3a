@@ -23,6 +23,8 @@ if(!$appRJ->server['reqUri_expl'][2]){
     $appRJ->response['result'].="поиск окружения";
 }elseif($appRJ->server['reqUri_expl'][2]=='hardware'){
     $appRJ->response['result'].="поиск аппаратуры";
+}elseif($appRJ->server['reqUri_expl'][2]=='services'){
+    $appRJ->response['result'].="поиск служб";
 }
 $appRJ->response['result'].="</label><input type='text' name='tpSearch' value='%'>".
     "<button onclick='wiSearch(".'"';

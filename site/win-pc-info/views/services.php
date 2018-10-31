@@ -1,15 +1,15 @@
 <?php
-$h1 ="Процессы";
+$h1 ="Службы";
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='Список процессов'/>";
-if($_GET['pList_id']){
+    "<meta name='description' content='Список служб'/>";
+if($_GET['sList_id']){
     $appRJ->response['result'].= "<meta name='robots' content='noindex'>";
 }
-$appRJ->response['result'].="<title>Process</title>".
+$appRJ->response['result'].="<title>Services</title>".
     "<link rel='SHORTCUT ICON' href='/site/win-pc-info/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
@@ -31,8 +31,8 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMenu.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wi-form.php");
 $appRJ->response['result'].="<div class='wiSearch'>";
-if(!$_GET['pList_id'] and !$appRJ->server['reqUri_expl'][3]){
-    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/searchProcess.php");
+if(!$_GET['sList_id'] and !$appRJ->server['reqUri_expl'][3]){
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/searchServices.php");
 }
 $appRJ->response['result'].="</div>";
 $appRJ->response['result'].= "<div class='wi-results ta-left'>";

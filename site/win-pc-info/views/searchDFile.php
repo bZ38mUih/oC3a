@@ -15,7 +15,7 @@ if($wdList_res=$DB->doQuery($wdList_qry)){
                 .$wdList_row['wdTag']."</a></div><div class='td-48'>".$wdList_row['diagDate']."</div></div>";
         }
     }else{
-        $appRJ->response['result']="<div class='pageErr'>wdList with tag like %".$_GET['searchArg']."% not found</div>";
+        $appRJ->response['result'].="<div class='pageErr'>wdList with tag like %".$_GET['searchArg']."% not found</div>";
     }
 }else{
     $appRJ->response['result']="- )</h3>";

@@ -19,5 +19,9 @@ if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]!
     }
 }
 else{
-    $appRJ->errors['404']['description']="Категория ".$appRJ->server['reqUri_expl'][3]." не найдена";
+    if(!$appRJ->server['reqUri_expl'][2]){
+        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/downloads/views/defaultView.php");
+    }else{
+        $appRJ->errors['404']['description']="Категория ".$appRJ->server['reqUri_expl'][3]." не найдена";
+    }
 }

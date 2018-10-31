@@ -53,7 +53,7 @@ if($wdList_rd->copyOne()){
         "wdHw_dt.paramVal=wdHwList_dt.paramVal ".
         "where wdHw_dt.wd_id=".$wdList_rd->result['wd_id'];
     $wdProc_qry="select * from wdProc_dt LEFT JOIN wdProcList_dt ON wdProc_dt.pName=wdProcList_dt.pName where wdProc_dt.wd_id=".$wdList_rd->result['wd_id']." order by wdProc_dt.pName";
-    $wdSrv_qry="select * from wdSrv_dt WHERE wd_id=".$wdList_rd->result['wd_id']." order by sSTName, sName";
+    $wdSrv_qry="select * from wdSrv_dt LEFT JOIN wdSrvList_dt ON wdSrv_dt.sName=wdSrvList_dt.sName WHERE wdSrv_dt.wd_id=".$wdList_rd->result['wd_id']." order by wdSrv_dt.sName";
     $appRJ->response['result'].="<div class='wi-block'><h3>Инфо:</h3>".
         "<div class='line btMg2'><span class='fName'>wd_id:</span><span class='fVal'>".$wdList_rd->result['wd_id'].
         "</span></div><div class='line btMg2'><span class='fName'>wdTag:</span><span class='fVal'>".
@@ -139,15 +139,30 @@ if($wdList_rd->copyOne()){
     }
     $wdSrv_res=$DB->doQuery($wdSrv_qry);
     if(mysql_num_rows($wdSrv_res)>0){
-        $appRJ->response['result'].="<div class='wi-block'><h3>Службы</h3>".
-            "<div class='line btMg1'><span class='fName'>Служб:</span>".
-            "<span class='fVal'>".mysql_num_rows($wdSrv_res)."</span> </div>".
-            "<div class='line caption'><div class='td-35'>s-name</div>".
-            "<div class='td-35'>sSTName</div><div class='td-20'>Result</div></div>";
+        $appRJ->response['result'].="<div class='wi-block'><h3><span class='fName'>Службы</span>".
+            "<span class='fVal'>(".mysql_num_rows($wdSrv_res).")</span></h3>".
+            "<div class='wi-table'><div class='line caption'><div class='td-40'>sName</div>".
+            "<div class='td-20'>sSTName</div><div class='td-30'>sPath</div></div>";
         while ($wdSrv_row=$DB->doFetchRow($wdSrv_res)){
             $appRJ->response['result'].=
-                "<div class='line'><div class='td-35'>".$wdSrv_row['sName'].
-                "</div><div class='td-35'>".$wdSrv_row['sSTName']."</div><div class='td-20'>-</div></div>";
+                "<div class='line'><div class='td-40'>";
+
+            $appRJ->response['result'].="<div class='pCell-img'>";
+            if($wdSrv_row['sImg']){
+                $appRJ->response['result'].="<img src='".WD_SRV_IMG.$wdSrv_row['sImg']."'>";
+            }else{
+                $appRJ->response['result'].="<img src='/data/default-img.png'>";
+            }
+            $appRJ->response['result'].="</div><div class='pCell-name'>";
+            if($wdSrv_row['sDescr']){
+                $appRJ->response['result'].="<a href='/win-pc-info/services?sList_id=".$wdSrv_row['sList_id']."' title='подробнее'>";
+            }else{
+                $appRJ->response['result'].="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
+            }
+            $appRJ->response['result'].=$wdSrv_row['sName'];
+            $appRJ->response['result'].="</a></div>";
+            //$wdSrv_row['sName'].
+            $appRJ->response['result'].="</div><div class='td-20'>".$wdSrv_row['sSTName']."</div><div class='td-30'>".$wdSrv_row['sPath']."</div></div>";
         }
         $appRJ->response['result'].="</div>";
     }
@@ -156,7 +171,7 @@ if($wdList_rd->copyOne()){
         $appRJ->response['result'].="invalid wd_id";
     }
 }
-$appRJ->response['result'].= "</div>".
+$appRJ->response['result'].= "</div></div>".
     "<div class='info-app ta-left'><p>Создать диагностический файл можно используя программу - утилиту ".
     "<a href='/downloads/file/win-pc-info'>win-pc-info</a></p><p>Описание сервиса можно прочитать по ссылке ".
     "<a href='/pc/win-pc-info'>/pc/win-pc-info</a></p></div>".

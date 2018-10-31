@@ -16,6 +16,14 @@ if($cmpProc){
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareProcess-noPath.php");
     }
 }
+if($cmpSrv){
+    $cmpShow=true;
+    if($cmpSrvPath){
+        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareSrv.php");
+    }else{
+        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareSrv-noPath.php");
+    }
+}
 if(!$cmpShow){
     $appRJ->response['result'].="<div class='pageErr'>nothing to show. select options and press compare</div>";
 }

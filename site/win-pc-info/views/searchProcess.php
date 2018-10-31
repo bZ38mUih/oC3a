@@ -1,9 +1,9 @@
 <?php
 $hwProcess_qry="select * from wdProcList_dt WHERE pName LIKE '%".$_GET['searchArg']."%' ORDER BY pName";
 if($_GET['searchArg']){
-    $appRJ->response['result'].="<h4>Результаты поиска ( ";
+    $appRJ->response['result'].="<h3>Результаты поиска ( ";
 }else{
-    $appRJ->response['result'].="<h4>Список процессов ( ";
+    $appRJ->response['result'].="<h3>Список процессов ( ";
 }
 if($hwProcess_res=$DB->doQuery($hwProcess_qry)){
     if(mysql_num_rows($hwProcess_res)>0){
@@ -29,10 +29,10 @@ if($hwProcess_res=$DB->doQuery($hwProcess_qry)){
             $appRJ->response['result'].="</li>";
         }
     }else{
-        $appRJ->response['result']="0 )</h3>";
-        $appRJ->response['result'] .= "</ul><div class='pageErr'>hwList with varValue like %" . $_GET['searchArg'] . "% not found</div>";
+        $appRJ->response['result'].="0 )</h3>";
+        $appRJ->response['result'] .= "</ul><div class='pageErr'>procList with pName like %" . utf8_decode($_GET['searchArg']) . "% not found</div>";
     }
 }else{
-    $appRJ->response['result']="- )</h3>";
+    $appRJ->response['result'].="- )</h3>";
     $appRJ->errors['request']['description']="select from wdProcList_dt error";
 }

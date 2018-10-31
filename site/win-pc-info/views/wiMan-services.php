@@ -1,12 +1,12 @@
 <?php
-$h1 ="wdMan - editProcess";
+$h1 ="wdMan - editService";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='Редактирование процесса'/>".
+    "<meta name='description' content='Редактирование службы'/>".
     "<meta name='robots' content='noindex'>".
-    "<title>wdMan-editProcess</title>".
+    "<title>wdMan-editService</title>".
     "<link rel='SHORTCUT ICON' href='/site/win-pc-info/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
@@ -25,13 +25,17 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>";
 $appRJ->response['result'].="<div class='wdEdit'>";
-$appRJ->response['result'].= "<div class='info-line'><span class='fName'>processName:</span><span class='fVal'>".
-    $slProcess_row['pName']."</span></div>";
+$appRJ->response['result'].= "<div class='info-line'><span class='fName'>serviceName:</span><span class='fVal'>".
+    $slSrv_row['sName']."</span></div>";
+/*
+    "<div class='info-line'><span class='fName'>paramVal:</span><span class='fVal'>".
+    $slHw_row['paramVal']."</span></div>";
+*/
 $appRJ->response['result'].= "<form class='editImg'>".
     "<div class='img-frame'>";
 $delImgBtn_text=null;
-if($slProcess_row['pImg']){
-    $appRJ->response['result'].= "<img src='".WD_PROC_IMG.$slProcess_row['pImg']."' ";
+if($slSrv_row['sImg']){
+    $appRJ->response['result'].= "<img src='".WD_SRV_IMG.$slSrv_row['sImg']."' ";
     $appRJ->response['result'].=">";
     $delImgBtn_text= "class='active'";
 }else{
@@ -39,26 +43,27 @@ if($slProcess_row['pImg']){
 }
 $appRJ->response['result'].= "</div><div class='control-frame'>";
 $appRJ->response['result'].=  "<div class='delImg-line'>".
-    "<span onclick='delImg(".'"'.$slProcess_row['pName'].'", "process"'.")' ".$delImgBtn_text.">".
+    "<span onclick='delImg(".'"'.$slSrv_row['sName'].'", "service"'.")' ".$delImgBtn_text.">".
     "<img src='/source/img/drop-icon.png'>Удалить картинку</span></div><div class='button-line'>".
-    "<input type='file' onchange='loadFiles(".'"'.$slProcess_row['pName'].'"'.', "process"'.")' accept='image/jpeg,image/png,image/gif'></div>".
+    "<input type='file' onchange='loadFiles(".'"'.$slSrv_row['sName'].'"'.', "service"'.")' accept='image/jpeg,image/png,image/gif'></div>".
     "<div class='results'></div>";
 $appRJ->response['result'].= "</div>".
     "</form>";
 $appRJ->response['result'].= "<form class='wdEditParams'>".
     "<div class='field-err'></div>".
-    "<textarea name='hwDescr'>".$slProcess_row['pDescr']."</textarea>".
-    "<input type='hidden' name='pEdit' value='yyy'>".
-    "<input type='hidden' name='pVal' value='".$slProcess_row['pName']."'>".
+    "<textarea name='sDescr'>".$slSrv_row['sDescr']."</textarea>".
+    "<input type='hidden' name='sEdit' value='yyy'>".
+    //"<input type='hidden' name='pName' value='process'>".
+    "<input type='hidden' name='pVal' value='".$slSrv_row['sName']."'>".
     "<div class='input-line'><input type='button' value='Сохранить' onclick='editDescr()'></div>".
     "</form>";
-$appRJ->response['result'].= "<form class='pPathList'>".
+$appRJ->response['result'].= "<form class='sPathList'>".
     "<div class='field-err'></div>";
-$prPathList_qry="select * from wdProcPath_dt WHERE pName='".$slProcess_row['pName']."'";
-$prPathList_res=$DB->doQuery($prPathList_qry);
-if(mysql_num_rows($prPathList_res)>0){
-    while ($prPathList_row=$DB->doFetchRow($prPathList_res)){
-        $appRJ->response['result'].="<div class='line'>".$prPathList_row['pPath']."</div>";
+$srvPathList_qry="select * from wdSrvPath_dt WHERE sName='".$slSrv_row['sName']."'";
+$srvPathList_res=$DB->doQuery($srvPathList_qry);
+if(mysql_num_rows($srvPathList_res)>0){
+    while ($srvPathList_row=$DB->doFetchRow($srvPathList_res)){
+        $appRJ->response['result'].="<div class='line'>".$srvPathList_row['sPath']."</div>";
     }
 }else{
 
@@ -66,11 +71,11 @@ if(mysql_num_rows($prPathList_res)>0){
 $appRJ->response['result'].="</form>";
 $appRJ->response['result'].= "<form class='pPIDList'>".
     "<div class='field-err'></div>";
-$prPIDList_qry="select * from wdProcPID_dt WHERE pName='".$slProcess_row['pName']."'";
-$prPIDList_res=$DB->doQuery($prPIDList_qry);
-if(mysql_num_rows($prPIDList_res)>0){
-    while ($prPIDList_row=$DB->doFetchRow($prPIDList_res)){
-        $appRJ->response['result'].="<div class='line ta-left'>".$prPIDList_row['PID']."</div>";
+$srvSTName_qry="select * from wdSrvSTName_dt WHERE sName='".$slSrv_row['sName']."'";
+$srvSTName_res=$DB->doQuery($srvSTName_qry);
+if(mysql_num_rows($srvSTName_res)>0){
+    while ($srvSTName_row=$DB->doFetchRow($srvSTName_res)){
+        $appRJ->response['result'].="<div class='line ta-left'>".$srvSTName_row['sSTName']."</div>";
     }
 }else{
 

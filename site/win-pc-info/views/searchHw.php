@@ -69,6 +69,6 @@ if($hwSearch_res=$DB->doQuery($hwSearch_qry)){
         $appRJ->response['result'] .= "<div class='pageErr'>hwList with varValue like %" . $_GET['searchArg'] . "% not found</div>";
     }
 }else{
-    $appRJ->response['result']="- )</h3>";
+    $appRJ->response['result'].="- )</h3>";
     $appRJ->errors['request']['description']="select from wdHwList_dt error";
 }
