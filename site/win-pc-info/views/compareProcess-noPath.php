@@ -31,7 +31,7 @@ if(mysql_num_rows($slDifProc_res)>0){
             }
             $pLine.="</div><div class='pCell-name'>";
             if($slDifProc_row['pDescrLeft']){
-                $pLine.="<a href='/win-pc-info/process/".urlencode($slDifProc_row['pNameLeft'])."' title='подробнее'>";
+                $pLine.="<a href='/handbook/win-process/".urlencode($slDifProc_row['pNameLeft'])."' title='подробнее'>";
             }else{
                 $pLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }
@@ -54,7 +54,7 @@ if(mysql_num_rows($slDifProc_res)>0){
             }
             $pLine.="</div><div class='pCell-name'>";
             if($slDifProc_row['pDescrRight']){
-                $pLine.="<a href='/win-pc-info/process/".urlencode($slDifProc_row['pNameRight'])."' title='подробнее'>";
+                $pLine.="<a href='/handbook/win-process/".urlencode($slDifProc_row['pNameRight'])."' title='подробнее'>";
             }else{
                 $pLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }
