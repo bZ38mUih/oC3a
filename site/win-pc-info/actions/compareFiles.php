@@ -13,10 +13,10 @@ if($_GET['wdCmp']){
     $cmpLeft=$_GET['cmpLeft'];
     $cmpRight=$_GET['cmpRight'];
     if($_GET['opt-envir']){
-        $cmpOS=true;
+        $cmpEnv=true;
     }
     if($_GET['opt-os']){
-        $cmpEnv=true;
+        $cmpOS=true;
     }
     if($_GET['opt-hardware']){
         $cmpHw=true;

@@ -66,7 +66,7 @@ if(mysql_num_rows($slDifEnv_res)>0){
         $envLines.="<div class='line ".$envLineClass."'>".$envLine."</div>";
     }
     $appRJ->response['result'].="<div class='line caption'><div class='td-48'>".$wdLeftName_row['wdTag'].
-        " (".$leftDifCnt." dif)</div><div class='td-48'>".$wdRightName_row['wdTag']." (".$rightDifCnt." dif)</div></div>";
+        " (".$rightDifCnt." dif)</div><div class='td-48'>".$wdRightName_row['wdTag']." (".$leftDifCnt." dif)</div></div>";
     $appRJ->response['result'].="<div class='line caption'><div class='td-24'>vName-left</div>".
         "<div class='td-24'>vVal-left</div><div class='td-24'>vName-right</div><div class='td-24'>vVal-right</div></div>".
         $envLines;

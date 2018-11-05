@@ -4,7 +4,7 @@ $query_text="create table artCat_dt (".
     "artCatPar_id int(5), ".
     "catName varchar(128) collate utf8_unicode_ci not null, ".
     "catAlias varchar(128) collate utf8_unicode_ci not null, ".
-    "catDescr varchar(128) collate utf8_unicode_ci, ".
+    "catDescr varchar(256) collate utf8_unicode_ci, ".
     "catImg varchar(128) collate utf8_unicode_ci, ".
     "activeFlag BOOLEAN, ".
     "primary key (artCat_id)".

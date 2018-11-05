@@ -183,6 +183,7 @@ span.pName-list.active::after{
     width: 70%;
     border-right: 1px solid midnightblue;
     border-left: 1px solid midnightblue;
+    word-wrap: break-word;
 }
 /*
 .line .td-30{

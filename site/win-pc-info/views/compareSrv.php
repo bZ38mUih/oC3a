@@ -81,7 +81,7 @@ if(mysql_num_rows($slDifSrv_res)>0){
         $pLines.="<div class='line ".$pLineClass."'>".$pLine."</div>";
     }
     $appRJ->response['result'].="<div class='line caption'><div class='td-48'>".$wdLeftName_row['wdTag'].
-        " (".$leftDifCnt." dif)</div><div class='td-48'>".$wdRightName_row['wdTag']." (".$rightDifCnt." dif)</div></div>";
+        " (".$rightDifCnt." dif)</div><div class='td-48'>".$wdRightName_row['wdTag']." (".$leftDifCnt." dif)</div></div>";
     $appRJ->response['result'].="<div class='line caption'><div class='td-24'>pName-left</div>".
         "<div class='td-24'>pPath-left</div><div class='td-24'>pName-right</div><div class='td-24'>pPath-right</div></div>";
     $appRJ->response['result'].=$pLines;
