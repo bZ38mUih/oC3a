@@ -8,6 +8,8 @@ if($_POST){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editProcess.php");
     }elseif(isset($_POST['sEdit']) and $_POST['sEdit']=='yyy'){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editService.php");
+    }elseif(isset($_POST['osEdit']) and $_POST['osEdit']=='yyy'){
+        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/actions/wiMan-editOS.php");
     }
     else{
         $paramName=null;
@@ -16,9 +18,25 @@ if($_POST){
             $paramName="processor";
             $paramVal=$_POST['processor'];
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
-        }elseif(isset($_POST['graphic']) and $_POST['graphic']!=null){
-            $paramName="graphic";
-            $paramVal=$_POST['graphic'];
+        }elseif(isset($_POST['graphics']) and $_POST['graphics']!=null){
+            $paramName="graphics";
+            $paramVal=$_POST['Adapter-Name'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
+        }elseif(isset($_POST['Adapter-Name']) and $_POST['Adapter-Name']!=null){
+            $paramName="Adapter-Name";
+            $paramVal=$_POST['Adapter-Name'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
+        }elseif(isset($_POST['Audio']) and $_POST['Audio']!=null){
+            $paramName="Audio";
+            $paramVal=$_POST['Audio'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
+        }elseif(isset($_POST['Disk-model']) and $_POST['Disk-model']!=null){
+            $paramName="Disk-model";
+            $paramVal=$_POST['Disk-model'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
+        }elseif(isset($_POST['Disk-interfaceType']) and $_POST['Disk-interfaceType']!=null){
+            $paramName="Disk-interfaceType";
+            $paramVal=$_POST['Disk-interfaceType'];
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
         }elseif (isset($_POST['process'])){
             $paramVal=$_POST['process'];
@@ -27,17 +45,6 @@ if($_POST){
             $paramVal=$_POST['service'];
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editSrvImg.php");
         }
-        /*
-        elseif (isset($_POST['process'])){
-            $paramVal=$_POST['process'];
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editProcessImg.php");
-        }
-        */
-        /*
-        if ($paramName!=null and  $paramVal!=null){
-
-        }
-        */
     }
 }
 elseif ($_GET){
@@ -47,9 +54,29 @@ elseif ($_GET){
         $paramName="processor";
         $paramVal=$_GET['processor'];
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
-    }elseif(isset($_GET['graphic']) and $_GET['graphic']!=null){
+    }elseif(isset($_GET['graphics']) and $_GET['graphics']!=null){
         $paramName="graphic";
         $paramVal=$_GET['graphic'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
+    }elseif(isset($_GET['Adapter-Name']) and $_GET['Adapter-Name']!=null){
+        $paramName="Adapter-Name";
+        $paramVal=$_GET['Adapter-Name'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
+    }elseif(isset($_GET['Adapter-Type']) and $_GET['Adapter-Type']!=null){
+        $paramName="Adapter-Type";
+        $paramVal=$_GET['Adapter-Type'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
+    }elseif(isset($_GET['Audio']) and $_GET['Audio']!=null){
+        $paramName="Audio";
+        $paramVal=$_GET['Audio'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
+    }elseif(isset($_GET['Disk-interfaceType']) and $_GET['Disk-interfaceType']!=null){
+        $paramName="Disk-interfaceType";
+        $paramVal=$_GET['Disk-interfaceType'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
+    }elseif(isset($_GET['Disk-model']) and $_GET['Disk-model']!=null){
+        $paramName="Disk-model";
+        $paramVal=$_GET['Disk-model'];
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delHwImg.php");
     }elseif (isset($_GET['process']) and $_GET['process']!=null){
         $paramVal=$_GET['process'];
@@ -58,14 +85,6 @@ elseif ($_GET){
         $paramVal=$_GET['service'];
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delSrvImg.php");
     }
-    /*
-    elseif (isset($_GET['service']) and $_GET['service']!=null){
-        $paramVal=$_GET['service'];
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-delProcessImg.php");
-    }
-    */
-
-
 }
 elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="hardware"){
     if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
@@ -94,6 +113,24 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
             if(mysql_num_rows($slEnv_res)==1){
                 $slEnv_row=$DB->doFetchRow($slEnv_res);
                 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-environment.php");
+            }else{
+                $appRJ->errors['404']['description']="invalid vName or vVal";
+            }
+        }else{
+            $appRJ->errors['404']['description']="invalid vVal";
+        }
+    }else{
+        $appRJ->errors['404']['description']="invalid vName";
+    }
+}elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="system"){
+    if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
+        if(isset($appRJ->server['reqUri_expl'][5]) and $appRJ->server['reqUri_expl'][5]!=null){
+            $urlDec=urldecode($appRJ->server['reqUri_expl'][5]);
+            $slEnv_qry="select * from wdOsList_dt WHERE osVal='".$urlDec."' and osName='".$appRJ->server['reqUri_expl'][4]."'";
+            $slEnv_res=$DB->doQuery($slEnv_qry);
+            if(mysql_num_rows($slEnv_res)==1){
+                $slEnv_row=$DB->doFetchRow($slEnv_res);
+                require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-os.php");
             }else{
                 $appRJ->errors['404']['description']="invalid vName or vVal";
             }

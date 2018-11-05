@@ -2,6 +2,7 @@
 $query_text="create table wdHw_dt (".
     "hwList_id int(5) AUTO_INCREMENT, ".
     "wd_id int(5) not null, ".
+    "hwNum varchar(64), ".
     "paramName varchar(128) collate utf8_unicode_ci, ".
     "paramVal varchar(128) collate utf8_unicode_ci, ".
     "primary key (hwList_id)".

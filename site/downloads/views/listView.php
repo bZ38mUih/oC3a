@@ -75,7 +75,7 @@ function printList($dwlCatPar_id=null, $DB)
                     if($responce['cntCat']){
                         $tmpRes['text'].= "<span class='flVal'>".$responce['cntCat']."</span> кат.";
                     }
-                    $tmpRes['text'].="<span class='slide-stat'>[+]</span></div>";
+                    $tmpRes['text'].="<span class='slide-stat'>[-]</span></div>";
                 }
                 $tmpRes['text'].=$responce['text']."</li>";
             }

@@ -35,9 +35,8 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
     "<meta name='description' content='".$artByAlias_row['artMeta']."'/>".
-    "<title>".$h1."</title>".
-    //"<title>".$artByAlias_row['catName']."</title>".
-    "<link rel='SHORTCUT ICON' href='/site/".$appRJ->server['reqUri_expl'][1]."/img/favicon.png' type='image/png'>".
+    "<title>Справочник</title>".
+    "<link rel='SHORTCUT ICON' href='/site/handbook/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";

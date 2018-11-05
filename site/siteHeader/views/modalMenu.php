@@ -1,4 +1,34 @@
 <?php
+/*
+function printArtMenu($artCat_id, $result=null, $DB){
+    if($result==null){
+        $result["cnt"]=0;
+        $result["txt"]=null;
+    }
+    $art_qry="select * from art_dt WHERE artCat_id='".$artCat_id."' and activeFlag is true order by pubDate DESC";
+    $art_res=$DB->doQuery($art_qry);
+    if(mysql_num_rows($art_res)>0){
+        while($art_row=$DB->doFetchRow($art_res)){
+            //$artCnt++;
+            $result["cnt"]++;
+            $result["txt"].="<li>".$art_row['artName']."-".$art_row['pubDate']."</li>";
+            if($result["cnt"]>100){
+                return $result;
+            }
+        }
+    }
+    $artCat_qry="select * from artCat_dt WHERE artCatPar_id='".$artCat_id."' and activeFlag is true";
+    $artCat_res=$DB->doQuery($artCat_qry);
+    if(mysql_num_rows($artCat_res)>0){
+        while($artCat_row=$DB->doFetchRow($artCat_res)){
+            $tmpRes=printArtMenu($artCat_row['artCat_id'], $result, $DB);
+            $result['cnt']+=$tmpRes['cnt'];
+            $result['txt']=$tmpRes['txt'];
+        }
+    }
+    return $result;
+}
+*/
 $appRJ->response['result'].= "<div class='modal menu'><div class='overlay'></div><div class='contentBlock-frame'>".
     "<div class='contentBlock-center'><div class='modal-right'><div class='modal-close'></div>".
     "</div><div class='modal-left'>";
@@ -129,6 +159,10 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "handbook") {
 }
 $appRJ->response['result'].= "<a href='/handbook/'>Справочник</a> <span class='opnSubMenu'>" . $dwlSign . "</span> ".
     "<ul " . $dwlStyle . ">";
+//allHandbookMenu
+//$handbook_menu=printArtMenu(2, null, $DB);
+//$appRJ->response['result'].=$handbook_menu['txt'];
+
 $devArts_qry = "select * from art_dt where artCat_id=2 and activeFlag is true ORDER BY pubDate DESC limit 4";
 $devArts_res = $DB->doQuery($devArts_qry);
 while ($devArts_row = $DB->doFetchRow($devArts_res)) {

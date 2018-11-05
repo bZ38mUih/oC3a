@@ -25,7 +25,7 @@ if($hwSearch_res=$DB->doQuery($hwSearch_qry)){
                     $appRJ->response['result'].="<img src='/data/default-img.png'>";
                 }
                 if($hwSearch_row['hwDescr']){
-                    $appRJ->response['result'].="<a href='/win-pc-info/hardware/".$hwSearch_row['paramName']."/".
+                    $appRJ->response['result'].="<a href='/handbook/win-hardware/".$hwSearch_row['paramName']."/".
                         urlencode($hwSearch_row['paramVal']).
                         "' title='подробнее'>".$hwSearch_row['paramVal']."</a>";
                 }else{

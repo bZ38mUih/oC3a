@@ -32,7 +32,7 @@ if(mysql_num_rows($slDifSrv_res)>0){
             }
             $pLine.="</div><div class='pCell-name'>";
             if($slDifSrv_row['sDescrLeft']){
-                $pLine.="<a href='/win-pc-info/services/".urlencode($slDifSrv_row['sNameLeft'])."' title='подробнее'>";
+                $pLine.="<a href='/handbook/win-services/".urlencode($slDifSrv_row['sNameLeft'])."' title='подробнее'>";
             }else{
                 $pLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }
@@ -60,7 +60,7 @@ if(mysql_num_rows($slDifSrv_res)>0){
             }
             $pLine.="</div><div class='pCell-name'>";
             if($slDifSrv_row['sDescrRight']){
-                $pLine.="<a href='/win-pc-info/services/".urlencode($slDifSrv_row['sNameRight'])."' title='подробнее'>";
+                $pLine.="<a href='/handbook/win-services/".urlencode($slDifSrv_row['sNameRight'])."' title='подробнее'>";
             }else{
                 $pLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }

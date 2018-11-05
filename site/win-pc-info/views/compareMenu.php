@@ -33,6 +33,11 @@ if($_COOKIE['opt-envir']){
     $appRJ->response['result'].="checked";
 }
 $appRJ->response['result'].="></div>".
+    "<div class='line'><span>Система</span><input type='checkbox' name='opt-os' ";
+if($_COOKIE['opt-os']){
+    $appRJ->response['result'].="checked";
+}
+$appRJ->response['result'].="></div>".
     "<div class='line'><span>Аппаратура</span><input type='checkbox' name='opt-hardware' ";
 if($_COOKIE['opt-hardware']){
     $appRJ->response['result'].="checked";

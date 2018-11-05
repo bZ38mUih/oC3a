@@ -52,18 +52,37 @@ if($wdList_rd->putOne()){
             $diagRes['err'].="envList-FAIL<hr>";
         }
     }
+
+    if(isset($diagArr['osList'])){
+        $insOS_qry=insertArray("wdOS_dt", $bindFld, $bindVal, $diagArr['osList']);
+        if($DB->doQuery($insOS_qry)){
+            $difOS_qry="select wdOS_dt.osName, wdOS_dt.osVal from wdOS_dt ".
+                "LEFT JOIN wdOsList_dt ON wdOS_dt.osName=wdOsList_dt.osName and wdOS_dt.osVal=wdOsList_dt.osVal ".
+                "WHERE wdOS_dt.wd_id=".$bindVal.
+                " and wdOsList_dt.osName is null ".
+                "and wdOsList_dt.osVal is null and wdOS_dt.osName<>'LocalDateTime' and wdOS_dt.osName<>'InstallDate'".
+                " and wdOS_dt.osName<>'SerialNumber' order by wdOS_dt.osName, wdOS_dt.osVal";
+            $insertOsList_qry="insert into wdOsList_dt(osName, osVal) ".$difOS_qry;
+            $DB->doQuery($insertOsList_qry);
+        }else{
+            $diagRes['err'].="osList-FAIL<hr>";
+        }
+    }
     if(isset($diagArr['hardwareList'])){
         $insHw_qry=insertArray("wdHw_dt", $bindFld, $bindVal, $diagArr['hardwareList']);
+
         if($DB->doQuery($insHw_qry)){
             $difHw_qry="select wdHw_dt.paramName, wdHw_dt.paramVal from wdHw_dt ".
                 "LEFT JOIN wdHwList_dt ON wdHw_dt.paramName=wdHwList_dt.paramName and wdHw_dt.paramVal=wdHwList_dt.paramVal ".
                 "WHERE wdHw_dt.wd_id=".$bindVal." and wdHwList_dt.paramName is null and wdHwList_dt.paramVal is null and ".
-                "wdHw_dt.paramName<>'RAM' ".
-                "order by wdHw_dt.paramName, wdHw_dt.paramVal";
+                "wdHw_dt.paramName<>'Disk-size' and wdHw_dt.paramName<>'TotalVisibleMemorySize' and wdHw_dt.paramName<>'Adapter-Speed' and
+                wdHw_dt.paramVal<>'-'";
             $insertHwList_qry="insert into wdHwList_dt(paramName, paramVal) ".$difHw_qry;
             $DB->doQuery($insertHwList_qry);
         }else{
+
             $diagRes['err'].="hwList-FAIL<hr>";
+        //    $diagRes['data'].=$insHw_qry;
         }
     }
     if(isset($diagArr['procList'])){

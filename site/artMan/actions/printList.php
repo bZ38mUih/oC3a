@@ -48,7 +48,8 @@ function printList($artCatPar_id=null, $DB, $ref)
         if($catCount>0){
             while ($selectCat_row=$DB->doFetchRow($selectCat_res)){
                 $tmpCat=null;
-                $tmpCat.="<li class='cat-line'><a href='/".$ref."/".$selectCat_row['catAlias']."'>".
+                //$tmpCat.="<li class='cat-line'><a href='/".$ref."/".$selectCat_row['catAlias']."'>".
+                $tmpCat.="<li class='cat-line'><a href='javascript: Void(0)'>".
                     "<div class='cat-line-img'>";
                 if($selectCat_row['catImg']){
                     $tmpCat.= "<img src='".ART_CATEG_IMG_PAPH.$selectCat_row['artCat_id']."/preview/".$selectCat_row['catImg']."'>";
@@ -76,7 +77,7 @@ function printList($artCatPar_id=null, $DB, $ref)
                     if($responce['cntCat']){
                         $tmpRes['text'].= "<span class='flVal'>".$responce['cntCat']."</span> кат.";
                     }
-                    $tmpRes['text'].="<span class='slide-stat'>[+]</span></div>";
+                    $tmpRes['text'].="<span class='slide-stat'>[-]</span></div>";
                 }
                 $tmpRes['text'].=$responce['text'];
                 $tmpRes['text'].="</li>";

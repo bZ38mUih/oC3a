@@ -7,7 +7,7 @@ if($_GET['searchArg']){
 }
 if($wdList_res=$DB->doQuery($wdList_qry)){
     if(mysql_num_rows($wdList_res)>0){
-        $appRJ->response['result'].=mysql_num_rows($wdList_res)." )</h3>";
+        $appRJ->response['result'].=mysql_num_rows($wdList_res)." )</h3><div class='wi-block'><div class='wi-table'>";
         $appRJ->response['result'].="<div class='line caption'>".
             "<div class='td-48'>Tag</div><div class='td-48'>Date</div></div>";
         while ($wdList_row=$DB->doFetchRow($wdList_res)){

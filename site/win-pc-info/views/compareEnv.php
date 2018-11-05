@@ -30,7 +30,7 @@ if(mysql_num_rows($slDifEnv_res)>0){
         $envLine.="</div><div class='td-24'>";
         if($slDifEnv_row['vValLeft']){
             if($slDifEnv_row['vDescrLeft']){
-                $envLine.="<a href='/win-pc-info/environment/".$slDifEnv_row['vNameLeft']."/".urlencode($slDifEnv_row['vValLeft'])."' title='подробнее'>";
+                $envLine.="<a href='/handbook/win-environment/".$slDifEnv_row['vNameLeft']."/".urlencode($slDifEnv_row['vValLeft'])."' title='подробнее'>";
             }else{
 
                 $envLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
@@ -51,7 +51,7 @@ if(mysql_num_rows($slDifEnv_res)>0){
         $envLine.="</div><div class='td-24'>";
         if($slDifEnv_row['vValRight']){
             if($slDifEnv_row['vDescrRight']){
-                $envLine.="<a href='/win-pc-info/environment/".$slDifEnv_row['vNameRight']."/".urlencode($slDifEnv_row['vValRight'])."' title='подробнее'>";
+                $envLine.="<a href='/handbook/win-environment/".$slDifEnv_row['vNameRight']."/".urlencode($slDifEnv_row['vValRight'])."' title='подробнее'>";
             }else{
 
                 $envLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";

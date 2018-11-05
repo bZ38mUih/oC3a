@@ -4,6 +4,10 @@ if($cmpEnv){
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareEnv.php");
     $cmpShow=true;
 }
+if($cmpOS){
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareOS.php");
+    $cmpShow=true;
+}
 if($cmpHw){
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareHw.php");
     $cmpShow=true;

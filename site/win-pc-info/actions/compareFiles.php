@@ -1,7 +1,8 @@
 <?php
-$cmpRight=37;
-$cmpLeft=38;
+$cmpRight=1;
+$cmpLeft=2;
 $cmpEnv=false;
+$cmpOS=false;
 $cmpHw=false;
 $cmpProc=false;
 $cmpProcPath=false;
@@ -12,6 +13,9 @@ if($_GET['wdCmp']){
     $cmpLeft=$_GET['cmpLeft'];
     $cmpRight=$_GET['cmpRight'];
     if($_GET['opt-envir']){
+        $cmpOS=true;
+    }
+    if($_GET['opt-os']){
         $cmpEnv=true;
     }
     if($_GET['opt-hardware']){
@@ -38,6 +42,9 @@ if($_GET['wdCmp']){
     }
     if($_COOKIE['opt-envir']){
         $cmpEnv=true;
+    }
+    if($_COOKIE['opt-os']){
+        $cmpOS=true;
     }
     if($_COOKIE['opt-hardware']){
         $cmpHw=true;

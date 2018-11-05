@@ -48,64 +48,102 @@ if($wdList_rd->copyOne()){
     $wdEnv_qry="select wdEnv_dt.vName as vName1, wdEnv_dt.vVal AS vVal1, wdEnv_dt.envList_id, wdEnvList_dt.vDescr ".
         "from wdEnv_dt LEFT JOIN wdEnvList_dt ON wdEnv_dt.vName=wdEnvList_dt.vName and wdEnv_dt.vVal=wdEnvList_dt.vVal ".
         "where wdEnv_dt.wd_id=".$wdList_rd->result['wd_id'];
-    $wdHw_qry="select wdHw_dt.paramName as paramName1, wdHw_dt.paramVal as paramVal1, wdHw_dt.hwList_id, wdHwList_dt.hwDescr ".
+    $wdOS_qry="select wdOS_dt.osName as osName1, wdOS_dt.osVal AS osVal1, wdOS_dt.osList_id, wdOsList_dt.osDescr ".
+        "from wdOS_dt LEFT JOIN wdOsList_dt ON wdOS_dt.osName=wdOsList_dt.osName and wdOS_dt.osVal=wdOsList_dt.osVal ".
+        "where wdOS_dt.wd_id=".$wdList_rd->result['wd_id'];
+    $wdHw_qry="select wdHw_dt.paramName as paramName1, wdHw_dt.paramVal as paramVal1, wdHw_dt.hwList_id, wdHwList_dt.hwDescr, wdHw_dt.hwNum ".
         "from wdHw_dt LEFT JOIN wdHwList_dt ON wdHw_dt.paramName=wdHwList_dt.paramName and ".
         "wdHw_dt.paramVal=wdHwList_dt.paramVal ".
         "where wdHw_dt.wd_id=".$wdList_rd->result['wd_id'];
     $wdProc_qry="select * from wdProc_dt LEFT JOIN wdProcList_dt ON wdProc_dt.pName=wdProcList_dt.pName where wdProc_dt.wd_id=".$wdList_rd->result['wd_id']." order by wdProc_dt.pName";
     $wdSrv_qry="select * from wdSrv_dt LEFT JOIN wdSrvList_dt ON wdSrv_dt.sName=wdSrvList_dt.sName WHERE wdSrv_dt.wd_id=".$wdList_rd->result['wd_id']." order by wdSrv_dt.sName";
     $appRJ->response['result'].="<div class='wi-block'><h3>Инфо:</h3>".
-        "<div class='line btMg2'><span class='fName'>wd_id:</span><span class='fVal'>".$wdList_rd->result['wd_id'].
-        "</span></div><div class='line btMg2'><span class='fName'>wdTag:</span><span class='fVal'>".
-        $wdList_rd->result['wdTag']."</span> </div><div class='line btMg2'><span class='fName'>diagDate:</span>".
-        "<span class='fVal'>".$wdList_rd->result['diagDate']."</span></div></div>";
+        "<div class='wi-table'><div class='line caption'><div class='td-48'>infoName</div><div class='td-48'>infoVal</div></div>".
+        "<div class='line'><div class='td-48'>wd_id</div><div class='td-48'>".$wdList_rd->result['wd_id'].
+        "</div></div><div class='line'><div class='td-48'>wdTag</div><div class='td-48'>".
+        $wdList_rd->result['wdTag']."</div> </div><div class='line'><div class='td-48'>loadDate</div>".
+        "<div class='td-48'>".$wdList_rd->result['diagDate']."</div></div></div></div>";
     $wdEnv_res=$DB->doQuery($wdEnv_qry);
     if(mysql_num_rows($wdEnv_res)>0){
-        $appRJ->response['result'].="<div class='wi-block'><h3>Окружение</h3>";
+        $appRJ->response['result'].="<div class='wi-block'><h3>Окружение</h3>".
+        "<div class='wi-table'><div class='line caption'><div class='td-48'>envName</div><div class='td-48'>envVal</div></div>";
         while ($wdEnv_row=$DB->doFetchRow($wdEnv_res)){
-            $dwManEnv=null;
-            if($wdEnv_row['vName1']!='MachineName' and $wdEnv_row['vName1']!='UserName'){
-                $appRJ->response['result'].=
-                    "<div class='line btMg2'><span class='fName'>".$wdEnv_row['vName1'].
-                    ":</span>";
+            $appRJ->response['result'].="<div class='line'><div class='td-48'>".$wdEnv_row['vName1'].
+                "</div><div class='td-48'>";
+            if($wdEnv_row['vName1']!='MachineName' and $wdEnv_row['vName1']!='UserName'){;
                 if($wdEnv_row['vDescr']){
-                    $appRJ->response['result'].="<a href='/win-pc-info/environment?envList_id=".
-                        $wdEnv_row['envList_id']."' title='подробнее'>";
+                    $appRJ->response['result'].="<a href='/handbook/win-environment/".$wdEnv_row['vName1']."/".urlencode($wdEnv_row['vVal1'])
+                        ."' title='подробнее'>";
                 }else{
                     $appRJ->response['result'].="<a href='#' onclick='return false;' class='deactive' title='описание отсутствует'>";
                 }
-                $appRJ->response['result'].=$wdEnv_row['vVal1']."</a></div>";
+                $appRJ->response['result'].=$wdEnv_row['vVal1']."</a>";
             }else{
+                $appRJ->response['result'].=$wdEnv_row['vVal1'];
+            }
+            $appRJ->response['result'].="</div></div>";
+        }
+        $appRJ->response['result'].="</div></div>";
+    }
+    $wdOS_res=$DB->doQuery($wdOS_qry);
+    if(mysql_num_rows($wdOS_res)>0){
+        $appRJ->response['result'].="<div class='wi-block'><h3>OS</h3>".
+            "<div class='wi-table'><div class='line caption'><div class='td-48'>osName</div><div class='td-48'>osVal</div></div>";
+        while ($wdOS_row=$DB->doFetchRow($wdOS_res)){
+            //$dwManEnv=null;
+            $appRJ->response['result'].="<div class='line'><div class='td-48'>".$wdOS_row['osName1'].
+                "</div><div class='td-48'>";
+            //if($wdOS_row['osName1']!='MachineName' and $wdEnv_row['vName1']!='UserName'){
+                //$appRJ->response['result'].=$wdOS_row['osName1']."</div><div class='td-48'>";
+                if($wdOS_row['osDescr']){
+                    $appRJ->response['result'].="<a href='/win-pc-info/environment?envList_id=".
+                        $wdOS_row['osList_id']."' title='подробнее'>";
+                }else{
+                    $appRJ->response['result'].="<a href='#' onclick='return false;' class='deactive' title='описание отсутствует'>";
+                }
+                $appRJ->response['result'].=$wdOS_row['osVal1']."</a>";
+            $appRJ->response['result'].="</div></div>";
+        /*
+        }else{
                 $appRJ->response['result'].=
                     "<div class='line btMg2'><span class='fName'>".$wdEnv_row['vName1'].
                     ":</span><span class='fVal'>".$wdEnv_row['vVal1']."</span></div>";
             }
-            $appRJ->response['result'].=$dwManEnv;
+        */
+            //$appRJ->response['result'].=$dwManEnv;
         }
-        $appRJ->response['result'].="</div>";
+        $appRJ->response['result'].="</div></div>";
     }
     $wdHw_res=$DB->doQuery($wdHw_qry);
     if(mysql_num_rows($wdHw_res)>0){
-        $appRJ->response['result'].="<div class='wi-block'><h3>Аппаратура</h3>";
+        $appRJ->response['result'].="<div class='wi-block'><h3>Аппаратура</h3>".
+            "<div class='wi-table'><div class='line caption'><div class='td-48'>hwName</div><div class='td-48'>hwVal</div></div>";;
         while ($wdHw_row=$DB->doFetchRow($wdHw_res)){
-            $dwManHw=null;
-            $appRJ->response['result'].=
-                "<div class='line btMg2'><span class='fName'>".$wdHw_row['paramName1']."</span>";
-            if ($wdHw_row['paramName1'] != "RAM") {
+            //$dwManHw=null;
+            $hwNum=null;
+            if($wdHw_row['hwNum']!="-"){
+                $hwNum=" (".$wdHw_row['hwNum'].")";
+            }
+            $appRJ->response['result'].="<div class='line'><div class='td-48'>".$wdHw_row['paramName1'].$hwNum.
+                "</div><div class='td-48'>";
+
+            if ($wdHw_row['paramName1'] != "TotalVisibleMemorySize" and $wdHw_row['paramName1'] != "Adapter-Speed"
+                and $wdHw_row['paramName1'] != "Disk-size" and $wdHw_row['paramVal1']!="-") {
                 if($wdHw_row['hwDescr']){
-                    $appRJ->response['result'] .= "<a href='/win-pc-info/hardware?hwList_id=". urlencode($wdHw_row['hwList_id']) .
-                        "' title='подробнее'>" .
-                        $wdHw_row['paramVal1'];
+                    $appRJ->response['result'] .= "<a href='/handbook/win-hardware/".$wdHw_row['paramName1']."/".
+                        urlencode($wdHw_row['paramVal1']) .
+                        "' title='подробнее'>".$wdHw_row['paramVal1'];
                 }else{
                     $appRJ->response['result'] .= "<a href='#' onclick='return false;' class='deactive' title='описание отсутствует'>" .
                         $wdHw_row['paramVal1'];
                 }
-                $appRJ->response['result'] .="</a></div>".$dwManHw;
+                $appRJ->response['result'] .="</a>";
             } else {
-                $appRJ->response['result'] .= "<span class='fVal'>" . $wdHw_row['paramVal1'] . "</span></div>";
+                $appRJ->response['result'] .=$wdHw_row['paramVal1'];
             }
+            $appRJ->response['result'].="</div></div>";
         }
-        $appRJ->response['result'].="</div>";
+        $appRJ->response['result'].="</div></div>";
     }
     $wdProc_res=$DB->doQuery($wdProc_qry);
     if(mysql_num_rows($wdProc_res)>0){
@@ -125,7 +163,7 @@ if($wdList_rd->copyOne()){
             }
             $appRJ->response['result'].="</div><div class='pCell-name'>";
             if($wdProc_row['pDescr']){
-                $appRJ->response['result'].="<a href='/win-pc-info/process?pList_id=".$wdProc_row['pList_id']."' title='подробнее'>";
+                $appRJ->response['result'].="<a href='/handbook/win-process/".$wdProc_row['pName']."' title='подробнее'>";
             }else{
                 $appRJ->response['result'].="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }
@@ -155,7 +193,7 @@ if($wdList_rd->copyOne()){
             }
             $appRJ->response['result'].="</div><div class='pCell-name'>";
             if($wdSrv_row['sDescr']){
-                $appRJ->response['result'].="<a href='/win-pc-info/services?sList_id=".$wdSrv_row['sList_id']."' title='подробнее'>";
+                $appRJ->response['result'].="<a href='/handbook/win-services/".$wdSrv_row['sName']."' title='подробнее'>";
             }else{
                 $appRJ->response['result'].="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }

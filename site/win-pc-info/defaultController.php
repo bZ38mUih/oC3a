@@ -16,14 +16,6 @@ elseif (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
     $appRJ->response['format']="ajax";
     if($_GET['wiSearch']=="wiFile"){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchDFile.php");
-    }elseif($_GET['wiSearch']=="environment"){
-        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchEnvir.php");
-    }elseif($_GET['wiSearch']=="hardware"){
-        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchHw.php");
-    }elseif($_GET['wiSearch']=="process"){
-        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchProcess.php");
-    }elseif($_GET['wiSearch']=="services"){
-        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchServices.php");
     }
     else{
         $appRJ->response['result'].="wrong search param";
@@ -39,15 +31,8 @@ else{
             $wdList_rd->result['wd_id']=$_GET['wd_id'];
         }
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/defaultView.php");
-    }elseif ($appRJ->server['reqUri_expl'][2]==="environment"){
-        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/showEnvironment.php");
-    }elseif ($appRJ->server['reqUri_expl'][2]==="hardware"){
-        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/showHardware.php");
-    }elseif ($appRJ->server['reqUri_expl'][2]==="process"){
-        require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/showProcess.php");
-    }elseif ($appRJ->server['reqUri_expl'][2]==="services"){
-        require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/showServices.php");
-    }elseif ($appRJ->server['reqUri_expl'][2]==="compare"){
+    }
+    elseif ($appRJ->server['reqUri_expl'][2]==="compare"){
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/compareFiles.php");
     }
     else{
