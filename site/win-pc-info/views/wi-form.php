@@ -26,7 +26,7 @@ if(!$appRJ->server['reqUri_expl'][2]){
 }elseif($appRJ->server['reqUri_expl'][2]=='services'){
     $appRJ->response['result'].="поиск служб";
 }
-$appRJ->response['result'].="</label><input type='text' name='tpSearch' value='%'>".
+$appRJ->response['result'].="</label><input type='text' name='tpSearch' value=''>".
     "<button onclick='wiSearch(".'"';
 if(!$appRJ->server['reqUri_expl'][2]){
     $appRJ->response['result'].="wiFile";

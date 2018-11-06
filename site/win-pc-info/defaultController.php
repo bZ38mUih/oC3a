@@ -9,7 +9,11 @@ if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=
     $diagRes['data']=null;
     $diagRes['err']=null;
     $bindFld=null;
-    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/loadDiagFile.php");
+    if($_SESSION['user_id']){
+        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/loadDiagFile.php");
+    }else{
+        $diagRes['err']="not auth err";
+    }
     $appRJ->response['result']=$diagRes;
 }
 elseif (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
