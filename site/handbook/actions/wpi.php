@@ -44,7 +44,7 @@ if (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
         $vName=urldecode($appRJ->server['reqUri_expl'][3]);
         $vVal=urldecode($appRJ->server['reqUri_expl'][4]);
         //$wdInfo_qry="select * from wdEnvList_dt WHERE vName='".$vName."' and vVal='".$vVal."'";
-        $wdInfo_qry="select * from wdEnvList_dt WHERE vName='".$vName."' and vVal like '%".mysql_real_escape_string($vVal)."'%";
+        $wdInfo_qry="select * from wdEnvList_dt WHERE vName='".$vName."' and vVal like '%".mysql_real_escape_string($vVal)."%'";
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/handbook/views/wpi/wpi-env-print.php");
         $wdInfo.="</div>";
     }else{
