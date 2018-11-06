@@ -18,7 +18,7 @@ if($env_res=$DB->doQuery($env_qry)){
                     "' title='подробнее'>".$env_row['vVal']."</a>";
             }else{
                 $appRJ->response['result'].="<a href='#' onclick='return false' class='deactive' title='описание не задано'>".
-                    $env_row['vName']."</a>";
+                    $env_row['vVal']."</a>";
             }
             if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
                 $appRJ->response['result'].="<a href='/win-pc-info/wiMan/environment/".$env_row['vName']."/".urlencode($env_row['vVal'])."' class='editP'>" .
