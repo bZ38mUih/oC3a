@@ -61,7 +61,7 @@ if($wdList_rd->putOne()){
                 "WHERE wdOS_dt.wd_id=".$bindVal.
                 " and wdOsList_dt.osName is null ".
                 "and wdOsList_dt.osVal is null and wdOS_dt.osName<>'LocalDateTime' and wdOS_dt.osName<>'InstallDate'".
-                " and wdOS_dt.osName<>'SerialNumber' order by wdOS_dt.osName, wdOS_dt.osVal";
+                " and wdOS_dt.osName<>'SerialNumber' and wdOS_dt.osName<>'Name' order by wdOS_dt.osName, wdOS_dt.osVal";
             $insertOsList_qry="insert into wdOsList_dt(osName, osVal) ".$difOS_qry;
             $DB->doQuery($insertOsList_qry);
         }else{
