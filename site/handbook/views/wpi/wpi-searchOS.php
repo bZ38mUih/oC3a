@@ -8,7 +8,7 @@ if($_GET['searchArg']){
 if($os_res=$DB->doQuery($os_qry)){
     if(mysql_num_rows($os_res)>0){
         $appRJ->response['result'].=mysql_num_rows($os_res)." )</h3><div class='line caption'>".
-            "<div class='td-20'>envName</div><div class='td-70'>envVal</div></div>";
+            "<div class='td-20'>osName</div><div class='td-70'>osVal</div></div>";
         while ($os_row=$DB->doFetchRow($os_res)){
             $appRJ->response['result'].="<div class='line'><div class='td-20'>";
             $appRJ->response['result'].=$os_row['osName'];
