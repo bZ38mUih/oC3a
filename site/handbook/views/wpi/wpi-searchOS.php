@@ -3,7 +3,7 @@ $os_qry="select * from wdOsList_dt WHERE osVal LIKE '%".$_GET['searchArg']."%' O
 if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Результаты поиска ( ";
 }else{
-    $appRJ->response['result'].="<h3>Список окружения ( ";
+    $appRJ->response['result'].="<h3>Список парам. системы ( ";
 }
 if($os_res=$DB->doQuery($os_qry)){
     if(mysql_num_rows($os_res)>0){
