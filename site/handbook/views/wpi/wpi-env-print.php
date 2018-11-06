@@ -1,6 +1,4 @@
 <?php
-echo $vName."/".$vVal;
-exit;
 $wdInfo_res=$DB->doQuery($wdInfo_qry);
 if(mysql_num_rows($wdInfo_res)==1){
     $wdInfo_row=$DB->doFetchRow($wdInfo_res);
