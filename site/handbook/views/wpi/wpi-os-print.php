@@ -15,7 +15,7 @@ if(mysql_num_rows($wdInfo_res)==1){
 if($appRJ->errors){
     $appRJ->throwErr();
 }
-$h1 ="Описание окружения Windows";
+$h1 ="Описание сборки Windows";
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
