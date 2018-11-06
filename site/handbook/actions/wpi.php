@@ -6,7 +6,7 @@ if (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
     }elseif($_GET['wiSearch']=="win-system-info"){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/handbook/views/wpi/wpi-searchOS.php");
     }elseif($_GET['wiSearch']=="hardware"){
-        require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchHw.php");
+        require_once ($_SERVER['DOCUMENT_ROOT']."/site/handbook/views/wpi/wpi-searchHw.php");
     }elseif($_GET['wiSearch']=="win-process"){
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/handbook/views/wpi/wpi-searchProcess.php");
     }elseif($_GET['wiSearch']=="win-services"){
@@ -55,7 +55,7 @@ if (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
         $wdInfo.="<div class='wi-block'>";
         $vName=urldecode($appRJ->server['reqUri_expl'][3]);
         $vVal=urldecode($appRJ->server['reqUri_expl'][4]);
-        $wdInfo_qry="select * from wdOsList_dt WHERE osName='".$vName."' and osVal='".urldecode($vVal)."'";
+        $wdInfo_qry="select * from wdOsList_dt WHERE osName='".$vName."' and osVal='".$vVal."'";
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/handbook/views/wpi/wpi-os-print.php");
         $wdInfo.="</div>";
     }else{
