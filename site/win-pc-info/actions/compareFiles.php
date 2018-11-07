@@ -8,6 +8,7 @@ $cmpProc=false;
 $cmpProcPath=false;
 $cmpSrv=false;
 $cmpSrvPath=false;
+$cmpErr=false;
 if($_GET['wdCmp']){
     $appRJ->response['format']='ajax';
     $cmpLeft=$_GET['cmpLeft'];
@@ -69,18 +70,18 @@ $wdRightName_res=$DB->doQuery($wdRightName_qry);
 if(mysql_num_rows($wdLeftName_res)==1){
     $wdLeftName_row=$DB->doFetchRow($wdLeftName_res);
 }else{
-    $appRJ->errors['request']['description']="wron cmpLeft";
+
+    $cmpErr="wron cmpLeft";
 }
 if(mysql_num_rows($wdRightName_res)==1){
     $wdRightName_row=$DB->doFetchRow($wdRightName_res);
 }else{
-    $appRJ->errors['request']['description']="wron cmpRight";
+    $cmpErr="wron cmpRight";
 }
-if($appRJ->errors){
-    $appRJ->throwErr();
-}
+
 if($_GET['wdCmp']){
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareResults.php");
 }else{
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareView.php");
 }
+
