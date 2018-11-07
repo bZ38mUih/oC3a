@@ -11,7 +11,6 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/landing/css/default.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<script type='text/javascript' src='/site/checkIn/js/checkIn.js'></script>".
     "<link rel='stylesheet' href='/site/checkIn/css/default.css' type='text/css' media='screen, projection'/>".

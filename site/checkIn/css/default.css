@@ -1,45 +1,31 @@
-.checkIn-frame
-{
-    margin-top: 1em;
-    padding-top: 1em;
-    margin-bottom: 1em;
-    padding-bottom: 1em;
+.checkIn-frame {
+    margin: 1em 0;
+    padding: 1em 0;
     width: 100%;
     display: inline-block;
 }
-
-.checkIn-frame strong
-{
+.checkIn-frame strong{
     display: block;
 }
-
-form.checkIn
-{
+form.checkIn{
     margin-top: 2em;
     max-width: 30em;
     width: 100%;
     display: inline-block;
 }
-
-form.checkIn .inputLine
-{
+form.checkIn .inputLine{
     display: block;
     text-align: center;
     width: 100%;
     position: relative;
     margin-top: 0.5em;
 }
-
-form.checkIn .inputLine.submit
-{
+form.checkIn .inputLine.submit{
     margin-top: 0.5em;
 }
-
-form.checkIn .inputLine.captcha
-{
+form.checkIn .inputLine.captcha{
     margin-top: 2em;
 }
-
 form.checkIn label[for='login'], form.checkIn label[for='password'], form.checkIn label[for='eMail'],
 form.checkIn label[for='password_2']
 {
@@ -50,7 +36,6 @@ form.checkIn label[for='password_2']
     height: 1.2em;
     visibility: visible;
 }
-
 form.checkIn input[name='login'], form.checkIn input[name='password'], form.checkIn input[name='eMail'],
 form.checkIn input[name='password_2']
 {
@@ -67,9 +52,7 @@ form.checkIn input[name='password_2']
     background-color: transparent;
     text-align: center;
 }
-
-form.checkIn input[type='submit']
-{
+form.checkIn input[type='submit']{
     font-weight: bold;
     font-size: 1.2em;
     background-color: navy;
@@ -77,9 +60,7 @@ form.checkIn input[type='submit']
     margin: 0;
     padding: 0.2em;
 }
-
-.captcha_img
-{
+.captcha_img{
     width: 40%;
     margin-right: 10%;
     display: inline-block;
@@ -87,34 +68,25 @@ form.checkIn input[type='submit']
     vertical-align: middle;
     text-align: right;
 }
-
-.captcha_img img
-{
+.captcha_img img{
     height: 5em;
     width: 8em;
 }
-
-.captcha_img a
-{
+.captcha_img a{
     display: block;
     text-align: left;
 }
-
-.captcha_code
-{
+.captcha_code{
     text-align: left;
     display: inline-block;
     width: 50%;
     vertical-align: middle;
     position: relative;
 }
-
-form.checkIn input[name='checkCode']
-{
+form.checkIn input[name='checkCode']{
     height: 2em;
     width: 7em;
     border: 1px solid #000000;
-
     display: block;
     font-size: 1.2em;
     color: navy;
@@ -124,22 +96,17 @@ form.checkIn input[name='checkCode']
     background-color: transparent;
     text-align: center;
 }
-
-form.checkIn label[for='checkCode']
-{
+form.checkIn label[for='checkCode']{
     display: block;
     height: 5em;
     width: 8em;
     font-size: 1.2em;
     color: darkgray;
 }
-
-.pageErr
-{
-    color:red;
+.pageErr{
     visibility: hidden;
+    padding: 0;
 }
-
 .pageErr.active
 {
     visibility: visible;
@@ -149,7 +116,6 @@ form.checkIn label[for='checkCode']
     body {
         font-size: 35px;
     }
-
     form.checkIn
     {
         margin-top: 2em;

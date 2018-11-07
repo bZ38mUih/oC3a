@@ -1,7 +1,8 @@
 <?php
 $appRJ->response['result'].= "<html lang='en-Us'>".
     "<head>".
-    "<meta name='description' content='Вход в Admin' http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta  http-equiv='Content-Type' charset='charset=utf-8'>".
+    "<meta name='description' content='Вход в Admin'/>".
     "<meta name='robots' content='noindex'>".
     "<title>Вход в Admin</title>".
     "<link rel='SHORTCUT ICON' href='/admin/img/favicon.png' type='image/png'>".
