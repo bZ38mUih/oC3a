@@ -94,8 +94,8 @@ if($wdList_rd->copyOne()){
                 "</div><div class='td-48'>";
             if($wdOS_row['osName1']!='Name') {
                 if ($wdOS_row['osDescr']) {
-                    $appRJ->response['result'] .= "<a href='/win-pc-info/environment?envList_id=" .
-                        $wdOS_row['osList_id'] . "' title='подробнее'>";
+                    $appRJ->response['result'] .= "<a href='/handbook/win-system-info/" .
+                        $wdOS_row['osName1']."/".urlencode($wdOS_row['osVal1']) . "' title='подробнее'>";
                 } else {
                     $appRJ->response['result'] .= "<a href='#' onclick='return false;' class='deactive' title='описание отсутствует'>";
                 }

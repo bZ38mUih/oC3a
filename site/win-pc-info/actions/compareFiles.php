@@ -1,6 +1,6 @@
 <?php
-$cmpRight=1;
-$cmpLeft=2;
+$cmpRight=3;
+$cmpLeft=4;
 $cmpEnv=false;
 $cmpOS=false;
 $cmpHw=false;
@@ -69,14 +69,16 @@ $wdRightName_res=$DB->doQuery($wdRightName_qry);
 if(mysql_num_rows($wdLeftName_res)==1){
     $wdLeftName_row=$DB->doFetchRow($wdLeftName_res);
 }else{
-    //throw err
+    $appRJ->errors['request']['description']="wron cmpLeft";
 }
 if(mysql_num_rows($wdRightName_res)==1){
     $wdRightName_row=$DB->doFetchRow($wdRightName_res);
 }else{
-    //throw err
+    $appRJ->errors['request']['description']="wron cmpRight";
 }
-
+if($appRJ->errors){
+    $appRJ->throwErr();
+}
 if($_GET['wdCmp']){
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/views/compareResults.php");
 }else{

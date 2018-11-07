@@ -14,7 +14,7 @@ $slDifSrv_qry="select * from (".$slSrvLeft_qry.") as wdSrvLeft left join (".$slS
 
 $slDifSrv_res=$DB->doQuery($slDifSrv_qry);
 if(mysql_num_rows($slDifSrv_res)>0){
-    $appRJ->response['result'].="<h3>Процессы (".mysql_num_rows($slDifSrv_res).")</h3>";
+    $appRJ->response['result'].="<h3>Службы (".mysql_num_rows($slDifSrv_res).")</h3>";
     $leftDifCnt=0;
     $rightDifCnt=0;
     $pLines=null;
@@ -31,7 +31,7 @@ if(mysql_num_rows($slDifSrv_res)>0){
             }
             $pLine.="</div><div class='pCell-name'>";
             if($slDifSrv_row['sDescrLeft']){
-                $pLine.="<a href='/win-pc-info/services/".urlencode($slDifSrv_row['sNameLeft'])."' title='подробнее'>";
+                $pLine.="<a href='/handbook/win-services/".urlencode($slDifSrv_row['sNameLeft'])."' title='подробнее'>";
             }else{
                 $pLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }
@@ -54,7 +54,7 @@ if(mysql_num_rows($slDifSrv_res)>0){
             }
             $pLine.="</div><div class='pCell-name'>";
             if($slDifSrv_row['sDescrRight']){
-                $pLine.="<a href='/win-pc-info/services/".urlencode($slDifSrv_row['sNameRight'])."' title='подробнее'>";
+                $pLine.="<a href='/handbook/win-services/".urlencode($slDifSrv_row['sNameRight'])."' title='подробнее'>";
             }else{
                 $pLine.="<a href='#' class='deactive' onclick='return false' title='описание не задано'>";
             }
