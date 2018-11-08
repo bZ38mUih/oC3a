@@ -38,6 +38,10 @@ if($_POST){
             $paramName="Disk-interfaceType";
             $paramVal=$_POST['Disk-interfaceType'];
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
+        }elseif (isset($_POST['motherBoard-Manufacturer'])){
+            $paramName="motherBoard-Manufacturer";
+            $paramVal=$_POST['motherBoard-Manufacturer'];
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editHwImg.php");
         }elseif (isset($_POST['process'])){
             $paramVal=$_POST['process'];
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/win-pc-info/actions/wiMan-editProcessImg.php");

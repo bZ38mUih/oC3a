@@ -31,7 +31,7 @@ else{
 
     if($appRJ->server['reqUri_expl'][1]!=null){
         if(!@include($_SERVER["DOCUMENT_ROOT"]."/site/".$appRJ->server['reqUri_expl'][1]."/defaultController.php")){
-            $appRJ->errors['404']['description']="controller not found - 1";
+            $appRJ->errors['404']['description']="directory ".$appRJ->server['reqUri_expl'][1]." not exist";
         }
     }else{
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/landing/defaultController.php");
