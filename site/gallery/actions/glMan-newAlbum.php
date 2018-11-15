@@ -47,8 +47,6 @@ if(isset($albErr)){
         $page = "Location: /gallery/glManager/editAlbum/?alb_id=".$Alb_rd->result['album_id'];
         header($page);
     }else{
-        print_r($Alb_rd);
-        $appRJ->response['result'].= "444<br>";
-        $appRJ->response['result'].= "zhopa";
+        $appRJ->errors["XXX"]["description"]="insert into galleryAlb err";
     }
 }

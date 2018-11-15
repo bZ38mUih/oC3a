@@ -14,6 +14,7 @@ elseif(isset($this->errors['connection'])){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/source/alerts/views/conn.php");
 }
 elseif(isset($this->errors['request'])){
+    http_response_code(400);
     require_once($_SERVER["DOCUMENT_ROOT"] . "/source/alerts/views/requestErr.php");
 }
 elseif($this->errors['config']){

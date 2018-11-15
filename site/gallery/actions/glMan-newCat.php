@@ -45,9 +45,6 @@ if(isset($catErr)){
         $page = "Location: /gallery/glManager/editCat/?cat_id=".$Cat_rd->result['glCat_id'];
         header($page);
     }else{
-        print_r($Cat_rd);
-        print_r($DB->err);
-        $appRJ->response['result'].= "444<br>";
-        $appRJ->response['result'].= "zhopa";
+        $appRJ->errors["XXX"]["description"]="insert into galleryMenu err";
     }
 }

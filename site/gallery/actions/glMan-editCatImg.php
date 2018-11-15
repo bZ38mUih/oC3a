@@ -1,8 +1,6 @@
 <?php
 $editImg['result'] = false;
 $editImg['data'] = null;
-
-//if(isset($_POST['cat_id']) and $_POST['cat_id']!=null){
 $Cat_rd = new recordDefault("galleryMenu_dt", "glCat_id");
 $Cat_rd->result['glCat_id']=$_POST['cat_id'];
 if($Cat_rd->copyOne()){
@@ -42,8 +40,5 @@ if($Cat_rd->copyOne()){
 }else{
     $editImg['data'] = "неправильный cat_id 2";
 }
-/*}else{
-    $editImg['data'] = "неправильный cat_id";
-}*/
 $appRJ->response['format']='json';
 $appRJ->response['result'] = $editImg;

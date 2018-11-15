@@ -1,89 +1,68 @@
 <?php
 $h1 ="Создание темы";
-$appRJ->response['result'].= "<!DOCTYPE html>";
-$appRJ->response['result'].= "<html lang='en-Us'>";
-$appRJ->response['result'].= "<head>";
-$appRJ->response['result'].= "<meta name='description' content='Создание темы форума' http-equiv='Content-Type' charset='charset=utf-8'>";
-//$appRJ->response['result'].= "<meta name='yandex-verification' content='02913709ba09b678' />";
-$appRJ->response['result'].= "<title>Новая тема</title>";
-$appRJ->response['result'].= "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>";
-$appRJ->response['result'].= "<script src='/source/js/jquery-3.2.1.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>";
-
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
-//$appRJ->response['result'].= "<link rel='stylesheet' href='/site/landing/css/default.css' type='text/css' media='screen, projection'/>";
-
-$appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>";
-$appRJ->response['result'].= "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>";
-
-$appRJ->response['result'].= "<script type='text/javascript' src='/site/js/manForm.js'></script>";
-$appRJ->response['result'].= "</head>";
-
-$appRJ->response['result'].= "<body>";
+$appRJ->response['result'].= "<!DOCTYPE html>".
+    "<html lang='en-Us'>".
+    "<head>".
+    "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
+    "<meta name='description' content='Создание темы форума'/>".
+    "<meta name='robots' content='noindex'>".
+    "<title>Создание темы</title>".
+    "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
+    "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/siteHeader/js/modalHeader.js'></script>".
+    "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/css/manForm.css' type='text/css' media='screen, projection'/>".
+    "<script type='text/javascript' src='/site/js/manForm.js'></script>".
+    "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
-
-$appRJ->response['result'].= "<div class='contentBlock-frame'>";
-$appRJ->response['result'].= "<div class='contentBlock-center'>";
-$appRJ->response['result'].= "<div class='contentBlock-wrap'>";
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
+    "<div class='contentBlock-wrap'>";
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subMenu.php");
-$appRJ->response['result'].= "<form class='newCateg' method='post'>";
-$appRJ->response['result'].= "<input type='hidden' name='flagField' value='newSubject'>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='subjName'>Название:</label>";
-
-$appRJ->response['result'].= "<input type='text' name='subjName' id='targetName' ";
-if($Subj_rd->result['subjName']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['subjName']."'";
+$appRJ->response['result'].= "<form method='post'><input type='hidden' name='flagField' value='newSubject'>".
+    "<div class='input-line'><label>Название:</label>".
+    "<input type='text' name='sName' id='targetName' ";
+if($Subj_rd->result['sName']){
+    $appRJ->response['result'].= "value='".$Subj_rd->result['sName']."'";
 }
-$appRJ->response['result'].= ">";
-
-$appRJ->response['result'].= "<div class='field-err'>";
-if(isset($subjErr['subjName'])){
-    $appRJ->response['result'].= $subjErr['subjName'];
+$appRJ->response['result'].= "><div class='field-err'>";
+if(isset($subjErr['sName'])){
+    $appRJ->response['result'].= $subjErr['sName'];
 }
-//$appRJ->response['result'].= $catName_err;
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='catAlias'>Alias:</label>";
-$appRJ->response['result'].= "<input type='text' name='subjAlias' id='targetAlias' ";
-if($Subj_rd->result['subjAlias']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['subjAlias']."'";
+$appRJ->response['result'].= "</div></div>".
+    "<div class='input-line'><label>Alias:</label>".
+    "<input type='text' name='sAlias' id='targetAlias' ";
+if($Subj_rd->result['sAlias']){
+    $appRJ->response['result'].= "value='".$Subj_rd->result['sAlias']."'";
 }
-$appRJ->response['result'].= ">";
-$appRJ->response['result'].= "<input type='button' onclick='mkAlias()' value='mkCatAlias'>";
-$appRJ->response['result'].= "<div class='field-err'>";
-if(isset($subjErr['subjAlias'])){
-    $appRJ->response['result'].= $subjErr['subjAlias'];
+$appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkAlbAlias'><div class='field-err'>";
+if(isset($subjErr['sAlias'])){
+    $appRJ->response['result'].= $subjErr['sAlias'];
 }
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='metaDescr'>Мета:</label>";
-$appRJ->response['result'].= "<input type='text' name='metaDescr' ";
+$appRJ->response['result'].= "</div></div>".
+    "<div class='input-line'><label>Мета:</label><textarea name='metaDescr' rows='3' >";
 if($Subj_rd->result['metaDescr']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['metaDescr']."'";
+    $appRJ->response['result'].= $Subj_rd->result['metaDescr'];
 }
-$appRJ->response['result'].= ">";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='subjCat_id'>subjCat_parId:</label>";
-
-$appRJ->response['result'].= "<select name='subjCat_id'>";
-
+$appRJ->response['result'].= "</textarea><div class='field-err'>";
+if(isset($subjErr['metaDescr'])){
+    $appRJ->response['result'].= $subjErr['metaDescr'];
+}
+$appRJ->response['result'].= "</div></div>".
+    "<div class='input-line'><label>fm_id:</label><select name='fm_id'>";
 /*select options-->*/
-$categList_text="select subjCat_id, subjCat_parId, catName from subjectsMenu_dt ORDER BY catName ";
+$categList_text="select fm_id, fm_pid, mName from forumMenu_dt ORDER BY mName";
 $categList_res=$DB->doQuery($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
-        $catSelect.= "<option value='".$categList_row['subjCat_id']."' ";
-        if($categList_row['subjCat_id'] == $Subj_rd->result['subjCat_id']){
+        $catSelect.= "<option value='".$categList_row['fm_id']."' ";
+        if($categList_row['fm_id'] == $Subj_rd->result['fm_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
-        $catSelect.= ">".$categList_row['catName']."</option>";
+        $catSelect.= ">".$categList_row['mName']."</option>";
     }
     if($findSelected){
         $catSelect="<option value='none'>---</option>".$catSelect;
@@ -94,32 +73,21 @@ if(mysql_num_rows($categList_res)>0){
     $catSelect="<option value='none' selected>---</option>";
 }
 /*<--select options*/
-$appRJ->response['result'].= $catSelect;
-$appRJ->response['result'].= "</select>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<label for='activeFlag'>Показывать:</label>";
-$appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
+$appRJ->response['result'].= $catSelect."</select></div>".
+    "<div class='input-line'><label>Показывать:</label>".
+    "<input type='checkbox' name='activeFlag' ";
 if($Subj_rd->result['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
-$appRJ->response['result'].= ">";
-//$appRJ->response['result'].= "<input type='checkbox'  checked>";
-$appRJ->response['result'].= "</div>";
-
-$appRJ->response['result'].= "<div class='input-line'>";
-$appRJ->response['result'].= "<input type='submit' value='addNew'>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</form>";
-
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
+$appRJ->response['result'].= "></div>".
+    "<div class='input-line'><label>Индексировать:</label>".
+    "<input type='checkbox' name='robIndex' ";
+if($Subj_rd->result['robIndex']){
+    $appRJ->response['result'].= "checked";
+}
+$appRJ->response['result'].= "></div>".
+    "<div class='input-line'><input type='submit' value='addNew'></div></form></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
-
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
-
-$appRJ->response['result'].= "</body>";
-$appRJ->response['result'].= "</html>";
+$appRJ->response['result'].= "</body></html>";

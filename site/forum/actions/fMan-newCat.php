@@ -2,58 +2,53 @@
 
 $catErr=null;
 
-$Cat_rd = new recordDefault("subjectsMenu_dt", "subjCat_id");
+$Cat_rd = new recordDefault("forumMenu_dt", "fm_id");
 
-if(isset($_POST['catName']) and $_POST['catName']!=null){
-    //$catName_err =
-    $Cat_rd->result['catName']=htmlspecialchars($_POST['catName']);
+if(isset($_POST['mName']) and $_POST['mName']!=null){
+    $Cat_rd->result['mName']=htmlspecialchars($_POST['mName']);
 }else{
-    $catErr['catName']='недопустимое название категории';
+    $catErr['mName']='недопустимое название категории';
 }
 
-if(isset($_POST['catAlias']) and $_POST['catAlias']!=null){
-    $Cat_rd->result['catAlias']=htmlspecialchars($_POST['catAlias']);
+if(isset($_POST['mAlias']) and $_POST['mAlias']!=null){
+    $Cat_rd->result['mAlias']=htmlspecialchars($_POST['mAlias']);
 }else{
-    $catErr['catAlias']='недопустимый alias';
+    $catErr['mAlias']='недопустимый alias';
 }
-if(isset($_POST['catDescr'])){
-    $Cat_rd->result['catDescr']=htmlspecialchars($_POST['catDescr']);
+if(isset($_POST['mDescr']) and $_POST['mDescr']!=null){
+    $Cat_rd->result['mDescr']=htmlspecialchars($_POST['mDescr']);
 }else{
-    $Cat_rd->result['catDescr']=null;
+    $catErr['mDescr']='недопустимое описание';
 }
 
+if(isset($_POST['fm_pid'])){
 
-if(isset($_POST['subjCat_parId'])){
-
-    if($_POST['subjCat_parId'] == 'none'){
-        $Cat_rd->result['subjCat_parId']=null;
+    if($_POST['fm_pid'] == 'none'){
+        $Cat_rd->result['fm_pid']=null;
     }else{
-        $Cat_rd->result['subjCat_parId']=$_POST['subjCat_parId'];
+        $Cat_rd->result['fm_pid']=$_POST['fm_pid'];
     }
 }else{
-    //$catErr['cat_id']='select';
+
 }
-if(isset($_POST['catActive']) and $_POST['catActive']=='on'){
-    $Cat_rd->result['catActive']=true;
+if(isset($_POST['mActive']) and $_POST['mActive']=='on'){
+    $Cat_rd->result['mActive']=true;
 }else{
-    $Cat_rd->result['catActive']=false;
+    $Cat_rd->result['mActive']=false;
 }
-//$appRJ->response['result'].= "111<br>";
+if(isset($_POST['robIndex']) and $_POST['robIndex']=='on'){
+    $Cat_rd->result['robIndex1']=true;
+}else{
+    $Cat_rd->result['robIndex1']=false;
+}
+
 if(isset($catErr)){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/views/fMan-newCategory.php");
 }else{
-    //$appRJ->response['result'].= "222<br>";
     if($Cat_rd->putOne()){
-        //$appRJ->response['result'].= "333<br>";
-        //header("Location: ".)
-        $page = "Location: /forum/forumManager/editCat/?cat_id=".$Cat_rd->result['subjCat_id'];
+        $page = "Location: /forum/forummanager/editCat/?fm_id=".$Cat_rd->result['fm_id'];
         header($page);
-        //$appRJ->response['result'].= $page;
     }else{
-        $appRJ->response['result'].= "444<br>";
-        $appRJ->response['result'].= "zhopa";
+        $appRJ->errors["XXX"]["description"]="insert into forumMenu err";
     }
-
-    //$appRJ->response['result'].= 'all right';
-    //exit;
 }

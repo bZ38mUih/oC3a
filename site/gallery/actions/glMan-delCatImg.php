@@ -1,8 +1,6 @@
 <?php
 $delImg['result'] = false;
 $delImg['data'] = null;
-
-//require_once ($_SERVER['DOCUMENT_ROOT']."/source/recordDefault_class.php");
 $Cat_rd = new recordDefault("galleryMenu_dt", "glCat_id");
 $Cat_rd->result['glCat_id']=$_GET['delCatImg'];
 if($Cat_rd->copyOne()){

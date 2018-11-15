@@ -1,13 +1,13 @@
 <?php
-$h1 ="Правка категории";
+$h1 ="Категория в галерее";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='Правка категории' http-equiv='Content-Type'/>".
+    "<meta name='description' content='Категория в галерее' http-equiv='Content-Type'/>".
     "<meta name='robots' content='noindex'>".
-    "<title>Правка категории</title>".
-    "<link rel='SHORTCUT ICON' href='/site/downloads/img/favicon.png' type='image/png'>".
+    "<title>Категория в галерее</title>".
+    "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".

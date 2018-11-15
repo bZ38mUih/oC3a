@@ -108,10 +108,10 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['re
                 }
             }
         }else{
-            $appRJ->errors['404']['description']='неправильные параметры запроса alb_id';
+            $appRJ->errors['request']['description']='неправильные параметры запроса alb_id';
         }
     }else{
-        $appRJ->errors['404']['description']='неправильные параметры запроса alb_id NULL';
+        $appRJ->errors['request']['description']='неправильные параметры запроса alb_id NULL';
     }
 }
 else{
