@@ -3,7 +3,6 @@ $(document).ready(function () {
         event.preventDefault();
     });
     $("span.pName-list").click(function () {
-        //alert('pName');
         if($(this).hasClass("active")){
             $(this).removeClass("active");
             $(this).parent("li").find("ul").slideUp(500);
@@ -23,6 +22,7 @@ function wiSearch(wiSearch)
         zIndex: '',
         setRelative: true
     });
+    $.cookie(wiSearch, $("[name='tpSearch']").val());
     $.get("?wiSearch="+wiSearch+"&searchArg="+$("[name='tpSearch']").val(), function (data) {
         $('form.wi-form').preloader('remove');
         $(".wiSearch").html(data);

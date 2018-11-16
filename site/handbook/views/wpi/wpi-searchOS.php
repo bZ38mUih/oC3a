@@ -1,5 +1,5 @@
 <?php
-$os_qry="select * from wdOsList_dt WHERE osVal LIKE '%".$_GET['searchArg']."%' ORDER BY osName";
+$os_qry="select * from wdOsList_dt WHERE osVal LIKE '%".$searchArg."%' ORDER BY osName";
 if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Результаты поиска ( ";
 }else{

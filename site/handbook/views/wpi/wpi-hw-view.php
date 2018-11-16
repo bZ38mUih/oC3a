@@ -1,14 +1,4 @@
 <?php
-$artByAlias_qry="select art_dt.art_id, art_dt.artName, art_dt.artMeta, art_dt.artImg, artCat_dt.catAlias, ".
-    "artCat_dt.catName, art_dt.pubDate, art_dt.refreshDate from art_dt ".
-    "INNER JOIN artCat_dt ON art_dt.artCat_id = artCat_dt.artCat_id ".
-    "WHERE art_dt.artAlias='".$appRJ->server['reqUri_expl'][2]."'";
-$artByAlias_res=$DB->doQuery($artByAlias_qry);
-if(mysql_num_rows($artByAlias_res)!==1){
-    $appRJ->errors['404']['description']="такой статьи не существует";
-    $appRJ->throwErr();
-}
-$artByAlias_row=$DB->doFetchRow($artByAlias_res);
 $h1 =$artByAlias_row['artName'];
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
@@ -19,6 +9,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<title>Справочник</title>".
     "<link rel='SHORTCUT ICON' href='/site/handbook/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
+    "<script src='/source/js/jquery.cookie.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
 if($App['views']['social-block']){

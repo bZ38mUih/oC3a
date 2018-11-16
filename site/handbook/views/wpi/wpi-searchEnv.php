@@ -1,5 +1,5 @@
 <?php
-$env_qry="select * from wdEnvList_dt WHERE vVal LIKE '%".$_GET['searchArg']."%' ORDER BY vName";
+$env_qry="select * from wdEnvList_dt WHERE vVal LIKE '%".$searchArg."%' ORDER BY vName";
 if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Результаты поиска ( ";
 }else{

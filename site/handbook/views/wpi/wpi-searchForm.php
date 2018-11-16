@@ -33,7 +33,7 @@ if($appRJ->server['reqUri_expl'][2]=='win-process'){
 }elseif($appRJ->server['reqUri_expl'][2]=='win-system-info'){
     $appRJ->response['result'].="поиск парам. системы";
 }
-$appRJ->response['result'].="</label><input type='text' name='tpSearch' value=''>".
+$appRJ->response['result'].="</label><input type='text' name='tpSearch' value='".$searchArg."'>".
     "<button onclick='wiSearch(".'"';
 if(!$appRJ->server['reqUri_expl'][2]){
     $appRJ->response['result'].="wiFile";

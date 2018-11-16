@@ -1,5 +1,5 @@
 <?php
-$srv_qry="select * from wdSrvList_dt WHERE sName LIKE '%".$_GET['searchArg']."%' ORDER BY sName";
+$srv_qry="select * from wdSrvList_dt WHERE sName LIKE '%".$searchArg."%' ORDER BY sName";
 if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Результаты поиска ( ";
 }else{

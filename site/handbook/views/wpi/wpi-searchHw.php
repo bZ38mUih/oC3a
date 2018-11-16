@@ -1,5 +1,5 @@
 <?php
-$hwSearch_qry="select * from wdHwList_dt WHERE paramVal LIKE '%".$_GET['searchArg']."%' ORDER BY paramName, paramVal";
+$hwSearch_qry="select * from wdHwList_dt WHERE paramVal LIKE '%".$searchArg."%' ORDER BY paramName, paramVal";
 if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Результаты поиска ( ";
 }else{

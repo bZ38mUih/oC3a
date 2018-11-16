@@ -1,5 +1,5 @@
 <?php
-$hwProcess_qry="select * from wdProcList_dt WHERE pName LIKE '%".$_GET['searchArg']."%' ORDER BY pName";
+$hwProcess_qry="select * from wdProcList_dt WHERE pName LIKE '%".$searchArg."%' ORDER BY pName";
 if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Результаты поиска ( ";
 }else{
