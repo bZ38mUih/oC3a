@@ -37,9 +37,9 @@ if(isset($_POST['mActive']) and $_POST['mActive']=='on'){
     $Cat_rd->result['mActive']=false;
 }
 if(isset($_POST['robIndex']) and $_POST['robIndex']=='on'){
-    $Cat_rd->result['robIndex1']=true;
+    $Cat_rd->result['robIndex']=true;
 }else{
-    $Cat_rd->result['robIndex1']=false;
+    $Cat_rd->result['robIndex']=false;
 }
 
 if(isset($catErr)){

@@ -1,44 +1,47 @@
 <?php
-
-$Subj_rd = new recordDefault("subjects_dt", "subject_id");
-if(isset($_GET['subj_id']) and $_GET['subj_id']!=null){
-    $Subj_rd->result['subject_id'] = $_GET['subj_id'];
+require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
+$Subj_rd = new recordDefault("forumSubj_dt", "fs_id");
+if(isset($_GET['fs_id']) and $_GET['fs_id']!=null){
+    $Subj_rd->result['fs_id'] = $_GET['fs_id'];
     $Subj_rd->copyOne();
-    if(isset($_POST['subjName']) and $_POST['subjName']!=null){
-        $Subj_rd->result['subjName']=htmlspecialchars($_POST['subjName']);
+    if(isset($_POST['sName']) and $_POST['sName']!=null){
+        $Subj_rd->result['sName']=htmlspecialchars($_POST['sName']);
     }else{
-        $subjErr['subjName']='недопустимое название темы';
+        $subjErr['sName']='недопустимое название альбома';
     }
-    if(isset($_POST['subjAlias']) and $_POST['subjAlias']!=null){
-        $Subj_rd->result['subjAlias']=htmlspecialchars($_POST['subjAlias']);
-    }else{
-        $subjErr['subjAlias']='недопустимый alias';
-    }
-    $Subj_rd->result['metaDescr']=$_POST['metaDescr'];
-    if(isset($_POST['subjCat_id'])){
-
-        if($_POST['subjCat_id'] == 'none'){
-            $Subj_rd->result['subjCat_id']=null;
-        }else{
-            $Subj_rd->result['subjCat_id']=$_POST['subjCat_id'];
+    if(isset($_POST['sAlias']) and $_POST['sAlias']!=null){
+        if($Subj_rd->result['sAlias']!=htmlspecialchars($_POST['sAlias'])){
+            $Subj_rd->result['sAlias']=htmlspecialchars($_POST['sAlias']);
+            if(!accessorialClass::checkDouble("forumSubj_dt", "sAlias", $Subj_rd->result['sAlias'])){
+                $subjErr['sAlias']='недопустимый alias - double ';
+            }
         }
     }else{
-        //$catErr['cat_id']='select';
+        $subjErr['sAlias']='недопустимый alias - null';
+    }
+    $Subj_rd->result['metaDescr']=htmlspecialchars($_POST['metaDescr']);
+    if(isset($_POST['fm_id'])){
+        if($_POST['fm_id'] == 'none'){
+            $Subj_rd->result['fm_id']=null;
+        }else{
+            $Subj_rd->result['fm_id']=$_POST['fm_id'];
+        }
     }
     if(isset($_POST['activeFlag']) and $_POST['activeFlag']=='on'){
         $Subj_rd->result['activeFlag']=true;
     }else{
         $Subj_rd->result['activeFlag']=false;
     }
-
+    if(isset($_POST['robIndex']) and $_POST['robIndex']=='on'){
+        $Subj_rd->result['robIndex']=true;
+    }else{
+        $Subj_rd->result['robIndex']=false;
+    }
     if(isset($_POST['dateOfCr']) and $_POST['dateOfCr']!=null){
         $Subj_rd->result['dateOfCr']=$_POST['dateOfCr'];
-    }else{
-        $subjErr['dateOfCr']='неправильная дата';
     }
-    //exit;
 }else{
-    $subjErr['subj_id']='недопустимое subj_id';
+    $subjErr['album_id']='недопустимое alb_id';
 }
 if(isset($subjErr)){
     $subjErr['common']=false;
@@ -48,8 +51,6 @@ if(isset($subjErr)){
         $subjErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/fMan-editSubj.php");
     }else{
-
-        $appRJ->response['result'].= "444<br>";
-        $appRJ->response['result'].= "zhopa-edit";
+        $appRJ->errors['XXX']['description']="ошибка не обработана: insert into forumSubj error";
     }
 }

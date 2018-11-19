@@ -1,6 +1,6 @@
 function mkQuery()
 {
-    var posting = $.post( "", "queryText="+$("textarea").val());
+    var posting = $.post( "", "queryText="+$("textarea").val()+"&qp-limit="+$("[name='qp-limit']").val());
     $(".queryResults").preloader({
         text: 'loading',
         percent: '',
@@ -12,9 +12,11 @@ function mkQuery()
         var response=JSON.parse(data);
         $('.queryResults').html(response.log);
         if(response.result == true){
+            $('.res-frame').addClass("active");
             $('.queryResults').removeClass("fail");
             $('.queryResults').addClass("well");
         }else{
+            $('.res-frame').removeClass("active");
             $('.queryResults').removeClass("well");
             $('.queryResults').addClass("fail");
         }

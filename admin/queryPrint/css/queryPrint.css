@@ -2,6 +2,35 @@
     width: 90%;
     margin: 5%;
     border: 2px solid firebrick;
+    overflow-x: scroll;
+    display: none;
+}
+
+.qpOptions{
+    display: inline-block;
+    width: 50%;
+}
+
+/*
+label{
+    border: 1px solid blue;
+    display: inline-block;
+    width: 50%;
+    color: green;
+}
+*/
+label[for='qp-limit']{
+    text-align: right;
+}
+
+label input[type='number']{
+    font-size: 1em;
+    width: 4em;
+    margin: 0 1em;
+}
+
+.res-frame.active{
+    display: block;
 }
 table tr td{
     border-bottom: 1px dotted green;

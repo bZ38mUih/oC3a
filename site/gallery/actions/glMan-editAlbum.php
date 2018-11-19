@@ -19,11 +19,6 @@ if(isset($_GET['alb_id']) and $_GET['alb_id']!=null){
     }else{
         $albErr['albumAlias']='недопустимый alias - null';
     }
-    if(isset($_POST['albumAlias']) and $_POST['albumAlias']!=null){
-        $Alb_rd->result['albumAlias']=htmlspecialchars($_POST['albumAlias']);
-    }else{
-        $albErr['albumAlias']='недопустимый alias';
-    }
     $Alb_rd->result['metaDescr']=htmlspecialchars($_POST['metaDescr']);
     if(isset($_POST['glCat_id'])){
         if($_POST['glCat_id'] == 'none'){
@@ -31,8 +26,6 @@ if(isset($_GET['alb_id']) and $_GET['alb_id']!=null){
         }else{
             $Alb_rd->result['glCat_id']=$_POST['glCat_id'];
         }
-    }else{
-
     }
     if(isset($_POST['activeFlag']) and $_POST['activeFlag']=='on'){
         $Alb_rd->result['activeFlag']=true;
@@ -71,7 +64,6 @@ if(isset($albErr)){
         $albErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/gallery/views/glMan-editAlbum.php");
     }else{
-        $appRJ->response['result'].= "444<br>";
-        $appRJ->response['result'].= "zhopa-edit";
+        $appRJ->errors['XXX']['description']="ошибка не обработана: insert into galleryAlb error";
     }
 }

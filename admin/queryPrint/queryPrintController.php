@@ -1,12 +1,12 @@
 <?php
 if(isset($_POST['queryText'])){
-    $queryPosting_text = "SELECT ".$_POST['queryText'];
+    $queryPosting_text = "SELECT ".$_POST['queryText']." LIMIT ".$_POST['qp-limit'];
     $queryPosting['result']=false;
     $queryPosting['log']=null;
     $queryPosting['table']=null;
     $queryPosting_res = $DB->doQuery($queryPosting_text);
     if(isset($DB->err['doQuery'])){
-        $queryPosting['log']="FAIL:  ".$DB->err['doQuery'];
+        $queryPosting['log']="FAIL:  ".$DB->err['doQuery']. "--".$queryPosting_text;
     }else{
         $queryPosting['result']=true;
         if(@mysql_num_rows($queryPosting_res)>0){

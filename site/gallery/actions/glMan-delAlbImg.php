@@ -1,8 +1,6 @@
 <?php
 $delImg['result'] = false;
 $delImg['data'] = null;
-
-//require_once ($_SERVER['DOCUMENT_ROOT']."/source/recordDefault_class.php");
 $Alb_rd = new recordDefault("galleryAlb_dt", "album_id");
 $Alb_rd->result['album_id']=$_GET['delAlbImg'];
 if($Alb_rd->copyOne()){

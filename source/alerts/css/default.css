@@ -1,49 +1,73 @@
-﻿body
-{
+﻿body{
     text-align: center;
     color: #ffffff;
     font-weight: bold;
     font-size: 18px;
 }
-
 .descriptionFrame {
     bottom: 0;
-    cursor: default;
     left: 0;
-    position: fixed;
     right: 0;
     top: 0;
-    z-index: 1;
+    position: fixed;
     background-size: cover;
+    overflow-y: scroll;
 }
-.descriptionFrame h1
-{
-    display: block;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 1em;
+.descriptionFrame h1{
+    padding: 1em 0;
     font-size: 1.5em;
     color: orange;
     margin: 0;
-    padding: 1em;
 }
-
-.descriptionFrame p
-{
-    display: block;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+.descriptionFrame p{
     margin: 0;
-    padding: 1em;
+    padding: 1em 0;
 }
-
-
+.df-title{
+    width: 100%;
+    height: 10em;
+    background-color: black;
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.alertsMenu{
+    top: 10em;
+    width: 90%;
+    margin: 0 5%;
+    display: block;
+    position: relative;
+    padding-bottom: 2em;
+}
+.alertsMenu a{
+    color: midnightblue;
+    font-size: 1.2em;
+    display: inline-table;
+    width: 100%;
+    text-shadow: 2px 2px 2px white, -2px -2px 2px white;
+}
+.alertsMenu a:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+.alertsMenu a img{
+    height: 2em;
+    width: 2em;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+.alertsMenu h2, h3{
+    text-shadow: 2px 2px 2px black, -2px -2px 2px black;
+}
+.alertsMenu h2{
+    font-size: 1.5em;
+}
+.alertsMenu h3{
+    font-size: 1.2em;
+}
 @media screen and (orientation:portrait) {
     body{
         font-size: 22px;
     }
 }
-
-/*
-@media screen and (orientation:portrait) { … }
-*/

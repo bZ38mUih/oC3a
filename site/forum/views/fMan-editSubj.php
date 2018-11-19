@@ -23,74 +23,70 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>";
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subMenu.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/views/glMan-subContentMenu.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subjContentMenu.php");
 $appRJ->response['result'].= "<form class='editImg'><div class='img-frame'>";
 $delImgBtn_text=null;
-if($Subj_rd->result['albumImg']){
-    $appRJ->response['result'].= "<img src='".F_SUBJ_IMG.$_GET['alb_id']."/preview/".$Subj_rd->result['albumImg']."' ";
-    if($Subj_rd->result['transAlbImg']){
-        $appRJ->response['result'].="style='transform: rotate(".$Subj_rd->result['transAlbImg']."deg)' ";
-    }
-    $appRJ->response['result'].=">";
+if($Subj_rd->result['sImg']){
+    $appRJ->response['result'].= "<img src='".F_SUBJ_IMG.$_GET['fs_id']."/preview/".$Subj_rd->result['sImg']."'>";
     $delImgBtn_text= "class='active'";
 }else{
     $appRJ->response['result'].= "<img src='/data/default-img.png'>";
 }
 $appRJ->response['result'].= "</div><div class='control-frame'><div class='delImg-line'>".
-    "<span onclick='delImg(".$_GET['alb_id'].", ".'"'."delAlbImg".'"'.")' ".$delImgBtn_text.">".
+    "<span onclick='delImg(".$_GET['fs_id'].", ".'"'."delSubjImg".'"'.")' ".$delImgBtn_text.">".
     "<img src='/source/img/drop-icon.png'>Удалить картинку</span></div><div class='button-line'>".
-    "<input type='file' onchange='loadFiles(".$_GET['alb_id'].", ".'"'."alb_id".'"'.
+    "<input type='file' onchange='loadFiles(".$_GET['fs_id'].", ".'"'."forumS_id".'"'.
     ")' accept='image/jpeg,image/png,image/gif'></div>".
     "<div class='results'></div></div></form>".
     "<form method='post'>";
-if(isset($albErr['common']) and $albErr['common']===true){
+if(isset($subjErr['common']) and $subjErr['common']===true){
     $appRJ->response['result'].= "<div class='results success'>Updated SUCCESS</div>";
-}if(isset($albErr['common']) and $albErr['common']===false){
+}if(isset($subjErr['common']) and $subjErr['common']===false){
     $appRJ->response['result'].= "<div class='results fail'>Updated FAIL</div>";
 }
-$appRJ->response['result'].= "<input type='hidden' name='flagField' value='editAlbum'>".
-    "<div class='input-line'><label for='album_id'>album_id:</label>".
-    "<input type='text' name='album_id' value='".$Subj_rd->result['album_id']."' disabled></div>".
-    "<div class='input-line'><label for='albumName'>Название:</label>".
-    "<input type='text' name='albumName' id='targetName' ";
-if($Subj_rd->result['albumName']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['albumName']."'";
+$appRJ->response['result'].= "<input type='hidden' name='flagField' value='editSubj'>".
+    "<div class='input-line'><label for='fs_id'>fs_id:</label>".
+    "<input type='text' name='fs_id' value='".$Subj_rd->result['fs_id']."' disabled></div>".
+    "<div class='input-line'><label>Название:</label>".
+    "<input type='text' name='sName' id='targetName' ";
+if($Subj_rd->result['sName']){
+    $appRJ->response['result'].= "value='".$Subj_rd->result['sName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
-if(isset($albErr['albumName'])){
-    $appRJ->response['result'].= $albErr['albumName'];
+if(isset($subjErr['sName'])){
+    $appRJ->response['result'].= $subjErr['sName'];
 }
 $appRJ->response['result'].= "</div></div>".
-    "<div class='input-line'><label for='albumAlias'>Alias:</label>".
-    "<input type='text' name='albumAlias' id='targetAlias' ";
-if($Subj_rd->result['albumAlias']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['albumAlias']."'";
+    "<div class='input-line'><label>Alias:</label>".
+    "<input type='text' name='sAlias' id='targetAlias' ";
+if($Subj_rd->result['sAlias']){
+    $appRJ->response['result'].= "value='".$Subj_rd->result['sAlias']."'";
 }
 $appRJ->response['result'].= ">".
     "<input type='button' onclick='mkAlias()' value='mkAlbAlias'><div class='field-err'>";
-if(isset($albErr['albumAlias'])){
-    $appRJ->response['result'].= $albErr['albumAlias'];
+if(isset($subjErr['sAlias'])){
+    $appRJ->response['result'].= $subjErr['sAlias'];
 }
 $appRJ->response['result'].= "</div></div>".
-    "<div class='input-line'><label for='metaDescr'>Мета:</label><textarea name='metaDescr' rows='3' >";
+    "<div class='input-line'><label>Мета:</label><textarea name='metaDescr' rows='3' >";
 if($Subj_rd->result['metaDescr']){
     $appRJ->response['result'].= $Subj_rd->result['metaDescr'];
 }
 $appRJ->response['result'].= "</textarea></div>".
-    "<div class='input-line'><label for='glCat_id'>glCat_id:</label><select name='glCat_id'>";
+    "<div class='input-line'><label>fm_id:</label><select name='fm_id'>";
 /*select options-->*/
-$categList_text="select glCat_id, catName from galleryMenu_dt".
-    " ORDER BY catName ";
+$categList_text="select fm_id, mName from forumMenu_dt".
+    " ORDER BY mName ";
 $categList_res=$DB->doQuery($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
-        $catSelectOptions.= "<option value='".$categList_row['glCat_id']."' ";
-        if($categList_row['glCat_id'] == $Subj_rd->result['glCat_id']){
+        $catSelectOptions.= "<option value='".$categList_row['fm_id']."' ";
+        if($categList_row['fm_id'] == $Subj_rd->result['fm_id']){
             $findSelected=true;
             $catSelectOptions.= " selected";
         }
-        $catSelectOptions.= ">".$categList_row['catName']."</option>";
+        $catSelectOptions.= ">".$categList_row['mName']."</option>";
     }
     if($findSelected){
         $catSelectOptions="<option value='none'>---</option>".$catSelectOptions;
@@ -105,26 +101,27 @@ $appRJ->response['result'].= $catSelectOptions."</select></div>".
     "<div class='input-line'><label for='dateOfCr'>dateOfCr:</label>".
     "<input type='date' name='dateOfCr' value='".substr($Subj_rd->result['dateOfCr'], 0, 10)."'>".
     "<div class='field-err'>";
-if(isset($albErr['dateOfCr'])){
-    $appRJ->response['result'].= $albErr['dateOfCr'];
+if(isset($subjErr['dateOfCr'])){
+    $appRJ->response['result'].= $subjErr['dateOfCr'];
 }
-$appRJ->response['result'].= "</div></div>".
-    "<div class='input-line'><label>refreshDate:</label>".
+$appRJ->response['result'].= "</div></div>";
+    /*"<div class='input-line'><label>refreshDate:</label>".
     "<input type='date' name='refreshDate' value='".substr($Subj_rd->result['refreshDate'], 0, 10)."'>".
     "<div class='field-err'>";
 if(isset($albErr['refreshDate'])){
     $appRJ->response['result'].= $albErr['refreshDate'];
 }
-$appRJ->response['result'].= "</div></div>".
+$appRJ->response['result'].= "</div></div>".*//*
     "<div class='input-line'><label for='transAlbImg'>transAlbImg:</label>".
-    "<input type='number' name='transAlbImg' min='-180' max='180' value='".$Subj_rd->result['transAlbImg']."'></div>".
-    "<div class='input-line'><label for='activeFlag'>Показывать:</label>";
+    "<input type='number' name='transAlbImg' min='-180' max='180' value='".$Subj_rd->result['transAlbImg']."'></div>".*/
+
+    $appRJ->response['result'].="<div class='input-line'><label for='activeFlag'>Показывать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
 if($Subj_rd->result['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".
-    "<div class='input-line'><label for='robIndex'>Индексировать:</label>";
+    "<div class='input-line'><label>Индексировать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='robIndex' ";
 if($Subj_rd->result['robIndex']){
     $appRJ->response['result'].= "checked";

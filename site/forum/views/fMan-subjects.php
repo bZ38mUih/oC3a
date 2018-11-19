@@ -75,13 +75,9 @@ if($subjCount>0){
             "<a href='/forum/forummanager/editSubject/?fs_id=".$selectSubj_row['fs_id']."'>".
             $selectSubj_row['fs_id']."</a></div>".
             "<div class='item-line-img'>";
-        if($selectSubj_row['albumImg']){
-            $appRJ->response['result'].= "<img src='".GL_ALBUM_IMG_PAPH.$selectSubj_row['fs_id']."/preview/".
-                $selectSubj_row['albumImg']."'  ";
-            if($selectSubj_row['transAlbImg']){
-                $appRJ->response['result'].="style='transform: rotate(".$selectSubj_row['transAlbImg']."deg)'";
-            }
-            $appRJ->response['result'].=">";
+        if($selectSubj_row['sImg']){
+            $appRJ->response['result'].= "<img src='".F_SUBJ_IMG.$selectSubj_row['fs_id']."/preview/".
+                $selectSubj_row['sImg']."'>";
         }else{
             $appRJ->response['result'].= "<img src='/data/default-img.png'>";
         }

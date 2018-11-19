@@ -1,7 +1,7 @@
 <?php
 
 define(F_CAT_IMG, "/data/forum/categs/");
-define(F_SUBJ_IMG, "/data/forum/subjects/image/");
+define(F_SUBJ_IMG, "/data/forum/subjects/");
 
 if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10) {
     if(isset($appRJ->server['reqUri_expl'][2]) and strtolower($appRJ->server['reqUri_expl'][2])=="forummanager"){

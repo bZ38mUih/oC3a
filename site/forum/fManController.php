@@ -1,6 +1,6 @@
 <?php
 //require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/views/fMan-defaultView.php");
-
+require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
 if($_POST){
     if(isset($_POST['flagField']) and $_POST['flagField']=='newCat'){
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/actions/fMan-newCat.php");
@@ -11,21 +11,21 @@ if($_POST){
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/actions/fMan-editSubjDescr.php");
     }*/elseif(isset($_POST['flagField']) and $_POST['flagField']=='editCat') {
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editCat_post.php");
-    }/*elseif(isset($_POST['flagField']) and $_POST['flagField']=='editSubject') {
+    }elseif(isset($_POST['flagField']) and $_POST['flagField']=='editSubj') {
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editSubj_post.php");
-    }*/elseif (isset($_POST['fm_id']) and $_POST['fm_id']!==null and !isset($_POST['flagField'])){
+    }elseif (isset($_POST['fm_id']) and $_POST['fm_id']!==null and !isset($_POST['flagField'])){
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editCatImg.php");
-    }/*elseif (isset($_POST['subj_id']) and $_POST['subj_id']!==null){
+    }elseif (isset($_POST['forumS_id']) and $_POST['forumS_id']!==null){
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editSubjImg.php");
     }
-    */else{
+    else{
         $appRJ->errors['request']['description']="неправильные параметры запроса _POST";
     }
 }elseif (isset($_GET['delCatImg']) and $_GET['delCatImg']!=null){
     require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-delCatImg.php");
-}/*elseif (isset($_GET['delSubjImg']) and $_GET['delSubjImg']!=null){
+}elseif (isset($_GET['delSubjImg']) and $_GET['delSubjImg']!=null){
     require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-delSubjImg.php");
-}elseif (isset($_GET['mkAlias'])){
+}/*elseif (isset($_GET['mkAlias'])){
     require_once($_SERVER['DOCUMENT_ROOT'] . "/source/accessorial_class.php");
     $appRJ->response['result'].= accessorialClass::mkAlias($_GET['mkAlias']);
 }*/elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['reqUri_expl'][3])=="newcat"){

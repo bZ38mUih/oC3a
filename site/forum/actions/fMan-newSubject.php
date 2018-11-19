@@ -12,6 +12,9 @@ if(isset($_POST['sName']) and $_POST['sName']!=null){
 
 if(isset($_POST['sAlias']) and $_POST['sAlias']!=null){
     $Subj_rd->result['sAlias']=htmlspecialchars($_POST['sAlias']);
+    if(!accessorialClass::checkDouble("forumSubj_dt", "sAlias", $Subj_rd->result['sAlias'])){
+        $subjErr['sAlias']='недопустимый alias - double ';
+    }
 }else{
     $subjErr['sAlias']='недопустимый alias';
 }
@@ -49,7 +52,7 @@ if(isset($subjErr)){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/views/fMan-newSubject.php");
 }else{
     if($Subj_rd->putOne()){
-        $page = "Location: /gallery/glManager/editAlbum/?alb_id=".$Subj_rd->result['album_id'];
+        $page = "Location: /forum/forummanager/editSubject/?fs_id=".$Subj_rd->result['fs_id'];
         header($page);
     }else{
         $appRJ->errors["XXX"]["description"]="insert into forumSubj err";
