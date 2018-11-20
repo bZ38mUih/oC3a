@@ -22,23 +22,18 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>";
 $appRJ->response['result'].= "<div class='contentBlock-center'>";
 $appRJ->response['result'].= "<div class='contentBlock-wrap'>";
 $appRJ->response['result'].="<div class='list-frame'>";
-$prtLst= printFMenuList(null, $DB, "handbook");
+$prtLst= printFMenuList(null, $DB);
 $appRJ->response['result'].= "<div class='cat-stat main'>";
 if(isset($prtLst['cntItm']) or isset($prtLst['cntCat'])){
     $appRJ->response['result'].= "<strong>Всего: </strong>";
     if($prtLst['cntItm']){
-        $appRJ->response['result'].= "<span class='flVal'>".$prtLst['cntItm']."</span> стат.";
+        $appRJ->response['result'].= "<span class='flVal'>".$prtLst['cntItm']."</span> тем.";
     }
     if($prtLst['cntCat']){
         $appRJ->response['result'].= "<span class='flVal'>".$prtLst['cntCat']."</span> кат.";
     }
 }
 $appRJ->response['result'].= "</div>".$prtLst['text']."</div>";
-
-
-
-
-
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "</div>";
