@@ -105,16 +105,6 @@ if(isset($subjErr['dateOfCr'])){
     $appRJ->response['result'].= $subjErr['dateOfCr'];
 }
 $appRJ->response['result'].= "</div></div>";
-    /*"<div class='input-line'><label>refreshDate:</label>".
-    "<input type='date' name='refreshDate' value='".substr($Subj_rd->result['refreshDate'], 0, 10)."'>".
-    "<div class='field-err'>";
-if(isset($albErr['refreshDate'])){
-    $appRJ->response['result'].= $albErr['refreshDate'];
-}
-$appRJ->response['result'].= "</div></div>".*//*
-    "<div class='input-line'><label for='transAlbImg'>transAlbImg:</label>".
-    "<input type='number' name='transAlbImg' min='-180' max='180' value='".$Subj_rd->result['transAlbImg']."'></div>".*/
-
     $appRJ->response['result'].="<div class='input-line'><label for='activeFlag'>Показывать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
 if($Subj_rd->result['activeFlag']){

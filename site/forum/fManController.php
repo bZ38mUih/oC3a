@@ -6,10 +6,9 @@ if($_POST){
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/actions/fMan-newCat.php");
     }elseif(isset($_POST['flagField']) and $_POST['flagField']=='newSubject'){
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/actions/fMan-newSubject.php");
-    }/*
-    elseif(isset($_POST['flagField']) and $_POST['flagField']=='editSubjDescr'){
+    }elseif(isset($_POST['flagField']) and $_POST['flagField']=='sDescr'){
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/actions/fMan-editSubjDescr.php");
-    }*/elseif(isset($_POST['flagField']) and $_POST['flagField']=='editCat') {
+    }elseif(isset($_POST['flagField']) and $_POST['flagField']=='editCat') {
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editCat_post.php");
     }elseif(isset($_POST['flagField']) and $_POST['flagField']=='editSubj') {
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editSubj_post.php");
@@ -45,6 +44,16 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['re
 
             if(!$appRJ->server['reqUri_expl'][4]){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/forum/views/fMan-editSubj.php");
+            }elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'description'){
+                /*
+                if($_POST["sDescr"]){
+                    echo "xyi";
+                    exit;
+                }else{
+
+                }
+                */
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-editSubjDescr.php");
             }/*
             elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'photo'){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/gallery/views/glMan-photoAttachments.php");

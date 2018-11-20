@@ -5,6 +5,11 @@ if(!$appRJ->server['reqUri_expl'][4]){
     $appRJ->response['result'].= " class='active'";
 }
 $appRJ->response['result'].= ">Карт.-Назв.</a>".
+    "<a href='/forum/forummanager/editSubject/description?fs_id=".$_GET['fs_id']."'";
+if(isset($appRJ->server['reqUri_expl'][4]) and strtolower($appRJ->server['reqUri_expl'][4])=='description'){
+    $appRJ->response['result'].= " class='active'";
+}
+$appRJ->response['result'].= ">Описание</a>".
     "<a href='/forum/forummanager/editSubject/photo?fs_id=".$_GET['fs_id']."'";
 if(isset($appRJ->server['reqUri_expl'][4]) and strtolower($appRJ->server['reqUri_expl'][4])=='photo'){
     $appRJ->response['result'].= " class='active'";

@@ -1,0 +1,41 @@
+.s-frame{
+    border: 1px solid red;
+    margin: 1em 5%;
+    width: 90%;
+}
+.s-title{
+    width: 100%;
+    border-bottom: 1px solid midnightblue;
+}
+.s-title-cover{
+    width: 20%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.s-title-cover img{
+    width: 3em;
+    height: 3em;
+}
+.s-title-descr{
+    width: 80%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.s-title-descr h2{
+    color: midnightblue;
+}
+.s-title .dateLine{
+    width: 100%;
+    text-align: left;
+}
+.s-title span.dateFld{
+    font-weight: bold;
+    font-size: 0.8em;
+    min-width: 10em;
+    display: inline-block;
+    color: midnightblue;
+}
+.s-title span.dateVal{
+    font-weight: bold;
+    font-size: 0.8em;
+}

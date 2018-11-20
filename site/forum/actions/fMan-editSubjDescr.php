@@ -1,5 +1,5 @@
 <?php
-$Subj_rd = new recordDefault("subjects_dt", "subject_id");
+$Subj_rd = new recordDefault("forumSubj_dt", "fs_id");
 
 if(isset($_GET['subj_id']) and $_GET['subj_id']!=null){
     $Subj_rd->result['subject_id']=$_GET['subj_id'];
