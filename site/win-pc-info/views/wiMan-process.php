@@ -47,6 +47,7 @@ $appRJ->response['result'].= "</div>".
     "</form>";
 $appRJ->response['result'].= "<form class='wdEditParams'>".
     "<div class='field-err'></div>".
+    "<div class='input-line'><label>lastMod</label><input type='date' name='lastMod' value='".$slProcess_row['lastMod']."'></div>".
     "<textarea name='hwDescr'>".$slProcess_row['pDescr']."</textarea>".
     "<input type='hidden' name='pEdit' value='yyy'>".
     "<input type='hidden' name='pVal' value='".$slProcess_row['pName']."'>".

@@ -4,5 +4,6 @@ $query_text="create table wdSrvList_dt (".
     "sDescr TEXT, ".
     "sImg varchar(128) collate utf8_unicode_ci, ".
     "sDiag TEXT, ".
+    "lastMod date, ".
     "primary key (sName)".
     ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
