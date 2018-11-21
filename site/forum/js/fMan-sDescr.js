@@ -4,7 +4,7 @@ $(document).ready(function(){
 function tinyInit()
 {
     tinymce.init({
-        selector: '[name=sDescr]',
+        selector: '[name=longDescr]',
         height: '20em',
         theme: 'modern',
         plugins:             'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table contextmenu paste code',
@@ -21,7 +21,22 @@ function tinyInit()
 }
 function updateSDescr(fs_id) {
     tinymce.triggerSave();
-
+    var posting = $.post( "", $("form.s-descr").serialize());
+    posting.done(function( data ) {
+        if(data==true){
+            alert("yyyy");
+        }else {
+            alert(data);
+        }
+        /*
+        $('form.wdEditParams').preloader('remove');
+        var responce=JSON.parse(data);
+        if(responce.err!=null){
+            $(".field-err").html(responce.err);
+        }
+        */
+        //alert(data);
+    });
     //$.get("?sDescr="+$("[name='sDescr']").val())
     //alert($("[name='sDescr']").val());
 }

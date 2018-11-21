@@ -1,18 +1,21 @@
 <?php
-//require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/views/fMan-defaultView.php");
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
 if($_POST){
     if(isset($_POST['flagField']) and $_POST['flagField']=='newCat'){
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/actions/fMan-newCat.php");
     }elseif(isset($_POST['flagField']) and $_POST['flagField']=='newSubject'){
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/actions/fMan-newSubject.php");
-    }elseif(isset($_POST['flagField']) and $_POST['flagField']=='sDescr'){
+    }elseif(isset($_POST['flagField']) and $_POST['flagField']=='longDescr'){
+        $appRJ->response['format']='ajax';
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/actions/fMan-editSubjDescr.php");
     }elseif(isset($_POST['flagField']) and $_POST['flagField']=='editCat') {
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editCat_post.php");
     }elseif(isset($_POST['flagField']) and $_POST['flagField']=='editSubj') {
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editSubj_post.php");
-    }elseif (isset($_POST['fm_id']) and $_POST['fm_id']!==null and !isset($_POST['flagField'])){
+    }/*elseif(isset($_POST['flagField']) and $_POST['flagField']=='sDescr') {
+
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editSubj_post.php");
+    }*/elseif (isset($_POST['fm_id']) and $_POST['fm_id']!==null and !isset($_POST['flagField'])){
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editCatImg.php");
     }elseif (isset($_POST['forumS_id']) and $_POST['forumS_id']!==null){
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editSubjImg.php");

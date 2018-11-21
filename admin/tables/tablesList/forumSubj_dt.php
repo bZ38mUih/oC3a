@@ -12,5 +12,6 @@ $query_text="create table forumSubj_dt (".
     "readRule varchar(8) collate utf8_unicode_ci not null, ".
     "writeRule varchar(8) collate utf8_unicode_ci not null, ".
     "robIndex BOOLEAN, ".
+    "longDescr TEXT, ".
     "primary key (fs_id)".
     ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";

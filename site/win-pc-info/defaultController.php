@@ -15,8 +15,7 @@ if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=
         $diagRes['err']="not auth err";
     }
     $appRJ->response['result']=$diagRes;
-}
-elseif (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
+}elseif (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
     $appRJ->response['format']="ajax";
     if($_GET['wiSearch']=="wiFile"){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/win-pc-info/views/searchDFile.php");
@@ -40,7 +39,7 @@ else{
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/win-pc-info/actions/compareFiles.php");
     }
     else{
-
+        $appRJ->errors['404']['description']="Директории '".$appRJ->server['reqUri_expl'][2]."' не существует";
     }
 }
 

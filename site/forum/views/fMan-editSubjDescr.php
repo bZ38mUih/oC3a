@@ -7,7 +7,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<meta name='description' content='Описание темы'/>".
     "<meta name='robots' content='noindex'>".
     "<title>Описание темы</title>".
-    "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
+    "<link rel='SHORTCUT ICON' href='/site/forum/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
@@ -26,107 +26,12 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subMenu.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subjContentMenu.php");
 $appRJ->response['result'].= "<form class='s-descr'>".
-    "<input type='hidden' name='fs_id' value='".$Subj_rd['fs_id']."'>".
-    "<input type='hidden' name='flagField' value='sDescr'>".
-    "<textarea name='sDescr'></textarea>".
+    "<input type='hidden' name='fs_id' value='".$Subj_rd->result['fs_id']."'>".
+    "<input type='hidden' name='flagField' value='longDescr'>".
+    "<textarea name='longDescr'>".$Subj_rd->result['longDescr']."</textarea>".
     "<div class='input-line'><input type='button' value='save' onclick='updateSDescr()'></div>".
-    "</form>";
-/*
-$appRJ->response['result'].= "<form class='editImg'><div class='img-frame'>";
-$delImgBtn_text=null;
-if($Subj_rd->result['sImg']){
-    $appRJ->response['result'].= "<img src='".F_SUBJ_IMG.$_GET['fs_id']."/preview/".$Subj_rd->result['sImg']."'>";
-    $delImgBtn_text= "class='active'";
-}else{
-    $appRJ->response['result'].= "<img src='/data/default-img.png'>";
-}
-$appRJ->response['result'].= "</div><div class='control-frame'><div class='delImg-line'>".
-    "<span onclick='delImg(".$_GET['fs_id'].", ".'"'."delSubjImg".'"'.")' ".$delImgBtn_text.">".
-    "<img src='/source/img/drop-icon.png'>Удалить картинку</span></div><div class='button-line'>".
-    "<input type='file' onchange='loadFiles(".$_GET['fs_id'].", ".'"'."forumS_id".'"'.
-    ")' accept='image/jpeg,image/png,image/gif'></div>".
-    "<div class='results'></div></div></form>".
-    "<form method='post'>";
-if(isset($subjErr['common']) and $subjErr['common']===true){
-    $appRJ->response['result'].= "<div class='results success'>Updated SUCCESS</div>";
-}if(isset($subjErr['common']) and $subjErr['common']===false){
-    $appRJ->response['result'].= "<div class='results fail'>Updated FAIL</div>";
-}
-$appRJ->response['result'].= "<input type='hidden' name='flagField' value='editSubj'>".
-    "<div class='input-line'><label for='fs_id'>fs_id:</label>".
-    "<input type='text' name='fs_id' value='".$Subj_rd->result['fs_id']."' disabled></div>".
-    "<div class='input-line'><label>Название:</label>".
-    "<input type='text' name='sName' id='targetName' ";
-if($Subj_rd->result['sName']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['sName']."'";
-}
-$appRJ->response['result'].= "><div class='field-err'>";
-if(isset($subjErr['sName'])){
-    $appRJ->response['result'].= $subjErr['sName'];
-}
-$appRJ->response['result'].= "</div></div>".
-    "<div class='input-line'><label>Alias:</label>".
-    "<input type='text' name='sAlias' id='targetAlias' ";
-if($Subj_rd->result['sAlias']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['sAlias']."'";
-}
-$appRJ->response['result'].= ">".
-    "<input type='button' onclick='mkAlias()' value='mkAlbAlias'><div class='field-err'>";
-if(isset($subjErr['sAlias'])){
-    $appRJ->response['result'].= $subjErr['sAlias'];
-}
-$appRJ->response['result'].= "</div></div>".
-    "<div class='input-line'><label>Мета:</label><textarea name='metaDescr' rows='3' >";
-if($Subj_rd->result['metaDescr']){
-    $appRJ->response['result'].= $Subj_rd->result['metaDescr'];
-}
-$appRJ->response['result'].= "</textarea></div>".
-    "<div class='input-line'><label>fm_id:</label><select name='fm_id'>";
-
-$categList_text="select fm_id, mName from forumMenu_dt".
-    " ORDER BY mName ";
-$categList_res=$DB->doQuery($categList_text);
-if(mysql_num_rows($categList_res)>0){
-    $findSelected=false;
-    while ($categList_row=$DB->doFetchRow($categList_res)){
-        $catSelectOptions.= "<option value='".$categList_row['fm_id']."' ";
-        if($categList_row['fm_id'] == $Subj_rd->result['fm_id']){
-            $findSelected=true;
-            $catSelectOptions.= " selected";
-        }
-        $catSelectOptions.= ">".$categList_row['mName']."</option>";
-    }
-    if($findSelected){
-        $catSelectOptions="<option value='none'>---</option>".$catSelectOptions;
-    }else{
-        $catSelectOptions="<option value='none' selected>---</option>".$catSelectOptions;
-    }
-}else{
-    $catSelect="<option value='none' selected>---</option>";
-}
-
-$appRJ->response['result'].= $catSelectOptions."</select></div>".
-    "<div class='input-line'><label for='dateOfCr'>dateOfCr:</label>".
-    "<input type='date' name='dateOfCr' value='".substr($Subj_rd->result['dateOfCr'], 0, 10)."'>".
-    "<div class='field-err'>";
-if(isset($subjErr['dateOfCr'])){
-    $appRJ->response['result'].= $subjErr['dateOfCr'];
-}
-$appRJ->response['result'].= "</div></div>";
-$appRJ->response['result'].="<div class='input-line'><label for='activeFlag'>Показывать:</label>";
-$appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
-if($Subj_rd->result['activeFlag']){
-    $appRJ->response['result'].= "checked";
-}
-$appRJ->response['result'].= "></div>".
-    "<div class='input-line'><label>Индексировать:</label>";
-$appRJ->response['result'].= "<input type='checkbox' name='robIndex' ";
-if($Subj_rd->result['robIndex']){
-    $appRJ->response['result'].= "checked";
-}
-$appRJ->response['result'].= "></div>".
-    "<div class='input-line'><input type='submit' value='save'></div></form>*/
-$appRJ->response['result'].="</div></div></div>";
+    "</form>".
+    "</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

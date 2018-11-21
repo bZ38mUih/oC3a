@@ -81,7 +81,7 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "dev") {
     $dwlSign = "-";
     $dwlStyle = null;
 }
-$appRJ->response['result'].= "<a href='/dev/' title='Разработка'>Разработка</a> <span class='opnSubMenu'>" . $dwlSign .
+$appRJ->response['result'].= "<a href='/dev/' title='Блог о разработке'>Разработка</a> <span class='opnSubMenu'>" . $dwlSign .
     "</span> ". "<ul " . $dwlStyle . ">";
 $devArts_qry = "select * from art_dt where artCat_id=3 and activeFlag is true ORDER BY pubDate DESC limit 4";
 $devArts_res = $DB->doQuery($devArts_qry);
@@ -127,7 +127,7 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "handbook") {
     $dwlSign = "-";
     $dwlStyle = null;
 }
-$appRJ->response['result'].= "<a href='/handbook/' title='Справочник'>Справочник</a> <span class='opnSubMenu'>" .
+$appRJ->response['result'].= "<a href='/handbook/' title='Систематизированная информация о компьютерных и технология'>Справочник</a> <span class='opnSubMenu'>" .
     $dwlSign . "</span> "."<ul " . $dwlStyle . ">";
 $devArts_qry = "select * from art_dt where artCat_id=2 and activeFlag is true ORDER BY pubDate DESC limit 4";
 $devArts_res = $DB->doQuery($devArts_qry);
@@ -150,8 +150,8 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "downloads") {
     $dwlSign = "-";
     $dwlStyle = null;
 }
-$appRJ->response['result'].= "<a href='/downloads/' title='Загрузки'>Загрузки</a> <span class='opnSubMenu'>" . $dwlSign . "</span> ".
-    "<ul " . $dwlStyle . ">";
+$appRJ->response['result'].= "<a href='/downloads/' title='Ссылки на загрузки программ'>Загрузки</a> ".
+    "<span class='opnSubMenu'>" . $dwlSign . "</span> "."<ul " . $dwlStyle . ">";
 $selectCat_query = "select * from dwlCat_dt WHERE dwlCatPar_id is null and catActive_flag is TRUE";
 $selectCat_res = $DB->doQuery($selectCat_query);
 while ($selectCat_row = $DB->doFetchRow($selectCat_res)) {
@@ -215,7 +215,7 @@ if ($appRJ->server['reqUri_expl'][1] != 'donate') {
 if($appRJ->server['reqUri_expl'][1]!='signIn'){
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/signIn/img/logo.png' alt='Регистрация-logo'></div>".
-        "<div class='modal-line-text'><a href='/signIn' title='Вход на сайт'>Вход на сайт</a></div></div>";
+        "<div class='modal-line-text'><a href='/signIn' title='Авторизация'>Вход на сайт</a></div></div>";
 }
 /*<--singIn*/
 $appRJ->response['result'].= "</div></div></div></div>";

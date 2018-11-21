@@ -33,11 +33,14 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
 $appRJ->response['result'].="<div class='s-title'>".
     "<div class='s-title-cover'>";
 if($subj_row['sImg']){
-    $appRJ->response['result'].="<img src='".F_SUBJ_IMG.$subj_row['fs_id']."/preview/".$subj_row['sImg']."'>";
+    $appRJ->response['result'].="<img src='".F_SUBJ_IMG.$subj_row['fs_id']."/preview/".$subj_row['sImg']."' alt='subj cover'>";
 }
 
 $appRJ->response['result'].="</div><div class='s-title-descr'><h2>".$subj_row['metaDescr']."</h2></div>".
     "<div class='dateLine'><span class='dateFld'>Создано: </span><span class='dateVal'>".$subj_row["dateOfCr"]."</span></div>";
+if($subj_row['longDescr']){
+    $appRJ->response['result'].="<div class='longDescr'>".$subj_row['longDescr']."</div>";
+}
     //"</div>";
 
 /*

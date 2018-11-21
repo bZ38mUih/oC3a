@@ -1,33 +1,24 @@
 <?php
 $Subj_rd = new recordDefault("forumSubj_dt", "fs_id");
-
-if(isset($_GET['subj_id']) and $_GET['subj_id']!=null){
-    $Subj_rd->result['subject_id']=$_GET['subj_id'];
+$sdRes=false;
+if(isset($_POST['fs_id']) and $_POST['fs_id']!=null){
+    $Subj_rd->result['fs_id']=$_POST['fs_id'];
     if($Subj_rd->copyOne()){
-        if(isset($_POST['subjDescr'])){
-            $Descr_rd = new recordDefault('subjectsDescr_dt', 'subject_id');
-            $Descr_rd->result['subject_id']=$Subj_rd->result['subject_id'];
-            if($Descr_rd->copyOne()){
-                $Descr_rd->result['subjectDescr'] = $_POST['subjDescr'];
-                if($Descr_rd->updateOne()){
-                    $subjErr['common']=true;
-                }
+        if(isset($_POST['longDescr'])){
+            $Subj_rd->result['longDescr']=$_POST['longDescr'];
+            if($Subj_rd->updateOne()){
+                $sdRes=true;
             }else{
-                $Descr_rd->result['subjectDescr'] = $_POST['subjDescr'];
-                if($Descr_rd->putOne()){
-                    $subjErr['common']=true;
-                }
+                $sdRes="ошибка Subj_rd updateOne";
             }
         }else{
-            $subjErr['subjDescr']='отсутствует параметр subjDescr';
+            $sdRes='отсутствует параметр longDescr';
         }
     }else{
-        $appRJ->response['result'].= "неправильные параметры запроса subj_id";
-        exit;
+        $sdRes= "неправильные параметры запроса fs_id";
+        //exit;
     }
 }else{
-    $appRJ->response['result'].= "zzz";
-    exit;
+    $sdRes="недопустимы параметр fs_id";
 }
-
-require_once($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/fMan-editSubjDescr.php");
+$appRJ->response['result']=$sdRes;
