@@ -36,6 +36,7 @@ $appRJ->response['result'].= "<div class='info-line'><span class='fName'>osName:
     $slEnv_row['osVal']."</span></div>";
 $appRJ->response['result'].= "<form class='wdEditParams'>".
     "<div class='field-err'></div>".
+    "<div class='input-line'><label>lastMod</label><input type='date' name='lastMod' value='".$slEnv_row['lastMod']."'></div>".
     "<textarea name='osDescr'>".$slEnv_row['osDescr']."</textarea>".
     "<input type='hidden' name='osEdit' value='yyy'>".
     "<input type='hidden' name='osName' value='".$slEnv_row['osName']."'>".
