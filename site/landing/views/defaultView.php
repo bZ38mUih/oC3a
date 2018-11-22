@@ -5,7 +5,8 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='Создание сайтов, ремонт компьютеров в г. Иваново'/>".
+    "<meta name='description' content='Создание сайтов, ремонт компьютеров в г. Иваново. ".
+    "Блог, полезные ссылки, услуги, портфолио'/>".
     "<meta name='yandex-verification' content='e929004ef40cae1b' />".
     "<title>Компьютеры и разработка</title>".
     "<link rel='SHORTCUT ICON' href='/site/landing/img/favicon.png' type='image/png'>".
@@ -28,21 +29,21 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
 while ($slDevArt_row=$DB->doFetchRow($slDevArt_res)){
     $appRJ->response['result'].= "<div class='list-item'>".
         "<div class='list-item-img'>".
-        "<img src='".ARTS_IMG_PAPH."/".$slDevArt_row['art_id']."/preview/".$slDevArt_row['artImg']."'>".
+        "<img src='".ARTS_IMG_PAPH."/".$slDevArt_row['art_id']."/preview/".$slDevArt_row['artImg']."' alt='artCover'>".
         "</div><div class='list-item-text'>".
-        "<a href='/dev/".$slDevArt_row['artAlias']."'>".$slDevArt_row['artName']."</a>".
+        "<a href='/dev/".$slDevArt_row['artAlias']."' title='Читать статью'>".$slDevArt_row['artName']."</a>".
         "<span>".$slDevArt_row['artMeta']."</span></div></div>";
 }
 $appRJ->response['result'].= "<div class='list-item all'>".
     "<a href='/dev/'>все статьи</a></div></div><div class='contentBlock-table-right'>".
     "<h2>Свежая статья</h2>".
-    "<img src='".ARTS_IMG_PAPH."/".$devArtMain['art_id']."/preview/".$devArtMain['artImg']."'>".
-    "<div><a href='/dev/".$devArtMain['artAlias']."'>".$devArtMain['artName']."</a>".
+    "<img src='".ARTS_IMG_PAPH."/".$devArtMain['art_id']."/preview/".$devArtMain['artImg']."' alt='artCover'>".
+    "<div><a href='/dev/".$devArtMain['artAlias']."' title='Читать статью'>".$devArtMain['artName']."</a>".
     "<span>".$devArtMain['artMeta']."</span></div></div></div></div></div></div>".
     "<div class='contentBlock-frame dark'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><div class='contentBlock-table'><div class='contentBlock-table-left'>".
     "<div class='list-item'><div class='list-item-img'><img src='/site/downloads/img/logo.png'></div>".
-    "<div class='list-item-text'><a href='/downloads/'>Загрузки</a>".
+    "<div class='list-item-text'><a href='/downloads/' title='Ссылки на загрузки программ'>Загрузки</a>".
     "<span>Системное, офисное, популяное ПО. Ссылки на загрузки программ</span></div></div></div>".
     "<div class='contentBlock-table-left'><div class='list-item'><div class='list-item-img'>".
     "<img src='/site/handbook/img/logo.png'></div><div class='list-item-text'><a href='/handbook/'>Справочник</a>".
@@ -56,15 +57,15 @@ $devPcMain=$DB->doFetchRow($slPcArt_res);
 while ($slPcArt_row=$DB->doFetchRow($slPcArt_res)){
     $appRJ->response['result'].= "<div class='list-item'>".
         "<div class='list-item-img'>".
-        "<img src='".ARTS_IMG_PAPH."/".$slPcArt_row['art_id']."/preview/".$slPcArt_row['artImg']."'>".
+        "<img src='".ARTS_IMG_PAPH."/".$slPcArt_row['art_id']."/preview/".$slPcArt_row['artImg']."' alt='artCover'>".
         "</div><div class='list-item-text'>".
-        "<a href='/pc/".$slPcArt_row['artAlias']."'>".$slPcArt_row['artName']."</a>".
+        "<a href='/pc/".$slPcArt_row['artAlias']."' title='Читать статью'>".$slPcArt_row['artName']."</a>".
         "<span>".$slPcArt_row['artMeta']."</span></div></div>";
 }
 $appRJ->response['result'].= "<div class='list-item all'><a href='/pc/'>все статьи</a></div></div>".
     "<div class='contentBlock-table-right'><h2>Свежая статья</h2>".
-    "<img src='".ARTS_IMG_PAPH."/".$devPcMain['art_id']."/preview/".$devPcMain['artImg']."'>".
-    "<div><a href='/pc/".$devPcMain['artAlias']."'>".$devPcMain['artName']."</a>".
+    "<img src='".ARTS_IMG_PAPH."/".$devPcMain['art_id']."/preview/".$devPcMain['artImg']."' alt='artCover'>".
+    "<div><a href='/pc/".$devPcMain['artAlias']."' title='Читать статью'>".$devPcMain['artName']."</a>".
     "<span>".$devPcMain['artMeta']."</span></div></div></div></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");

@@ -17,22 +17,17 @@ if($_SESSION["bucket"]["total"]<50){
 }else{
     $appRJ->response['result'].="style='position: relative' ";
 }
-
 $appRJ->response['result'].="><div class='modal-line-img'>".
     "<img src='/site/siteHeader/img/handsShake-color.png'></div><div class='modal-line-text bucket'>".
-    "<a href='/services/mkOrder'>Ваш заказ: ".
-    "<span>".$_SESSION["bucket"]["total"]."</span> руб.</a>";
+    "<a href='/services/mkOrder'>Ваш заказ: <span>".$_SESSION["bucket"]["total"]."</span> руб.</a>";
 if($_SESSION['bucket']['order_id']){
     $appRJ->response['result'].="<img src='/site/services/img/due.png' class='payStat'>";
 }
 $appRJ->response['result'].="</div></div>";
-
-
-
 if($appRJ->server['reqUri_expl'][1]!='services') {
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/services/img/logo.png'></div><div class='modal-line-text srv'>".
-        "<a href='/services' title='Все услуги'>Все услуги</a>".
+        "<a href='/services' title='Расценки и заказ услуг'>Все услуги</a>".
         "</div></div>";
 }
 if($appRJ->server['reqUri_expl'][1]!='references'){
@@ -41,7 +36,6 @@ if($appRJ->server['reqUri_expl'][1]!='references'){
         "<a href='/references' title='Посмотреть отзывы, написать отзыв'>Отзывы</a>".
         "</div></div>";
 }
-
 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/services/img/logo.png'></div><div class='modal-line-text'>".

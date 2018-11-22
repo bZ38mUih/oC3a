@@ -2,10 +2,12 @@
 
 $validErr = null;
 
-$method = 'social';
+$signInActiveSocial=" class='active'";
+$signInActiveSite=null;
 
 if(isset($_COOKIE['gate']) and $_COOKIE['gate']=='site'){
-    $method = 'site';
+    $signInActiveSocial=null;
+    $signInActiveSite=" class='active'";
 }
 
 if ($_GET['gate'] and $_GET['gate']!=null){
@@ -25,7 +27,6 @@ elseif(isset($_GET['code'])){
     }
 }
 elseif(isset($_GET['auth']) and $_GET['auth']=='try'){
-    //$_SESSION['refer']=$appRJ->server['redirUri']['path'];
     $appRJ->response['format']='ajax';
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/signIn/views/signIn-frame.php");
 }

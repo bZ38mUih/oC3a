@@ -13,11 +13,11 @@ if($App['views']['social-block']) {
 $appRJ->response['result'].= "<div class='ft-center'><hr><span>by Right Joint</span></div>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<div class='ft-like'>".
-        "<a href='#' class='social_share' data-type='ok' title='постить в одноклассники'>".
+        "<a href='#' class='social_share' data-type='ok' title='Постить в Одноклассники'>".
         "<img src='/site/siteFooter/img/ok.png' alt='ok-like'><sup></sup></a>".
-        "<a href='#' class='social_share' data-type='fb' title='постить в facebook'>".
+        "<a href='#' class='social_share' data-type='fb' title='Постить в Facebook'>".
         "<img src='/site/siteFooter/img/fb.png' alt='fb-like'><sup></sup></a>".
-        "<a href='#' class='social_share' data-type='vk' title='постить ВКонтакте'>".
+        "<a href='#' class='social_share' data-type='vk' title='Постить ВКонтакте'>".
         "<img src='/site/siteFooter/img/vk.png' alt='vk-like'><sup></sup></a>".
         "</div>";
 }
