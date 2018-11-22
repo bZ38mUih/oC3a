@@ -48,7 +48,7 @@ if($this->errors){
         "<head>".
         "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
         "<meta name='description' content='Возникла ошибка'>".
-        "<title>".$errType."</title>".
+        "<title>".$errType."-".$alertsArr[$errType]['title']."</title>".
         "<link rel='SHORTCUT ICON' href='/source/alerts/img/favicon.png' type='image/png'>".
         "<link rel='stylesheet' href='/source/alerts/css/default.css' type='text/css' media='screen, projection'/>".
         "</head>".
@@ -65,19 +65,19 @@ if($this->errors){
         "<div class='alertsMenu'>".
         "<h2>На этом сайте:</h2>".
         "<h3>Блог</h3>".
-        "<a href='/dev'><img src='/site/dev/img/logo.png'>Статьи о разработке</a>".
-        "<a href='/pc'><img src='/site/pc/img/logo.png'>Статьи о компьютерных технологиях и ремонте ПК</a>".
+        "<a href='/dev' title='Все статьи'><img src='/site/dev/img/logo.png'>Статьи о разработке</a>".
+        "<a href='/pc' title='Все статьи'><img src='/site/pc/img/logo.png'>Статьи о компьютерных технологиях и ремонте ПК</a>".
         "<h3>Заказчику</h3>".
-        "<a href='/services'><img src='/site/services/img/logo.png'>Услуги</a>".
-        "<a href='/references'><img src='/site/references/img/logo.png'>Отзывы</a>".
+        "<a href='/services' title='Расценки и заказ услуг'><img src='/site/services/img/logo.png'>Услуги</a>".
+        "<a href='/references' title='Посмотреть отзывы, написать отзыв'><img src='/site/references/img/logo.png'>Отзывы</a>".
         "<h3>Полезные ссылки</h3>".
-        "<a href='/downloads'><img src='/site/downloads/img/logo.png'>Загрузки</a>".
+        "<a href='/downloads' title='Ссылки на загрузки программ'><img src='/site/downloads/img/logo.png'>Загрузки</a>".
         "<a href='/handbook'><img src='/site/handbook/img/logo.png'>Справочник</a>".
         "<h3>Портфолио</h3>".
-        "<a href='/gallery'><img src='/site/gallery/img/logo.png'>Галерея</a>".
+        "<a href='/gallery' title='Галерея фотографий на разные темы'><img src='/site/gallery/img/logo.png'>Галерея</a>".
         "<h3>Еще</h3>".
-        "<a href='/signIn'><img src='/site/signIn/img/logo.png'>Вход на сайт</a>".
-        "<a href='/donate'><img src='/site/donate/img/logo.png'>Помощь проекту</a>".
+        "<a href='/donate' title='Пожертвования на развитие проекта'><img src='/site/donate/img/logo.png'>Помощь проекту</a>".
+        "<a href='/signIn' title='Авторизация'><img src='/site/signIn/img/logo.png'>Вход на сайт</a>".
         "</div>".
         "</div>".
         "</body>".

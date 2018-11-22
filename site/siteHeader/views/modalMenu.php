@@ -185,7 +185,8 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "gallery") {
     $dwlSign = "-";
     $dwlStyle = null;
 }
-$appRJ->response['result'].= "<a href='/gallery/' title='Портфолио-Галерея'>Галерея</a> <span class='opnSubMenu'>" .
+$appRJ->response['result'].= "<a href='/gallery/' title='Портфолио-Галерея фотографий на разные темы'>Галерея</a>".
+    " <span class='opnSubMenu'>" .
     $dwlSign . "</span> "."<ul " . $dwlStyle . "><li><a href='" . "/gallery/albums/" . "' class='sub-lnk ";
 if ($appRJ->server['reqUri_expl'][2] == 'albums') {
     $appRJ->response['result'].= "active";

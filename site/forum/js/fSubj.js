@@ -1,7 +1,7 @@
 $(document).ready(function(){
     tinyInit();
 })
-
+/*
 function appreciate(aprVal)
 {
     $(".ref-apprec").preloader({
@@ -18,10 +18,10 @@ function appreciate(aprVal)
         $(".ref-apprec").preloader('remove');
     });
 }
-
+*/
 function writeCom(com_id)
 {
-    $(".ref-block").preloader({
+    $(".comments-block").preloader({
         text: 'loading',
         percent: '',
         duration: '',
@@ -32,15 +32,15 @@ function writeCom(com_id)
     var formComment=$('form.cmForm');
     var posting = $.post( "", formComment.serialize());
     posting.done(function( data ) {
-        $('.ref-block').preloader('remove');
+        $('.comments-block').preloader('remove');
         var responce=JSON.parse(data);
         if(responce.err!=null){
             $(".cfForm-err").html(responce.err);
         }else{
-            tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'yCm');
-            $(".ref-block").html(responce.text);
-            $(".ref-stat span.fldVal:first").html(responce.cntCom);
-            tinymce.EditorManager.execCommand('mceAddEditor',true, 'yCm');
+            tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'fCm');
+            $(".comments-block").html(responce.text);
+            //$(".ref-stat span.fldVal:first").html(responce.cntCom);
+            tinymce.EditorManager.execCommand('mceAddEditor',true, 'fCm');
             tinyInit();
         }
     });
@@ -56,9 +56,9 @@ function newAnsw(com_id)
         $("#com_").css("display", "none");
         $("form.cmForm h4").html("Ваш отзыв:");
     }
-    $("#com_"+$("form.cmForm [name='newComPar_id']").val()).show();
-    $("form.cmForm [name='newComPar_id']").val(com_id);
-    tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'yCm');
+    $("#com_"+$("form.cmForm [name='fc_pid']").val()).show();
+    $("form.cmForm [name='fc_pid']").val(com_id);
+    tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'fCm');
     var formComment=$('form.cmForm');
     if(com_id != null){
         $("#com_"+com_id).after(formComment);
@@ -71,7 +71,7 @@ function newAnsw(com_id)
 function tinyInit()
 {
     tinymce.init({
-        selector: '#yCm',
+        selector: '#fCm',
         height: '10em',
         theme: 'modern',
         plugins:             'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table contextmenu paste code',

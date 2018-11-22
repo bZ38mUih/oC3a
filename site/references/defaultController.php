@@ -60,11 +60,11 @@ function prtCm($comPar_id=null, $DB)
         }
         $tmpRes['text'].="</ul>";
         if($comPar_id==null) {
-            include($_SERVER['DOCUMENT_ROOT'] . "/site/references/views/cmForm.php");
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/references/views/cmForm.php");
         }
     }elseif($comPar_id==null){
-        $tmpRes['text'].= "Пока еще никто не написал отзыв";
-        include($_SERVER['DOCUMENT_ROOT']."/site/references/views/cmForm.php");
+        $tmpRes['text'].= "Напишите отзыв первым";
+        require_once($_SERVER['DOCUMENT_ROOT']."/site/references/views/cmForm.php");
     }
     return $tmpRes;
 }

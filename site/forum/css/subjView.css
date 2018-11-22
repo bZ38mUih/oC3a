@@ -44,3 +44,103 @@
     border-radius: 0.5em;
     border: 2px solid midnightblue;
 }
+.fOptMenu{
+    display: inline-block;
+    width: 100%;
+    border: 1px solid red;
+}
+.fOptMenu .info{
+    display: inline-block;
+    width: 33%;
+}
+.fOptMenu .fpNum{
+    display: inline-block;
+    width: 33%;
+}
+.fOptMenu .options{
+    display: inline-block;
+    width: 33%;
+}
+/*
+label[for='fOptPN']:before{
+    content: "показывать по ";
+}
+label[for='fComView']:before{
+    content: "Вид: ";
+}
+*/
+.comments-block{
+    font-size: 0.8em;
+    width: 94%;
+    padding: 1em 3%;
+    border: 2px solid midnightblue;
+    border-radius: 0.3em;
+}
+.comments-block ul:first-child{
+    margin: 0;
+    padding: 0;
+}
+.comments-block ul li{
+    width: 100%;
+    display: inline-block;
+    list-style: none;
+}
+.comments-block .com-line{
+    width: 98%;
+    display: inline-block;
+    padding: 1em 1%;
+    border-bottom: 1px dotted gray;
+    border-left: 1px dotted gray;
+}
+.comments-block .com-img{
+    width: 15%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+.comments-block .com-img img{
+    height: 3em;
+    width: 3em;
+    border-radius: 0.5em;
+    border: 2px solid darkgoldenrod;
+}
+.comments-block .com-info{
+    width: 85%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.comments-block .com-info a{
+    text-decoration: none;
+    color: #000000;
+}
+.comments-block .com-alias{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.comments-block .com-content-frame{
+    margin-top: 0.2em;
+}
+.comments-block .com-content{
+    display: inline-block;
+    padding: 0.5em;
+    background-color: rgba(25,25,50,1);
+    color: #ffffff;
+    font-style: italic;
+    border: 2px solid darkgoldenrod;
+    border-radius: 0.5em;
+}
+.comments-block .com-date{
+    display: inline-block;
+    margin-left: 2em;
+    font-family: "courier new";
+    font-size: 0.8em;
+    font-weight: bold;
+}
+.comments-block .com-content p{
+    padding: 0;
+    margin: 0;
+}
+.comments-block span.com-wrCm{
+    cursor: pointer;
+}
