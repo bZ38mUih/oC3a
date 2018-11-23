@@ -30,7 +30,6 @@
 }
 .s-title span.dateFld{
     font-weight: bold;
-    font-size: 0.8em;
     min-width: 10em;
     display: inline-block;
     color: midnightblue;
@@ -45,21 +44,35 @@
     border: 2px solid midnightblue;
 }
 .fOptMenu{
+    font-size: 0.8em;
+    background-color: rgba(0,255,0,0.2);
     display: inline-block;
     width: 100%;
-    border: 1px solid red;
 }
 .fOptMenu .info{
     display: inline-block;
     width: 33%;
+    vertical-align: middle;
 }
 .fOptMenu .fpNum{
     display: inline-block;
     width: 33%;
+    vertical-align: middle;
 }
 .fOptMenu .options{
     display: inline-block;
     width: 33%;
+    vertical-align: middle;
+}
+.fOptMenu .options label{
+    display: block;
+}
+.fOptMenu .options select{
+    font-size: 1em;
+}
+.fOptMenu .fpNum a.active{
+    font-weight: bold;
+    font-size: 1.2em;
 }
 /*
 label[for='fOptPN']:before{
@@ -70,7 +83,6 @@ label[for='fComView']:before{
 }
 */
 .comments-block{
-    font-size: 0.8em;
     width: 94%;
     padding: 1em 3%;
     border: 2px solid midnightblue;
@@ -81,6 +93,7 @@ label[for='fComView']:before{
     padding: 0;
 }
 .comments-block ul li{
+    font-size: 0.8em;
     width: 100%;
     display: inline-block;
     list-style: none;

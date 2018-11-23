@@ -1,14 +1,15 @@
 <?php
-function printFComments($comPar_id=null, $fs_id, $DB)
+function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLim=10)
 {
     $tmpRes['text']=null;
     $tmpRes['cntCom']=null;
+    //$tmpRes['cntTotal']=null;
     if($comPar_id ==null){
         $slCm_qry = "select * from forumComments_dt ".
             "INNER JOIN accounts_dt ON accounts_dt.user_id=forumComments_dt.user_id ".
             "WHERE forumComments_dt.fc_pid IS NULL and forumComments_dt.activeFlag is TRUE ".
             "and forumComments_dt.fs_id=".$fs_id." ".
-            "ORDER BY forumComments_dt.writeDate DESC";
+            "ORDER BY forumComments_dt.writeDate DESC LIMIT ".(($page-1)*10).", ".$cLim;
     }else{
         $slCm_qry = "select * from forumComments_dt ".
             "INNER JOIN accounts_dt ON accounts_dt.user_id=forumComments_dt.user_id ".
@@ -53,10 +54,15 @@ function printFComments($comPar_id=null, $fs_id, $DB)
             }
             $tmpCm.="</div></div></div>";
             $tmpRes['text'].=$tmpCm;
-            $responce=printFComments($slCm_row['fc_id'], $fs_id, $DB);
+            $responce=printFComments($slCm_row['fc_id'], $fs_id, $DB, $tmpRes['cntTotal'], $page, $cLim);
+            $tmpRes['cntTotal']+=$responce['cntTotal'];
+            $tmpRes['cntTotal']++;
+            //$cntTotal+=$tmpRes['cntTotal'];
             if($comPar_id==null){
                 $tmpRes['cntCom']++;
             }
+            $cntTotal++;
+            //$tmpRes['cntTotal']++;
             $tmpRes['text'].=$responce['text'];
             $tmpRes['text'].="</li>";
         }
@@ -68,5 +74,6 @@ function printFComments($comPar_id=null, $fs_id, $DB)
         $tmpRes['text'].= "Напишите коммент первым";
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/views/fComForm.php");
     }
+
     return $tmpRes;
 }

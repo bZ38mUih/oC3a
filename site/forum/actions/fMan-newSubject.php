@@ -1,5 +1,4 @@
 <?php
-
 $subjErr=null;
 
 $Subj_rd = new recordDefault("forumSubj_dt", "fs_id");

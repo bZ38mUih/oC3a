@@ -1,6 +1,3 @@
-/**
- * Created by Dorian Gray on 05.01.2018.
- */
 $(document).ready(function() {
     $('.modal-right .modal-close').click(function () {
         $('.modal, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
@@ -13,7 +10,6 @@ $(document).ready(function() {
         $('.modal.menu, .modal.menu .overlay').css({'opacity': 1, 'visibility': 'visible'});
         e.preventDefault();
     });
-
     $("span.opnSubMenu").click(function () {
         if($(this).html()=='+'){
             $(this).parent().find("ul").slideDown("slow");

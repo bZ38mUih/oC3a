@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    $("body").append("<div class='modal signIn'><div class='overlay'></div><div class='contentBlock-frame'>"+
+    "<div class='contentBlock-center'><div class='modal-right'><div class='modal-close'></div></div>"+
+    "<div class='modal-left'></div></div></div></div>");
     $('a.signIn').click(function (e) {
         $('.modal.signIn, .modal.signIn .overlay').css({'opacity': 1, 'visibility': 'visible'});
         e.preventDefault();

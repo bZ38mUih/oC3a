@@ -4,7 +4,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='Вход на сайт' />".
+    "<meta name='description' content='Вход на сайт. Авторизация через социальные сети или аккаунт на rightjoint.ru' />".
     "<meta name='robots' content='noindex'>".
     "<title>Вход на сайт</title>".
     "<link rel='SHORTCUT ICON' href='/site/signIn/img/favicon.png' type='image/png'>".
@@ -15,7 +15,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<link rel='stylesheet' href='/site/signIn/css/defaultForm.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/signIn/js/default.js'></script>";
-if($method === 'site'){
+if($signInActiveSite){
     $appRJ->response['result'].= "<script type='text/javascript' src='/site/signIn/js/site.js'></script>";
 }
 $appRJ->response['result'].= "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".

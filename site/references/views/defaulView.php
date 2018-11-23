@@ -11,11 +11,12 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<script src='/source/js/jquery.cookie.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/signIn/js/extAuth.js'></script>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<link rel='stylesheet' href='/site/references/css/references.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/references/js/ref.js'></script>".
-    "<script src='/site/signIn/js/extAuth.js'></script>".
+
     "<script src='/site/js/social-block.js'></script>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
@@ -40,10 +41,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame dark'><div class='c
     "<span class='fldName ta-left'><span class='fldVal'>".$apprRes['qty']."</span>оцен.</span>".
     "</div><div class='ref-apprec'>".$apprRes['content']."</div></div></div></div></div>".
     "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
-    "<div class='ref-frame'><div class='ref-block ta-left'>".$prtLst['text']."</div></div></div></div></div>".
-    "<div class='modal signIn'><div class='overlay'></div><div class='contentBlock-frame'>".
-    "<div class='contentBlock-center'><div class='modal-right'><div class='modal-close'></div></div>".
-    "<div class='modal-left'></div></div></div></div>";
+    "<div class='ref-frame'><div class='ref-block ta-left'>".$prtLst['text']."</div></div></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");

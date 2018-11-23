@@ -39,6 +39,8 @@ function writeCom(com_id)
         }else{
             tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'fCm');
             $(".comments-block").html(responce.text);
+            $(".fOptMenu span.cmCnt").html(responce.subjComm);
+            $(".fOptMenu span.answCnt").html(responce.subjAnsw);
             //$(".ref-stat span.fldVal:first").html(responce.cntCom);
             tinymce.EditorManager.execCommand('mceAddEditor',true, 'fCm');
             tinyInit();

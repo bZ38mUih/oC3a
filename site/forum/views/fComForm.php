@@ -9,5 +9,5 @@ if($_SESSION['user_id']){
         "<input type='button' value='Написать' onclick='writeCom(".'"new"'.")'></div></form>";
 }else{
     $tmpRes['text'].= "<a href='/signIn' class='signIn ta-left'><img src='/site/signIn/img/logo.png'>Авторизуйтесь".
-        " для написания отзыва</a>";
+        " для написания комментов</a>";
 }
