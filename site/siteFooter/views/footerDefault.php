@@ -1,5 +1,5 @@
 <?php
-$appRJ->response['result'].= "<div class='contentBlock-frame dark'><div class='contentBlock-center'>".
+$appRJ->response['result'].= "<div class='contentBlock-frame dark ft'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><footer>";
 if($App['views']['social-block']) {
     $appRJ->response['result'].= "<div class='ft-service'><noscript><div>".
@@ -21,5 +21,5 @@ if($App['views']['social-block']){
         "<img src='/site/siteFooter/img/vk.png' alt='vk-like'><sup></sup></a>".
         "</div>";
 }
-$appRJ->response['result'].= "</footer></div></div></div>";
+$appRJ->response['result'].= "</footer></div></div></div></div>";
 ?>

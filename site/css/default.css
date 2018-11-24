@@ -7,7 +7,17 @@ BODY {
     font-size: 25px;
 }
 /*body--<*/
+.page-wrap{
+    position: relative;
+    min-height: 93.5vh;
+    padding-bottom: 6.5vh;
+}
 /*footer-->*/
+.contentBlock-frame.dark.ft{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
 footer{
     background-color: rgba(25,25,50,1);
     color: #ffffff;
@@ -36,7 +46,7 @@ footer div, footer a, footer img{
 }
 .ft-center span{
     background: radial-gradient(ellipse ,
-    rgba(25,25,50,1), rgba(25,25,50,1), rgba(25,25,50,1), rgba(255,255,255,0.2), rgba(255,255,255,0.5));
+    rgba(25,25,50,1), rgba(25,25,50,1), rgba(25,25,50,1), rgba(25,25,50,0.2), rgba(25,25,50,0.5));
     position: relative;
     z-index: 1;
     padding: 0.2em 0;

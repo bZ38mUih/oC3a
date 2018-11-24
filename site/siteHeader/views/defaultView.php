@@ -1,5 +1,5 @@
 <?php
-$appRJ->response['result'].= "<header><div class='headerCenter'>".
+$appRJ->response['result'].= "<div class='page-wrap'><header><div class='headerCenter'>".
     "<div class='menuBtn'><img src='/site/siteHeader/img/menu-icon.png' alt='Menu-icon'><span>МЕНЮ</span></div>".
     "<div class='logo'><div class='imgBlock'>";
 if(isset($appRJ->server['reqUri_expl'][1]) and file_exists($_SERVER['DOCUMENT_ROOT']."/site/".
