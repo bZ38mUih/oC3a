@@ -2,13 +2,30 @@
 
 define(F_CAT_IMG, "/data/forum/categs/");
 define(F_SUBJ_IMG, "/data/forum/subjects/");
-require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/actions/printFComments_func.php");
 
 $curPage=1;
-$comsOnPage=10;
+$fOptPN=10;
+$fComView='tree';
+$fComSort="ASC";
 if($_GET['page'] and $_GET['page']!=null){
     $curPage=$_GET['page'];
 }
+if($_COOKIE['fOptPN'] and $_COOKIE['fOptPN']!=null){
+    $fOptPN=$_COOKIE['fOptPN'];
+}
+if($_COOKIE['fComView'] and $_COOKIE['fComView']=='tree'){
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/actions/printFComTree_func.php");
+
+}else{
+    $fComView="list";
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/actions/printFComList.php");
+}
+if($_COOKIE['fComSort'] and $_COOKIE['fComSort']!=null){
+    $fComSort=$_COOKIE['fComSort'];
+}
+
+
+
 if(!$_SESSION['user_id']){
     $appRJ->errors['stab']['description']="Форум временно на реконструкции";
     $appRJ->throwErr();
@@ -37,7 +54,10 @@ if(isset($appRJ->server['reqUri_expl'][2]) and strtolower($appRJ->server['reqUri
                         $newCm->result['fc_pid']=null;
                     }
                     if($newCm->putOne()){
-                        $refBlock= printFComments(null, $_POST['fs_id'], $DB, 0, $curPage, $comsOnPage);
+                        $refBlock= printFComments(null, $_POST['fs_id'], $DB, 0, $curPage, $fOptPN, $fComSort);
+                        if($refBlock['cntTotal']>0){
+                            $refBlock['text']="<h3>Коментарии</h3>".$refBlock['text'];
+                        }
                         $subjComms_query="select count(fc_id) as subjComm from forumComments_dt ".
                             "where fs_id=".$newCm->result['fs_id']." and fc_pid is null";
                         $subjAnsw_query="select count(fc_id) as subjAnsw from forumComments_dt ".

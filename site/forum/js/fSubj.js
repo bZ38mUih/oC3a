@@ -1,24 +1,9 @@
 $(document).ready(function(){
     tinyInit();
+    $(".options select").change(function () {
+        $.cookie($(this).attr('id'), $(this).find("option:selected").val());
+    })
 })
-/*
-function appreciate(aprVal)
-{
-    $(".ref-apprec").preloader({
-        text: 'loading',
-        percent: '',
-        duration: '',
-        zIndex: '',
-        setRelative: true
-    });
-    $.get("?aprVal="+aprVal, function(data){
-        var obj = JSON.parse(data);
-        $(".ref-apprec").html(obj.content);
-        $(".ref-stat span.fldVal:eq(1)").html(obj.qty);
-        $(".ref-apprec").preloader('remove');
-    });
-}
-*/
 function writeCom(com_id)
 {
     $(".comments-block").preloader({
@@ -39,8 +24,8 @@ function writeCom(com_id)
         }else{
             tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'fCm');
             $(".comments-block").html(responce.text);
-            $(".fOptMenu span.cmCnt").html(responce.subjComm);
-            $(".fOptMenu span.answCnt").html(responce.subjAnsw);
+            $(".fOptMenu span.cmCnt span").html(responce.subjComm);
+            $(".fOptMenu span.answCnt span").html(responce.subjAnsw);
             //$(".ref-stat span.fldVal:first").html(responce.cntCom);
             tinymce.EditorManager.execCommand('mceAddEditor',true, 'fCm');
             tinyInit();
@@ -56,7 +41,7 @@ function newAnsw(com_id)
         $("#com_"+com_id).hide();
     }else{
         $("#com_").css("display", "none");
-        $("form.cmForm h4").html("Ваш отзыв:");
+        $("form.cmForm h4").html("Новый коммент:");
     }
     $("#com_"+$("form.cmForm [name='fc_pid']").val()).show();
     $("form.cmForm [name='fc_pid']").val(com_id);

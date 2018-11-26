@@ -19,6 +19,8 @@ if($_POST){
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editCatImg.php");
     }elseif (isset($_POST['forumS_id']) and $_POST['forumS_id']!==null){
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/actions/fMan-editSubjImg.php");
+    }elseif (isset($_POST['fCm']) and $_POST['fc_pid']){
+        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/actions/fMan-rewriteCom.php");
     }
     else{
         $appRJ->errors['request']['description']="неправильные параметры запроса _POST";

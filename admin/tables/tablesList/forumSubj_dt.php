@@ -9,8 +9,8 @@ $query_text="create table forumSubj_dt (".
     "fm_id int(5), ".
     "sImg varchar(128) collate utf8_unicode_ci, ".
     "activeFlag BOOLEAN, ".
-    "readRule varchar(8) collate utf8_unicode_ci not null, ".
-    "writeRule varchar(8) collate utf8_unicode_ci not null, ".
+    "readRule varchar(8) collate utf8_unicode_ci, ".
+    "writeRule varchar(8) collate utf8_unicode_ci, ".
     "robIndex BOOLEAN, ".
     "longDescr TEXT, ".
     "primary key (fs_id)".

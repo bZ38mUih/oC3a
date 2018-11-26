@@ -5,7 +5,7 @@
 }
 .s-title{
     width: 100%;
-    border-bottom: 1px solid midnightblue;
+    /*border-bottom: 1px solid midnightblue;*/
 }
 .s-title-cover{
     width: 20%;
@@ -41,13 +41,15 @@
 .longDescr{
     margin: 0.5em 0;
     border-radius: 0.5em;
-    border: 2px solid midnightblue;
+    /*border: 2px solid midnightblue;*/
 }
 .fOptMenu{
     font-size: 0.8em;
-    background-color: rgba(0,255,0,0.2);
+    color: white;
     display: inline-block;
     width: 100%;
+    margin-top: 0.5em;
+    padding: 0.5em 0;
 }
 .fOptMenu .info{
     display: inline-block;
@@ -55,6 +57,7 @@
     vertical-align: middle;
 }
 .fOptMenu .fpNum{
+    text-align: center;
     display: inline-block;
     width: 33%;
     vertical-align: middle;
@@ -65,11 +68,34 @@
     vertical-align: middle;
 }
 .fOptMenu .options label{
-    display: block;
+    display: inline-block;
+    padding: 0.2em 0;
+    width: 100%;
 }
 .fOptMenu .options select{
-    font-size: 1em;
+    background-color: rgba(25,25,50,1);
+    color: white;
+    float: right;
+    /*font-size: 1em;*/
 }
+.fOptMenu .options select option:checked{
+    color: orange;
+}
+span.cmCnt, span.answCnt{
+    padding: 0.2em 5%;
+    display: inline-block;
+    width: 90%;
+}
+span.cmCnt span, span.answCnt span{
+    float: right;
+    font-size: 1em;
+    font-weight: bold;
+}
+.fOptMenu .fpNum a{
+    padding: 0 0.5em;
+    color: orange;
+}
+
 .fOptMenu .fpNum a.active{
     font-weight: bold;
     font-size: 1.2em;
@@ -82,45 +108,54 @@ label[for='fComView']:before{
     content: "Вид: ";
 }
 */
+form.cmForm input[type=button]{
+    font-weight: bold;
+    margin: 0.5em;
+    color: midnightblue;
+}
+.comments-block h3{
+    font-size: 1.5em;
+}
 .comments-block{
-    width: 94%;
-    padding: 1em 3%;
-    border: 2px solid midnightblue;
-    border-radius: 0.3em;
+    font-size: 0.6em;
+    width: 96%;
+    padding: 1em 2%;
+    border: 1px solid midnightblue;
+    /*border-top: 1px solid midnightblue;
+    border-bottom: 1px solid midnightblue;*/
+    /*border-radius: 0.3em;*/
 }
 .comments-block ul:first-child{
     margin: 0;
     padding: 0;
 }
-.comments-block ul li{
-    font-size: 0.8em;
+.comments-block ul li.cmt{
     width: 100%;
     display: inline-block;
-    list-style: none;
 }
 .comments-block .com-line{
     width: 98%;
     display: inline-block;
-    padding: 1em 1%;
+    padding: 2em 1% 1em 1% ;
     border-bottom: 1px dotted gray;
     border-left: 1px dotted gray;
 }
 .comments-block .com-img{
-    width: 15%;
+    width: 10%;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     text-align: center;
 }
 .comments-block .com-img img{
-    height: 3em;
-    width: 3em;
+    height: 2.5em;
+    width: 2.5em;
     border-radius: 0.5em;
-    border: 2px solid darkgoldenrod;
+    border: 1px solid midnightblue;
 }
 .comments-block .com-info{
-    width: 85%;
+    width: 90%;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
 }
 .comments-block .com-info a{
     text-decoration: none;
@@ -135,13 +170,19 @@ label[for='fComView']:before{
     margin-top: 0.2em;
 }
 .comments-block .com-content{
+    width: 96%;
     display: inline-block;
-    padding: 0.5em;
-    background-color: rgba(25,25,50,1);
-    color: #ffffff;
+    padding: 2%;
+    font-size: 1.2em;
+    /*background-color: rgba(25,25,50,1);*/
+    /*color: #ffffff;*/
     font-style: italic;
+    /*
     border: 2px solid darkgoldenrod;
     border-radius: 0.5em;
+    */
+    /*border: 1px dotted black;*/
+
 }
 .comments-block .com-date{
     display: inline-block;

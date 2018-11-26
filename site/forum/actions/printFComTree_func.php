@@ -1,5 +1,5 @@
 <?php
-function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLim=10)
+function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLim=10, $sortOpt="ASC")
 {
     $tmpRes['text']=null;
     $tmpRes['cntCom']=null;
@@ -9,13 +9,13 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
             "INNER JOIN accounts_dt ON accounts_dt.user_id=forumComments_dt.user_id ".
             "WHERE forumComments_dt.fc_pid IS NULL and forumComments_dt.activeFlag is TRUE ".
             "and forumComments_dt.fs_id=".$fs_id." ".
-            "ORDER BY forumComments_dt.writeDate DESC LIMIT ".(($page-1)*10).", ".$cLim;
+            "ORDER BY forumComments_dt.writeDate ".$sortOpt." LIMIT ".(($page-1)*10).", ".$cLim;
     }else{
         $slCm_qry = "select * from forumComments_dt ".
             "INNER JOIN accounts_dt ON accounts_dt.user_id=forumComments_dt.user_id ".
             "WHERE forumComments_dt.fc_pid = ".$comPar_id." and forumComments_dt.activeFlag is TRUE ".
             "and forumComments_dt.fs_id=".$fs_id." ".
-            "ORDER BY forumComments_dt.writeDate DESC";
+            "ORDER BY forumComments_dt.writeDate ".$sortOpt;
     }
     $comCnt=0;
     if($slCm_res=$DB->doQuery($slCm_qry)){
@@ -25,7 +25,7 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
         $tmpRes['text'].= "<ul>";
         while ($slCm_row=$DB->doFetchRow($slCm_res)){
             $tmpCm=null;
-            $tmpCm.="<li><div class='com-line'><div class='com-img'>";
+            $tmpCm.="<li class='cmt'><div class='com-line'><div class='com-img'>";
             if($slCm_row['photoLink']){
                 if($slCm_row['netWork']=='site'){
                     $tmpCm.= "<img src='".PP_USR_IMG_PAPH.$slCm_row['account_id']."/preview/".
@@ -54,7 +54,7 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
             }
             $tmpCm.="</div></div></div>";
             $tmpRes['text'].=$tmpCm;
-            $responce=printFComments($slCm_row['fc_id'], $fs_id, $DB, $tmpRes['cntTotal'], $page, $cLim);
+            $responce=printFComments($slCm_row['fc_id'], $fs_id, $DB, $tmpRes['cntTotal'], $page, $cLim, $sortOpt);
             $tmpRes['cntTotal']+=$responce['cntTotal'];
             $tmpRes['cntTotal']++;
             //$cntTotal+=$tmpRes['cntTotal'];
@@ -74,6 +74,5 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
         $tmpRes['text'].= "Напишите коммент первым";
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/views/fComForm.php");
     }
-
     return $tmpRes;
 }
