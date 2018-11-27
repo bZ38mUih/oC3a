@@ -108,10 +108,22 @@ label[for='fComView']:before{
     content: "Вид: ";
 }
 */
+form.cmForm h4{
+    font-size: 1.5em;
+}
+form.cmForm h4 img{
+    margin-right: 0.5em;
+    height: 2em;
+    width: 2em;
+    border-radius: 0.5em;
+    border: 1px solid midnightblue;
+    vertical-align: middle;
+}
 form.cmForm input[type=button]{
     font-weight: bold;
     margin: 0.5em;
     color: midnightblue;
+    font-size: 1.2em;
 }
 .comments-block h3{
     font-size: 1.5em;
@@ -133,6 +145,7 @@ form.cmForm input[type=button]{
     width: 100%;
     display: inline-block;
 }
+
 .comments-block .com-line{
     width: 98%;
     display: inline-block;
@@ -198,3 +211,25 @@ form.cmForm input[type=button]{
 .comments-block span.com-wrCm{
     cursor: pointer;
 }
+
+
+/*list style-->*/
+span.com-quote{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.quote-block{
+    margin-top: 0.5em;
+    background-color: silver;
+    border: 1px solid black;
+}
+.quote-block .com-quote-line{
+    /**/
+    padding: 0.5em;
+    margin: 1em;
+    border: 1px dotted black;
+}
+.quote-block .com-quote-line .com-content{
+
+}
+/*list style--<*/

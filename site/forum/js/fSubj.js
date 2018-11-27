@@ -2,6 +2,8 @@ $(document).ready(function(){
     tinyInit();
     $(".options select").change(function () {
         $.cookie($(this).attr('id'), $(this).find("option:selected").val());
+
+        window.location = window.location.pathname;
     })
 })
 function writeCom(com_id)
@@ -37,11 +39,11 @@ function newAnsw(com_id)
 {
     if(com_id != null){
         $("#com_").css("display", "block");
-        $("form.cmForm h4").html("Ваш ответ:");
+        $("form.cmForm h4 span").html("Ваш ответ:");
         $("#com_"+com_id).hide();
     }else{
         $("#com_").css("display", "none");
-        $("form.cmForm h4").html("Новый коммент:");
+        $("form.cmForm h4 span").html("Новый коммент:");
     }
     $("#com_"+$("form.cmForm [name='fc_pid']").val()).show();
     $("form.cmForm [name='fc_pid']").val(com_id);

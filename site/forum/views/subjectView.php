@@ -45,18 +45,9 @@ if($subj_row['sImg']){
 }
 $appRJ->response['result'].="</div>";
 $appRJ->response['result'].="<div class='s-title-descr'><h2>".$subj_row['metaDescr']."</h2></div>";
-
-
-
-
 $appRJ->response['result'].="<div class='dateLine'><span class='dateFld'>Тема создана: </span><span class='dateVal'>".
     $subj_row["dateOfCr"]."</span></div>";
 $appRJ->response['result'].="</div>";
-
-
-
-
-
 if($subj_row['longDescr']){
     $appRJ->response['result'].="<div class='longDescr'>".$subj_row['longDescr']."</div>";
 }
@@ -75,11 +66,23 @@ $appRJ->response['result'].= "<div class='contentBlock-frame dark'>".
 $appRJ->response['result'].="<div class='fOptMenu ta-left'>";
 
 $appRJ->response['result'].="<div class='info'>".
-    "<span class='cmCnt'>Комментов: <span>".$subjComms_row['subjComm']."</span></span><span class='answCnt'>Ответов:".
-    "<span>".$subjAnsw_row['subjAnsw']."</span></span></div>".
+    "<span class='cmCnt'>Комментов: <span>";
+$tmpAnsw=null;
+$tmpCom=0;
+
+if($fComView=='tree'){
+    $appRJ->response['result'].=$subjComms_row['subjComm'];
+    $tmpAnsw="<span class='answCnt'>Ответов:".
+        "<span>".$subjAnsw_row['subjAnsw']."</span></span>";
+    $tmpCom=$subjComms_row['subjComm'];
+}else{
+    $appRJ->response['result'].=($subjComms_row['subjComm']+$subjAnsw_row['subjAnsw']);
+    $tmpCom=$subjComms_row['subjComm']+$subjAnsw_row['subjAnsw'];
+}
+$appRJ->response['result'].="</span></span>".$tmpAnsw."</div>".
     "<div class='fpNum'>Стр.";
 $pNum=1;
-while (($subjComms_row['subjComm']-($pNum-1)*$fOptPN)>0){
+while (($tmpCom-($pNum-1)*$fOptPN)>0){
     if($pNum>1){
         $appRJ->response['result'].=", ";
     }
