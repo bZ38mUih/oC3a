@@ -1,43 +1,32 @@
-.contentBlock-table
-{
+.contentBlock-table{
     display: table;
     width: 100%;
 }
-
-.contentBlock-table-left
-{
+.contentBlock-table-left{
     width: 50%;
     display: table-cell;
     vertical-align: top;
 }
-
-.contentBlock-table-right
-{
+.contentBlock-table-right{
     width: 50%;
     display: table-cell;
     position: relative;
     text-align: center;
     vertical-align: middle;
 }
-
-.contentBlock-table-right img
-{
+.contentBlock-table-right img{
     margin-top: 0.5em;
     display: inline-block;
     width: 60%;
 }
-
-.contentBlock-table-right div
-{
+.contentBlock-table-right div{
     width: 100%;
     text-align: center;
     position: relative;
     bottom: 1em;
     z-index: 1;
 }
-
-.contentBlock-table-right a
-{
+.contentBlock-table-right a{
     color: navy;
     font-size: 1.5em;
     display: block;
@@ -45,14 +34,10 @@
     vertical-align: bottom;
     text-shadow: 3px 3px 2px white, -3px 3px 2px white, -3px -3px 2px white, 3px -3px 2px white;
 }
-
-.contentBlock-table-right div span
-{
+.contentBlock-table-right div span{
     text-shadow: 2px 2px 2px white, -2px 2px 2px white, -2px -2px 2px white, 2px -2px 2px white;
 }
-
-h2
-{
+h2{
     color: grey;
     font-weight: bold;
     font-size: 1.2em;
@@ -63,126 +48,105 @@ h2
     margin: 1em 2% 0 2%;
     text-shadow: 2px 2px 2px white, -2px 2px 2px white, -2px -2px 2px white, 2px -2px 2px white;
 }
-
-.contentBlock-table-right h2
-{
+.contentBlock-wrap.hfLinks{
+    padding-bottom: 1em;
+}
+.contentBlock-frame.dark h2{
+    border-bottom: none;
+    text-align: center;
+}
+.contentBlock-table-right h2{
     position: absolute;
     top: 0;
     z-index: 1;
 }
-
-
-.contentBlock-table-left .list-item:not(:last-child)
-{
+.contentBlock-table-left .list-item:not(:last-child){
     position: relative;
     padding-bottom: 1em;
     width: 96%;
     margin: 1em 2% 0 2%;
     border-bottom: 1px dotted gray;
 }
-
-.list-item-img
-{
+.list-item-img{
     width: 30%;
     display: inline-block;
     vertical-align: middle;
 }
-
-.list-item-img img
-{
+.list-item-img img{
     height: 3em;
     width: 3em;
 }
-
-.list-item-text
-{
+.list-item-text{
     text-align: left;
     display: inline-block;
     width: 70%;
     vertical-align: middle;
 }
-
-.contentBlock-table-left .list-item:not(:last-child) a
-{
+.contentBlock-table-left .list-item:not(:last-child) a{
     color: navy;
     font-size: 1.2em;
     text-decoration: none;
     display: block;
     width: 100%;
 }
-
-.list-item.all
-{
+.list-item.all{
     margin: 1em 0 1em 1em;
     text-align: left;
 }
-
-.list-item.all a
-{
+.list-item.all a{
     font-weight: bold;
     color: midnightblue;
 }
-
-.contentBlock-frame.dark .list-item
-{
+.contentBlock-frame.dark .list-item{
     padding: 0.7em 0 0.7em 0;
 }
-
-.dark .list-item-text a
-{
+.contentBlock-frame.dark .contentBlock-wrap.portf{
+    text-align: center;
+}
+.contentBlock-frame.dark .contentBlock-wrap.portf .list-item{
+    width: 50%;
+    display: inline-block;
+}
+.dark .list-item-text a{
     color: #ffffff;
     font-size: 1.2em;
 }
-
-.list-item-text span, .contentBlock-table-right div span
-{
+.list-item-text span, .contentBlock-table-right div span{
     display: block;
     width: 100%;
     font-size: 0.9em;
 }
-
-.dark .list-item-text span
-{
+.dark .list-item-text span{
     color: lightgray;
 }
-
-@media only screen and (max-width : 1024px)  and (orientation : portrait), only screen and (max-width : 960px)
-{
-    .contentBlock-table-left, .contentBlock-table-right
-    {
+@media only screen and (max-width : 1024px)  and (orientation : portrait), only screen and (max-width : 960px){
+    .contentBlock-table-left, .contentBlock-table-right{
         width: 96%;
         display: block;
         margin-left: 2%;
     }
-
-    .contentBlock-table-right img
-    {
+    .contentBlock-table-right img{
         width: 40%;
         margin-top: 10%;
         display: inline-block;
     }
-
-    h2
-    {
+    .contentBlock-frame.dark .contentBlock-wrap.portf .list-item{
+        width: 100%;
+    }
+    h2{
         width: 98%;
         padding-left: 2%;
         margin-left: 0;
     }
-
-    .contentBlock-table-right div
-    {
+    .contentBlock-table-right div{
         display: block;
         position: relative;
     }
-
-    .contentBlock-frame.dark .contentBlock-table-left:first-child
-    {
+    .contentBlock-frame.dark .contentBlock-table-left:first-child{
         border-bottom: 1px dotted gray;
         padding-bottom: 0.7em;
     }
-
-    .contentBlock-frame.dark .contentBlock-table-left:last-child
-    {
+    .contentBlock-frame.dark .contentBlock-table-left:last-child{
         padding-top: 0.7em;
     }
 }

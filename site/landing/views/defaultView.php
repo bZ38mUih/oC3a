@@ -8,7 +8,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<meta name='description' content='Создание сайтов, ремонт компьютеров в г. Иваново. ".
     "Блог, полезные ссылки, услуги, портфолио'/>".
     "<meta name='yandex-verification' content='e929004ef40cae1b' />".
-    "<title>Компьютеры и разработка</title>".
+    "<title>Частный it-мастер</title>".
     "<link rel='SHORTCUT ICON' href='/site/landing/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
@@ -19,13 +19,65 @@ if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
     }
 $appRJ->response['result'].= "</head><body>";
+
+
+
+
+
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
-$slDevArt_qry="select * from art_dt where artCat_id=3 and activeFlag is true ORDER BY pubDate DESC limit 4";
+
+
+
+$appRJ->response['result'].="<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
+    "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>Услуги</h2>";
+$slSrv_qry="select * from srvCards_dt where cardActive is true ORDER BY sortDate DESC limit 4";
+$slSrv_res = $DB->doQuery($slSrv_qry);
+$slSrvMain=$DB->doFetchRow($slSrv_res);
+while ($slSrv_row=$DB->doFetchRow($slSrv_res)){
+    $appRJ->response['result'].= "<div class='list-item'>".
+        "<div class='list-item-img'>".
+        "<img src='".SRV_CARD_IMG_PAPH."/".$slSrv_row['card_id']."/preview/".$slSrv_row['cardImg']."' alt='srvCover'>".
+        "</div><div class='list-item-text'>".
+        "<a href='/services/detail/".$slSrv_row['cardAlias']."' title='Подробнее об услуге'>".$slSrv_row['cardName']."</a>".
+        "<span>".$slSrv_row['shortDescr']."</span></div></div>";
+}
+$appRJ->response['result'].= "<div class='list-item all'><a href='/services/'>все услуги</a></div></div>".
+    "<div class='contentBlock-table-right'><h2>Популярная услуга</h2>".
+    "<img src='".SRV_CARD_IMG_PAPH."/".$slSrvMain['card_id']."/preview/".$slSrvMain['cardImg']."' alt='srvCover'>".
+    "<div><a href='/services/detail/".$slSrvMain['cardAlias']."' title='Подробнее об услуге'>".$slSrvMain['cardName']."</a>".
+    "<span>".$slSrvMain['shortDescr']."</span></div></div></div></div></div>";
+
+
+$appRJ->response['result'].="<div class='contentBlock-frame dark'><div class='contentBlock-center'>".
+
+    "<div class='contentBlock-wrap portf'><h2>Портфолио</h2>".
+    "<div class='contentBlock-table'><div class='contentBlock-table-left'>".
+    "<div class='list-item'><div class='list-item-img'><img src='/site/gallery/img/logo.png'></div>".
+    "<div class='list-item-text'><a href='/gallery/' title='Фото в галерее'>Галерея</a>".
+    "<span>Альбомы фотографий на разные темы</span></div></div></div></div></div>".
+
+    "<div class='contentBlock-wrap hfLinks'><h2 class='test'>Полезные ссылки</h2>".
+    "<div class='contentBlock-table'><div class='contentBlock-table-left'>".
+    "<div class='list-item'><div class='list-item-img'><img src='/site/downloads/img/logo.png'></div>".
+    "<div class='list-item-text'><a href='/downloads/' title='Ссылки на загрузки программ'>Загрузки</a>".
+    "<span>Системное, офисное, популяное ПО. Ссылки на загрузки программ</span></div></div></div>".
+    "<div class='contentBlock-table-left'><div class='list-item'><div class='list-item-img'>".
+    "<img src='/site/handbook/img/logo.png'></div><div class='list-item-text'><a href='/handbook/'>Справочник</a>".
+    "<span>Систематизированная информация о компьютерных технологиях</span>".
+    "</div></div></div></div></div>".
+
+
+
+    "</div></div>";
+
+
+
+$slDevArt_qry="select * from art_dt where artCat_id=3 OR artCat_id=1 and activeFlag is true ORDER BY pubDate DESC limit 4";
 $slDevArt_res = $DB->doQuery($slDevArt_qry);
 $devArtMain=$DB->doFetchRow($slDevArt_res);
 $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-center'><div class='contentBlock-wrap'>".
-    "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>Разработка</h2>";
+    "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>Блог</h2>";
 while ($slDevArt_row=$DB->doFetchRow($slDevArt_res)){
     $appRJ->response['result'].= "<div class='list-item'>".
         "<div class='list-item-img'>".
@@ -39,34 +91,10 @@ $appRJ->response['result'].= "<div class='list-item all'>".
     "<h2>Свежая статья</h2>".
     "<img src='".ARTS_IMG_PAPH."/".$devArtMain['art_id']."/preview/".$devArtMain['artImg']."' alt='artCover'>".
     "<div><a href='/dev/".$devArtMain['artAlias']."' title='Читать статью'>".$devArtMain['artName']."</a>".
-    "<span>".$devArtMain['artMeta']."</span></div></div></div></div></div></div>".
-    "<div class='contentBlock-frame dark'><div class='contentBlock-center'>".
-    "<div class='contentBlock-wrap'><div class='contentBlock-table'><div class='contentBlock-table-left'>".
-    "<div class='list-item'><div class='list-item-img'><img src='/site/downloads/img/logo.png'></div>".
-    "<div class='list-item-text'><a href='/downloads/' title='Ссылки на загрузки программ'>Загрузки</a>".
-    "<span>Системное, офисное, популяное ПО. Ссылки на загрузки программ</span></div></div></div>".
-    "<div class='contentBlock-table-left'><div class='list-item'><div class='list-item-img'>".
-    "<img src='/site/handbook/img/logo.png'></div><div class='list-item-text'><a href='/handbook/'>Справочник</a>".
-    "<span>Систематизированная информация о компьютерных технологиях</span>".
-    "</div></div></div></div></div></div></div>".
-    "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
-    "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>Компьютеры и технологии</h2>";
-$slPcArt_qry="select * from art_dt where artCat_id=1 and activeFlag is true ORDER BY pubDate DESC limit 4";
-$slPcArt_res = $DB->doQuery($slPcArt_qry);
-$devPcMain=$DB->doFetchRow($slPcArt_res);
-while ($slPcArt_row=$DB->doFetchRow($slPcArt_res)){
-    $appRJ->response['result'].= "<div class='list-item'>".
-        "<div class='list-item-img'>".
-        "<img src='".ARTS_IMG_PAPH."/".$slPcArt_row['art_id']."/preview/".$slPcArt_row['artImg']."' alt='artCover'>".
-        "</div><div class='list-item-text'>".
-        "<a href='/pc/".$slPcArt_row['artAlias']."' title='Читать статью'>".$slPcArt_row['artName']."</a>".
-        "<span>".$slPcArt_row['artMeta']."</span></div></div>";
-}
-$appRJ->response['result'].= "<div class='list-item all'><a href='/pc/'>все статьи</a></div></div>".
-    "<div class='contentBlock-table-right'><h2>Свежая статья</h2>".
-    "<img src='".ARTS_IMG_PAPH."/".$devPcMain['art_id']."/preview/".$devPcMain['artImg']."' alt='artCover'>".
-    "<div><a href='/pc/".$devPcMain['artAlias']."' title='Читать статью'>".$devPcMain['artName']."</a>".
-    "<span>".$devPcMain['artMeta']."</span></div></div></div></div></div></div>";
+    "<span>".$devArtMain['artMeta']."</span></div></div></div></div></div>";
+
+
+
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

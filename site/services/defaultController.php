@@ -1,6 +1,4 @@
 <?php
-define(SRV_CAT_IMG_PAPH, "/data/services/categs/");
-define(SRV_CARD_IMG_PAPH, "/data/services/cards/");
 require_once($_SERVER["DOCUMENT_ROOT"]."/source/_conf/ym.php");
 if($_GET['addBucket']){
     $addBucket=new recordDefault("srvCards_dt", "card_id");

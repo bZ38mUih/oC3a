@@ -28,6 +28,8 @@ else{
     define(ARTS_IMG_PAPH, "/data-arts/arts/");
     define(PP_USRGR_IMG_PAPH, '/data/usersGroups/');
     define(PP_USR_IMG_PAPH, '/data/users/');
+    define(SRV_CAT_IMG_PAPH, "/data/services/categs/");
+    define(SRV_CARD_IMG_PAPH, "/data/services/cards/");
 
     if($appRJ->server['reqUri_expl'][1]!=null){
         if(!@include($_SERVER["DOCUMENT_ROOT"]."/site/".$appRJ->server['reqUri_expl'][1]."/defaultController.php")){
