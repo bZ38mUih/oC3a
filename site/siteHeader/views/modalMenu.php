@@ -27,11 +27,7 @@ if($_SESSION['user_id']){
     }
     $appRJ->response['result'].= "<div class='modal-line'>".
         "<div class='modal-line-img'>";
-    if($_SESSION['photoLink']){
-        $appRJ->response['result'].= "<img src='".$_SESSION['photoLink']."' alt='Avatar'>";
-    }else{
-        $appRJ->response['result'].= "<img src='/data/avatar-default.jpg' alt='Avatar-Default'>";
-    }
+    $appRJ->response['result'].= "<img src='".$_SESSION['photoLink']."' alt='Avatar'>";
     $appRJ->response['result'].= "</div><div class='modal-line-text'>".
         "<a href='/personal-page' title='Личный кабинет'>Личный кабинет</a><a href='?cmd=exit' class='exit'>Exit</a>";
     if($ntf_cnt>0){

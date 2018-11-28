@@ -62,7 +62,7 @@ if(mysql_num_rows($srv_res)==1){
     $appRJ->response['result'].="</div>";
     $appRJ->response['result'].=
         "<div class='toSrv'><a href='/services'><img src='/site/services/img/logo.png'>Все услуги</a></div>".
-        "</div></div></div></div></div>";
+        "</div></div></div>";
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

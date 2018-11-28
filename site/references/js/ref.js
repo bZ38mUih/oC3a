@@ -50,11 +50,11 @@ function newAnsw(com_id)
 {
     if(com_id != null){
         $("#com_").css("display", "block");
-        $("form.cmForm h4").html("Ваш ответ:");
+        $("form.cmForm h4 span").html("Ваш ответ:");
         $("#com_"+com_id).hide();
     }else{
         $("#com_").css("display", "none");
-        $("form.cmForm h4").html("Ваш отзыв:");
+        $("form.cmForm h4 span").html("Ваш отзыв:");
     }
     $("#com_"+$("form.cmForm [name='newComPar_id']").val()).show();
     $("form.cmForm [name='newComPar_id']").val(com_id);

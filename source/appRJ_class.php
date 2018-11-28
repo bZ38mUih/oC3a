@@ -12,19 +12,15 @@ class appRJ
     function initValues()
     {
         $this->date['curDate'] = @date_create();
-
         $this->mct['start_time'] = microtime(true);
-        //$end_time = microtime(true);
-        //$tables->result['log'].= 'lead time: '.($end_time-$start_time);
-
+        if(!$_SESSION['photoLink']){
+            $_SESSION['photoLink']="/data/avatar-default.jpg";
+        }
         $this->errors=null;
-
         $this->server['reqUri']=parse_url($_SERVER['REQUEST_URI']);
         $this->server['reqUri_expl']=explode("/",$this->server['reqUri']['path']);
-
         $this->server['redirUri']=parse_url($_SERVER['HTTP_REFERER']);
         $this->server['redirUri_expl']=explode("/",$this->server['redirUri']['path']);
-
         $this->response['format']='html';
         $this->response['result']=null;
     }

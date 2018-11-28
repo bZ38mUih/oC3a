@@ -132,22 +132,30 @@ a.signIn img{
 }
 .ref-block hr{
     border-bottom: 1px solid blue;
-    width: 90%;
+    width: 100%;
 }
 form.cmForm{
-    width: 94%;
-    margin: 1em 3%;
+    width: 100%;
+    margin: 1em 0%;
     border: 2px solid darkgoldenrod;
     border-radius: 0.3em;
     background-color: rgba(0, 0, 255, 0.1);
 }
 form.cmForm h4{
-    padding: 1em 0 0 1em;
+    padding: 0.5em 0 0.5em 1em;
     margin: 0;
 }
+form.cmForm h4 img{
+    margin-right: 0.5em;
+    height: 1.6em;
+    width: 1.6em;
+    border-radius: 0.5em;
+    border: 1px solid midnightblue;
+    vertical-align: middle;
+}
 form.cmForm .cfForm-cp{
-    width: 98%;
-    margin: 1%;
+    width: 100%;
+    margin: 0.5em 0;
 }
 form.cmForm input[type=button]{
     margin: 0.2em;
@@ -157,8 +165,8 @@ form.cmForm input[type=button]{
     font-size: 1em;
 }
 form.cmForm .cmForm-area{
-    width: 96%;
-    margin: 2%;
+    width: 100%;
+    /*margin: 1%;*/
 }
 .cfForm-err{
     padding-left: 5%;
