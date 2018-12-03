@@ -1,7 +1,5 @@
 <?php
-//if($_POST){
 $refBlock['err']=null;
-//if($_SESSION['user_id']){
 if(isset($_POST['fc_pid'])){
     if($_POST['fCm'] and $_POST['fCm']!=null){
         if(isset($_POST['fs_id']) and $_POST['fs_id']!=null){
@@ -30,9 +28,3 @@ if(isset($_POST['fc_pid'])){
 }
 $appRJ->response['format']='json';
 $appRJ->response['result']= $refBlock;
-/*
-}else{
-$appRJ->errors['access']['description']="добавление отзыва запрещено неавторизированным пользователям";
-}
-*/
-//}

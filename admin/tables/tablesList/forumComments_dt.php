@@ -7,5 +7,7 @@ $query_text="create table forumComments_dt (".
     "writeDate datetime not null, ".
     "commmentCont TEXT not null, ".
     "activeFlag BOOLEAN not null, ".
+    "likePlus int(5) not null, ".
+    "likeMinus int(5) not null, ".
     "primary key (fc_id)".
     ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";

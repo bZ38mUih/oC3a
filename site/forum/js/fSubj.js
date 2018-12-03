@@ -77,8 +77,16 @@ function tinyInit()
 }
 
 function setLike(fc_id, likeVal) {
+    $("#com_"+fc_id).parent().parent().parent().find(".com-like").preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
     $.get("?likeVal="+likeVal+"&fc_id="+fc_id, function (data) {
-        alert(data);
+        $("#com_"+fc_id).parent().parent().parent().find(".com-like").preloader("remove");
+        $("#com_"+fc_id).parent().parent().parent().find(".com-like").html(data);
     })
     //alert(fc_id+" / "+likeVal);
 }

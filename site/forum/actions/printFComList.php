@@ -31,7 +31,7 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
         "INNER JOIN accounts_dt ON accounts_dt.user_id=forumComments_dt.user_id ".
         "WHERE forumComments_dt.activeFlag is TRUE ".
         "and forumComments_dt.fs_id=".$fs_id." ".
-        "ORDER BY forumComments_dt.writeDate ".$sortOpt." LIMIT ".(($page-1)*10).", ".$cLim;
+        "ORDER BY (forumComments_dt.likePlus-forumComments_dt.likeMinus) DESC, forumComments_dt.writeDate ".$sortOpt." LIMIT ".(($page-1)*10).", ".$cLim;
     $comCnt=0;
     if($slCm_res=$DB->doQuery($slCm_qry)){
         $comCnt=mysql_num_rows($slCm_res);
@@ -39,14 +39,11 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
     if($comCnt>0){
         $tmpRes['text'].= "<ul>";
         while ($slCm_row=$DB->doFetchRow($slCm_res)){
-            //$tmpCm=null;
             $tmpRes['text'].="<li class='cmt zzz'>";
             if($slCm_row['fc_pid']!=null){
 
                 $responce=printFCommentsList2($slCm_row['fc_pid'], $fs_id, $DB, $tmpRes['cntTotal'], $page, $cLim, $sortOpt);
             }
-            //$tmpRes['text'].=$responce;
-
             $tmpRes['text'].="<div class='com-line'><div class='com-img'>";
             if($slCm_row['photoLink']){
                 if($slCm_row['netWork']=='site'){
@@ -68,18 +65,21 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
             }else{
                 $tmpRes['text'].=$slCm_row['accAlias'];
             }
-            $tmpRes['text'].="</div><div class='com-date'>".$slCm_row['writeDate']."</div>";
+            $tmpRes['text'].="</div><div class='com-date'>".$slCm_row['writeDate']."</div>".
+            "<div class='com-like'>";
+            $tmpCm=null;
+            include ($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/cmLikes.php");
+            $tmpRes['text'].=$tmpCm."</div>";
+
             if($responce){
                 $tmpRes['text'].="<div class='quote-block'><span class='com-quote'>Цитата</span>".$responce."</div>";
             }
-
             $tmpRes['text'].="<div class='com-content-frame'><div class='com-content'>".$slCm_row['commmentCont'].
                 "</div></div><div class='com-lv'>";
             if($_SESSION['user_id']){
                 $tmpRes['text'].="<span class='com-wrCm' id='com_".$slCm_row['fc_id']."' onclick='newAnsw(".$slCm_row['fc_id'].")'>Ответить</span>";
             }
             $tmpRes['text'].="</div></div></div>";
-            //$tmpRes['text'].=$tmpCm;
             $tmpRes['text'].="</li>";
         }
         $tmpRes['text'].="</ul>";
