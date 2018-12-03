@@ -56,7 +56,7 @@ $appRJ->response['result'].="<div class='contentBlock-frame dark'><div class='co
     "<div class='list-item-text'><a href='/gallery/' title='Фото в галерее'>Галерея</a>".
     "<span>Альбомы фотографий на разные темы</span></div></div></div></div></div>".
 
-    "<div class='contentBlock-wrap hfLinks'><h2 class='test'>Полезные ссылки</h2>".
+    "<div class='contentBlock-wrap hfLinks'><h2>Полезные ссылки</h2>".
     "<div class='contentBlock-table'><div class='contentBlock-table-left'>".
     "<div class='list-item'><div class='list-item-img'><img src='/site/downloads/img/logo.png'></div>".
     "<div class='list-item-text'><a href='/downloads/' title='Ссылки на загрузки программ'>Загрузки</a>".

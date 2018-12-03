@@ -6,6 +6,31 @@ if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
 }else{
 
 }
+function dec_enc($action, $string) {
+    $output = false;
+
+    $encrypt_method = "AES-256-CBC";
+    //$secret_key = 'This is my secret key';
+    $secret_key = 'life is fuck 2019';
+    //$secret_iv = 'This is my secret iv';
+    $secret_iv = 'Ganja Man';
+
+    // hash
+    $key = hash('sha256', $secret_key);
+
+    // iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
+    $iv = substr(hash('sha256', $secret_iv), 0, 16);
+
+    if( $action == 'encrypt' ) {
+        $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+        $output = base64_encode($output);
+    }
+    else if( $action == 'decrypt' ){
+        $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+    }
+
+    return $output;
+}
 /**
  * Created by PhpStorm.
  * User: AVP
@@ -67,7 +92,7 @@ function printNote($diary=null, $printForm_flag=true,$activeStyle=null)
 //echo "note_id=".$query_row["note_id"]."<br>";
                 $prNtRes.= "Дата: <label class='curDate'>".$query_row["curDate"]."</label>";
                 $prNtRes.= "Время: <label class='curTime'>".$query_row["curTime"]."</label>";
-                $prNtRes.= "<p>".$query_row["content"]."</p>";
+                $prNtRes.= "<p>".dec_enc("decrypt", $query_row["content"])."</p>";
                 //if ($query_row["diaryType"] == 'daily'){
                     $prNtRes.= "<a href='#'  id='".$query_row["diary_id"]."' onclick='mkDiary(".'"'.$query_row["diaryType"].'"'.", ".
                         $query_row["diary_id"].", null, this)'>добавить</a>";
@@ -250,7 +275,7 @@ elseif (isset($_POST) and $_POST != null){
         $diary->result['curTime']['val'] = null;
     }
     if (isset($_POST["content"]) and $_POST["content"] != null){
-        $diary->result["content"]["val"] = $_POST["content"];
+        $diary->result["content"]["val"] = dec_enc("encrypt", $_POST["content"]);
     }else{
         $diary->result['content']['err'] = "контент не задан";
     }

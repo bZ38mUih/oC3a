@@ -204,6 +204,28 @@ form.cmForm input[type=button]{
     font-size: 0.8em;
     font-weight: bold;
 }
+.comments-block .com-like{
+    display: inline-block;
+    float: right;
+}
+.comments-block .com-like img{
+    cursor: pointer;
+    margin-left: 1em;
+    vertical-align: middle;
+    height: 1.2em;
+    width: 1.2em;
+    /*padding: 0 0.5em;*/
+}
+.comments-block .com-like span.likePlus{
+    color: lime;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+.comments-block .com-like span.likeMinus{
+    font-size: 1.2em;
+    color: red;
+    vertical-align: middle;
+}
 .comments-block .com-content p{
     padding: 0;
     margin: 0;

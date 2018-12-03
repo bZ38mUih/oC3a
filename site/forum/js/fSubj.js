@@ -75,3 +75,10 @@ function tinyInit()
         ]
     });
 }
+
+function setLike(fc_id, likeVal) {
+    $.get("?likeVal="+likeVal+"&fc_id="+fc_id, function (data) {
+        alert(data);
+    })
+    //alert(fc_id+" / "+likeVal);
+}

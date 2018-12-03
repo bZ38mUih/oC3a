@@ -85,7 +85,32 @@ if(isset($appRJ->server['reqUri_expl'][2]) and strtolower($appRJ->server['reqUri
     }else{
         $appRJ->errors['access']['description']="добавление отзыва запрещено неавторизированным пользователям";
     }
-}elseif(!$appRJ->server['reqUri_expl'][2]){
+}elseif ($_GET['likeVal']){
+    if($_SESSION['user_id']){
+        if($_GET['fc_id'] and $_GET['fc_id']!=null){
+            $youLike_qry="select * from forumCmLike_dt WHERE fc_id=".$_GET['fc_id']." and user_id=".$_SESSION['user_id'];
+            $youLike_res=$DB->doQuery($youLike_qry);
+            $youLikeVal=false;
+            if($_GET['likeVal']=='likePlus'){
+                $youLikeVal=true;
+            }
+            $newLike_qry=null;
+            if(mysql_num_rows($youLike_res)==1){
+                $newLike_qry="update forumCmLike_dt set likeStatus=".$youLikeVal.", likeDate='".$appRJ->date['curDate']."' where fc_id=".$_GET['fc_id'].
+                    " and user_id=".$_SESSION['user_id'];
+            }else{
+                $newLike_qry="insert into forumCmLike_dt (fc_id, likeStatus, user_id, likeDate) ".
+                    "VALUES (".$_GET['fc_id'].", ".$youLikeVal.", ".$_SESSION['user_id'].", ".$appRJ->date['curDate'].")";
+            }
+        }else{
+
+        }
+    }else{
+
+    }
+    //require cmLikes
+}
+elseif(!$appRJ->server['reqUri_expl'][2]){
     require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/views/defaultView.php");
 }else{
     $subj_qry="select * from forumSubj_dt where sAlias='".$appRJ->server['reqUri_expl'][2]."'";

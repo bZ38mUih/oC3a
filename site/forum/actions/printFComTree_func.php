@@ -24,6 +24,19 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
     if($comCnt>0){
         $tmpRes['text'].= "<ul>";
         while ($slCm_row=$DB->doFetchRow($slCm_res)){
+
+            /*
+            $countLikes_query="select count(likeStatus) as likeCnt from forumCmLike_dt WHERE fc_id=".$slCm_row['fc_id'].
+                " and likeStatus is true";
+            $countDisLikes_query="select count(likeStatus) as likeCnt from forumCmLike_dt WHERE fc_id=".$slCm_row['fc_id'].
+                " and likeStatus is false";
+            $youLikes_query="select likeStatus from forumCmLike_dt WHERE fc_id=".$slCm_row['fc_id'].
+                " and user_id=".$_SESSION['user_id'];
+            $countLikes_res=$DB->doQuery($countLikes_query);
+            $countDisLikes_res=$DB->doQuery($countDisLikes_query);
+            $youLikes_res=$DB->doQuery($youLikes_query);
+            */
+
             $tmpCm=null;
             $tmpCm.="<li class='cmt'><div class='com-line'><div class='com-img'>";
             if($slCm_row['photoLink']){
@@ -46,8 +59,10 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
             }else{
                 $tmpCm.=$slCm_row['accAlias'];
             }
-            $tmpCm.="</div><div class='com-date'>".$slCm_row['writeDate']."</div>".
-                "<div class='com-content-frame'><div class='com-content'>".$slCm_row['commmentCont'].
+            $tmpCm.="</div><div class='com-date'>".$slCm_row['writeDate']."</div>";
+
+
+            $tmpCm.="<div class='com-content-frame'><div class='com-content'>".$slCm_row['commmentCont'].
                 "</div></div><div class='com-lv'>";
             if($_SESSION['user_id']){
                 $tmpCm.="<span class='com-wrCm' id='com_".$slCm_row['fc_id']."' onclick='newAnsw(".$slCm_row['fc_id'].")'>Ответить</span>";

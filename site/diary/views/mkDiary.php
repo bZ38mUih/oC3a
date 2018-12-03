@@ -29,7 +29,7 @@ $mkDiary.= "CurDate: <input type='date' name='curDate' value='".$diary->result["
 $mkDiary.= "<span class='field_err'>".$diary->result["curDate"]["err"]."</span>";
 $mkDiary.= "CurTime: <input type='time' name='curTime' value='".$diary->result["curTime"]["val"]."'>";
 $mkDiary.= "<span class='field_err'>".$diary->result["curTime"]["err"]."</span>";
-$mkDiary.= "<textarea name='content' rows='5' id='content' class='form-control'>".$diary->result['content']['val']."</textarea>";
+$mkDiary.= "<textarea name='content' rows='5' id='content' class='form-control'>".dec_enc("decrypt", $diary->result['content']['val'])."</textarea>";
 $mkDiary.= "<span class='field_err'>".$diary->result["content"]["err"]."</span>";
 $mkDiary.= "</div>";
 $mkDiary.= "<input type='button' value='Coxp' onclick='saveDiary(this)'>";
