@@ -15,6 +15,11 @@ if(isset($appRJ->server['reqUri_expl'][4]) and strtolower($appRJ->server['reqUri
     $appRJ->response['result'].= " class='active'";
 }
 $appRJ->response['result'].= ">Фото</a>".
+    "<a href='/forum/forummanager/editSubject/loc?fs_id=".$_GET['fs_id']."'";
+if(isset($appRJ->server['reqUri_expl'][4]) and strtolower($appRJ->server['reqUri_expl'][4])=='loc'){
+    $appRJ->response['result'].= " class='active'";
+}
+$appRJ->response['result'].= ">Местоположение</a>".
     "<a href='/forum/forummanager/editSubject/access?fs_id=".$_GET['fs_id']."'";
 if(isset($appRJ->server['reqUri_expl'][4]) and strtolower($appRJ->server['reqUri_expl'][4])=='access'){
     $appRJ->response['result'].= " class='active'";

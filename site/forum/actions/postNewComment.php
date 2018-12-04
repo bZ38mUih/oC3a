@@ -16,7 +16,7 @@ if(isset($_POST['fc_pid'])){
             if($newCm->putOne()){
                 $refBlock= printFComments(null, $_POST['fs_id'], $DB, 0, $curPage, $fOptPN, $fComSort);
                 if($refBlock['cntTotal']>0){
-                    $refBlock['text']="<h3>Коментарии</h3>".$refBlock['text'];
+                    $refBlock['text']="<h3>Комментарии</h3>".$refBlock['text'];
                 }
                 $subjComms_query="select count(fc_id) as subjComm from forumComments_dt ".
                     "where fs_id=".$newCm->result['fs_id']." and fc_pid is null";

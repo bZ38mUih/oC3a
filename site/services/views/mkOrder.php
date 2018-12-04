@@ -84,7 +84,7 @@ if($_SESSION['bucket']['total']>=100){
     if(isset($Order_rd->result["quickpayForm"]) and $Order_rd->result["quickpayForm"]=='shop'){
         $appRJ->response['result'].="active";
     }
-    $appRJ->response['result'].="'>когда необходимо официального оформить работы, кроме стоимости услуг".
+    $appRJ->response['result'].="'>когда необходимо официально оформить работы, кроме стоимости услуг".
         " заказчик обязуется возместить исполнителю все расходы, понесенные им при оформлением деятельности по оказанию заказанных ".
         "услуг включая налоги, штрафы и т.п. в соответсвии с законодательством РФ.</div></div>".
         "<input type='hidden' name='sum' value='".$_SESSION["bucket"]["total"]."' data-type='number' min='100' max='10000'>".

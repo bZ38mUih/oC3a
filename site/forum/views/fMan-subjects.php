@@ -22,6 +22,8 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/css/manFrame.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/forum/css/fMan.css' type='text/css' media='screen, projection'/>".
+    /*toDo move to common styles-->*/
+    "<link rel='stylesheet' href='/site/downloads/css/dwlMan.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");

@@ -50,15 +50,9 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['re
             if(!$appRJ->server['reqUri_expl'][4]){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/forum/views/fMan-editSubj.php");
             }elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'description'){
-                /*
-                if($_POST["sDescr"]){
-                    echo "xyi";
-                    exit;
-                }else{
-
-                }
-                */
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-editSubjDescr.php");
+            }elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'loc'){
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-editSubjLoc.php");
             }/*
             elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'photo'){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/gallery/views/glMan-photoAttachments.php");

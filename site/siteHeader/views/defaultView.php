@@ -9,6 +9,6 @@ if(isset($appRJ->server['reqUri_expl'][1]) and file_exists($_SERVER['DOCUMENT_RO
 }else{
     $appRJ->response['result'].= "<img src='/site/siteHeader/img/site-logo.png' alt='RJ-logo'>";
 }
-$appRJ->response['result'].= "</div>"."<div class='textBlock'><span class='firmName'>ПРАВИЛЬНЫЙ КОНТАКТ</span>".
+$appRJ->response['result'].= "</div>"."<div class='textBlock'><span class='firmName'>РАЙТ ДЖОЙНt</span>".
     "<h1>".$h1."</h1></div></div><div class='orderBtn'><span>ЗАКАЗ</span>".
     "<img src='/site/siteHeader/img/order.png' alt='order-icon'></div></div></header>";

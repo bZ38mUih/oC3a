@@ -22,6 +22,7 @@
     padding: 0.2em;
     margin-left: 1em;
     font-size: 0.8em;
+    display: inline-block;
 }
 
 .contentMenu a.active
