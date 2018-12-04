@@ -255,3 +255,17 @@ span.com-quote{
 
 }
 /*list style--<*/
+a.signIn{
+    width: 90%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1em 5%;
+    color: darkgreen;
+    font-weight: bold;
+}
+a.signIn img{
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-right: 1em;
+}

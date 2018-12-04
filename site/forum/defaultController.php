@@ -1,8 +1,6 @@
 <?php
-
 define(F_CAT_IMG, "/data/forum/categs/");
 define(F_SUBJ_IMG, "/data/forum/subjects/");
-
 $curPage=1;
 $fOptPN=10;
 $fComView='tree';
@@ -15,7 +13,6 @@ if($_COOKIE['fOptPN'] and $_COOKIE['fOptPN']!=null){
 }
 if($_COOKIE['fComView'] and $_COOKIE['fComView']=='tree'){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/actions/printFComTree_func.php");
-
 }else{
     $fComView="list";
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/actions/printFComList.php");
@@ -23,12 +20,6 @@ if($_COOKIE['fComView'] and $_COOKIE['fComView']=='tree'){
 if($_COOKIE['fComSort'] and $_COOKIE['fComSort']!=null){
     $fComSort=$_COOKIE['fComSort'];
 }
-/*
-if(!$_SESSION['user_id']){
-    $appRJ->errors['stab']['description']="Форум временно на реконструкции";
-    $appRJ->throwErr();
-}
-*/
 if(isset($appRJ->server['reqUri_expl'][2]) and strtolower($appRJ->server['reqUri_expl'][2])=="forummanager"){
     if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>10) {
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/fManController.php");
@@ -38,113 +29,12 @@ if(isset($appRJ->server['reqUri_expl'][2]) and strtolower($appRJ->server['reqUri
 }elseif($_POST){
     $refBlock['err']=null;
     if($_SESSION['user_id']){
-        if(isset($_POST['fc_pid'])){
-            if($_POST['fCm'] and $_POST['fCm']!=null){
-                if(isset($_POST['fs_id']) and $_POST['fs_id']!=null){
-                    $newCm = new recordDefault('forumComments_dt', 'fc_id');
-                    $newCm->result['user_id']=$_SESSION['user_id'];
-                    $newCm->result['fs_id']=$_POST['fs_id'];
-                    $newCm->result['commmentCont']=$_POST['fCm'];
-                    $newCm->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d h-m-s');
-                    $newCm->result['activeFlag']=true;
-                    if($_POST['fc_pid'] and $_POST['fc_pid']!=null){
-                        $newCm->result['fc_pid']=$_POST['fc_pid'];
-                    }else{
-                        $newCm->result['fc_pid']=null;
-                    }
-                    if($newCm->putOne()){
-                        $refBlock= printFComments(null, $_POST['fs_id'], $DB, 0, $curPage, $fOptPN, $fComSort);
-                        if($refBlock['cntTotal']>0){
-                            $refBlock['text']="<h3>Коментарии</h3>".$refBlock['text'];
-                        }
-                        $subjComms_query="select count(fc_id) as subjComm from forumComments_dt ".
-                            "where fs_id=".$newCm->result['fs_id']." and fc_pid is null";
-                        $subjAnsw_query="select count(fc_id) as subjAnsw from forumComments_dt ".
-                            "where fs_id='".$newCm->result['fs_id']."' and fc_pid is not null";
-                        $subjComms_res=$DB->doQuery($subjComms_query);
-                        $subjAnsw_res=$DB->doQuery($subjAnsw_query);
-                        $subjComms_row=$DB->doFetchRow($subjComms_res);
-                        $subjAnsw_row=$DB->doFetchRow($subjAnsw_res);
-                        $refBlock['subjComm']=$subjComms_row['subjComm'];
-                        $refBlock['subjAnsw']=$subjAnsw_row['subjAnsw'];
-                    }else{
-                        $refBlock['err']= "ошибка: метод putOne".$newCm->result['commmentCont'];
-                    }
-                }else{
-                    $refBlock['err']= "неправильный fs_id";
-                }
-            }else{
-                $refBlock['err']= "вы ничего не написали";
-            }
-        }else{
-            $refBlock['err']= "неправильный fc_id";
-        }
-        $appRJ->response['format']='json';
-        $appRJ->response['result']= $refBlock;
+        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/actions/postNewComment.php");
     }else{
         $appRJ->errors['access']['description']="добавление отзыва запрещено неавторизированным пользователям";
     }
 }elseif ($_GET['likeVal']){
-
-    $likeRes['err']=null;
-    $likeRes['likePlus']=0;
-    $likeRes['likeMinus']=0;
-
-    if($_SESSION['user_id']){
-        if($_GET['fc_id'] and $_GET['fc_id']!=null){
-            $youLike_qry="select * from forumCmLike_dt WHERE fc_id=".$_GET['fc_id']." and user_id=".$_SESSION['user_id'];
-            $youLike_res=$DB->doQuery($youLike_qry);
-            $youLikeVal=false;
-            if($_GET['likeVal']=='likePlus'){
-                $youLikeVal=true;
-            }
-            $setLike_qry=null;
-            if(mysql_num_rows($youLike_res)===1){
-                $youLike_row=$DB->doFetchRow($youLike_res);
-                if($youLikeVal != $youLike_row['likeStatus']){
-
-                    $setLike_qry="update forumCmLike_dt set likeStatus=";
-                    if($youLikeVal){
-                        $setLike_qry.="TRUE ";
-                    }else{
-                        $setLike_qry.="FALSE";
-                    }
-                    $setLike_qry.=", ".
-                        "likeDate='".date_format($appRJ->date['curDate'], "Y-m-d H:m:s")."' where fc_id=".$_GET['fc_id'].
-                        " and user_id=".$_SESSION['user_id'];
-                    if($DB->doQuery($setLike_qry)){
-                        if($youLikeVal){
-                            $setCmLike_qry="update forumComments_dt set likePlus=likePlus+1, likeMinus=likeMinus-1 ".
-                                "WHERE fc_id=".$_GET['fc_id'];
-                        }else{
-                            $setCmLike_qry="update forumComments_dt set likePlus=likePlus-1, likeMinus=likeMinus+1 ".
-                                "WHERE fc_id=".$_GET['fc_id'];
-                        }
-                        $DB->doQuery($setCmLike_qry);
-                    }
-                }
-            }else{
-                $newLike_qry="insert into forumCmLike_dt (fc_id, likeStatus, user_id, likeDate) ".
-                    "VALUES (".$_GET['fc_id'].", ";
-                if($youLikeVal){
-                    $newLike_qry.="TRUE ";
-                }else{
-                    $newLike_qry.="FALSE";
-                }
-                $newLike_qry.=", ".$_SESSION['user_id'].", ".
-                    "'".date_format($appRJ->date['curDate'], "Y-m-d H:m:s")."')";
-                $DB->doQuery($newLike_qry);
-                if($youLikeVal){
-                    $setCmLike_qry="update forumComments_dt set likePlus=likePlus+1 ".
-                        "WHERE fc_id=".$_GET['fc_id'];
-                }else{
-                    $setCmLike_qry="update forumComments_dt set likeMinus=likeMinus+1 ".
-                        "WHERE fc_id=".$_GET['fc_id'];
-                }
-                $DB->doQuery($setCmLike_qry);
-            }
-        }
-    }
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/actions/setCmLike.php");
     $appRJ->response['format']='ajax';
     $slCm_qry="select * from forumComments_dt WHERE fc_id=".$_GET['fc_id'];
     $slCm_res=$DB->doQuery($slCm_qry);

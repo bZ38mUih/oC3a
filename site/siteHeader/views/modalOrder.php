@@ -30,6 +30,12 @@ if($appRJ->server['reqUri_expl'][1]!='services') {
         "<a href='/services' title='Расценки и заказ услуг'>Все услуги</a>".
         "</div></div>";
 }
+if($appRJ->server['reqUri_expl'][2]!='faq'){
+    $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
+        "<img src='/site/status/img/faq.png'></div><div class='modal-line-text ref'>".
+        "<a href='/forum/faq' title='Задать вопрос, ответы на вопросы'>Часто задаваемые вопросы</a>".
+        "</div></div>";
+}
 if($appRJ->server['reqUri_expl'][1]!='references'){
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/references/img/logo.png'></div><div class='modal-line-text ref'>".
