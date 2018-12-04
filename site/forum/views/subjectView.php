@@ -53,7 +53,7 @@ if($subj_row['longDescr']){
 }
 $prtForum= printFComments(null,$subj_row['fs_id'], $DB, 0, $curPage, $fOptPN, $fComSort);
 if($prtForum['cntTotal']>0){
-    $prtForum['text']="<h3>Коментарии</h3>".$prtForum['text'];
+    $prtForum['text']="<h3>Комментарии</h3>".$prtForum['text'];
 }
 $appRJ->response['result'].="</div>";
 $appRJ->response['result'].="</div>";
