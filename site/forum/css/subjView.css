@@ -68,7 +68,7 @@
     vertical-align: middle;
 }
 .fOptMenu .options label{
-    display: inline-block;
+    display: block;
     padding: 0.2em 0;
     width: 100%;
 }
@@ -76,6 +76,8 @@
     background-color: rgba(25,25,50,1);
     color: white;
     float: right;
+    display: inline-block;
+    font-size: 1em;
     /*font-size: 1em;*/
 }
 .fOptMenu .options select option:checked{
@@ -268,4 +270,15 @@ a.signIn img{
     width: 1.5em;
     vertical-align: middle;
     margin-right: 1em;
+}
+@media only screen and (max-width : 1024px)  and (orientation : portrait), only screen and (max-width : 960px) {
+    .fOptMenu .info, .fOptMenu .fpNum, .fOptMenu .options {
+        width: 96%;
+        margin: 0 2%;
+    }
+    span.cmCnt, span.answCnt{
+        padding: 0;
+        display: inline-block;
+        width: 100%;
+    }
 }

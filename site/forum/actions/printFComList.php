@@ -39,7 +39,8 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
     if($comCnt>0){
         $tmpRes['text'].= "<ul>";
         while ($slCm_row=$DB->doFetchRow($slCm_res)){
-            $tmpRes['text'].="<li class='cmt zzz'>";
+            $cntTotal++;
+            $tmpRes['text'].="<li class='cmt'>";
             if($slCm_row['fc_pid']!=null){
 
                 $responce=printFCommentsList2($slCm_row['fc_pid'], $fs_id, $DB, $tmpRes['cntTotal'], $page, $cLim, $sortOpt);
@@ -90,5 +91,6 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
         $tmpRes['text'].= "Напишите коммент первым";
         require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/views/fComForm.php");
     }
+    $tmpRes['cntTotal']=$cntTotal;
     return $tmpRes;
 }
