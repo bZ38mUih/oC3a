@@ -16,6 +16,7 @@ $appRJ->response['result'].= "<title>".$subj_row['sName']."</title>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/forum/css/subjView.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/forum/css/comments-block.css' type='text/css' media='screen, projection'/>".
     //"<link rel='stylesheet' href='/site/references/css/references.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/forum/js/fSubj.js'></script>".
     "<script src='/site/signIn/js/extAuth.js'></script>".

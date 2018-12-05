@@ -4,7 +4,7 @@ if($_SESSION['user_id']){
         "<span class='com-wrCm' id='com_' style='margin-left: 2%; display: none' onclick='newAnsw(null)'>Новый коммент:</span>".
         "<form class='cmForm '><h4><img src='".$_SESSION['photoLink']."'>".
         "<span>Новый коммент:</span></h4><div class='cfForm-err'></div>".
-        "<input type='hidden' name='fc_pid' value=''><div class='cmForm-area'>".
+        "<input type='hidden' name='fc_pid' value=''>".
         "<input type='hidden' name='fs_id' value='".$fs_id."'><div class='cmForm-area'>".
         "<textarea name='fCm' id='fCm'></textarea></div><div class='cfForm-cp ta-right'>".
         "<input type='button' value='Написать' onclick='writeCom(".'"new"'.")'>";

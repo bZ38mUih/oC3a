@@ -34,6 +34,11 @@ if(isset($_POST['activeFlag']) and $_POST['activeFlag']=='on'){
 }else{
     $Art_rd->result['activeFlag']=false;
 }
+if(isset($_POST['allowCm']) and $_POST['allowCm']=='on'){
+    $Art_rd->result['allowCm']=true;
+}else{
+    $Art_rd->result['allowCm']=false;
+}
 $Art_rd->result['pubDate'] = date_format($appRJ->date['curDate'], 'Y-m-d');
 if(isset($artErr)){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/artMan/views/artMan-newArt.php");

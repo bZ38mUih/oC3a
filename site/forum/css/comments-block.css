@@ -1,0 +1,152 @@
+form.cmForm h4{
+    font-size: 1.5em;
+}
+form.cmForm h4 img{
+    margin-right: 0.5em;
+    height: 1.6em;
+    width: 1.6em;
+    border-radius: 0.5em;
+    border: 1px solid midnightblue;
+    vertical-align: middle;
+}
+form.cmForm input[type=button]{
+    font-weight: bold;
+    margin: 0.5em;
+    color: midnightblue;
+    font-size: 1.2em;
+}
+.comments-block h3{
+    font-size: 1.5em;
+}
+.comments-block{
+    font-size: 0.6em;
+    width: 96%;
+    padding: 1em 2%;
+    border: 1px solid midnightblue;
+}
+.comments-block ul:first-child{
+    margin: 0;
+    padding: 0;
+}
+.comments-block ul li.cmt{
+    width: 100%;
+    display: inline-block;
+}
+
+.comments-block .com-line{
+    width: 98%;
+    display: inline-block;
+    padding: 2em 1% 1em 1% ;
+    border-bottom: 1px dotted gray;
+    border-left: 1px dotted gray;
+}
+.comments-block .com-img{
+    width: 10%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+.comments-block .com-img img{
+    height: 2.5em;
+    width: 2.5em;
+    border-radius: 0.5em;
+    border: 1px solid midnightblue;
+}
+.comments-block .com-info{
+    width: 90%;
+    display: inline-block;
+    vertical-align: top;
+}
+.comments-block .com-info a{
+    text-decoration: none;
+    color: #000000;
+}
+.comments-block .com-alias{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.comments-block .com-content-frame{
+    margin-top: 0.2em;
+}
+.comments-block .com-content{
+    width: 96%;
+    display: inline-block;
+    padding: 2%;
+    font-size: 1.2em;
+    font-style: italic;
+}
+.comments-block .com-date{
+    display: inline-block;
+    margin-left: 2em;
+    font-family: "courier new";
+    font-size: 0.8em;
+    font-weight: bold;
+}
+.comments-block .com-like{
+    display: inline-block;
+    float: right;
+}
+.comments-block .com-like img{
+    cursor: pointer;
+    margin-left: 1em;
+    vertical-align: middle;
+    height: 1.2em;
+    width: 1.2em;
+}
+.comments-block .com-like span.likePlus{
+    color: lime;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+.comments-block .com-like span.likeMinus{
+    font-size: 1.2em;
+    color: red;
+    vertical-align: middle;
+}
+.comments-block .com-content p{
+    padding: 0;
+    margin: 0;
+}
+.comments-block span.com-wrCm{
+    cursor: pointer;
+}
+span.com-quote{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.quote-block{
+    margin-top: 0.5em;
+    background-color: silver;
+    border: 1px solid black;
+}
+.quote-block .com-quote-line{
+    padding: 0.5em;
+    margin: 1em;
+    border: 1px dotted black;
+}
+.quote-block .com-quote-line .com-content{
+
+}
+a.signIn{
+    width: 90%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1em 5%;
+    color: darkgreen;
+    font-weight: bold;
+}
+a.signIn img{
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+@media only screen and (max-width : 1024px)  and (orientation : portrait), only screen and (max-width : 960px) {
+    span.cmCnt, span.answCnt{
+        padding: 0;
+        display: inline-block;
+        width: 100%;
+    }
+}

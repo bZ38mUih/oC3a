@@ -9,5 +9,6 @@ $query_text="create table art_dt (".
     "activeFlag BOOLEAN, ".
     "pubDate date, ".
     "refreshDate date, ".
+    "allowCm BOOLEAN, ".
     "primary key (art_id)".
     ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";

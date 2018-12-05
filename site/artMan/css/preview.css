@@ -79,3 +79,9 @@ ul li{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+.comments-block{
+    border: none;
+    border-top: 1px solid midnightblue;
+    width: 88%;
+    margin-left: 5%;
+}
