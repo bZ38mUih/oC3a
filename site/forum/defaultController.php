@@ -31,7 +31,7 @@ if(isset($appRJ->server['reqUri_expl'][2]) and strtolower($appRJ->server['reqUri
     if($_SESSION['user_id']){
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/actions/postNewComment.php");
     }else{
-        $appRJ->errors['access']['description']="добавление отзыва запрещено неавторизированным пользователям";
+        $appRJ->errors['access']['description']="комментирование запрещено неавторизированным пользователям";
     }
 }elseif ($_GET['likeVal']){
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/actions/setCmLike.php");

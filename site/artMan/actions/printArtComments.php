@@ -1,21 +1,21 @@
 <?php
-function printArtComments($comPar_id=null, $fs_id, $DB, $cntTotal=0)
+function printArtComments($comPar_id=null, $art_id, $DB, $cntTotal=0)
 {
     $tmpRes['text']=null;
     $tmpRes['cntCom']=null;
-    //$tmpRes['cntTotal']=null;
+    $tmpRes['cntTotal']=null;
     if($comPar_id ==null){
-        $slCm_qry = "select * from forumComments_dt ".
-            "INNER JOIN accounts_dt ON accounts_dt.user_id=forumComments_dt.user_id ".
-            "WHERE forumComments_dt.fc_pid IS NULL and forumComments_dt.activeFlag is TRUE ".
-            "and forumComments_dt.fs_id=".$fs_id." ".
-            "ORDER BY forumComments_dt.writeDate ";
+        $slCm_qry = "select * from artComments_dt ".
+            "INNER JOIN accounts_dt ON accounts_dt.user_id=artComments_dt.user_id ".
+            "WHERE artComments_dt.artCm_pid IS NULL and artComments_dt.activeFlag is TRUE ".
+            "and artComments_dt.art_id=".$art_id." ".
+            "ORDER BY artComments_dt.writeDate ";
     }else{
-        $slCm_qry = "select * from forumComments_dt ".
-            "INNER JOIN accounts_dt ON accounts_dt.user_id=forumComments_dt.user_id ".
-            "WHERE forumComments_dt.fc_pid = ".$comPar_id." and forumComments_dt.activeFlag is TRUE ".
-            "and forumComments_dt.fs_id=".$fs_id." ".
-            "ORDER BY forumComments_dt.writeDate ";
+        $slCm_qry = "select * from artComments_dt ".
+            "INNER JOIN accounts_dt ON accounts_dt.user_id=artComments_dt.user_id ".
+            "WHERE artComments_dt.artCm_pid = ".$comPar_id." and artComments_dt.activeFlag is TRUE ".
+            "and artComments_dt.art_id=".$art_id." ".
+            "ORDER BY artComments_dt.writeDate ";
     }
     $comCnt=0;
     if($slCm_res=$DB->doQuery($slCm_qry)){
@@ -47,15 +47,15 @@ function printArtComments($comPar_id=null, $fs_id, $DB, $cntTotal=0)
                 $tmpCm.=$slCm_row['accAlias'];
             }
             $tmpCm.="</div><div class='com-date'>".$slCm_row['writeDate']."</div><div class='com-like'>";
-            include ($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/cmLikes.php");
+            include ($_SERVER["DOCUMENT_ROOT"]."/site/artMan/views/artCmLikes.php");
             $tmpCm.="</div><div class='com-content-frame'><div class='com-content'>".$slCm_row['commmentCont'].
                 "</div></div><div class='com-lv'>";
             if($_SESSION['user_id']){
-                $tmpCm.="<span class='com-wrCm' id='com_".$slCm_row['fc_id']."' onclick='newAnsw(".$slCm_row['fc_id'].")'>Ответить</span>";
+                $tmpCm.="<span class='com-wrCm' id='com_".$slCm_row['artCm_id']."' onclick='newAnsw(".$slCm_row['artCm_id'].")'>Ответить</span>";
             }
             $tmpCm.="</div></div></div>";
             $tmpRes['text'].=$tmpCm;
-            $responce=printArtComments($slCm_row['fc_id'], $fs_id, $DB, $tmpRes['cntTotal'], $sortOpt);
+            $responce=printArtComments($slCm_row['artCm_id'], $art_id, $DB, $tmpRes['cntTotal']);
             $tmpRes['cntTotal']+=$responce['cntTotal'];
             $tmpRes['cntTotal']++;
             if($comPar_id==null){
@@ -67,11 +67,11 @@ function printArtComments($comPar_id=null, $fs_id, $DB, $cntTotal=0)
         }
         $tmpRes['text'].="</ul>";
         if($comPar_id==null) {
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fComForm.php");
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/artMan/views/artComForm.php");
         }
     }elseif($comPar_id==null){
         $tmpRes['text'].= "Напишите коммент первым";
-        require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/views/fComForm.php");
+        require_once($_SERVER['DOCUMENT_ROOT']."/site/artMan/views/artComForm.php");
     }
     return $tmpRes;
 }

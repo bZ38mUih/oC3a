@@ -41,15 +41,20 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";
+if($artByAlias_row['allowCm']){
+    $appRJ->response['result'].="<link rel='stylesheet' href='/site/forum/css/comments-block.css' type='text/css' media='screen, projection'/>".
+
+        "<script src='/source/js/jquery.cookie.js'></script>".
+        "<script src='/site/artMan/js/artComments.js'></script>".
+        "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
+        "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
+        "<script src='/site/signIn/js/extAuth.js'></script>".
+        "<script src='/source/js/tinymce/js/tinymce/tinymce.min.js'></script>";
+}
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }
 $appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'></script>";
-if($artByAlias_row['allowCm']){
-    $appRJ->response['result'].="<link rel='stylesheet' href='/site/forum/css/comments-block.css' type='text/css' media='screen, projection'/>".
-    "<script src='/site/artMan/js/artComments.js'></script>".
-    "<script src='/source/js/tinymce/js/tinymce/tinymce.min.js'></script>";
-}
 $appRJ->response['result'].="<link rel='stylesheet' href='/site/artMan/css/preview.css' type='text/css' media='screen, projection'/>";
 
 if($fndSt){
@@ -61,6 +66,8 @@ if($fndScr){
 $appRJ->response['result'].= "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "</head><body>";
+
+
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>".
@@ -86,14 +93,10 @@ $appRJ->response['result'].= "</div>";
 if($artByAlias_row['allowCm']){
     $appRJ->response['result'].= "<div class='comments-block ta-left'>";
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/artMan/actions/printArtComments.php");
-    //$prtForum= printFComments(null,$subj_row['fs_id'], $DB, 0, $curPage, $fOptPN, $fComSort);
-    $subj_row['fs_id']=1;
-    $curPage=1;
-    $fOptPN=10;
-    $fComSort="ASC";
-    $prtForum= printArtComments(null,$subj_row['fs_id'], $DB, 0);
+    $prtForum= printArtComments(null,$artByAlias_row['art_id'], $DB, 0);
     if($prtForum['cntTotal']>0){
-        $prtForum['text']="<h3>Комментарии</h3>".$prtForum['text'];
+        $prtForum['text']="<h3><span class='cmCnt'>Комментарии: <span>".$prtForum['cntCom']."</span></span>".
+            "<span class='answCnt'>Ответы: <span>".($prtForum['cntTotal']-$prtForum['cntCom'])."</span></span></h3>".$prtForum['text'];
     }
     $appRJ->response['result'].=$prtForum['text']."</div>";
 }

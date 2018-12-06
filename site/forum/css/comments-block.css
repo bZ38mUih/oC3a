@@ -18,12 +18,6 @@ form.cmForm input[type=button]{
 .comments-block h3{
     font-size: 1.5em;
 }
-.comments-block{
-    font-size: 0.6em;
-    width: 96%;
-    padding: 1em 2%;
-    border: 1px solid midnightblue;
-}
 .comments-block ul:first-child{
     margin: 0;
     padding: 0;
@@ -141,12 +135,4 @@ a.signIn img{
     width: 1.5em;
     vertical-align: middle;
     margin-right: 1em;
-}
-
-@media only screen and (max-width : 1024px)  and (orientation : portrait), only screen and (max-width : 960px) {
-    span.cmCnt, span.answCnt{
-        padding: 0;
-        display: inline-block;
-        width: 100%;
-    }
 }

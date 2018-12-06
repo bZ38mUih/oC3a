@@ -69,6 +69,7 @@ if($this->errors){
         "<a href='/pc' title='Все статьи'><img src='/site/pc/img/logo.png'>Статьи о компьютерных технологиях и ремонте ПК</a>".
         "<h3>Заказчику</h3>".
         "<a href='/services' title='Расценки и заказ услуг'><img src='/site/services/img/logo.png'>Услуги</a>".
+        "<a href='/forum/faq' title='Об этом сайте'><img src='/site/status/img/faq.png'>Часто задаваемые вопросы</a>".
         "<a href='/references' title='Посмотреть отзывы, написать отзыв'><img src='/site/references/img/logo.png'>Отзывы</a>".
         "<h3>Полезные ссылки</h3>".
         "<a href='/downloads' title='Ссылки на загрузки программ'><img src='/site/downloads/img/logo.png'>Загрузки</a>".

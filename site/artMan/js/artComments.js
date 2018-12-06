@@ -1,10 +1,5 @@
 $(document).ready(function(){
     tinyInit();
-    $(".options select").change(function () {
-        $.cookie($(this).attr('id'), $(this).find("option:selected").val());
-
-        window.location = window.location.pathname;
-    })
 })
 function writeCom(com_id)
 {
@@ -17,19 +12,16 @@ function writeCom(com_id)
     });
     tinymce.triggerSave();
     var formComment=$('form.cmForm');
-    var posting = $.post( "", formComment.serialize());
+    var posting = $.post( "/blog", formComment.serialize());
     posting.done(function( data ) {
         $('.comments-block').preloader('remove');
         var responce=JSON.parse(data);
         if(responce.err!=null){
             $(".cfForm-err").html(responce.err);
         }else{
-            tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'fCm');
+            tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'artCm');
             $(".comments-block").html(responce.text);
-            $(".fOptMenu span.cmCnt span").html(responce.subjComm);
-            $(".fOptMenu span.answCnt span").html(responce.subjAnsw);
-            //$(".ref-stat span.fldVal:first").html(responce.cntCom);
-            tinymce.EditorManager.execCommand('mceAddEditor',true, 'fCm');
+            tinymce.EditorManager.execCommand('mceAddEditor',true, 'artCm');
             tinyInit();
         }
     });
@@ -45,9 +37,9 @@ function newAnsw(com_id)
         $("#com_").css("display", "none");
         $("form.cmForm h4 span").html("Новый коммент:");
     }
-    $("#com_"+$("form.cmForm [name='fc_pid']").val()).show();
-    $("form.cmForm [name='fc_pid']").val(com_id);
-    tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'fCm');
+    $("#com_"+$("form.cmForm [name='artCm_pid']").val()).show();
+    $("form.cmForm [name='artCm_pid']").val(com_id);
+    tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'artCm');
     var formComment=$('form.cmForm');
     if(com_id != null){
         $("#com_"+com_id).after(formComment);
@@ -60,7 +52,7 @@ function newAnsw(com_id)
 function tinyInit()
 {
     tinymce.init({
-        selector: '#fCm',
+        selector: '#artCm',
         height: '10em',
         theme: 'modern',
         plugins:             'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table contextmenu paste code',
@@ -76,17 +68,16 @@ function tinyInit()
     });
 }
 
-function setLike(fc_id, likeVal) {
-    $("#com_"+fc_id).parent().parent().parent().find(".com-like").preloader({
+function setLike(artCm_id, likeVal) {
+    $("#com_"+artCm_id).parent().parent().parent().find(".com-like").preloader({
         text: 'loading',
         percent: '',
         duration: '',
         zIndex: '',
         setRelative: true
     });
-    $.get("?likeVal="+likeVal+"&fc_id="+fc_id, function (data) {
-        $("#com_"+fc_id).parent().parent().parent().find(".com-like").preloader("remove");
-        $("#com_"+fc_id).parent().parent().parent().find(".com-like").html(data);
+    $.get("/blog?likeVal="+likeVal+"&artCm_id="+artCm_id, function (data) {
+        $("#com_"+artCm_id).parent().parent().parent().find(".com-like").preloader("remove");
+        $("#com_"+artCm_id).parent().parent().parent().find(".com-like").html(data);
     })
-    //alert(fc_id+" / "+likeVal);
 }

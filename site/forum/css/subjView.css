@@ -104,4 +104,15 @@ span.cmCnt span, span.answCnt span{
         width: 96%;
         margin: 0 2%;
     }
+    span.cmCnt, span.answCnt{
+        padding: 0;
+        display: inline-block;
+        width: 100%;
+    }
+}
+.comments-block{
+    font-size: 0.6em;
+    width: 96%;
+    padding: 1em 2%;
+    border: 1px solid midnightblue;
 }

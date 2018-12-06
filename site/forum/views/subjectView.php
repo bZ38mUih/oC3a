@@ -151,12 +151,6 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
 $appRJ->response['result'].="<div class='comments-block ta-left'>".$prtForum['text']."</div>";
 $appRJ->response['result'].= "</div></div></div></div>";
 
-/*
-$appRJ->response['result'].= "</div></div></div></div>".
-    "<div class='modal signIn'><div class='overlay'></div><div class='contentBlock-frame'>".
-    "<div class='contentBlock-center'><div class='modal-right'><div class='modal-close'></div></div>".
-    "<div class='modal-left'></div></div></div></div>";
-*/
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

@@ -84,4 +84,9 @@ ul li{
     border-top: 1px solid midnightblue;
     width: 88%;
     margin-left: 5%;
+    padding-left: 2%;
+    font-size: 0.5em;
+}
+span.answCnt{
+    margin-left: 1em;
 }
