@@ -21,29 +21,18 @@ $appRJ->response['result'].= "</head>";
 
 $appRJ->response['result'].= "<body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
-$appRJ->response['result'].= "<div class='contentBlock-frame'>";
-$appRJ->response['result'].= "<div class='contentBlock-center'>";
-$appRJ->response['result'].= "<div class='contentBlock-wrap'>";
-
-$appRJ->response['result'].= "<div class='mainMenu'>";
-$appRJ->response['result'].= "<a href='#' id='daily' onclick='subMemu(this.id)'>DailyReports</a>";
-$appRJ->response['result'].= "<a href='#' id='quarterly' onclick='subMemu(this.id)'>quarterReports</a>";
-$appRJ->response['result'].= "<a href='#' id='yearly' onclick='subMemu(this.id)'>yearReports</a>";
-$appRJ->response['result'].= "<a href='#' id='conception' onclick='subMemu(this.id)'>Conception</a>";
-$appRJ->response['result'].= "<div class='subMenu'>";
-$appRJ->response['result'].= "Воспользуйтесь меню для начала работы";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='leftPanel'>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "<div class='middlePanel'>";
-//require_once($_SERVER['DOCUMENT_ROOT']."/site/diary/views/diaryNote_new.php");
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-$appRJ->response['result'].= "</div>";
-
-
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
+    "<div class='contentBlock-wrap'>".
+    "<div class='mainMenu'>".
+    "<a href='#' id='daily' onclick='subMemu(this.id)'><img src='/site/diary/img/dialy-menu.png'>-Daily</a>".
+    "<a href='#' id='quarterly' onclick='subMemu(this.id)'><img src='/site/diary/img/quarter-menu.png'>-Quarterly</a>".
+    "<a href='#' id='yearly' onclick='subMemu(this.id)'><img src='/site/diary/img/year-menu.jpg'>-Yearly</a>".
+    "<a href='#' id='conception' onclick='subMemu(this.id)'><img src='/site/diary/img/conception-menu.png'>-Conception</a>".
+    "<div class='subMenu'>Воспользуйтесь меню для начала работы</div>".
+    "</div>".
+    "<div class='leftPanel'></div>".
+    "<div class='middlePanel'></div>".
+    "</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");

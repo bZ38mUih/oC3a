@@ -92,7 +92,7 @@ function printNote($diary=null, $printForm_flag=true,$activeStyle=null)
 //echo "note_id=".$query_row["note_id"]."<br>";
                 $prNtRes.= "Дата: <label class='curDate'>".$query_row["curDate"]."</label>";
                 $prNtRes.= "Время: <label class='curTime'>".$query_row["curTime"]."</label>";
-                $prNtRes.= "<p>".dec_enc("decrypt", $query_row["content"])."</p>";
+                $prNtRes.= "<div class='dCont'>".dec_enc("decrypt", $query_row["content"])."</div>";
                 //if ($query_row["diaryType"] == 'daily'){
                     $prNtRes.= "<a href='#'  id='".$query_row["diary_id"]."' onclick='mkDiary(".'"'.$query_row["diaryType"].'"'.", ".
                         $query_row["diary_id"].", null, this)'>добавить</a>";
