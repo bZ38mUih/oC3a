@@ -100,7 +100,8 @@ foreach ($parseLog as $key=>$value){
                 }else{
                     $parseRD->result['prodComp']=strlen($prodComp)."-".$prodComp;
                 }
-                if($descrCont = file_get_contents("https://avito.ru/".urldecode($parseRD->result['prodRef']))){f(!$posSaler1=strpos($descrCont, "seller-info-prop js-seller-info-prop_seller-name")){
+                if($descrCont = file_get_contents("https://avito.ru/".urldecode($parseRD->result['prodRef']))){
+                    if(!$posSaler1=strpos($descrCont, "seller-info-prop js-seller-info-prop_seller-name")){
                         $descrErr.="нет posSaler1<br>";
                     }
                     $dC=substr($descrCont, $posSaler1, strlen($descrCont));
