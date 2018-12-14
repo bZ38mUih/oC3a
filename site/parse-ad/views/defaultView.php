@@ -39,7 +39,8 @@ while(strlen($pageCont)>100){
     $posComp1=strpos($pageCont, "<div class=\"data\">");
     $pageCont=substr($pageCont, $posComp1+18, strlen($pageCont));
     $posComp2=strpos($pageCont, "<p>");
-    $prodComp=substr($pageCont, 0, $posComp2);
+    $prodComp=urlencode(substr($pageCont, 0, $posComp2));
+    //%0A++++++++++++++++++++%3C%2Fp%3E%0A++++++++
     $descrCont = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/temp/parse-ad/".urlencode($prodRef).".html");
     //$descrCont = file_get_contents("https://avito.ru/".$prodRef);
     //file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/parse-ad/".urlencode($prodRef).".html", $descrCont);
@@ -48,7 +49,7 @@ while(strlen($pageCont)>100){
     $posSaler2=strpos($dC, "<div>");
     $dC=substr($dC, $posSaler2+5, strlen($descrCont));
     $posSaler3=strpos($dC, "</div>");
-    $prodSaler=substr($dC, 0, $posSaler3);
+    $prodSaler=$posSaler1."-".substr($dC, 0, $posSaler3);
     $posDescr1=strpos($descrCont, "class=\"item-description\"");
     $descrCont=substr($descrCont, $posDescr1+25, strlen($descrCont));
     $posDescr2=strpos($descrCont, "</div>");

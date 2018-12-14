@@ -7,6 +7,7 @@ $query_text="create table parseAdList_dt (".
     "prodComp TEXT, ".//not null
     "prodSaler TEXT, ".//not null
     "prodPrice int(7) not null, ".
+    "prodDescr TEXT not null, ".
     "adDate datetime not null, ".
     "comment TEXT, ".
     "primary key (ad_id)".
