@@ -1,3 +1,18 @@
+.logRes{
+    text-align: left;
+    display: inline-block;
+    width: 90%;
+}
+.logRes .logType{
+    display: inline-block;
+    border-left: 1px solid blue;
+    width: 33%;
+}
+.logRes .log-type-res{
+    width: 97%;
+    margin-left: 3%;
+    border-bottom: 1px solid gray;
+}
 .line.caption div{
     color: white;
     font-weight: bold;
@@ -6,7 +21,21 @@
     /*border: 2px solid red;*/
 }
 .line.ad{
-    border: 1px solid blue;
+    border-bottom: 1px solid blue;
+}
+.line.ad .content-wrap div{
+    border-right: 1px solid #0000ff;
+}
+.line.ad .content-wrap div:first-child{
+    border-left: 1px solid #0000ff;
+}
+.content-wrap{
+
+    width: 100%;
+    border-bottom: 1px dotted gray;
+}
+.content-wrap div{
+    vertical-align: middle;
 }
 .line.ad .ad_id{
     width: 10%;
@@ -29,9 +58,34 @@
     display: inline-block;
 
 }
-.line.ad .prodDescr{
+.line.ad .control-wrap{
     width: 90%;
     display: inline-block;
+    font-size: 0.5em;
+    text-align: left;
+}
+.line.ad .prodDescr{
+    width: 90%;
     border: 2px solid red;
     font-size: 0.5em;
+    display: none;
+}
+.line.ad .adInfo{
+    width: 90%;
+    display: inline-block;
+    font-size: 0.5em;
+    text-align: left;
+}
+.line.ad .adInfo span{
+    display: block;
+}
+.line.ad .control-wrap span{
+    display: inline-block;
+    cursor: pointer;
+}
+.line.ad .control-wrap span:after{
+    content: "[+]";
+}
+.line.ad .control-wrap span.active:after{
+    content: "[-]";
 }
