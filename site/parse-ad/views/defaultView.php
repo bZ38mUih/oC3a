@@ -1,4 +1,14 @@
 <?php
+$i=0;
+while ($i<100){
+    $i++;
+    echo $i;
+    break;
+    echo "-zz<br>";
+}
+
+
+exit;
 //$pageCont = file_get_contents("https://www.avito.ru/ivanovo/telefony");
 //file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/avito-test.html", $pageCont);
 $pageCont = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/temp/avito-test.html");
