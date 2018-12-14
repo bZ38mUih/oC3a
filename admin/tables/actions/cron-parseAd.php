@@ -1,8 +1,14 @@
 <?php
 
 
-require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
 
+
+require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
+require_once ("/home/p264533/public_html/rightjoint.ru/source/accessorial_class.php");
+$DB=new DB();
+$DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/rightjoint.ru".$DB->pathToConn), true);
+$DB->connect_db();
+require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
 //$pageCont = file_get_contents("https://www.avito.ru/ivanovo/telefony");
 //file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/avito-test.html", $pageCont);
 $parseRes=null;
@@ -135,4 +141,5 @@ foreach ($parseLog as $key=>$value){
         $parseLog[$key]['err'].="невозможно открыть страницу<br>";
     }
 }
+print_r($parseLog);
 exit;
