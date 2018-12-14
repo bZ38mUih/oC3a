@@ -38,6 +38,7 @@ foreach ($parseLog as $key=>$value){
             $parseRD->result['adType']=$key;
             if(!$posItem = strpos($pageCont, "item item_table ")){
                 $parseLog[$key]['err'].="нет posItem<br>";
+                file_put_contents($_SERVER["DOCUMENT_ROOT"]."/data/parse/".$key.".html", $pageCont);
                 break;
             }
             $parseLog[$key]['totalCnt']++;
