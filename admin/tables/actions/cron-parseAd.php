@@ -3,21 +3,16 @@
 
 
 
-//require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
-require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
-//require_once ("/home/p264533/public_html/rightjoint.ru/source/accessorial_class.php");
-require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
+require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
+//require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
+require_once ("/home/p264533/public_html/rightjoint.ru/source/accessorial_class.php");
+//require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
 $DB=new DB();
-//$DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/rightjoint.ru".$DB->pathToConn), true);
-$DB->connSettings=json_decode(@file_get_contents($_SERVER["DOCUMENT_ROOT"].$DB->pathToConn), true);
+$DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/rightjoint.ru".$DB->pathToConn), true);
+//$DB->connSettings=json_decode(@file_get_contents($_SERVER["DOCUMENT_ROOT"].$DB->pathToConn), true);
 $DB->connect_db();
 //require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
-//$pageCont = file_get_contents("https://www.avito.ru/ivanovo/telefony");
-//file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/avito-test.html", $pageCont);
-//Array ( [noutbuki] => Array ( [err] => [totalCnt] => 47 [doubleCnt] => 0 [sussCnt] => 37 )
-// [planshety_i_elektronnye_knigi] => Array ( [err] => [totalCnt] => 0 [doubleCnt] => 0 [sussCnt] => 0 )
-// [telefony] => Array ( [err] => [totalCnt] => 0 [doubleCnt] => 0 [sussCnt] => 0 ) )
 $parseRes=null;
 $parseLog['noutbuki']['err']=null;
 $parseLog['noutbuki']['totalCnt']=0;
@@ -66,7 +61,6 @@ foreach ($parseLog as $key=>$value){
             $parseRD->result['prodRef']=urlencode(substr($pageCont, 0 , $posRef3));
             if(!accessorialClass::checkDouble("parseAdList_dt", "prodRef", $parseRD->result['prodRef'])){
                 $parseLog[$key]['doubleCnt']++;
-                //break;
             }else{
                 if(!$posProdName1=strpos($pageCont, "<span itemprop=\"name\">")){
                     $parseLog[$key]['err'].="нет posProdName1<br>";
@@ -106,69 +100,37 @@ foreach ($parseLog as $key=>$value){
                 }else{
                     $parseRD->result['prodComp']=strlen($prodComp)."-".$prodComp;
                 }
-                //$descrCont = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/temp/parse-ad/".$parseRD->result['prodRef'].".html");
-                if($descrCont = file_get_contents("https://avito.ru/".urldecode($parseRD->result['prodRef']))){
-//file_put_contents($_SERVER["DOCUMENT_ROOT"]."/temp/parse-ad/".urlencode($parseRD->result['prodRef']).".html", $descrCont);
-
-                    if(!$posSaler1=strpos($descrCont, "seller-info-prop js-seller-info-prop_seller-name")){
+                if($descrCont = file_get_contents("https://avito.ru/".urldecode($parseRD->result['prodRef']))){f(!$posSaler1=strpos($descrCont, "seller-info-prop js-seller-info-prop_seller-name")){
                         $descrErr.="нет posSaler1<br>";
-                        //break;
                     }
                     $dC=substr($descrCont, $posSaler1, strlen($descrCont));
                     if(!$posSaler2=strpos($dC, "<div>")){
                         $descrErr.="нет posSaler2<br>";
-                        //break;
                     }
                     $dC=substr($dC, $posSaler2+5, strlen($descrCont));
                     if(!$posSaler3=strpos($dC, "</div>")){
                         $descrErr.="нет posSaler3<br>";
-                        //break;
                     }
 
                     if(!$posDescr1=strpos($descrCont, "class=\"item-description\"")){
                         $descrErr.="нет posDescr1<br>";
-                        //break;
                     }
                     $descrCont=substr($descrCont, $posDescr1+25, strlen($descrCont));
                     if(!$posDescr2=strpos($descrCont, "</div>")){
                         $descrErr.="нет posDescr2<br>";
-                        //break;
                     }
                     if($descrErr==null){
                         $parseRD->result['prodSaler']=substr($dC, 0, $posSaler3);
                         $parseRD->result['prodDescr']=substr($descrCont, 0, $posDescr2);
-
                         if($parseRD->putOne()){
                             $parseLog[$key]['sussCnt']++;
                         }else{
                             $parseLog[$key]['err'].="fail putOne<br>";
                             break;
                         }
-                        /*
-                   $parseRes.="<div class='line ad'>".
-                       "<div class='ad_id'><a href='https://avito.ru/".$parseRD->result['prodRef']."' target='_blank'>".$adCount."</a></div>".
-                       "<div class='prodName'>".$parseRD->result['prodName']."</div><div class='prodComp'>";
-                   if(!$parseRD->result['prodComp']){
-                       $parseRes.="-";
-                   }else{
-                       $parseRes.=$parseRD->result['prodComp'];
-                   }
-                   $parseRes.="</div>".
-                       "<div class='prodSaler'>".$parseRD->result['prodSaler']."</div><div class='prodPrice'>".$parseRD->result['prodName']."</div>".
-                       "<div class='prodDescr'>".$parseRD->result['prodDescr']."</div>".
-                       "</div></div>";
-                   */
                     }
-
-
-
-                }//else{
-                    //$parseLog[$key]['err'].="невозможно открыть описание<br>";
-                    //break;
-                //}
-
+                }
             }
-
             if($parseLog[$key]['totalCnt']>100){
                 $parseLog[$key]['err'].="max totalCnt<br>";
                 break;
