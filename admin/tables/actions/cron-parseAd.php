@@ -145,6 +145,6 @@ foreach ($parseLog as $key=>$value){
         $parseLog[$key]['err'].="невозможно открыть страницу<br>";
     }
 }
-file_put_contents($_SERVER["DOCUMENT_ROOT"]."/site/parse-ad/parseLog.txt", json_encode($parseLog, true));
-//print_r($parseLog);
+$insertLog_qry="insert into parseAdLog_dt (logDate, logContent) VALUES (".date_format($CurDate, "Y-m-d H:m:s").", ". json_encode($parseLog, true).")";
+$DB->doQuery($insertLog_qry);
 exit;
