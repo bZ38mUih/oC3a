@@ -4,7 +4,7 @@ $tFile = $_SERVER["DOCUMENT_ROOT"]."/site/parse-ad/parseLog.txt";
 //echo date ("F d Y H:i:s.", filemtime($tFile));
 //exit;
 $parseRes=null;
-$parseList_text="select * from parseAdList_dt ORDER BY adDate DESC ";
+$parseList_text="select * from parseAdList_dt ORDER BY adDate ASC ";
 $parseList_res=$DB->doQuery($parseList_text);
 if(mysql_num_rows($parseList_res)>0){
     $adCount=0;
@@ -62,9 +62,9 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='Систематизированная информация о компьютерных технологиях'/>".
-    "<title>Справочник</title>".
-    "<link rel='SHORTCUT ICON' href='/site/handbook/img/favicon.png' type='image/png'>".
+    "<meta name='description' content='Парсинг объявлений на примере avito.ru'/>".
+    "<title>Парсинг объявлений</title>".
+    "<link rel='SHORTCUT ICON' href='/site/parse-ad/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>";

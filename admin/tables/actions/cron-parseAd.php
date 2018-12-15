@@ -146,5 +146,5 @@ foreach ($parseLog as $key=>$value){
     }
 }
 file_put_contents($_SERVER["DOCUMENT_ROOT"]."/site/parse-ad/parseLog.txt", json_encode($parseLog, true));
-print_r($parseLog);
+//print_r($parseLog);
 exit;
