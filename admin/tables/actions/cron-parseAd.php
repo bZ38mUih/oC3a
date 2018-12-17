@@ -13,10 +13,6 @@ $DB->connect_db();
 require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
 
 $CurDate = new DateTime();
-$insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
-    "VALUES ('".date_format($CurDate, "Y-m-d H:i:s")."', 'myTest')";
-$DB->doQuery($insertLog_qry);
-//exit;
 //require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
 $parseRes=null;
 $parseLog['noutbuki']['Esc']=null;
