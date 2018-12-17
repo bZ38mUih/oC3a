@@ -28,7 +28,8 @@ if(mysql_num_rows($parseList_res)>0){
 $logRes=null;
 $adLog_qry="select * from parseAdLog_dt order by logDate DESC";
 $adLog_res=$DB->doQuery($adLog_qry);
-//$adLog_row=$DB->doFetchRow($adLog_res);
+$adLog_row=$DB->doFetchRow($adLog_res);
+/*
 $lodCount=0;
 while ($adLog_row=$DB->doFetchRow($adLog_res)){
 
@@ -51,6 +52,7 @@ while ($adLog_row=$DB->doFetchRow($adLog_res)){
         break;
     }
 }
+*/
 
 $h1 ="Парсинг объявлений";
 $App['views']['social-block']=false;
@@ -73,26 +75,37 @@ $appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'><
     "<script src='/site/parse-ad/js/parse-ad.js'></script>".
     //"<link rel='stylesheet' href='/site/css/listView.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/parse-ad/css/parse-ad.css' type='text/css' media='screen, projection'/>".
+
+    "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
+    "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
+
     "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>".
-    "<div class='parseLog'>".
-    "<div class='parseLog-controls'><label>Показать лог <input type='number' min='0' max='10' value='1'></label>".
+
+    "<div class='parseLog'>"."<h2>Обновлено: ".$adLog_row['logDate']."</h2>".
+    "<div class='parseLog-controls'><label>Глубина: <input type='number' id='logDepth' min='0' max='10' value='1'></label>".
     "<input type='button' value='showLog' onclick='showLog()'>".
     "</div><div class='log-content'></div></div>".
 $logRes.
     "<div class='tbl-opt-wrap'><div class='tbl-pages'></div><div class='tbl-opt'>".
-    "<select id='fType'>".
+    "<label>Продавец <select id='fType'>".
+    "<option value='all'>Все</option>".
+    "<option value='company'>Компания</option>".
+    "<option value='presP'>Частные</option>".
+    "</select></label>".
+    "<label>Категория <select id='fType'>".
+    "<option value='all'>Все</option>".
     "<option value='noutbuki'>noutbuki</option>".
     "<option value='telefony'>telefony</option>".
     "<option value='planshety_i_elektronnye_knigi'>planshety_i_elektronnye_knigi</option>".
-    "</select>".
-    "<select id='volP'>".
+    "</select></label>".
+    "<label>На странице <select id='volP'>".
     "<option value='20'>20</option>".
     "<option value='50'>50</option>".
     "<option value='100'>100</option>".
-    "</select>".
+    "</select></label>".
     "</div></div>".
 "<div class='line ad caption'><div class='ad_ref'>ref</div><div class='prodName'>prodName</div>".
     "<div class='prodSaler'>Saler</div>".

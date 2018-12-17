@@ -10,3 +10,16 @@ $(document).ready(function(){
         }
     })
 })
+
+function showLog() {
+    $(".log-content").preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
+    $.get("?logdepth="+$("#logDepth").val(), function (data) {
+        $(".log-content").html(data);
+    })
+}

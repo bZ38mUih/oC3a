@@ -1,5 +1,5 @@
 <?php
-echo "<h1>ParseLog:</h1>";
+//echo "<h1>ParseLog:</h1>";
 
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
 //require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
@@ -12,15 +12,15 @@ $DB->connect_db();
 require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
 //require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
 $parseRes=null;
-$parseLog['noutbuki']['err']=null;
+$parseLog['noutbuki']['Esc']=null;
 $parseLog['noutbuki']['totalCnt']=0;
 $parseLog['noutbuki']['doubleCnt']=0;
 $parseLog['noutbuki']['sussCnt']=0;
-$parseLog['planshety_i_elektronnye_knigi']['err']=null;
+$parseLog['planshety_i_elektronnye_knigi']['Esc']=null;
 $parseLog['planshety_i_elektronnye_knigi']['totalCnt']=0;
 $parseLog['planshety_i_elektronnye_knigi']['doubleCnt']=0;
 $parseLog['planshety_i_elektronnye_knigi']['sussCnt']=0;
-$parseLog['telefony']['err']=null;
+$parseLog['telefony']['Esc']=null;
 $parseLog['telefony']['totalCnt']=0;
 $parseLog['telefony']['doubleCnt']=0;
 $parseLog['telefony']['sussCnt']=0;
@@ -36,19 +36,19 @@ foreach ($parseLog as $key=>$value){
             $parseRD->result['adType']=$key;
             if(!$posItem = strpos($pageCont, "item item_table ")){
                 if($parseLog[$key]['totalCnt']==0){
-                    $parseLog[$key]['err'].="нет posItem";
+                    $parseLog[$key]['Esc'].="нет posItem";
                 }
                 break;
             }
             $parseLog[$key]['totalCnt']++;
             $pageCont=substr($pageCont, $posItem, strlen($pageCont));
             if(!$posRef1=strpos($pageCont, "class=\"title")){
-                $parseLog[$key]['err'].="нет posRef1";
+                $parseLog[$key]['Esc'].="нет posRef1";
                 break;
             }
             $pageCont=substr($pageCont, $posRef1+17, strlen($pageCont));
             if(!$posRef2=strpos($pageCont, "href=\"")){
-                $parseLog[$key]['err'].="нет posRef2";
+                $parseLog[$key]['Esc'].="нет posRef2";
                 break;
             }
             $pageCont=substr($pageCont, $posRef2+7, strlen($pageCont));
@@ -61,34 +61,34 @@ foreach ($parseLog as $key=>$value){
                 $parseLog[$key]['doubleCnt']++;
             }else{
                 if(!$posProdName1=strpos($pageCont, "<span itemprop=\"name\">")){
-                    $parseLog[$key]['err'].="нет posProdName1";
+                    $parseLog[$key]['Esc'].="нет posProdName1";
                     break;
                 }
                 $pageCont=substr($pageCont, $posProdName1+22, strlen($pageCont));
                 if(!$posProdName2=strpos($pageCont, "</span>")){
-                    $parseLog[$key]['err'].="нет posProdName2";
+                    $parseLog[$key]['Esc'].="нет posProdName2";
                     break;
                 }
                 $parseRD->result['prodName']=substr($pageCont, 0, $posProdName2);
                 $pageCont=substr($pageCont, $posProdName2+7, strlen($pageCont));
                 if(!$posPrice1=strpos($pageCont, "<span class=\"price\" itemprop=\"price\" content=\"")){
-                    $parseLog[$key]['err'].="нет posPrice1";
+                    $parseLog[$key]['Esc'].="нет posPrice1";
                     break;
                 }
                 $pageCont=substr($pageCont, $posPrice1+46, strlen($pageCont));
                 if(!$posPrice2=strpos($pageCont, "\">")){
-                    $parseLog[$key]['err'].="нет posPrice2";
+                    $parseLog[$key]['Esc'].="нет posPrice2";
                     break;
                 }
                 $parseRD->result['prodPrice']=substr($pageCont, 0, $posPrice2);
                 $pageCont=substr($pageCont, $posPrice2+2, strlen($pageCont));
                 if(!$posComp1=strpos($pageCont, "<div class=\"data\">")){
-                    $parseLog[$key]['err'].="нет posComp1";
+                    $parseLog[$key]['Esc'].="нет posComp1";
                     break;
                 }
                 $pageCont=substr($pageCont, $posComp1+18, strlen($pageCont));
                 if(!$posComp2=strpos($pageCont, "</p>")){
-                    $parseLog[$key]['err'].="нет posComp2";
+                    $parseLog[$key]['Esc'].="нет posComp2";
                     break;
                 }
                 if(!$prodComp=substr($pageCont, 0, $posComp2-3)){
@@ -124,7 +124,7 @@ foreach ($parseLog as $key=>$value){
                         if($parseRD->putOne()){
                             $parseLog[$key]['sussCnt']++;
                         }else{
-                            $parseLog[$key]['err'].="fail putOne";
+                            $parseLog[$key]['Esc'].="fail putOne";
                             /*
                             $parseLog[$key]['err'].="fail putOne prodName=".$parseRD->result['prodName'].
                                 " prodPrice=".$parseRD->result['prodPrice'].
@@ -139,21 +139,21 @@ foreach ($parseLog as $key=>$value){
                 }
             }
             if($parseLog[$key]['totalCnt']>100){
-                $parseLog[$key]['err'].="max totalCnt";
+                $parseLog[$key]['Esc'].="max totalCnt";
                 break;
             }
             if($parseLog[$key]['sussCnt']>3){
-                $parseLog[$key]['err'].="max sussCnt";
+                $parseLog[$key]['Esc'].="max sussCnt";
                 break;
             }
         }
     }else{
-        $parseLog[$key]['err'].="невозможно открыть страницу";
+        $parseLog[$key]['Esc'].="невозможно открыть страницу";
     }
 }
-print_r($parseLog);
+//print_r($parseLog);
 $insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
     "VALUES ('".date_format($CurDate, "Y-m-d H:m:s")."', '". mysql_real_escape_string(json_encode($parseLog, true))."')";
 $DB->doQuery($insertLog_qry);
-echo $insertLog_qry;
+//echo $insertLog_qry;
 exit;

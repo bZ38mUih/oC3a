@@ -1,17 +1,86 @@
+.parseLog{
+    padding-top: 1.5em;
+    width: 90%;
+    /*border: 1px solid red;*/
+    display: inline-block;
+    text-align: left;
+}
+.parseLog h2{
+    font-size: 1.2em;
+    padding: 0;
+    margin: 0;
+}
+.parseLog .parseLog-controls{
+    width: 100%;
+    text-align: right;
+    /*border: 1px solid green;*/
+}
+.parseLog .parseLog-controls label{
+    font-weight: bold;
+}
+.parseLog .parseLog-controls input[type='number']{
+    margin: 0 1em;
+    font-size: 0.8em;
+    width: 2em;
+}
+.parseLog .parseLog-controls input[type='button']{
+    font-size: 0.8em;
+    font-weight: bold;
+
+}
 .logRes{
+    font-size: 0.8em;
     text-align: left;
     display: inline-block;
     width: 90%;
+    border-bottom: 1px dotted gray;
+}
+.logRes h3{
+    font-size: 1em;
 }
 .logRes .logType{
     display: inline-block;
-    border-left: 1px solid blue;
+    /*border-left: 1px solid blue;*/
     width: 33%;
+}
+.logRes .logType span{
+    font-weight: bold;
 }
 .logRes .log-type-res{
     width: 97%;
     margin-left: 3%;
     border-bottom: 1px solid gray;
+}
+.tbl-opt-wrap{
+    background-color: silver;
+    display: inline-block;
+    width: 90%;
+    border: 1px solid navy;
+    padding: 0.5em 0;
+    margin: 0.5em 0;
+}
+.tbl-opt-wrap .tbl-pages{
+    display: inline-block;
+    width: 49%;
+    border-left: 1px solid blue;
+}
+.tbl-opt-wrap .tbl-opt{
+    text-align: left;
+    display: inline-block;
+    width: 49%;
+    border-left: 1px solid green;
+}
+.tbl-opt-wrap .tbl-opt label{
+    padding: 0.2em 0 0.2em 5%;
+    display: block;
+    width: 95%;
+}
+.tbl-opt-wrap .tbl-opt select{
+    background-color: silver;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 0.8em;
+    float: right;
 }
 .line.caption div{
     color: white;
