@@ -35,11 +35,13 @@ while ($adLog_row=$DB->doFetchRow($adLog_res)){
     $parseLog_arr=json_decode($adLog_row['logContent'], true);
     $logRes.="<div class='logRes'>".
         "<h3>Обновлено: ".$adLog_row['logDate']."</h3>";
+
     foreach($parseLog_arr as $key=>$value){
         $logRes.="<div class='logType'>";
         $logRes.="<span>".$key."</span>";
         foreach($value as $subKey=>$subVal){
-            $logRes.="<div class='log-type-res'>".$subKey."-".$subVal."</div>";
+            //$logRes.="<div class='log-type-res'>".$subKey."-".$subVal."</div>";
+            $logRes.="<li>".$subKey."-".$subVal."</li>";
         }
         $logRes.="</div>";
     }
@@ -51,7 +53,7 @@ while ($adLog_row=$DB->doFetchRow($adLog_res)){
 }
 
 $h1 ="Парсинг объявлений";
-$App['views']['social-block']=true;
+$App['views']['social-block']=false;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
@@ -75,7 +77,23 @@ $appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'><
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>".
+    "<div class='parseLog'>".
+    "<div class='parseLog-controls'><label>Показать лог <input type='number' min='0' max='10' value='1'></label>".
+    "<input type='button' value='showLog' onclick='showLog()'>".
+    "</div><div class='log-content'></div></div>".
 $logRes.
+    "<div class='tbl-opt-wrap'><div class='tbl-pages'></div><div class='tbl-opt'>".
+    "<select id='fType'>".
+    "<option value='noutbuki'>noutbuki</option>".
+    "<option value='telefony'>telefony</option>".
+    "<option value='planshety_i_elektronnye_knigi'>planshety_i_elektronnye_knigi</option>".
+    "</select>".
+    "<select id='volP'>".
+    "<option value='20'>20</option>".
+    "<option value='50'>50</option>".
+    "<option value='100'>100</option>".
+    "</select>".
+    "</div></div>".
 "<div class='line ad caption'><div class='ad_ref'>ref</div><div class='prodName'>prodName</div>".
     "<div class='prodSaler'>Saler</div>".
     "<div class='prodPrice'>Price</div>".
