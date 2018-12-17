@@ -38,24 +38,24 @@ foreach ($parseLog as $key=>$value){
             $parseRD->result['adType']=$key;
             if(!$posItem = strpos($pageCont, "item item_table ")){
                 if($parseLog[$key]['totalCnt']==0){
-                    $parseLog[$key]['err'].="нет posItem<br>";
+                    $parseLog[$key]['err'].="нет posItem";
                 }
                 break;
             }
             $parseLog[$key]['totalCnt']++;
             $pageCont=substr($pageCont, $posItem, strlen($pageCont));
             if(!$posRef1=strpos($pageCont, "class=\"title")){
-                $parseLog[$key]['err'].="нет posRef1<br>";
+                $parseLog[$key]['err'].="нет posRef1";
                 break;
             }
             $pageCont=substr($pageCont, $posRef1+17, strlen($pageCont));
             if(!$posRef2=strpos($pageCont, "href=\"")){
-                $parseLog[$key]['err'].="нет posRef2<br>";
+                $parseLog[$key]['err'].="нет posRef2";
                 break;
             }
             $pageCont=substr($pageCont, $posRef2+7, strlen($pageCont));
             if(!$posRef3=strpos($pageCont, "\"")){
-                $parseLog[$key]['err'].="нет posRef3<br>";
+                $parseLog[$key]['err'].="нет posRef3";
                 break;
             }
             $parseRD->result['prodRef']=urlencode(substr($pageCont, 0 , $posRef3));
@@ -63,34 +63,34 @@ foreach ($parseLog as $key=>$value){
                 $parseLog[$key]['doubleCnt']++;
             }else{
                 if(!$posProdName1=strpos($pageCont, "<span itemprop=\"name\">")){
-                    $parseLog[$key]['err'].="нет posProdName1<br>";
+                    $parseLog[$key]['err'].="нет posProdName1";
                     break;
                 }
                 $pageCont=substr($pageCont, $posProdName1+22, strlen($pageCont));
                 if(!$posProdName2=strpos($pageCont, "</span>")){
-                    $parseLog[$key]['err'].="нет posProdName2<br>";
+                    $parseLog[$key]['err'].="нет posProdName2";
                     break;
                 }
                 $parseRD->result['prodName']=substr($pageCont, 0, $posProdName2);
                 $pageCont=substr($pageCont, $posProdName2+7, strlen($pageCont));
                 if(!$posPrice1=strpos($pageCont, "<span class=\"price\" itemprop=\"price\" content=\"")){
-                    $parseLog[$key]['err'].="нет posPrice1<br>";
+                    $parseLog[$key]['err'].="нет posPrice1";
                     break;
                 }
                 $pageCont=substr($pageCont, $posPrice1+46, strlen($pageCont));
                 if(!$posPrice2=strpos($pageCont, "\">")){
-                    $parseLog[$key]['err'].="нет posPrice2<br>";
+                    $parseLog[$key]['err'].="нет posPrice2";
                     break;
                 }
                 $parseRD->result['prodPrice']=substr($pageCont, 0, $posPrice2);
                 $pageCont=substr($pageCont, $posPrice2+2, strlen($pageCont));
                 if(!$posComp1=strpos($pageCont, "<div class=\"data\">")){
-                    $parseLog[$key]['err'].="нет posComp1<br>";
+                    $parseLog[$key]['err'].="нет posComp1";
                     break;
                 }
                 $pageCont=substr($pageCont, $posComp1+18, strlen($pageCont));
                 if(!$posComp2=strpos($pageCont, "</p>")){
-                    $parseLog[$key]['err'].="нет posComp2<br>";
+                    $parseLog[$key]['err'].="нет posComp2";
                     break;
                 }
                 if(!$prodComp=substr($pageCont, 0, $posComp2-3)){
@@ -138,16 +138,16 @@ foreach ($parseLog as $key=>$value){
                 }
             }
             if($parseLog[$key]['totalCnt']>100){
-                $parseLog[$key]['err'].="max totalCnt<br>";
+                $parseLog[$key]['err'].="max totalCnt";
                 break;
             }
             if($parseLog[$key]['sussCnt']>3){
-                $parseLog[$key]['err'].="max sussCnt<br>";
+                $parseLog[$key]['err'].="max sussCnt";
                 break;
             }
         }
     }else{
-        $parseLog[$key]['err'].="невозможно открыть страницу<br>";
+        $parseLog[$key]['err'].="невозможно открыть страницу";
     }
 }
 echo "<h1>ParseLog:</h1>";
