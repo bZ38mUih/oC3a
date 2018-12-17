@@ -1,9 +1,4 @@
 <?php
-if ($_GET['parse_ad']=="run"){
-    require_once ($_SERVER["DOCUMENT_ROOT"]."/admin/tables/actions/cron-parseAd.php");
-}
-
-
 session_start();
 
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");

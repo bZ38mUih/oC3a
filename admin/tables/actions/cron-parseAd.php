@@ -13,9 +13,8 @@ $DB->connect_db();
 require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
 
 $CurDate = new DateTime();
-echo date_format($CurDate, "Y-m-d H:m:s");
 $insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
-    "VALUES ('".date_format($CurDate, "Y-m-d H:m:s")."', 'myTest')";
+    "VALUES ('".date_format($CurDate, "Y-m-d H:i:s")."', 'myTest')";
 $DB->doQuery($insertLog_qry);
 exit;
 //require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
@@ -40,7 +39,7 @@ foreach ($parseLog as $key=>$value){
             $descrErr=null;
             //$tmpErr=null;
             $parseRD=new recordDefault("parseAdList_dt", "ad_id");
-            $parseRD->result['adDate']=date_format($CurDate, "Y-m-d H:m:s");
+            $parseRD->result['adDate']=date_format($CurDate, "Y-m-d H:i:s");
             $parseRD->result['adType']=$key;
             if(!$posItem = strpos($pageCont, "item item_table ")){
                 if($parseLog[$key]['totalCnt']==0){
