@@ -89,16 +89,16 @@ foreach ($parseLog as $key=>$value){
                     break;
                 }
                 $pageCont=substr($pageCont, $posComp1+18, strlen($pageCont));
-                if(!$posComp2=strpos($pageCont, "<p>")){
+                if(!$posComp2=strpos($pageCont, "</p>")){
                     $parseLog[$key]['err'].="нет posComp2<br>";
                     break;
                 }
-                if(!$prodComp=substr($pageCont, 0, $posComp2)){
+                if(!$prodComp=substr($pageCont, 0, $posComp2-3)){
                     $parseRD->result['prodComp']=null;
                 }elseif(strlen($prodComp)==34){
                     $parseRD->result['prodComp']=null;
                 }else{
-                    $parseRD->result['prodComp']=strlen($prodComp)."-".$prodComp;
+                    $parseRD->result['prodComp']=$prodComp;
                 }
                 if($descrCont = file_get_contents("https://avito.ru/".urldecode($parseRD->result['prodRef']))){
                     if(!$posSaler1=strpos($descrCont, "seller-info-prop js-seller-info-prop_seller-name")){
