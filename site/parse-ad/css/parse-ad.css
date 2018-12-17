@@ -37,12 +37,12 @@
 .content-wrap div{
     vertical-align: middle;
 }
-.line.ad .ad_id{
+.line.ad .ad_ref{
     width: 10%;
     display: inline-block;
 }
 .line.ad .prodName{
-    width: 30%;
+    width: 40%;
     display: inline-block;
 }
 .line.ad .prodComp{
@@ -50,7 +50,7 @@
     display: inline-block;
 }
 .line.ad .prodSaler{
-    width: 15%;
+    width: 20%;
     display: inline-block;
 }
 .line.ad .prodPrice{

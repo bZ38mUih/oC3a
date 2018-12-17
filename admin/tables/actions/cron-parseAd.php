@@ -126,7 +126,12 @@ foreach ($parseLog as $key=>$value){
                         if($parseRD->putOne()){
                             $parseLog[$key]['sussCnt']++;
                         }else{
-                            $parseLog[$key]['err'].="fail putOne<br>";
+                            $parseLog[$key]['err'].="fail putOne prodName=".$parseRD->result['prodName'].
+                                " prodPrice=".$parseRD->result['prodPrice'].
+                                " prodDescr=".$parseRD->result['prodDescr'].
+                                " prodSaler=".$parseRD->result['prodSaler'].
+                                " prodRef=".$parseRD->result['prodRef'].
+                                " prodComp=".$parseRD->result['prodComp'];
                             break;
                         }
                     }
