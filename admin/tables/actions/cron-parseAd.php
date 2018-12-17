@@ -153,7 +153,7 @@ foreach ($parseLog as $key=>$value){
 }
 print_r($parseLog);
 $insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
-    "VALUES ('".date_format($CurDate, "Y-m-d H:m:s")."', '". json_encode($parseLog, true)."')";
+    "VALUES ('".date_format($CurDate, "Y-m-d H:m:s")."', '". mysql_real_escape_string(json_encode($parseLog, true))."')";
 $DB->doQuery($insertLog_qry);
 echo $insertLog_qry;
 exit;
