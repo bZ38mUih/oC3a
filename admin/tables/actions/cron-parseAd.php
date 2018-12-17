@@ -12,7 +12,7 @@ $DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/righ
 $DB->connect_db();
 require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
 
-$CurDate = @date_create();
+$CurDate = new DateTime();
 echo date_format($CurDate, "Y-m-d H:m:s");
 $insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
     "VALUES ('".date_format($CurDate, "Y-m-d H:m:s")."', 'myTest')";
