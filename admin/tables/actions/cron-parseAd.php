@@ -1,8 +1,7 @@
 <?php
 //echo "<h1>ParseLog:</h1>";
-$CurDate = @date_create();
-echo date_format($CurDate, "Y-m-d H:m:s");
-exit;
+
+
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
 //require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
 require_once ("/home/p264533/public_html/rightjoint.ru/source/accessorial_class.php");
@@ -12,6 +11,13 @@ $DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/righ
 //$DB->connSettings=json_decode(@file_get_contents($_SERVER["DOCUMENT_ROOT"].$DB->pathToConn), true);
 $DB->connect_db();
 require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
+
+$CurDate = @date_create();
+echo date_format($CurDate, "Y-m-d H:m:s");
+$insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
+    "VALUES ('".date_format($CurDate, "Y-m-d H:m:s")."', 'myTest')";
+$DB->doQuery($insertLog_qry);
+exit;
 //require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
 $parseRes=null;
 $parseLog['noutbuki']['Esc']=null;
