@@ -7,7 +7,7 @@ if(isset($_POST['artCm_pid'])){
             $newCm->result['user_id']=$_SESSION['user_id'];
             $newCm->result['art_id']=$_POST['art_id'];
             $newCm->result['commmentCont']=$_POST['artCm'];
-            $newCm->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d h-m-s');
+            $newCm->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d h-i-s');
             $newCm->result['activeFlag']=true;
             if($_POST['artCm_pid'] and $_POST['artCm_pid']!=null){
                 $newCm->result['artCm_pid']=$_POST['artCm_pid'];

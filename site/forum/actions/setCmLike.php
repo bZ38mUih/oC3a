@@ -22,7 +22,7 @@ if($_SESSION['user_id']){
                     $setLike_qry.="FALSE";
                 }
                 $setLike_qry.=", ".
-                    "likeDate='".date_format($appRJ->date['curDate'], "Y-m-d H:m:s")."' where fc_id=".$_GET['fc_id'].
+                    "likeDate='".date_format($appRJ->date['curDate'], "Y-m-d H:i:s")."' where fc_id=".$_GET['fc_id'].
                     " and user_id=".$_SESSION['user_id'];
                 if($DB->doQuery($setLike_qry)){
                     if($youLikeVal){
@@ -44,7 +44,7 @@ if($_SESSION['user_id']){
                 $newLike_qry.="FALSE";
             }
             $newLike_qry.=", ".$_SESSION['user_id'].", ".
-                "'".date_format($appRJ->date['curDate'], "Y-m-d H:m:s")."')";
+                "'".date_format($appRJ->date['curDate'], "Y-m-d H:i:s")."')";
             $DB->doQuery($newLike_qry);
             if($youLikeVal){
                 $setCmLike_qry="update forumComments_dt set likePlus=likePlus+1 ".

@@ -110,7 +110,7 @@ $tables->result['log'].= 'lead time: '.($end_time-$start_time);
 //}
 
 $Ntf_rd = new recordDefault("ntf_dt", "ntf_id");
-$Ntf_rd->result['ntfDate']=@date_format($CurDate, 'Y-m-d H-m-s');
+$Ntf_rd->result['ntfDate']=@date_format($CurDate, 'Y-m-d H-i-s');
 $Ntf_rd->result['activeFlag']=true;
 
 $Ntf_rd->result['ntfType']='group';

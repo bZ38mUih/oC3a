@@ -23,7 +23,7 @@ if(isset($_GET['photo_id']) and $_GET['photo_id']!=null){
             }else{
                 $glComment->result['commentPar_id']=$_GET['comPar_id'];
             }
-            $glComment->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-m-s');
+            $glComment->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-i-s');
             if(isset($_GET['comment']) and $_GET['comment']!=null){
                 $glComment->result['commmentCont']=$_GET['comment'];
                 if($glComment->putOne()){
