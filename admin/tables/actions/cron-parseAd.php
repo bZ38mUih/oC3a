@@ -1,6 +1,8 @@
 <?php
 //echo "<h1>ParseLog:</h1>";
-
+$CurDate = @date_create();
+echo date_format($CurDate, "Y-m-d H:m:s");
+exit;
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
 //require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
 require_once ("/home/p264533/public_html/rightjoint.ru/source/accessorial_class.php");
@@ -24,7 +26,7 @@ $parseLog['telefony']['Esc']=null;
 $parseLog['telefony']['totalCnt']=0;
 $parseLog['telefony']['doubleCnt']=0;
 $parseLog['telefony']['sussCnt']=0;
-$CurDate = @date_create();
+
 foreach ($parseLog as $key=>$value){
     //if($pageCont = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/temp/avito-test.html")){
     if($pageCont = file_get_contents("https://www.avito.ru/ivanovo/".$key)){
