@@ -122,7 +122,7 @@ foreach ($parseLog as $key=>$value){
                     }
                     if($descrErr==null){
                         $parseRD->result['prodSaler']=substr($dC, 0, $posSaler3);
-                        $parseRD->result['prodDescr']=substr($descrCont, 0, $posDescr2);
+                        $parseRD->result['prodDescr']=mysql_real_escape_string(substr($descrCont, 0, $posDescr2));
                         if($parseRD->putOne()){
                             $parseLog[$key]['sussCnt']++;
                         }else{
