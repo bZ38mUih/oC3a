@@ -150,6 +150,8 @@ foreach ($parseLog as $key=>$value){
         $parseLog[$key]['err'].="невозможно открыть страницу<br>";
     }
 }
+echo "<h1>ParseLog:</h1>";
+print_r($parseLog);
 $insertLog_qry="insert into parseAdLog_dt (logDate, logContent) VALUES ('".date_format($CurDate, "Y-m-d H:m:s")."', '". json_encode($parseLog, true)."')";
 $DB->doQuery($insertLog_qry);
 exit;
