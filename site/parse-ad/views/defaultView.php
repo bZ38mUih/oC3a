@@ -18,8 +18,9 @@ if(mysql_num_rows($parseList_res)>0){
             $parseRes.=" - ";
         }
         $parseRes.="</span>".
+            "<span>Тип: ".$parseList_row['adType']."</span>".
             "<span>Распарсил: ".$parseList_row['adDate']."</span><span>Коммент: ".$parseList_row['comment']."</span></div>".
-            "<div class='control-wrap'><span>Показать</span></div>".
+            "<div class='control-wrap'><span>Содержание</span></div>".
             "<div class='prodDescr'>".$parseList_row['prodDescr']."</div>".
             "</div></div>";
     }
@@ -44,7 +45,7 @@ while ($adLog_row=$DB->doFetchRow($adLog_res)){
     }
     $logRes.="</div>";
     $lodCount++;
-    if($lodCount>20){
+    if($lodCount>0){
         break;
     }
 }
@@ -75,9 +76,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>".
 $logRes.
-"<div class='line ad caption'><div class='ad_ref'>ad_ref</div><div class='prodName'>prodName</div>".
-    "<div class='prodSaler'>prodSaler</div>".
-    "<div class='prodPrice'>prodPrice</div>".
+"<div class='line ad caption'><div class='ad_ref'>ref</div><div class='prodName'>prodName</div>".
+    "<div class='prodSaler'>Saler</div>".
+    "<div class='prodPrice'>Price</div>".
     "</div>";
 $appRJ->response['result'].= $parseRes."</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
