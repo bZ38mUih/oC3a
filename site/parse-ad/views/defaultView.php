@@ -68,7 +68,7 @@ $adLog_row=$DB->doFetchRow($adLog_res);
 
 
 $h1 ="Парсинг объявлений";
-$App['views']['social-block']=false;
+$App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".

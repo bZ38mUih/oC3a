@@ -1,1 +1,0 @@
-{"noutbuki":{"err":"max sussCnt\u003Cbr\u003E","totalCnt":7,"doubleCnt":3,"sussCnt":4},"planshety_i_elektronnye_knigi":{"err":"max sussCnt\u003Cbr\u003E","totalCnt":8,"doubleCnt":4,"sussCnt":4},"telefony":{"err":"max sussCnt\u003Cbr\u003E","totalCnt":7,"doubleCnt":3,"sussCnt":4}}
