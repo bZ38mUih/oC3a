@@ -26,12 +26,11 @@ function printList($artCatPar_id=null, $DB, $ref)
         if($artCount>0){
             while ($slArt_row=$DB->doFetchRow($slArt_res)){
                 $tmpItm=null;
+                $ref=null;
                 if($slArt_row['artCat_id']==3){
                     $ref="dev";
                 }elseif ($slArt_row['artCat_id']==1){
                     $ref="pc";
-                }else{
-                    $ref=null;
                 }
                 $tmpItm.="<li class='itm-line'><a href='/".$ref."/".$slArt_row['artAlias']."'>".
                     "<div class='itm-line-img'>";

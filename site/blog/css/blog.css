@@ -6,3 +6,42 @@
     display: inline-block;
     width: 100%;
 }
+.art-header{
+    width: 100%;
+    /*margin-left: 5%;*/
+    padding-bottom: 0.5em;
+    margin-bottom: 2em;
+    border-bottom: 1px dotted midnightblue;
+    /*padding-left: 2%;*/
+}
+.art-header-img{
+    display: inline-block;
+    width: 20%;
+    vertical-align: middle;
+}
+.art-header-img img{
+    height: 3em;
+    width: 3em;
+}
+.art-header-descr{
+    display: inline-block;
+    width: 80%;
+    vertical-align: middle;
+}
+.art-header-descr a{
+    font-size: 1.5em;
+    color: midnightblue;
+}
+.art-header-descr div{
+    font-size: 0.8em;
+    border: 1px dotted gray;
+    padding: 1em;
+    margin: 0.5em 0;
+    width: 100%;
+    display: inline-block;
+}
+.art-header .dateLine{
+    font-size: 0.8em;
+    width: 100%;
+    text-align: left;
+}
