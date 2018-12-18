@@ -22,7 +22,7 @@ if($_SESSION['user_id']){
                     $setLike_qry.="FALSE";
                 }
                 $setLike_qry.=", ".
-                    "likeDate='".date_format($appRJ->date['curDate'], "Y-m-d H:m:s")."' where artCm_id=".$_GET['artCm_id'].
+                    "likeDate='".date_format($appRJ->date['curDate'], "Y-m-d H:i:s")."' where artCm_id=".$_GET['artCm_id'].
                     " and user_id=".$_SESSION['user_id'];
                 if($DB->doQuery($setLike_qry)){
                     if($youLikeVal){

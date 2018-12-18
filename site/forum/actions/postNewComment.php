@@ -6,7 +6,7 @@ if(isset($_POST['fc_pid'])){
             $newCm->result['user_id']=$_SESSION['user_id'];
             $newCm->result['fs_id']=$_POST['fs_id'];
             $newCm->result['commmentCont']=$_POST['fCm'];
-            $newCm->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d h-m-s');
+            $newCm->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-i-s');
             $newCm->result['activeFlag']=true;
             if($_POST['fc_pid'] and $_POST['fc_pid']!=null){
                 $newCm->result['fc_pid']=$_POST['fc_pid'];

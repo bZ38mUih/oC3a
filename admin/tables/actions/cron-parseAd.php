@@ -1,6 +1,7 @@
 <?php
 //echo "<h1>ParseLog:</h1>";
 
+
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
 //require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
 require_once ("/home/p264533/public_html/rightjoint.ru/source/accessorial_class.php");
@@ -10,6 +11,8 @@ $DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/righ
 //$DB->connSettings=json_decode(@file_get_contents($_SERVER["DOCUMENT_ROOT"].$DB->pathToConn), true);
 $DB->connect_db();
 require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
+
+$CurDate = new DateTime();
 //require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
 $parseRes=null;
 $parseLog['noutbuki']['Esc']=null;
@@ -24,7 +27,7 @@ $parseLog['telefony']['Esc']=null;
 $parseLog['telefony']['totalCnt']=0;
 $parseLog['telefony']['doubleCnt']=0;
 $parseLog['telefony']['sussCnt']=0;
-$CurDate = @date_create();
+
 foreach ($parseLog as $key=>$value){
     //if($pageCont = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/temp/avito-test.html")){
     if($pageCont = file_get_contents("https://www.avito.ru/ivanovo/".$key)){
@@ -32,7 +35,7 @@ foreach ($parseLog as $key=>$value){
             $descrErr=null;
             //$tmpErr=null;
             $parseRD=new recordDefault("parseAdList_dt", "ad_id");
-            $parseRD->result['adDate']=date_format($CurDate, "Y-m-d H:m:s");
+            $parseRD->result['adDate']=date_format($CurDate, "Y-m-d H:i:s");
             $parseRD->result['adType']=$key;
             if(!$posItem = strpos($pageCont, "item item_table ")){
                 if($parseLog[$key]['totalCnt']==0){
@@ -153,7 +156,7 @@ foreach ($parseLog as $key=>$value){
 }
 //print_r($parseLog);
 $insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
-    "VALUES ('".date_format($CurDate, "Y-m-d H:m:s")."', '". mysql_real_escape_string(json_encode($parseLog, true))."')";
+    "VALUES ('".date_format($CurDate, "Y-m-d H:i:s")."', '". mysql_real_escape_string(json_encode($parseLog, true))."')";
 $DB->doQuery($insertLog_qry);
 //echo $insertLog_qry;
 exit;

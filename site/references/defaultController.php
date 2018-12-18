@@ -77,7 +77,7 @@ if($_POST){
                 $newCm = new recordDefault('refCom_dt', 'com_id');
                 $newCm->result['user_id']=$_SESSION['user_id'];
                 $newCm->result['Content']=$_POST['yCm'];
-                $newCm->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-m-s');
+                $newCm->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-i-s');
                 $newCm->result['activeFlag']=true;
                 if($_POST['newComPar_id'] and $_POST['newComPar_id']!=null){
                     $newCm->result['comPar_id']=$_POST['newComPar_id'];

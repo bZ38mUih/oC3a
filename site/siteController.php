@@ -21,7 +21,7 @@ elseif (isset($_GET['shareCount'])){
 }
 else{
     $Ntf_rd = new recordDefault("ntf_dt", "ntf_id");
-    $Ntf_rd->result['ntfDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-m-s');
+    $Ntf_rd->result['ntfDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-i-s');
     $Ntf_rd->result['activeFlag']=true;
 
     define(ART_CATEG_IMG_PAPH, "/data-arts/categs/");
