@@ -62,12 +62,18 @@
 .tbl-opt-wrap .tbl-pages{
     display: inline-block;
     width: 49%;
-    border-left: 1px solid blue;
+}
+.tbl-opt-wrap .tbl-pages a{
+    padding: 0.2em;
+    color: navy;
+}
+.tbl-opt-wrap .tbl-pages a.active{
+    font-size: 1.2em;
 }
 .tbl-opt-wrap .tbl-opt{
     text-align: left;
     display: inline-block;
-    width: 49%;
+    width: 50%;
     border-left: 1px solid green;
 }
 .tbl-opt-wrap .tbl-opt label{

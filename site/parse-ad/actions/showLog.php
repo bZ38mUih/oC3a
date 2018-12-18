@@ -5,7 +5,7 @@ if(mysql_num_rows($showLog_res)>0){
     while ($showLog_row=$DB->doFetchRow($showLog_res)){
         $parseLog_arr=json_decode($showLog_row['logContent'], true);
         $appRJ->response['result'].="<div class='logRes'>".
-            "<h3>Обновлено: ".$showLog_row['logDate']."</h3>";
+            "<h3>Распарсил: ".$showLog_row['logDate']."</h3>";
 
         foreach($parseLog_arr as $key=>$value){
             $appRJ->response['result'].="<div class='logType'>";

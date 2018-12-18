@@ -9,6 +9,10 @@ $(document).ready(function(){
             $(this).parent().parent().find(".prodDescr").css("display", "inline-block");
         }
     })
+    $(".tbl-opt select").change(function () {
+        $.cookie($(this).attr('id'), $(this).find("option:selected").val());
+        window.location = window.location.pathname;
+    })
 })
 
 function showLog() {
