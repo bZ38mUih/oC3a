@@ -27,7 +27,7 @@
 
 }
 
-.list-frame ul li.cat-line a
+.list-frame ul li.cat-line a, .list-frame ul li.cat-line span.ref
 {
     color: darkgreen;
     display: inline-block;
@@ -71,14 +71,14 @@
 
 
 
-.list-frame ul li.itm-line a
+.list-frame ul li.itm-line a, .list-frame ul li.itm-line span.ref
 {
     display: block;
     width: 100%;
     border-bottom: 1px dotted navy;
 }
 
-.list-frame ul li.itm-line a
+.list-frame ul li.itm-line a, .list-frame ul li.itm-line span.ref
 {
     color: navy;
     font-size: 0.8em;
@@ -97,7 +97,7 @@
     text-align: center;
 }
 
-.list-frame ul li.cat-line a img
+.list-frame ul li.cat-line a img, .list-frame ul li.cat-line span.ref img
 {
     height: 1.5em;
     width: 1.5em;
@@ -105,7 +105,7 @@
     border-radius: 0.2em;
 }
 
-.list-frame ul li.itm-line a img
+.list-frame ul li.itm-line a img, .list-frame ul li.itm-line span.ref img
 {
     height: 1.5em;
     width: 1.5em;

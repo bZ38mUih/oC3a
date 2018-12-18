@@ -77,7 +77,7 @@ $slDevArt_res = $DB->doQuery($slDevArt_qry);
 $devArtMain=$DB->doFetchRow($slDevArt_res);
 $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-center'><div class='contentBlock-wrap'>".
-    "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>Блог</h2>";
+    "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>it-Блог</h2>";
 while ($slDevArt_row=$DB->doFetchRow($slDevArt_res)){
     $appRJ->response['result'].= "<div class='list-item'>".
         "<div class='list-item-img'>".
@@ -87,7 +87,7 @@ while ($slDevArt_row=$DB->doFetchRow($slDevArt_res)){
         "<span>".$slDevArt_row['artMeta']."</span></div></div>";
 }
 $appRJ->response['result'].= "<div class='list-item all'>".
-    "<a href='/dev/'>все статьи</a></div></div><div class='contentBlock-table-right'>".
+    "<a href='/blog'>все статьи</a></div></div><div class='contentBlock-table-right'>".
     "<h2>Свежая статья</h2>".
     "<img src='".ARTS_IMG_PAPH."/".$devArtMain['art_id']."/preview/".$devArtMain['artImg']."' alt='artCover'>".
     "<div><a href='/dev/".$devArtMain['artAlias']."' title='Читать статью'>".$devArtMain['artName']."</a>".

@@ -67,52 +67,37 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
         "<a href='/artMan/' class='sub-lnk blue' title='artMan'>artMan</a></div></div>";
 }
 /*<--artMan*/
-/*dev-->*/
+/*blog-->*/
 $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
     "<img src='/site/dev/img/logo.png' alt='dev-logo'></div>";
 $dwlSign = "+";
 $dwlStyle = "style='display: none'";
 $appRJ->response['result'].= "<div class='modal-line-text'>";
-if (strtolower($appRJ->server['reqUri_expl'][1]) == "dev") {
+if (strtolower($appRJ->server['reqUri_expl'][1]) == "blog" or strtolower($appRJ->server['reqUri_expl'][1]) == "dev"
+    or strtolower($appRJ->server['reqUri_expl'][1]) == "pc") {
     $dwlSign = "-";
     $dwlStyle = null;
 }
-$appRJ->response['result'].= "<a href='/dev/' title='Блог о разработке'>Разработка</a> <span class='opnSubMenu'>" . $dwlSign .
+$appRJ->response['result'].= "<a href='/blog' title='Статьи о программирование и ПК'>it-Блог</a> <span class='opnSubMenu'>" . $dwlSign .
     "</span> ". "<ul " . $dwlStyle . ">";
-$devArts_qry = "select * from art_dt where artCat_id=3 and activeFlag is true ORDER BY pubDate DESC limit 4";
-$devArts_res = $DB->doQuery($devArts_qry);
-while ($devArts_row = $DB->doFetchRow($devArts_res)) {
-    $appRJ->response['result'].= "<li><a href='/dev/" . $devArts_row['artAlias'] . "' class='sub-lnk light ";
-    if ($appRJ->server['reqUri_expl'][2] == $devArts_row['artAlias']) {
+$arts_qry="select * from art_dt where artCat_id=3 OR artCat_id=1 and activeFlag is true ORDER BY pubDate DESC limit 3";
+$arts_res = $DB->doQuery($arts_qry);
+while ($arts_row = $DB->doFetchRow($arts_res)) {
+    $ref=null;
+    $appRJ->response['result'].= "<li><a href='/";
+    if($arts_row['artCat_id']==3){
+        $ref="dev";
+    }elseif ($arts_row['artCat_id']==1){
+        $ref="pc";
+    }
+    $appRJ->response['result'].=$ref."/" . $arts_row['artAlias'] . "' class='sub-lnk light ";
+    if ($appRJ->server['reqUri_expl'][2] == $arts_row['artAlias']) {
         $appRJ->response['result'].= "active";
     }
-    $appRJ->response['result'].= "' title='Читать статью'>" . $devArts_row['artName'] . "</a></li>";
+    $appRJ->response['result'].= "' title='Читать статью'>" . $arts_row['artName'] . "</a></li>";
 }
 $appRJ->response['result'].= "</ul></div></div>";
-/*<--dev*/
-/*pc-->*/
-$appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
-    "<img src='/site/pc/img/logo.png' alt='pc-logo'></div>";
-$dwlSign = "+";
-$dwlStyle = "style='display: none'";
-$appRJ->response['result'].= "<div class='modal-line-text'>";
-if (strtolower($appRJ->server['reqUri_expl'][1]) == "pc") {
-    $dwlSign = "-";
-    $dwlStyle = null;
-}
-$appRJ->response['result'].= "<a href='/pc/' title='Компьютеры и технологии'>Компьютеры и технологии</a> ".
-    "<span class='opnSubMenu'>" . $dwlSign . "</span> "."<ul " . $dwlStyle . ">";
-$devArts_qry = "select * from art_dt where artCat_id=1 and activeFlag is true ORDER BY pubDate DESC limit 4";
-$devArts_res = $DB->doQuery($devArts_qry);
-while ($devArts_row = $DB->doFetchRow($devArts_res)) {
-    $appRJ->response['result'].= "<li><a href='/pc/" . $devArts_row['artAlias'] . "' class='sub-lnk light ";
-    if ($appRJ->server['reqUri_expl'][2] == $devArts_row['artAlias']) {
-        $appRJ->response['result'].= "active";
-    }
-    $appRJ->response['result'].= "' title='Читать статью'>" . $devArts_row['artName'] . "</a></li>";
-}
-$appRJ->response['result'].= "</ul></div></div>";
-/*<--pc*/
+/*<--blog*/
 /*handbook-->*/
 $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
     "<img src='/site/handbook/img/logo.png' alt='handbook-logo'></div>";

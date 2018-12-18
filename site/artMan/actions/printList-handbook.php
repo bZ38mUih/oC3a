@@ -5,11 +5,11 @@ function printList($artCatPar_id=null, $DB, $ref)
     $tmpRes['cntCat']=null;
     $tmpRes['cntItm']=null;
     if($artCatPar_id ==null){
-        $selectCat_query = "select * from artCat_dt WHERE artCatPar_id is null and activeFlag is TRUE and artCat_id!=2";
+        $selectCat_query = "select * from artCat_dt WHERE artCatPar_id is null and activeFlag is TRUE";
         $slArt_qry="select * from art_dt WHERE artCat_id is null and activeFlag is TRUE";
     }else{
         $selectCat_query = "select * from artCat_dt WHERE artCatPar_id = ".$artCatPar_id." and activeFlag is TRUE";
-        $slArt_qry="select * from art_dt WHERE artCat_id = ".$artCatPar_id." and activeFlag is TRUE ";
+        $slArt_qry="select * from art_dt WHERE artCat_id = ".$artCatPar_id." and activeFlag is TRUE";
     }
     $slArt_res=$DB->doQuery($slArt_qry);
     $artCount=0;
@@ -26,13 +26,6 @@ function printList($artCatPar_id=null, $DB, $ref)
         if($artCount>0){
             while ($slArt_row=$DB->doFetchRow($slArt_res)){
                 $tmpItm=null;
-                if($slArt_row['artCat_id']==3){
-                    $ref="dev";
-                }elseif ($slArt_row['artCat_id']==1){
-                    $ref="pc";
-                }else{
-                    $ref=null;
-                }
                 $tmpItm.="<li class='itm-line'><a href='/".$ref."/".$slArt_row['artAlias']."'>".
                     "<div class='itm-line-img'>";
                 if($slArt_row['artImg']){
@@ -43,20 +36,11 @@ function printList($artCatPar_id=null, $DB, $ref)
                 $tmpItm.= "</div><div class='itm-line-txt'><div class='itm-line-name'>".$slArt_row['artName'].
                     "</div><div class='itm-line-descr'>";
                 if($slArt_row['artMeta']){
-                    $tmpItm.= $slArt_row['artMeta'];
+                    $tmpItm.= mb_substr($slArt_row['artMeta'],0, 50, 'UTF-8')." ...";;
                 }else{
                     $tmpItm.= "-";
                 }
-                $tmpItm.= "</div><div class='itm-line-addInfo'>";
-                if($slArt_row['pubDate']){
-                    $tmpItm.= "<div class='dateLine'><span class='dateFld'>Опубликовано:</span>".
-                        "<span class='dateVal'>".$slArt_row['pubDate']."</span></div>";
-                }
-                if($slArt_row['refreshDate']){
-                    $tmpItm.= "<div class='dateLine'><span class='dateFld'>Обновлено:</span>".
-                        "<span class='dateVal'>".$slArt_row['refreshDate']."</span></div>";
-                }
-                $tmpItm.="</div></div></a></li>";
+                $tmpItm.= "</div></div></a></li>";
                 $tmpRes['text'].=$tmpItm;
                 $tmpRes['cntItm']=$artCount;
             }
@@ -65,7 +49,7 @@ function printList($artCatPar_id=null, $DB, $ref)
             while ($selectCat_row=$DB->doFetchRow($selectCat_res)){
                 $tmpCat=null;
                 //$tmpCat.="<li class='cat-line'><a href='/".$ref."/".$selectCat_row['catAlias']."'>".
-                $tmpCat.="<li class='cat-line'><span class='ref'>".
+                $tmpCat.="<li class='cat-line'><a href='javascript: Void(0)'>".
                     "<div class='cat-line-img'>";
                 if($selectCat_row['catImg']){
                     $tmpCat.= "<img src='".ART_CATEG_IMG_PAPH.$selectCat_row['artCat_id']."/preview/".$selectCat_row['catImg']."'>";
@@ -79,7 +63,7 @@ function printList($artCatPar_id=null, $DB, $ref)
                 }else{
                     $tmpCat.= "-";
                 }
-                $tmpCat.= "</div></div></span>";
+                $tmpCat.= "</div></div></a>";
                 $tmpRes['text'].=$tmpCat;
                 $responce=printList($selectCat_row['artCat_id'], $DB, $ref);
                 $tmpRes['cntCat']=$catCount+$responce['cntCat'];

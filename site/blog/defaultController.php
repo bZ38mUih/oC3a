@@ -1,4 +1,6 @@
 <?php
+require_once ($_SERVER["DOCUMENT_ROOT"]."/site/blog/views/defaultView.php");
+/*
 if($_POST){
     $refBlock['err']=null;
     if($_SESSION['user_id']){
@@ -18,3 +20,4 @@ if($_POST){
 }else{
     $appRJ->errors['stab']['description']='Страница Блог временно на реконструкции';
 }
+*/

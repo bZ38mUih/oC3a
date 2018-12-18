@@ -1,0 +1,8 @@
+.list-frame ul .cat-line-descr, .list-frame ul .itm-line-addInfo
+{
+    padding-top: 0.5em;
+    font-size: 0.6em;
+    color: darkgreen;
+    display: inline-block;
+    width: 100%;
+}

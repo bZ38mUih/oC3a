@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"]."/site/artMan/actions/printList.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/site/artMan/actions/printList-handbook.php");
 $h1 ="Список статей";
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".

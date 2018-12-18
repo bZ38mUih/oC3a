@@ -64,9 +64,7 @@ if($this->errors){
         "</div>".
         "<div class='alertsMenu'>".
         "<h2>На этом сайте:</h2>".
-        "<h3>Блог</h3>".
-        "<a href='/dev' title='Все статьи'><img src='/site/dev/img/logo.png'>Статьи о разработке</a>".
-        "<a href='/pc' title='Все статьи'><img src='/site/pc/img/logo.png'>Статьи о компьютерных технологиях и ремонте ПК</a>".
+        "<a href='/blog' title='Все статьи'><img src='/site/blog/img/logo.png'>it-Блог</a>".
         "<h3>Заказчику</h3>".
         "<a href='/services' title='Расценки и заказ услуг'><img src='/site/services/img/logo.png'>Услуги</a>".
         "<a href='/forum/faq' title='Об этом сайте'><img src='/site/status/img/faq.png'>Часто задаваемые вопросы</a>".
