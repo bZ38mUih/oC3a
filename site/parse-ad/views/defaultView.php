@@ -10,9 +10,6 @@ if($adType=='all'){
         $wereCond.="and prodSaler='".$adSaler."' ";
     }
 }
-
-echo $adSaler."-".$wereCond;
-//exit;
 $adCount_qry="select count(*) as adCount from parseAdList_dt ".$wereCond;
 $adCount_res=$DB->doQuery($adCount_qry);
 $adCount_row=$DB->doFetchRow($adCount_res);
