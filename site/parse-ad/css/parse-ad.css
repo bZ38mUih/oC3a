@@ -1,3 +1,9 @@
+.parse-ad-descks{
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+    font-size: 0.8em;
+}
 .parseLog{
     padding-top: 1.5em;
     width: 90%;
@@ -62,6 +68,7 @@
 .tbl-opt-wrap .tbl-pages{
     display: inline-block;
     width: 49%;
+    vertical-align: middle;
 }
 .tbl-opt-wrap .tbl-pages a{
     padding: 0.2em;
@@ -71,6 +78,7 @@
     font-size: 1.2em;
 }
 .tbl-opt-wrap .tbl-opt{
+    vertical-align: middle;
     text-align: left;
     display: inline-block;
     width: 50%;

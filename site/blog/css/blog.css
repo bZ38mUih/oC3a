@@ -6,38 +6,42 @@
     display: inline-block;
     width: 100%;
 }
-.art-header{
-    width: 100%;
-    /*margin-left: 5%;*/
+h2{
     padding-bottom: 0.5em;
+}
+.art-header{
+    background-color: navy;
+    color: white;
+    width: 90%;
+    padding: 1.5em 5%;
     margin-bottom: 2em;
-    border-bottom: 1px dotted midnightblue;
-    /*padding-left: 2%;*/
+    border-radius: 0.5em;
 }
 .art-header-img{
     display: inline-block;
-    width: 20%;
+    width: 29%;
     vertical-align: middle;
 }
 .art-header-img img{
-    height: 3em;
-    width: 3em;
+    height: 4em;
+    width: 4em;
 }
 .art-header-descr{
+    border: 1px solid navy;
     display: inline-block;
-    width: 80%;
+    width: 70%;
     vertical-align: middle;
 }
 .art-header-descr a{
+    color: orange;
     font-size: 1.5em;
-    color: midnightblue;
 }
 .art-header-descr div{
     font-size: 0.8em;
     border: 1px dotted gray;
-    padding: 1em;
-    margin: 0.5em 0;
-    width: 100%;
+    padding: 2%;
+    margin: 2% 0;
+    width: 92%;
     display: inline-block;
 }
 .art-header .dateLine{

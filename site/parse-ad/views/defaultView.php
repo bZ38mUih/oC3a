@@ -17,6 +17,7 @@ $adCount_row=$DB->doFetchRow($adCount_res);
 $pagesText=null;
 $pNum=1;
 while ($adCount_row['adCount']-($pNum-1)*$volP>0){
+    if($pNum>5){break;}
     $pagesText.= "<a href='?page=".$pNum."' ";
     if($curPage==$pNum){
         $pagesText.="class='active'";
@@ -24,15 +25,14 @@ while ($adCount_row['adCount']-($pNum-1)*$volP>0){
     $pagesText.=">".$pNum."</a>, ";
     $pNum++;
 }
+
 $pagesText=substr($pagesText, 0, strlen($pagesText)-2);
 if($pNum>1){
-    $pagesText="Стр.".$pagesText;
+    $pagesText="Стр. ".$pagesText;
 }else{
     $pagesText="Стр. - ";
 }
-//echo "-".$adCount_row['adCount'];
-//exit;
-//if()
+if($pNum>5){$pagesText.=" ...";}
 $parseRes=null;
 $parseList_text="select * from parseAdList_dt ".$wereCond." ORDER BY adDate DESC limit ".($curPage-1)*$volP.", ".$volP;
 $parseList_res=$DB->doQuery($parseList_text);
@@ -52,7 +52,7 @@ if(mysql_num_rows($parseList_res)>0){
             $parseRes.=" - ";
         }
         $parseRes.="</span>".
-            "<span>Тип: ".$parseList_row['adType']."</span>".
+            "<span>Доска: ".$parseList_row['adType']."</span>".
             "<span>Распарсил: ".$parseList_row['adDate']."</span>".
             //"<span>Коммент: ".$parseList_row['comment']."</span>
             "</div>".
@@ -97,7 +97,12 @@ $appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'><
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>".
-
+    "<div class='parse-ad-descks'><ul>Скрипт с интервалом 5 минут парсит доски объявлений:".
+    "<li><a href='https://www.avito.ru/ivanovo/noutbuki' target='_blank' title='авито иваново ноутбуки'>https://www.avito.ru/ivanovo/noutbuki</a></li>".
+    "<li><a href='https://www.avito.ru/ivanovo/planshety_i_elektronnye_knigi' target='_blank' title='авито иваново планшеты'>https://www.avito.ru/ivanovo/planshety_i_elektronnye_knigi</a></li>".
+    "<li><a href='https://www.avito.ru/ivanovo/telefony' target='_blank' title='авито иваново телефоны'>https://www.avito.ru/ivanovo/telefony</a></li>".
+    "</ul>".
+    "Подробнее о работе скрипта можно прочитать в моем блоге <a href='/blog/parse-ad-avito' title='читать статью'>Парсинг объявлений Авито</a></div>".
     "<div class='parseLog'>"."<h2>Обновлено: ".$adLog_row['logDate']."</h2>".
     "<div class='parseLog-controls'><label>Глубина: <input type='number' id='logDepth' min='1' max='10' value='1'></label>".
     "<input type='button' value='showLog' onclick='showLog()'>".
@@ -122,7 +127,7 @@ if($adSaler=='Частное лицо'){
 }
 $appRJ->response['result'].=">Частные</option>".
     "</select></label>".
-    "<label>Категория <select id='adType'>".
+    "<label>Доска <select id='adType'>".
     "<option value='all' ";
 if($adType=='all'){
     $appRJ->response['result'].= "selected";
