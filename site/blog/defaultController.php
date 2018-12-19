@@ -1,6 +1,5 @@
 <?php
-require_once ($_SERVER["DOCUMENT_ROOT"]."/site/blog/views/defaultView.php");
-/*
+
 if($_POST){
     $refBlock['err']=null;
     if($_SESSION['user_id']){
@@ -18,6 +17,5 @@ if($_POST){
     include ($_SERVER["DOCUMENT_ROOT"]."/site/artMan/views/artCmLikes.php");
     $appRJ->response['result']=$tmpCm;
 }else{
-    $appRJ->errors['stab']['description']='Страница Блог временно на реконструкции';
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/site/blog/views/defaultView.php");
 }
-*/
