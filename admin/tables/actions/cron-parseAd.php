@@ -75,7 +75,7 @@ foreach ($parseLog as $key=>$value){
                 $parseRD->result['prodName']=substr($pageCont, 0, $posProdName2);
                 $pageCont=substr($pageCont, $posProdName2+7, strlen($pageCont));
                 if(!$posPrice1=strpos($pageCont, "<span class=\"price\" itemprop=\"price\" content=\"")){
-                    $parseLog[$key]['Esc'].="нет posPrice1";
+                    $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD->result['prodName'];
                     break;
                 }
                 $pageCont=substr($pageCont, $posPrice1+46, strlen($pageCont));
