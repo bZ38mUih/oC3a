@@ -84,7 +84,7 @@ foreach ($parseLog as $key=>$value){
                     $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD->result['prodName'];
                     break;
                 }
-                $pageCont=substr($pageCont, $posPrice2+0, strlen($pageCont));
+                $pageCont=substr($pageCont, $posPrice2+9, strlen($pageCont));
                 if(!$posPrice3=strpos($pageCont, "\">")){
                     $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD->result['prodName'];
                     break;
