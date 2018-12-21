@@ -174,12 +174,19 @@ if($photoPrint_count==$cntPh){
             $photoPrint_row['photoLink']."'>";
         if(file_exists($_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$photoPrint_row['album_id']."/photoAttach/preview/".
             $photoPrint_row['photoLink'])){
-            $albums_print_txt.="<img src='".GL_ALBUM_IMG_PAPH.$photoPrint_row['album_id']."/photoAttach/preview/".
-                $photoPrint_row['photoLink']."' ";
+            $tmpStyle=null;
+            if(substr($photoPrint_row['photoLink'], strlen($photoPrint_row['photoLink'])-3, strlen($photoPrint_row['photoLink']))
+                == "gif"){
+                $albums_print_txt.="<img src='".GL_ALBUM_IMG_PAPH.$photoPrint_row['album_id']."/photoAttach/";
+                $tmpStyle=" style='height: 20em; width: auto;'";
+            }else{
+                $albums_print_txt.="<img src='".GL_ALBUM_IMG_PAPH.$photoPrint_row['album_id']."/photoAttach/preview/";
+            }
+            $albums_print_txt.=$photoPrint_row['photoLink']."' ";
             if($photoPrint_row['transPhoto']){
                 $albums_print_txt.="style='transform: rotate(".$photoPrint_row['transPhoto']."deg)'";
             }
-            $albums_print_txt.=">";
+            $albums_print_txt.=" ".$tmpStyle.">";
         }else{
             $albums_print_txt.="<img src='/data/default-img.png'>";
         }

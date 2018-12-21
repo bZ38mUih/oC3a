@@ -108,16 +108,17 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "handbook") {
     $dwlSign = "-";
     $dwlStyle = null;
 }
-$appRJ->response['result'].= "<a href='/handbook/' title='Систематизированная информация о компьютерных и технология'>Справочник</a> <span class='opnSubMenu'>" .
+$appRJ->response['result'].= "<a href='/handbook/' title='Систематизированная информация о компьютерах и технологиях'>Справочник</a> <span class='opnSubMenu'>" .
     $dwlSign . "</span> "."<ul " . $dwlStyle . ">";
-$devArts_qry = "select * from art_dt where artCat_id=2 and activeFlag is true ORDER BY pubDate DESC limit 4";
-$devArts_res = $DB->doQuery($devArts_qry);
-while ($devArts_row = $DB->doFetchRow($devArts_res)) {
-    $appRJ->response['result'].= "<li><a href='/handbook/" . $devArts_row['artAlias'] . "' class='sub-lnk light ";
-    if ($appRJ->server['reqUri_expl'][2] == $devArts_row['artAlias']) {
+$hbArr['win-cmd']="Командная строка Windows";
+$hbArr['linux-cmd']="Командная строка Linux";
+$hbArr['apache-responce-codes']="apache-responce-codes";
+foreach ($hbArr as $key=>$value){
+    $appRJ->response['result'].= "<li><a href='/handbook/" . $key . "' class='sub-lnk light ";
+    if ($appRJ->server['reqUri_expl'][2] == $key) {
         $appRJ->response['result'].= "active";
     }
-    $appRJ->response['result'].= "' title='Смотреть в справочнике'>" . $devArts_row['artName'] . "</a></li>";
+    $appRJ->response['result'].= "' title='Смотреть в справочнике'>" . $value . "</a></li>";
 }
 $appRJ->response['result'].= "</ul></div></div>";
 /*<--handbook*/
