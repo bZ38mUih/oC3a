@@ -11,4 +11,4 @@ if($itemsCount>0)
 while($itemsCount_row=$DB->doFetchRow($itemsCount_res)){
     include ($_SERVER['DOCUMENT_ROOT']."/site/gallery/views/glMan-photoAttachItem.php");
 }
-$appRJ->response['result'].= "</div></div></div>";
+$appRJ->response['result'].= "</div></div>";
