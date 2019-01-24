@@ -15,13 +15,12 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/admin/queryPrint/css/queryPrint.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
-    "</head><body>".
-    "<div class='contentBlock-frame dark'><div class='contentBlock-center'><div class='contentBlock-wrap'>";
+    "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/adminHeader/views/adminHeader.php");
-$appRJ->response['result'].= "</div></div></div>".
-    "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
     "<form><div class='qpOptions'><label for='tagretQuery'>SELECT </label></div>".
-    "<div class='qpOptions ta-right'><label class='ta-right' for='qp-limit'>Limit <input type='number' name='qp-limit' min='1' max='100' value='10'></label></div>".
+    "<div class='qpOptions'>".
+    "<label for='qp-limit'>Limit <input type='number' name='qp-limit' min='1' max='100' value='10'></label></div>".
     "<textarea name='tagretQuery' rows='5'></textarea></form>".
     "<div class='queryPanel'><div class='queryPanel-left'><span class='resTxt'>Результат: </span>".
     "<div class='queryResults'>-</div></div>".

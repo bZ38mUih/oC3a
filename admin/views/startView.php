@@ -11,11 +11,9 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/admin/adminHeader/css/adminHeader.css' type='text/css' media='screen, projection'/>".
     "<script src='/admin/adminHeader/js/adminHeader.js'></script>".
     "<link rel='SHORTCUT ICON' href='/admin/img/favicon.png' type='image/png'>".
-    "</head><body>".
-    "<div class='contentBlock-frame dark'><div class='contentBlock-center'><div class='contentBlock-wrap'>";
+    "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/adminHeader/views/adminHeader.php");
-$appRJ->response['result'].= "</div></div></div>".
-    "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
     "<p><strong>Воспользуйтесь меню для начала работы</strong></p><div class='contentMenu'>";
 foreach ($adminModules as $key=>$value){
     $printMenuItem_flag=false;

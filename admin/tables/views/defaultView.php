@@ -15,11 +15,9 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script type='text/javascript' id='menu_script' src='/admin/tables/js/tables.js'></script>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
-    "</head><body>".
-    "<div class='contentBlock-frame dark'><div class='contentBlock-center'><div class='contentBlock-wrap'>";
+    "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/adminHeader/views/adminHeader.php");
-$appRJ->response['result'].= "</div></div></div>".
-    "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
     "<div class='optionsPanel'><div class='uploadOptions'>".
     "<label for='prefixTag'>pefix</label><input type='text' name='prefixTag'>".
     "<label for='dateTag'>dateTag</label>".
@@ -39,6 +37,6 @@ $appRJ->response['result'].= "</div></div></div></div>".
     "<div class='modal'><div class='overlay'></div><div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='modal-right'><img src='/source/img/closeModal.png' title='закрыть'></div>".
     "<div class='logPanel'><h3>action log:</h3></div>".
-    "</div></div></div></div>";
+    "</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/adminFooter/views/footerDefault.php");
 $appRJ->response['result'].= "</body></html>";

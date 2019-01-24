@@ -6,6 +6,11 @@ BODY{
     text-align: center;
     font-size: 25px;
 }
+.page-wrap{
+    position: relative;
+    min-height: 93.5vh;
+    padding-bottom: 6.5vh;
+}
 footer{
     background-color: rgba(25,25,50,1);
     color: #ffffff;
@@ -22,4 +27,10 @@ footer{
 .contentBlock-frame.dark{
     background: rgba(25,25,50,1);
     color: #ffffff;
+}
+.contentBlock-frame.dark.ft{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

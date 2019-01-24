@@ -1,3 +1,3 @@
 <?php
-$appRJ->response['result'].= "<footer>by Right Joint</footer>";
+$appRJ->response['result'].= "<div class='contentBlock-frame dark ft'><footer>by Right Joint</footer></div></div>";
 ?>

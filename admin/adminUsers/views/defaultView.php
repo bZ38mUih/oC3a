@@ -14,11 +14,9 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/admin/adminUsers/js/default.js'></script>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
-    "</head><body>".
-    "<div class='contentBlock-frame dark'><div class='contentBlock-center'><div class='contentBlock-wrap'>";
+    "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/adminHeader/views/adminHeader.php");
-$appRJ->response['result'].= "</div></div></div>".
-    "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='contentBlock-wrap'>".
     "<div class='newUsr'><div class='newUsr-line'><label for='newUsrName'>newUsrName: </label>".
     "<input type='text' name='newUsrName'></div>".
     "<div class='newUsr-line'><label for='newUsrPass'>newUsrPass: </label>".

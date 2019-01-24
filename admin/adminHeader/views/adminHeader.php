@@ -1,5 +1,6 @@
 <?php
-$appRJ->response['result'].= "<header>".
+$appRJ->response['result'].= "<div class='page-wrap'><div class='contentBlock-frame dark'>".
+    "<div class='contentBlock-center'><div class='contentBlock-wrap'><header>".
     "<div class='adminMenu'><img src='/source/img/menu-icon.png'><div class='adminMenu-link-frame'>".
     "<div class='adminMenu-link'><a href='/admin/'";
 if(!$adminModule){
@@ -36,4 +37,4 @@ if(!$adminModule){
     $appRJ->response['result'].= $adminModules[$adminModule]['aliasMenu'];
 }
 $appRJ->response['result'].= "</h1><div class='btnPanel'>".
-    "<a class='exit' href='?cmd=exit'><img src='/source/img/exit.png'></a></div></header>";
+    "<a class='exit' href='?cmd=exit'><img src='/source/img/exit.png'></a></div></header></div></div></div>";

@@ -15,11 +15,9 @@ $appRJ->response['result'].= "<head>".
     "<script src='/admin/sql/js/default.js'></script>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
-    "</head><body>".
-    "<div class='contentBlock-frame dark'><div class='contentBlock-center'><div class='contentBlock-wrap'>";
+    "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/adminHeader/views/adminHeader.php");
-$appRJ->response['result'].= "</div></div></div>".
-    "<div class='contentBlock-frame'><div class='contentBlock-center'>".
+$appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>".
     "<form><label for='tagretQuery'>Введите запрос:</label><textarea name='tagretQuery' rows='5'></textarea></form>".
     "<div class='queryPanel'><div class='queryPanel-left'><span class='resTxt'>Результат: </span>".
