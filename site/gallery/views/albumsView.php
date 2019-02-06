@@ -66,8 +66,6 @@ if($selectAlbums_count>0){
         //<--read access
         if($rdAccRes){
             $cntAlb++;
-
-            //$alb_view.="<a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-block'><div class='alb-img'>";
             $alb_view.="<div class='alb-block'><div class='alb-img'>";
             if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
                 $selectAlbums_row['albumImg'])){

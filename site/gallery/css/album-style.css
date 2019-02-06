@@ -1,3 +1,9 @@
+.alb-block{
+    width: 90%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid darkgreen;
+}
 .photo-line{
     width: 90%;
     border: 1px solid #000000;

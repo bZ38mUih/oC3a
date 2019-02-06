@@ -94,12 +94,12 @@ if($selectAlbums_count>0){
                 } else {
                     $alb_view .= "Описание не задано";
                 }
-                $alb_view .= "</div><div class='alb-count'><span class='flName'>В альбоме: </span>" .
+                $alb_view .= "</div><div class='alb-info'><span class='flName'>В альбоме: </span>" .
                     "<span class=flVal>" . $selectAlbums_row['phQty'] . "</span><span class='flName'>фото</span></div>".
-                    "<div class='alb-publDt'><span class='flName'>Опубликовано: </span>" .
+                    "<div class='alb-info'><span class='flName'>Опубликовано: </span>" .
                     "<span class=flVal>" . $selectAlbums_row['dateOfCr'] . "</span></div>";
                 if($selectAlbums_row['refreshDate']){
-                    $alb_view .= "<div class='alb-publDt'><span class='flName'>Обновлено: </span>" .
+                    $alb_view .= "<div class='alb-info'><span class='flName'>Обновлено: </span>" .
                         "<span class=flVal>" . $selectAlbums_row['refreshDate'] . "</span></div>";
                 }
                 $alb_view .= "</div></div>";
