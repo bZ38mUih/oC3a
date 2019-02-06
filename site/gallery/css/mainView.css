@@ -1,68 +1,43 @@
-
-.alb-frame, .cat-frame, .photo-frame
-{
+.alb-frame, .cat-frame, .photo-frame{
     width: 90%;
     margin-left: 5%;
 }
-
-h2
-{
+h2{
     font-size: 1.2em;
     border-bottom: 2px solid navy;
     margin: 1em 0 1em 0;
 }
-
-a.alb-block
-{
+.alb-block{
     width: 40%;
     margin: 2%;
     border-radius: 0.5em;
     border: 1px solid #000000;
     display: inline-block;
 }
-
-.alb-block
-{
-    display: inline-block;
-    width: 96%;
-    margin: 4% 2% 4% 2%;
-    border-bottom: 1px dotted navy;
-    /*border-top: 1px solid #000000;*/
-}
-
-.alb-img
-{
+.alb-img{
     display: inline-block;
     width: 30%;
     vertical-align: middle;
 }
-
-.alb-img img
-{
+.alb-img img{
     height: 5em;
     width: 5em;
 }
-
-.alb-txt
-{
+.alb-txt{
     display: inline-block;
     width: 70%;
     color: #000000;
     vertical-align: middle;
     padding: 0.5em 0 0.5em 0;
 }
-
-.alb-txt .alb-name
-{
+.alb-txt a.alb-name{
     width: 100%;
     font-weight: bold;
     text-decoration: underline;
     color: navy;
     font-size: 1.2em;
 }
-
-.alb-txt .alb-descr
-{
+.alb-txt .alb-descr{
     width: 90%;
     font-style: italic;
     color: #000000;
@@ -70,118 +45,80 @@ a.alb-block
     border: 1px dotted #c0c0c0;
     margin: 0.5em 0 0.5em 0;
 }
-
-.alb-txt .alb-count
-{
+.alb-txt .alb-info{
     width: 100%;
     font-size: 0.8em;
     text-align: left;
 }
-
-.alb-publDt
-{
-    width: 100%;
-    font-size: 0.8em;
-    text-align: left;
+.alb-txt .alb-info a{
+    color: #008000;
 }
-
- span.flName
-{
+ span.flName{
     font-weight: bold;
     color: darkslategray;
 }
-
-span.flVal
-{
+span.flVal{
     color: #008000;
     font-weight: bold;
     margin-right: 1em;
     margin-left: 1em;
     font-size: 1em;
 }
-
-
-
-.cat-frame a.cat-line
-{
+.cat-frame a.cat-line{
     text-align: left;
     width: 100%;
     display: block;
     border-bottom: 1px solid #c0c0c0;
-    /*margin: 1em 0 0 1em;*/
     padding: 1em 0 1em 0;
     text-decoration: none;
     color: #000000;
 }
-
-.cat-frame a .cat-img
-{
+.cat-frame a .cat-img{
     width: 20%;
     vertical-align: middle;
     display: inline-block;
 }
-
-.cat-frame a .cat-img img
-{
+.cat-frame a .cat-img img{
     height: 2.5em;
     width: 2.5em;
-
     border-radius: 0.3em;
 }
-
-
-.cat-frame a .cat-descr
-{
+.cat-frame a .cat-descr{
     width: 80%;
     vertical-align: middle;
     display: inline-block;
 }
-
-.cat-frame a .cat-descr span.descrTxt
-{
+.cat-frame a .cat-descr span.descrTxt{
     display: block;
     font-style: italic;
     color: darkslategray;
     margin: 0.5em 0.5em 0 0;
 }
-
-.nav-frame
-{
+.nav-frame{
     margin: 1em 0 1em 0;
     width: 100%;
     text-align: left;
 }
-
-.toAlbums, .toCategory
-{
+.toAlbums, .toCategory{
     margin-left: 2em;
     text-align: left;
     display: inline-block;
 }
-
-.toAlbums a, .toCategory a
-{
+.toAlbums a, .toCategory a{
     font-weight: bold;
     color: navy;
 }
-
-.cat-frame span.cap2
-{
+.cat-frame span.cap2{
     font-weight: bold;
     width: 100%;
     text-align: left;
     color: navy;
     display: block;
 }
-
-@media only screen and (max-width : 1024px)
-{
-    a.alb-block
-    {
-        /*display: inline-block;*/
+@media only screen and (max-width : 1024px){
+    .alb-block{
         width: 90%;
         border: 1px solid #000000;
         margin: 2% 0 5% 0;
-        /*border-radius: 0.5em;*/
     }
 }

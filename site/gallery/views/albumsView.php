@@ -67,7 +67,8 @@ if($selectAlbums_count>0){
         if($rdAccRes){
             $cntAlb++;
 
-            $alb_view.="<a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-block'><div class='alb-img'>";
+            //$alb_view.="<a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-block'><div class='alb-img'>";
+            $alb_view.="<div class='alb-block'><div class='alb-img'>";
             if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
                 $selectAlbums_row['albumImg'])){
                 $alb_view.="<img src='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".$selectAlbums_row['albumImg']."'";
@@ -79,7 +80,7 @@ if($selectAlbums_count>0){
                 $alb_view.="<img src='/data/default-img.png'>";
             }
 
-            $alb_view.="</div><div class='alb-txt'><div class='alb-name'>".$selectAlbums_row['albumName']."</div>".
+            $alb_view.="</div><div class='alb-txt'><a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-name'>".$selectAlbums_row['albumName']."</a>".
                 "<div class='alb-descr'>";
             if($selectAlbums_row['metaDescr']){
                 $alb_view.= $selectAlbums_row['metaDescr'];
@@ -87,15 +88,20 @@ if($selectAlbums_count>0){
                 $alb_view.="Описание не задано";
             }
             $alb_view.= "</div>".
-                "<div class='alb-count'><span class='flName'>В альбоме: </span>".
+                "<div class='alb-info'>".
+                "<span class='flName'>Категория: </span>".
+                "<a href='/gallery/category/".$selectAlbums_row['catAlias'].
+                "' class=flVal>".$selectAlbums_row['catName']."</a>".
+                "</div>".
+                "<div class='alb-info'><span class='flName'>В альбоме: </span>".
                 "<span class=flVal>".$selectAlbums_row['phQty']."</span><span class='flName'>фото</span></div>".
-                "<div class='alb-publDt'><span class='flName'>Опубликовано: </span>" .
+                "<div class='alb-info'><span class='flName'>Опубликовано: </span>" .
                 "<span class=flVal>".$selectAlbums_row['dateOfCr']."</span></div>";
             if($selectAlbums_row['refreshDate']){
-                $alb_view.="<div class='alb-publDt'><span class='flName'>Обновлено: </span>" .
+                $alb_view.="<div class='alb-info'><span class='flName'>Обновлено: </span>" .
                     "<span class=flVal>".$selectAlbums_row['refreshDate']."</span></div>";
             }
-            $alb_view.="</div></a>";
+            $alb_view.="</div></div>";
             $albums_print.=$alb_view;
 
             if(isset($catArr[$selectAlbums_row['glCat_id']]['photoCount'])){

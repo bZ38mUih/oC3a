@@ -26,7 +26,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='alb-frame'><h2>Свежие альбомы</h2>";
 $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, galleryMenu_dt.glCat_id, galleryMenu_dt.catImg, galleryMenu_dt.catActive, ".
     "galleryAlb_dt.album_id, galleryAlb_dt.albumName, ".
-    "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, galleryAlb_dt.transAlbImg, ".
+    "galleryAlb_dt.albumAlias, galleryAlb_dt.albumImg, galleryAlb_dt.dateOfCr, galleryAlb_dt.refreshDate, galleryAlb_dt.transAlbImg, ".
     "galleryAlb_dt.metaDescr, galleryAlb_dt.readRule, COUNT(galleryPhotos_dt.photo_id) as phQty from galleryMenu_dt ".
     "INNER JOIN galleryAlb_dt ON galleryMenu_dt.glCat_id = galleryAlb_dt.glCat_id ".
     "INNER JOIN galleryPhotos_dt ON galleryAlb_dt.album_id = galleryPhotos_dt.album_id ".
@@ -64,7 +64,7 @@ if($selectAlbums_count>0){
         if($rdAccRes){
             $cntAlb++;
             if($cntAlb<=3){
-                $alb_view.="<a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-block'>";
+                $alb_view.="<div class='alb-block'>";
                 $alb_view.="<div class='alb-img'>";
                 if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id'].
                     "/preview/".$selectAlbums_row['albumImg'])){
@@ -78,29 +78,36 @@ if($selectAlbums_count>0){
                     $alb_view.="<img src='/data/default-img.png'>";
                 }
 
-                $alb_view.="</div>";
-                $alb_view.= "<div class='alb-txt'>";
-                $alb_view.= "<div class='alb-name'>";
-                $alb_view.= $selectAlbums_row['albumName'];
-                $alb_view.= "</div>";
-                $alb_view.= "<div class='alb-descr'>";
+                $alb_view.="</div>".
+                    "<div class='alb-txt'>".
+                    "<a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-name'>".
+                    $selectAlbums_row['albumName'].
+                    "</a>".
+                    "<div class='alb-descr'>";
                 if($selectAlbums_row['metaDescr']){
                     $alb_view.= $selectAlbums_row['metaDescr'];
                 }else{
                     $alb_view.="Описание не задано";
                 }
-                $alb_view.= "</div>";
-                $alb_view.="<div class='alb-count'>";
-                $alb_view.="<span class='flName'>В альбоме: </span>".
-                    "<span class=flVal>".$selectAlbums_row['phQty']."</span><span class='flName'>фото</span>";
-                $alb_view.="</div>";
-                $alb_view.="<div class='alb-publDt'>";
-                $alb_view.="<span class='flName'>Опубликовано: </span>" .
-                    "<span class=flVal>".$selectAlbums_row['dateOfCr']."</span>";
-                $alb_view.="</div>";
-
-                $alb_view.="</div>";
-                $alb_view.="</a>";
+                $alb_view.= "</div>".
+                    "<div class='alb-info'>".
+                    "<span class='flName'>Категория: </span>".
+                    "<a href='/gallery/category/".$selectAlbums_row['catAlias']."' class=flVal>".
+                    $selectAlbums_row['catName']."</a>".
+                    "</div>".
+                    "<div class='alb-info'>".
+                    "<span class='flName'>В альбоме: </span>".
+                    "<span class=flVal>".$selectAlbums_row['phQty']."</span><span class='flName'>фото</span>".
+                    "</div>".
+                    "<div class='alb-info'>".
+                    "<span class='flName'>Опубликовано: </span>" .
+                    "<span class=flVal>".$selectAlbums_row['dateOfCr']."</span>".
+                    "</div>";
+                if($selectAlbums_row['refreshDate']){
+                    $alb_view.="<div class='alb-info'><span class='flName'>Обновлено: </span>" .
+                        "<span class=flVal>".$selectAlbums_row['refreshDate']."</span></div>";
+                }
+                $alb_view.="</div></div>";
                 $albums_print.=$alb_view;
             }
 

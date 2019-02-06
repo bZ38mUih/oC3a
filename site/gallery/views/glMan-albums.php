@@ -22,6 +22,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/site/css/subMenu.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/css/manFrame.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/forum/css/fMan.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/downloads/css/dwlMan.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
@@ -67,7 +68,7 @@ if($subjCount>0){
         "<div class='item-line-id'>album_id</div>".
         "<div class='item-line-img'>albumImg</div>".
         "<div class='item-line-name2'>albumName</div>".
-        "<div class='item-line-alias2'>albumAlias</div>".
+        "<div class='item-line-alias2'>catName</div>".
         "<div class='item-line-flag'>active</div>".
         "<div class='item-line-id'>usr_id</div></div>";
     while ($selectSubj_row=$DB->doFetchRow($selectSubj_res)){
@@ -87,7 +88,7 @@ if($subjCount>0){
         }
         $appRJ->response['result'].= "</div>".
             "<div class='item-line-name2'>".$selectSubj_row['albumName']."</div>".
-            "<div class='item-line-alias2'>".$selectSubj_row['albumAlias']."</div>".
+            "<div class='item-line-alias2'>".$selectSubj_row['catName']."</div>".
             "<div class='item-line-flag'><input type='checkbox' ";
         if($selectSubj_row['activeFlag']){
             $appRJ->response['result'].= "checked";
