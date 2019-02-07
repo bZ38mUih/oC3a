@@ -145,6 +145,8 @@ foreach ($parseLog as $key=>$value){
                             break;
                         }
                     }
+                }else{
+                    $parseLog[$key]['Esc'].="невозможно открыть описания";
                 }
             }
             if($parseLog[$key]['totalCnt']>100){
@@ -157,7 +159,7 @@ foreach ($parseLog as $key=>$value){
             }
         }
     }else{
-        $parseLog[$key]['Esc'].="невозможно открыть страницу";
+        $parseLog[$key]['Esc'].="невозможно открыть страницу категории";
     }
 }
 //print_r($parseLog);

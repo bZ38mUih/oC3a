@@ -3,6 +3,8 @@
     margin: 5%;
     border: 2px solid firebrick;
     overflow-x: scroll;
+    overflow-y: scroll;
+    max-height: 80vh;
     display: none;
 }
 

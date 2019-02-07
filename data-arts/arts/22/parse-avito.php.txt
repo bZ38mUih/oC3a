@@ -1,0 +1,137 @@
+<?php
+define("MAX_TOTAL_CNT", 100);
+define("MAX_SUSS_CNT", 10);
+$CurDate = new DateTime();
+echo "parse-avito ".date_format($CurDate,"Y-m-d H:i:s")."<br>";
+if(!file_exists($_SERVER["DOCUMENT_ROOT"]."/parse-avito")){
+    mkdir($_SERVER["DOCUMENT_ROOT"]."/parse-avito");
+}
+$parseRes=null;
+$parseLog['noutbuki']['Esc']=null;
+$parseLog['noutbuki']['totalCnt']=0;
+$parseLog['noutbuki']['doubleCnt']=0;
+$parseLog['noutbuki']['sussCnt']=0;
+$parseLog['planshety_i_elektronnye_knigi']['Esc']=null;
+$parseLog['planshety_i_elektronnye_knigi']['totalCnt']=0;
+$parseLog['planshety_i_elektronnye_knigi']['doubleCnt']=0;
+$parseLog['planshety_i_elektronnye_knigi']['sussCnt']=0;
+$parseLog['telefony']['Esc']=null;
+$parseLog['telefony']['totalCnt']=0;
+$parseLog['telefony']['doubleCnt']=0;
+$parseLog['telefony']['sussCnt']=0;
+
+foreach ($parseLog as $key=>$value){
+    if($pageCont = file_get_contents("https://www.avito.ru/ivanovo/".$key)){
+        $pageContErr=$pageCont;
+        while(strlen($pageCont)>100){
+            $descrErr=null;
+            $parseRD['adDate']=date_format($CurDate, "Y-m-d H:i:s");
+            $parseRD['adType']=$key;
+            if(!$posItem = strpos($pageCont, "item item_table ")){
+                if($parseLog[$key]['totalCnt']==0){
+                    $parseLog[$key]['Esc'].="нет posItem";
+                }
+            }
+            $pageCont=substr($pageCont, $posItem, strlen($pageCont));
+            if(!$posRef1=strpos($pageCont, "class=\"title")){
+                $parseLog[$key]['Esc'].="нет posRef1";
+            }
+            $pageCont=substr($pageCont, $posRef1+17, strlen($pageCont));
+            if(!$posRef2=strpos($pageCont, "href=\"")){
+                $parseLog[$key]['Esc'].="нет posRef2";
+            }
+            $pageCont=substr($pageCont, $posRef2+7, strlen($pageCont));
+            if(!$posRef3=strpos($pageCont, "\"")){
+                $parseLog[$key]['Esc'].="нет posRef3";
+            }
+            $parseRD['prodRef']=urlencode(substr($pageCont, 0 , $posRef3));
+            //здесь можно проверить объявление на случай повторов если его сохранять каду-либоы
+            $parseLog[$key]['doubleCnt']++;
+            if(!$posProdName1=strpos($pageCont, "<span itemprop=\"name\">")){
+                $parseLog[$key]['Esc'].="нет posProdName1";
+            }
+            $pageCont=substr($pageCont, $posProdName1+22, strlen($pageCont));
+            if(!$posProdName2=strpos($pageCont, "</span>")){
+                $parseLog[$key]['Esc'].="нет posProdName2";
+            }
+            $parseRD['prodName']=substr($pageCont, 0, $posProdName2);
+            $pageCont=substr($pageCont, $posProdName2+7, strlen($pageCont));
+            if(!$posPrice1=strpos($pageCont, "itemprop=\"price\"" )){
+                $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD->result['prodName'];
+            }
+            $pageCont=substr($pageCont, $posPrice1+16, strlen($pageCont));
+            if(!$posPrice2=strpos($pageCont, "content=\"")){
+                $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD->result['prodName'];
+            }
+            $pageCont=substr($pageCont, $posPrice2+9, strlen($pageCont));
+            if(!$posPrice3=strpos($pageCont, "\">")){
+                $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD->result['prodName'];
+            }
+            $parseRD['prodPrice']=substr($pageCont, 0, $posPrice3);
+            $pageCont=substr($pageCont, $posPrice3+2, strlen($pageCont));
+            if(!$posComp1=strpos($pageCont, "<div class=\"data\">")){
+                $parseLog[$key]['Esc'].="нет posComp1";
+            }
+            $pageCont=substr($pageCont, $posComp1+18, strlen($pageCont));
+            if(!$posComp2=strpos($pageCont, "</p>")){
+                $parseLog[$key]['Esc'].="нет posComp2";
+            }
+            if(!$prodComp=substr($pageCont, 0, $posComp2-3)){
+                $parseRD['prodComp']=null;
+            }elseif(strlen($prodComp)==34){
+                $parseRD['prodComp']=null;
+            }else{
+                $parseRD['prodComp']=$prodComp;
+            }
+            if($parseLog[$key]['Esc']!=null){
+                file_put_contents($_SERVER["DOCUMENT_ROOT"]."/parse-avito/".date_format($CurDate,"YmdHis")."-".$key.".html", $pageContErr);
+                break;
+            }else{
+                $parseLog[$key]['totalCnt']++;
+            }
+            if($descrCont = file_get_contents("https://avito.ru/".urldecode($parseRD['prodRef']))){
+                $descrContErr=$descrCont;
+                if(!$posSaler1=strpos($descrCont, "seller-info-prop js-seller-info-prop_seller-name")){
+                    $descrErr.="нет posSaler1<br>";
+                }
+                $dC=substr($descrCont, $posSaler1, strlen($descrCont));
+                if(!$posSaler2=strpos($dC, "<div>")){
+                    $descrErr.="нет posSaler2<br>";
+                }
+                $dC=substr($dC, $posSaler2+5, strlen($descrCont));
+                if(!$posSaler3=strpos($dC, "</div>")){
+                    $descrErr.="нет posSaler3<br>";
+                }
+
+                if(!$posDescr1=strpos($descrCont, "class=\"item-description\"")){
+                    $descrErr.="нет posDescr1<br>";
+                }
+                $descrCont=substr($descrCont, $posDescr1+25, strlen($descrCont));
+                if(!$posDescr2=strpos($descrCont, "</div>")){
+                    $descrErr.="нет posDescr2<br>";
+                }
+                if($descrErr==null){
+                    $parseRD['prodSaler']=substr($dC, 0, $posSaler3);
+                    $parseRD['prodDescr']=mysql_real_escape_string(substr($descrCont, 0, $posDescr2));
+                    print_r($parseRD);
+                    echo"<hr>";
+                }else{
+                    file_put_contents($_SERVER["DOCUMENT_ROOT"]."/parse-avito/".date_format($CurDate,"YmdHis").$parseRD['prodRef'].".html", $descrContErr);
+                }
+            }else{
+                $parseLog[$key]['Esc'].="невозможно открыть страницу товара";
+            }
+        }
+        if($parseLog[$key]['totalCnt']>MAX_TOTAL_CNT){
+            $parseLog[$key]['Esc'].="max totalCnt";
+            break;
+        }
+        if($parseLog[$key]['sussCnt']>MAX_SUSS_CNT){
+            $parseLog[$key]['Esc'].="max sussCnt";
+            break;
+        }
+    }else{
+        $parseLog[$key]['Esc'].="невозможно открыть страницу категории";
+    }
+}
+print_r($parseLog);
