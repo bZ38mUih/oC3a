@@ -14,8 +14,6 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/gallery/css/mainView.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/ad/css/ad-default.css' type='text/css' media='screen, projection'/>".
-    "<script src='/site/signIn/js/extAuth.js'></script>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<script src='/site/js/list-view.js'></script>".
     "<link rel='stylesheet' href='/site/css/listView.css' type='text/css' media='screen, projection'/>".

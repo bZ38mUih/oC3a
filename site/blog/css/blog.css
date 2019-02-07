@@ -10,8 +10,8 @@ h2{
     padding-bottom: 0.5em;
 }
 .art-header{
-    background-color: navy;
-    color: white;
+    font-weight: bold;
+    color: midnightblue;
     width: 90%;
     padding: 1.5em 5%;
     margin-bottom: 2em;
@@ -27,16 +27,16 @@ h2{
     width: 4em;
 }
 .art-header-descr{
-    border: 1px solid navy;
     display: inline-block;
     width: 70%;
     vertical-align: middle;
 }
 .art-header-descr a{
-    color: orange;
+    color: darkgoldenrod;
     font-size: 1.5em;
 }
 .art-header-descr div{
+    font-style: italic;
     font-size: 0.8em;
     border: 1px dotted gray;
     padding: 2%;
