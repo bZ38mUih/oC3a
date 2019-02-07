@@ -102,7 +102,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
     "<li><a href='https://www.avito.ru/ivanovo/planshety_i_elektronnye_knigi' target='_blank' title='авито иваново планшеты'>https://www.avito.ru/ivanovo/planshety_i_elektronnye_knigi</a></li>".
     "<li><a href='https://www.avito.ru/ivanovo/telefony' target='_blank' title='авито иваново телефоны'>https://www.avito.ru/ivanovo/telefony</a></li>".
     "</ul>".
-    "Подробнее о работе скрипта можно прочитать в моем блоге <a href='/blog/parse-ad-avito' title='читать статью'>Парсинг объявлений Авито</a></div>".
+    "Подробнее о работе скрипта можно прочитать в моем блоге <a href='/dev/parse-ad-avito' title='читать статью'>Парсинг объявлений Авито</a></div>".
     "<div class='parseLog'>"."<h2>Обновлено: ".$adLog_row['logDate']."</h2>".
     "<div class='parseLog-controls'><label>Глубина: <input type='number' id='logDepth' min='1' max='10' value='1'></label>".
     "<input type='button' value='showLog' onclick='showLog()'>".
