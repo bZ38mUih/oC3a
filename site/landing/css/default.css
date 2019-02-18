@@ -48,11 +48,6 @@ h2{
     margin: 1em 2% 0 2%;
     text-shadow: 2px 2px 2px white, -2px 2px 2px white, -2px -2px 2px white, 2px -2px 2px white;
 }
-/*
-.contentBlock-wrap.hfLinks{
-    padding-bottom: 1em;
-}
-*/
 .contentBlock-frame.dark h2{
     border-bottom: none;
     text-align: center;
@@ -106,15 +101,6 @@ h2{
 .contentBlock-frame.dark .list-item{
     padding: 0.7em 0 2em 0;
 }
-/*
-.contentBlock-frame.dark .contentBlock-wrap.portf{
-    text-align: center;
-}
-.contentBlock-frame.dark .contentBlock-wrap.portf .list-item{
-    width: 50%;
-    display: inline-block;
-}
-*/
 .dark .list-item-text a{
     color: #ffffff;
     font-size: 1.2em;
@@ -138,11 +124,10 @@ h2{
         margin-top: 10%;
         display: inline-block;
     }
-    /*
-    .contentBlock-frame.dark .contentBlock-wrap.portf .list-item{
-        width: 100%;
+    .contentBlock-frame:not(.dark) .list-item-img img{
+        height: 4em;
+        width: 4em;
     }
-    */
     h2{
         width: 98%;
         padding-left: 2%;

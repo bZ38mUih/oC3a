@@ -41,7 +41,7 @@ $appRJ->response['result'].= "<div class='list-item all'>".
     "<h2>Свежая статья</h2>".
     "<img src='".ARTS_IMG_PAPH."/".$devArtMain['art_id']."/preview/".$devArtMain['artImg']."' alt='artCover'>".
     "<div><a href='/dev/".$devArtMain['artAlias']."' title='Читать статью'>".$devArtMain['artName']."</a>".
-    "<span>".$devArtMain['artMeta']."</span></div></div></div></div></div>";
+    "<span>".$devArtMain['artMeta']."</span></div></div></div></div></div></div>";
 
 $appRJ->response['result'].="<div class='contentBlock-frame dark'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><h2>Полезные ссылки</h2>".

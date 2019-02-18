@@ -93,7 +93,7 @@ if($selectSubCat_count>0){
     }
     $appRJ->response['result'].= "</div>";
 }
-$appRJ->response['result'].= "</div></div></div>";
+$appRJ->response['result'].= "</div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");
