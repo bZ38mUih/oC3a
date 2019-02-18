@@ -113,6 +113,12 @@ h2{
 .dark .list-item-text span{
     color: lightgray;
 }
+@media only screen and (max-width : 1024px) and (orientation : portrait){
+    .contentBlock-frame:not(.dark) .list-item-img img{
+        height: 70%;
+        width: 70%;
+    }
+}
 @media only screen and (max-width : 1024px)  and (orientation : portrait), only screen and (max-width : 960px){
     .contentBlock-table-left, .contentBlock-table-right{
         width: 96%;
@@ -123,10 +129,6 @@ h2{
         width: 40%;
         margin-top: 10%;
         display: inline-block;
-    }
-    .contentBlock-frame:not(.dark) .list-item-img img{
-        height: 4em;
-        width: 4em;
     }
     h2{
         width: 98%;

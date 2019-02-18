@@ -6,7 +6,7 @@ class tablesClass
     {
         $this->result['log'] = null;
         $this->result['err'] = false;
-        foreach (glob($_SERVER["DOCUMENT_ROOT"]."/admin/tables/tablesList/*_dt.php") as $filename){
+        foreach (glob($_SERVER["DOCUMENT_ROOT"].TABLES_LIST."*_dt.php") as $filename){
             $this->tables[substr(basename($filename),0, strlen(basename($filename))-4)]['list']=true;
         }
     }

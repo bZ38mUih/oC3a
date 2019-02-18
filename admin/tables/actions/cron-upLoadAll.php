@@ -14,7 +14,7 @@ require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_clas
 require_once("/home/p264533/public_html/rightjoint.ru/admin/tables/tableClass.php");
 $tables = new tablesClass();
 
-foreach (glob("/home/p264533/public_html/rightjoint.ru/admin/tables/tablesList/*_dt.php") as $filename){
+foreach (glob("/home/p264533/public_html/rightjoint.ru/data/db/tablesList/*_dt.php") as $filename){
     $tables->tables[substr(basename($filename),0, strlen(basename($filename))-4)]['list']=true;
 }
 
