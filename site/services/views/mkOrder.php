@@ -85,10 +85,10 @@ if($_SESSION['bucket']['total']>=100){
         $appRJ->response['result'].="active";
     }
     $appRJ->response['result'].="'>когда необходимо официально оформить работы, кроме стоимости услуг".
-        " заказчик обязуется возместить исполнителю все расходы, понесенные им при оформлением деятельности по оказанию заказанных ".
+        " заказчик обязуется возместить исполнителю все расходы, понесенные им при оформлении деятельности по оказанию заказанных ".
         "услуг включая налоги, штрафы и т.п. в соответсвии с законодательством РФ.</div></div>".
         "<input type='hidden' name='sum' value='".$_SESSION["bucket"]["total"]."' data-type='number' min='100' max='10000'>".
-        "<label>Коментарий к переводу (необязательно)</label><textarea name='comment' rows='3'>";
+        "<label>Комментарий к переводу (необязательно)</label><textarea name='comment' rows='3'>";
     if($Order_rd->result["comment"]) {
         $appRJ->response['result'].=$Order_rd->result["comment"];
     }
@@ -109,7 +109,7 @@ if($_SESSION['bucket']['total']>=100){
     $appRJ->response['result'].=">Банковской картой</label>".
         "<input type='button' value='Далее' onclick='mkOrder()'>".
         "</form>".
-        "<div class='att'><strong>Внимание:</strong> узнавайте <a href='/status'>возможность</a> выполнения услуг по телефону или ".
+        "<div class='att'><strong>Внимание!:</strong> узнавайте <a href='/status'>возможность</a> выполнения услуг по телефону или ".
         "e-Mail перед оплатой.</div>".
         "<div class='nb'><strong>Примечание:</strong> платеж осуществляется через шлюз money.yandex.ru. Далее укажите ".
         "ваш E-Mail, на него в письме придет ссылка для отслеживания статуса заказа. Номер вашего мобильного ".
