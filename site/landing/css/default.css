@@ -19,7 +19,7 @@
     display: inline-block;
     width: 60%;
 }
-.contentBlock-table-right div{
+.contentBlock-table-right .list-item-text{
     width: 100%;
     text-align: center;
     position: relative;
@@ -34,7 +34,7 @@
     vertical-align: bottom;
     text-shadow: 3px 3px 2px white, -3px 3px 2px white, -3px -3px 2px white, 3px -3px 2px white;
 }
-.contentBlock-table-right div span{
+.contentBlock-table-right .list-item-text span{
     text-shadow: 2px 2px 2px white, -2px 2px 2px white, -2px -2px 2px white, 2px -2px 2px white;
 }
 h2{
@@ -74,10 +74,10 @@ h2{
     vertical-align: middle;
 }
 .list-item-img img{
-    height: 3em;
-    width: 3em;
+    height: 3.5em;
+    width: 3.5em;
 }
-.list-item-text{
+.contentBlock-table-left .list-item-text{
     text-align: left;
     display: inline-block;
     width: 70%;
@@ -101,17 +101,28 @@ h2{
 .contentBlock-frame.dark .list-item{
     padding: 0.7em 0 2em 0;
 }
-.dark .list-item-text a{
+.dark .contentBlock-table-left .list-item-text a{
     color: #ffffff;
     font-size: 1.2em;
 }
-.list-item-text span, .contentBlock-table-right div span{
+.contentBlock-table-left .list-item-text span, .contentBlock-table-right .list-item-text span{
     display: block;
     width: 100%;
     font-size: 0.9em;
 }
-.dark .list-item-text span{
+.dark .contentBlock-table-left .list-item-text span{
     color: lightgray;
+}
+.line{
+    font-size: 0.8em;
+    text-align: left;
+}
+.contentBlock-table-right .line{
+    text-align: right;
+    position: absolute;
+    top: 3.5em;
+    right: 2%;
+    width: 96%;
 }
 @media only screen and (max-width : 1024px) and (orientation : portrait){
     .contentBlock-frame:not(.dark) .list-item-img img{
@@ -135,7 +146,7 @@ h2{
         padding-left: 2%;
         margin-left: 0;
     }
-    .contentBlock-table-right div{
+    .contentBlock-table-right .list-item-text{
         display: block;
         position: relative;
     }

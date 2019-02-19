@@ -34,13 +34,25 @@ while ($slDevArt_row=$DB->doFetchRow($slDevArt_res)){
         "<img src='".ARTS_IMG_PAPH."/".$slDevArt_row['art_id']."/preview/".$slDevArt_row['artImg']."' alt='artCover'>".
         "</div><div class='list-item-text'>".
         "<a href='/dev/".$slDevArt_row['artAlias']."' title='Читать статью'>".$slDevArt_row['artName']."</a>".
-        "<span>".$slDevArt_row['artMeta']."</span></div></div>";
+        "<span>".$slDevArt_row['artMeta']."</span>";
+    if($slDevArt_row['refreshDate']){
+        $appRJ->response['result'].= "<div class='line'>Обновлено: <b>".$slDevArt_row['refreshDate']."</b></div>";
+    }else{
+        $appRJ->response['result'].= "<div class='line'>Опубликовано: <b>".$slDevArt_row['pubDate']."</b></div>";
+    }
+
+    $appRJ->response['result'].= "</div></div>";
 }
 $appRJ->response['result'].= "<div class='list-item all'>".
     "<a href='/blog'>все статьи</a></div></div><div class='contentBlock-table-right'>".
-    "<h2>Свежая статья</h2>".
-    "<img src='".ARTS_IMG_PAPH."/".$devArtMain['art_id']."/preview/".$devArtMain['artImg']."' alt='artCover'>".
-    "<div><a href='/dev/".$devArtMain['artAlias']."' title='Читать статью'>".$devArtMain['artName']."</a>".
+    "<h2>Свежая статья</h2>";
+if($devArtMain['refreshDate']){
+    $appRJ->response['result'].= "<div class='line'>Обновлено: <b>".$devArtMain['refreshDate']."</b></div>";
+}else{
+    $appRJ->response['result'].= "<div class='line'>Опубликовано: <b>".$devArtMain['pubDate']."</b></div>";
+}
+$appRJ->response['result'].= "<img src='".ARTS_IMG_PAPH."/".$devArtMain['art_id']."/preview/".$devArtMain['artImg']."' alt='artCover'>".
+    "<div class='list-item-text'><a href='/dev/".$devArtMain['artAlias']."' title='Читать статью'>".$devArtMain['artName']."</a>".
     "<span>".$devArtMain['artMeta']."</span></div></div></div></div></div></div>";
 
 $appRJ->response['result'].="<div class='contentBlock-frame dark'><div class='contentBlock-center'>".
