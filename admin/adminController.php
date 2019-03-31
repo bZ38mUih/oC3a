@@ -7,7 +7,7 @@
  */
 $adminModule = null;
 
-require_once($_SERVER["DOCUMENT_ROOT"]."/source/_conf/admin/modules_conf.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/modules_conf.php");
 
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]!=null){
     $adminModule=$appRJ->server['reqUri_expl'][2];

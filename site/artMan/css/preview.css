@@ -63,6 +63,10 @@ span.dateVal{
     font-family: "Courier New";
     font-size: 0.8em;
     overflow-x: scroll;
+
+}
+.example::-webkit-scrollbar {
+    width: 0;
 }
 .example-img{
     padding: 1em 5% 1em 5%;

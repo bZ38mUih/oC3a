@@ -1,0 +1,88 @@
+<h3>Область применения</h3>
+<p>
+    Практически любому разработчику web-приложений приходится периодически вносить изменения в базу данных, выполнять
+    специфический поиск или обновление записей, предварительно сделав резервные копии таблиц. Если вы арендуете хостинг,
+    то наиболее удобным способом работать с базой данных удаленно будет через web-интерфейс. Хотя админок для работы
+    с базами данных на php существует довольно много, я решил сделать собственный, понятный и простой проект без
+    лишний опций ориентируясь только на собственный опыт что нужно для web-разработчика.
+</p>
+<h3>Установка</h3>
+<p>
+    Скачать проект можно по ссылке
+    <a href='https://github.com/rightJoint/simple-php-mysql-admin'>https://github.com/rightJoint/simple-php-mysql-admin</a>
+    или клонировав репозиторий с помощью git.
+<div class='example'>
+    <p>
+        git clone https://github.com/rightJoint/simple-php-mysql-admin sa.local
+    </p>
+</div>
+Для работы используется библитотеки javascript, скрипты они должны размещаться по пути <b>/source/js</b>, скачать их
+можно <a href='/data-arts/arts/23/js.zip'>с этого стайта</a>
+</p>
+<h3>Настройка .htaccess</h3>
+<p>
+    Для работы с админкой необходимо корректно настроить файл .thaccess в корне проекта: запретить доступ к служебным
+    каталогам и файлам и выполнить переадресацию всех запросов на index.php
+<div class='example'>
+    <p>
+        RewriteEngine on<br>
+        RewriteBase /<br><br>
+
+        RewriteRule ^data/db(.*)$ ?forbidden=yes<br>
+        RewriteRule ^source/_conf(.*)$ ?forbidden=yes<br>
+        RewriteRule ^(.*)views(.*)$ ?404=yes<br>
+        RewriteRule ^(.*)actions(.*)$ ?404=yes<br><br>
+
+        RewriteCond %{REQUEST_FILENAME} !-f<br><br>
+
+        DirectoryIndex index.php<br>
+        RewriteRule . index.php [L]<br>
+    </p>
+</div>
+</p>
+<h3>Конфигурация:</h3>
+<p>
+    Файл с именами и зашифрованными паролями пользователей админки должен располагаться по пути:
+    <b>/source/_conf/admin/adminUsers.php</b>
+    По умолчанию логин <b>admin</b> и пароль <b>root</b>, пример файла:
+<div class='example'>
+    <p>
+        {"admin":"$1$2m\/.hl..$IwaAYs5hJiIIqG9efaqA61"}
+    </p>
+</div>
+</p>
+<p>
+    Файл с настройками для подключения к серверу и базе данных должен размещаться по пути <b>/source/_conf/db_conn.php</b>
+    и иметь следующий вид:
+<div class='example'>
+    <p>
+        {"CONN_LOC":"localhosts","CONN_USER":"root","CONN_PW":"","CONN_DB":"my_db"}
+    </p>
+</div>
+
+<h3>Работа с админкой</h3>
+<div class="example-img">
+    <img src="/data-arts/arts/23/admin-server.jpg" height="90%" width="90%">
+    <span>Модуль <b>сервер</b></span>
+</div>
+<p>
+    После авторизации по адресу <b>/admin</b> вам будет доступен инретфейс админки, настройте подключения к вашему
+    sql-серверу и базе данных с помощью интерфейса или изменив конфигурационный файл <b>db_conn.php</b>
+</p>
+Интерфейс и назначение каждого модуля админки понятны и описывать их не имеет смысла. После успешного подключения
+к серверу, в админке будет доступен sql чтоб портировать запрос на создание базы данных.
+<div class='example'>
+    <p>
+        CREATE DATABASE my_db CHARACTER SET utf8 COLLATE utf8_general_ci
+    </p>
+</div>
+<h5>Работа с таблицами</h5>
+<p>
+    Удалять, очищать, копировать и вставлять таблицы можно с помощью модуля <b>admin/tables</b>
+    Для создания таблиц или портируйте запрос в базу данных или используйте готовые скрыпты которые в этом примере
+    расположены по пути <b>/data/db/tablesList</b>
+<div class="example-img">
+    <img src="/data-arts/arts/23/admin-tables.jpg" height="90%" width="90%">
+    <span>модуль <b>таблицы</b></span>
+</div>
+</p>
