@@ -9,6 +9,36 @@ if(mysql_num_rows($wdInfo_res)==1){
         $wdInfo.="описание не задано";
     }
     $wdInfo.="</div>";
+    /*service statistics-->*/
+    $srvStat=null;
+    $srvStat="<div class='wip-stat ta-left'>Частота встречаемости: ";
+    $expCnt_txt="select count(distinct wd_id) as expCnt from wdSrv_dt";
+    $expCnt_res=$DB->doQuery($expCnt_txt);
+    $expCnt_row=$DB->doFetchRow($expCnt_res);
+
+    $expFreq_txt="select count(distinct wd_id) as expFreq from wdSrv_dt where sName='".$pVal."'";
+    $expFreq_res=$DB->doQuery($expFreq_txt);
+    $expFreq_row=$DB->doFetchRow($expFreq_res);
+
+    $srvStat.="в ".$expFreq_row['expFreq']." случаях из ".$expCnt_row['expCnt'];
+
+    $winStat_txt="select count(wdSrv_dt.wd_id) as winStat, wdOS_dt.osVal, wdOsList_dt.osDescr from wdOS_dt inner join wdSrv_dt
+on wdSrv_dt.wd_id=wdOS_dt.wd_id left join wdOsList_dt on wdOS_dt.osVal=wdOsList_dt.osVal
+where wdOS_dt.osName='BuildNumber' and  wdSrv_dt.sName='".$pVal."' group by wdOS_dt.osVal order by wdOS_dt.osVal";
+
+    $winStat_res=$DB->doQuery($winStat_txt);
+    while($winStat_row=$DB->doFetchRow($winStat_res)){
+        $srvStat.="<div>";
+        if($winStat_row['osDescr']){
+            $srvStat.="<a href='/handbook/win-system-info/BuildNumber/".$winStat_row['osVal']."' title='подробнее о версии сборки'>".
+            "сборка ".$winStat_row['osVal']."</a>";
+        }else{
+            $srvStat.="<span>сборка ".$winStat_row['osVal']."</span>";
+        }
+        $srvStat.=" - ".$winStat_row['winStat']." раз.</div>";
+    }
+    $srvStat.="</div>";
+    /*service statistics<--*/
 }else{
     $appRJ->errors['404']['description']="invalid sName";
     $appRJ->throwErr();
@@ -20,7 +50,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
     "<meta name='description' content='Описание службы ".$wdInfo_row['sName']."'/>".
-    "<title>Справочник</title>".
+    "<title>".$wdInfo_row['sName']." - сведения</title>".
     "<link rel='SHORTCUT ICON' href='/site/handbook/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
@@ -46,8 +76,9 @@ $appRJ->response['result'].="</div>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].="<div class='art-content'>";
 $appRJ->response['result'].= "<div class='wi-results ta-left'>";
-$appRJ->response['result'].= $wdInfo."</div></div>";
-$appRJ->response['result'].= "</div></div></div>";
+$appRJ->response['result'].= $wdInfo."</div></div></div>".$srvStat;
+require_once($_SERVER["DOCUMENT_ROOT"] . "/site/handbook/views/wpi/wpiNote.php");
+$appRJ->response['result'].= "</div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

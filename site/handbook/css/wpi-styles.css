@@ -137,3 +137,15 @@ span.pName-list.active::after{
 .wi-block .wi-descr a{
     word-wrap: break-word;
 }
+.wip-stat{
+    padding: 0 5% 2em 8%;
+}
+.wpiJoin {
+    padding: 0 5% 2em 7%;
+    font-size: 0.8em;
+    color: darkgreen;
+}
+.wip-stat div{
+    padding-top: 0.5em;
+}
+
