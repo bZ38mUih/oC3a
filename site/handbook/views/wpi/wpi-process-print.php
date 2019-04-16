@@ -52,7 +52,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
     "<meta name='description' content='Описание процесса ".$wdInfo_row['pName']."'/>".
-    "<title>Справочник</title>".
+    "<title>".$wdInfo_row['pName']." - сведения</title>".
     "<link rel='SHORTCUT ICON' href='/site/handbook/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
