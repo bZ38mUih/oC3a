@@ -19,11 +19,19 @@ if($_POST){
         and isset($_POST['photo_id']) and $_POST['photo_id']!=null) {
         $appRJ->response['format']='ajax';
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/actions/glMan-delPhotoAttach.php");
+    }elseif(isset($_POST['flagField']) and $_POST['flagField']=='delAlbVideoAttach'
+        and isset($_POST['video_id']) and $_POST['video_id']!=null) {
+        $appRJ->response['format']='ajax';
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/actions/glMan-delVideoAttach.php");
     }
     elseif(isset($_POST['flagField']) and $_POST['flagField']=='updateAlbAttach'
         and isset($_POST['photo_id']) and $_POST['photo_id']!=null) {
         $appRJ->response['format']='ajax';
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/actions/glMan-updatePhotoAttach.php");
+    }elseif(isset($_POST['flagField']) and $_POST['flagField']=='updateVideoAttach'
+        and isset($_POST['video_id']) and $_POST['video_id']!=null) {
+        $appRJ->response['format']='ajax';
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/actions/glMan-updateVideoAttach.php");
     }
     elseif (isset($_POST['cat_id']) and $_POST['cat_id']!==null){
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/actions/glMan-editCatImg.php");
@@ -35,6 +43,10 @@ if($_POST){
         $_POST['fieldId']!=null){
         $appRJ->response['format']='ajax';
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/actions/glMan-addPhotos.php");
+    }elseif (isset($_POST['fieldName']) and $_POST['fieldName']=='video' and isset($_POST['fieldId']) and
+        $_POST['fieldId']!=null and isset($_POST['videoName']) and $_POST['videoName']!=null){
+        $appRJ->response['format']='ajax';
+        require_once ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/actions/glMan-addVideo.php");
     }
     else{
 
@@ -84,6 +96,8 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['re
             }
             elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'photo'){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/gallery/views/glMan-photoAttachments.php");
+            }elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'video'){
+                require_once ($_SERVER['DOCUMENT_ROOT']."/site/gallery/views/glMan-videoAttachments.php");
             }elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'access'){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/gallery/views/glMan-editAlbumAccess.php");
             }elseif (isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4] == 'remove'){

@@ -10,6 +10,11 @@ if(isset($appRJ->server['reqUri_expl'][4]) and strtolower($appRJ->server['reqUri
     $appRJ->response['result'].= " class='active'";
 }
 $appRJ->response['result'].= ">Фото</a>".
+    "<a href='/gallery/glManager/editAlbum/video?alb_id=".$_GET['alb_id']."'";
+if(isset($appRJ->server['reqUri_expl'][4]) and strtolower($appRJ->server['reqUri_expl'][4])=='video'){
+    $appRJ->response['result'].= " class='active'";
+}
+$appRJ->response['result'].= ">Видео</a>".
     "<a href='/gallery/glManager/editAlbum/access?alb_id=".$_GET['alb_id']."'";
 if(isset($appRJ->server['reqUri_expl'][4]) and strtolower($appRJ->server['reqUri_expl'][4])=='access'){
     $appRJ->response['result'].= " class='active'";

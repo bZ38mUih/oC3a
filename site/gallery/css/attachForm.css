@@ -168,6 +168,15 @@ form
         display: inline-block;*/
     }
 }
+.photo-item .video-attach{
+    width: 30%;
+    display: inline-block;
+}
+.photo-item .video-attach video{
+    width: 7em;
+}
+
+
 /*
 .newItem a img
 {  height: 1em;
