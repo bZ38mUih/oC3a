@@ -1,0 +1,119 @@
+h4.tricks{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.loading-animation {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "montserrat", sans-serif;
+}
+
+.loading-animation .loading-test{
+    width: 200px;
+    height: 200px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border-top: 10px solid #e74c3c;
+    position: relative;
+    animation: a1 2s linear infinite;
+}
+
+.loading-animation .loading-test::before, .loading-test::after{
+    content: "";
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    top: -10px;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+.loading-animation .loading-test::before{
+    border-top: 10px solid #e67e22;
+    transform: rotate(120deg);
+}
+
+.loading-animation .loading-test::after{
+    border-top: 10px solid #3498db;
+    transform: rotate(240deg);
+}
+
+.loading-animation .loading-test span{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    line-height: 200px;
+    animation: a2 2s linear infinite;
+}
+
+@keyframes a1 {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes a2 {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.layered-img-hover{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    overflow: hidden;
+}
+
+.layered-img-hover .box{
+    position: relative;
+    width: 360px;
+    height: 640px;
+    margin-top: 150px;
+    background: rgba(0,0,0,.1);
+    transform: rotate(-30deg) skew(25deg) scale(.8);
+}
+
+.layered-img-hover .layer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("/data-arts/arts/24/Screenshot_20190703-171425_Samsung%20Experience%20Home.jpg");
+    transition: 0.5s;
+    background-size: cover;
+}
+
+.layered-img-hover .box:hover .layer:nth-child(4){
+    transform: translate(160px, -160px);
+    opacity: 1;
+}
+
+.layered-img-hover .box:hover .layer:nth-child(3){
+    transform: translate(120px, -120px);
+    opacity: 0.8;
+}
+
+.layered-img-hover .box:hover .layer:nth-child(2){
+    transform: translate(80px, -80px);
+    opacity: 0.6;
+}
+
+.layered-img-hover .box:hover .layer:nth-child(1){
+    transform: translate(40px, -40px);
+    opacity: 0.4;
+}
