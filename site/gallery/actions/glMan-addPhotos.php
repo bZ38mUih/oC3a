@@ -31,7 +31,7 @@ if($Alb_rd->copyOne()){
                 $imageLib=new imageLib();
                 $imageLib->createPreview(
                     $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/photoAttach/".$glPhoto->result['photoLink'],
-                    $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/photoAttach/preview/".$glPhoto->result['photoLink'], 300, 300);
+                    $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/photoAttach/preview/".$glPhoto->result['photoLink'], 600, 600);
                 /*<--create preview*/
                 if($glPhoto->putOne()){
                     $editImg['result'] = true;

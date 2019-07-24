@@ -26,7 +26,7 @@ if($Cat_rd->copyOne()){
                 $imageLib=new imageLib();
                 $imageLib->createPreview(
                     $_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/".$Cat_rd->result['catImg'],
-                    $_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/preview/".$Cat_rd->result['catImg'], 150, 150);
+                    $_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/preview/".$Cat_rd->result['catImg'], 600, 600);
                 /*<--create preview*/
                 if($Cat_rd->updateOne()){
                     $editImg['result'] = true;

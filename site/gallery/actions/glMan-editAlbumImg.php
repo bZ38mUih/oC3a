@@ -28,7 +28,7 @@ if($Alb_rd->copyOne()){
                 $imageLib=new imageLib();
                 $imageLib->createPreview(
                     $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/".$Alb_rd->result['albumImg'],
-                    $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/preview/".$Alb_rd->result['albumImg'], 150, 150);
+                    $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/preview/".$Alb_rd->result['albumImg'], 600, 600);
                 /*<--create preview*/
                 if($Alb_rd->updateOne()){
                     $editImg['result'] = true;

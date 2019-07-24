@@ -8,16 +8,17 @@
 .mainMenu a
 {
     color: midnightblue;
+    font-weight: bold;
     margin-left: 1em;
     margin-right: 1em;
-    font-size: 1.2em;
+    font-size: 0.8em;
     display: inline-block;
     text-decoration: none;
 }
 .mainMenu img
 {
-    height: 1.2em;
-    width: 1.2em;
+    height: 1.8em;
+    width: 1.8em;
     vertical-align: middle;
 }
 

@@ -66,7 +66,7 @@ $appRJ->response['result'].= "</div><div class='newItem'>".
 if($subjCount>0){
     $appRJ->response['result'].= "<div class='item-line caption'>".
         "<div class='item-line-id'>album_id</div>".
-        "<div class='item-line-img'>albumImg</div>".
+        "<div class='item-line-img'>Image</div>".
         "<div class='item-line-name2'>albumName</div>".
         "<div class='item-line-alias2'>catName</div>".
         "<div class='item-line-flag'>active</div>".
@@ -83,6 +83,9 @@ if($subjCount>0){
                 $appRJ->response['result'].="style='transform: rotate(".$selectSubj_row['transAlbImg']."deg)'";
             }
             $appRJ->response['result'].=">";
+        }elseif($selectSubj_row['catImg']){
+            $appRJ->response['result'].= "<img src='".GL_CATEG_IMG_PAPH.$selectSubj_row['glCat_id']."/preview/".
+                $selectSubj_row['catImg']."'>";
         }else{
             $appRJ->response['result'].= "<img src='/data/default-img.png'>";
         }

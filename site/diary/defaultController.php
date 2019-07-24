@@ -6,21 +6,17 @@ if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
 }else{
 
 }
-function dec_enc($action, $string) {
+function dec_enc($action, $string, $noteDate) {
     $output = false;
-
     $encrypt_method = "AES-256-CBC";
-    //$secret_key = 'This is my secret key';
-    $secret_key = 'life is fuck 2019';
-    //$secret_iv = 'This is my secret iv';
-    $secret_iv = 'Ganja Man';
-
-    // hash
+    $DB=new DB();
+    $getKeys_qry="select * from diaryWords_dt WHERE expiredDate>='".$noteDate."' order by expiredDate limit 1";
+    $getKeys_res=$DB->doQuery($getKeys_qry);
+    $getKeys_row=$DB->doFetchRow($getKeys_res);
+    $secret_key=$getKeys_row['sK'];
+    $secret_iv=$getKeys_row['sIv'];
     $key = hash('sha256', $secret_key);
-
-    // iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
     $iv = substr(hash('sha256', $secret_iv), 0, 16);
-
     if( $action == 'encrypt' ) {
         $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
         $output = base64_encode($output);
@@ -31,15 +27,7 @@ function dec_enc($action, $string) {
 
     return $output;
 }
-/**
- * Created by PhpStorm.
- * User: AVP
- * Date: 27.11.2016
- * Time: 17:31
- */
-//session_start();
 
-//$curDate = new datetime;
 $mkDiary=null;
 function printDiarySubMenu($diaryType='daily', $curDate)
 {
@@ -92,7 +80,7 @@ function printNote($diary=null, $printForm_flag=true,$activeStyle=null)
 //echo "note_id=".$query_row["note_id"]."<br>";
                 $prNtRes.= "Дата: <label class='curDate'>".$query_row["curDate"]."</label>";
                 $prNtRes.= "Время: <label class='curTime'>".$query_row["curTime"]."</label>";
-                $prNtRes.= "<div class='dCont'>".dec_enc("decrypt", $query_row["content"])."</div>";
+                $prNtRes.= "<div class='dCont'>".dec_enc("decrypt", $query_row["content"], $query_row["noteDate"])."</div>";
                 //if ($query_row["diaryType"] == 'daily'){
                     $prNtRes.= "<a href='#'  id='".$query_row["diary_id"]."' onclick='mkDiary(".'"'.$query_row["diaryType"].'"'.", ".
                         $query_row["diary_id"].", null, this)'>добавить</a>";
@@ -275,7 +263,7 @@ elseif (isset($_POST) and $_POST != null){
         $diary->result['curTime']['val'] = null;
     }
     if (isset($_POST["content"]) and $_POST["content"] != null){
-        $diary->result["content"]["val"] = dec_enc("encrypt", $_POST["content"]);
+        $diary->result["content"]["val"] = dec_enc("encrypt", $_POST["content"], $diary->result['noteDate']['val']);
     }else{
         $diary->result['content']['err'] = "контент не задан";
     }

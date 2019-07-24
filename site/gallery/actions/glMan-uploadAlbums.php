@@ -42,7 +42,7 @@ if(file_exists($_SERVER['DOCUMENT_ROOT']."/".$_GET['uploadAlbums'])){
                             $imageLib=new imageLib();
                             $imageLib->createPreview(
                                 $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/".$Alb_rd->result['albumImg'],
-                                $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/preview/".$Alb_rd->result['albumImg'], 300, 300);
+                                $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/preview/".$Alb_rd->result['albumImg'], 600, 600);
                             /*<--create preview*/
                             if($Alb_rd->updateOne()){
                                 $appRJ->response['result'].=basename($photoFile). " -> ".$Alb_rd->result['albumImg']." - обложка успешно<br>";
@@ -61,7 +61,7 @@ if(file_exists($_SERVER['DOCUMENT_ROOT']."/".$_GET['uploadAlbums'])){
                             $imageLib=new imageLib();
                         $imageLib->createPreview(
                             $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/photoAttach/".$glPhoto->result['photoLink'],
-                            $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/photoAttach/preview/".$glPhoto->result['photoLink'], 300, 300);
+                            $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd->result['album_id']."/photoAttach/preview/".$glPhoto->result['photoLink'], 600, 600);
 
                         /*<--create preview*/
                         if($glPhoto->putOne()){
