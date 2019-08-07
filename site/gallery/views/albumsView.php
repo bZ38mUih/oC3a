@@ -67,8 +67,8 @@ if($selectAlbums_count>0){
         if($rdAccRes){
             $cntAlb++;
             $alb_view.="<div class='alb-block'><div class='alb-img'>";
-            if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
-                $selectAlbums_row['albumImg'])){
+            //if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
+            if($selectAlbums_row['albumImg']){
                 $alb_view.="<img src='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".$selectAlbums_row['albumImg']."'";
                 if($selectAlbums_row['transAlbImg']){
                     $alb_view.= "style='transform: rotate(".$selectAlbums_row['transAlbImg']."deg)'";
