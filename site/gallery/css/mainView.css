@@ -2,27 +2,91 @@
     width: 90%;
     margin-left: 5%;
 }
+
+.alb-frame-wrapper
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
 h2{
     font-size: 1.2em;
     border-bottom: 2px solid navy;
     margin: 1em 0 1em 0;
 }
-.alb-block{
+.alb-block
+{
+    position: relative;
     width: 40%;
     margin: 2%;
+    padding-bottom: 2%;
     border-radius: 0.5em;
     border: 1px solid #000000;
     display: inline-block;
 }
+/*
+.swiper-slide:nth-child(1) .alb-block
+{
+    border: 2px solid #00ff00;
+}
+
+.swiper-slide:nth-child(2) .alb-block
+{
+    border: 2px solid orange;
+}
+
+.swiper-slide:nth-child(3) .alb-block
+{
+    border: 2px solid #0000ff;
+}
+*/
+.alb-block a.alb-name{
+    width: 96%;
+    display: block;
+    font-weight: bold;
+    text-decoration: underline;
+    color: navy;
+    font-size: 1.2em;
+    margin: 3% 2% 2% 2%;
+
+}
+
+.alb-block a.viewAlb-slider
+{
+    display: inline-block;
+    font-weight: bold;
+    color: navy;
+    border: 1px solid #000000;
+    text-decoration: none;
+    padding: 0.4em;
+    margin-top: 1em;
+}
+/*
+.swiper-slide:nth-child(1) a.alb-name{
+    color: #00ff00;
+}
+
+.swiper-slide:nth-child(2) a.alb-name{
+    color: orange;
+}
+.swiper-slide:nth-child(3) a.alb-name{
+    color: #0000ff;
+}
+*/
+
 .alb-img{
     display: inline-block;
-    width: 30%;
+    width: 100%;
     vertical-align: middle;
 }
 .alb-img img{
-    height: 5em;
-    width: 5em;
+    height: 90%;
+    width: 90%;
 }
+/*
 .alb-txt{
     display: inline-block;
     width: 70%;
@@ -37,23 +101,25 @@ h2{
     color: navy;
     font-size: 1.2em;
 }
-.alb-txt .alb-descr{
+*/
+.alb-block .alb-descr{
     width: 90%;
     font-style: italic;
     color: #000000;
-    padding: 0.5em;
+    padding: 2%;
     border: 1px dotted #c0c0c0;
-    margin: 0.5em 0 0.5em 0;
+    margin: 3%;
 }
-.alb-txt .alb-info{
+.alb-block .alb-info{
     width: 100%;
     font-size: 0.8em;
     text-align: left;
+    padding-left: 0.5em;
 }
-.alb-txt .alb-info a{
+.alb-block .alb-info a{
     color: #008000;
 }
- span.flName{
+span.flName{
     font-weight: bold;
     color: darkslategray;
 }
@@ -115,9 +181,10 @@ span.flVal{
     color: navy;
     display: block;
 }
+
 @media only screen and (max-width : 1024px){
     .alb-block{
-        width: 90%;
+        width: 50%;
         border: 1px solid #000000;
         margin: 2% 0 5% 0;
     }
