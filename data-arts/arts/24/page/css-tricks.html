@@ -12,7 +12,80 @@
 </p>
 <h3>Примеры CSS3</h3>
 <p>Все нижеприведенные CSS эффекты были скопированы мной из различных источников в которых подробно показано как
-они создавались.</p>
+    они создавались.</p>
+
+<h4 class="tricks">3D Responsive Touch Slider Using Html CSS & Swiper.js</h4>
+<script src="/data-arts/arts/24/swiper.min.js"></script>
+<link rel='stylesheet' href="/data-arts/arts/24/swiper.min.css">
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+
+            <div class="card">
+                <div class="sliderText">
+                    <h3>Slide One</h3>
+                </div>
+                <div class="content">
+                    <p>
+                        bla-bla-bla - 1
+                    </p>
+                    <a href="#">read more</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+
+            <div class="card">
+                <div class="sliderText">
+                    <h3>Slide Two</h3>
+                </div>
+                <div class="content">
+                    <p>
+                        bla-bla-bla - 2
+                    </p>
+                    <a href="#">read more</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+
+            <div class="card">
+                <div class="sliderText">
+                    <h3>Slide Three</h3>
+                </div>
+                <div class="content">
+                    <p>
+                        bla-bla-bla - 3
+                    </p>
+                    <a href="#">read more</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+            rotate: 30,
+            stretch: 0,
+            depth: 200,
+            modifier: 1,
+            slideShadows : true,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+        },
+    });
+</script>
+<a href="https://www.youtube.com/watch?v=tfrXTp8muUw&feature=youtu.be">
+    скопировано с https://www.youtube.com/watch?v=tfrXTp8muUw&feature=youtu.be</a>
+
 <h4 class="tricks">loading animation</h4>
 <div class="loading-animation">
     <div class="loading-test"><span>Loading...</span></div>
@@ -42,4 +115,4 @@
 <a href="https://youtu.be/w0V4HAYYCbU">скопировано с https://youtu.be/w0V4HAYYCbU</a>
 <h3>Выводы CSS3</h3>
 <p>С помощью SS3 можно действительно очень красиво оформить web-станицу и добавить
-на нее анимацию.</p>
+    на нее анимацию.</p>
