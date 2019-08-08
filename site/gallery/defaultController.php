@@ -9,6 +9,11 @@ if ($_POST['setLike'] and $_POST['setLike']!=null){
 elseif(isset($_GET['writeComment']) and $_GET['writeComment']=='true'){
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/actions/writeComments.php");
 }
+/*test-->*/
+elseif(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=='test') {
+    require_once ($_SERVER['DOCUMENT_ROOT']."/site/gallery/test/testView.php");
+}
+/*test<--*/
 elseif(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]!=null){
     if(strtolower($appRJ->server['reqUri_expl'][2])=="glmanager"){
         if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
