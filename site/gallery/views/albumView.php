@@ -228,7 +228,7 @@ $appRJ->response['result'].= "<title>Галерея</title>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/gallery/css/mainView.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/gallery/css/alb-block-view2.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/gallery/css/album-style.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<script src='/site/gallery/js/album-view.js'></script>".

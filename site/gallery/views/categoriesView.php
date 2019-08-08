@@ -66,7 +66,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/gallery/css/mainView.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/gallery/css/alb-block-view2.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>";
