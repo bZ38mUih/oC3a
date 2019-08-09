@@ -7,6 +7,7 @@ if($_SESSION['user_id']){
         "<textarea name='yCm' id='yCm'></textarea></div><div class='cfForm-cp ta-right'>".
         "<input type='button' value='Написать' onclick='writeCom(".'"new"'.")'></div></form>";
 }else{
-    $tmpRes['text'].= "<a href='/signIn' class='signIn ta-left'><img src='/site/signIn/img/logo.png'>Авторизуйтесь".
-        " для написания отзыва</a>";
+    $authRefAnimate_val="Вы сможете написать отзыв и поставить оценку";
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/signIn/views/authRefAnimate.php");
+    $tmpRes['text'].=$authRefAnimate_txt;
 }

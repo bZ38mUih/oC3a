@@ -16,7 +16,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/gallery/css/mainView.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/ad/css/ad-default.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/signIn/css/authRefAnimate.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/signIn/js/extAuth.js'></script>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
@@ -158,7 +158,12 @@ foreach($catArr as $key=>$value){
 }
 $appRJ->response['result'].= "<div class='nav-frame'><div class='toCategory'>".
     "<a href='/gallery/category/'>Все категории (".$cntCat.")</a></div></div>";
-require_once($_SERVER['DOCUMENT_ROOT']."/site/ad/views/default.php");
+
+require_once($_SERVER['DOCUMENT_ROOT']."/site/signIn/views/authRefAnimate.php");
+$appRJ->response['result'].=$authRefAnimate_txt;
+
+
+
 $appRJ->response['result'].= "</div></div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");

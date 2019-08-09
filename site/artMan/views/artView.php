@@ -51,6 +51,7 @@ if($artByAlias_row['allowCm']){
         "<script src='/site/signIn/js/extAuth.js'></script>".
         "<script src='/source/js/tinymce/js/tinymce/tinymce.min.js'></script>";
 }
+$appRJ->response['result'].= "<link rel='stylesheet' href='/site/signIn/css/authRefAnimate.css' type='text/css' media='screen, projection'/>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }

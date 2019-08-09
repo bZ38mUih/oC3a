@@ -20,9 +20,12 @@
     display: inline-block;
 }
 .auth-ref-animate a{
+    text-align: center;
     color: navy;
     position: absolute;
-    transform: translate(-50%, -50%);
+    right: 0;
+    top: -3em;
+    /*transform: translate(0, -50%)*/;
     box-shadow: 0 20px 50px rgba(0,0,255,.5);
     overflow: hidden;
     width: 90%;

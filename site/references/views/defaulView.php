@@ -16,7 +16,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<link rel='stylesheet' href='/site/references/css/references.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/references/js/ref.js'></script>".
-
+    "<link rel='stylesheet' href='/site/signIn/css/authRefAnimate.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/js/social-block.js'></script>".
     "<script src='/site/js/goTop.js'></script>".
     "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".

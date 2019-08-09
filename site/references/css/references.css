@@ -116,6 +116,7 @@
     font-family: "Courier New";
     color: firebrick;
 }
+/*
 a.signIn{
     width: 90%;
     display: inline-block;
@@ -130,6 +131,7 @@ a.signIn img{
     vertical-align: middle;
     margin-right: 1em;
 }
+*/
 .ref-block hr{
     border-bottom: 1px solid blue;
     width: 100%;

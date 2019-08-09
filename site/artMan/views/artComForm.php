@@ -13,6 +13,7 @@ if($_SESSION['user_id']){
     }
     $tmpRes['text'].="</div></form>";
 }else{
-    $tmpRes['text'].= "<a href='/signIn' class='signIn ta-left'><img src='/site/signIn/img/logo.png'>Авторизуйтесь".
-        " для написания комментов</a>";
+    $authRefAnimate_val="Вы сможете написать коммент";
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/signIn/views/authRefAnimate.php");
+    $tmpRes['text'].=$authRefAnimate_txt;
 }
