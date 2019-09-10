@@ -1,0 +1,112 @@
+/*body-->*/
+BODY {
+    width: 100%;
+    font-family: Cambria, Courier New, Calibri, Arial, MS Trebichet;
+    margin: 0;
+    text-align: center;
+    font-size: 25px;
+}
+/*body--<*/
+.page-wrap{
+    position: relative;
+    min-height: 93.5vh;
+    padding-bottom: 6.5vh;
+}
+/*footer-->*/
+.contentBlock-frame.ft{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+footer{
+    background-color: darkorange;
+    color: #ffffff;
+    padding: 0.2em 0;
+}
+footer div, footer a, footer img{
+    display: inline-block;
+    vertical-align: middle;
+}
+.ft-service{
+    width: 30%;
+}
+.ft-center{
+    width: 40%;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.ft-center hr{
+    border: none;
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #ffffff;
+}
+.ft-center span{
+    background: radial-gradient(ellipse ,
+    rgba(255,165,0,1), rgba(255,165,0,1), rgba(255,165,0,1), rgba(255,165,0,0.2), rgba(255,165,0,0.5));
+    position: relative;
+    z-index: 1;
+    padding: 0.2em 0;
+}
+.ft-like{
+    width: 30%;
+}
+.ft-like a{
+    margin: 0 0.5em 0.1em 0.5em;
+}
+.ft-like a img{
+    height: 1em;
+    width: 1em;
+}
+footer sup{
+    color: white;
+    font-size: 0.5em;
+    text-decoration: none;
+    color: white;
+}
+/*footer<--*/
+/*contentBlock-->*/
+.contentBlock-frame{
+    width: 100%;
+    display: inline-block;
+}
+.contentBlock-center{
+    display: inline-block;
+    max-width: 1366px;
+    width: 100%;
+}
+.contentBlock-frame.dark{
+    background: rgba(25,25,50,1);
+    color: #ffffff;
+}
+@media only screen and (max-width : 1024px)  and (orientation : portrait) {
+    body {
+        font-size: 35px;
+    }
+}
+/*contentBlock--<*/
+.pageErr{
+    padding: 1em 0;
+    color:red;
+    height: 1em;
+}
+.lrp-wrap{
+    width: 96%;
+    margin: 0 0 2% 2%;
+}
+.ta-left{
+    text-align: left;
+}
+.ta-right{
+    text-align: right;
+}
+.line{
+    display: inline-block;
+    width: 100%;
+}
+.line div{
+    display: inline-block;
+}

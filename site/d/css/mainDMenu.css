@@ -1,0 +1,141 @@
+.mainDMenu
+{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    /*background-color: rgba(90,90,90,0.3);*/
+}
+
+.mainDMenu .dMenu-item
+{
+    display: inline-block;
+    width: 45%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border: 2px solid darkorange;
+    border-radius: 0.5em;
+}
+
+.mainDMenu .dMenu-item .dMenu-item-header
+{
+    border-bottom: 2px dotted darkorange;
+}
+
+.mainDMenu .dMenu-item .dMenu-item-header h2
+{
+    font-size: 1em;
+    margin: 0.5em;
+}
+
+.mainDMenu .dMenu-item .dMenu-item-img
+{
+    display: inline-block;
+    width: 40%;
+    padding: 5%;
+    /*height: 5em;*/
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*border: 1px solid red;*/
+    vertical-align: middle;
+}
+
+.mainDMenu .dMenu-item .dMenu-item-img span
+{
+    vertical-align: middle;
+    display: inline-block;
+    width: 100%;
+    text-shadow: 1px 1px 1px white, -1px -1px 1px white;
+}
+
+.mainDMenu .dMenu-item .dMenu-item-img span:before
+{
+    width: 50%;
+    font-size: 0.8em;
+}
+
+.mainDMenu .dMenu-item .dMenu-item-img span.dSince:before
+{
+    content: "Since: ";
+}
+.mainDMenu .dMenu-item .dMenu-item-img span.drCnt:before
+{
+    content: "Diaries: ";
+}
+.mainDMenu .dMenu-item .dMenu-item-img span.dnCnt:before
+{
+    content: "Notes: ";
+}
+
+.mainDMenu .dMenu-item .dMenu-item-btn
+{
+    display: inline-block;
+    width: 40%;
+    padding: 5%;
+    vertical-align: middle;
+}
+
+.mainDMenu .dMenu-item .dMenu-item-btn a
+{
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #0000ff;
+    margin-bottom: 0.5em;
+    text-decoration: none;
+    color: navy;
+    font-weight: bold;
+}
+
+.mainDMenu .dMenu-item .dMenu-item-btn a:hover
+{
+    background: darkorange;
+}
+
+/*
+.mainDMenu
+{
+    width: 90%;
+    padding: 5%;
+}
+
+.mainDMenu .dMenu-item
+{
+    width: 36%;
+    padding: 4%;
+    margin: 2%;
+    display: inline-block;
+    border: 2px solid navy;
+
+}
+
+.mainDMenu .dMenu-item a
+{
+    vertical-align: middle;
+}
+
+.mainDMenu .dMenu-item img
+{
+    height: 3em;
+    width: 3em;
+    vertical-align: middle;
+}
+
+.mainDMenu .dMenu-item a span
+{
+
+}
+
+footer{
+    background-color: darkorange;
+
+    /*color: #ffffff;
+    padding: 0.2em 0;*/
+/*
+}
+
+.ft-center span{
+    /*background-color:;*/
+/*
+}
+*/

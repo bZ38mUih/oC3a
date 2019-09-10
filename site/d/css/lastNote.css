@@ -1,0 +1,105 @@
+.note-wrap
+{
+    width: 98%;
+    margin: 1%;
+}
+.note-wrap .note-header
+{
+    border-bottom: 1px solid #0000ff;
+    margin-top: 1em;
+}
+.note-wrap .note-header .note-btn
+{
+    width: 20%;
+    display: inline-block;
+}
+.note-wrap .note-header .note-btn a img
+{
+    height: 1.2em;
+    width: 1.2em;
+}
+.note-wrap .note-header .note-header-text
+{
+    width: 60%;
+    display: inline-block;
+}
+.note-wrap .note-header .note-header-text.active
+{
+    font-weight: bold;
+}
+.note-wrap .dairy-contents
+{
+    width: 95%;
+    border: 2px solid #0000ff;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: 0.5em;
+}
+.note-wrap .dairy-contents .note-content:not(:last-child)
+{
+    border-bottom: 2px dotted #000000;
+}
+.note-wrap .dairy-contents .note-content .note-content-text
+{
+    font-style: italic;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.note-wrap .dairy-contents .note-content .note-content-info
+{
+    text-align: right;
+}
+.note-wrap .dairy-contents .note-content .note-content-info span
+{
+    color: darkgrey;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.note-wrap .dairy-contents .note-content h2
+{
+    font-size: 1em;
+}
+.note-wrap .dairy-contents .note-content .note-content-btn
+{
+    height: 2em;
+}
+.note-wrap .dairy-contents .note-content .note-content-btn a, .note-wrap .action-panel a
+{
+    margin-left: 1em;
+    margin-right: 1em;
+    color: #0000ff;
+}
+.note-wrap .dairy-contents .note-content .note-content-btn a span, .note-wrap .action-panel a span
+{
+    vertical-align: middle;
+}
+.note-wrap .dairy-contents .note-content .note-content-btn a span::before, .note-wrap .action-panel a span::before
+{
+    content:  " - ";
+}
+.note-wrap .dairy-contents .note-content .note-content-btn a.edit, .note-wrap .action-panel a.edit
+{
+    float: left;
+}
+.note-wrap .dairy-contents .note-content .note-content-btn a.delete, .note-wrap .action-panel a.delete
+{
+    float: right;
+}
+.note-wrap .dairy-contents .note-content .note-content-btn a img, .note-wrap .action-panel a img
+{
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+}
+.note-wrap .action-panel
+{
+    border-bottom: 1px solid #008000;
+    background: linear-gradient(to bottom, #fefcea, #f1da36);
+    height: 1.5em;
+    width: 100%;
+    display: inline-block;
+}

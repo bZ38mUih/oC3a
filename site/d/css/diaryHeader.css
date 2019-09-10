@@ -1,0 +1,282 @@
+/*header-->*/
+header{
+    background: darkorange;
+    width: 100%;
+}
+header .headerCenter{
+    width: 100%;
+    max-width: 1366px;
+    display: inline-block;
+}
+header .menuBtn{
+    width: 20%;
+    max-width: 273px;
+    display: inline-block;
+    vertical-align: middle;
+}
+header .menuBtn img{
+    height: 2em;
+    width: 2em;
+    cursor: pointer;
+    vertical-align: middle;
+}
+header .menuBtn span{
+    color: #ffffff;
+    font-family: Calibri;
+    font-size: 0.7em;
+    vertical-align: middle;
+    cursor: pointer;
+}
+header .textBlock{
+    width: 75%;
+    vertical-align: middle;
+    display: inline-block;
+    color: white;
+    font-weight: bold;}
+/*<--header*/
+/*modal-->*/
+.modal{
+    visibility: hidden;
+}
+.overlay {
+    background-color: rgba(255, 255, 255, 0.8);
+    bottom: 0;
+    cursor: default;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.modal .contentBlock-frame{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+.modal .contentBlock-center{
+    z-index: 3;
+}
+.modal-line{
+    width: 100%;
+    display: block;
+    text-align: left;
+    border-bottom: 1px dotted silver;
+}
+.modal-line-img{
+    display: inline-block;
+    width: 25%;
+}
+.modal-line-img img{
+    height: 1.8em;
+    width: 1.8em;
+    margin: 0.5em;
+    border-radius: 0.3em;
+}
+.modal-line-text{
+    width: 75%;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0.7em;
+}
+.modal-line-text.guest{
+    margin-top: 0.2em;
+}
+/*modal-left -->*/
+.modal-left {
+    width: 70%;
+    display: inline-block;
+    background-color: rgba(25,25,50,1);
+    color: white;
+    float: left;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+}
+/*modal.menu-->*/
+.modal-line:first-child{
+    margin-top: 1em;
+}
+.modal.menu a{
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+.modal.menu a.exit{
+    color: red;
+    float: right;
+    margin-right: 1em;
+    text-decoration: underline;
+}
+.modal.menu a.ntf{
+    float: right;
+    margin-right: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    vertical-align: middle;
+    color: lightgreen;
+}
+.modal.menu a.ntf img{
+    height: 1.3em;
+    width: 1.3em;
+    vertical-align: middle;
+}
+.modal.menu a.ntf span{
+    padding: 0.1em;
+    vertical-align: top;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+.modal.menu span.opnSubMenu{
+    display: inline-block;
+    float: right;
+    margin-right: 1em;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.modal.menu ul li{
+    margin-bottom: 0.5em;
+}
+.modal.menu ul a.sub-lnk{
+    margin-left: 1em;
+}
+.modal.menu a.sub-lnk.light{
+    color: white;
+}
+.modal.menu a.sub-lnk.gold{
+    color: goldenrod;
+}
+.modal.menu a.sub-lnk.blue{
+    color: aqua;
+}
+.modal.menu a.sub-lnk.active{
+    text-decoration: underline;
+}
+.modal.menu a span.guest{
+    display: inline-block;
+    width: 100%;
+    color: #c0c0c0;
+    font-size: 0.8em;
+}
+/*<--modal.menu*/
+/*modal-scroll-->*/
+.modal-left::-webkit-scrollbar {
+    width: 2px;
+}
+/* Track */
+.modal-left::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+/* Handle */
+.modal-left::-webkit-scrollbar-thumb {
+    background: aquamarine;
+    border-radius: 10px;
+}
+/* Handle on hover */
+.modal-left::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+/*<--modal-scroll*/
+/*media-->*/
+@media only screen and (max-width : 960px) {
+    /*
+    header .logo .textBlock span.firmName {
+        display: none;
+    }
+    */
+    /*
+    h1{
+        text-align: center;
+        font-size: 1.5em;
+    }
+    */
+}
+@media only screen and (max-width : 1024px){
+    header .logo .imgBlock{
+        width: 20%;
+    }
+    header .logo .textBlock{
+        width: 80%;
+    }
+}
+@media only screen and (max-width : 1024px) and (orientation : portrait){
+    .modal-left:not(.signIn){
+        width: 100%;
+    }
+    .modal-left:not(.signIn){
+        float: right;
+    }
+    header .logo .textBlock {
+        display: none;
+        visibility: hidden;
+    }
+    header .logo .imgBlock {
+        width: 100%;
+    }
+}
+
+/*modal-right -->*/
+.modal-right {
+    float: right;
+    width: 30%;
+    text-align: left;
+    display: inline-block;
+}
+.modal-right img{
+    height: 3em;
+    width: 3em;
+    cursor: pointer;
+}
+.modal-right .modal-close{
+    height: 3em;
+    width: 3em;
+    background-image: url("/site/siteHeader/img/closeModal.png");
+    display: inline-block;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+/*<-- modal-right*/
+/*modal-scroll-->*/
+.modal-left::-webkit-scrollbar, .modal-right::-webkit-scrollbar {
+    width: 2px;
+}
+/* Track */
+.modal-left::-webkit-scrollbar-track, .modal-right::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+/* Handle */
+.modal-left::-webkit-scrollbar-thumb, .modal-right::-webkit-scrollbar-thumb {
+    background: aquamarine;
+    border-radius: 10px;
+}
+/* Handle on hover */
+.modal-left::-webkit-scrollbar-thumb:hover, .modal-right::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+/*<--modal-scroll*/
+@media only screen and (max-width : 1024px) and (orientation : portrait) {
+    .modal-left:not(.signIn), .modal-right:not(.signIn) {
+        width: 100%;
+    }
+
+    .modal-right:not(.modal.signIn) {
+        float: left;
+        text-align: right;
+        background-color: rgba(25, 25, 50, 1);
+        position: relative;
+    }
+
+    .modal-right:not(.signIn) .modal-close:not(.signIn) {
+        height: 2em;
+        width: 2em;
+        background-image: url("/site/siteHeader/img/closeModal-white.png");
+        position: absolute;
+        right: 0.5em;
+        top: 0.5em;
+    }
+}
