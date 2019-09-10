@@ -3,7 +3,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>";
 $appRJ->response['result'].= "<head>".
     "<meta name='robots' content='noindex'>".
-    "<title>".$dType."-lastNote</title>".
+    "<title>".$appRJ->server['reqUri_expl'][2]."-lastNote</title>".
     "<link rel='SHORTCUT ICON' href='/site/d/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/d/css/diaryHeader.css' type='text/css' media='screen, projection'/>".

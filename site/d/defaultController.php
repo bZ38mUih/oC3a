@@ -167,7 +167,7 @@ if($appRJ->server['reqUri_expl'][2] == "daily" or $appRJ->server['reqUri_expl'][
             $diary_rd->result['diaryType']=$_GET['diaryType'];
         }
     }
-
+    $h1=$diary_rd->result['diaryType']."-newDiary";
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/newDiary.php");
 }
 else{
