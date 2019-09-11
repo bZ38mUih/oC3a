@@ -35,6 +35,7 @@ if($selectAlbums_count>0){
 
     $catId=null;
     $albDescr=null;
+    $albName=null;
     $robIndex=null;
 
     while($selectAlbums_row=$DB->doFetchRow($selectAlbums_res)){
@@ -87,6 +88,7 @@ if($selectAlbums_count>0){
                 }
                 $alb_view .="</a></div><div class='alb-txt'><div class='alb-name'>".$selectAlbums_row['albumName'].
                     "</div><div class='alb-descr'>";
+                $albName=$selectAlbums_row['albumName'];
                 if ($selectAlbums_row['metaDescr']) {
                     $alb_view .= $selectAlbums_row['metaDescr'];
                     $albDescr=$selectAlbums_row['metaDescr'];
@@ -223,7 +225,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
 if(!$robIndex){
     $appRJ->response['result'].= "<meta name='robots' content='noindex'>";
 }
-$appRJ->response['result'].= "<title>Галерея</title>".
+$appRJ->response['result'].= "<title>".$albName."</title>".
     "<link rel='SHORTCUT ICON' href='/site/gallery/img/favicon.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".

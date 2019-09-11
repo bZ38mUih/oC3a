@@ -11,7 +11,9 @@ if(isset($_SESSION['groups']['root']) and $_SESSION['groups']['root']>10) {
 /*<--Admin*/
 /*Diary-->*/
 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
-
+    $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
+        "<img src='/site/d/img/logo.png' alt='Diary-logo'></div><div class='modal-line-text'>".
+        "<a href='/d/' title='Diary'>Diary</a></div></div>";
 
     foreach ($dType as $key=>$val){
         $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
@@ -42,7 +44,7 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
         }
         $appRJ->response['result'].= "' title='look up'>lastNote</a></li>";
 
-        $appRJ->response['result'].= "</ul></div>";
+        $appRJ->response['result'].= "</div></ul></div>";
     }
 
 

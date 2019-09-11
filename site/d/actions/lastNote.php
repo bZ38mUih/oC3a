@@ -19,7 +19,7 @@ $h1.=$diary_row['noteDate'];
 
 /*diaryNext-->*/
 $diaryNext_qry="select * from diaryNotes_dt WHERE diaryType='".$appRJ->server['reqUri_expl'][2].
-    "' and noteDate > '".$diary_row['noteDate']."' LIMIT 1";
+    "' and noteDate > '".$diary_row['noteDate']."' ORDER BY noteDate ASC LIMIT 1";
 $diaryNext_res=$DB->doQuery($diaryNext_qry);
 $diaryNext_row=$DB->doFetchRow($diaryNext_res);
 /*diaryNext--<*/

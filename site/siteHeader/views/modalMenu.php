@@ -12,8 +12,8 @@ if(isset($_SESSION['groups']['root']) and $_SESSION['groups']['root']>10) {
 /*Diary-->*/
 if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
-        "<img src='/site/diary/img/logo.png' alt='Diary-logo'></div><div class='modal-line-text'>".
-        "<a href='/diary/' title='Diary'>Diary</a></div></div>";
+        "<img src='/site/d/img/logo.png' alt='Diary-logo'></div><div class='modal-line-text'>".
+        "<a href='/d/' title='Diary'>Diary</a></div></div>";
 }
 /*<--Diary*/
 /*personal-page-->*/

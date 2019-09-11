@@ -14,6 +14,7 @@ $dType['1']="daily";
 $dType['2']="quarterly";
 $dType['3']="yearly";
 $dType['4']="conception";
+$dType['5']="people";
 
 function dec_enc($action, $string, $noteDate) {
     $output = false;
@@ -37,7 +38,8 @@ function dec_enc($action, $string, $noteDate) {
 }
 
 if($appRJ->server['reqUri_expl'][2] == "daily" or $appRJ->server['reqUri_expl'][2] == "quarterly" or
-    $appRJ->server['reqUri_expl'][2] == "yearly" or $appRJ->server['reqUri_expl'][2] == "conception"){
+    $appRJ->server['reqUri_expl'][2] == "yearly" or $appRJ->server['reqUri_expl'][2] == "conception"
+    or $appRJ->server['reqUri_expl'][2] == "people"){
     if(isset($_GET['delNote']) and $_GET['delNote']!=null){
         $appRJ->response['format']='ajax';
         $note_rd->result['note_id']=$_GET['delNote'];
@@ -119,6 +121,9 @@ if($appRJ->server['reqUri_expl'][2] == "daily" or $appRJ->server['reqUri_expl'][
     }
     if(isset($_POST) and $_POST != null) {
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDiaryFields.php");
+        if($diary_rd->result['noteDate']<>$_POST['noteDate']){
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDoubleDiary.php");
+        }
         if($pageErr==null){
             if(!$diary_rd->updateOne()){
                 $pageErr.="updateOne diary_rd unknown err<br>";
@@ -140,12 +145,7 @@ if($appRJ->server['reqUri_expl'][2] == "daily" or $appRJ->server['reqUri_expl'][
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkNoteFields.php");
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDiaryFields.php");
         if($pageErr===null){
-            $checkDate_qry="select * from diaryNotes_dt where noteDate='".$diary_rd->result['noteDate']."' and diaryType='".
-                $diary_rd->result['diaryType']."'";
-            $checkDate_res=$DB->doQuery($checkDate_qry);
-            if(mysql_num_rows($checkDate_res)!==0){
-                $pageErr.="double noteDate in diary<br>";
-            }
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDoubleDiary.php");
         }
         if($pageErr==null){
             if($diary_rd->putOne()){
