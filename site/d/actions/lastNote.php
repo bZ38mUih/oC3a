@@ -29,7 +29,7 @@ $diaryPre_qry="select * from diaryNotes_dt WHERE diaryType='".$appRJ->server['re
 $diaryPre_res=$DB->doQuery($diaryPre_qry);
 $diaryPre_row=$DB->doFetchRow($diaryPre_res);
 /*diaryPre--<*/
-$note_qry="select * from diaryNotesContent_dt WHERE diary_id=".$diary_row['diary_id']."  ORDER BY curDate DESC";
+$note_qry="select * from diaryNotesContent_dt WHERE diary_id=".$diary_row['diary_id']."  ORDER BY curDate DESC, curTime DESC";
 
 $notNotes_warning=false;
 $note_res=$DB->doQuery($note_qry);

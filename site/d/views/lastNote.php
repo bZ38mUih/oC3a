@@ -11,6 +11,8 @@ $appRJ->response['result'].= "<head>".
     "<link rel='stylesheet' href='/site/d/css/dFooter.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
     "<script src='/site/d/js/delNote.js'></script>".
+    "<script src='/site/js/goTop.js'></script>".
+    "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
 $appRJ->response['result'].= "</head>".

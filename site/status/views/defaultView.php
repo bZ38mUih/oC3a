@@ -66,6 +66,7 @@ src='https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A2d
     "<div class='descr-line'><span>Адрес:</span> г. Иваново, ул. Демидова, д. 10</div>".
     "<div class='descr-line'><span>Режим работы:</span> пнд. - птн. с 9.00 до 18.00, сбт., вск. - выходной</div>".
     "<div class='descr-line'><span>E-Mail:</span> rightjoint@yandex.ru</div>".
+    "<div class='descr-line'><span>Телефон:</span> 8-903-888-7772</div>".
     "<div class='locPr-block'>".
     "<img src='/site/status/img/yMap.png' id='yMap-lk' class='active' onclick='showLoc(".'"'."yMap".'"'.")'>".
     "<img src='/site/status/img/demidova-10-img1.jpg' id='img1-lk' onclick='showLoc(".'"'."img1".'"'.")'>".
