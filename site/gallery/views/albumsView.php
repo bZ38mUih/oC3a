@@ -35,7 +35,7 @@ $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, gal
     "AND galleryAlb_dt.readRule <> 'off' ".
     "AND galleryAlb_dt.readRule <> '' ".
     "GROUP BY galleryAlb_dt.album_id ".
-    "ORDER BY galleryAlb_dt.dateOfCr DESC, galleryAlb_dt.album_id DESC";
+    "ORDER BY galleryAlb_dt.dateOfCr DESC, galleryAlb_dt.album_id DESC, galleryPhotos_dt.uploadDate DESC";
 
 $selectAlbums_res=$DB->doQuery($selectAlbums_txt);
 $selectAlbums_count = mysql_num_rows($selectAlbums_res);
