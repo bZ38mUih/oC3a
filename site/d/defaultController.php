@@ -191,8 +191,8 @@ if($appRJ->server['reqUri_expl'][2] == "daily" or $appRJ->server['reqUri_expl'][
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/newDiary.php");
 }
 elseif($appRJ->server['reqUri_expl'][2] == "sync"){
-    //$sync_server = "https://rightjoint.ru/d/sync";
-    $sync_server = "http://oc3a.local/d/sync";
+    $sync_server = "https://rightjoint.ru/d/sync";
+    //$sync_server = "http://oc3a.local/d/sync";
     $syncResult=null;
     if(isset($_GET['syncD']) and $_GET['syncD']=='syncMe'){
         $appRJ->response['format']='ajax';
