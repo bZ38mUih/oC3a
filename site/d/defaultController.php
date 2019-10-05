@@ -1,6 +1,24 @@
 <?php
+if(isset($_GET['syncMe']) and $_GET['syncMe']=='y'){
+    $D_res=null;
+    $dNt_qry="select * from diaryNotes_dt WHERE noteDate<='".$_GET['dateTo']."' and noteDate>='".$_GET['dateFrom']."'";
+    $dNt_res=$DB->doQuery($dNt_qry);
+    $dNt_out=array();
+    while($dNt_row=$DB->doFetchRow($dNt_res)){
+        array_push($dNt_out, $dNt_row);
+    }
+    $dNtCont_qry="select * from diaryNotesContent_dt  WHERE curDate<='".$_GET['dateTo']."' and curDate>='".$_GET['dateFrom']."'";
+    $dNtCont_res=$DB->doQuery($dNtCont_qry);
+    $dNtCont_out=array();
+    while($dNtCont_row=$DB->doFetchRow($dNtCont_res)){
+        array_push($dNtCont_out, $dNtCont_row);
+    }
 
-if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
+    $D_res['notes']=$dNt_out;
+    $D_res['content']=$dNtCont_out;
+    print_r(json_encode($D_res));
+    exit;
+}elseif (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
     $appRJ->errors['stab']['description']="Администрация просит извинения за предоставленные неудобства :-(";
     $appRJ->throwErr();
 }
@@ -169,6 +187,51 @@ if($appRJ->server['reqUri_expl'][2] == "daily" or $appRJ->server['reqUri_expl'][
     }
     $h1=$diary_rd->result['diaryType']."-newDiary";
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/newDiary.php");
+}
+elseif($appRJ->server['reqUri_expl'][2] == "sync"){
+    $sync_server = "https://rightjoint.ru/d/sync";
+    //$sync_server = "http://oc3a.local/d/sync";
+    $syncResult=null;
+    if(isset($_GET['syncD']) and $_GET['syncD']=='syncMe'){
+        $appRJ->response['format']='ajax';
+        //print_r($_GET);
+        if($syncResult=file_get_contents($sync_server."?syncMe=y&dateTo=".$_GET['dateTo']."&dateFrom=".$_GET['dateFrom'])){
+            //print_r()
+            $dNt_out = json_decode($syncResult, true);
+            //print_r($dNt_out['notes']);
+
+            foreach($dNt_out['notes'] as $k=>$v){
+                //echo ;
+                $dNtRep_qry="select * from diaryNotes_dt WHERE noteDate='".$v['noteDate']."'";
+                $dNtRep_res=$DB->doQuery($dNtRep_qry);
+                echo mysql_num_rows($dNtRep_res)."-".$v['noteDate'];
+                if(mysql_num_rows($dNtRep_res)==0){
+                    echo "need to Insert<br>";
+                }else{
+                    echo "no needs<br>";
+                }
+            }
+            echo "<hr>";
+            foreach($dNt_out['content'] as $k=>$v){
+                //echo ;
+                $dNtContRep_qry="select * from diaryNotesContent_dt ".
+                    "WHERE curDate='".$v['curDate']."' and curTime='".$v['curTime']."'";
+                $dNtContRep_res=$DB->doQuery($dNtContRep_qry);
+                echo mysql_num_rows($dNtContRep_res)." - ".$v['curDate']." - ".$v['curTime'];
+                if(mysql_num_rows($dNtContRep_res)==0){
+                    echo " - need to Insert<br>";
+                }else{
+                    echo " - no needs<br>";
+                }
+            }
+
+        }else{
+            echo "222";
+        }
+    }
+    else{
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/sync.php");
+    }
 }
 else{
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/default.php");
