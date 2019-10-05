@@ -7,7 +7,9 @@ if(isset($_GET['syncMe']) and $_GET['syncMe']=='y'){
     while($dNt_row=$DB->doFetchRow($dNt_res)){
         array_push($dNt_out, $dNt_row);
     }
-    $dNtCont_qry="select * from diaryNotesContent_dt  WHERE curDate<='".$_GET['dateTo']."' and curDate>='".$_GET['dateFrom']."'";
+    $dNtCont_qry="select * from diaryNotesContent_dt ".
+        "INNER JOIN diaryNotes_dt ON diaryNotesContent_dt.diary_id = diaryNotes_dt.diary_id ".
+        "WHERE diaryNotesContent_dt.curDate<='".$_GET['dateTo']."' and diaryNotesContent_dt.curDate>='".$_GET['dateFrom']."'";
     $dNtCont_res=$DB->doQuery($dNtCont_qry);
     $dNtCont_out=array();
     while($dNtCont_row=$DB->doFetchRow($dNtCont_res)){
@@ -189,8 +191,8 @@ if($appRJ->server['reqUri_expl'][2] == "daily" or $appRJ->server['reqUri_expl'][
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/newDiary.php");
 }
 elseif($appRJ->server['reqUri_expl'][2] == "sync"){
-    $sync_server = "https://rightjoint.ru/d/sync";
-    //$sync_server = "http://oc3a.local/d/sync";
+    //$sync_server = "https://rightjoint.ru/d/sync";
+    $sync_server = "http://oc3a.local/d/sync";
     $syncResult=null;
     if(isset($_GET['syncD']) and $_GET['syncD']=='syncMe'){
         $appRJ->response['format']='ajax';
@@ -202,13 +204,29 @@ elseif($appRJ->server['reqUri_expl'][2] == "sync"){
 
             foreach($dNt_out['notes'] as $k=>$v){
                 //echo ;
-                $dNtRep_qry="select * from diaryNotes_dt WHERE noteDate='".$v['noteDate']."'";
+                $dNtRep_qry="select * from diaryNotes_dt WHERE noteDate='".$v['noteDate']."' and diaryType='".$v['diaryType']."'";
                 $dNtRep_res=$DB->doQuery($dNtRep_qry);
-                echo mysql_num_rows($dNtRep_res)."-".$v['noteDate'];
+                echo mysql_num_rows($dNtRep_res)." - ".$v['noteDate'];
+                $diary_rd->result['diaryType']=$v['diaryType'];
+                $diary_rd->result['noteDate']=$v['noteDate'];
+                $diary_rd->result['diaryHeader']=$v['diaryHeader'];
                 if(mysql_num_rows($dNtRep_res)==0){
-                    echo "need to Insert<br>";
+                    echo " - ".$v['diaryType']." - putOne here";
+
+                    //$diary_rd->putOne();
+
                 }else{
-                    echo "no needs<br>";
+                    $dNtRep_row=$DB->doFetchRow($dNtRep_res);
+                    if($dNtRep_row['diaryHeader']!=$v['diaryHeader'] and $dNtRep_row['diaryHeader']==null){
+                        $diary_rd->result['diary_id']=$v['diary_id'];
+                        echo " - ".$v['diaryType']." - update header ";
+
+                        //$diary_rd->updateOne();
+
+                    }else{
+                        echo " - ".$v['diaryType']." - no needs";
+                    }
+                    echo "<br>";
                 }
             }
             echo "<hr>";
@@ -217,16 +235,34 @@ elseif($appRJ->server['reqUri_expl'][2] == "sync"){
                 $dNtContRep_qry="select * from diaryNotesContent_dt ".
                     "WHERE curDate='".$v['curDate']."' and curTime='".$v['curTime']."'";
                 $dNtContRep_res=$DB->doQuery($dNtContRep_qry);
-                echo mysql_num_rows($dNtContRep_res)." - ".$v['curDate']." - ".$v['curTime'];
+                echo mysql_num_rows($dNtContRep_res)." - ".$v['curDate']." - ".$v['curTime']." noteDate=".$v['noteDate'];
                 if(mysql_num_rows($dNtContRep_res)==0){
-                    echo " - need to Insert<br>";
+                    echo " - need to Insert";
+                    $diaryId_qry="select diary_id from diaryNotes_dt ".
+                        "WHERE noteDate='".$v['noteDate']."' and diaryType='".$v['diaryType']."'";
+                    //$diary_rd->result['diary_id']=
+                    $diaryId_res=$DB->doQuery($diaryId_qry);
+                    if(mysql_num_rows($diaryId_res) == 1){
+                        $diaryId_row=$DB->doFetchRow($diaryId_res);
+                        $note_rd->result['diary_id']=$diaryId_row['diary_id'];
+                        $note_rd->result['curDate']=$v['curDate'];
+                        $note_rd->result['curTime']=$v['curTime'];
+                        $note_rd->result['content']=$v['content'];
+
+                        //$note_rd->putOne();
+
+                        echo " - putOne here";
+                    }else{
+                        echo " - not possible to insert";
+                    }
                 }else{
-                    echo " - no needs<br>";
+                    echo " - no need";
                 }
+                echo "<hr>";
             }
 
         }else{
-            echo "222";
+            echo "<div class='pageErr'>not possible to load data from server</div>";
         }
     }
     else{
