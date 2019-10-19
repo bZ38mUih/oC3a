@@ -1,18 +1,41 @@
 <?php
-$firstDailyNt_qry="select * from diaryNotes_dt  WHERE diaryType='daily' ORDER BY noteDate limit 1";
-$firstDailyNt_res=$DB->doQuery($firstDailyNt_qry);
-$firstDailyNt_row=$DB->doFetchRow($firstDailyNt_res);
+$result=null;
+foreach ($dType as $k=>$v){
+    /*1 / daily
+2 / quarterly
+3 / yearly
+4 / conception
+5 / ZKH
+    */
 
-$countDailyDiary_qry="select COUNT(diary_id) as cnt from diaryNotes_dt WHERE diaryType='daily'";
-$countDailyDiary_res=$DB->doQuery($countDailyDiary_qry);
-$countDailyDiary_row=$DB->doFetchRow($countDailyDiary_res);
+    $firstDailyNt_qry="select * from diaryNotes_dt  WHERE diaryType='".$v."' ORDER BY noteDate limit 1";
+    $firstDailyNt_res=$DB->doQuery($firstDailyNt_qry);
+    $firstDailyNt_row=$DB->doFetchRow($firstDailyNt_res);
+    $result[$v]['noteDate']= $firstDailyNt_row['noteDate'];
 
-$countDailyNt_qry="select COUNT(diaryNotesContent_dt.note_id) as cnt from diaryNotes_dt INNER JOIN ".
-    "diaryNotesContent_dt ON diaryNotesContent_dt.diary_id = diaryNotes_dt.diary_id WHERE diaryNotes_dt.diaryType='daily'";
-$countDailyNt_res=$DB->doQuery($countDailyNt_qry);
-$countDailyNt_row=$DB->doFetchRow($countDailyNt_res);
+    $countDailyDiary_qry="select COUNT(diary_id) as cnt from diaryNotes_dt WHERE diaryType='".$v."'";
+    $countDailyDiary_res=$DB->doQuery($countDailyDiary_qry);
+    $countDailyDiary_row=$DB->doFetchRow($countDailyDiary_res);
+    $result[$v]['diaryCnt']= $countDailyDiary_row['cnt'];
+
+    $countDailyNt_qry="select COUNT(diaryNotesContent_dt.note_id) as cnt from diaryNotes_dt INNER JOIN ".
+        "diaryNotesContent_dt ON diaryNotesContent_dt.diary_id = diaryNotes_dt.diary_id WHERE diaryNotes_dt.diaryType='".$v."'";
+    $countDailyNt_res=$DB->doQuery($countDailyNt_qry);
+    $countDailyNt_row=$DB->doFetchRow($countDailyNt_res);
+    $result[$v]['notesCnt']= $countDailyNt_row['cnt'];
+}
 
 
+
+/*
+echo "<pre>";
+print_r($result);
+exit;
+*/
+
+
+
+/*
 $firstQtNt_qry="select * from diaryNotes_dt  WHERE diaryType='quarterly' ORDER BY noteDate limit 1";
 $firstQtNt_res=$DB->doQuery($firstQtNt_qry);
 $firstQtNt_row=$DB->doFetchRow($firstQtNt_res);
@@ -53,3 +76,4 @@ $countCnNt_qry="select COUNT(diaryNotesContent_dt.note_id) as cnt from diaryNote
     "diaryNotesContent_dt ON diaryNotesContent_dt.diary_id = diaryNotes_dt.diary_id WHERE diaryNotes_dt.diaryType='conception'";
 $countCnNt_res=$DB->doQuery($countCnNt_qry);
 $countCnNt_row=$DB->doFetchRow($countCnNt_res);
+*/

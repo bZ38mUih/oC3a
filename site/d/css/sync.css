@@ -1,0 +1,57 @@
+.syncD{
+    display: inline-block;
+    width: 96%;
+    margin: 2%;
+}
+.syncD form{
+    width: 100%;
+    border: 2px solid #008000;
+    border-radius: 0.5em;
+}
+
+.syncD form label{
+    text-align: left;
+    margin: 0.5em 0;
+    width: 90%;
+    display: inline-block;
+}
+
+.syncD form input {
+    float: right;
+    width: 50%;
+    font-size: 0.9em;
+}
+.syncD form span {
+    float: right;
+    text-align: center;
+    margin-right: 1em;
+    width: 7em;
+    border-radius: 0.2em;
+    padding: 0.5em;
+    border: 1px solid #0000ff;
+    background: darkgreen;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+.syncD .syncRes{
+    display: inline-block;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.syncD .syncRes h2{
+    font-size: 1em;
+}
+
+.syncD .syncRes table tr.caption{
+    color: white;
+    background: navy;
+    font-weight: bold;
+}
+
+.syncD .syncRes table td{
+    padding-left: 1em;
+    padding-right: 1em;
+    border-bottom: 1px solid #000000;
+}

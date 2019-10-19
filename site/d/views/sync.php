@@ -10,6 +10,7 @@ $appRJ->response['result'].= "<head>".
 "<link rel='stylesheet' href='/site/d/css/diaryHeader.css' type='text/css' media='screen, projection'/>".
 "<link rel='stylesheet' href='/site/d/css/mainDMenu.css' type='text/css' media='screen, projection'/>".
 "<link rel='stylesheet' href='/site/d/css/dFooter.css' type='text/css' media='screen, projection'/>".
+"<link rel='stylesheet' href='/site/d/css/sync.css' type='text/css' media='screen, projection'/>".
 "<script src='/site/siteHeader/js/modalHeader.js'></script>".
 "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
 "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
@@ -22,7 +23,7 @@ $appRJ->response['result'].="<div class='syncD'>".
     "<label>dateFrom: <input type='date' name='dateFrom' value='".date( "Y-m-d", strtotime("-30 days"))."'></label>".
     "<label>dateTo: <input type='date' name='dateTo' value='".date_format( $appRJ->date['curDate'], "Y-m-d")."'></label>".
     "<input type='hidden' name='syncD' value='syncMe'>".
-    "<span onclick='syncD(123)'>SyncMe</span>".
+    "<label><span onclick='syncD(123)'>SyncMe</span></label>".
 
     "</form>".
     "<div class='syncRes'></div>".
