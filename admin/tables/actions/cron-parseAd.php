@@ -82,11 +82,11 @@ foreach ($parseLog as $key=>$value){
                 }
                 $pageCont=substr($pageCont, $posPrice1+25, strlen($pageCont));
                 if(!$posPrice2=strpos($pageCont, "₽")){
-                    $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD->result['prodName'];
+                    $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD->result['prodName'];
                     break;
                 }
                 $parseRD->result['prodPrice']=str_replace(" ", "", substr($pageCont, 0 ,$posPrice2));
-                $pageCont=substr($pageCont, $posPrice2+7, strlen($pageCont));
+                $pageCont=substr($pageCont, $posPrice2, strlen($pageCont));
 
                 /*
                 if(!$posPrice1=strpos($pageCont, "itemprop=\"price\"" )){
