@@ -74,7 +74,21 @@ foreach ($parseLog as $key=>$value){
                 }
                 $parseRD->result['prodName']=substr($pageCont, 0, $posProdName2);
                 $pageCont=substr($pageCont, $posProdName2+7, strlen($pageCont));
-                //if(!$posPrice1=strpos($pageCont, "<span class=\"price\" itemprop=\"price\" content=\"")){
+
+
+                if(!$posPrice1=strpos($pageCont,"data-marker=\"item-price\">")){
+                    $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD->result['prodName'];
+                    break;
+                }
+                $pageCont=substr($pageCont, $posPrice1+25, strlen($pageCont));
+                if(!$posPrice2=strpos($pageCont, "₽")){
+                    $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD->result['prodName'];
+                    break;
+                }
+                $parseRD->result['prodPrice']=str_replace(" ", "", substr($pageCont, 0 ,$posPrice2));
+                $pageCont=substr($pageCont, $posPrice2+7, strlen($pageCont));
+
+                /*
                 if(!$posPrice1=strpos($pageCont, "itemprop=\"price\"" )){
                     $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD->result['prodName'];
                     break;
@@ -89,7 +103,11 @@ foreach ($parseLog as $key=>$value){
                     $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD->result['prodName'];
                     break;
                 }
+
+
                 $parseRD->result['prodPrice']=substr($pageCont, 0, $posPrice3);
+                */
+
                 $pageCont=substr($pageCont, $posPrice3+2, strlen($pageCont));
                 if(!$posComp1=strpos($pageCont, "<div class=\"data\">")){
                     $parseLog[$key]['Esc'].="нет posComp1";

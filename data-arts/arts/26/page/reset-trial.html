@@ -1,0 +1,64 @@
+<h3>Версии для проверки</h3>
+<p>
+    Сброс проводился на следующих версиях OS и IDE:
+</p>
+<ul>
+    <li>PphStorm 2019.2.2 Build#PS-192.6603.42, built on September 12, 2019</li>
+    <li>Linux w651 3.13.0-32-generic #57-Ubuntu SMP</li>
+</ul>
+<h3>Сброс тестового периода</h3>
+<p>
+    Сбросить тестовый период можно из консоли, выполнив следующие команды:
+</p>
+
+<div class="example">
+    cd ~/.PhpStorm[version]<br>
+    rm config/eval/PhpStorm[version].evaluation.key<br>
+    <b>rm config/options</b><br>
+    cd ~/.java/.userPrefs/jetbrains<br>
+    rm -rf phpstorm<br>
+</div>
+<p>Для перехода к директории .PhpStorm[version] наберите в консоле <b>cd ~/.</b> далее <b>tab</b></p>
+<p>
+    Это решение скопировано с интернет и оно работает. Таким образом тестовый период 30 дней будет сброшен и можно начать новый.
+</p>
+<p>
+    Для перемещения файлов лучше воспользоваться файл-менеджером <b>Dolphin</b> или каким-либо другим.
+    Если вы собираетесь восстановить ваши проекты и подключения, скопируйте файлы из <b>config/options</b> отдельно для
+    последующего восстановления
+</p>
+<h3>Восстановление проектов и подключений</h3>
+<p>
+    Списки проектов и подключений находятся в двух файлах <b>webServers.xml</b> и <b>recentProjectDirectories.xml</b>
+</p>
+<p>
+    Файл <b>recentProjectDirectories.xml</b> имеет примерно следующий вид:
+</p>
+<div class="example">
+    < entry key='$USER_HOME$/PhpstormProjects/CrmTest'><br>
+    < value><br>
+            < RecentProjectMetaInfo><br>
+                < option name="build" value="PS-192.6603.42" /><br>
+                < option name="productionCode" value="PS" /><br>
+                < option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" /><br>
+                < option name="<b>projectOpenTimestamp</b>" value="1571400758954" /><br>
+                < option name="<b>buildTimestamp</b>" value="1568298935318" /><br>
+            < /RecentProjectMetaInfo><br>
+        < /value><br>
+    < /entry><br>
+</div>
+<p>
+    Для каждого, описанного в файле проекта, существуют свои <b>projectOpenTimestamp</b> и <b>buildTimestamp</b> которые необходимо
+    заменить на актуальные. Например, после сброса тестового периода, создайте новый пустой проект и скопируйте
+    актуальные значения параметров из нового файла <b>config/options/recentProjectDirectories.xml</b>
+</p>
+<p>
+    После этого осталось только переместить обратно в <b>config/options/</b> старый <b>webServers.xml</b> и обновленный
+    <b>recentProjectDirectories.xml</b>. Восстановить цветовую схему и другие опци можно используя другие файлы каталога
+    <b>config/options/</b>
+</p>
+<h3>Выводы:</h3>
+<p>
+    Php Storm хорошая среда для разработки, возможно она стоит своих денег, потому что бестплатный netBean настроить
+    на работу по sftp так и не удалось. Но сброс тестового периода удет всего минут пять.
+</p>
