@@ -108,7 +108,9 @@ foreach ($parseLog as $key=>$value){
                 $parseRD->result['prodPrice']=substr($pageCont, 0, $posPrice3);
                 */
 
+                /*
                 $pageCont=substr($pageCont, $posPrice3+2, strlen($pageCont));
+                */
                 if(!$posComp1=strpos($pageCont, "<div class=\"data\">")){
                     $parseLog[$key]['Esc'].="нет posComp1";
                     break;
