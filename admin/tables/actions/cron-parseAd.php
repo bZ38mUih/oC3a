@@ -85,7 +85,8 @@ foreach ($parseLog as $key=>$value){
                     $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD->result['prodName'];
                     break;
                 }
-                $parseRD->result['prodPrice']=str_replace(" ", "", substr($pageCont, 0 ,$posPrice2));
+                $sPrice=str_replace(" ", "", substr($pageCont, 0 ,$posPrice2));
+                $parseRD->result['prodPrice']=intval($sPrice);
                 $pageCont=substr($pageCont, $posPrice2, strlen($pageCont));
 
                 /*
