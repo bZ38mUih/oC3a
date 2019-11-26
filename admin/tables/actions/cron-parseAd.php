@@ -28,9 +28,41 @@ $parseLog['telefony']['totalCnt']=0;
 $parseLog['telefony']['doubleCnt']=0;
 $parseLog['telefony']['sussCnt']=0;
 
+
+//$proxy = "190.7.113.57:80"; //	CO	Colombia
+//$proxy = "165.98.53.38:35332"; //	NI	Nicaragua
+//$proxy = "187.45.13.190:37106"; //	BR	Brazil
+//$proxy = "85.234.126.107:55555"; //	RU	Russian Federation
+//$proxy = "61.118.35.94:55725"; //	JP	Japan
+//$proxy = "154.127.52.195:3129"; //	US	United States
+//$proxy = "185.189.211.70:8080"; //	GE	Georgia
+//$proxy = "83.171.114.92:51770"; //	RU	Russian Federation
+//$proxy = "51.254.182.63:60941"; //	FR	France
+//$proxy = "190.152.39.78:39906"; //	EC	Ecuador
+//$proxy = "50.192.195.69:52018"; //	US	United States
+//$proxy = "177.91.111.233:8080"; //	BR	Brazil
+//$proxy = "187.120.253.119:30181"; //	BR	Brazil
+$proxy = "195.191.131.150:42911"; //yyy	RU	Russian Federation
+//$proxy = "197.210.187.46:45753"; //	NG	Nigeria
+//$proxy = "103.216.82.50:53281"; //	IN	India
+//$proxy = "176.221.104.2:35215"; //	PL	Poland
+//$proxy = "176.120.211.176:52923"; //nnn	RU	Russian Federation
+//$proxy = "77.93.42.134:47803"; //nnn	UA	Ukraine
+//$proxy = "1.20.100.111:30095"; //	TH	Thailand
+
+//$proxyauth = 'user:password';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_PROXY, $proxy);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 1);
+
+
 foreach ($parseLog as $key=>$value){
-    //if($pageCont = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/temp/avito-test.html")){
-    if($pageCont = file_get_contents("https://www.avito.ru/ivanovo/".$key)){
+    $url="https://www.avito.ru/ivanovo/".$key;
+    curl_setopt($ch, CURLOPT_URL,$url);
+    if($pageCont = curl_exec($ch)){
         while(strlen($pageCont)>100){
             $descrErr=null;
             //$tmpErr=null;
@@ -128,7 +160,10 @@ foreach ($parseLog as $key=>$value){
                 }else{
                     $parseRD->result['prodComp']=$prodComp;
                 }
-                if($descrCont = file_get_contents("https://avito.ru/".urldecode($parseRD->result['prodRef']))){
+
+                $urlRef="https://avito.ru/".urldecode($parseRD['prodRef']);
+                curl_setopt($ch, CURLOPT_URL, $urlRef);
+                if($descrCont = curl_exec($ch)){
                     if(!$posSaler1=strpos($descrCont, "seller-info-prop js-seller-info-prop_seller-name")){
                         $descrErr.="нет posSaler1<br>";
                     }
@@ -183,6 +218,7 @@ foreach ($parseLog as $key=>$value){
         $parseLog[$key]['Esc'].="невозможно открыть страницу категории";
     }
 }
+curl_close($ch);
 //print_r($parseLog);
 $insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
     "VALUES ('".date_format($CurDate, "Y-m-d H:i:s")."', '". mysql_real_escape_string(json_encode($parseLog, true))."')";
