@@ -1,6 +1,6 @@
 <?php
 //echo "<h1>ParseLog:</h1>";
-
+exit;
 
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
 //require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
@@ -42,14 +42,14 @@ $parseLog['telefony']['sussCnt']=0;
 //$proxy = "50.192.195.69:52018"; //	US	United States
 //$proxy = "177.91.111.233:8080"; //	BR	Brazil
 //$proxy = "187.120.253.119:30181"; //	BR	Brazil
-$proxy = "195.191.131.150:42911"; //yyy	RU	Russian Federation
+//$proxy = "195.191.131.150:42911"; //yyy	RU	Russian Federation
 //$proxy = "197.210.187.46:45753"; //	NG	Nigeria
 //$proxy = "103.216.82.50:53281"; //	IN	India
 //$proxy = "176.221.104.2:35215"; //	PL	Poland
 //$proxy = "176.120.211.176:52923"; //nnn	RU	Russian Federation
 //$proxy = "77.93.42.134:47803"; //nnn	UA	Ukraine
 //$proxy = "1.20.100.111:30095"; //	TH	Thailand
-
+$proxy="156.0.229.194:40957";
 //$proxyauth = 'user:password';
 
 $ch = curl_init();

@@ -92,11 +92,24 @@ $appRJ->response['result'].= "<script src='/site/siteHeader/js/modalHeader.js'><
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
     "<script src='/site/js/goTop.js'></script>".
-        "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/css/goTop.css' type='text/css' media='screen, projection'/>".
     "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>".
+    "<p>
+    <strong>В настоящее время скрипт парсинга объявлений больше не работает по следующим причинам:</strong>
+<ol>
+    <li>Avito окончательно заблокировал ip-адрес хоста, на котором размещен мой сайт</li>
+    <li>При попытке настроить парсинг через прокси сервер возникли проблемы
+<ul>
+            <li>Загрузка через proxy слишком медленная</li>
+            <li>Работа через proxy часто не стабильна и их придется менять, что сильно усложнит сам скрип,
+                ведь для этого сначала придется распарсить список free proxy</li>
+        </ul>
+    </li>
+</ol>
+</p>".
     "<div class='parse-ad-descks'><ul>Скрипт с интервалом 5 минут парсит доски объявлений:".
     "<li><a href='https://www.avito.ru/ivanovo/noutbuki' target='_blank' title='авито иваново ноутбуки'>https://www.avito.ru/ivanovo/noutbuki</a></li>".
     "<li><a href='https://www.avito.ru/ivanovo/planshety_i_elektronnye_knigi' target='_blank' title='авито иваново планшеты'>https://www.avito.ru/ivanovo/planshety_i_elektronnye_knigi</a></li>".
@@ -107,7 +120,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
     "<div class='parseLog-controls'><label>Глубина: <input type='number' id='logDepth' min='1' max='10' value='1'></label>".
     "<input type='button' value='showLog' onclick='showLog()'>".
     "</div><div class='log-content'></div></div>".
-$logRes.
+    $logRes.
     "<div class='tbl-opt-wrap'><div class='tbl-pages'>".$pagesText."</div><div class='tbl-opt'>".
     "<label>Продавец <select id='adSaler'>".
     "<option value='all' ";
@@ -167,7 +180,7 @@ if($volP==100){
 $appRJ->response['result'].=">100</option>".
     "</select></label>".
     "</div></div>".
-"<div class='line ad caption'><div class='ad_ref'>ref</div><div class='prodName'>prodName</div>".
+    "<div class='line ad caption'><div class='ad_ref'>ref</div><div class='prodName'>prodName</div>".
     "<div class='prodSaler'>Saler</div>".
     "<div class='prodPrice'>Price</div>".
     "</div>";
