@@ -21,7 +21,7 @@ if(isset($_GET['syncMe']) and $_GET['syncMe']=='y'){
     print_r(json_encode($D_res));
     exit;
 }elseif (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
-    $appRJ->errors['stab']['description']="Администрация просит извинения за предоставленные неудобства :-(";
+    $appRJ->errors['404']['description']="Такой страницы не существует";
     $appRJ->throwErr();
 }
 
