@@ -47,5 +47,3 @@ if($Alb_rd->copyOne()){
 }else{
     $editImg['data']['err'] = "неправильный album_id";
 }
-
-require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/views/glMan-photoAttachForm.php");

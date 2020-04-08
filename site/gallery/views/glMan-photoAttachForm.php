@@ -1,4 +1,12 @@
 <?php
+$categ_qry = "select DISTINCT catName, glCat_id from galleryMenu_dt where catActive = true order by catName";
+$categ_res = $DB->doQuery($categ_qry);
+$categ_arr = [];
+while ($categ_row = $DB->doFetchRow($categ_res)){
+    //if($Alb_rd->result['glCat_id'] != $categ_row['glCat_id']){
+        $categ_arr[$categ_row['glCat_id']] = $categ_row['catName'];
+    //}
+}
 $itemsCount_query="select * from galleryPhotos_dt where album_id = ".$_GET['alb_id']." order by uploadDate DESC, photo_id DESC";
 $itemsCount_res=$DB->doQuery($itemsCount_query);
 $itemsCount = mysql_num_rows($itemsCount_res);

@@ -20,4 +20,27 @@ $appRJ->response['result'].= "<input type='button' value='update' class='update'
     $itemsCount_row['photo_id'].", this)'>".
     "<input type='button' value='delete' class='delete' onclick='deleteAttach(".
     $itemsCount_row['photo_id'].", this)'>";
-$appRJ->response['result'].= "</div></div></div>";
+$appRJ->response['result'].= "</div>".
+
+    "</div>".
+    "<div class='photo-reAssignAlb'><select onchange='reAssignCateg(".$itemsCount_row['photo_id'].", this)'>".
+    "<option value='void'>---</option>";
+foreach ($categ_arr as $cat_id => $catName){
+    //if($cat_id != )
+    $appRJ->response['result'].= "<option value='".$cat_id."'>".$catName."</option>";
+}
+$appRJ->response['result'].=    "</select>".
+    "<select class='pick-reAssignAlb' diasbled><option></option></select>".
+    "<div class='reAssignAlb-btn-line'>".
+    "<div class='reAssignAlb-btn'>".
+    "<a href='javaScript: void(0)' onclick='reAssignCancel(this)'>Cancel</a>".
+    "</div>".
+    "<div class='reAssignAlb-btn'>".
+    "<a href='javaScript: void(0)' onclick='reAssignPhoto(".$itemsCount_row['photo_id'].", this)'>".
+    "<img src='/source/img/sync-icon.png'>".
+    " - reAssign</a>".
+    "</div>".
+    "</div>".
+
+    "</div>".
+    "</div>";

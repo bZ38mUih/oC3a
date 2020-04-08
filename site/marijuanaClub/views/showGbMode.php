@@ -4,23 +4,24 @@ $showGbMode .= "<div class='mc-container'>";
 if($gbSchedule->result['sch_id']){
     $gbSchTime1 = explode(":", $gbSchedule->result['time1']);
     $gbSchTime2 = explode(":", $gbSchedule->result['time2']);
-    $gbSchTime3 = explode(":", $gbSchedule->result['time3']);
+    //$gbSchTime3 = explode(":", $gbSchedule->result['time3']);
     if($gbSchedule->result['invertTime']){
-        $gbModeInterval_2 = round($gbSchTime1[0]+$gbSchTime1[1]/60+$gbSchTime3[0]+$gbSchTime3[1]/60, 1);
-        $gbModeInterval_1 = round($gbSchTime2[0]+$gbSchTime2[1]/60, 1);
+        $gbModeInterval_2 = round($gbSchTime1[0]+$gbSchTime1[1]/60 + 24 - $gbSchTime2[0] - $gbSchTime2[1]/60, 1);
+        $gbModeInterval_1 = round($gbSchTime2[0] + $gbSchTime2[1]/60 - $gbSchTime1[0] - $gbSchTime1[1]/60, 1);
+        $class1 = 'light-off';
+        $class2 = 'light-on';
+        $text1 = 'Выкл (Off)';
+        $text2 = 'Вкл (On)';
     }else{
-        $gbModeInterval_1 = round($gbSchTime1[0]+$gbSchTime1[1]/60+$gbSchTime3[0]+$gbSchTime3[1]/60, 1);
-        $gbModeInterval_2 = round($gbSchTime2[0]+$gbSchTime2[1]/60, 1);
+        $gbModeInterval_1 = round($gbSchTime1[0]+$gbSchTime1[1]/60 + 24 - $gbSchTime2[0] - $gbSchTime2[1]/60, 1);
+        $gbModeInterval_2 = round($gbSchTime2[0] + $gbSchTime2[1]/60 - $gbSchTime1[0] - $gbSchTime1[1]/60, 1);
+        $class2 = 'light-off';
+        $class1 = 'light-on';
+        $text2 = 'Выкл (Off)';
+        $text1 = 'Вкл (On)';
+        //$gbModeInterval_1 = round($gbSchTime1[0]+$gbSchTime1[1]/60+$gbSchTime3[0]+$gbSchTime3[1]/60, 1);
+        //$gbModeInterval_2 = round($gbSchTime2[0]+$gbSchTime2[1]/60, 1);
     }
-    /*
-    if(!$gbModeInterval){
-        $gbModeInterval = '0';
-    }
-    if(!$gbModeInterva2){
-        $gbModeInterva2 = '0';
-    }
-    */
-
 
     $showGbMode.= "<div class='top-panel'>".
         "<div class='btn-next' ";
@@ -47,13 +48,13 @@ if($gbSchedule->result['sch_id']){
     $showGbMode.=
         "<div class = 'mode-list'>".
         "<ul>".
-        "<li><div class='light-line-one light-off'><span class='mode'>Выкл (Off):</span> 00:00 - <span class='time-val'>".
+        "<li><div class='light-line-one ".$class1."'><span class='mode'>".$text1.":</span> 00:00 - <span class='time-val'>".
         $gbSchedule->result['time1']."</span></div></li>".
-        "<li><div class='light-line-two light-on'>
-    <span class='mode'>Вкл (On):</span>
+        "<li><div class='light-line-two ".$class2."'>
+    <span class='mode'>".$text2.":</span>
     <span class='time-val'>".$gbSchedule->result['time1']."</span> - <span class='time-val'>".
         $gbSchedule->result['time2']."</span></div></li>".
-        "<li><div class='light-line-three light-off'><span class='mode'>Выкл (Off):</span><span class='time-val'>".
+        "<li><div class='light-line-three ".$class1."'><span class='mode'>".$text1.":</span><span class='time-val'>".
         $gbSchedule->result['time2']."</span> - 24:00</div></li>".
         "</ul>".
         "</div>".

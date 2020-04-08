@@ -1,8 +1,181 @@
 <?php
+require_once ($_SERVER["DOCUMENT_ROOT"]."/site/marijuanaClub/mc_conf.php");
 if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
     $appRJ->errors['404']['description']="Такой страницы не существует";
     $appRJ->throwErr();
-}else {
+}elseif($appRJ->server['reqUri_expl'][2] =="gbLightsModels"){
+    if($appRJ->server['reqUri_expl'][3] =="create"){
+        if($_POST['lightModelCreate'] == 'y') {
+            $ajaxRes['err'] = 0;
+            $ajaxRes['data'] = null;
+
+            $gbLightModel = new recordDefault("mcGbLightsModels_dt", "model_id");
+            $gbLightModel->result['modelName'] = $_POST['modelName'];
+            $gbLightModel->result['power'] = $_POST['power'];
+            $gbLightModel->result['colorT'] = $_POST['colorT'];
+            $gbLightModel->result['settle'] = $_POST['settle'];
+            $gbLightModel->result['lightType'] = $_POST['lightType'];
+            $gbLightModel->result['lightNote'] = $_POST['lightNote'];
+            if($_POST['activeFlag']=='true'){
+                $gbLightModel->result['activeFlag'] = true;
+            }else{
+                $gbLightModel->result['activeFlag'] = false;
+            }
+
+            if ($gbLightModel->result['modelName']) {
+                if ($gbLightModel->putOne()) {
+                    $ajaxRes['data'] = "inserts - ok";
+                } else {
+                    $ajaxRes['err'] = 1;
+                    $ajaxRes['data'] = "ошибки вставки модели";
+                }
+            } else {
+                $ajaxRes['err'] = 1;
+                $ajaxRes['data'] = "не введены: модель";
+            }
+
+            $appRJ->response['format'] = "json";
+            $appRJ->response['result'] = $ajaxRes;
+        }else{
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/gbLM-create-v.php");
+        }
+    }elseif($appRJ->server['reqUri_expl'][3] =="edit"){
+        if($_POST['lightModelEdit'] == 'y') {
+            $ajaxRes['err'] = 0;
+            $ajaxRes['data'] = null;
+
+            $gbLightModel = new recordDefault("mcGbLightsModels_dt", "model_id");
+
+            $gbLightModel->result['model_id'] = $_POST['model_id'];
+            $gbLightModel->result['modelName'] = $_POST['modelName'];
+            $gbLightModel->result['power'] = $_POST['power'];
+            $gbLightModel->result['colorT'] = $_POST['colorT'];
+            $gbLightModel->result['settle'] = $_POST['settle'];
+            $gbLightModel->result['lightType'] = $_POST['lightType'];
+            $gbLightModel->result['lightNote'] = $_POST['lightNote'];
+            if($_POST['activeFlag']=='true'){
+                $gbLightModel->result['activeFlag'] = true;
+            }else{
+                $gbLightModel->result['activeFlag'] = false;
+            }
+
+            if ($gbLightModel->result['modelName']) {
+                if ($gbLightModel->updateOne()) {
+                    $ajaxRes['data'] = "updates - ok";
+                } else {
+
+                    $ajaxRes['err'] = 1;
+                    $ajaxRes['data'] = "model lam update err";
+
+                }
+            } else {
+                $ajaxRes['err'] = 1;
+                $ajaxRes['data'] = "model not entered";
+            }
+
+            $appRJ->response['format'] = "json";
+            $appRJ->response['result'] = $ajaxRes;
+        }else{
+            $gbLightModel = new recordDefault("mcGbLightsModels_dt", "model_id");
+            if($_GET['model_id']){
+                $gbLightModel->result['model_id'] = $_GET['model_id'];
+                if($gbLightModel->copyOne()){
+                    require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/gbLM-edit-v.php");
+                }else{
+                    $appRJ->errors['404']['description'] = 'неправильный параметр model_id';
+                }
+            }else{
+                require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/gbLM-edit-v.php");
+            }
+
+        }
+    }else{
+
+        $lightsList_qry = "select * from mcGbLightsModels_dt order by modelName";
+        $lightsList_res=$DB->doQuery($lightsList_qry);
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/gbLM-list-v.php");
+    }
+
+}elseif($appRJ->server['reqUri_expl'][2] =="gbLamps"){
+    if($appRJ->server['reqUri_expl'][3] =="create"){
+
+        if($_POST['lightCreate'] == 'y') {
+            $ajaxRes['err'] = 0;
+            $ajaxRes['data'] = null;
+
+            $gbLight = new recordDefault("mcGbLights_dt", "light_id");
+            $gbLight->result['model_id'] = $_POST['model_id'];
+            $gbLight->result['lightName'] = $_POST['lightName'];
+            $gbLight->result['dateEntered'] = $_POST['dateEntered'];
+            $gbLight->result['lightStatus'] = $_POST['lightStatus'];
+
+            if($gbLight->result['lightName']){
+                $findByName_qry = "select lightName from mcGbLights_dt WHERE lightName = '".$gbLight->result['lightName']."'";
+                $findByName_res = $DB->doQuery($findByName_qry);
+                if(mysql_num_rows($findByName_res) == 0){
+                    if ($gbLight->putOne()) {
+                        $ajaxRes['data'] = "inserts - ok";
+                    } else {
+                        $ajaxRes['err'] = 1;
+                        $ajaxRes['data'] = "insert in mcGbLights_dt err";
+                    }
+                }else{
+                    $ajaxRes['err'] = 1;
+                    $ajaxRes['data'] = "lightName repetition";
+                }
+            }else{
+                $ajaxRes['err'] = 1;
+                $ajaxRes['data'] = "lightName not set";
+            }
+            $appRJ->response['format'] = "json";
+            $appRJ->response['result'] = $ajaxRes;
+        }else{
+        $lightsList_qry = "select * from mcGbLightsModels_dt order by modelName";
+        $lightsList_res=$DB->doQuery($lightsList_qry);
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/gbL-create-v.php");
+        }
+    }elseif($appRJ->server['reqUri_expl'][3] =="edit") {
+        if ($_POST['lightModelEdit'] == 'y') {
+            $ajaxRes['err'] = 0;
+            $ajaxRes['data'] = null;
+
+            $gbLightModel = new recordDefault("mcGbLightsModels_dt", "model_id");
+
+            $gbLightModel->result['model_id'] = $_POST['model_id'];
+            $gbLightModel->result['modelName'] = $_POST['modelName'];
+            $gbLightModel->result['power'] = $_POST['power'];
+            $gbLightModel->result['colorT'] = $_POST['colorT'];
+            $gbLightModel->result['settle'] = $_POST['settle'];
+            $gbLightModel->result['lightType'] = $_POST['lightType'];
+            $gbLightModel->result['lightNote'] = $_POST['lightNote'];
+            if ($_POST['activeFlag'] == 'true') {
+                $gbLightModel->result['activeFlag'] = true;
+            } else {
+                $gbLightModel->result['activeFlag'] = false;
+            }
+
+            if ($gbLightModel->result['modelName']) {
+                if ($gbLightModel->updateOne()) {
+                    $ajaxRes['data'] = "updates - ok";
+                } else {
+
+                    $ajaxRes['err'] = 1;
+                    $ajaxRes['data'] = "model lam update err";
+
+                }
+            } else {
+                $ajaxRes['err'] = 1;
+                $ajaxRes['data'] = "model not entered";
+            }
+
+            $appRJ->response['format'] = "json";
+            $appRJ->response['result'] = $ajaxRes;
+        }
+    }else{
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/gbL-list-v.php");
+    }
+}
+else {
     if($_GET['modeGbEditEntry'] == 'y'){
 
         $ajaxRes['err']=0;
@@ -173,7 +346,6 @@ if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
                 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/actions/showGbMode.php");
                 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/showGbMode.php");
 
-                //$ajaxRes['err']=1;
                 $ajaxRes['data'] = $showGbMode;
             }
 
@@ -212,7 +384,7 @@ if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
             $tmpCurGbNote_res = $DB->doQuery($tmpCurGbNote_qry);
             $tmpCurGbNote_row = $DB->doFetchRow($tmpCurGbNote_res);
             $note_id = $tmpCurGbNote_row['note_id'];
-            //$curGbNote_qry = "select * from mcGbNotes_dt order by noteDate DESC, noteTime DESC LIMIT 2";
+
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/actions/showGbNote.php");
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/showGbNote.php");
             $ajaxRes['data'] = $showGbNote;
@@ -223,7 +395,6 @@ if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
         }
         $appRJ->response['format'] = "json";
         $appRJ->response['result'] = $ajaxRes;
-        //if(isset)
     }
 
 
@@ -232,22 +403,10 @@ if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
         $ajaxRes['err'] = 0;
         $ajaxRes['data'] = 0;
         if(isset($_GET['note_id']) and $_GET['note_id'] != null){
-
-            //$tmpCurGbNote = new recordDefault("mcGbNotes_dt", "note_id");
-            //$tmpCurGbNote->result['note_id'] = $_GET['note_id'];
-            //if($tmpCurGbNote->copyOne()){
-
             $note_id = $_GET['note_id'];
-            //  $dateFrom = $tmpCurGbNote->result['noteDate'];
-
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/actions/showGbNote.php");
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/showGbNote.php");
             $ajaxRes['data'] = $showGbNote;
-
-            //}else{
-            //$updModeRes['err']=1;
-            //$updModeRes['data'] = "Ошибка обновления данных";
-            //}
         }else{
 
         }
@@ -263,7 +422,8 @@ if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
         $gbNote->result['content'] = $_POST['content'];
         $gbNote->result['noteTime'] = $_POST['noteTime'];
         $gbNote->result['noteDate'] = $_POST['noteDate'];
-        if ($gbNote->result['temper'] or $gbNote->result['humid'] or $gbNote->result['content']) {
+        $gbNote->result['electricity'] = $_POST['electricity'];
+        if ($gbNote->result['temper'] or $gbNote->result['humid'] or $gbNote->result['content'] or $gbNote->result['electricity']) {
             if ($gbNote->putOne()) {
                 //$ajaxRes['data'] = $gbNote->result['note_id'];
                 $note_id = $gbNote->result['note_id'];
@@ -325,6 +485,8 @@ if (!isset($_SESSION['groups']['1']) or $_SESSION['groups']['1']<10) {
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/showGbNote.php");
 
 
+        $lightsList_qry = "select * from mcGbLightsModels_dt order by modelName where activeFlag is true";
+        $lightsList_res=$DB->doQuery($lightsList_qry);
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/marijuanaClub/views/defaultView.php");
     }
 

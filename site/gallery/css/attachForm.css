@@ -81,8 +81,19 @@ form
 .photo-item .photo-control
 {
     display: inline-block;
-    width: 70%;
+    width: 35%;
     vertical-align: middle;
+}
+.photo-item .photo-reAssignAlb
+{
+    display: inline-block;
+    width: 30%;
+    vertical-align: middle;
+}
+
+.photo-item .photo-reAssignAlb select.pick-reAssignAlb
+{
+    display: none;
 }
 
 .photo-item .photo-control span.photoLink
@@ -103,10 +114,26 @@ form
 
 .photo-item .photo-control input[type='text'], .photo-item .photo-control input[type='date'],
 .photo-item .photo-control input[type='checkbox'], .photo-item .photo-control input[type='number']
+, .photo-item .photo-reAssignAlb select
 {
     font-size: 0.8em;
     display: inline-block;
     width: 90%;
+}
+
+.reAssignAlb-btn-line{
+    display: none;
+    width: 100%;
+}
+.reAssignAlb-btn {
+    display: inline-block;
+    width: 40%;
+    padding: 0.5em 5%;
+}
+.reAssignAlb-btn a img {
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
 }
 
 .photo-item .photo-control input[type='checkbox']

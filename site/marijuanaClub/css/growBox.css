@@ -10,10 +10,10 @@
 .mc-container{
     margin: 0 20%;
     width: 60%;
-border-top: 1px solid #00ff00;
-border-bottom: 1px solid #00ff00;
-border-left: 2px solid #00ff00;
-border-right: 2px solid #00ff00;
+    border-top: 1px solid #00ff00;
+    border-bottom: 1px solid #00ff00;
+    border-left: 2px solid #00ff00;
+    border-right: 2px solid #00ff00;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1),
     rgba(0, 0, 0, 1), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
 }
@@ -35,7 +35,11 @@ border-right: 2px solid #00ff00;
     width: 80%;
     margin: 1em 10%;
 }
+label.lbCheckBox{
+    color: white;
+}
 
+/*mode-controls -->*/
 .mode-controls{
 
     display: inline-block;
@@ -44,29 +48,9 @@ border-right: 2px solid #00ff00;
     font-weight: bold;
     /*border: 2px solid red;*/
 }
-#slider-range{
-    background: darkred;
-}
-#slider-range .ui-slider-range.ui-corner-all.ui-widget-header{
-    background: limegreen;
-}
-#slider-range span{
-    background: midnightblue;
-}
-.mc-container .actLog{
-    background: red;
+.mode-controls span, .mode-controls label{
+    margin-top: 0.2em;
     color: white;
-    font-weight: bold;
-    margin-top: 1em;
-    font-size: 0.8em;
-}
-
-label.mcGb-invert{
-    color: white;
-}
-
-.mode-controls label{
-    color: #c0c0c0;
     width: 100%;
     display: inline-block;
 }
@@ -81,10 +65,40 @@ label.mcGb-invert{
     font-size: 1em;
     font-style: italic;
     background: transparent;
-    color: #00ff00;
+    color: white;
     border: 1px dotted #c0c0c0;
     padding: 0.5em;
 }
+
+
+#slider-range{
+    background: darkred;
+}
+#slider-range .ui-slider-range.ui-corner-all.ui-widget-header{
+    background: limegreen;
+}
+#slider-range span{
+    background: midnightblue;
+}
+.mc-container .actLog{
+
+    color: white;
+    font-weight: bold;
+    margin-top: 1em;
+    font-size: 0.8em;
+}
+.actLog.well{
+    background: #008000;
+}
+.actLog.fail{
+    background: darkred;
+}
+
+label.mcGb-invert{
+    color: white;
+}
+
+
 .gbMode-hours{
     width: 100%;
     color: white;
@@ -105,17 +119,22 @@ label.mcGb-invert{
     border-left: 1px dotted #c0c0c0;
     border-right: 1px dotted #c0c0c0;
 }
-.mode-controls label input{
+.mode-controls label input, .mode-controls span input, .mode-controls span select{
     margin-right: 5%;
     border: none;
     font-style: italic;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 1em;
     width: 45%;
-    float: right;
     border-bottom: 1px solid midnightblue;
-    color: #00ff00;
+    color: white;
     background: transparent;
+}
+.mode-controls span select option{
+    background: black;
+}
+.mode-controls label input{
+    float: right;
 }
 .mode-controls-btn-wrap{
     width: 90%;
@@ -142,6 +161,15 @@ label.mcGb-invert{
     color: white;
 }
 
+
+.mode-controls span:before{
+    width: 30%;
+    display: inline-block;
+}
+.mode-controls span:after{
+    width: 20%;
+    display: inline-block;
+}
 span.mcGbNote-temp{
     font-weight: bold;
     color: orange;
@@ -188,6 +216,142 @@ span.mcGbNote-el:after{
     content: " кВт*ч";
 }
 
+span.mcGbLights-Model{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: " кВт*ч";
+}
+span.mcGbLights-Model:before{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "Model: ";
+}
+span.mcGbLights-Model:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "";
+}
+span.mcGbLights-Power{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+}
+span.mcGbLights-Power:before{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "Power: ";
+}
+span.mcGbLights-Power:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: " (W)";
+}
+span.mcGbLights-ColorT{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+}
+span.mcGbLights-ColorT:before{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "Color: ";
+}
+span.mcGbLights-ColorT:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: " (K)";
+}
+span.mcGbLights-settle{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+}
+span.mcGbLights-settle:before{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "Settle: ";
+}
+span.mcGbLights-settle:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "";
+}
+span.mcGbLights-lightType{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+}
+span.mcGbLights-lightType:before{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "Type: ";
+}
+span.mcGbLights-lightType:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: red;
+    content: "";
+}
+span.mcGbLight-name{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+}
+span.mcGbLight-name:before{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "Name: ";
+}
+span.mcGbLight-name:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: red;
+    content: "";
+}
+span.mcGbLight-lightStatus{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+}
+span.mcGbLight-lightStatus:before{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: "Status: ";
+}
+span.mcGbLight-lightStatus:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: red;
+    content: "";
+}
+/*
+span.mcGbLights-settle:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+}
+*/
+/*
+span.mcGbLights-Model:after{
+    text-decoration: none;
+    font-weight: normal;
+    color: aqua;
+    content: " кВт*ч";
+}
+*/
+
 
 
 .mode-controls-btn img{
@@ -215,11 +379,12 @@ span.mcGbNote-el:after{
 
 }
 .mc-container .top-panel .btn-pre, .mc-container .top-panel .btn-next{
-display: inline-block;
+    display: inline-block;
     width: 15%;
+    cursor: pointer;
 }
 .mc-container .top-panel .btn-pre img, .mc-container .top-panel .btn-next img{
-height: 1em;
+    height: 1em;
     width: 1em;
 }
 .mc-container .top-panel h4 span{

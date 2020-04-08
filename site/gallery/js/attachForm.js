@@ -92,3 +92,52 @@ function deleteAttach(attach_id, em){
         $(".itemsCount span").html(parseInt( $(".itemsCount span").text())-1);
     });
 }
+
+function reAssignCateg(attach_id, em){
+    $(em).parent().preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
+    var posting = $.post( "", "reAssignCateg=y&glCat_id="+$(em).val()+"&photo_id="+attach_id);
+    posting.done(function( data ) {
+        $(em).parent().preloader("remove");
+        var response=JSON.parse(data);
+        if(response.err){
+            $(em).parent().find("select:eq(1)").css("display", "none");
+            $(em).parent().find(".reAssignAlb-btn-line").css("display", "none");
+            //alert(response.data);
+        }else{
+            $(em).parent().find("select:eq(1)").css("display", "inline-block");
+            $(em).parent().find("select:eq(1)").html(response.data)
+            $(em).parent().find(".reAssignAlb-btn-line").css("display", "inline-block");
+        }
+    });
+}
+function reAssignCancel(em){
+    $(em).parent().parent().parent().find("select:eq(1)").css("display", "none");
+    $(em).parent().parent().parent().find(".reAssignAlb-btn-line").css("display", "none");
+}
+function reAssignPhoto(photo_id, em) {
+    $(em).parent().parent().parent().parent().preloader({
+        text: 'loading',
+        percent: '',
+        duration: '',
+        zIndex: '',
+        setRelative: true
+    });
+
+    var posting = $.post( "", "reAssignPhoto=y&photo_id="+photo_id+"&album_id="+
+    $(em).parent().parent().parent().find("select.pick-reAssignAlb").val());
+    posting.done(function( data ) {
+        $(em).parent().parent().parent().parent().preloader("remove");
+        var response=JSON.parse(data);
+        if(response.err){
+            alert(response.data);
+        }else{
+            $(em).parent().parent().parent().parent().html(response.data);
+        }
+    });
+}

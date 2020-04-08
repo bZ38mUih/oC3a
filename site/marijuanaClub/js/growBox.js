@@ -14,18 +14,7 @@ function runSlider(){
 
     $("#invert-time").change(function(){
         if($(this).is(':checked')){
-            $(".light-line-one").removeClass("light-off");
-            $(".light-line-one").addClass("light-on");
-            $(".light-line-two").removeClass("light-on");
-            $(".light-line-two").addClass("light-off");
-            $(".light-line-three").removeClass("light-off");
-            $(".light-line-three").addClass("light-on");
-            $(".light-line-one span.mode").html("Вкл (On):");
-            $(".light-line-two span.mode").html("Выкл (Off):");
-            $(".light-line-three span.mode").html("Вкл (On):");
-            $("#slider-range").css("background", "limegreen");
-            $("#slider-range .ui-slider-range.ui-corner-all.ui-widget-header").css("background", "darkred");
-        }else{
+
             $(".light-line-one").removeClass("light-on");
             $(".light-line-one").addClass("light-off");
             $(".light-line-two").removeClass("light-off");
@@ -37,6 +26,19 @@ function runSlider(){
             $(".light-line-three span.mode").html("Выкл (Off):");
             $("#slider-range").css("background", "darkred");
             $("#slider-range .ui-slider-range.ui-corner-all.ui-widget-header").css("background", "limegreen");
+        }else{
+            $(".light-line-one").removeClass("light-off");
+            $(".light-line-one").addClass("light-on");
+            $(".light-line-two").removeClass("light-on");
+            $(".light-line-two").addClass("light-off");
+            $(".light-line-three").removeClass("light-off");
+            $(".light-line-three").addClass("light-on");
+            $(".light-line-one span.mode").html("Вкл (On):");
+            $(".light-line-two span.mode").html("Выкл (Off):");
+            $(".light-line-three span.mode").html("Вкл (On):");
+            $("#slider-range").css("background", "limegreen");
+            $("#slider-range .ui-slider-range.ui-corner-all.ui-widget-header").css("background", "darkred");
+
         }
     });
 
@@ -349,7 +351,7 @@ function noteGbCreate(){
         setRelative: true
     });
     $.post( "", "noteGbCreate=y&temper="+ $("#temper").val()
-    +"&humid="+$("#humid").val()
+    +"&humid="+$("#humid").val()+"&electricity="+$("#electricity").val()
     +"&content="+$("#note-content").val()
     +"&noteTime="+$("#note-time").val()
     +"&noteDate="+$("#note-date").val())
@@ -366,4 +368,7 @@ function noteGbCreate(){
             }
         });
 }
+
+//lights
+
 

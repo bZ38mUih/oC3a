@@ -3,7 +3,7 @@ $ajaxRes['data'].= "<div class='mc-container'>
 <div class='timeMode'>";
 $ajaxRes['data'].=   "<h6>Изменить режим #<span id='sch_id'>".$gbSchedule->result['sch_id']."</span></h6>".
     "<div class='slider-range-wrap'><div id='slider-range'></div></div>".
-"<label><input type='checkbox' id='invert-time' ";
+"<label class='lbCheckBox'><input type='checkbox' id='invert-time' ";
 if($gbSchedule->result['invertTime']){
     $ajaxRes['data'].= "checked";
 }
@@ -22,9 +22,15 @@ $ajaxRes['data'].=">Инвертировать</label>".
     "<label>Применить<input type='date' id='mode-date' value='".$gbSchedule->result['modeDate']."'></label>".
     "<label>с :<input type='time' id='mode-time' value='".$gbSchedule->result['modeTime']."'></label>".
     "<div class='mode-controls-btn-wrap'>".
-    "<div class='mode-controls-btn'><a href='javaScript: void(0)' onclick='modeGbShow(".$gbSchedule->result['sch_id'].")'>Отказаться</a></div>".
-    "<div class='mode-controls-btn toUpdate'><input type='button' value='Применить' onclick = 'modeGbEdit()'></div>".
-    "<div class='mode-controls-btn toDel'><input type='button' value='Удалить' onclick = 'delGbMode(".$gbSchedule->result['sch_id'].")'></div>".
+    "<div class='mode-controls-btn mcBtnGoBack'><a href='javaScript: void(0)' onclick='modeGbShow(".$gbSchedule->result['sch_id'].")'>Отказаться</a></div>".
+    "<div class='mode-controls-btn mcBtnEdit'><a href='javaScript: void(0)' onclick = 'modeGbEdit()'><img src='/source/img/edit-icon.png'> - Edit</a></div>".
+    "<div class='mode-controls-btn toDel'></div>".
+
+    //"<div class='mode-controls-btn'><a href='javaScript: void(0)' onclick='modeGbShow(".$gbSchedule->result['sch_id'].")'>Отказаться</a></div>".
+    //"<div class='mode-controls-btn toUpdate'><input type='button' value='Применить' onclick = 'modeGbEdit()'></div>".
+    //"<div class='mode-controls-btn toDel'>".
+    //"<input type='button' value='Удалить' onclick = 'delGbMode(".$gbSchedule->result['sch_id'].")'>".
+    //"</div>".
     "</div>".
     "</div>";
 $ajaxRes['data'].=   "</div></div>";

@@ -1,12 +1,12 @@
 <?php
-$h1='Marijuana Club - Сводка';
+$h1='Создать модель';
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
     "<head>".
     "<meta http-equiv='content-type' content='text/html; charset=utf-8'/>".
-    "<meta name='description' content='Вход на сайт. Авторизация через социальные сети или аккаунт на rightjoint.ru' />".
+    "<meta name='description' content='Модели ламп. Характеристики и описания ламп' />".
     "<meta name='robots' content='noindex'>".
-    "<title>MarijuanaClub - Сводка</title>".
+    "<title>MarijuanaClub - Создать модель</title>".
     "<link rel='SHORTCUT ICON' href='/site/marijuanaClub/img/logo.png' type='image/png'>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<script src='/source/js/jquery.cookie.js'></script>".
@@ -22,7 +22,7 @@ $appRJ->response['result'].=
     //"<script src='https://code.jquery.com/jquery-1.12.4.js'></script>".
     "<script src='/source/js/jQueryUI/jquery-1.12.4.js'></script>".
     "<script src='/source/js/jQueryUI/jquery-ui.js'></script>";
-$appRJ->response['result'].= "<script src='/site/marijuanaClub/js/growBox.js'></script>";
+$appRJ->response['result'].= "<script src='/site/marijuanaClub/js/gbLights.js'></script>";
 if($signInActiveSite){
     $appRJ->response['result'].= "<script type='text/javascript' src='/site/signIn/js/site.js'></script>";
 }
@@ -34,24 +34,38 @@ $appRJ->response['result'].= "</head>".
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 //require_once($_SERVER["DOCUMENT_ROOT"] . "/site/signIn/views/signIn-frame.php");
 
-$appRJ->response['result'].= "<div class='mc-wrap'>".
-    "<div class='mc-container-wrap gbLights'><div class='mc-container'>".
-
+$appRJ->response['result'].= "<div class='mc-wrap gbLights'>".
+    "<div class='timeMode'><div class='mc-container'>".
+        "<h6>Новая модель</h6>".
+    "<label class='lbCheckBox'><input type='checkbox' id='activeFlag' ";
+$appRJ->response['result'].= ">Показывать</label>".
+    "<div class='actLog'></div>".
     "<div class='mode-controls'>".
-    "<div class='mode-controls-btn-wrap'>".
-    "<div class='mode-controls-btn mcBtnDelete'>".
-    //"<a href='javaScrip: void(0)' onclick = 'modeGbRemove(".$gbSchedule->result['sch_id'].")' class='create-btn'><img src='/source/img/drop-icon.png'> - Delete</a>".
-    "</div>".
-    "<div class='mode-controls-btn mcBtnCreate'>".
-    "<a href='/marijuanaClub/gbLamps' class='create-btn'><img src='/source/img/create-icon.png'> - Lamps</a>".
-    "</div>".
-    "<div class='mode-controls-btn mcBtnCreate'>".
-    "<a href='/marijuanaClub/gbLightsModels' class='create-btn'><img src='/source/img/create-icon.png'> - Models</a>".
-    "</div>"."</div>".
+    "<span class='mcGbLights-Model'><input type='text' id='modelName' value='".$gbLightModel->result['modelName']."'></span>".
+    "<span class='mcGbLights-Power'><input type='number' id='power' value='".$gbLightModel->result['power']."'></span>".
+    "<span class='mcGbLights-ColorT'><input type='number' id='colorT' value='".$gbLightModel->result['colorT']."'></span>".
+    "<span class='mcGbLights-settle'><input type='text' id='settle' value='".$gbLightModel->result['settle']."'></span>".
+    "<span class='mcGbLights-lightType'><select id='lightType'>";
+for ($i = 0; $i < count($lightTypes); $i++) {
+    if ($lightTypes[$i] == $gbLightModel->result['lightType']){
+        $appRJ->response['result'] .= "<option selected>".$lightTypes[$i]."</option>";
+    }else{
+        $appRJ->response['result'] .= "<option>".$lightTypes[$i]."</option>";
+    }
+    //echo $i;
+}
 
+$appRJ->response['result'] .="</select></span>".
+    "<div class='note-content-wrap'><textarea rows='3' id='lightNote'>".$gbLightModel->result['lightNote']."</textarea></div>".
+    //"<label>Применить<input type='date' id='note-date' value='".$gbNote->result['noteDate']."'></label>".
+    //"<label>с :<input type='time' id='note-time' value='".$gbNote->result['noteTime']."'></label>".
+    "<div class='mode-controls-btn-wrap'>".
+    "<div class='mode-controls-btn mcBtnGoBack'><a href='/marijuanaClub/gbLightsModels'>Отказаться</a></div>".
+    "<div class='mode-controls-btn mcBtnCreate'><a href='javaScript: void(0)' onclick = 'lightModelCreate()'><img src='/source/img/create-icon.png'> - Create</a></div>".
+    "<div class='mode-controls-btn toDel'></div>".
+    "</div>".
+    "</div>".
     "</div></div>".
-    "<div class='mc-container-wrap gbMode'>".$showGbMode."</div>".
-    "<div class='mc-container-wrap gbNote'>".$showGbNote."</div>".
     "</div>";
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");

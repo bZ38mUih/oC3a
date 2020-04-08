@@ -24,15 +24,27 @@ if($gbNote->result['note_id']){
 
     $showGbNote .= "</div>".
         "</div>";
+
     $showGbNote.=
-        "<div class = 'mode-list'>".
-        "<ul>".
-        "<li><span class='mcGbNote-temp'>".$gbNote->result['temper']."</span></li>".
-        "<li><span class='mcGbNote-humid'>".$gbNote->result['humid']."</span></li>".
-        "<li><span class='mcGbNote-el'>".$gbNote->result['electricity']."</span></li>".
+        "<div class = 'mode-list'>";
+    if($gbNote->result['temper'] or $gbNote->result['humid'] or $gbNote->result['electricity']){
+        $showGbNote.="<ul>";
+        if($gbNote->result['temper']){
+            $showGbNote.= "<li><span class='mcGbNote-temp'>".$gbNote->result['temper']."</span></li>";
+        }
+        if($gbNote->result['humid']){
+            $showGbNote.= "<li><span class='mcGbNote-humid'>".$gbNote->result['humid']."</span></li>";
+        }
+        if($gbNote->result['electricity']){
+            $showGbNote.="<li><span class='mcGbNote-el'>".$gbNote->result['electricity']."</span></li>";
+        }
+
         //"<li><div class='light-line-three light-off'><span class='mode'>Выкл (Off):</span><span class='time-val'>".$gbSchedule->result['time2']."</span> - 24:00</div></li>".
-        "</ul>".
-        "<div class='gb-note-content'>".
+        $showGbNote.="</ul>";
+    }
+
+
+    $showGbNote.="<div class='gb-note-content'>".
         $gbNote->result['content'].
         "</div>".
         "</div>".
