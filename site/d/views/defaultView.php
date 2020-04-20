@@ -14,7 +14,7 @@ $appRJ->response['result'].= "<head>".
 $appRJ->response['result'].= "</head>".
     "<body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/diaryHeader.php");
-$appRJ->response['result'].="<div class='mainDMenu'>";
+$appRJ->response['result'].="<div class='contentBlock-frame'><div class='contentBlock-center'><div class='mainDMenu'>";
 foreach ($result as $k=>$v) {
     $appRJ->response['result'].=
         "<div class='dMenu-item'>".
@@ -31,7 +31,7 @@ foreach ($result as $k=>$v) {
         "</div>".
         "</div>";
 }
-$appRJ->response['result'].="</div>";
+$appRJ->response['result'].="</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/dFooter.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/dMenu.php");

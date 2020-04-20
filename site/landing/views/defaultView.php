@@ -29,11 +29,15 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-center'><div class='contentBlock-wrap'>".
     "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>it-Блог</h2>";
 while ($slDevArt_row=$DB->doFetchRow($slDevArt_res)){
+    $tPath = 'dev';
+    if($slDevArt_row['artCat_id'] == 1){
+        $tPath = 'pc';
+    }
     $appRJ->response['result'].= "<div class='list-item'>".
         "<div class='list-item-img'>".
         "<img src='".ARTS_IMG_PAPH."/".$slDevArt_row['art_id']."/preview/".$slDevArt_row['artImg']."' alt='artCover'>".
         "</div><div class='list-item-text'>".
-        "<a href='/dev/".$slDevArt_row['artAlias']."' title='Читать статью'>".$slDevArt_row['artName']."</a>".
+        "<a href='/".$tPath."/".$slDevArt_row['artAlias']."' title='Читать статью'>".$slDevArt_row['artName']."</a>".
         "<span>".$slDevArt_row['artMeta']."</span>";
     if($slDevArt_row['refreshDate']){
         $appRJ->response['result'].= "<div class='line'>Обновлено: <b>".$slDevArt_row['refreshDate']."</b></div>";
@@ -51,8 +55,12 @@ if($devArtMain['refreshDate']){
 }else{
     $appRJ->response['result'].= "<div class='line'>Опубликовано: <b>".$devArtMain['pubDate']."</b></div>";
 }
+$tPath = 'dev';
+if($devArtMain['artCat_id'] == 1){
+    $tPath = 'pc';
+}
 $appRJ->response['result'].= "<img src='".ARTS_IMG_PAPH."/".$devArtMain['art_id']."/preview/".$devArtMain['artImg']."' alt='artCover'>".
-    "<div class='list-item-text'><a href='/dev/".$devArtMain['artAlias']."' title='Читать статью'>".$devArtMain['artName']."</a>".
+    "<div class='list-item-text'><a href='/".$tPath."/".$devArtMain['artAlias']."' title='Читать статью'>".$devArtMain['artName']."</a>".
     "<span>".$devArtMain['artMeta']."</span></div></div></div></div></div></div>";
 
 $appRJ->response['result'].="<div class='contentBlock-frame dark'><div class='contentBlock-center'>".

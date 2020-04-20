@@ -96,3 +96,27 @@ ul li{
 span.answCnt{
     margin-left: 1em;
 }
+.note-warning{
+    padding: 0.5em 0;
+    display: inline-block;
+    width: 100%;
+    border-top: 1px solid firebrick;
+    border-bottom: 1px solid firebrick;
+}
+.note-warning .nw-img{
+    display: inline-block;
+    width: 24%;
+    vertical-align: middle;
+}
+.note-warning .nw-img img{
+    height: 3em;
+    width: 3em;
+}
+.note-warning .nw-txt{
+    font-weight: bold;
+    font-size: 1em;
+    font-family: Arial;
+    display: inline-block;
+    width: 75%;
+    vertical-align: middle;
+}

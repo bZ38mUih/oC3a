@@ -19,7 +19,7 @@ $appRJ->response['result'].= "</head>".
     "<body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/diaryHeader.php");
 if(!$pageErr) {
-    $appRJ->response['result'] .= "<div class='note-wrap'>" .
+    $appRJ->response['result'] .= "<div class='contentBlock-frame'><div class='contentBlock-center'><div class='note-wrap'>" .
         "<div class='note-header'>" .
         "<div class='note-btn'>";
     if ($diaryNext_row['diary_id']) {
@@ -62,6 +62,7 @@ if(!$pageErr) {
 }else{
     $appRJ->response['result'] .="<div class='pageErr'>".$pageErr."</div>";
 }
+$appRJ->response['result'] .= "</div></div>";
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/dFooter.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/dMenu.php");

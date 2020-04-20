@@ -2,7 +2,7 @@
 $artByAlias_qry="select art_dt.art_id, art_dt.artName, art_dt.artMeta, art_dt.artImg, art_dt.allowCm, artCat_dt.catAlias, ".
     "artCat_dt.catName, art_dt.pubDate, art_dt.refreshDate from art_dt ".
     "INNER JOIN artCat_dt ON art_dt.artCat_id = artCat_dt.artCat_id ".
-    "WHERE art_dt.artAlias='".$appRJ->server['reqUri_expl'][2]."'";
+    "WHERE art_dt.artAlias='".$appRJ->server['reqUri_expl'][2]."'".$andWhere;
 $artByAlias_res=$DB->doQuery($artByAlias_qry);
 if(mysql_num_rows($artByAlias_res)!==1){
     $appRJ->errors['404']['description']="такой статьи не существует";

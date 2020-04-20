@@ -22,7 +22,7 @@ $appRJ->response['result'].= "</head>";
 $appRJ->response['result'].= "<body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/diaryHeader.php");
 
-$appRJ->response['result'].="<div class='diary-edit'>";
+$appRJ->response['result'].="<div class='contentBlock-frame'><div class='contentBlock-center'><div class='diary-edit'>";
 $appRJ->response['result'].="<label>diary_id: <input type='text' value='".$diary_rd->result['diary_id']."' disabled></label>";
 $appRJ->response['result'].="<label>diaryType: <input type='text' value='".$diary_rd->result['diaryType']."' disabled></label>";
 $appRJ->response['result'].="<label>noteDate: <input type='date' value='".$diary_rd->result['noteDate']."' disabled></label>";
@@ -48,7 +48,7 @@ $appRJ->response['result'].="<div class='submt-panel'>".
     "<div class='btn-block'><input type='submit' value='Save'></div>".
     "</div>";
 $appRJ->response['result'].="</form>";
-$appRJ->response['result'].="</div>";
+$appRJ->response['result'].="</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/dFooter.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/dMenu.php");
 

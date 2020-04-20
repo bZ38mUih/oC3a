@@ -15,11 +15,11 @@ BODY {
 /*footer-->*/
 .contentBlock-frame.ft{
     position: absolute;
+    background-color: darkorange;
     left: 0;
     bottom: 0;
 }
 footer{
-    background-color: darkorange;
     color: #ffffff;
     padding: 0.2em 0;
 }
