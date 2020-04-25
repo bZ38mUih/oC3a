@@ -13,6 +13,8 @@ $(document).ready(function(){
         }
 //alert($( window ).width());
     })
+    $( window ).trigger("resize");
+
 })
 
 
