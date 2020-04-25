@@ -27,7 +27,7 @@ $appRJ->response['result'].="</div></div>";
 if($appRJ->server['reqUri_expl'][1]!='services') {
     $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
         "<img src='/site/services/img/logo.png'></div><div class='modal-line-text srv'>".
-        "<a href='/services' title='Расценки и заказ услуг'>Все услуги</a>".
+        "<a href='/services' title='Расценки и заказ услуг'>Услуги программиста</a>".
         "</div></div>";
 }
 if($appRJ->server['reqUri_expl'][2]!='faq'){

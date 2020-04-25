@@ -27,7 +27,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><div class='ref-title'><div class='title-img'>".
-    "<img src='/site/references/img/image.jpg'></div><div class='title-txt'>".
+    "<img src='/site/references/img/programmer.jpg'></div><div class='title-txt'>".
     "<span>Здесь вы можете написать свой отзыв о моей работе, высказать замечание или выразить благодарность, ".
     "поставить оценку</span>".
     "<strong>Ваше мнение много значит для меня</strong>".

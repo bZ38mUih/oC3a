@@ -11,8 +11,9 @@
     vertical-align: middle;
 }
 .title-img img{
-    height: 5em;
-    width: 6em;
+    height: 8em;
+    width: 8em;
+    border-radius: 4em;
 }
 .title-txt{
     width: 66%;
@@ -228,7 +229,7 @@ form.cmForm .cmForm-area{
     color: #ffffff;
     font-style: italic;
     border: 2px solid darkgoldenrod;
-    border-radius: 0.5em;
+    border-radius: 0 0.5em 0.5em 0.5em;
 }
 .ref-block .com-date{
     display: inline-block;

@@ -1,6 +1,5 @@
 .srv-frame{
-    width: 96%;
-    margin-left: 2%;
+    width: 100%;
 }
 .srv-frame h2 {
     font-size: 1.2em;
@@ -165,4 +164,28 @@ a.toOrder.active {
 }
 .srv-frame.dev .srv-ln .srv-capt span.after {
     border-left: 0.4em solid Chocolate;
+}
+
+/*new styles-->*/
+.introduce {
+    box-shadow: 0 0 20px -5px navy;
+    border-radius: 0.2em;
+}
+
+.introduce p{
+    padding: 1em;
+    font-family: "Roboto Light";
+    font-weight: bold;
+}
+
+.introduce ul{
+    width: 80%;
+    margin: 0 10%;
+}
+
+.introduce ul li{
+    font-style: italic;
+    font-family: Cambria;
+    margin: 0.2em;
+
 }

@@ -1,0 +1,68 @@
+.stat-block{
+    width: 90%;
+    margin: 2em 5% 2em 5%;
+    border-radius: 0.5em;
+    position: relative;
+    padding: 0.5em 0 0.5em 0;
+    display: inline-block;
+}
+.stat-block.free{
+    border: 2px solid limegreen;
+}
+.stat-block.lookFor{
+    border: 2px solid orange;
+}
+.stat-block.busy{
+    border: 2px solid firebrick;
+}
+span.status{
+    position: absolute;
+    top: -0.8em;
+    background-color: white;
+    font-weight: bold;
+    padding: 0.2em;
+}
+.stat-block.free span.status{
+    color: limegreen;
+}
+.stat-block.lookFor span.status{
+    color: darkgoldenrod;
+}
+.stat-block.busy span.status{
+    color: red;
+}
+.stat-block-img{
+    width: 20%;
+    display: inline-block;
+}
+.stat-block-img img{
+    height: 3em;
+    width: 3em;
+    padding: 0.2em;
+    vertical-align: middle;
+}
+.stat-block-txt{
+    width: 75%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.stat-block-txt p{
+    color: darkgreen;
+}
+.stat-block-txt span.phone{
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.stat-block.free .stat-block-txt span.phone{
+    color: limegreen;
+}
+.stat-block.lookFor .stat-block-txt span.phone{
+    color: darkgoldenrod;
+}
+.stat-descr{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1em;
+    font-style: italic;
+}
