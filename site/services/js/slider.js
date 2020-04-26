@@ -7,22 +7,24 @@ $(document).ready(function(){
     $( window ).resize(function() {
         var wWidth = $( window ).width();
         if(wWidth >= 1366){
-            $("#jssor_1").width("1366px");
+            //$("#jssor_1").width("1366px");
             //$("#jssor_1 [data-u='slides']").width("1366px");
         }else{
-            $("#jssor_1").width(wWidth);
+            //$("#jssor_1").width(wWidth);
+            //console.log(wWidth);
+
             //$("#jssor_1 [data-u='slides']").width(wWidth);
         }
 //alert($( window ).width());
-        jssor_1_slider_init();
+        //jssor_1_slider_init();
     })
     $( window ).trigger("resize");
+    jssor_1_slider_init();
 
 })
 
 
 window.jssor_1_slider_init = function() {
-
     var jssor_1_SlideshowTransitions = [
         {$Duration:800,x:0.25,$Zoom:1.5,$Easing:{$Left:$Jease$.$InWave,$Zoom:$Jease$.$InCubic},$Opacity:2,$ZIndex:-10,$Brother:{$Duration:800,x:-0.25,$Zoom:1.5,$Easing:{$Left:$Jease$.$InWave,$Zoom:$Jease$.$InCubic},$Opacity:2,$ZIndex:-10}},
         {$Duration:1200,x:0.5,$Cols:2,$ChessMode:{$Column:3},$Easing:{$Left:$Jease$.$InOutCubic},$Opacity:2,$Brother:{$Duration:1200,$Opacity:2}},
