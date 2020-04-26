@@ -189,3 +189,15 @@ a.toOrder.active {
     margin: 0.2em;
 
 }
+
+@media only screen and (max-width : 1024px){
+    .introduce{
+        /*border: 2px solid red;*/
+    }
+}
+@media only screen and (max-width : 1024px) and (orientation : portrait){
+    .introduce{
+        /*border: 2px solid green;*/
+        font-size: 0.8em;
+    }
+}

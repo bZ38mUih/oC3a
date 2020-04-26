@@ -20,6 +20,7 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
     "<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
     "<link rel='stylesheet' href='/site/services/css/slider.css' type='text/css' media='screen, projection'/>".
+    "<script src='/site/status/js/status.js'></script>".
     " <script src='/source/js/jssor.slider-28.0.0.min.js' type='text/javascript'></script>".
     "<script src='/site/services/js/slider.js'></script>";
 if($App['views']['social-block']){
