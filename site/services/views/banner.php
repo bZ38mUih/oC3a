@@ -51,5 +51,4 @@ $appRJ->response['result'].= "
         </div>
     </div>
     </div>
-    <script type='text/javascript'>jssor_1_slider_init();
-    </script>";
+";

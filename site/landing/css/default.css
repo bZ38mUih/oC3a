@@ -2,6 +2,9 @@
     display: table;
     width: 100%;
 }
+.contentBlock-table-right:last-child{
+padding-bottom: 1em;
+}
 .contentBlock-table-left{
     width: 50%;
     display: table-cell;
@@ -38,7 +41,7 @@
     text-shadow: 2px 2px 2px white, -2px 2px 2px white, -2px -2px 2px white, 2px -2px 2px white;
 }
 h2{
-    color: grey;
+    color: white;
     font-weight: bold;
     font-size: 1.2em;
     text-align: left;
@@ -46,7 +49,7 @@ h2{
     padding-left: 3%;
     width: 93%;
     margin: 1em 2% 0 2%;
-    text-shadow: 2px 2px 2px white, -2px 2px 2px white, -2px -2px 2px white, 2px -2px 2px white;
+    font-family: Calibri;
 }
 .contentBlock-frame.dark h2{
     border-bottom: none;

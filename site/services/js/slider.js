@@ -8,10 +8,13 @@ $(document).ready(function(){
         var wWidth = $( window ).width();
         if(wWidth >= 1366){
             $("#jssor_1").width("1366px");
+            //$("#jssor_1 [data-u='slides']").width("1366px");
         }else{
-            $("#jssor_1").width(Math.round(wWidth/1366*882));
+            $("#jssor_1").width(wWidth);
+            //$("#jssor_1 [data-u='slides']").width(wWidth);
         }
 //alert($( window ).width());
+        jssor_1_slider_init();
     })
     $( window ).trigger("resize");
 
@@ -80,7 +83,3 @@ window.jssor_1_slider_init = function() {
     $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
     /*#endregion responsive code end*/
 };
-
-document.ready(function () {
-    alert(111);
-})
