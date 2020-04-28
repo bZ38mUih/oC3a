@@ -41,7 +41,7 @@ padding-bottom: 1em;
     text-shadow: 2px 2px 2px white, -2px 2px 2px white, -2px -2px 2px white, 2px -2px 2px white;
 }
 h2{
-    color: white;
+    color: gray;
     font-weight: bold;
     font-size: 1.2em;
     text-align: left;
@@ -54,6 +54,7 @@ h2{
 .contentBlock-frame.dark h2{
     border-bottom: none;
     text-align: center;
+    color: white;
 }
 .contentBlock-frame.dark h2{
     border-bottom: none;
