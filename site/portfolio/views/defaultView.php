@@ -26,20 +26,11 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
 
 $appRJ->response['result'].="<h2>Свежая работа</h2>";
 
-
-
 $appRJ->response['result'].="<div class='art-header'><div class='art-header-descr'>".
     "<a href='http://sad-primorya.ru' target='_blank' title='Смотреть работу на sad-primorya.ru'>".
 "Сад Приморья</a><div>Интернет магазин саженцев плодовых и декоративных деревьев и кустарников во Владивостоке</div></div><div class='art-header-img'>".
-    "<img src='/site/landing/img/sad-primorya.png' id='shareImg'>".
+    "<img src='http://sad-primorya.ru/site/siteHeader/img/site-logo.png' id='shareImg'>".
     "</div></div>";
-
-/*
-$appRJ->response['result'].="<div class='art-header'><div class='art-header-descr'><a href='/gallery'>".
-"Галерея</a><div>Альбомы фотографий на разные темы</div></div><div class='art-header-img'>".
-    "<img src='/site/gallery/img/logo-big.png' id='shareImg'>".
-    "</div></div>";
-*/
 $appRJ->response['result'].="<h2>Все работы</h2>".
     "<ul>".
     "<li class='itm-line'>".
