@@ -78,12 +78,25 @@ $appRJ->response['result'].="<div class='contentBlock-frame dark'><div class='co
 $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-center'><div class='contentBlock-wrap'>".
     "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>Мои работы</h2>";
+$appRJ->response['result'].= "<div class='list-item'>".
+    "<div class='list-item-img'>".
+    "<img src='/site/gallery/img/logo-big.png' alt='gallery-img'>".
+    "</div><div class='list-item-text'>".
+    "<a href='/gallery' title='Смотреть работу на этом сайте'>Галерея</a>".
+    "<span>Альбомы фотографий на разные темы</span>";
+/*if($slDevArt_row['refreshDate']){
+    $appRJ->response['result'].= "<div class='line'>Обновлено: <b>".$slDevArt_row['refreshDate']."</b></div>";
+}else{
+    $appRJ->response['result'].= "<div class='line'>Опубликовано: <b>".$slDevArt_row['pubDate']."</b></div>";
+}
+*/
+$appRJ->response['result'].= "</div></div>";
 $appRJ->response['result'].= "<div class='list-item all'>".
     "<a href='/portfolio'>все работы</a></div></div><div class='contentBlock-table-right'>".
     "<h2>Свежая работа</h2>".
-    "<img src='/site/gallery/img/logo-big.png' alt='artCover'>".
-    "<div><a href='/gallery' title='Смотреть работу'>Галерея</a>".
-    "<span>Альбомы фотографий на разные темы</span></div></div></div></div></div>";
+    "<img src='http://sad-primorya.ru/site/siteHeader/img/site-logo.png' alt='artCover'>".
+    "<div><a href='http://sad-primorya.ru' title='Смотреть работу sad-primorya.ru' target='_blank'>Сад Приморья</a>".
+    "<span>Интернет магазин саженцев плодовых и декоративных деревьев и кустарников во Владивостоке</span></div></div></div></div></div>";
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
