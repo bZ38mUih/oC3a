@@ -1,8 +1,9 @@
 <?php
 session_start();
+$pathToConn = "/source/_conf/db_conn.php";
 
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
-require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
+//require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/appRJ_class.php");
 
 $appRJ = new appRJ();
@@ -26,13 +27,11 @@ if(isset($_GET['cmd']) and $_GET['cmd']=='exit'){
         $appRJ->errors['404']['description']="контроллер admin not found";
     }
 }else{
-    $DB=new DB();
-    $DB->readSettings();
-
-    if($DB->connect_db()){
+    try {
+        $DB=new DB($pathToConn);
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/siteController.php");
-    }else{
-        $appRJ->errors['connection']['description']="ошибка подключения к серверу базы данных";
+    } catch (Exception $e) {
+        $appRJ->errors["connection"]["description"] = "Ошибка подключения к серверу или базе данных<br>Некоторая отладочная информация: ".$e->getMessage();
     }
 }
 

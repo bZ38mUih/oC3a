@@ -1,18 +1,23 @@
 <?php
 
 $formInputEnbl = "disabled";
+$accessFile = true;
 
 if(isset($_GET['conn']) and $_GET['conn']=='cancel'){
     require_once($_SERVER["DOCUMENT_ROOT"]."/admin/server/views/formView.php");
-    exit;
+    //exit;
 }elseif(isset($_GET['status']) and $_GET['status']=='refresh'){
     require_once($_SERVER["DOCUMENT_ROOT"]."/admin/server/views/statusView.php");
-    exit;
+    //require_once($_SERVER["DOCUMENT_ROOT"]."/admin/server/views/formView.php");
+    //exit;
 }elseif(isset($_POST['saveFlag']) and $_POST['saveFlag']=='y'){
+
+
+
     $svContErr = null;
-    foreach($DB->connSettings as $key =>$value){
+    foreach($connSettings as $key =>$value){
         if(isset($_POST[$key])){
-            $DB->connSettings[$key]=$_POST[$key];
+            $connSettings[$key]=$_POST[$key];
             if($key!='CONN_PW'){
                 if($_POST[$key]==null){
                     $svContErr[$key]="не задано";
@@ -26,12 +31,13 @@ if(isset($_GET['conn']) and $_GET['conn']=='cancel'){
     if($svContErr!=null){
         $formInputEnbl=null;
     }else{
-        if(!file_put_contents($_SERVER["DOCUMENT_ROOT"].$DB->pathToConn, json_encode($DB->connSettings))){
-            $formInputEnbl['fileErr']="ошибка сохранения файла";
+        if(!file_put_contents($_SERVER["DOCUMENT_ROOT"].$pathToConn, json_encode($connSettings))){
+            $accessFile = false;
+            //$formInputEnbl="problem access to file ".$pathToConn;
         }
     }
     require_once($_SERVER["DOCUMENT_ROOT"]."/admin/server/views/formView.php");
-    exit;
+}else{
+    require_once($_SERVER["DOCUMENT_ROOT"]."/admin/server/views/defaultView.php");
 }
 
-require_once($_SERVER["DOCUMENT_ROOT"]."/admin/server/views/defaultView.php");

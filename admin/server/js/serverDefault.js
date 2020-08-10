@@ -3,7 +3,6 @@ function activateInputs()
     $("form.serverOptions input[type='text']").prop('disabled', false);
     $("[name='saveCon'], [name='cancelConn']").addClass("active");
     $("[name='editConn']").removeClass("active");
-    statUpdate();
 }
 
 function saveConn()

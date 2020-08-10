@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/admin/tables/tableClass.php");
 $tables = new tablesClass();
 $tables->initValues();
-$tables->dbCompare();
+$tables->dbCompare($DB);
 $tables->result['log']=null;
 $tables->result['err']=false;
 $tables->result['row']=null;

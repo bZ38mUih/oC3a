@@ -1,65 +1,104 @@
 <?php
-class DB
+class DB extends PDO
 {
-    public $dbLink = null;
+    public $pathToConn;
     public $err = null;
-    public $connSettings = null;
-    public $pathToConn = "/source/_conf/db_conn.php";
+    public $connSettings;
 
-    function readSettings()
-    {
+    function __construct($pathToConn){
+        $this->pathToConn = $pathToConn;
         if($this->connSettings=json_decode(@file_get_contents($_SERVER["DOCUMENT_ROOT"].$this->pathToConn), true)){
+            parent::__construct('mysql:host='.$this->connSettings["CONN_LOC"].';dbname='.$this->connSettings["CONN_DB"],
+                $this->connSettings["CONN_USER"], $this->connSettings["CONN_PW"]);
             return true;
         }else{
             $this->err['settings']='connection settings not found';
+            return false;
         }
     }
 
-    function connectServer()
+    function copyOne($table, $field_id, $row)
     {
-        if (@$this->dbLink = mysql_connect($this->connSettings['CONN_LOC'], $this->connSettings['CONN_USER'],
-            $this->connSettings['CONN_PW'])) {
-            unset($this->err['conn']);
+        $query_text="select * from ".$table." where $field_id='".$row[$field_id]."'";
+        $query_res = $this->query($query_text);
+        if($query_res->rowCount()===1){
+            $query_row=$query_res->fetch(PDO::FETCH_ASSOC);
+            foreach ($query_row as $key => $value) {
+                $row[$key]=$value;
+            }
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function putOne($table, $row)
+    {
+        $queryToInsert = null;
+        $queryToInsert_temp = "(";
+        $queryToInsert .= "insert into ".$table." (\r";
+        foreach ($row as $key => $value) {
+            if ($value === null) {
+                $queryToInsert_temp .= "null, ";
+            } else {
+                $queryToInsert_temp .= "'" . $value. "', ";
+            }
+            $queryToInsert .= $key . ", ";
+        }
+        $queryToInsert = substr($queryToInsert, 0, strlen($queryToInsert) - 2) . ")\r values \r";
+        $queryToInsert_temp = substr($queryToInsert_temp, 0, strlen($queryToInsert_temp) - 2) . ")";
+        $queryToInsert .= $queryToInsert_temp;
+        if($this->query($queryToInsert)){
+            return $this->lastInsertId();
+        }else{
+            echo $queryToInsert;
+            return false;
+        }
+    }
+
+    function updateOne($table, $field_id, $row)
+    {
+        $query_text = "update ".$table." set ";
+        foreach ($row as $key => $value) {
+            $query_text.=$key."=";
+            if ($value == null) {
+                $query_text .= "null, ";
+            } else {
+                $query_text .= "'" . $value. "', ";
+            }
+        }
+        $query_text = substr($query_text, 0, strlen($query_text) - 2) .
+            " where ".$field_id."='".$row[$field_id]."';";
+
+        if($this->query($query_text)){
             return true;
-        } else {
-            $this->err['conn'] = 'connection server fail';
-        }
-    }
-
-    function connect_db()
-    {
-        if ($this->connectServer()) {
-            if (mysql_select_db($this->connSettings['CONN_DB'], $this->dbLink)) {
-                unset($this->err['conn']);
-                return true;
-            }
-            else{
-                $this->err['conn'] = 'connection database fail';
-                return false;
-            }
-        }
-    }
-
-    function doQuery($queryText)
-    {
-        if ($doQuery = mysql_query($queryText)) {
-            unset ($this->err['doQuery']);
-            return $doQuery;
-        } else {
-            $this->err['doQuery'] = 'some error has occured';
+        }else{
             return false;
         }
     }
 
-    function doFetchRow($doQuery)
+    function removeOne($table, $field_id, $remove_id)
     {
-        if ($doFetchRow = @mysql_fetch_assoc($doQuery)){
-            unset ($this->err['doFetchRow']);
-            return $doFetchRow;
-        }else {
-            $this->err['doFetchRow'] = 'some error has occured';
+        $query_text="delete from ".$table." where $field_id='".$remove_id."'";
+        if($this->query($query_text)){
+            return true;
+        }else{
             return false;
         }
+    }
+
+    function setDefault($table, $row)
+    {
+        $query_text = "SELECT `COLUMN_NAME`
+FROM `INFORMATION_SCHEMA`.`COLUMNS`
+WHERE `TABLE_SCHEMA`='".$this->connSettings['CONN_DB']."'
+    AND `TABLE_NAME`='".$table."'";
+
+        $query_res= $this->query($query_text);
+        while($query_row=$query_res->fetch(PDO::FETCH_ASSOC)){
+            $row[$query_row['COLUMN_NAME']]=null;
+        }
+        return $row;
     }
 }
 ?>

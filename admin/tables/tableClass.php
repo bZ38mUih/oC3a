@@ -11,16 +11,16 @@ class tablesClass
         }
     }
 
-    public function dbCompare()
+    public function dbCompare($DB)
     {
         //$this->tables=null;
-        $DB = new DB();
-        $DB->readSettings();
-        $DB->connect_db();
+        //$DB = new DB();
+        //$DB->readSettings();
+        //$DB->connect_db();
         $query_text = "SELECT TABLE_NAME, TABLE_ROWS FROM `information_schema`.`tables` WHERE
     `table_schema` = '".$DB->connSettings['CONN_DB']."';";
-        $query_res = $DB->doQuery($query_text);
-        while ($query_row = $DB->doFetchRow($query_res)) {
+        $query_res = $DB->query($query_text);
+        while ($query_row = $query_res->fetch(PDO::FETCH_ASSOC)) {
             foreach ($this->tables as $table => $value) {
                 if ($query_row['TABLE_NAME'] == $table) {
                     $this->tables[$table]['exist'] = true;
