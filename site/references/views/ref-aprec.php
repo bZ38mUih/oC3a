@@ -17,9 +17,9 @@ $aprArr['values']['normal']['color']="aqua";
 
 if($_SESSION['user_id']){
     $yourApr_txt="select * from refVoting_dt WHERE user_id=".$_SESSION['user_id'];
-    if($yourApr_res=$DB->doQuery($yourApr_txt)){
-        if(mysql_num_rows($yourApr_res)==1){
-            $yourApr_row=$DB->doFetchRow($yourApr_res);
+    if($yourApr_res=$DB->query($yourApr_txt)){
+        if($yourApr_res->rowCount() == 1){
+            $yourApr_row=$yourApr_res->fetch(PDO::FETCH_ASSOC);
             $aprArr['yourAprVal']=$yourApr_row['aprVal'];
         }
     }
@@ -29,15 +29,15 @@ if($_SESSION['user_id']){
 $printApprec_txt="select COUNT(user_id) as aprQty, aprVal from refVoting_dt GROUP BY aprVal ORDER BY aprVal";
 $printApprec_cnt=0;
 
-if($printApprec_res=$DB->doQuery($printApprec_txt)){
-    $printApprec_cnt=mysql_num_rows($printApprec_res);
+if($printApprec_res=$DB->query($printApprec_txt)){
+    $printApprec_cnt = $printApprec_res->rowCount();
 }
 
 $maxAprVal=0;
 
 if($printApprec_cnt>0){
 
-    while($printApprec_row=$DB->doFetchRow($printApprec_res)){
+    while($printApprec_row=$printApprec_res->fetch(PDO::FETCH_ASSOC)){
         $aprArr['totalCnt']+=$printApprec_row['aprQty'];
         if($maxAprVal<$printApprec_row['aprQty']){
             $maxAprVal=$printApprec_row['aprQty'];

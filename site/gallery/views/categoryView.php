@@ -15,16 +15,16 @@ $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, gal
     "GROUP BY galleryAlb_dt.album_id ".
     "ORDER BY galleryAlb_dt.dateOfCr DESC, galleryAlb_dt.album_id DESC";
 
-$selectAlbums_res=$DB->doQuery($selectAlbums_txt);
-$selectAlbums_count = mysql_num_rows($selectAlbums_res);
+$selectAlbums_res=$DB->query($selectAlbums_txt);
+$selectAlbums_count = $selectAlbums_res->fetch(PDO::FETCH_ASSOC);
 
 $catId=false;
 $catAccess=false;
 $cntCat=0;
 
 if($selectAlbums_count>0){
-    $selectAlbums_res=$DB->doQuery($selectAlbums_txt);
-    $selectAlbums_count = mysql_num_rows($selectAlbums_res);
+    $selectAlbums_res=$DB->query($selectAlbums_txt);
+    $selectAlbums_count = $selectAlbums_res->fetch(PDO::FETCH_ASSOC);
     if($selectAlbums_count>0){
         $cntAlb=0;
         $albums_print=null;
@@ -32,7 +32,7 @@ if($selectAlbums_count>0){
 
         $catArr=null;
 
-        while($selectAlbums_row=$DB->doFetchRow($selectAlbums_res)){
+        while($selectAlbums_row=$selectAlbums_res->fetch(PDO::FETCH_ASSOC)){
             $alb_view=null;
 
             $rdAccRes=false;

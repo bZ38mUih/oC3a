@@ -15,12 +15,12 @@ function prtCm($comPar_id=null, $DB)
             "ORDER BY refCom_dt.writeDate DESC";
     }
     $comCnt=0;
-    if($slCm_res=$DB->doQuery($slCm_qry)){
-        $comCnt=mysql_num_rows($slCm_res);
+    if($slCm_res=$DB->query($slCm_qry)){
+        $comCnt=$slCm_res->rowCount();
     }
     if($comCnt>0){
         $tmpRes['text'].= "<ul>";
-        while ($slCm_row=$DB->doFetchRow($slCm_res)){
+        while ($slCm_row = $slCm_res->fetch(PDO::FETCH_ASSOC)){
             $tmpCm=null;
             $tmpCm.="<li><div class='com-line'><div class='com-img'>";
             if($slCm_row['photoLink']){
@@ -74,17 +74,19 @@ if($_POST){
     if($_SESSION['user_id']){
         if(isset($_POST['newComPar_id'])){
             if($_POST['yCm'] and $_POST['yCm']!=null){
-                $newCm = new recordDefault('refCom_dt', 'com_id');
-                $newCm->result['user_id']=$_SESSION['user_id'];
-                $newCm->result['Content']=$_POST['yCm'];
-                $newCm->result['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-i-s');
-                $newCm->result['activeFlag']=true;
+
+                //$newCm = new recordDefault('refCom_dt', 'com_id');
+                $newCm = array('table' => 'refCom_dt', 'field_id' => 'com_id');
+                $newCm['result']['user_id']=$_SESSION['user_id'];
+                $newCm['result']['Content']=$_POST['yCm'];
+                $newCm['result']['writeDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-i-s');
+                $newCm['result']['activeFlag']=true;
                 if($_POST['newComPar_id'] and $_POST['newComPar_id']!=null){
-                    $newCm->result['comPar_id']=$_POST['newComPar_id'];
+                    $newCm['result']['comPar_id']=$_POST['newComPar_id'];
                 }else{
-                    $newCm->result['comPar_id']=null;
+                    $newCm['result']['comPar_id']=null;
                 }
-                if($newCm->putOne()){
+                if($DB->putOne($newCm)){
                     $refBlock= prtCm(null, $DB);
                 }else{
                     $refBlock['err']= "ошибка: метод putOne";
@@ -105,13 +107,13 @@ elseif(isset($_GET['aprVal'])){
     if(isset($_SESSION['user_id'])){
         if($_GET['aprVal']=='normal' or $_GET['aprVal']=='well' or $_GET['aprVal']=='fine'){
             $yApBf_txt="select * from refVoting_dt WHERE user_id=".$_SESSION['user_id'];
-            if($yourAprBefore_res=$DB->doQuery($yApBf_txt)){
-                if(mysql_num_rows($yourAprBefore_res)==1){
+            if($yourAprBefore_res=$DB->query($yApBf_txt)){
+                if($yourAprBefore_res->rowCount() == 1){
                     $yourApprNew_txt="update refVoting_dt set aprVal='".$_GET['aprVal']."' where user_id=".$_SESSION['user_id'];
                 }else{
                     $yourApprNew_txt="insert into refVoting_dt (user_id, aprVal) VALUES (".$_SESSION['user_id'].", '".$_GET['aprVal']."')";
                 }
-                if(!$DB->doQuery($yourApprNew_txt)){
+                if(!$DB->query($yourApprNew_txt)){
                     $aprArr['errors'] = "ошибка выполнения запроса yourApprNew";
                 }
             }

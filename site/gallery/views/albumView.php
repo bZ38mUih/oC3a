@@ -15,10 +15,10 @@ $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, gal
     "GROUP BY galleryAlb_dt.album_id ".
     "ORDER BY galleryAlb_dt.dateOfCr DESC, galleryAlb_dt.album_id DESC";
 
-$selectAlbums_res=$DB->doQuery($selectAlbums_txt);
-$selectAlbums_count = mysql_num_rows($selectAlbums_res);
-$selectAlbums_res=$DB->doQuery($selectAlbums_txt);
-$selectAlbums_count = mysql_num_rows($selectAlbums_res);
+$selectAlbums_res=$DB->query($selectAlbums_txt);
+$selectAlbums_count = $selectAlbums_res->rowCount();
+$selectAlbums_res=$DB->query($selectAlbums_txt);
+$selectAlbums_count = $selectAlbums_res->rowCount();
 
 $foundAlb=false;
 
@@ -38,7 +38,7 @@ if($selectAlbums_count>0){
     $albName=null;
     $robIndex=null;
 
-    while($selectAlbums_row=$DB->doFetchRow($selectAlbums_res)){
+    while($selectAlbums_row=$selectAlbums_res->fetch(PDO::FETCH_ASSOC)){
         $alb_view=null;
         //read access-->
         $rdAccRes=false;
@@ -147,9 +147,9 @@ $photoPrint_query="select galleryPhotos_dt.photoName, galleryPhotos_dt.photoDesc
     "WHERE galleryPhotos_dt.album_id=".$album_id." AND galleryPhotos_dt.activeFlag IS TRUE ".
     "GROUP BY galleryPhotos_dt.photo_id ".
     "ORDER BY likeQty DESC, galleryPhotos_dt.uploadDate DESC, galleryPhotos_dt.photo_id DESC";
-$photoPrint_res=$DB->doQuery($photoPrint_query);
+$photoPrint_res=$DB->query($photoPrint_query);
 
-$photoPrint_count=mysql_num_rows($photoPrint_res);
+$photoPrint_count = $photoPrint_res->rowCount();
 
 if($allowWrComm){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/gallery/actions/printComments_func.php");
@@ -157,7 +157,7 @@ if($allowWrComm){
 
 $albums_print_txt=null;
 if($photoPrint_count==$cntPh){
-    while($photoPrint_row=$DB->doFetchRow($photoPrint_res))
+    while($photoPrint_row=$photoPrint_res->fetch(PDO::FETCH_ASSOC))
     {
         $albums_print_txt.="<div class='photo-line' id='photo_".$photoPrint_row['photo_id']."'>".
             "<div class='photo-context'>";

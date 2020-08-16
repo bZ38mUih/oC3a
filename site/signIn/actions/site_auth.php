@@ -14,14 +14,14 @@ if($validErr == null){
 if($validErr == null){
     $queryText = "select * from accounts_dt INNER JOIN users_dt ON accounts_dt.user_id = users_dt.user_id ".
         "where accAlias='".$_POST['login']."' and netWork='site'";
-    $queryRes = $DB->doQuery($queryText);
-    if(mysql_num_rows($queryRes) === 1){
-        $queryRow = $DB->doFetchRow($queryRes);
+    $queryRes = $DB->query($queryText);
+    if($queryRes->rowCount() === 1){
+        $queryRow = $queryRes->fetch(PDO::FETCH_ASSOC);
         if(password_verify($_POST['password'], $queryRow['pw_hash'])){
             $newHash=password_hash($_POST['password'], PASSWORD_DEFAULT);
             $updateHash_qry = "update accounts_dt set pw_hash='".$newHash."' ".
                 "where accAlias='".$_POST['login']."' and netWork='site'";
-            $DB->doQuery($updateHash_qry);
+            $DB->query($updateHash_qry);
             if($queryRow['validDate']===null){
                 $validErr = "eMail не подтвержден";
             }elseif ($queryRow['blackList'] == true){
@@ -36,12 +36,12 @@ if($validErr == null){
                 $queryLog_text="insert into inLog_dt (account_id, comeDate, uAgent, rmAddr, rmPort) values".
                     " ('".$queryRow['account_id']."', '".date_format($appRJ->date['curDate'], 'Y-m-d H:i:s')."', ".
                     "'".$_SERVER['HTTP_USER_AGENT']."', '".$_SERVER['REMOTE_ADDR']."', '".$_SERVER['REMOTE_PORT']."')";
-                $DB->doQuery($queryLog_text);
+                $DB->query($queryLog_text);
                 $usrGroups_text="select * from usersGroups_dt INNER JOIN usersToGroups_dt ON usersGroups_dt.group_id = ".
                     "usersToGroups_dt.group_id WHERE usersToGroups_dt.user_id = ".$queryRow['user_id'];
-                $usrGroups_res = $DB->doQuery($usrGroups_text);
-                if(@mysql_num_rows($usrGroups_res)>0){
-                    while ($usrGroups_row = $DB->doFetchRow($usrGroups_res)){
+                $usrGroups_res = $DB->query($usrGroups_text);
+                if(@$usrGroups_res->rowCount() > 0){
+                    while ($usrGroups_row = $usrGroups_res->fetch(PDO::FETCH_ASSOC)){
                         $_SESSION['groups'][$usrGroups_row['group_id']] = $usrGroups_row['rules'];
                     }
                 }

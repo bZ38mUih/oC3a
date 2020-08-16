@@ -22,12 +22,12 @@ function prtPhCm($photo_id, $comPar_id=null, $DB, $wrAccRes, $cntComm=0)
             "ORDER BY galleryComments_dt.writeDate DESC";
     }
     $comCnt=0;
-    if($slCm_res=$DB->doQuery($slCm_qry)){
-        $comCnt=mysql_num_rows($slCm_res);
+    if($slCm_res=$DB->query($slCm_qry)){
+        $comCnt=$slCm_res->rowCount();
     }
     if($comCnt>0){
         $tmpRes['text'].= "<ul>";
-        while ($slCm_row=$DB->doFetchRow($slCm_res)){
+        while ($slCm_row=$slCm_res->fetch(PDO::FETCH_ASSOC)){
             $tmpCm=null;
             $tmpCm.="<li><div class='com-line'><div class='com-img'>";
             if($slCm_row['photoLink']){
