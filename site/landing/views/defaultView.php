@@ -23,12 +23,12 @@ $appRJ->response['result'].= "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 
 $slDevArt_qry="select * from art_dt where (artCat_id=3 OR artCat_id=1) and activeFlag is true ORDER BY pubDate DESC limit 4";
-$slDevArt_res = $DB->doQuery($slDevArt_qry);
-$devArtMain=$DB->doFetchRow($slDevArt_res);
+$slDevArt_res = $DB->query($slDevArt_qry);
+$devArtMain = $slDevArt_res->fetch(PDO::FETCH_ASSOC);
 $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-center'><div class='contentBlock-wrap'>".
     "<div class='contentBlock-table'><div class='contentBlock-table-left'><h2>it-Блог</h2>";
-while ($slDevArt_row=$DB->doFetchRow($slDevArt_res)){
+while ($slDevArt_row=$slDevArt_res->fetch(PDO::FETCH_ASSOC)){
     $tPath = 'dev';
     if($slDevArt_row['artCat_id'] == 1){
         $tPath = 'pc';

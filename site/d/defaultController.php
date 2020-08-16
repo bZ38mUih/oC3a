@@ -27,8 +27,8 @@ if(isset($_GET['syncMe']) and $_GET['syncMe']=='y'){
 
 $pageErr=null;
 
-$diary_rd=new recordDefault("diaryNotes_dt", "diary_id");
-$note_rd=new recordDefault("diaryNotesContent_dt", "note_id");
+$diary_rd= array("table" => "diaryNotes_dt", "field_id" => "diary_id");
+$note_rd= array("table" => "diaryNotesContent_dt", "field_id" => "note_id", "result" => array());
 
 $dType['1']="daily";
 $dType['2']="quarterly";
@@ -37,12 +37,14 @@ $dType['4']="conception";
 $dType['5']="ZKH";
 
 function dec_enc($action, $string, $noteDate) {
+    $pathToConn = "/source/_conf/db_conn.php";
     $output = false;
     $encrypt_method = "AES-256-CBC";
-    $DB=new DB();
+    $DB=new DB($pathToConn);
+    $DB->connectDb();
     $getKeys_qry="select * from diaryWords_dt WHERE expiredDate>='".$noteDate."' order by expiredDate limit 1";
-    $getKeys_res=$DB->doQuery($getKeys_qry);
-    $getKeys_row=$DB->doFetchRow($getKeys_res);
+    $getKeys_res=$DB->query($getKeys_qry);
+    $getKeys_row=$getKeys_res->fetch(PDO::FETCH_ASSOC);
     $secret_key=$getKeys_row['sK'];
     $secret_iv=$getKeys_row['sIv'];
     $key = hash('sha256', $secret_key);
@@ -140,7 +142,7 @@ if($tmpRes){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/editNote.php");
 }elseif($appRJ->server['reqUri_expl'][2] == "editDiary"){
     $diary_rd->result['diary_id']=$appRJ->server['reqUri_expl'][3];
-    if(!$diary_rd->copyOne()) {
+    if($diary_rd = $DB->copyOne($diary_rd)) {
         $appRJ->errors['request']['description']="copyOne diary_id error";
         $appRJ->throwErr();
     }
@@ -173,10 +175,10 @@ if($tmpRes){
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDoubleDiary.php");
         }
         if($pageErr==null){
-            if($diary_rd->putOne()){
-                $note_rd->result['diary_id']=$diary_rd->result['diary_id'];
-                if($note_rd->putOne()){
-                    header("Location: "."/d/".$diary_rd->result['diaryType']."/lastNote/".$diary_rd->result['diary_id']);
+            if($diary_rd['result']['diary_id'] = $DB->putOne($diary_rd)){
+                $note_rd['result']['diary_id']=$DB->lastInsertId();
+                if($DB->putOne($note_rd)){
+                    header("Location: "."/d/".$diary_rd['result']['diaryType']."/lastNote/".$diary_rd['result']['diary_id']);
                 }else{
                     $pageErr.="putOne note_rd unknown err<br>";
                 }
@@ -185,14 +187,14 @@ if($tmpRes){
             }
         }
     }else{
-        $note_rd->result["curDate"] = date_format($appRJ->date['curDate'], 'Y-m-d');
-        $note_rd->result["curTime"] = date_format($appRJ->date['curDate'], 'H:i');
-        $diary_rd->result["noteDate"]=$note_rd->result["curDate"];
+        $note_rd['result']["curDate"] = date_format($appRJ->date['curDate'], 'Y-m-d');
+        $note_rd['result']["curTime"] = date_format($appRJ->date['curDate'], 'H:i');
+        $diary_rd['result']["noteDate"]=$note_rd['result']["curDate"];
         if(isset($_GET['diaryType']) and $_GET['diaryType']!=null){
-            $diary_rd->result['diaryType']=$_GET['diaryType'];
+            $diary_rd['result']['diaryType']=$_GET['diaryType'];
         }
     }
-    $h1=$diary_rd->result['diaryType']."-newDiary";
+    $h1=$diary_rd['result']['diaryType']."-newDiary";;
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/newDiary.php");
 }
 elseif($appRJ->server['reqUri_expl'][2] == "sync"){

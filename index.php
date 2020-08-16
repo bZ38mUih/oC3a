@@ -27,11 +27,15 @@ if(isset($_GET['cmd']) and $_GET['cmd']=='exit'){
         $appRJ->errors['404']['description']="контроллер admin not found";
     }
 }else{
-    try {
-        $DB=new DB($pathToConn);
-        require_once($_SERVER["DOCUMENT_ROOT"]."/site/siteController.php");
-    } catch (Exception $e) {
-        $appRJ->errors["connection"]["description"] = "Ошибка подключения к серверу или базе данных<br>Некоторая отладочная информация: ".$e->getMessage();
+    $DB = new DB($pathToConn);
+    if(!$DB->err){
+        if($DB->connectDb()){
+            require_once($_SERVER["DOCUMENT_ROOT"]."/site/siteController.php");
+        }else{
+            $appRJ->errors["connection"]["description"] = "Ошибка подключения к серверу или базе данных<br>Некоторая отладочная информация: ".$DB->err;
+        }
+    }else{
+        $appRJ->errors["connection"]["description"] = "Файл настроек отсутствует или имеет неправильный формат: ".$pathToConn;
     }
 }
 

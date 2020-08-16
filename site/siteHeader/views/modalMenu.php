@@ -20,9 +20,9 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
 if($_SESSION['user_id']){
     $ntf_cnt=0;
     $ntf_qry="select count(ntfList_id) as ntfQty from ntfList_dt WHERE user_id=".$_SESSION['user_id']." and readDate is NULL";
-    $ntf_res=$DB->doQuery($ntf_qry);
-    if(mysql_num_rows($ntf_res)==1){
-        $ntf_row=$DB->doFetchRow($ntf_res);
+    $ntf_res=$DB->query($ntf_qry);
+    if($ntf_res->rowCount()==1){
+        $ntf_row=$ntf_res->fetch(PDO::FETCH_ASSOC);
         $ntf_cnt=$ntf_row['ntfQty'];
     }
     $appRJ->response['result'].= "<div class='modal-line'>".
@@ -81,8 +81,8 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "blog" or strtolower($appRJ-
 $appRJ->response['result'].= "<a href='/blog' title='Статьи о программирование и ПК'>it-Блог</a> <span class='opnSubMenu'>" . $dwlSign .
     "</span> ". "<ul " . $dwlStyle . ">";
 $arts_qry="select * from art_dt where artCat_id=3 OR artCat_id=1 and activeFlag is true ORDER BY pubDate DESC limit 3";
-$arts_res = $DB->doQuery($arts_qry);
-while ($arts_row = $DB->doFetchRow($arts_res)) {
+$arts_res = $DB->query($arts_qry);
+while ($arts_row = $arts_res->fetch(PDO::FETCH_ASSOC)) {
     $ref=null;
     $appRJ->response['result'].= "<li><a href='/";
     if($arts_row['artCat_id']==3){
@@ -135,8 +135,8 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "downloads") {
 $appRJ->response['result'].= "<a href='/downloads/' title='Ссылки на загрузки программ'>Загрузки</a> ".
     "<span class='opnSubMenu'>" . $dwlSign . "</span> "."<ul " . $dwlStyle . ">";
 $selectCat_query = "select * from dwlCat_dt WHERE dwlCatPar_id is null and catActive_flag is TRUE";
-$selectCat_res = $DB->doQuery($selectCat_query);
-while ($selectCat_row = $DB->doFetchRow($selectCat_res)) {
+$selectCat_res = $DB->query($selectCat_query);
+while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)) {
     $appRJ->response['result'].= "<li><a href='/downloads/" . $selectCat_row['catAlias'] . "' class='sub-lnk light ";
     if ($appRJ->server['reqUri_expl'][2] == $selectCat_row['catAlias']) {
         $appRJ->response['result'].= "active";

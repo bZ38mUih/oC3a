@@ -1,7 +1,7 @@
 <?php
 $appRJ->response['result'].="<div class='dairy-contents'>";
 if(!$notNotes_warning) {
-    while ($note_row = $DB->doFetchRow($note_res)) {
+    while ($note_row = $note_res->fetch(PDO::FETCH_ASSOC)) {
         $appRJ->response['result'] .= "<div class='note-content' id='".$note_row['note_id']."'>".
             "<div class='note-content-info'>".
             "<span class='note-date'>" . $note_row['curDate'] . "</span>".
