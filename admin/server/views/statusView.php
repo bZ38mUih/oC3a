@@ -4,6 +4,6 @@ if($connResult==true){
     $appRJ->response['result'].= "<span>Подключение к SQL - базе данных:</span><span class='statusOk'>OK</span>";
 }else{
     $appRJ->response['result'].= "<span>Проблемы подключения к SQL - базе данных:</span><span class='statusFail'>FAIL</span>".
-    "<p>Некоторая отладочная информация: <br>".$connErr."</p>";
+    "<p>Некоторая отладочная информация: <br>".$DB->err."</p>";
 }
 $appRJ->response['result'].= "</div>";

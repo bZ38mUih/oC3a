@@ -1,7 +1,8 @@
 <?php
 $adminModule = null;
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/modules_conf.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/source/_conf/admin/modules_conf.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/source/_conf/admin/options.php");
 
 if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]!=null){
     $adminModule=$appRJ->server['reqUri_expl'][2];
@@ -9,13 +10,11 @@ if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]!
 
 require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
 $connResult = false;
-$connErr = null;
-$connSettings=json_decode(@file_get_contents($_SERVER["DOCUMENT_ROOT"].$pathToConn), true);
-try {
-    $DB=new DB($pathToConn);
+
+$DB = new DB($pathToConn);
+if($DB->connectDb()){
+    $DB->connectDb();
     $connResult = true;
-} catch (Exception $e) {
-    $connErr = $e->getMessage();
 }
 
 if((isset($_POST['login']) and $_POST['login']!=null) or (isset($_POST['password'])and $_POST['password']!=null)){

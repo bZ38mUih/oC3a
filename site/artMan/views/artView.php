@@ -3,30 +3,30 @@ $artByAlias_qry="select art_dt.art_id, art_dt.artName, art_dt.artMeta, art_dt.ar
     "artCat_dt.catName, art_dt.pubDate, art_dt.refreshDate from art_dt ".
     "INNER JOIN artCat_dt ON art_dt.artCat_id = artCat_dt.artCat_id ".
     "WHERE art_dt.artAlias='".$appRJ->server['reqUri_expl'][2]."'".$andWhere;
-$artByAlias_res=$DB->doQuery($artByAlias_qry);
-if(mysql_num_rows($artByAlias_res)!==1){
+$artByAlias_res=$DB->query($artByAlias_qry);
+if($artByAlias_res->rowCount() !== 1){
     $appRJ->errors['404']['description']="такой статьи не существует";
     $appRJ->throwErr();
 }
-$artByAlias_row=$DB->doFetchRow($artByAlias_res);
+$artByAlias_row=$artByAlias_res->fetch(PDO::FETCH_ASSOC);
 $h1 =$artByAlias_row['artName'];
 $fndP=false;
 $slArtP_qry="select * from artLinks_dt WHERE art_id=".$artByAlias_row['art_id']." and linkType='page'";
-$slArtP_res=$DB->doQuery($slArtP_qry);
-if(mysql_num_rows($slArtP_res)==1){
-    $slArtP_row=$DB->doFetchRow($slArtP_res);
+$slArtP_res=$DB->query($slArtP_qry);
+if($slArtP_res->rowCount() == 1){
+    $slArtP_row = $slArtP_res->fetch(PDO::FETCH_ASSOC);
     $fndP=true;
 }
 $slArtSt_qry="select * from artLinks_dt WHERE art_id=".$artByAlias_row['art_id']." and linkType='style'";
-$slArtSt_res=$DB->doQuery($slArtSt_qry);
-if(mysql_num_rows($slArtSt_res)==1){
-    $slArtSt_row=$DB->doFetchRow($slArtSt_res);
+$slArtSt_res=$DB->query($slArtSt_qry);
+if($slArtSt_res->rowCount() == 1){
+    $slArtSt_row = $slArtSt_res->fetch(PDO::FETCH_ASSOC);
     $fndSt=true;
 }
 $slArtScr_qry="select * from artLinks_dt WHERE art_id=".$artByAlias_row['art_id']." and linkType='script'";
-$slArtScr_res=$DB->doQuery($slArtScr_qry);
-if(mysql_num_rows($slArtScr_res)==1){
-    $slArtScr_row=$DB->doFetchRow($slArtScr_res);
+$slArtScr_res=$DB->query($slArtScr_qry);
+if($slArtScr_res->rowCount() == 1){
+    $slArtScr_row = $slArtScr_res->fetch(PDO::FETCH_ASSOC);
     $fndScr=true;
 }
 $App['views']['social-block']=true;
@@ -103,8 +103,8 @@ if($artByAlias_row['allowCm']){
 }
 
 $refList_text="select * from artRef_dt WHERE art_id='".$artByAlias_row['art_id']."' order by artRef_id DESC";
-$refList_res=$DB->doQuery($refList_text);
-$refList_count=mysql_num_rows($refList_res);
+$refList_res=$DB->query($refList_text);
+$refList_count = $refList_res->fetch(PDO::FETCH_ASSOC);
 if($refList_count>0){
     $appRJ->response['result'].= "<div class='art-ref'><h5>Ссылки:</h5><ol>";
     while($refList_row=$DB->doFetchRow($refList_res)){

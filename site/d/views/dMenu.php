@@ -21,7 +21,7 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
         $dwlSign = "+";
         $dwlStyle = "style='display: none'";
         $appRJ->response['result'].= "<div class='modal-line-text'>";
-        if ($diary_rd->result['diaryType'] == $val or strtolower($appRJ->server['reqUri_expl'][2])==$val) {
+        if ($diary_rd['result']['diaryType'] == $val or strtolower($appRJ->server['reqUri_expl'][2])==$val) {
             $dwlSign = "-";
             $dwlStyle = null;
         }
@@ -31,7 +31,7 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
         $appRJ->response['result'].= "<li><a href='/d/newDiary?diaryType=".$val;
         $appRJ->response['result'].="' class='sub-lnk light ";
         if ($appRJ->server['reqUri_expl'][2] == "newDiary" and
-            ($diary_rd->result['diaryType'] == $val or strtolower($appRJ->server['reqUri_expl'][2])==$val)) {
+            ($diary_rd['result']['diaryType'] == $val or strtolower($appRJ->server['reqUri_expl'][2])==$val)) {
             $appRJ->response['result'].= "active";
         }
         $appRJ->response['result'].= "' title='look up'>newDiary</a></li>";
@@ -39,7 +39,7 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
         $appRJ->response['result'].= "<li><a href='/d/".$val."/lastNote";
         $appRJ->response['result'].="' class='sub-lnk light ";
         if ($appRJ->server['reqUri_expl'][3] == "lastNote" and
-            ($diary_rd->result['diaryType'] == $val or strtolower($appRJ->server['reqUri_expl'][2])==$val)) {
+            ($diary_rd['result']['diaryType'] == $val or strtolower($appRJ->server['reqUri_expl'][2])==$val)) {
             $appRJ->response['result'].= "active";
         }
         $appRJ->response['result'].= "' title='look up'>lastNote</a></li>";

@@ -2,17 +2,17 @@
 if(isset($_GET['syncMe']) and $_GET['syncMe']=='y'){
     $D_res=null;
     $dNt_qry="select * from diaryNotes_dt WHERE noteDate<='".$_GET['dateTo']."' and noteDate>='".$_GET['dateFrom']."'";
-    $dNt_res=$DB->doQuery($dNt_qry);
+    $dNt_res=$DB->query($dNt_qry);
     $dNt_out=array();
-    while($dNt_row=$DB->doFetchRow($dNt_res)){
+    while($dNt_row= $dNt_res->fetch(PDO::FETCH_ASSOC)){
         array_push($dNt_out, $dNt_row);
     }
     $dNtCont_qry="select * from diaryNotesContent_dt ".
         "INNER JOIN diaryNotes_dt ON diaryNotesContent_dt.diary_id = diaryNotes_dt.diary_id ".
         "WHERE diaryNotesContent_dt.curDate<='".$_GET['dateTo']."' and diaryNotesContent_dt.curDate>='".$_GET['dateFrom']."'";
-    $dNtCont_res=$DB->doQuery($dNtCont_qry);
+    $dNtCont_res=$DB->query($dNtCont_qry);
     $dNtCont_out=array();
-    while($dNtCont_row=$DB->doFetchRow($dNtCont_res)){
+    while($dNtCont_row = $dNtCont_res->fetch(PDO::FETCH_ASSOC)){
         array_push($dNtCont_out, $dNtCont_row);
     }
 
@@ -69,20 +69,20 @@ foreach($dType as $k=>$v){
 if($tmpRes){
     if(isset($_GET['delNote']) and $_GET['delNote']!=null){
         $appRJ->response['format']='ajax';
-        $note_rd->result['note_id']=$_GET['delNote'];
-        if($note_rd->copyOne()){
-            $note_rd->removeOne();
+        $note_rd['result']['note_id']=$_GET['delNote'];
+        if($note_rd = $DB->copyOne($note_rd)){
+            $DB->removeOne($note_rd);
             $appRJ->response['result']=true;
         }else{
             $appRJ->response['result']="copyOne unknown err note_id";
         }
     }elseif($_GET['delDiary'] and $_GET['delDiary']!=null){
         $appRJ->response['format']='ajax';
-        $diary_rd->result['diary_id']=$_GET['delDiary'];
-        if($diary_rd->copyOne()){
-            $delNotes_qry="delete from diaryNotesContent_dt where diary_id=".$diary_rd->result['diary_id'];
-            if($DB->doQuery($delNotes_qry)){
-                $diary_rd->removeOne();
+        $diary_rd['result']['diary_id']=$_GET['delDiary'];
+        if($diary_rd = $DB->copyOne($diary_rd)){
+            $delNotes_qry="delete from diaryNotesContent_dt where diary_id=".$diary_rd['result']['diary_id'];
+            if($DB->query($delNotes_qry)){
+                $DB->removeOne($diary_rd);
                 $appRJ->response['result']=true;
             }else{
                 $appRJ->response['result']="delNotes unknown err";
@@ -97,13 +97,13 @@ if($tmpRes){
     }
 }elseif($appRJ->server['reqUri_expl'][2] == "editNote"){
 
-    $note_rd->result['note_id']=$appRJ->server['reqUri_expl'][3];
-    if(!$note_rd->copyOne()) {
+    $note_rd['result']['note_id']=$appRJ->server['reqUri_expl'][3];
+    if(!$note_rd = $DB->copyOne($note_rd)) {
         $appRJ->errors['request']['description']="copyOne note_id error";
         $appRJ->throwErr();
     }
-    $diary_rd->result['diary_id']=$note_rd->result['diary_id'];
-    if(!$diary_rd->copyOne()){
+    $diary_rd['result']['diary_id']=$note_rd['result']['diary_id'];
+    if(!$diary_rd = $DB->copyOne($diary_rd)){
         $appRJ->errors['request']['description']="copyOne diary_id error";
         $appRJ->throwErr();
     }
@@ -111,56 +111,56 @@ if($tmpRes){
     if(isset($_POST) and $_POST != null){
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkNoteFields.php");
         if($pageErr==null){
-            if(!$note_rd->updateOne()){
+            if(!$note_rd = $DB->updateOne($note_rd)){
                 $pageErr.="updateOne note)_rd unknown err";
             }
         }
     }
-    $h1="Edit note"."#".$note_rd->result['note_id'];;
+    $h1="Edit note"."#".$note_rd['result']['note_id'];
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/editNote.php");
 }elseif($appRJ->server['reqUri_expl'][2] == "newNote"){
-    $diary_rd->result['diary_id']=$appRJ->server['reqUri_expl'][3];
-    if(!$diary_rd->copyOne()) {
+    $diary_rd['result']['diary_id']=$appRJ->server['reqUri_expl'][3];
+    if(!$diary_rd = $DB->copyOne($diary_rd)) {
         $appRJ->errors['request']['description']="copyOne diary_id error";
         $appRJ->throwErr();
     }
     if(isset($_POST) and $_POST != null) {
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkNoteFields.php");
-        $note_rd->result['diary_id']=$diary_rd->result['diary_id'];
+        $note_rd['result']['diary_id']=$diary_rd['result']['diary_id'];
         if ($pageErr == null) {
-            if ($note_rd->putOne()) {
-                header("Location: "."/d/editNote/".$note_rd->result['note_id']);
+            if ($DB->putOne($note_rd)) {
+                header("Location: "."/d/editNote/".$DB->lastInsertId());
             }else{
                 $pageErr .= "putOne unknown err";
             }
         }
     }else{
-        $note_rd->result["curDate"] = date_format($appRJ->date['curDate'], 'Y-m-d');
-        $note_rd->result["curTime"] = date_format($appRJ->date['curDate'], 'H:i');
+        $note_rd['result']["curDate"] = date_format($appRJ->date['curDate'], 'Y-m-d');
+        $note_rd['result']["curTime"] = date_format($appRJ->date['curDate'], 'H:i');
     }
-    $h1="New note"."#".$note_rd->result['note_id'];
+    $h1="New note"."#".$note_rd['result']['note_id'];
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/editNote.php");
 }elseif($appRJ->server['reqUri_expl'][2] == "editDiary"){
-    $diary_rd->result['diary_id']=$appRJ->server['reqUri_expl'][3];
+    $diary_rd['result']['diary_id']=$appRJ->server['reqUri_expl'][3];
     if($diary_rd = $DB->copyOne($diary_rd)) {
         $appRJ->errors['request']['description']="copyOne diary_id error";
         $appRJ->throwErr();
     }
     if(isset($_POST) and $_POST != null) {
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDiaryFields.php");
-        if($diary_rd->result['noteDate']<>$_POST['noteDate']){
+        if($diary_rd['result']['noteDate']<>$_POST['noteDate']){
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDoubleDiary.php");
         }
         if($pageErr==null){
-            if(!$diary_rd->updateOne()){
+            if(!$diary_rd = $DB->updateOne($diary_rd)){
                 $pageErr.="updateOne diary_rd unknown err<br>";
             }
         }
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/editDiaryNotes.php");
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/editDiary.php");
     }else{
-        $note_rd->result["curDate"] = date_format($appRJ->date['curDate'], 'Y-m-d');
-        $note_rd->result["curTime"] = date_format($appRJ->date['curDate'], 'H:i');
+        $note_rd['result']["curDate"] = date_format($appRJ->date['curDate'], 'Y-m-d');
+        $note_rd['result']["curTime"] = date_format($appRJ->date['curDate'], 'H:i');
     }
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/editDiaryNotes.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/editDiary.php");

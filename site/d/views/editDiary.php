@@ -16,24 +16,24 @@ $appRJ->response['result'].= "</head>".
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/diaryHeader.php");
 $appRJ->response['result'].="<div class='diary-edit'>".
     "<form method='post'>".
-    "<label>diary_id: <input type='text' value='".$diary_rd->result['diary_id']."' disabled></label>".
+    "<label>diary_id: <input type='text' value='".$diary_rd['result']['diary_id']."' disabled></label>".
     //"<label>diaryType: <input type='date' value='".$diary_rd->result['diaryType']."'></label>".
     "<label>diaryType: <select name='diaryType'>";
 foreach ($dType as $key=>$val){
     $appRJ->response['result'].="<option value='".$val."' ";
-    if($diary_rd->result['diaryType']==$val){
+    if($diary_rd['result']['diaryType']==$val){
         $appRJ->response['result'].="selected ";
     }
     $appRJ->response['result'].=">".$val."</option>";
 }
 
 $appRJ->response['result'].="</select>".
-    "<label>noteDate: <input type='date' name='noteDate' value='".$diary_rd->result['noteDate']."'></label>".
-    "<label>diaryHeader: <input type='text' name='diaryHeader' value='".$diary_rd->result['diaryHeader']."'></label>";
+    "<label>noteDate: <input type='date' name='noteDate' value='".$diary_rd['result']['noteDate']."'></label>".
+    "<label>diaryHeader: <input type='text' name='diaryHeader' value='".$diary_rd['result']['diaryHeader']."'></label>";
 $appRJ->response['result'].="<div class='submt-panel'>".
     "<div class='ref-block'>".
-    "<a href='/d/".$diary_rd->result['diaryType']."/lastNote/".$diary_rd->result['diary_id']."'>lastNote#".
-    $diary_rd->result['diary_id']."</a>".
+    "<a href='/d/".$diary_rd['result']['diaryType']."/lastNote/".$diary_rd['result']['diary_id']."'>lastNote#".
+    $diary_rd['result']['diary_id']."</a>".
     "</div>".
     "<div class='btn-block'><input type='submit' value='Save'>".
     "</div></div>";

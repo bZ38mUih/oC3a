@@ -20,11 +20,11 @@ $appRJ->response['result'].= "</head>".
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/diaryHeader.php");
 $appRJ->response['result'].="<div class='contentBlock-frame'><div class='contentBlock-center'><div class='diary-edit'>".
     "<form method='post'>".
-    "<label>diary_id: <input type='text' value='".$diary_rd->result['diary_id']."' disabled></label>".
+    "<label>diary_id: <input type='text' value='".$diary_rd['result']['diary_id']."' disabled></label>".
     "<label>diaryType: <select name='diaryType'>";
 foreach ($dType as $key=>$val){
     $appRJ->response['result'].="<option value='".$val."' ";
-    if($diary_rd->result['diaryType']==$val){
+    if($diary_rd['result']['diaryType']==$val){
         $appRJ->response['result'].="selected ";
     }
     $appRJ->response['result'].=">".$val."</option>";
@@ -35,12 +35,12 @@ $appRJ->response['result'].="</select>".
 
 //$appRJ->response['result'].="<div class='pageErr'>".$pageErr."</div>";
 
-$appRJ->response['result'].="<label>note_id: <input type='text' value='".$note_rd->result['note_id']."' disabled></label>";
+$appRJ->response['result'].="<label>note_id: <input type='text' value='".$note_rd['result']['note_id']."' disabled></label>";
 $appRJ->response['result'].="<label>curDate: <input type='date' name='curDate' value='".$note_rd['result']['curDate']."'></label>";
 $appRJ->response['result'].="<label>noteDate: <input type='time' name='curTime' value='".$note_rd['result']['curTime']."'></label>";
 $appRJ->response['result'].="<div class='pageErr'>".$pageErr."</div>";
 $appRJ->response['result'].="<div class='text-container'>";
-$appRJ->response['result'].="<textarea name='content'>".dec_enc("decrypt", $note_rd->result["content"], $note_rd->result["curDate"])."</textarea>";
+$appRJ->response['result'].="<textarea name='content'>".dec_enc("decrypt", $note_rd['result']["content"], $note_rd['result']["curDate"])."</textarea>";
 $appRJ->response['result'].="<div class='submt-panel'>".
     "<div class='ref-block'>".
     "</div>".

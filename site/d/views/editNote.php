@@ -23,10 +23,10 @@ $appRJ->response['result'].= "<body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/diaryHeader.php");
 
 $appRJ->response['result'].="<div class='contentBlock-frame'><div class='contentBlock-center'><div class='diary-edit'>";
-$appRJ->response['result'].="<label>diary_id: <input type='text' value='".$diary_rd->result['diary_id']."' disabled></label>";
-$appRJ->response['result'].="<label>diaryType: <input type='text' value='".$diary_rd->result['diaryType']."' disabled></label>";
-$appRJ->response['result'].="<label>noteDate: <input type='date' value='".$diary_rd->result['noteDate']."' disabled></label>";
-$appRJ->response['result'].="<label>diaryHeader: <input type='text' value='".$diary_rd->result['diaryHeader']."' disabled></label>";
+$appRJ->response['result'].="<label>diary_id: <input type='text' value='".$diary_rd['result']['diary_id']."' disabled></label>";
+$appRJ->response['result'].="<label>diaryType: <input type='text' value='".$diary_rd['result']['diaryType']."' disabled></label>";
+$appRJ->response['result'].="<label>noteDate: <input type='date' value='".$diary_rd['result']['noteDate']."' disabled></label>";
+$appRJ->response['result'].="<label>diaryHeader: <input type='text' value='".$diary_rd['result']['diaryHeader']."' disabled></label>";
 /*toDo
 noteDate must be date not text
 */
@@ -34,16 +34,16 @@ $appRJ->response['result'].="</div><hr>";
 
 $appRJ->response['result'].="<div class='note-edit'>";
 $appRJ->response['result'].="<form method='post'>";
-$appRJ->response['result'].="<label>note_id: <input type='text' value='".$note_rd->result['note_id']."' disabled></label>";
-$appRJ->response['result'].="<label>curDate: <input type='date' name='curDate' value='".$note_rd->result['curDate']."'></label>";
-$appRJ->response['result'].="<label>noteDate: <input type='time' name='curTime' value='".$note_rd->result['curTime']."'></label>";
+$appRJ->response['result'].="<label>note_id: <input type='text' value='".$note_rd['result']['note_id']."' disabled></label>";
+$appRJ->response['result'].="<label>curDate: <input type='date' name='curDate' value='".$note_rd['result']['curDate']."'></label>";
+$appRJ->response['result'].="<label>noteDate: <input type='time' name='curTime' value='".$note_rd['result']['curTime']."'></label>";
 $appRJ->response['result'].="<div class='pageErr'>".$pageErr."</div>";
 $appRJ->response['result'].="<div class='text-container'>";
-$appRJ->response['result'].="<textarea name='content'>".dec_enc("decrypt", $note_rd->result["content"], $note_rd->result["curDate"])."</textarea>";
+$appRJ->response['result'].="<textarea name='content'>".dec_enc("decrypt", $note_rd['result']["content"], $note_rd['result']["curDate"])."</textarea>";
 $appRJ->response['result'].="<div class='submt-panel'>".
     "<div class='ref-block'>".
-    "<a href='/d/".$diary_rd->result['diaryType']."/lastNote/".$diary_rd->result['diary_id']."'>lastNote#".
-    $diary_rd->result['diary_id']."</a>".
+    "<a href='/d/".$diary_rd['result']['diaryType']."/lastNote/".$diary_rd['result']['diary_id']."'>lastNote#".
+    $diary_rd['result']['diary_id']."</a>".
     "</div>".
     "<div class='btn-block'><input type='submit' value='Save'></div>".
     "</div>";
