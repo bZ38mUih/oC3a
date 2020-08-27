@@ -29,12 +29,6 @@ class DB extends PDO
         $query_res = $this->query($query_text);
         if($query_res->rowCount()===1){
             $rd['result']=$query_res->fetch(PDO::FETCH_ASSOC);
-            /*
-            foreach ($query_row as $key => $value) {
-                $row['result'][$key]=$value;
-            }
-            */
-
             return $rd;
         }else{
             return false;
@@ -86,7 +80,7 @@ class DB extends PDO
 
     function removeOne($rd)
     {
-        $query_text="delete from ".$rd['table']." where".$rd['field_id']="'".$rd['result'][$rd['field_id']]."'";
+        $query_text="delete from ".$rd['table']." where ".$rd['field_id']."='".$rd['result'][$rd['field_id']]."'";
         if($this->query($query_text)){
             return true;
         }else{

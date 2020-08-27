@@ -8,7 +8,7 @@
 
 class accessorialClass //extends recordDefault
 {
-    public function mkAlias($toTranslit)
+    public static function mkAlias($toTranslit)
     {
         $str = null;
         if (isset($toTranslit) and $toTranslit != null) {

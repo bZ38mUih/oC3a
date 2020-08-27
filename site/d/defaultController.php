@@ -111,7 +111,7 @@ if($tmpRes){
     if(isset($_POST) and $_POST != null){
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkNoteFields.php");
         if($pageErr==null){
-            if(!$note_rd = $DB->updateOne($note_rd)){
+            if(!$DB->updateOne($note_rd)){
                 $pageErr.="updateOne note)_rd unknown err";
             }
         }
@@ -142,7 +142,7 @@ if($tmpRes){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/editNote.php");
 }elseif($appRJ->server['reqUri_expl'][2] == "editDiary"){
     $diary_rd['result']['diary_id']=$appRJ->server['reqUri_expl'][3];
-    if($diary_rd = $DB->copyOne($diary_rd)) {
+    if(!$diary_rd = $DB->copyOne($diary_rd)) {
         $appRJ->errors['request']['description']="copyOne diary_id error";
         $appRJ->throwErr();
     }
@@ -152,7 +152,7 @@ if($tmpRes){
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDoubleDiary.php");
         }
         if($pageErr==null){
-            if(!$diary_rd = $DB->updateOne($diary_rd)){
+            if(!$DB->updateOne($diary_rd)){
                 $pageErr.="updateOne diary_rd unknown err<br>";
             }
         }
@@ -175,8 +175,9 @@ if($tmpRes){
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/actions/checkDoubleDiary.php");
         }
         if($pageErr==null){
-            if($diary_rd['result']['diary_id'] = $DB->putOne($diary_rd)){
-                $note_rd['result']['diary_id']=$DB->lastInsertId();
+            if($DB->putOne($diary_rd)){
+                $diary_rd['result']['diary_id'] = $DB->lastInsertId();
+                $note_rd['result']['diary_id']= $diary_rd['result']['diary_id'];
                 if($DB->putOne($note_rd)){
                     header("Location: "."/d/".$diary_rd['result']['diaryType']."/lastNote/".$diary_rd['result']['diary_id']);
                 }else{

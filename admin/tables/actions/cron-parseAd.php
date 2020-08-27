@@ -4,8 +4,6 @@ exit;
 
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
 //require_once($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
-require_once ("/home/p264533/public_html/rightjoint.ru/source/accessorial_class.php");
-//require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
 $DB=new DB();
 $DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/rightjoint.ru".$DB->pathToConn), true);
 //$DB->connSettings=json_decode(@file_get_contents($_SERVER["DOCUMENT_ROOT"].$DB->pathToConn), true);
