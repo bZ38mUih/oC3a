@@ -102,4 +102,14 @@ WHERE `TABLE_SCHEMA`='".$this->connSettings['CONN_DB']."'
         return $rd;
     }
 
+    function checkDouble($rd){
+        $checkDouble_qry="select COUNT(".$rd['field_alias'].") as dblAlias from ".$rd["table"]." where ".$rd['field_alias']." = '".$rd['result'][$rd['field_alias']]."'";
+        $checkDouble_res = $this->query($checkDouble_qry);
+        $checkDouble_row = $checkDouble_res->fetch(PDO::FETCH_ASSOC);
+        if($checkDouble_row['dblAlias']==0){
+            return true;
+        }
+        return false;
+    }
+
 }

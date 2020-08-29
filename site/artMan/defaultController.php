@@ -46,9 +46,9 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
             $artErr=null;
             $catSelect=null;
             if(isset($_GET['art_id']) and $_GET['art_id']!=null){
-                $Art_rd = new recordDefault("art_dt", "art_id");
-                $Art_rd->result['art_id']=$_GET['art_id'];
-                if($Art_rd->copyOne()){
+                $Art_rd = array("table" => "art_dt", "field_id" => "art_id");
+                $Art_rd['result']['art_id']=$_GET['art_id'];
+                if($Art_rd = $DB->copyOne($Art_rd)){
                     if(!$appRJ->server['reqUri_expl'][3]){
                         require_once ($_SERVER['DOCUMENT_ROOT']."/site/artMan/views/artMan-editArt.php");
                     }
@@ -65,9 +65,9 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
             }
         }elseif(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2] =="preview"){
             if(isset($_GET['art_id']) and $_GET['art_id']!=null){
-                $Art_rd = new recordDefault("art_dt", "art_id");
-                $Art_rd->result['art_id']=$_GET['art_id'];
-                if($Art_rd->copyOne()){
+                $Art_rd = array("table" => "art_dt", "field_id" => "art_id");
+                $Art_rd['result']['art_id'] = $_GET['art_id'];
+                if($Art_rd = $DB->copyOne($Art_rd)){
                     require_once ($_SERVER['DOCUMENT_ROOT']."/site/artMan/views/artMan-preview.php");
                 }else{
                     $appRJ->errors['request']['description']="неправильные параметры art_id";
