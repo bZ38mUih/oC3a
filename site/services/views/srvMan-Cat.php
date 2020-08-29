@@ -23,10 +23,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-subMenu.php");
 $selectCat_query = "select * from srvCat_dt";
 $selectCat_res=$DB->query($selectCat_query);
-$catCount=0;
-if(mysql_num_rows($selectCat_res)>0){
-    $catCount=mysql_num_rows($selectCat_res);
-}
+$catCount=$selectCat_res->rowCount();
 $appRJ->response['result'].= "<div class='manFrame'><div class='manTopPanel'>".
     "<div class='itemsCount'>Всего: <span>".$catCount."</span> записей</div>".
     "<div class='newItem'><a href='/services/srvMan/cats/newCat'><img src='/source/img/create-icon.png'>Создать категорию</a>".

@@ -3,7 +3,7 @@ $editImg['result'] = false;
 $editImg['data'] = null;
 $Card_rd = array("table" => "srvCards_dt", "field_id" => "card_id");
 $Card_rd['result']['card_id']=$_POST['card_id'];
-if($Card_rd->copyOne()){
+if($Card_rd = $DB->copyOne($Card_rd)){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id'])) {
         mkdir($_SERVER["DOCUMENT_ROOT"].SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id'], 0777, true);
     }
@@ -32,7 +32,7 @@ if($Card_rd->copyOne()){
                     $_SERVER["DOCUMENT_ROOT"].SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id']."/preview/".
                     $Card_rd['result']['cardImg'], 300, 300);
                 /*<--create preview*/
-                if($Card_rd->updateOne()){
+                if($DB->updateOne($Card_rd)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id']."/preview/".
                         $Card_rd['result']['cardImg']."'>";

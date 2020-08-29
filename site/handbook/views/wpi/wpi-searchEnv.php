@@ -6,8 +6,8 @@ if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Список окружения ( ";
 }
 if($env_res=$DB->query($env_qry)){
-    if(mysql_num_rows($env_res)>0){
-        $appRJ->response['result'].=mysql_num_rows($env_res)." )</h3><div class='line caption'>".
+    if($env_res->rowCount() > 0){
+        $appRJ->response['result'].=$env_res->rowCount()." )</h3><div class='line caption'>".
             "<div class='td-20'>envName</div><div class='td-70'>envVal</div></div>";
         while ($env_row = $env_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<div class='line'><div class='td-20'>";

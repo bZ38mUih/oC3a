@@ -32,10 +32,7 @@ $slArt_qry = "select art_dt.art_id, art_dt.artCat_id, art_dt.artName, art_dt.art
     "LEFT JOIN artCat_dt ON art_dt.artCat_id=artCat_dt.artCat_id order by pubDate DESC limit ".strval(($curPage-1)*$itLnP).
     ", ".$itLnP;
 $slArt_res=$DB->query($slArt_qry);
-$itmCnt=0;
-if(mysql_num_rows($slArt_res)>0){
-    $itmCnt=mysql_num_rows($slArt_res);
-}
+$itmCnt = $slArt_res->rowCount();
 $appRJ->response['result'].= "<div class='manFrame'><div class='manTopPanel'>".
     "<div class='itemsCount'>Всего: <span>".$cntArt_row['cntArts']."</span> записей";
 if($cntArt_row['cntArts']/$itLnP>1){

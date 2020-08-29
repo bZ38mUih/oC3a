@@ -3,8 +3,8 @@
 $slGr_qry = "select * from usersGroups_dt";
 $slGr_res=$DB->query($slGr_qry);
 $grCount=0;
-if(mysql_num_rows($slGr_res)>0){
-    $grCount=mysql_num_rows($slGr_res);
+if($slGr_res->rowCount() > 0){
+    $grCount = $slGr_res->rowCount();
 }
 $appRJ->response['result'].= "<div class='manFrame'>";
 $appRJ->response['result'].= "<div class='manTopPanel'>";

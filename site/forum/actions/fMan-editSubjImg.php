@@ -5,7 +5,7 @@ $editImg['data'] = null;
 //if(isset($_POST['cat_id']) and $_POST['cat_id']!=null){
 $Subj_rd = array("table" => "forumSubj_dt", "field_id" => "fs_id");
 $Subj_rd['result']['fs_id']=$_POST['forumS_id'];
-if($Subj_rd->copyOne()){
+if($Subj_rd = $DB->copyOne($Subj_rd)){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].F_SUBJ_IMG.$Subj_rd['result']['fs_id'])) {
         mkdir($_SERVER["DOCUMENT_ROOT"].F_SUBJ_IMG.$Subj_rd['result']['fs_id'], 0777, true);
     }
@@ -30,7 +30,7 @@ if($Subj_rd->copyOne()){
                     $_SERVER["DOCUMENT_ROOT"].F_SUBJ_IMG.$Subj_rd['result']['fs_id']."/".$Subj_rd['result']['sImg'],
                     $_SERVER["DOCUMENT_ROOT"].F_SUBJ_IMG.$Subj_rd['result']['fs_id']."/preview/".$Subj_rd['result']['sImg'], 150, 150);
                 /*<--create preview*/
-                if($Subj_rd->updateOne()){
+                if($DB->updateOne($Subj_rd)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".F_SUBJ_IMG.$Subj_rd['result']['fs_id']."/preview/".$Subj_rd['result']['sImg']."'>";
                 }

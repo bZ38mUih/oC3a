@@ -13,8 +13,8 @@ $slDifSrv_qry="select * from (".$slSrvLeft_qry.") as wdSrvLeft left join (".$slS
     "order by sNameLeft, sNameRight";
 
 $slDifSrv_res=$DB->query($slDifSrv_qry);
-if(mysql_num_rows($slDifSrv_res)>0){
-    $appRJ->response['result'].="<h3>Службы (".mysql_num_rows($slDifSrv_res).")</h3>";
+if($slDifSrv_res->rowCount() > 0){
+    $appRJ->response['result'].="<h3>Службы (".$slDifSrv_res->rowCount().")</h3>";
     $leftDifCnt=0;
     $rightDifCnt=0;
     $pLines=null;

@@ -21,7 +21,7 @@ if(isset($_POST['lastMod']) and $_POST['lastMod']!=null){
 if(is_null($hwEdit['err'])){
     $slHw_qry="select * from wdProcList_dt WHERE pName='".$paramVal."'";
     $slHw_res=$DB->query($slHw_qry);
-    if(mysql_num_rows($slHw_res)===1){
+    if($slHw_res->rowCount() === 1){
         $slHw_row = $slHw_res->fetch(PDO::FETCH_ASSOC);
         $udHw_qry="update wdProcList_dt set pDescr='".$hwDescr."', lastMod='".$lastMod."' ".
             "WHERE pName='".$paramVal."'";
@@ -31,7 +31,7 @@ if(is_null($hwEdit['err'])){
 
         }
     }else{
-        $hwEdit['err'].="invalid pName or pVal; ".$slHw_qry." rows=".mysql_num_rows($slHw_res);
+        $hwEdit['err'].="invalid pName or pVal; ".$slHw_qry." rows=".$slHw_res->rowCount();
     }
 }
 $appRJ->response['result']=$hwEdit;

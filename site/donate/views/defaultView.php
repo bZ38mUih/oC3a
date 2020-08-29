@@ -1,7 +1,7 @@
 <?php
 if($_SESSION['donate']['order_id']) {
     $Order_rd['result']["order_id"] = $_SESSION['donate']['order_id'];
-    $Order_rd->copyOne();
+    $Order_rd = $DB->copyOne($Order_rd);
 }
 $donate_qry="select SUM(amount) as dntAmount from payments_dt WHERE ".
     "label IN (SELECT label FROM ordersList_dt WHERE shortDest='Right Joint: пожертвование') and hashEqual IS TRUE";

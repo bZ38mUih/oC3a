@@ -78,7 +78,7 @@ $appRJ->response['result'].= "</textarea></div>".
 $categList_text="select fm_id, mName from forumMenu_dt".
     " ORDER BY mName ";
 $categList_res=$DB->query($categList_text);
-if(mysql_num_rows($categList_res)>0){
+if($categList_res->rowCount() > 0){
     $findSelected=false;
     while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelectOptions.= "<option value='".$categList_row['fm_id']."' ";

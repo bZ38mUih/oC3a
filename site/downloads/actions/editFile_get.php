@@ -5,7 +5,7 @@ $catSelect=null;
 if(isset($_GET['file_id']) and $_GET['file_id']!=null){
     $File_rd = array("table" => "dwlFiles_dt", "field_id" => "dwlFile_id");
     $File_rd['result']['dwlFile_id']=$_GET['file_id'];
-    if($File_rd->copyOne()){
+    if($File_rd = $DB->copyOne($File_rd)){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/downloads/views/editFile.php");
     }else{
         $appRJ->response['result'].= "неправильные параметры запроса file_id";

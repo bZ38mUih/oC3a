@@ -23,7 +23,7 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
         "<div class='contentBlock-wrap'><div class='lrp-wrap'>";
     $allP_qry="select * from wdProcList_dt ORDER BY pName";
     $allP_res=$DB->query($allP_qry);
-    if(mysql_num_rows($allP_res)>0){
+    if($allP_res->rowCount() > 0){
         $appRJ->response['result'].="<div class='wi-block'>";
         while ($allP_row = $allP_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<h3><div class='line ta-left'><span class='fName'>";

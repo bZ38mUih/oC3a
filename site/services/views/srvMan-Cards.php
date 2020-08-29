@@ -24,10 +24,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-subMenu.php");
 $slSrv_qry = "select * from srvCards_dt LEFT JOIN srvCat_dt ON srvCards_dt.srvCat_id=srvCat_dt.srvCat_id";
 $slSrv_res=$DB->query($slSrv_qry);
-$srvCnt=0;
-if(mysql_num_rows($slSrv_res)>0){
-    $srvCnt=mysql_num_rows($slSrv_res);
-}
+$srvCnt=$slSrv_res->rowCount();
 $appRJ->response['result'].= "<div class='manFrame'><div class='manTopPanel'>".
     "<div class='itemsCount'>Всего: <span>".$srvCnt."</span> записей</div>".
     "<div class='newItem'>".

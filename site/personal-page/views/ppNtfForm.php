@@ -9,7 +9,7 @@ $slUsrNtf_cnt=0;
 $notRdnNtf=0;
 $slUsrNtf_qry="select COUNT(ntfList_id) as ntfQty, COUNT(readDate) as rdnQty from ntfList_dt WHERE user_id = ".$_SESSION['user_id'];
 $slUsrNtf_res=$DB->query($slUsrNtf_qry);
-if(mysql_num_rows($slUsrNtf_res)>0){
+if($slUsrNtf_res->rowCount() > 0){
     $slUsrNtf_row = $slUsrNtf_res->fetch(PDO::FETCH_ASSOC);
     $slUsrNtf_cnt=$slUsrNtf_row['ntfQty'];
     $notRdnNtf = $slUsrNtf_cnt-$slUsrNtf_row['rdnQty'];
@@ -22,8 +22,8 @@ $slUsrNtfLim_qry="select ntf_dt.ntfSubj, ntf_dt.ntfDate, ntfList_dt.ntfList_id, 
     " limit ".strval(($ntfPage-1)*$ntfLnPage).
     ", ".$ntfLnPage;
 $slUsrNtfLim_res=$DB->query($slUsrNtfLim_qry);
-if(mysql_num_rows($slUsrNtfLim_res)>0){
-    $slUsrNtfLim_cnt=mysql_num_rows($slUsrNtfLim_res);
+if($slUsrNtfLim_res->rowCount() > 0){
+    $slUsrNtfLim_cnt = $slUsrNtfLim_res->rowCount();
 }
 $appRJ->response['result'].= "<div class='manFrame'><div class='manTopPanel'><div class='itemsCount'>".
     "Всего: <span>".$slUsrNtf_cnt."</span> записей";

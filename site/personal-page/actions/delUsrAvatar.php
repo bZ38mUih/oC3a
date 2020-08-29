@@ -4,11 +4,11 @@ $delImg['data'] = null;
 
 $Acc_rd = array("table" => "accounts_dt", "field_id" => "account_id");
 $Acc_rd['result']['account_id']=$_GET['delAvatarImg'];
-if($Acc_rd->copyOne()){
+if($Acc_rd = $DB->copyOne($Acc_rd)){
     unlink ($_SERVER["DOCUMENT_ROOT"].PP_USR_IMG_PAPH.$Acc_rd['result']['account_id']."/".$Acc_rd['result']['photoLink']);
     unlink ($_SERVER["DOCUMENT_ROOT"].PP_USR_IMG_PAPH.$Acc_rd['result']['account_id']."/preview/".$Acc_rd['result']['photoLink']);
     $Acc_rd['result']['photoLink']=null;
-    if($Acc_rd->updateOne()){
+    if($DB->updateOne($Acc_rd)){
         $delImg['result'] = true;
         $delImg['data'] = "<img src='/data/default-img.png'>";
     }else{

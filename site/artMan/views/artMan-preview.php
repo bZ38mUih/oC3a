@@ -4,21 +4,21 @@ $h1 =$Art_rd['result']['artName'];
 $fndP=false;
 $slArtP_qry="select * from artLinks_dt WHERE art_id=".$_GET['art_id']." and linkType='page'";
 $slArtP_res=$DB->query($slArtP_qry);
-if(mysql_num_rows($slArtP_res)==1){
+if($slArtP_res->rowCount() == 1){
     $slArtP_row = $slArtP_res->fetch(PDO::FETCH_ASSOC);
     $fndP=true;
 }
 
 $slArtSt_qry="select * from artLinks_dt WHERE art_id=".$_GET['art_id']." and linkType='style'";
 $slArtSt_res=$DB->query($slArtSt_qry);
-if(mysql_num_rows($slArtSt_res)==1){
+if($slArtSt_res->rowCount() == 1){
     $slArtSt_row = $slArtSt_res->fetch(PDO::FETCH_ASSOC);
     $fndSt=true;
 }
 
 $slArtScr_qry="select * from artLinks_dt WHERE art_id=".$_GET['art_id']." and linkType='script'";
 $slArtScr_res=$DB->query($slArtScr_qry);
-if(mysql_num_rows($slArtScr_res)==1){
+if($slArtScr_res->rowCount() == 1){
     $slArtScr_row = $slArtScr_res->fetch(PDO::FETCH_ASSOC);
     $fndScr=true;
 }
@@ -70,7 +70,7 @@ $appRJ->response['result'].= "</div>";
 
 $refList_text="select * from artRef_dt WHERE art_id='".$_GET['art_id']."' order by artRef_id DESC";
 $refList_res=$DB->query($refList_text);
-$refList_count=mysql_num_rows($refList_res);
+$refList_count = $refList_res->rowCount();
 if($refList_count>0){
     $appRJ->response['result'].= "<div class='art-ref'>";
     $appRJ->response['result'].= "<h5>Ссылки:</h5>";

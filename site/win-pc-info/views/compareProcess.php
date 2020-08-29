@@ -14,8 +14,8 @@ $slDifProc_qry="select * from (".$slProcLeft_qry.") as wdProcLeft left join (".$
     "and wdProcLeft.pPathLeft=wdProcRight.pPathRight order by pNameLeft, pNameRight";
 
 $slDifProc_res=$DB->query($slDifProc_qry);
-if(mysql_num_rows($slDifProc_res)>0){
-    $appRJ->response['result'].="<h3>Процессы (".mysql_num_rows($slDifProc_res).")</h3>";
+if($slDifProc_res->rowCount() > 0){
+    $appRJ->response['result'].="<h3>Процессы (".$slDifProc_res->rowCount().")</h3>";
     $leftDifCnt=0;
     $rightDifCnt=0;
     $pLines=null;

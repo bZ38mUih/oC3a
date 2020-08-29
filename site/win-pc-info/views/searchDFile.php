@@ -6,8 +6,8 @@ if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Список диаг-файлов ( ";
 }
 if($wdList_res=$DB->query($wdList_qry)){
-    if(mysql_num_rows($wdList_res)>0){
-        $appRJ->response['result'].=mysql_num_rows($wdList_res)." )</h3><div class='wi-block'><div class='wi-table'>";
+    if($wdList_res->rowCount() > 0){
+        $appRJ->response['result'].=$wdList_res->rowCount()." )</h3><div class='wi-block'><div class='wi-table'>";
         $appRJ->response['result'].="<div class='line caption'>".
             "<div class='td-48'>Tag</div><div class='td-48'>Date</div></div>";
         while ($wdList_row = $wdList_res->fetch(PDO::FETCH_ASSOC)){

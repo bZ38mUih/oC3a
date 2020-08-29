@@ -26,7 +26,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         } elseif ($appRJ->server['reqUri_expl'][4] and $appRJ->server['reqUri_expl'][4] == 'editCard') {
             if (isset($_GET['card_id']) and $_GET['card_id'] != null) {
                 $Card_rd['result']['card_id'] = $_GET['card_id'];
-                if ($Card_rd->copyOne()) {
+                if ($Card_rd = $DB->copyOne($Card_rd)) {
                     if (isset($_POST['flagField']) and $_POST['flagField'] == 'editCard') {
                         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/actions/srvMan-editCard.php");
                     } else {
@@ -35,7 +35,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
                         } elseif ($appRJ->server['reqUri_expl'][5] == 'longDescr') {
                             if (isset($_POST['flagField']) and $_POST['flagField'] == 'longDescr') {
                                 $Card_rd['result']['longDescr'] = $_POST['longDescr'];
-                                $Card_rd->updateOne();
+                                $DB->updateOne($Card_rd);
                             }
                             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-longDescr.php");
                         }

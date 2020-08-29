@@ -12,15 +12,9 @@ function printList($artCatPar_id=null, $DB, $ref)
         $slArt_qry="select * from art_dt WHERE artCat_id = ".$artCatPar_id." and activeFlag is TRUE";
     }
     $slArt_res=$DB->query($slArt_qry);
-    $artCount=0;
-    if(mysql_num_rows($slArt_res)>0){
-        $artCount=mysql_num_rows($slArt_res);
-    }
+    $artCount = $slArt_res->rowCount();
     $selectCat_res=$DB->query($selectCat_query);
-    $catCount=0;
-    if(mysql_num_rows($selectCat_res)>0){
-        $catCount=mysql_num_rows($selectCat_res);
-    }
+    $catCount = $selectCat_res->rowCount();
     if($catCount>0 or $artCount>0){
         $tmpRes['text'].= "<ul>";
         if($artCount>0){

@@ -82,7 +82,7 @@ $appRJ->response['result'].= "<select name='artCatPar_id'>";
 /*select options-->*/
 $categList_text="select artCat_id, artCatPar_id, catName from artCat_dt ORDER BY catName ";
 $categList_res=$DB->query($categList_text);
-if(mysql_num_rows($categList_res)>0){
+if($categList_res->rowCount() > 0){
     $findSelected=false;
     while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelect.= "<option value='".$categList_row['artCat_id']."' ";

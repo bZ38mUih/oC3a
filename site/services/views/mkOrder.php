@@ -2,7 +2,7 @@
 $Order_rd = array("table" => "ordersList_dt", "field_id" => "order_id");
 if($_SESSION['bucket']['order_id']) {
     $Order_rd['result']["order_id"] = $_SESSION['bucket']['order_id'];
-    $Order_rd->copyOne();
+    $Order_rd = $DB->copyOne($Order_rd);
 }
 $h1 ="Оформление заказа - оплата";
 $App['views']['social-block']=true;

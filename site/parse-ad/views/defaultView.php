@@ -36,7 +36,7 @@ if($pNum>5){$pagesText.=" ...";}
 $parseRes=null;
 $parseList_text="select * from parseAdList_dt ".$wereCond." ORDER BY adDate DESC limit ".($curPage-1)*$volP.", ".$volP;
 $parseList_res=$DB->query($parseList_text);
-if(mysql_num_rows($parseList_res)>0){
+if($parseList_res->rowCount() > 0){
     $adCountTmp=0;
     while($parseList_row = $parseList_res->fetch(PDO::FETCH_ASSOC)){
         $adCountTmp++;

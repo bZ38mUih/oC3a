@@ -37,12 +37,7 @@ require_once ($_SERVER["DOCUMENT_ROOT"]."/site/artMan/views/artMan-subMenu.php")
 
 $selectCat_query = "select * from artCat_dt ORDER BY artCat_id";
 $selectCat_res=$DB->query($selectCat_query);
-$catCount=0;
-
-if(mysql_num_rows($selectCat_res)>0){
-    $catCount=mysql_num_rows($selectCat_res);
-}
-
+$catCount = $selectCat_res->rowCount();
 $appRJ->response['result'].= "<div class='manFrame'>";
 $appRJ->response['result'].= "<div class='manTopPanel'>";
 $appRJ->response['result'].= "<div class='itemsCount'>";

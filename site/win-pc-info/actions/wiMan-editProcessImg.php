@@ -3,7 +3,7 @@ $editImg['result'] = false;
 $editImg['data'] = null;
 $slPr_qry="select * from wdProcList_dt WHERE pName='".$paramVal."'";
 $slPr_res=$DB->query($slPr_qry);
-if(mysql_num_rows($slPr_res)==1){
+if($slPr_res->rowCount() == 1){
     $slPr_row = $slPr_res->fetch(PDO::FETCH_ASSOC);
     foreach ($_FILES as $file){
         if ($file['error'] !== 0){

@@ -3,11 +3,11 @@ $delImg['result'] = false;
 $delImg['data'] = null;
 $Cat_rd = array("table" => "srvCat_dt", "field_id" => "srvCat_id");
 $Cat_rd['result']['srvCat_id']=$_GET['delCatImg'];
-if($Cat_rd->copyOne()){
+if($Cat_rd = $DB->copyOne($Cat_rd)){
     unlink ($_SERVER["DOCUMENT_ROOT"].SRV_CAT_IMG_PAPH.$Cat_rd['result']['srvCat_id']."/".$Cat_rd['result']['catImg']);
     unlink ($_SERVER["DOCUMENT_ROOT"].SRV_CAT_IMG_PAPH.$Cat_rd['result']['srvCat_id']."/preview/".$Cat_rd['result']['catImg']);
     $Cat_rd['result']['catImg']=null;
-    if($Cat_rd->updateOne()){
+    if($DB->updateOne($Cat_rd)){
         $delImg['result'] = true;
         $delImg['data'] = "<img src='/data/default-img.png'>";
     }else{

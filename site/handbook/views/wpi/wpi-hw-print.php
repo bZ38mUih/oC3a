@@ -1,6 +1,6 @@
 <?php
 $wdInfo_res=$DB->query($wdInfo_qry);
-if(mysql_num_rows($wdInfo_res)==1){
+if($wdInfo_res->rowCount() == 1){
     $wdInfo_row = $wdInfo_res->fetch(PDO::FETCH_ASSOC);
     $wdInfo.="<div class='wi-descr'>";
     if($wdInfo_row['hwDescr']){

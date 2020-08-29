@@ -51,8 +51,8 @@ if(isset($_POST['fileActive_flag']) and $_POST['fileActive_flag']=='on'){
 if(isset($fileErr)){
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/downloads/views/newFile.php");
 }else{
-    if($File_rd->putOne()){
-        $page = "Location: /downloads/dwlManager/editFile/?file_id=".$File_rd['result']['dwlFile_id'];
+    if($DB->putOne($File_rd)){
+        $page = "Location: /downloads/dwlManager/editFile/?file_id=".$DB->lastInsertId();
         header($page);
     }else{
         $appRJ->response['result'].= "444-files<br>";

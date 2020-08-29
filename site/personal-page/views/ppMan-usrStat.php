@@ -9,7 +9,7 @@ $selStat_res = $DB->query($selStat_query);
 if($DB->err){
     $appRJ->response['result'].= "some query problems";
 }
-if(mysql_num_rows($selStat_res)>0){
+if($selStat_res->rowCount() > 0){
     $appRJ->response['result'].= "<div class='list-line caption'>";
     $appRJ->response['result'].= "<div class='list-line-avatar'>avatar</div>";
     $appRJ->response['result'].= "<div class='list-line-alias'>alias</div>";

@@ -5,9 +5,9 @@ if(isset($_POST['fc_pid'])){
         if(isset($_POST['fs_id']) and $_POST['fs_id']!=null){
             $rewrCm = array("table" => 'forumComments_dt', "field_id" => 'fc_id');
             $rewrCm['result']['fc_id']=$_POST['fc_pid'];
-            if($rewrCm->copyOne()){
+            if($rewrCm = $DB->copyOne($rewrCm)){
                 $rewrCm['result']['commmentCont']=$_POST['fCm'];
-                if($rewrCm->updateOne()){
+                if($DB->updateOne($rewrCm)){
                     $refBlock= printFComments(null, $_POST['fs_id'], $DB, 0, $curPage, $comsOnPage);
                     $refBlock['subjComm']=$subjComms_row['subjComm'];
                     $refBlock['subjAnsw']=$subjAnsw_row['subjAnsw'];

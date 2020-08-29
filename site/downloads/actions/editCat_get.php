@@ -4,7 +4,7 @@ $catSelectOptions=null;
 if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
     $Cat_rd = array("tabel" => "dwlCat_dt", "field_id" => "dwlCat_id");
     $Cat_rd['result']['dwlCat_id']=$_GET['cat_id'];
-    if($Cat_rd->copyOne()){
+    if($Cat_rd = $DB->copyOne($Cat_rd)){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/downloads/views/editCat.php");
     }else{
         $appRJ->response['result'].= "неправильные параметры запроса cat_id";

@@ -5,11 +5,7 @@ $slUsr_qry = "select * from users_dt INNER JOIN accounts_dt ON users_dt.user_id 
 
 $slUsr_res=$DB->query($slUsr_qry);
 
-$usrCount=0;
-
-if(mysql_num_rows($slUsr_res)>0){
-    $usrCount=mysql_num_rows($slUsr_res);
-}
+$usrCount = $slUsr_res->rowCount();
 
 $appRJ->response['result'].= "<div class='manFrame'>";
 $appRJ->response['result'].= "<div class='manTopPanel'>";

@@ -3,7 +3,7 @@
 $File_rd = array("table" => "dwlFiles_dt", "field_id" => "dwlFile_id");
 if(isset($_GET['file_id']) and $_GET['file_id']!=null){
     $File_rd['result']['dwlFile_id'] = $_GET['file_id'];
-    $File_rd->copyOne();
+    $File_rd = $DB->copyOne($File_rd);
     if(isset($_POST['dwlFileName']) and $_POST['dwlFileName']!=null){
         $File_rd['result']['dwlFileName']=htmlspecialchars($_POST['dwlFileName']);
     }else{
@@ -47,7 +47,7 @@ if(isset($fileErr)){
     $fileErr['common']=false;
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/downloads/views/editFile.php");
 }else{
-    if($File_rd->updateOne()){
+    if($DB->updateOne($File_rd)){
         $fileErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/downloads/views/editFile.php");
     }else{

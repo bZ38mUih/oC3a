@@ -4,7 +4,7 @@ $editImg['data'] = null;
 
 $Art_rd = array("table" => "art_dt", "field_id" => "art_id");
 $Art_rd['result']['art_id']=$_POST['art_id'];
-if($Art_rd->copyOne()){
+if($Art_rd = $DB->copyOne($Art_rd)){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].ARTS_IMG_PAPH.$Art_rd['result']['art_id'])) {
         mkdir($_SERVER["DOCUMENT_ROOT"].ARTS_IMG_PAPH.$Art_rd['result']['art_id'], 0777, true);
     }
@@ -29,7 +29,7 @@ if($Art_rd->copyOne()){
                     $_SERVER["DOCUMENT_ROOT"].ARTS_IMG_PAPH.$Art_rd['result']['art_id']."/".$Art_rd['result']['artImg'],
                     $_SERVER["DOCUMENT_ROOT"].ARTS_IMG_PAPH.$Art_rd['result']['art_id']."/preview/".$Art_rd['result']['artImg'], 300, 300);
                 /*<--create preview*/
-                if($Art_rd->updateOne()){
+                if($DB->updateOne($Art_rd)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".ARTS_IMG_PAPH.$Art_rd['result']['art_id']."/preview/".$Art_rd['result']['artImg']."'>";
                 }

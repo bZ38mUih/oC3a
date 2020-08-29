@@ -4,16 +4,16 @@ if(requiredFields::checkLogin($_GET['login'])){
     $query_text="select account_id, validDate, vldCode from accounts_dt where accLogin='".htmlspecialchars($_GET['login'])."' and ".
         "netWork='site'";
     $query_res=$DB->query($query_text);
-    if(mysql_num_rows($query_res)==1){
+    if($query_res->rowCount() ==1){
         $query_row = $query_res->fetch(PDO::FETCH_ASSOC);
         if($query_row['validDate']==null){
             if($query_row['vldCode'] === $_GET['vldCode']){
                 $RD_update = array("table" => 'accounts_dt', "field_id" => "account_id");
                 $RD_update['result']['account_id']=$query_row['account_id'];
-                $RD_update->copyOne();
+                $RD_update = $DB->copyOne($RD_update);
                 $appRJ->date['curDate'] = @date_create();
                 $RD_update['result']['validDate']=date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');
-                $RD_update->updateOne();
+                $DB->updateOne($RD_update);
                 $varifMail.= "<strong class='success'>Подтверждение eMail адреса успешно.</strong>";
             }else{
                 $varifMail.= "<strong class='fail'>Неправильный код подтверждения!</strong>";

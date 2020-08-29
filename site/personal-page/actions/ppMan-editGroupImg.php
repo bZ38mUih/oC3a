@@ -5,7 +5,7 @@ $editImg['data'] = null;
 //if(isset($_POST['cat_id']) and $_POST['cat_id']!=null){
 $Gr_rd = array("table" => "usersGroups_dt", "field_id" => "group_id");
 $Gr_rd['result']['group_id']=$_POST['group_id'];
-if($Gr_rd->copyOne()){
+if($Gr_rd = $DB->copyOne($Gr_rd)){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].PP_USRGR_IMG_PAPH.$Gr_rd['result']['group_id'])) {
         mkdir($_SERVER["DOCUMENT_ROOT"].PP_USRGR_IMG_PAPH.$Gr_rd['result']['group_id'], 0777, true);
     }
@@ -30,7 +30,7 @@ if($Gr_rd->copyOne()){
                     $_SERVER["DOCUMENT_ROOT"].PP_USRGR_IMG_PAPH.$Gr_rd['result']['group_id']."/".$Gr_rd['result']['img'],
                     $_SERVER["DOCUMENT_ROOT"].PP_USRGR_IMG_PAPH.$Gr_rd['result']['group_id']."/preview/".$Gr_rd['result']['img'], 300, 300);
                 /*<--create preview*/
-                if($Gr_rd->updateOne()){
+                if($DB->updateOne($Gr_rd)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".PP_USRGR_IMG_PAPH.$Gr_rd['result']['group_id']."/preview/".$Gr_rd['result']['img']."'>";
                 }

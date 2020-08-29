@@ -45,8 +45,8 @@ if(isset($_POST['robIndex']) and $_POST['robIndex']=='on'){
 if(isset($catErr)){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/forum/views/fMan-newCategory.php");
 }else{
-    if($Cat_rd->putOne()){
-        $page = "Location: /forum/forummanager/editCat/?fm_id=".$Cat_rd['result']['fm_id'];
+    if($DB->putOne($Cat_rd)){
+        $page = "Location: /forum/forummanager/editCat/?fm_id=".$DB->lastInsertId();
         header($page);
     }else{
         $appRJ->errors["XXX"]["description"]="insert into forumMenu err";

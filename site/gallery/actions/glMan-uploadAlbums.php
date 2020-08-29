@@ -9,14 +9,11 @@ if(file_exists($_SERVER['DOCUMENT_ROOT']."/".$_GET['uploadAlbums'])){
     foreach (glob($_SERVER['DOCUMENT_ROOT'] . "/".$_GET['uploadAlbums'] . "/*/") as $curFld) {
         $curFld_name=basename($curFld);
         $appRJ->response['result'].="albName: <b style='font-size: 1.2em'> ".$curFld_name."</b><br>";
-
-        $checkDouble_res = $DB->query("select COUNT(albumAlias) as dblAlias from galleryAlb_dt where albumAlias = '".$curFld_name."'");
-        $checkDouble_row = $checkDouble_res->fetch(PDO::FETCH_ASSOC);
-        if($checkDouble_row['dblAlias'] == 0){
+        $Alb_rd = array("table" => "galleryAlb_dt", "field_id" => "album_id", "field_alias" => "albumAlias");
+        if($DB->checkDouble($Alb_rd)){
             $fld_cnt++;
             $appRJ->response['result'].=" no double <br>";
 
-            $Alb_rd = array("table" => "galleryAlb_dt", "field_id" => "album_id");
             $Alb_rd['result']['albumAlias']=accessorialClass::mkAlias($curFld_name);
             $Alb_rd['result']['albumName'] = $Alb_rd['result']['albumAlias'];
             $Alb_rd['result']['activeFlag']=false;

@@ -1,6 +1,6 @@
 <?php
 $artErr=null;
-$Art_rd = array("table" => "art_dt", "field_id" => "art_id");
+$Art_rd = array("table" => "art_dt", "field_id" => "art_id", "field_alias" => "artAlias");
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
 if(isset($_POST['artName']) and $_POST['artName']!=null){
     $Art_rd['result']['artName']=htmlspecialchars($_POST['artName']);
@@ -9,7 +9,7 @@ if(isset($_POST['artName']) and $_POST['artName']!=null){
 }
 if(isset($_POST['artAlias']) and $_POST['artAlias']!=null){
     $Art_rd['result']['artAlias']=htmlspecialchars($_POST['artAlias']);
-    if(!accessorialClass::checkDouble("art_dt", "artAlias", $Art_rd['result']['artAlias'])){
+    if(!$DB->checkDouble($Art_rd)){
         $artErr['artAlias']='недопустимый alias - double ';
     }
 }else{
@@ -43,8 +43,8 @@ $Art_rd['result']['pubDate'] = date_format($appRJ->date['curDate'], 'Y-m-d');
 if(isset($artErr)){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/artMan/views/artMan-newArt.php");
 }else{
-    if($Art_rd->putOne()){
-        $page = "Location: /artMan/editArt/?art_id=".$Art_rd['result']['art_id'];
+    if($DB->putOne($Art_rd)){
+        $page = "Location: /artMan/editArt/?art_id=".$DB->lastInsertId();
         header($page);
     }else{
         $appRJ->errors['XXX']['description']='debug info: method -> putOne; table -> art_dt';

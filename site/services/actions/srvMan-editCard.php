@@ -46,7 +46,7 @@ if(isset($cardErr)){
     $cardErr['common']=false;
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/services/views/srvMan-newService.php");
 }else{
-    if($Card_rd->updateOne()){
+    if($DB->updateOne($Card_rd)){
         $cardErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/services/views/srvMan-editCard.php");
     }else{

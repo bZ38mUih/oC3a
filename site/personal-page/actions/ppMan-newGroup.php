@@ -21,8 +21,8 @@ if(isset($grErr)){
 
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/views/ppMan-newGroup.php");
 }else{
-    if($Gr_rd->putOne()){
-        $page = "Location: /personal-page/ppManager/editGroup/?group_id=".$Gr_rd['result']['group_id'];
+    if($DB->putOne($Gr_rd)){
+        $page = "Location: /personal-page/ppManager/editGroup/?group_id=".$DB->lastInsertId();
         header($page);
     }else{
         $appRJ->response['result'].= "444<br>";

@@ -12,15 +12,9 @@ function printList($dwlCatPar_id=null, $DB)
         $selectFiles_query="select * from dwlFiles_dt WHERE dwlCat_id = ".$dwlCatPar_id." and fileActive_flag is TRUE";
     }
     $selectFiles_res=$DB->query($selectFiles_query);
-    $filesCount=0;
-    if(mysql_num_rows($selectFiles_res)>0){
-        $filesCount=mysql_num_rows($selectFiles_res);
-    }
+    $filesCount = $selectFiles_res->rowCount();
     $selectCat_res=$DB->query($selectCat_query);
-    $catCount=0;
-    if(mysql_num_rows($selectCat_res)>0){
-        $catCount=mysql_num_rows($selectCat_res);
-    }
+    $catCount = $selectCat_res->rowCount();
     if($catCount>0 or $filesCount>0){
         $tmpRes['text'].= "<ul>";
         if($filesCount>0){

@@ -79,7 +79,8 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         }
         $RD_users = array("table" => "users_dt", "field_id" => "user_id");
         $RD_users['result']['blackList']=false;
-        $RD_users->putOne();
+        $DB->putOne($RD_users);
+        $RD_users['result']['user_id'] = $DB->lastInsertId();
         $RD_accounts = array("table" => "accounts_dt", "field_id" => "account_id");
         $RD_accounts['result']['user_id']=$RD_users['result']['user_id'];
         $RD_accounts['result']['accLogin']=$requiredFields['login']['val'];
@@ -93,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         $RD_accounts['result']['validDate']=null;
         $RD_accounts['result']['birthDay']=null;
         $RD_accounts['result']['accMain_flag']=true;
-        $RD_accounts->putOne();
+        $DB->putOne($RD_accounts);
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/checkIn/views/registrationSuccess.php");
     }else{
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/checkIn/views/defaultView.php");

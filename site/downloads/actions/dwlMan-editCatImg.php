@@ -4,7 +4,7 @@ $editImg['data'] = null;
 
 $Cat_rd = array("table" => "dwlCat_dt", "field_id" => "dwlCat_id");
 $Cat_rd['result']['dwlCat_id']=$_POST['cat_id'];
-if($Cat_rd->copyOne()){
+if($Cat_rd = $DB->copyOne($Cat_rd)){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].DWL_CATEG_IMG_PAPH.$Cat_rd['result']['dwlCat_id'])) {
         mkdir($_SERVER["DOCUMENT_ROOT"].DWL_CATEG_IMG_PAPH.$Cat_rd['result']['dwlCat_id'], 0777, true);
     }
@@ -29,7 +29,7 @@ if($Cat_rd->copyOne()){
                     $_SERVER["DOCUMENT_ROOT"].DWL_CATEG_IMG_PAPH.$Cat_rd['result']['dwlCat_id']."/".$Cat_rd['result']['catImg'],
                     $_SERVER["DOCUMENT_ROOT"].DWL_CATEG_IMG_PAPH.$Cat_rd['result']['dwlCat_id']."/preview/".$Cat_rd['result']['catImg'], 300, 300);
                 /*<--create preview*/
-                if($Cat_rd->updateOne()){
+                if($DB->updateOne($Cat_rd)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".DWL_CATEG_IMG_PAPH.$Cat_rd['result']['dwlCat_id']."/preview/".$Cat_rd['result']['catImg']."'>";
                 }

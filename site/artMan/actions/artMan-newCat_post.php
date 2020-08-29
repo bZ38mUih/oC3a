@@ -42,8 +42,8 @@ if(isset($_POST['activeFlag']) and $_POST['activeFlag']=='on'){
 if(isset($catErr)){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/artMan/views/artMan-newCat.php");
 }else{
-    if($Cat_rd->putOne()){
-        $page = "Location: /artMan/editCat/?cat_id=".$Cat_rd['result']['artCat_id'];
+    if($DB->putOne($Cat_rd)){
+        $page = "Location: /artMan/editCat/?cat_id=".$DB->lastInsertId();
         header($page);
     }else{
         $appRJ->response['result'].= "444<br>";

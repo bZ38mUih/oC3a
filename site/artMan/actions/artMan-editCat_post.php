@@ -2,7 +2,7 @@
 $Cat_rd = array("table" => "artCat_dt", "field_id" => "artCat_id");
 if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
     $Cat_rd['result']['artCat_id'] = $_GET['cat_id'];
-    $Cat_rd->copyOne();
+    $Cat_rd = $DB->copyOne($Cat_rd);
     if(isset($_POST['catName']) and $_POST['catName']!=null){
         $Cat_rd['result']['catName']=htmlspecialchars($_POST['catName']);
     }else{
@@ -41,7 +41,7 @@ if(isset($catErr)){
     $catErr['common']=false;
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/artMan/views/artMan-editCat.php");
 }else{
-    if($Cat_rd->updateOne()){
+    if($DB->updateOne($Cat_rd)){
         $catErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/artMan/views/artMan-editCat.php");
     }else{

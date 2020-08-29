@@ -13,7 +13,7 @@ if(isset($_POST['fc_pid'])){
             }else{
                 $newCm['result']['fc_pid']=null;
             }
-            if($newCm->putOne()){
+            if($DB->putOne($newCm)){
                 $refBlock= printFComments(null, $_POST['fs_id'], $DB, 0, $curPage, $fOptPN, $fComSort);
                 if($refBlock['cntTotal']>0){
                     $refBlock['text']="<h3>Комментарии</h3>".$refBlock['text'];

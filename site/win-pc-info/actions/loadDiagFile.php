@@ -33,7 +33,8 @@ $wdList_rd['result']['comment']=null;
 $wdList_rd['result']['diagDate']=date_format($appRJ->date['curDate'], "Y-m-d h:i:s");
 $wdList_rd['result']['user_id']=$_SESSION['user_id'];
 $bindVal=null;
-if($wdList_rd->putOne()){
+if($DB->putOne($wdList_rd)){
+    $wdList_rd['result']['wd_id'] = $DB->lastInsertId();
     $bindFld="wd_id";
     $bindVal=$wdList_rd['result']['wd_id'];
     if(isset($diagArr['envList'])){

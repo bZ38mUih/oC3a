@@ -6,8 +6,8 @@ if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Список парам. системы ( ";
 }
 if($os_res=$DB->query($os_qry)){
-    if(mysql_num_rows($os_res)>0){
-        $appRJ->response['result'].=mysql_num_rows($os_res)." )</h3><div class='line caption'>".
+    if($os_res->rowCount() > 0){
+        $appRJ->response['result'].=$os_res->rowCount()." )</h3><div class='line caption'>".
             "<div class='td-20'>osName</div><div class='td-70'>osVal</div></div>";
         while ($os_row = $os_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<div class='line'><div class='td-20'>";

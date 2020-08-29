@@ -19,7 +19,7 @@ $appRJ->response['result'].= "</head><body>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php");
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><div class='ordersList'>";
-if(mysql_num_rows($slOrders_res)>0){
+if($slOrders_res->rowCount() > 0){
     $appRJ->response['result'].="<div class='ordersList-line caption'><div class='p-type'>type</div>".
         "<div class='p-sum'>sum</div><div class='p-comment'>comment</div><div class='p-amount'>amount</div>".
         "<div class='p-withdraw'>withdr</div><div class='p-hash'>hash</div>".
@@ -41,7 +41,7 @@ if(mysql_num_rows($slOrders_res)>0){
         $withdraw_txt="<div class='p-withdraw'>";
         $hash_txt="<div class='p-hash'>";
         $unaccepted_txt="<div class='p-unaccepted'>";
-        if(mysql_num_rows($slPayment_res)==1){
+        if($slPayment_res->rowCount() == 1){
             $slPayment_row = $slPayment_res->fetch(PDO::FETCH_ASSOC);
             $amount_txt.=$slPayment_row["amount"];
             $withdraw_txt.=$slPayment_row["withdraw_amount"];

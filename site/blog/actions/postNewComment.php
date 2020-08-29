@@ -14,7 +14,7 @@ if(isset($_POST['artCm_pid'])){
             }else{
                 $newCm['result']['artCm_pid']=null;
             }
-            if($newCm->putOne()){
+            if($DB->putOne($newCm)){
                 $refBlock= printArtComments(null, $_POST['art_id'], $DB, 0);
                 $artComms_query="select count(artCm_id) as artComm from artComments_dt ".
                     "where art_id=".$newCm['result']['art_id']." and artCm_pid is null";

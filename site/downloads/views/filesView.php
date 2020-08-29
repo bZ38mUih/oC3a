@@ -23,10 +23,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/downloads/views/dwlMan-subMenu.php");
 $selectFiles_query = "select * from dwlFiles_dt LEFT JOIN dwlCat_dt ON dwlFiles_dt.dwlCat_id=dwlCat_dt.dwlCat_id";
 $selectFiles_res=$DB->query($selectFiles_query);
-$filesCount=0;
-if(mysql_num_rows($selectFiles_res)>0){
-    $filesCount=mysql_num_rows($selectFiles_res);
-}
+$filesCount = $selectFiles_res->rowCount();
 $appRJ->response['result'].= "<div class='manFrame'><div class='manTopPanel'>".
     "<div class='itemsCount'>Всего: <span>".$filesCount."</span> записей</div>".
     "<div class='newItem'>".

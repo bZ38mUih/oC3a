@@ -43,8 +43,8 @@ $Card_rd['result']['sortDate'].= date_format($appRJ->date['curDate'], 'Y-m-d');
 if(isset($cardErr)){
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/services/views/srvMan-newService.php");
 }else{
-    if($Card_rd->putOne()){
-        $page = "Location: /services/srvMan/cards/editCard/?card_id=".$Card_rd['result']['card_id'];
+    if($DB->putOne($Card_rd)){
+        $page = "Location: /services/srvMan/cards/editCard/?card_id=".$DB->lastInsertId();
         header($page);
     }else{
         $appRJ->response['result'].= "444-zhopa<br>";

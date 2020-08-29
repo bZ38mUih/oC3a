@@ -33,8 +33,8 @@ if(isset($_POST['catActive']) and $_POST['catActive']=='on'){
 if(isset($catErr)){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/services/views/srvMan-newCat.php");
 }else{
-    if($Cat_rd->putOne()){
-        $page = "Location: /services/srvMan/cats/editCat/?cat_id=".$Cat_rd['result']['srvCat_id'];
+    if($DB->putOne($Cat_rd)){
+        $page = "Location: /services/srvMan/cats/editCat/?cat_id=".$DB->lastInsertId();
         header($page);
     }else{
         $appRJ->response['result'].= "444<br>";

@@ -8,7 +8,7 @@ if(isset($_POST['label'])){
 }elseif($_SESSION["bucket"]["order_id"]){
     $Order_rd = array("table" => "ordersList_dt", "field_id" => "order_id");
     $Order_rd['result']["order_id"]=$_SESSION["bucket"]["order_id"];
-    if($Order_rd->copyOne()){
+    if($Order_rd = $DB->copyOne($Order_rd)){
         unset($_SESSION["bucket"]);
         header("Location: /payments/?searchPayment=".$Order_rd['result']["label"]);
     }else{
@@ -18,7 +18,7 @@ if(isset($_POST['label'])){
 }elseif($_SESSION["donate"]["order_id"]){
     $Order_rd = array("table" => "ordersList_dt", "field_id" => "order_id");
     $Order_rd['result']["order_id"]=$_SESSION["donate"]["order_id"];
-    if($Order_rd->copyOne()){
+    if($Order_rd = $DB->copyOne($Order_rd)){
         unset($_SESSION["donate"]);
         header("Location: /payments/?searchPayment=".$Order_rd['result']["label"]);
     }else{

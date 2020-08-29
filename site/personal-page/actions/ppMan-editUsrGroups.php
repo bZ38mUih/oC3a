@@ -6,7 +6,7 @@ foreach ($_POST as $key=>$value){
         if($grId!=null and $value != null){
             $groupRD = array("table" => "usersGroups_dt", "field_id" => "group_id");
             $groupRD['result']['group_id']=$grId;
-            if($groupRD->copyOne()){
+            if($groupRD = $DB->copyOne($groupRD)){
                 if($value=="OFF"){
                     $delUserGr_text="delete from usersToGroups_dt where user_id=".$_GET['user_id'].
                         " and group_id=".$grId;
@@ -19,7 +19,7 @@ foreach ($_POST as $key=>$value){
                     $selUserGr_text="select * from usersToGroups_dt where user_id=".$_GET['user_id'].
                         " and group_id=".$grId;
                     $selUserGr_res = $DB->query($selUserGr_text);
-                    if(mysql_num_rows($selUserGr_res)==1){
+                    if($selUserGr_res->rowCount() == 1){
                         $updateUserGr_text="update usersToGroups_dt set rules=".$value." where user_id=".$_GET['user_id'].
                             " and group_id=".$grId;
                         if($DB->query($updateUserGr_text)===true){

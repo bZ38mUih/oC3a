@@ -17,7 +17,7 @@ if(isset($_POST['refTxt']) and $_POST['refTxt']!=null){
     }
 }
 if(!$addLnk_err){
-    $Link_rd->putOne();
+    $DB->putOne($Link_rd);
     $appRJ->response['result'].= "<div class='results success'>добавлено успешно</div>";
 }else{
     $appRJ->response['result'].= "<div class='results fail'>".$addLnk_err."</div>";

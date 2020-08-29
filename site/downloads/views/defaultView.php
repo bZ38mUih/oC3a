@@ -24,10 +24,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-wrap'>";
 $selectCat_query = "select * from dwlCat_dt WHERE dwlCatPar_id is null and catActive_flag is TRUE";
 $selectCat_res=$DB->query($selectCat_query);
-$catCount=0;
-if(mysql_num_rows($selectCat_res)>0){
-    $catCount=mysql_num_rows($selectCat_res);
-}
+$catCount = $selectCat_res->rowCount();
 $appRJ->response['result'].= "<div class='cat-frame'>";
 if($catCount>0){
     while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)){

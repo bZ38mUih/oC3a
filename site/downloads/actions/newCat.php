@@ -41,8 +41,8 @@ if(isset($_POST['dwlCat_active']) and $_POST['dwlCat_active']=='on'){
 if(isset($catErr)){
     require_once($_SERVER["DOCUMENT_ROOT"] . "/site/downloads/views/dwlMan-newCat.php");
 }else{
-    if($Cat_rd->putOne()){
-        $page = "Location: /downloads/dwlManager/editCat/?cat_id=".$Cat_rd['result']['dwlCat_id'];
+    if($DB->putOne($Cat_rd)){
+        $page = "Location: /downloads/dwlManager/editCat/?cat_id=".$DB->lastInsertId();
         header($page);
     }else{
         $appRJ->response['result'].= "444<br>";

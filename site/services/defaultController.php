@@ -3,7 +3,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/source/_conf/ym.php");
 if($_GET['addBucket']){
     $addBucket = array("table" => "srvCards_dt", "field_id" => "card_id");
     $addBucket['result']['card_id']=$_GET['addBucket'];
-    if($addBucket->copyOne()){
+    if($addBucket = $DB->copyOne($addBucket)){
         $_SESSION['bucket']['prod'][$addBucket['result']['card_id']]=$addBucket['result']['cardPrice'];
     }
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/services/actions/bucketCount.php");

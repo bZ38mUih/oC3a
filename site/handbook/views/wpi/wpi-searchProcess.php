@@ -6,8 +6,8 @@ if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Список процессов ( ";
 }
 if($hwProcess_res=$DB->query($hwProcess_qry)){
-    if(mysql_num_rows($hwProcess_res)>0){
-        $appRJ->response['result'].=mysql_num_rows($hwProcess_res)." )</h3><div class='line caption'>".
+    if($hwProcess_res->rowCount() > 0){
+        $appRJ->response['result'].=$hwProcess_res->rowCount()." )</h3><div class='line caption'>".
             "<div class='td-20'>pImg</div><div class='td-70'>pName</div></div>";
         while ($hwProcess_row = $hwProcess_res->fetch(PDO::FETCH_ASSOC)){
 

@@ -6,8 +6,8 @@ if($_GET['searchArg']){
     $appRJ->response['result'].="<h3>Список аппаратуры ( ";
 }
 if($hwSearch_res=$DB->query($hwSearch_qry)){
-    if(mysql_num_rows($hwSearch_res)>0){
-        $appRJ->response['result'].=mysql_num_rows($hwSearch_res)." )</h3>";
+    if($hwSearch_res->rowCount() > 0){
+        $appRJ->response['result'].=$hwSearch_res->rowCount()." )</h3>";
         $appRJ->response['result'].="<ul>";
         $lastParName=null;
         $cntPName=0;

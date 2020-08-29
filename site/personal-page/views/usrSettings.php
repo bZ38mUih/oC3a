@@ -3,7 +3,7 @@ $slUsr_qry="select account_id, accLogin, accAlias, regDate, netWork, photoLink, 
     "from accounts_dt ".
     "where user_id=".$_SESSION['user_id'];
 $slUsr_res=$DB->query($slUsr_qry);
-if(mysql_num_rows($slUsr_res)==1){
+if($slUsr_res->rowCount() == 1){
     $slUsr_row = $slUsr_res->fetch(PDO::FETCH_ASSOC);
     $h1 ="Настройки аккаунта";
     $appRJ->response['result'].= "<!DOCTYPE html>".

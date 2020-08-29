@@ -48,7 +48,7 @@ elseif(!$appRJ->server['reqUri_expl'][2]){
 }else{
     $subj_qry="select * from forumSubj_dt where sAlias='".$appRJ->server['reqUri_expl'][2]."'";
     $subj_res=$DB->query($subj_qry);
-    if(mysql_num_rows($subj_res)===1){
+    if($subj_res->rowCount() === 1){
         $subj_row = $subj_res->fetch(PDO::FETCH_ASSOC);
         $subjComms_query="select count(fc_id) as subjComm from forumComments_dt ".
             "where fs_id=".$subj_row['fs_id']." and fc_pid is null";

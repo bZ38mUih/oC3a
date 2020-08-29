@@ -2,7 +2,7 @@
 $Cat_rd = array("table" => "forumMenu_dt", "field_id" => "fm_id");
 if(isset($_GET['fm_id']) and $_GET['fm_id']!=null){
     $Cat_rd['result']['fm_id'] = $_GET['fm_id'];
-    $Cat_rd->copyOne();
+    $Cat_rd = $DB->copyOne($Cat_rd);
     if(isset($_POST['mName']) and $_POST['mName']!=null){
         $Cat_rd['result']['mName']=htmlspecialchars($_POST['mName']);
     }else{
@@ -42,7 +42,7 @@ if(isset($catErr)){
     $catErr['common']=false;
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/fMan-edtCat.php");
 }else{
-    if($Cat_rd->updateOne()){
+    if($DB->updateOne($Cat_rd)){
         $catErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/fMan-edtCat.php");
     }else{

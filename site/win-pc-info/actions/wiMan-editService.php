@@ -21,7 +21,7 @@ if(isset($_POST['lastMod']) and $_POST['lastMod']!=null){
 if(is_null($hwEdit['err'])){
     $slSrv_qry="select * from wdSrvList_dt WHERE sName='".$paramVal."'";
     $slSrv_res=$DB->query($slSrv_qry);
-    if(mysql_num_rows($slSrv_res)===1){
+    if($slSrv_res->rowCount() === 1){
         $udSrv_qry="update wdSrvList_dt set sDescr='".$sDescr."', lastMod='".$lastMod."' ".
             "WHERE sName='".$paramVal."'";
         if($DB->query($udSrv_qry)){
@@ -30,7 +30,7 @@ if(is_null($hwEdit['err'])){
 
         }
     }else{
-        $hwEdit['err'].="invalid sName or pVal; ".$slSrv_qry." rows=".mysql_num_rows($slSrv_res);
+        $hwEdit['err'].="invalid sName or pVal; ".$slSrv_qry." rows=".$slSrv_res->rowCount();
     }
 }
 $appRJ->response['result']=$hwEdit;

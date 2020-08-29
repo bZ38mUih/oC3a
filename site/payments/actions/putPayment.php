@@ -63,8 +63,9 @@ if(isset($_POST['flat'])){
 if(isset($_POST['zip'])){
     $payment['result']['zip']=$_POST['zip'];
 }
-$payment->putOne();
-$payment->copyOne();
+$DB->putOne($payment);
+$payment['result'][$payment['field_id']] = $DB->lastInsertId();
+$payment = $DB->copyOne($payment);
 $pay_str=$payment['result']["notification_type"]."&".
     $payment['result']["operation_id"]."&".
     $payment['result']["amount"]."&".
@@ -96,10 +97,10 @@ if($payment['result']['unaccepted']){
 }
 $Ntf_rd['result']['ntfDescr'].=" сумма платежа: ".$payment['result']['amount'];
 $Ntf_rd['result']['ntfSubj']="Оплата yandex money";
-$Ntf_rd->putOne();
+$DB->putOne($Ntf_rd);
 if($payment['result']['email']){
     mail($payment['result']['email'], $ntfSubj, "Получить дополнительную информацию ".
         "о платеже вы можете по ссылке https://rightjoint.ru/payments/?searchPayment=".$payment['result']['label'], 'From: RightJoint');
 }
-$payment->updateOne();
+$DB->updateOne($payment);
 /*<--notification*/

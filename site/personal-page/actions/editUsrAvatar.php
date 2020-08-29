@@ -3,7 +3,7 @@ $editImg['result'] = false;
 $editImg['data'] = null;
 $Acc_rd = array("table" => "accounts_dt", "field_id" => "account_id");
 $Acc_rd['result']['account_id']=$_POST['avatar_id'];
-if($Acc_rd->copyOne()){
+if($Acc_rd = $DB->copyOne($Acc_rd)){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].PP_USR_IMG_PAPH.$Acc_rd['result']['account_id'])) {
         mkdir($_SERVER["DOCUMENT_ROOT"].PP_USR_IMG_PAPH.$Acc_rd['result']['account_id'], 0777, true);
     }
@@ -28,7 +28,7 @@ if($Acc_rd->copyOne()){
                     $_SERVER["DOCUMENT_ROOT"].PP_USR_IMG_PAPH.$Acc_rd['result']['account_id']."/".$Acc_rd['result']['photoLink'],
                     $_SERVER["DOCUMENT_ROOT"].PP_USR_IMG_PAPH.$Acc_rd['result']['account_id']."/preview/".$Acc_rd['result']['photoLink'], 150, 150);
                 /*<--create preview*/
-                if($Acc_rd->updateOne()){
+                if($DB->updateOne($Acc_rd)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".PP_USR_IMG_PAPH.$Acc_rd['result']['account_id']."/preview/".$Acc_rd['result']['photoLink']."'>";
                     $_SESSION['photoLink'] = "/data/users/".$Acc_rd['result']['account_id']."/preview/".$Acc_rd['result']['photoLink'];

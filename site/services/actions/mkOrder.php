@@ -12,9 +12,10 @@ if($mkOrder_err==null) {
         $rmBucket_qry="delete from ordersBucket_dt WHERE order_id=".$_SESSION["bucket"]["order_id"];
         $DB->query($rmBucket_qry);
         $Order_rd ['result']['order_id']=$_SESSION["bucket"]["order_id"];
-        $Order_rd->updateOne();
+        $DB->updateOne($Order_rd);
     }else{
-        $Order_rd->putOne();
+        $DB->putOne($Order_rd);
+        $Order_rd ['result']['order_id'] = $DB->lastInsertId();
         $_SESSION["bucket"]["order_id"]=$Order_rd ['result']['order_id'];
     }
     $cards_cnt=0;
@@ -23,12 +24,12 @@ if($mkOrder_err==null) {
         $OrdBucket_rd['result']['order_id']=$Order_rd['result']["order_id"];
         $OrdBucket_rd['result']['card_id']=$key;
         $OrdBucket_rd['result']['bucketPrice']=$val;
-        $OrdBucket_rd->putOne();
+        $DB->putOne($OrdBucket_rd);
         $cards_cnt++;
     }
     if($cards_cnt=0){
         $mkBucket="нет никаких заказов<br>";
-        $Order_rd->removeOne();
+        $DB->removeOne($Order_rd);
         unset($_SESSION["bucket"]);
         $appRJ->response['result']="Bucket err:".$mkBucket;
     }else{

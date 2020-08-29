@@ -45,7 +45,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['re
     if(isset($_GET['fs_id']) and $_GET['fs_id']!=null){
         $Subj_rd = array("table" => "forumSubj_dt", "field_id" => "fs_id");
         $Subj_rd['result']['fs_id']=$_GET['fs_id'];
-        if($Subj_rd->copyOne()){
+        if($Subj_rd = $DB->copyOne($Subj_rd)){
 
             if(!$appRJ->server['reqUri_expl'][4]){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/forum/views/fMan-editSubj.php");

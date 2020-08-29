@@ -41,11 +41,8 @@ if($cntSubj_row['cntSubj']>0){
 $selectSubj_query = "select * from forumSubj_dt LEFT JOIN forumMenu_dt ON ".
     "forumMenu_dt.fm_id=forumSubj_dt.fm_id order by forumSubj_dt.dateOfCr DESC limit ".strval(($albPage-1)*$albLnP).
     ", ".$albLnP;
-$selectSubj_res=$DB->query($selectSubj_query);
-$subjCount=0;
-if(mysql_num_rows($selectSubj_res)>0){
-    $subjCount=mysql_num_rows($selectSubj_res);
-}
+$selectSubj_res = $DB->query($selectSubj_query);
+$subjCount = $selectSubj_res->rowCount();
 $appRJ->response['result'].= "<div class='manFrame'><div class='manTopPanel'><div class='itemsCount'>".
     "Всего: <span>".$cntSubj."</span> записей";
 if($cntSubj/$albLnP>1){

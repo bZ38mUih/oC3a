@@ -1,7 +1,7 @@
 <?php
 $selectFile_text = "select * from dwlFiles_dt WHERE dwlFileAliace='".$appRJ->server['reqUri_expl'][3]."'";
 $selectFile_res = $DB->query($selectFile_text);
-if(mysql_num_rows($selectFile_res)==1){
+if($selectFile_res->rowCount() == 1){
     $selectFile_row = $selectFile_res->fetch(PDO::FETCH_ASSOC);
     $h1 =$selectFile_row['dwlFileName'];
     $App['views']['social-block']=true;
@@ -60,7 +60,7 @@ if(mysql_num_rows($selectFile_res)==1){
         "<div class='file-links'>";
     $selectLinks_text="select * from dwlLnk_dt WHERE dwlFile_id=".$selectFile_row['dwlFile_id'];
     $selectLinks_res=$DB->query($selectLinks_text);
-    $selectLinks_count=mysql_num_rows($selectLinks_res);
+    $selectLinks_count = $selectLinks_res->rowCount();
     if($selectLinks_count>0){
         $appRJ->response['result'].= "<strong>Ссылки:</strong>";
         $appRJ->response['result'].= "<ol>";

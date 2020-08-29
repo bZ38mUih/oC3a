@@ -23,7 +23,7 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
         "<div class='contentBlock-wrap'><div class='lrp-wrap'>";
     $allEnv_qry="select * from wdEnvList_dt ORDER BY vName, vVal";
     $allEnv_res=$DB->query($allEnv_qry);
-    if(mysql_num_rows($allEnv_res)>0){
+    if($allEnv_res->rowCount() > 0){
         $appRJ->response['result'].="<div class='wi-block'>";
         while ($allEnv_row = $allEnv_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<h3><div class='line ta-left'><span class='fName'>".$allEnv_row['vName'].": "."</span>".

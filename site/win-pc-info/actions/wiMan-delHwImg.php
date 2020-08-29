@@ -3,7 +3,7 @@ $delImg['result'] = false;
 $delImg['data'] = null;
 $slHw_qry="select * from wdHwList_dt WHERE paramVal='".$paramVal."' and paramName='".$paramName."'";
 $slHw_res=$DB->query($slHw_qry);
-if(mysql_num_rows($slHw_res)==1){
+if($slHw_res->rowCount() == 1){
     $slHw_row = $slHw_res->fetch(PDO::FETCH_ASSOC);
     unlink ($_SERVER["DOCUMENT_ROOT"].WD_HW_IMG.$paramName."/".$slHw_row['hwImg']);
     unlink ($_SERVER["DOCUMENT_ROOT"].WD_HW_IMG.$paramName."/preview/".$slHw_row['hwImg']);

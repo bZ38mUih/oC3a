@@ -51,7 +51,7 @@ $appRJ->response['result'].="</textarea></div>".
 /*select options-->*/
 $categList_text="select srvCat_id, srvCatPar_id, catName from srvCat_dt ORDER BY catName ";
 $categList_res=$DB->query($categList_text);
-if(mysql_num_rows($categList_res)>0){
+if($categList_res->rowCount() > 0){
     $findSelected=false;
     while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelect.= "<option value='".$categList_row['srvCat_id']."' ";

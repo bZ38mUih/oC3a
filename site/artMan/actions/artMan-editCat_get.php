@@ -4,7 +4,7 @@ $catSelectOptions=null;
 if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
     $Cat_rd = array("table" => "artCat_dt", "field_id" => "artCat_id");
     $Cat_rd['result']['artCat_id']=$_GET['cat_id'];
-    if($Cat_rd->copyOne()){
+    if($Cat_rd = $DB->copyOne($Cat_rd)){
         require_once ($_SERVER['DOCUMENT_ROOT']."/site/artMan/views/artMan-editCat.php");
     }else{
         $appRJ->errors['request']['description']= "неправильные параметры запроса cat_id";

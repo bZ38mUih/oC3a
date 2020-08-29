@@ -2,7 +2,7 @@
 $Cat_rd = array("table" => "srvCat_dt", "field_id" => "srvCat_id");
 if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
     $Cat_rd['result']['srvCat_id'] = $_GET['cat_id'];
-    $Cat_rd->copyOne();
+    $Cat_rd = $DB->copyOne($Cat_rd);
     if(isset($_POST['catName']) and $_POST['catName']!=null){
         $Cat_rd['result']['catName']=htmlspecialchars($_POST['catName']);
     }else{
@@ -36,7 +36,7 @@ if(isset($catErr)){
     $catErr['common']=false;
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/services/views/srvMan-editCat.php");
 }else{
-    if($Cat_rd->updateOne()){
+    if($DB->updateOne($Cat_rd)){
         $catErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/services/views/srvMan-editCat.php");
     }else{

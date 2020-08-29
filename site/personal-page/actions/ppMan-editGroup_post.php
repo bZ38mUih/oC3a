@@ -3,7 +3,7 @@ $Gr_rd = array("table" => "usersGroups_dt", "field_id" => "group_id");
 if(isset($_GET['group_id']) and $_GET['group_id']!=null){
 
     $Gr_rd['result']['group_id'] = $_GET['group_id'];
-    $Gr_rd->copyOne();
+    $Gr_rd = $DB->copyOne($Gr_rd);
 
     if(isset($_POST['groupAlias']) and $_POST['groupAlias']!=null){
         $Gr_rd['result']['groupAlias']=htmlspecialchars($_POST['groupAlias']);
@@ -22,7 +22,7 @@ if(isset($grErr)){
     $grErr['common']=false;
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/views/ppMan-editGroup.php");
 }else{
-    if($Gr_rd->updateOne()){
+    if($DB->updateOne($Gr_rd)){
         $grErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/personal-page/views/ppMan-editGroup.php");
     }else{

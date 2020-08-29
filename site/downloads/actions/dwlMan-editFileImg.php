@@ -4,7 +4,7 @@ $editFile['data'] = null;
 
 $File_rd = array("table" => "dwlFiles_dt", "field_id" => "dwlFile_id");
 $File_rd['result']['dwlFile_id']=$_POST['file_id'];
-if($File_rd->copyOne()){
+if($File_rd = $DB->copyOne($File_rd)){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].DWL_FILES_IMG_PAPH.$File_rd['result']['dwlFile_id'])) {
         mkdir($_SERVER["DOCUMENT_ROOT"].DWL_FILES_IMG_PAPH.$File_rd['result']['dwlFile_id'], 0777, true);
     }
@@ -29,7 +29,7 @@ if($File_rd->copyOne()){
                     $_SERVER["DOCUMENT_ROOT"].DWL_FILES_IMG_PAPH.$File_rd['result']['dwlFile_id']."/".$File_rd['result']['fileImg'],
                     $_SERVER["DOCUMENT_ROOT"].DWL_FILES_IMG_PAPH.$File_rd['result']['dwlFile_id']."/preview/".$File_rd['result']['fileImg'], 300, 300);
                 /*<--create preview*/
-                if($File_rd->updateOne()){
+                if($DB->updateOne($File_rd)){
                     $editFile['result'] = true;
                     $editFile['data'] = "<img src='".DWL_FILES_IMG_PAPH.$File_rd['result']['dwlFile_id']."/preview/".$File_rd['result']['fileImg']."'>";
                 }

@@ -13,12 +13,11 @@ if($syncResult=file_get_contents($sync_server."?syncMe=y&dateTo=".$_GET['dateTo'
         $diary_rd['result']['noteDate']=$v['noteDate'];
         $diary_rd['result']['diaryHeader']=$v['diaryHeader'];
         $appRJ->response['result'].= "<td>".$v['diaryType']."</td><td>".$v['noteDate']."</td>";
-        if(mysql_num_rows($dNtRep_res)==0){
+        if($dNtRep_res->rowCount() == 0){
             $appRJ->response['result'].= "<td>putOne</td>";
-            if($diary_rd->putOne()){
+            if($DB->putOne($diary_rd)){
                 $appRJ->response['result'].= "<td>well</td>";
             }else{
-                //echo print_r($DB->err);
                 $appRJ->response['result'].= "<td>putOne err occured -> ".$diary_rd['result']['diaryType']." / ".
                     $diary_rd['result']['noteDate']." / ".$diary_rd['result']['diaryHeader']."</td>";
             }
@@ -29,7 +28,7 @@ if($syncResult=file_get_contents($sync_server."?syncMe=y&dateTo=".$_GET['dateTo'
                 $diary_rd['result']['diary_id']=$dNtRep_row['diary_id'];
                 $appRJ->response['result'].= "<td>update header</td>";
                 //$appRJ->response['result'].= "<td>just aborted</td>";
-                if($diary_rd->updateOne()){
+                if($DB->updateOne($diary_rd)){
                     $appRJ->response['result'].= "<td>well</td>";
                 }else{
                     $appRJ->response['result'].= "<td>updateOne err occured</td>";
@@ -51,19 +50,19 @@ if($syncResult=file_get_contents($sync_server."?syncMe=y&dateTo=".$_GET['dateTo'
         $dNtContRep_res=$DB->query($dNtContRep_qry);
         $appRJ->response['result'].= "<td>".$v['diaryType']."</td><td>".$v['noteDate']."</td>".
             "<td>".$v['curDate']."</td><td>".$v['curTime']."</td>";
-        if(mysql_num_rows($dNtContRep_res)==0){
+        if($dNtContRep_res->rowCount() == 0){
             $appRJ->response['result'].= "<td>putOne</td>";
             $diaryId_qry="select diary_id from diaryNotes_dt ".
                 "WHERE noteDate='".$v['noteDate']."' and diaryType='".$v['diaryType']."'";
             $diaryId_res=$DB->query($diaryId_qry);
-            if(mysql_num_rows($diaryId_res) == 1){
+            if($diaryId_res->rowCount() == 1){
                 $diaryId_row = $diaryId_res->fetch(PDO::FETCH_ASSOC);
                 $note_rd['result']['note_id']=null;
                 $note_rd['result']['diary_id']=$diaryId_row['diary_id'];
                 $note_rd['result']['curDate']=$v['curDate'];
                 $note_rd['result']['curTime']=$v['curTime'];
                 $note_rd['result']['content']=$v['content'];
-                if($note_rd->putOne()){
+                if($DB->putOne($note_rd)){
                     $appRJ->response['result'].= "<td>well</td>";
                 }else{
                     $appRJ->response['result'].= "<td>putOne err occured</td>";

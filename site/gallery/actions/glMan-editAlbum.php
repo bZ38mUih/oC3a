@@ -1,6 +1,6 @@
 <?php
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
-$Alb_rd = array("table" => "galleryAlb_dt", "field_id" => "album_id");
+$Alb_rd = array("table" => "galleryAlb_dt", "field_id" => "album_id", "field_alias" => "albumAlias");
 if(isset($_GET['alb_id']) and $_GET['alb_id']!=null){
     $Alb_rd['result']['album_id'] = $_GET['alb_id'];
     $Alb_rd = $DB->copyOne($Alb_rd);
@@ -13,10 +13,7 @@ if(isset($_GET['alb_id']) and $_GET['alb_id']!=null){
         if($Alb_rd['result']['albumAlias']!=htmlspecialchars($_POST['albumAlias'])){
             $Alb_rd['result']['albumAlias']=htmlspecialchars($_POST['albumAlias']);
 
-            $checkDouble_qry="select COUNT(albumAlias) as dblAlias from galleryAlb_dt where albumAlias = '".$Alb_rd['result']['albumAlias']."'";
-            $checkDouble_res = $DB->query($checkDouble_qry);
-            $checkDouble_row = $checkDouble_res->fetch(PDO::FETCH_ASSOC);
-            if($checkDouble_row['dblAlias'] == 0){
+            if(!$DB->checkDouble($$Alb_rd)){
                 $albErr['albumAlias']='недопустимый alias - double ';
             }
         }

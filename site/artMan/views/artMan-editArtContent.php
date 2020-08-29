@@ -34,7 +34,7 @@ $appRJ->response['result'].= "<h4>Load page</h4>";
 $appRJ->response['result'].= "<div class='ref-list'>";
 $slArtLk_qry="select * from artLinks_dt WHERE art_id=".$_GET['art_id']." and linkType='page'";
 $slArtLk_res=$DB->query($slArtLk_qry);
-if(mysql_num_rows($slArtLk_res)==1){
+if($slArtLk_res->rowCount() == 1){
     $slArtLk_row = $slArtLk_res->fetch(PDO::FETCH_ASSOC);
     $appRJ->response['result'].= "<a href='".ARTS_IMG_PAPH.$_GET['art_id']."/page/".$slArtLk_row['linkRef'].
         "' target='_blank'>".$slArtLk_row['linkRef']."</a>";
@@ -61,7 +61,7 @@ $appRJ->response['result'].= "<h4>Load style</h4>";
 $appRJ->response['result'].= "<div class='ref-list'>";
 $slArtLk_qry="select * from artLinks_dt WHERE art_id=".$_GET['art_id']." and linkType='style'";
 $slArtLk_res=$DB->query($slArtLk_qry);
-if(mysql_num_rows($slArtLk_res)==1){
+if($slArtLk_res->rowCount() == 1){
     $slArtLk_row = $slArtLk_res->fetch(PDO::FETCH_ASSOC);
     $appRJ->response['result'].= "<a href='".ARTS_IMG_PAPH.$_GET['art_id']."/style/".$slArtLk_row['linkRef'].
         "' target='_blank'>".$slArtLk_row['linkRef']."</a>";
@@ -88,7 +88,7 @@ $appRJ->response['result'].= "<h4>Load script</h4>";
 $appRJ->response['result'].= "<div class='ref-list'>";
 $slArtLk_qry="select * from artLinks_dt WHERE art_id=".$_GET['art_id']." and linkType='script'";
 $slArtLk_res=$DB->query($slArtLk_qry);
-if(mysql_num_rows($slArtLk_res)==1){
+if($slArtLk_res->rowCount() == 1){
     $slArtLk_row = $slArtLk_res->fetch(PDO::FETCH_ASSOC);
     $appRJ->response['result'].= "<a href='".ARTS_IMG_PAPH.$_GET['art_id']."/script/".$slArtLk_row['linkRef'].
         "' target='_blank'>".$slArtLk_row['linkRef']."</a>";

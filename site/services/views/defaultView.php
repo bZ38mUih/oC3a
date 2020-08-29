@@ -58,11 +58,11 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
     "<div class='contentBlock-wrap'>";
 $srv_qry="select * from srvCat_dt WHERE catActive is TRUE ORDER BY srvCat_id";
 $srv_res=$DB->query($srv_qry);
-if(mysql_num_rows($srv_res)>0){
-    while($srv_row = $srv_res->fetch(PDO::FETCH_ASSOC))){
+if($srv_res->rowCount() > 0){
+    while($srv_row = $srv_res->fetch(PDO::FETCH_ASSOC)){
         $cards_qry="select * from srvCards_dt WHERE srvCat_id=".$srv_row['srvCat_id'];
         $cards_res=$DB->query($cards_qry);
-        if(mysql_num_rows($cards_res)>0){
+        if($cards_res->rowCount() > 0){
             $appRJ->response['result'].= "<div class='srv-frame ".$srv_row['catAlias']."'><h2>".$srv_row['catName']."</h2>";
             while ($cards_row = $cards_res->fetch(PDO::FETCH_ASSOC)){
                 $appRJ->response['result'].="<div class='srv-ln' id='srv".$cards_row['card_id']."'>".

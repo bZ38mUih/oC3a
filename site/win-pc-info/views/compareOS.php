@@ -12,11 +12,11 @@ $slDifEnv_qry="select * from (".$slEnvLeft_qry.") as wdOsLeft left join (".$slEn
 if(!$slDifEnv_res=$DB->query($slDifEnv_qry)){
     $appRJ->response['result'].="---fail--";
 };
-if(mysql_num_rows($slDifEnv_res)>0){
+if($slDifEnv_res->rowCount() > 0){
     $leftDifCnt=0;
     $rightDifCnt=0;
     $envLines=null;
-    $appRJ->response['result'].="<h3>Система (".mysql_num_rows($slDifEnv_res).")</h3>";
+    $appRJ->response['result'].="<h3>Система (".$slDifEnv_res->rowCount().")</h3>";
     while ($slDifEnv_row = $slDifEnv_res->fetch(PDO::FETCH_ASSOC)){
         $envLine=null;
         $envLineClass=null;

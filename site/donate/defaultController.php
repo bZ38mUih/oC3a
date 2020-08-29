@@ -9,10 +9,10 @@ if ($_GET['receiver']){
     if($mkOrder_err==null) {
         if ($_SESSION["donate"]["order_id"]) {
             $Order_rd['result']['order_id'] = $_SESSION["donate"]["order_id"];
-            $Order_rd->updateOne();
+            $DB->updateOne($Order_rd);
         } else {
-            $Order_rd->putOne();
-            $_SESSION["donate"]["order_id"]=$Order_rd['result']['order_id'];
+            $DB->putOne($Order_rd);
+            $_SESSION["donate"]["order_id"]=$DB->lastInsertId();
         }
         $appRJ->response['result']="yes";
     }else{

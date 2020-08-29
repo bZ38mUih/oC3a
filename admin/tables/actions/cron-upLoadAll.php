@@ -59,7 +59,7 @@ foreach ($tables->tables as $table => $value) {
     if ($tables->tables[$table]['exist']===true) {
         $query_text = "select * from ".$table." ".$orderBy;
         $query_res = $DB->query($query_text);
-        if (mysql_num_rows($query_res)==0){
+        if ($query_res->rowCount() == 0){
             $tables->result['log'].= $table."-->> nothing to upload<br>";
         }else{
             $queryToInsert = null;

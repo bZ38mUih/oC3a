@@ -5,10 +5,8 @@ $slUsrNtf_qry="select ntf_dt.ntfSubj, ntf_dt.ntfDate, ntfList_dt.ntfList_id, ntf
     "ntf_dt.ntfType, ntf_dt.ntfSubscr, ntf_dt.ntfDescr, ntfList_dt.readDate from ntfList_dt INNER JOIN ntf_dt ".
     "ON ntfList_dt.ntf_id = ntf_dt.ntf_id WHERE ntfList_dt.ntfList_id = ".$_GET['ntfList_id'];
 $slUsrNtf_res=$DB->query($slUsrNtf_qry);
-if(mysql_num_rows($slUsrNtf_res)>0){
-    $slUsrNtf_cnt=mysql_num_rows($slUsrNtf_res);
-}
-if($slUsrNtf_cnt>0){
+$slUsrNtf_cnt = $slUsrNtf_res->rowCount();
+if($slUsrNtf_cnt > 0){
     $slUsrNtf_row = $slUsrNtf_res->fetch(PDO::FETCH_ASSOC);
     if($slUsrNtf_row['user_id']==$_SESSION['user_id']){
         $readNtfFlag=true;
@@ -60,7 +58,7 @@ if(!$slUsrNtf_row['readDate']){
     $ntfRd = array("table" => "ntfList_dt", "field_id" => "ntfList_id");
     $ntfRd['result']['ntfList_id']=$slUsrNtf_row['ntfList_id'];
     $ntfRd['result']['readDate']=date_format($appRJ->date['curDate'], 'Y-m-d H.i.s');
-    $ntfRd->updateOne();
+    $DB->updateOne($ntfRd);
 }else{
     $appRJ->response['result'].=$slUsrNtf_row['readDate'];
 }

@@ -67,13 +67,13 @@ $wdLeftName_qry="select * from wdList_dt WHERE wd_id=".$cmpLeft;
 $wdRightName_qry="select * from wdList_dt WHERE wd_id=".$cmpRight;
 $wdLeftName_res=$DB->query($wdLeftName_qry);
 $wdRightName_res=$DB->query($wdRightName_qry);
-if(mysql_num_rows($wdLeftName_res)==1){
+if($wdLeftName_res->rowCount() == 1){
     $wdLeftName_row = $wdLeftName_res->fetch(PDO::FETCH_ASSOC);
 }else{
 
     $cmpErr="wron cmpLeft";
 }
-if(mysql_num_rows($wdRightName_res)==1){
+if($wdRightName_res->rowCount() == 1){
     $wdRightName_row = $wdRightName_res->fetch(PDO::FETCH_ASSOC);
 }else{
     $cmpErr="wron cmpRight";

@@ -3,7 +3,7 @@ $editImg['result'] = false;
 $editImg['data'] = null;
 $slSrv_qry="select * from wdSrvList_dt WHERE sName='".$paramVal."'";
 $slSrv_res=$DB->query($slSrv_qry);
-if(mysql_num_rows($slSrv_res)==1){
+if($slSrv_res->rowCount() == 1){
     $slSrv_row = $slSrv_res->fetch(PDO::FETCH_ASSOC);
     foreach ($_FILES as $file){
         if ($file['error'] !== 0){

@@ -27,7 +27,7 @@ if($socialAuth_err ===true){
 
     $addNtf_txt=null;
 
-    if(mysql_num_rows($query_res)===1)
+    if($query_res->rowCount() === 1)
     {
         $query_row = $query_res->fetch(PDO::FETCH_ASSOC);
         $RD_accounts['result']['account_id']=$query_row['account_id'];
@@ -41,7 +41,7 @@ if($socialAuth_err ===true){
         }
 
         if($update_flag){
-            $RD_accounts->updateOne();
+            $DB->updateOne($RD_accounts);
         }
 
     }else{
@@ -50,12 +50,14 @@ if($socialAuth_err ===true){
         $RD_users = array("table" => "users_dt", "field_id" => "user_id");
 
         $RD_users['result']['blackList']=false;
-        $RD_users->putOne();
+        $DB->putOne($RD_users);
+        $RD_users['result']['user_id'] = $DB->lastInsertId();
         $RD_accounts['result']['user_id']=$RD_users['result']['user_id'];
         $RD_accounts['result']['pw_hash']=null;
         $RD_accounts['result']['eMail']=null;
         $RD_accounts['result']['accMain_flag']=true;
-        $RD_accounts->putOne();
+        $DB->putOne($RD_accounts);
+        $RD_accounts['result']['account_id'] = $DB->lastInsertId();
         $addNtf_txt="НОВЫЙ ";
     }
 
@@ -63,7 +65,7 @@ if($socialAuth_err ===true){
     $Ntf_rd['result']['ntfSubscr']=1;
     $Ntf_rd['result']['ntfDescr']=$addNtf_txt."Пользователь ".$RD_accounts['result']['accAlias']." вошел на сайт через ".$RD_accounts['result']['netWork'];
     $Ntf_rd['result']['ntfSubj']="Вход пользователя на сайт.";
-    $Ntf_rd->putOne();
+    $DB->putOne($Ntf_rd);
 
     $_SESSION['alias']=$RD_accounts['result']['accAlias'];
     $_SESSION['account_id'] = $RD_accounts['result']['account_id'];
@@ -74,7 +76,7 @@ if($socialAuth_err ===true){
         "usersToGroups_dt.group_id WHERE usersToGroups_dt.user_id = ".$RD_accounts['result']['user_id'];
     $usrGroups_res = $DB->query($usrGroups_text);
 
-    if(@mysql_num_rows($usrGroups_res)>0){
+    if($usrGroups_res->rowCount() > 0){
         while ($usrGroups_row = $usrGroups_res->fetch(PDO::FETCH_ASSOC)){
             $_SESSION['groups'][$usrGroups_row['group_id']] = $usrGroups_row['rules'];
         }

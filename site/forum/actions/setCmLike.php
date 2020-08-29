@@ -12,7 +12,7 @@ if($_SESSION['user_id']){
             $youLikeVal=true;
         }
         $setLike_qry=null;
-        if(mysql_num_rows($youLike_res)===1){
+        if($youLike_res->rowCount() === 1){
             $youLike_row = $youLike_res->fetch(PDO::FETCH_ASSOC);
             if($youLikeVal != $youLike_row['likeStatus']){
                 $setLike_qry="update forumCmLike_dt set likeStatus=";

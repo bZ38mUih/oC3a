@@ -1,7 +1,7 @@
 <?php
 $scrOrder_qry="select * from ordersList_dt WHERE label='".$_GET['searchPayment']."'";
 $scrOrder_res=$DB->query($scrOrder_qry);
-if(mysql_num_rows($scrOrder_res)!=1){
+if($scrOrder_res->rowCount() != 1){
     $appRJ->errors["XXX"]["description"]="недопустимый параметр label";
 }else{
     $scrOrder_row = $scrOrder_res->fetch(PDO::FETCH_ASSOC);
@@ -46,14 +46,14 @@ if(mysql_num_rows($scrOrder_res)!=1){
         $shortDest_txt.="Услуги";
         $bucket_txt="select * from ordersBucket_dt where order_id=".$scrOrder_row['order_id'];
         $bucket_res=$DB->query($bucket_txt);
-        if(mysql_num_rows($bucket_res)>0){
+        if($bucket_res->rowCount() > 0){
             define(SRV_CAT_IMG_PAPH, "/data/services/categs/");
             define(SRV_CARD_IMG_PAPH, "/data/services/cards/");
             $bucketInfo.="<span class='yBacket'>Корзина:</span>";
             while ($bucket_row = $bucket_res->fetch(PDO::FETCH_ASSOC)){
                 $Card_rd = array("table" => "srvCards_dt", "field_id" => "card_id");
                 $Card_rd['result']['card_id']=$bucket_row['card_id'];
-                if($Card_rd->copyOne()){
+                if($Card_rd = $DB->copyOne($Card_rd)){
                     $bucketInfo.="<div class='order-line'><div class='order-img'><img src='".
                         SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id']."/preview/".
                         $Card_rd['result']['cardImg']."'></div>".
@@ -72,7 +72,7 @@ if(mysql_num_rows($scrOrder_res)!=1){
     }
     $shortDest_txt.="</span></div>";
     $appRJ->response['result'].="<div class='paidStat'>";
-    if(mysql_num_rows($srcPayment_res)==1){
+    if($srcPayment_res->rowCount() == 1){
         $paidStat_txt.="<span class='paid'>платеж зачислен.</span>";
         $srcPayment_row = $srcPayment_res->fetch(PDO::FETCH_ASSOC);
         $amount_txt="<div><span class='fldName'>зачислено:</span><span class='fldVal'>".$srcPayment_row['amount'].

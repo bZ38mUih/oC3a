@@ -14,11 +14,11 @@ $slDifHw_qry="select * from (".$slHwLeft_qry.") as wdHwLeft left join (".$slHwRi
 if(!$slDifHw_res=$DB->query($slDifHw_qry)){
     $appRJ->response['result'].="---fail--";
 };
-if(mysql_num_rows($slDifHw_res)>0){
+if($slDifHw_res->rowCount() > 0){
     $leftDifCnt=0;
     $rightDifCnt=0;
     $hwLines=null;
-    $appRJ->response['result'].="<h3>Аппаратура: (".mysql_num_rows($slDifHw_res).")</h3>";
+    $appRJ->response['result'].="<h3>Аппаратура: (".$slDifHw_res->rowCount().")</h3>";
     while ($slDifHw_row = $slDifHw_res->fetch(PDO::FETCH_ASSOC)){
         $hwLine=null;
         $hwLineClass=null;

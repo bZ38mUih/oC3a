@@ -1,9 +1,9 @@
 <?php
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
-$Subj_rd = array("table" => "forumSubj_dt", "field_id" => "fs_id");
+$Subj_rd = array("table" => "forumSubj_dt", "field_id" => "fs_id", "field_alias" => "sAlias");
 if(isset($_GET['fs_id']) and $_GET['fs_id']!=null){
     $Subj_rd['result']['fs_id'] = $_GET['fs_id'];
-    $Subj_rd->copyOne();
+    $Subj_rd = $DB->copyOne($Subj_rd);
     if(isset($_POST['sName']) and $_POST['sName']!=null){
         $Subj_rd['result']['sName']=htmlspecialchars($_POST['sName']);
     }else{
@@ -12,7 +12,7 @@ if(isset($_GET['fs_id']) and $_GET['fs_id']!=null){
     if(isset($_POST['sAlias']) and $_POST['sAlias']!=null){
         if($Subj_rd['result']['sAlias']!=htmlspecialchars($_POST['sAlias'])){
             $Subj_rd['result']['sAlias']=htmlspecialchars($_POST['sAlias']);
-            if(!accessorialClass::checkDouble("forumSubj_dt", "sAlias", $Subj_rd['result']['sAlias'])){
+            if(!$DB->checkDouble($Subj_rd)){
                 $subjErr['sAlias']='недопустимый alias - double ';
             }
         }
@@ -47,7 +47,7 @@ if(isset($subjErr)){
     $subjErr['common']=false;
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/fMan-editSubj.php");
 }else{
-    if($Subj_rd->updateOne()){
+    if($DB->updateOne($Subj_rd)){
         $subjErr['common']=true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/fMan-editSubj.php");
     }else{

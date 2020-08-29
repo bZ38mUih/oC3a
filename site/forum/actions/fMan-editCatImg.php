@@ -3,7 +3,7 @@ $editImg['result'] = false;
 $editImg['data'] = null;
 $Cat_rd = array("table" => "forumMenu_dt", "field_id" => "fm_id");
 $Cat_rd['result']['fm_id']=$_POST['fm_id'];
-if($Cat_rd->copyOne()){
+if($Cat_rd = $DB->copyOne($Cat_rd)){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].F_CAT_IMG.$Cat_rd['result']['fm_id'])) {
         mkdir($_SERVER["DOCUMENT_ROOT"].F_CAT_IMG.$Cat_rd['result']['fm_id'], 0777, true);
     }
@@ -28,7 +28,7 @@ if($Cat_rd->copyOne()){
                     $_SERVER["DOCUMENT_ROOT"].F_CAT_IMG.$Cat_rd['result']['fm_id']."/".$Cat_rd['result']['mImg'],
                     $_SERVER["DOCUMENT_ROOT"].F_CAT_IMG.$Cat_rd['result']['fm_id']."/preview/".$Cat_rd['result']['mImg'], 150, 150);
                 /*<--create preview*/
-                if($Cat_rd->updateOne()){
+                if($DB->updateOne($Cat_rd)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".F_CAT_IMG.$Cat_rd['result']['fm_id']."/preview/".$Cat_rd['result']['mImg']."'>";
                 }

@@ -10,7 +10,7 @@ if (!file_exists($_SERVER["DOCUMENT_ROOT"].ARTS_IMG_PAPH.$ArtLk_rd['result']['ar
 }
 $slLink_qry="select artLink_id, linkRef from artLinks_dt where linkType='".$putFile_dest."' and art_id=".$ArtLk_rd['result']['art_id'];
 $slLink_res = $DB->query($slLink_qry);
-if(mysql_num_rows($slLink_res)==1){
+if($slLink_res->rowCount() == 1){
     //$linkExtFlag=true;
     $slLink_row = $slLink_res->fetch(PDO::FETCH_ASSOC);
     $ArtLk_rd['result']['artLink_id']=$slLink_row['artLink_id'];
@@ -28,9 +28,9 @@ foreach ($_FILES as $file){
         $ArtLk_rd['result']['art_id']."/".$putFile_dest."/".$ArtLk_rd['result']['linkRef'])) {
 
         if($ArtLk_rd['result']['artLink_id']){
-            $ArtLk_rd->updateOne();
+            $DB->updateOne($ArtLk_rd);
         }else{
-            $ArtLk_rd->putOne();
+            $DB->putOne($ArtLk_rd);
         }
 
     } else {
