@@ -28,12 +28,12 @@ if(isset($tokenArr['access_token']) and $tokenArr['access_token']!=null){
     $usrArr = json_decode($usrReq, true);
 
     if(isset($usrArr['uid']) and $usrArr['uid']!=null){
-        $RD_accounts->result['netWork'] = 'ok';
-        $RD_accounts->result['accLogin']=$usrArr['uid'];
-        $RD_accounts->result['accAlias']=$usrArr['name'];
-        $RD_accounts->result['photoLink']=$usrArr['pic_2'];
-        $RD_accounts->result['birthDay']=$usrArr['birthday'];
-        $RD_accounts->result['socProf']='https://ok.ru/profile/'.$usrArr['uid'];
+        $RD_accounts['result']['netWork'] = 'ok';
+        $RD_accounts['result']['accLogin']=$usrArr['uid'];
+        $RD_accounts['result']['accAlias']=$usrArr['name'];
+        $RD_accounts['result']['photoLink']=$usrArr['pic_2'];
+        $RD_accounts['result']['birthDay']=$usrArr['birthday'];
+        $RD_accounts['result']['socProf']='https://ok.ru/profile/'.$usrArr['uid'];
         $socialAuth_err = true;
     }else{
         $validErr=$usrReq;

@@ -23,8 +23,8 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/downloads/views/dwlMan-subMenu.php");
 $appRJ->response['result'].= "<form class='editImg'><div class='img-frame'>";
 $delImgBtn_text=null;
-if($Cat_rd->result['catImg']){
-    $appRJ->response['result'].= "<img src='".DWL_CATEG_IMG_PAPH.$_GET['cat_id']."/preview/".$Cat_rd->result['catImg']."'>";
+if($Cat_rd['result']['catImg']){
+    $appRJ->response['result'].= "<img src='".DWL_CATEG_IMG_PAPH.$_GET['cat_id']."/preview/".$Cat_rd['result']['catImg']."'>";
     $delImgBtn_text= "class='active'";
 }else{
     $appRJ->response['result'].= "<img src='/data/default-img.png'>";
@@ -43,11 +43,11 @@ if(isset($catErr['common']) and $catErr['common']===true){
 }
 $appRJ->response['result'].= "<input type='hidden' name='flagField' value='editCat'>".
     "<div class='input-line'><label for='cat_id'>cat_id:</label>".
-    "<input type='text' name='cat_id' value='".$Cat_rd->result['dwlCat_id']."' disabled></div>".
+    "<input type='text' name='cat_id' value='".$Cat_rd['result']['dwlCat_id']."' disabled></div>".
     "<div class='input-line'><label for='catName'>Название:</label>".
     "<input type='text' name='catName' id='targetName' ";
-if($Cat_rd->result['catName']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catName']."'";
+if($Cat_rd['result']['catName']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
 if(isset($catErr['catName'])){
@@ -56,8 +56,8 @@ if(isset($catErr['catName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='catAlias'>Alias:</label>".
     "<input type='text' name='catAlias' id='targetAlias' ";
-if($Cat_rd->result['catAlias']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catAlias']."'";
+if($Cat_rd['result']['catAlias']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catAlias']."'";
 }
 $appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkCatAlias'><div class='field-err'>";
 if(isset($catErr['catAlias'])){
@@ -66,20 +66,20 @@ if(isset($catErr['catAlias'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='catDescr'>Описание:</label>".
     "<input type='text' name='catDescr' ";
-if($Cat_rd->result['catDescr']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catDescr']."'";
+if($Cat_rd['result']['catDescr']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catDescr']."'";
 }
 $appRJ->response['result'].= "></div>".
     "<div class='input-line'><label for='dwlCatPar_id'>dwlCatPar_id:</label><select name='dwlCatPar_id'>";
 /*select options-->*/
-$categList_text="select dwlCat_id, dwlCatPar_id, catName from dwlCat_dt WHERE dwlCat_id<>".$Cat_rd->result['dwlCat_id'].
+$categList_text="select dwlCat_id, dwlCatPar_id, catName from dwlCat_dt WHERE dwlCat_id<>".$Cat_rd['result']['dwlCat_id'].
     " ORDER BY catName ";
 $categList_res=$DB->doQuery($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelectOptions.= "<option value='".$categList_row['dwlCat_id']."' ";
-        if($categList_row['dwlCat_id'] == $Cat_rd->result['dwlCatPar_id']){
+        if($categList_row['dwlCat_id'] == $Cat_rd['result']['dwlCatPar_id']){
             $findSelected=true;
             $catSelectOptions.= " selected";
         }
@@ -97,7 +97,7 @@ if(mysql_num_rows($categList_res)>0){
 $appRJ->response['result'].= $catSelectOptions."</select></div>".
     "<div class='input-line'><label for='dwlCat_active'>Показывать:</label>".
     "<input type='checkbox' name='dwlCat_active' ";
-if($Cat_rd->result['catActive_flag']){
+if($Cat_rd['result']['catActive_flag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".

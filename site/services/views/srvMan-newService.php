@@ -1,10 +1,10 @@
 <?php
 $h1 ="Создание услуги";
-if(!$Card_rd->result['cardCurr']){
-    $Card_rd->result['cardCurr']=643;
+if(!$Card_rd['result']['cardCurr']){
+    $Card_rd['result']['cardCurr']=643;
 }
-if(!$Card_rd->result['cardPrice']){
-    $Card_rd->result['cardPrice']=1000;
+if(!$Card_rd['result']['cardPrice']){
+    $Card_rd['result']['cardPrice']=1000;
 }
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
@@ -33,8 +33,8 @@ $appRJ->response['result'].= "<form class='newFile' method='post'>".
     "<div class='input-line'>".
     "<label>Название:</label>".
     "<input type='text' name='cardName' id='targetName' ";
-if($Card_rd->result['cardName']){
-    $appRJ->response['result'].= "value='".$Card_rd->result['cardName']."'";
+if($Card_rd['result']['cardName']){
+    $appRJ->response['result'].= "value='".$Card_rd['result']['cardName']."'";
 }
 $appRJ->response['result'].= ">".
     "<div class='field-err'>";
@@ -45,8 +45,8 @@ $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'>".
     "<label>Alias:</label>".
     "<input type='text' name='cardAlias' id='targetAlias' ";
-if($Card_rd->result['cardAlias']){
-    $appRJ->response['result'].= "value='".$Card_rd->result['cardAlias']."'";
+if($Card_rd['result']['cardAlias']){
+    $appRJ->response['result'].= "value='".$Card_rd['result']['cardAlias']."'";
 }
 $appRJ->response['result'].= ">".
     "<input type='button' onclick='mkAlias()' value='mkAlias'>".
@@ -58,8 +58,8 @@ $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'>".
     "<label>Кр. описание:</label>".
     "<textarea name='shortDescr'>";
-if($Card_rd->result['shortDescr']){
-    $appRJ->response['result'].= $Card_rd->result['shortDescr'];
+if($Card_rd['result']['shortDescr']){
+    $appRJ->response['result'].= $Card_rd['result']['shortDescr'];
 }
 $appRJ->response['result'].= "</textarea>".
     "</div>".
@@ -73,7 +73,7 @@ if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelect.= "<option value='".$categList_row['srvCat_id']."' ";
-        if($categList_row['srvCat_id'] == $Card_rd->result['srvCat_id']){
+        if($categList_row['srvCat_id'] == $Card_rd['result']['srvCat_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -91,8 +91,8 @@ if(mysql_num_rows($categList_res)>0){
 $appRJ->response['result'].= $catSelect."</select></div>".
     "<div class='input-line'><label>Расценка:</label>".
     "<input type='number' name='cardPrice' min='1000' max='99999' ";
-if($Card_rd->result['cardPrice']){
-    $appRJ->response['result'].="value='".$Card_rd->result['cardPrice']."'";;
+if($Card_rd['result']['cardPrice']){
+    $appRJ->response['result'].="value='".$Card_rd['result']['cardPrice']."'";;
 }
 $appRJ->response['result'].=">".
     "<div class='field-err'>";
@@ -102,8 +102,8 @@ if(isset($cardErr['cardPrice'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Валюта:</label>".
     "<input type='number' name='cardCurr' min='1' max='1000' ";
-if($Card_rd->result['cardCurr']){
-    $appRJ->response['result'].="value='".$Card_rd->result['cardCurr']."'";;
+if($Card_rd['result']['cardCurr']){
+    $appRJ->response['result'].="value='".$Card_rd['result']['cardCurr']."'";;
 }
 $appRJ->response['result'].=">".
     "<div class='field-err'>";
@@ -113,7 +113,7 @@ if(isset($cardErr['cardCurr'])){
 $appRJ->response['result'].= "</div></div>".
 "<div class='input-line'><label>Показывать:</label>".
     "<input type='checkbox' name='cardActive' ";
-if($Card_rd->result['cardActive']){
+if($Card_rd['result']['cardActive']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div><div class='input-line'><input type='submit' value='addNew'></div>".

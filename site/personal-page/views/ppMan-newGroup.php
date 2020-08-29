@@ -32,8 +32,8 @@ $appRJ->response['result'].= "<input type='hidden' name='flagField' value='newGr
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='groupAlias'>Alias:</label>";
 $appRJ->response['result'].= "<input type='text' name='groupAlias' ";
-if($Gr_rd->result['groupAlias']){
-    $appRJ->response['result'].= "value='".$Gr_rd->result['groupAlias']."'";
+if($Gr_rd['result']['groupAlias']){
+    $appRJ->response['result'].= "value='".$Gr_rd['result']['groupAlias']."'";
 }
 $appRJ->response['result'].= ">";
 
@@ -47,7 +47,7 @@ $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='activeFlag'>Показывать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
-if($Gr_rd->result['activeFlag']){
+if($Gr_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= ">";

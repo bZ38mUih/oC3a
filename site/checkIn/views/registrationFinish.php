@@ -9,10 +9,10 @@ if(requiredFields::checkLogin($_GET['login'])){
         if($query_row['validDate']==null){
             if($query_row['vldCode'] === $_GET['vldCode']){
                 $RD_update = new recordDefault('accounts_dt', "account_id");
-                $RD_update->result['account_id']=$query_row['account_id'];
+                $RD_update['result']['account_id']=$query_row['account_id'];
                 $RD_update->copyOne();
                 $appRJ->date['curDate'] = @date_create();
-                $RD_update->result['validDate']=date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');
+                $RD_update['result']['validDate']=date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');
                 $RD_update->updateOne();
                 $varifMail.= "<strong class='success'>Подтверждение eMail адреса успешно.</strong>";
             }else{

@@ -2,9 +2,9 @@
 require_once($_SERVER["DOCUMENT_ROOT"]."/source/_conf/ym.php");
 if($_GET['addBucket']){
     $addBucket=new recordDefault("srvCards_dt", "card_id");
-    $addBucket->result['card_id']=$_GET['addBucket'];
+    $addBucket['result']['card_id']=$_GET['addBucket'];
     if($addBucket->copyOne()){
-        $_SESSION['bucket']['prod'][$addBucket->result['card_id']]=$addBucket->result['cardPrice'];
+        $_SESSION['bucket']['prod'][$addBucket['result']['card_id']]=$addBucket['result']['cardPrice'];
     }
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/services/actions/bucketCount.php");
 }elseif ($_GET['rmBucket']){

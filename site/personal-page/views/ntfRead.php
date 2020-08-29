@@ -58,8 +58,8 @@ $appRJ->response['result'].="<form><div class='ntf-line'>".
 if(!$slUsrNtf_row['readDate']){
     $appRJ->response['result'].="just now";
     $ntfRd=new recordDefault("ntfList_dt", "ntfList_id");
-    $ntfRd->result['ntfList_id']=$slUsrNtf_row['ntfList_id'];
-    $ntfRd->result['readDate']=date_format($appRJ->date['curDate'], 'Y-m-d H.i.s');
+    $ntfRd['result']['ntfList_id']=$slUsrNtf_row['ntfList_id'];
+    $ntfRd['result']['readDate']=date_format($appRJ->date['curDate'], 'Y-m-d H.i.s');
     $ntfRd->updateOne();
 }else{
     $appRJ->response['result'].=$slUsrNtf_row['readDate'];

@@ -24,8 +24,8 @@ $appRJ->response['result'].= "<form class='newCateg' method='post'>".
     "<input type='hidden' name='flagField' value='newCat'>".
     "<div class='input-line'><label>Название:</label>".
     "<input type='text' name='catName' id='targetName' ";
-if($Cat_rd->result['catName']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catName']."'";
+if($Cat_rd['result']['catName']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
 if(isset($catErr['catName'])){
@@ -34,8 +34,8 @@ if(isset($catErr['catName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Alias:</label>".
     "<input type='text' name='catAlias' id='targetAlias' ";
-if($Cat_rd->result['catAlias']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catAlias']."'";
+if($Cat_rd['result']['catAlias']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catAlias']."'";
 }
 $appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkCatAlias'><div class='field-err'>";
 if(isset($catErr['catAlias'])){
@@ -43,8 +43,8 @@ if(isset($catErr['catAlias'])){
 }
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Описание:</label><textarea rows='3' name='catDescr'>";
-if($Cat_rd->result['catDescr']){
-    $appRJ->response['result'].= $Cat_rd->result['catDescr'];
+if($Cat_rd['result']['catDescr']){
+    $appRJ->response['result'].= $Cat_rd['result']['catDescr'];
 }
 $appRJ->response['result'].="</textarea></div>".
     "<div class='input-line'><label>srvCatPar_id:</label><select name='srvCatPar_id'>";
@@ -55,7 +55,7 @@ if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelect.= "<option value='".$categList_row['srvCat_id']."' ";
-        if($categList_row['srvCat_id'] == $Cat_rd->result['srvCatPar_id']){
+        if($categList_row['srvCat_id'] == $Cat_rd['result']['srvCatPar_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -73,7 +73,7 @@ if(mysql_num_rows($categList_res)>0){
 $appRJ->response['result'].= $catSelect."</select></div>".
     "<div class='input-line'><label>Показывать:</label>".
     "<input type='checkbox' name='catActive' ";
-if($Cat_rd->result['catActive']){
+if($Cat_rd['result']['catActive']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".

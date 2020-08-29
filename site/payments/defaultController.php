@@ -7,20 +7,20 @@ if(isset($_POST['label'])){
     require_once($_SERVER["DOCUMENT_ROOT"]."/site/payments/views/searchPayment.php");
 }elseif($_SESSION["bucket"]["order_id"]){
     $Order_rd = new recordDefault("ordersList_dt", "order_id");
-    $Order_rd->result["order_id"]=$_SESSION["bucket"]["order_id"];
+    $Order_rd['result']["order_id"]=$_SESSION["bucket"]["order_id"];
     if($Order_rd->copyOne()){
         unset($_SESSION["bucket"]);
-        header("Location: /payments/?searchPayment=".$Order_rd->result["label"]);
+        header("Location: /payments/?searchPayment=".$Order_rd['result']["label"]);
     }else{
         $appRJ->errors['XXX']['description']="Недопустимый id заказа - ".$_SESSION["bucket"]["order_id"];
         unset($_SESSION["bucket"]);
     }
 }elseif($_SESSION["donate"]["order_id"]){
     $Order_rd = new recordDefault("ordersList_dt", "order_id");
-    $Order_rd->result["order_id"]=$_SESSION["donate"]["order_id"];
+    $Order_rd['result']["order_id"]=$_SESSION["donate"]["order_id"];
     if($Order_rd->copyOne()){
         unset($_SESSION["donate"]);
-        header("Location: /payments/?searchPayment=".$Order_rd->result["label"]);
+        header("Location: /payments/?searchPayment=".$Order_rd['result']["label"]);
     }else{
         $appRJ->errors['XXX']['description']="Недопустимый id заказа - ".$_SESSION["donate"]["order_id"];
         unset($_SESSION["donate"]);

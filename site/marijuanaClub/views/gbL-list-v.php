@@ -40,7 +40,7 @@ $appRJ->response['result'] .="<div class='mode-controls-btn-wrap'>".
     "<a href='/marijuanaClub' class='create-btn'><img src='/site/marijuanaClub/img/logo.png'> - Resume</a>".
     "</div>".
     "<div class='mode-controls-btn mcBtnEdit'>".
-    //"<a href='javaScrip: void(0)' onclick = 'modeGbEditEntry(".$gbSchedule->result['sch_id'].")' class='edit-btn'><img src='/source/img/edit-icon.png'> - Edit</a>".
+    //"<a href='javaScrip: void(0)' onclick = 'modeGbEditEntry(".$gbSchedule['result']['sch_id'].")' class='edit-btn'><img src='/source/img/edit-icon.png'> - Edit</a>".
     "</div>".
     "<div class='mode-controls-btn mcBtnCreate'>".
     "<a href='/marijuanaClub/gbLamps/create' class='create-btn'><img src='/source/img/create-icon.png'> - Create</a>".
@@ -86,7 +86,7 @@ if(mysql_num_rows($lightsList_res) > 0) {
             //"<div class='mode-controls'>".
             "<div class='mode-controls-btn-wrap'>".
             "<div class='mode-controls-btn mcBtnDelete'>".
-            "<a href='javaScrip: void(0)' onclick = 'modeGbRemove(".$gbSchedule->result['sch_id'].")' class='create-btn'><img src='/source/img/drop-icon.png'> - Delete</a>".
+            "<a href='javaScrip: void(0)' onclick = 'modeGbRemove(".$gbSchedule['result']['sch_id'].")' class='create-btn'><img src='/source/img/drop-icon.png'> - Delete</a>".
             "</div>".
             "<div class='mode-controls-btn mcBtnEdit'>".
             "<a href='/marijuanaClub/gbLightsModels/edit?model_id=".$lightsList_row['model_id']."' class='edit-btn'><img src='/source/img/edit-icon.png'> - Edit</a>".

@@ -18,12 +18,12 @@ if(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=
 $appRJ->response['result'].= ">Ссылки</a>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='contentMenu-img'>";
-if($Art_rd->result['artImg']){
-    $appRJ->response['result'].= "<img src='".ARTS_IMG_PAPH.$_GET['art_id']."/preview/".$Art_rd->result['artImg']."'>";
+if($Art_rd['result']['artImg']){
+    $appRJ->response['result'].= "<img src='".ARTS_IMG_PAPH.$_GET['art_id']."/preview/".$Art_rd['result']['artImg']."'>";
     $delImgBtn_text= "class='active'";
 }else{
     $appRJ->response['result'].= "<img src='/data/default-img.png'>";
 }
-$appRJ->response['result'].= "<span>".$Art_rd->result['artName']."</span>";
+$appRJ->response['result'].= "<span>".$Art_rd['result']['artName']."</span>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "</div>";

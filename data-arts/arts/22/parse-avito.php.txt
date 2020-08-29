@@ -57,15 +57,15 @@ foreach ($parseLog as $key=>$value){
             $parseRD['prodName']=substr($pageCont, 0, $posProdName2);
             $pageCont=substr($pageCont, $posProdName2+7, strlen($pageCont));
             if(!$posPrice1=strpos($pageCont, "itemprop=\"price\"" )){
-                $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD->result['prodName'];
+                $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD['result']['prodName'];
             }
             $pageCont=substr($pageCont, $posPrice1+16, strlen($pageCont));
             if(!$posPrice2=strpos($pageCont, "content=\"")){
-                $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD->result['prodName'];
+                $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD['result']['prodName'];
             }
             $pageCont=substr($pageCont, $posPrice2+9, strlen($pageCont));
             if(!$posPrice3=strpos($pageCont, "\">")){
-                $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD->result['prodName'];
+                $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD['result']['prodName'];
             }
             $parseRD['prodPrice']=substr($pageCont, 0, $posPrice3);
             $pageCont=substr($pageCont, $posPrice3+2, strlen($pageCont));

@@ -25,7 +25,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-newService.php");
         } elseif ($appRJ->server['reqUri_expl'][4] and $appRJ->server['reqUri_expl'][4] == 'editCard') {
             if (isset($_GET['card_id']) and $_GET['card_id'] != null) {
-                $Card_rd->result['card_id'] = $_GET['card_id'];
+                $Card_rd['result']['card_id'] = $_GET['card_id'];
                 if ($Card_rd->copyOne()) {
                     if (isset($_POST['flagField']) and $_POST['flagField'] == 'editCard') {
                         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/actions/srvMan-editCard.php");
@@ -34,7 +34,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
                             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-editCard.php");
                         } elseif ($appRJ->server['reqUri_expl'][5] == 'longDescr') {
                             if (isset($_POST['flagField']) and $_POST['flagField'] == 'longDescr') {
-                                $Card_rd->result['longDescr'] = $_POST['longDescr'];
+                                $Card_rd['result']['longDescr'] = $_POST['longDescr'];
                                 $Card_rd->updateOne();
                             }
                             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-longDescr.php");
@@ -58,7 +58,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         $catSelectOptions=null;
         if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
             $Cat_rd = new recordDefault("srvCat_dt", "srvCat_id");
-            $Cat_rd->result['srvCat_id']=$_GET['cat_id'];
+            $Cat_rd['result']['srvCat_id']=$_GET['cat_id'];
             if($Cat_rd->copyOne()){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/services/views/srvMan-editCat.php");
             }else{

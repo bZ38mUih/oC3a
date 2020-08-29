@@ -2,10 +2,10 @@
 $Subj_rd = new recordDefault("forumSubj_dt", "fs_id");
 $sdRes=false;
 if(isset($_POST['fs_id']) and $_POST['fs_id']!=null){
-    $Subj_rd->result['fs_id']=$_POST['fs_id'];
+    $Subj_rd['result']['fs_id']=$_POST['fs_id'];
     if($Subj_rd->copyOne()){
         if(isset($_POST['longDescr'])){
-            $Subj_rd->result['longDescr']=$_POST['longDescr'];
+            $Subj_rd['result']['longDescr']=$_POST['longDescr'];
             if($Subj_rd->updateOne()){
                 $sdRes=true;
             }else{

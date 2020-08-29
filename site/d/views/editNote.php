@@ -1,5 +1,5 @@
 <?php
-//$h1.="#".$note_rd->result['note_id'];
+//$h1.="#".$note_rd['result']['note_id'];
 
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>";

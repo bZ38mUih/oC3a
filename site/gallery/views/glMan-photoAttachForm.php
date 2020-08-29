@@ -2,7 +2,7 @@
 $categ_res = $DB->query("select DISTINCT catName, glCat_id from galleryMenu_dt where catActive = true order by catName");
 $categ_arr = [];
 while ($categ_res->fetch(PDO::FETCH_ASSOC)){
-    //if($Alb_rd->result['glCat_id'] != $categ_row['glCat_id']){
+    //if($Alb_rd['result']['glCat_id'] != $categ_row['glCat_id']){
         $categ_arr[$categ_row['glCat_id']] = $categ_row['catName'];
     //}
 }

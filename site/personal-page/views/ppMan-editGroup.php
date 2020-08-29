@@ -30,8 +30,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/personal-page/views/ppMan-subMen
 $appRJ->response['result'].= "<form class='editImg'>";
 $appRJ->response['result'].= "<div class='img-frame'>";
 $delImgBtn_text=null;
-if($Gr_rd->result['img']){
-    $appRJ->response['result'].= "<img src='".PP_USRGR_IMG_PAPH.$_GET['group_id']."/preview/".$Gr_rd->result['img']."'>";
+if($Gr_rd['result']['img']){
+    $appRJ->response['result'].= "<img src='".PP_USRGR_IMG_PAPH.$_GET['group_id']."/preview/".$Gr_rd['result']['img']."'>";
     $delImgBtn_text= "class='active'";
 }else{
     $appRJ->response['result'].= "<img src='/data/default-img.png'>";
@@ -58,14 +58,14 @@ if(isset($grErr['common']) and $grErr['common']===true){
 $appRJ->response['result'].= "<input type='hidden' name='flagField' value='editGroup'>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='group_id'>group_id:</label>";
-$appRJ->response['result'].= "<input type='text' name='group_id' value='".$Gr_rd->result['group_id']."' disabled>";
+$appRJ->response['result'].= "<input type='text' name='group_id' value='".$Gr_rd['result']['group_id']."' disabled>";
 $appRJ->response['result'].= "</div>";
 
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='catAlias'>Alias:</label>";
 $appRJ->response['result'].= "<input type='text' name='groupAlias' ";
-if($Gr_rd->result['groupAlias']){
-    $appRJ->response['result'].= "value='".$Gr_rd->result['groupAlias']."'";
+if($Gr_rd['result']['groupAlias']){
+    $appRJ->response['result'].= "value='".$Gr_rd['result']['groupAlias']."'";
 }
 $appRJ->response['result'].= ">";
 
@@ -79,7 +79,7 @@ $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='activeFlag'>Показывать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
-if($Gr_rd->result['activeFlag']){
+if($Gr_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= ">";

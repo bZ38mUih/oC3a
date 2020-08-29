@@ -23,8 +23,8 @@ $appRJ->response['result'].= "<form class='newCateg' method='post'>".
     "<input type='hidden' name='flagField' value='newCat'>".
     "<div class='input-line'><label for='catName'>Название:</label>".
     "<input type='text' name='catName' id='targetName' ";
-if($Cat_rd->result['catName']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catName']."'";
+if($Cat_rd['result']['catName']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
 if(isset($catErr['catName'])){
@@ -33,8 +33,8 @@ if(isset($catErr['catName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='catAlias'>Alias:</label>".
     "<input type='text' name='catAlias' id='targetAlias' ";
-if($Cat_rd->result['catAlias']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catAlias']."'";
+if($Cat_rd['result']['catAlias']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catAlias']."'";
 }
 $appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkCatAlias'><div class='field-err'>";
 if(isset($catErr['catAlias'])){
@@ -50,7 +50,7 @@ if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelect.= "<option value='".$categList_row['dwlCat_id']."' ";
-        if($categList_row['dwlCat_id'] == $Cat_rd->result['dwlCatPar_id']){
+        if($categList_row['dwlCat_id'] == $Cat_rd['result']['dwlCatPar_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -68,7 +68,7 @@ if(mysql_num_rows($categList_res)>0){
 $appRJ->response['result'].= $catSelect."</select></div>".
     "<div class='input-line'><label for='dwlCat_active'>Показывать:</label>".
     "<input type='checkbox' name='dwlCat_active' ";
-if($Cat_rd->result['catActive_flag']){
+if($Cat_rd['result']['catActive_flag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".

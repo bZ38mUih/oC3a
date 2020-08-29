@@ -26,9 +26,9 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subMenu.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subjContentMenu.php");
 $appRJ->response['result'].= "<form class='s-descr'>".
-    "<input type='hidden' name='fs_id' value='".$Subj_rd->result['fs_id']."'>".
+    "<input type='hidden' name='fs_id' value='".$Subj_rd['result']['fs_id']."'>".
     "<input type='hidden' name='flagField' value='longDescr'>".
-    "<textarea name='longDescr'>".$Subj_rd->result['longDescr']."</textarea>".
+    "<textarea name='longDescr'>".$Subj_rd['result']['longDescr']."</textarea>".
     "<div class='input-line'><input type='button' value='save' onclick='updateSDescr()'></div>".
     "</form>".
     "</div></div></div>";

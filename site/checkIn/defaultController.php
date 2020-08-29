@@ -78,21 +78,21 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
             $vldCode .= $letters[rand(0,sizeof($letters)-1)];
         }
         $RD_users = new recordDefault("users_dt", "user_id");
-        $RD_users->result['blackList']=false;
+        $RD_users['result']['blackList']=false;
         $RD_users->putOne();
         $RD_accounts = new recordDefault("accounts_dt", "account_id");
-        $RD_accounts->result['user_id']=$RD_users->result['user_id'];
-        $RD_accounts->result['accLogin']=$requiredFields['login']['val'];
-        $RD_accounts->result['accAlias']=$requiredFields['login']['val'];
-        $RD_accounts->result['eMail']=$requiredFields['eMail']['val'];
-        $RD_accounts->result['pw_hash']=password_hash($requiredFields['password']['val'], PASSWORD_DEFAULT);
-        $RD_accounts->result['vldCode']=$vldCode;
+        $RD_accounts['result']['user_id']=$RD_users['result']['user_id'];
+        $RD_accounts['result']['accLogin']=$requiredFields['login']['val'];
+        $RD_accounts['result']['accAlias']=$requiredFields['login']['val'];
+        $RD_accounts['result']['eMail']=$requiredFields['eMail']['val'];
+        $RD_accounts['result']['pw_hash']=password_hash($requiredFields['password']['val'], PASSWORD_DEFAULT);
+        $RD_accounts['result']['vldCode']=$vldCode;
         $appRJ->date['curDate'] = @date_create();
-        $RD_accounts->result['regDate']=date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');
-        $RD_accounts->result['netWork']="site";
-        $RD_accounts->result['validDate']=null;
-        $RD_accounts->result['birthDay']=null;
-        $RD_accounts->result['accMain_flag']=true;
+        $RD_accounts['result']['regDate']=date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');
+        $RD_accounts['result']['netWork']="site";
+        $RD_accounts['result']['validDate']=null;
+        $RD_accounts['result']['birthDay']=null;
+        $RD_accounts['result']['accMain_flag']=true;
         $RD_accounts->putOne();
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/checkIn/views/registrationSuccess.php");
     }else{

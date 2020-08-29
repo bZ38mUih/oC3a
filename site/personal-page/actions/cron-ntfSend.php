@@ -49,8 +49,8 @@ if($ntf_cnt>0) {
                 while ($slUsr_row = $DB->doFetchRow($slUsr_res)) {
 
                     $ntfList_rd = new recordDefault("ntfList_dt", "ntfList_id");
-                    $ntfList_rd->result['ntf_id'] = $ntf_row['ntf_id'];
-                    $ntfList_rd->result['user_id'] = $slUsr_row['user_id'];
+                    $ntfList_rd['result']['ntf_id'] = $ntf_row['ntf_id'];
+                    $ntfList_rd['result']['user_id'] = $slUsr_row['user_id'];
                     $ntfList_rd->putOne();
 
                     if ($slUsr_row['eMail']) {
@@ -78,11 +78,11 @@ if($ntf_cnt>0) {
             $ntfLog['txt'].="<p>";
 
             $ntfList_rd = new recordDefault("ntfList_dt", "ntfList_id");
-            $ntfList_rd->result['ntf_id'] = $ntf_row['ntf_id'];
-            $ntfList_rd->result['user_id'] = $ntf_row['ntfSubscr'];
+            $ntfList_rd['result']['ntf_id'] = $ntf_row['ntf_id'];
+            $ntfList_rd['result']['user_id'] = $ntf_row['ntfSubscr'];
             $ntfList_rd->putOne();
 
-            $slUsr_qry = "select eMail from accounts_dt WHERE user_id = " . $ntfList_rd->result['user_id'] . " and " .
+            $slUsr_qry = "select eMail from accounts_dt WHERE user_id = " . $ntfList_rd['result']['user_id'] . " and " .
                 "accMain_flag is TRUE and eMail is not NULL";
 
             if ($slUsr_res = $DB->doQuery($slUsr_qry)) {
@@ -91,7 +91,7 @@ if($ntf_cnt>0) {
                 }
             }
 
-            $ntfLog['txt'].="<strong>personal for user_id=".$ntfList_rd->result['user_id']."</strong><br>";
+            $ntfLog['txt'].="<strong>personal for user_id=".$ntfList_rd['result']['user_id']."</strong><br>";
 
 
             if ($slUsr_cnt == 1) {
@@ -130,8 +130,8 @@ if($ntf_cnt>0) {
                 while ($slUsr_row = $DB->doFetchRow($slUsr_res)) {
 
                     $ntfList_rd = new recordDefault("ntfList_dt", "ntfList_id");
-                    $ntfList_rd->result['ntf_id'] = $ntf_row['ntf_id'];
-                    $ntfList_rd->result['user_id'] = $slUsr_row['user_id'];
+                    $ntfList_rd['result']['ntf_id'] = $ntf_row['ntf_id'];
+                    $ntfList_rd['result']['user_id'] = $slUsr_row['user_id'];
 
                     $ntfList_rd->putOne();
 
@@ -140,7 +140,7 @@ if($ntf_cnt>0) {
                         $ntfLog['txt'].=$slUsr_row['user_id']." - ".$slUsr_row['eMail']."<br>";
 
                         $linkToRead=" ссылка для прочтения: ".
-                            "http://rightjoint.ru/personal-page/notification/read/?ntfList_id=" . $ntfList_rd->result['ntfList_id'];
+                            "http://rightjoint.ru/personal-page/notification/read/?ntfList_id=" . $ntfList_rd['result']['ntfList_id'];
                         mail($slUsr_row['eMail'], $ntf_row['ntfSubj'], $ntf_row['ntfDescr'].$linkToRead, 'From: RightJoint');
 
                     } else

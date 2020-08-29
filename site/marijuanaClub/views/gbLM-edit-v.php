@@ -36,21 +36,21 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php
 
 $appRJ->response['result'].= "<div class='mc-wrap'><div class='mc-container-wrap gbLights'>".
     "<div class='timeMode'><div class='mc-container'>".
-    "<h6>Edit model #<span id='model_id'>".$gbLightModel->result['model_id']."</span></h6>".
+    "<h6>Edit model #<span id='model_id'>".$gbLightModel['result']['model_id']."</span></h6>".
     "<label class='lbCheckBox'><input type='checkbox' id='activeFlag' ";
-if($gbLightModel->result['activeFlag']){
+if($gbLightModel['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= ">Показывать</label>".
     "<div class='actLog'></div>".
     "<div class='mode-controls'>".
-    "<span class='mcGbLights-Model'><input type='text' id='modelName' value='".$gbLightModel->result['modelName']."'></span>".
-    "<span class='mcGbLights-Power'><input type='number' id='power' value='".$gbLightModel->result['power']."'></span>".
-    "<span class='mcGbLights-ColorT'><input type='number' id='colorT' value='".$gbLightModel->result['colorT']."'></span>".
-    "<span class='mcGbLights-settle'><input type='text' id='settle' value='".$gbLightModel->result['settle']."'></span>".
+    "<span class='mcGbLights-Model'><input type='text' id='modelName' value='".$gbLightModel['result']['modelName']."'></span>".
+    "<span class='mcGbLights-Power'><input type='number' id='power' value='".$gbLightModel['result']['power']."'></span>".
+    "<span class='mcGbLights-ColorT'><input type='number' id='colorT' value='".$gbLightModel['result']['colorT']."'></span>".
+    "<span class='mcGbLights-settle'><input type='text' id='settle' value='".$gbLightModel['result']['settle']."'></span>".
     "<span class='mcGbLights-lightType'><select id='lightType'>";
 for ($i = 0; $i < count($lightTypes); $i++) {
-    if ($lightTypes[$i] == $gbLightModel->result['lightType']){
+    if ($lightTypes[$i] == $gbLightModel['result']['lightType']){
         $appRJ->response['result'] .= "<option selected>".$lightTypes[$i]."</option>";
     }else{
         $appRJ->response['result'] .= "<option>".$lightTypes[$i]."</option>";
@@ -59,9 +59,9 @@ for ($i = 0; $i < count($lightTypes); $i++) {
 }
 
 $appRJ->response['result'] .="</select></span>".
-    "<div class='note-content-wrap'><textarea rows='3' id='lightNote'>".$gbLightModel->result['lightNote']."</textarea></div>".
-    //"<label>Применить<input type='date' id='note-date' value='".$gbNote->result['noteDate']."'></label>".
-    //"<label>с :<input type='time' id='note-time' value='".$gbNote->result['noteTime']."'></label>".
+    "<div class='note-content-wrap'><textarea rows='3' id='lightNote'>".$gbLightModel['result']['lightNote']."</textarea></div>".
+    //"<label>Применить<input type='date' id='note-date' value='".$gbNote['result']['noteDate']."'></label>".
+    //"<label>с :<input type='time' id='note-time' value='".$gbNote['result']['noteTime']."'></label>".
     "<div class='mode-controls-btn-wrap'>".
     "<div class='mode-controls-btn mcBtnGoBack'><a href='/marijuanaClub/gbLightsModels'>Отказаться</a></div>".
     "<div class='mode-controls-btn mcBtnEdit'><a href='javaScript: void(0)' onclick = 'lightModelEdit()'>".

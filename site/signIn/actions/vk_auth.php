@@ -8,12 +8,12 @@ if(isset($tokenArr['access_token']) and $tokenArr['access_token']!=null){
         "&fields=photo_100,bdate&v=5.80&access_token=".$tokenArr['access_token']);
     $usrArr = json_decode($usrReq, true);
     if($usrArr!=null and isset($usrArr['response']['0']['id']) and $usrArr['response']['0']['id']!=null){
-        $RD_accounts->result['netWork']="vk";
-        $RD_accounts->result['accLogin']=$usrArr['response']['0']['id'];
-        $RD_accounts->result['accAlias']=$usrArr['response']['0']['first_name']." ".$usrArr['response']['0']['last_name'];
-        $RD_accounts->result['photoLink']=$usrArr['response']['0']['photo_100'];
-        $RD_accounts->result['birthDay']=date_format(date_create($usrArr['response']['0']['bdate']), 'Y-m-d');
-        $RD_accounts->result['socProf']='https://vk.com/id'.$usrArr['response']['0']['id'];
+        $RD_accounts['result']['netWork']="vk";
+        $RD_accounts['result']['accLogin']=$usrArr['response']['0']['id'];
+        $RD_accounts['result']['accAlias']=$usrArr['response']['0']['first_name']." ".$usrArr['response']['0']['last_name'];
+        $RD_accounts['result']['photoLink']=$usrArr['response']['0']['photo_100'];
+        $RD_accounts['result']['birthDay']=date_format(date_create($usrArr['response']['0']['bdate']), 'Y-m-d');
+        $RD_accounts['result']['socProf']='https://vk.com/id'.$usrArr['response']['0']['id'];
         $socialAuth_err = true;
     }else{
         $validErr=$usrReq;

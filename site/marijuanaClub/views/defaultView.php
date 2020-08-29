@@ -40,7 +40,7 @@ $appRJ->response['result'].= "<div class='mc-wrap'>".
     "<div class='mode-controls'>".
     "<div class='mode-controls-btn-wrap'>".
     "<div class='mode-controls-btn mcBtnDelete'>".
-    //"<a href='javaScrip: void(0)' onclick = 'modeGbRemove(".$gbSchedule->result['sch_id'].")' class='create-btn'><img src='/source/img/drop-icon.png'> - Delete</a>".
+    //"<a href='javaScrip: void(0)' onclick = 'modeGbRemove(".$gbSchedule['result']['sch_id'].")' class='create-btn'><img src='/source/img/drop-icon.png'> - Delete</a>".
     "</div>".
     "<div class='mode-controls-btn mcBtnCreate'>".
     "<a href='/marijuanaClub/gbLamps' class='create-btn'><img src='/source/img/create-icon.png'> - Lamps</a>".

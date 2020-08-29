@@ -26,8 +26,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subMenu.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subjContentMenu.php");
 $appRJ->response['result'].= "<form class='editImg'><div class='img-frame'>";
 $delImgBtn_text=null;
-if($Subj_rd->result['sImg']){
-    $appRJ->response['result'].= "<img src='".F_SUBJ_IMG.$_GET['fs_id']."/preview/".$Subj_rd->result['sImg']."'>";
+if($Subj_rd['result']['sImg']){
+    $appRJ->response['result'].= "<img src='".F_SUBJ_IMG.$_GET['fs_id']."/preview/".$Subj_rd['result']['sImg']."'>";
     $delImgBtn_text= "class='active'";
 }else{
     $appRJ->response['result'].= "<img src='/data/default-img.png'>";
@@ -46,11 +46,11 @@ if(isset($subjErr['common']) and $subjErr['common']===true){
 }
 $appRJ->response['result'].= "<input type='hidden' name='flagField' value='editSubj'>".
     "<div class='input-line'><label for='fs_id'>fs_id:</label>".
-    "<input type='text' name='fs_id' value='".$Subj_rd->result['fs_id']."' disabled></div>".
+    "<input type='text' name='fs_id' value='".$Subj_rd['result']['fs_id']."' disabled></div>".
     "<div class='input-line'><label>Название:</label>".
     "<input type='text' name='sName' id='targetName' ";
-if($Subj_rd->result['sName']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['sName']."'";
+if($Subj_rd['result']['sName']){
+    $appRJ->response['result'].= "value='".$Subj_rd['result']['sName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
 if(isset($subjErr['sName'])){
@@ -59,8 +59,8 @@ if(isset($subjErr['sName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Alias:</label>".
     "<input type='text' name='sAlias' id='targetAlias' ";
-if($Subj_rd->result['sAlias']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['sAlias']."'";
+if($Subj_rd['result']['sAlias']){
+    $appRJ->response['result'].= "value='".$Subj_rd['result']['sAlias']."'";
 }
 $appRJ->response['result'].= ">".
     "<input type='button' onclick='mkAlias()' value='mkAlbAlias'><div class='field-err'>";
@@ -69,8 +69,8 @@ if(isset($subjErr['sAlias'])){
 }
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Мета:</label><textarea name='metaDescr' rows='3' >";
-if($Subj_rd->result['metaDescr']){
-    $appRJ->response['result'].= $Subj_rd->result['metaDescr'];
+if($Subj_rd['result']['metaDescr']){
+    $appRJ->response['result'].= $Subj_rd['result']['metaDescr'];
 }
 $appRJ->response['result'].= "</textarea></div>".
     "<div class='input-line'><label>fm_id:</label><select name='fm_id'>";
@@ -82,7 +82,7 @@ if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelectOptions.= "<option value='".$categList_row['fm_id']."' ";
-        if($categList_row['fm_id'] == $Subj_rd->result['fm_id']){
+        if($categList_row['fm_id'] == $Subj_rd['result']['fm_id']){
             $findSelected=true;
             $catSelectOptions.= " selected";
         }
@@ -99,7 +99,7 @@ if(mysql_num_rows($categList_res)>0){
 /*<--select options*/
 $appRJ->response['result'].= $catSelectOptions."</select></div>".
     "<div class='input-line'><label for='dateOfCr'>dateOfCr:</label>".
-    "<input type='date' name='dateOfCr' value='".substr($Subj_rd->result['dateOfCr'], 0, 10)."'>".
+    "<input type='date' name='dateOfCr' value='".substr($Subj_rd['result']['dateOfCr'], 0, 10)."'>".
     "<div class='field-err'>";
 if(isset($subjErr['dateOfCr'])){
     $appRJ->response['result'].= $subjErr['dateOfCr'];
@@ -107,13 +107,13 @@ if(isset($subjErr['dateOfCr'])){
 $appRJ->response['result'].= "</div></div>";
     $appRJ->response['result'].="<div class='input-line'><label for='activeFlag'>Показывать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
-if($Subj_rd->result['activeFlag']){
+if($Subj_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".
     "<div class='input-line'><label>Индексировать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='robIndex' ";
-if($Subj_rd->result['robIndex']){
+if($Subj_rd['result']['robIndex']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".

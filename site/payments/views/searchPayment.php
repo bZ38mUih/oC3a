@@ -52,15 +52,15 @@ if(mysql_num_rows($scrOrder_res)!=1){
             $bucketInfo.="<span class='yBacket'>Корзина:</span>";
             while ($bucket_row=$DB->doFetchRow($bucket_res)){
                 $Card_rd=new recordDefault("srvCards_dt", "card_id");
-                $Card_rd->result['card_id']=$bucket_row['card_id'];
+                $Card_rd['result']['card_id']=$bucket_row['card_id'];
                 if($Card_rd->copyOne()){
                     $bucketInfo.="<div class='order-line'><div class='order-img'><img src='".
-                        SRV_CARD_IMG_PAPH.$Card_rd->result['card_id']."/preview/".
-                        $Card_rd->result['cardImg']."'></div>".
-                        "<div class='order-nm'><a href='/services/detail/".$Card_rd->result['cardAlias']."'>".
-                        $Card_rd->result['cardName']."</a></div><div class='order-price'> ".
-                        $Card_rd->result['cardPrice']." руб.</div></div>";
-                    $prod_lst.=$Card_rd->result['cardName']."; ";
+                        SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id']."/preview/".
+                        $Card_rd['result']['cardImg']."'></div>".
+                        "<div class='order-nm'><a href='/services/detail/".$Card_rd['result']['cardAlias']."'>".
+                        $Card_rd['result']['cardName']."</a></div><div class='order-price'> ".
+                        $Card_rd['result']['cardPrice']." руб.</div></div>";
+                    $prod_lst.=$Card_rd['result']['cardName']."; ";
                 }
             }
         }else{

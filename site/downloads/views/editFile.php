@@ -24,8 +24,8 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/downloads/views/dwlMan-subMenu.php");
 $appRJ->response['result'].= "<form class='editImg'><div class='img-frame'>";
 $delImgBtn_text=null;
-if($File_rd->result['fileImg']){
-    $appRJ->response['result'].= "<img src='".DWL_FILES_IMG_PAPH.$_GET['file_id']."/preview/".$File_rd->result['fileImg']."'>";
+if($File_rd['result']['fileImg']){
+    $appRJ->response['result'].= "<img src='".DWL_FILES_IMG_PAPH.$_GET['file_id']."/preview/".$File_rd['result']['fileImg']."'>";
     $delImgBtn_text= "class='active'";
 }else{
     $appRJ->response['result'].= "<img src='/data/default-img.png'>";
@@ -43,11 +43,11 @@ if(isset($fileErr['common']) and $fileErr['common']===true){
 }
 $appRJ->response['result'].= "<input type='hidden' name='flagField' value='editFile'>".
     "<div class='input-line'><label for='dwlFile_id'>dwlFile_id:</label>".
-    "<input type='text' name='dwlFile_id' value='".$File_rd->result['dwlFile_id']."' disabled></div>".
+    "<input type='text' name='dwlFile_id' value='".$File_rd['result']['dwlFile_id']."' disabled></div>".
     "<div class='input-line'><label for='dwlFileName'>Название:</label>".
     "<input type='text' name='dwlFileName' id='targetName' ";
-if($File_rd->result['dwlFileName']){
-    $appRJ->response['result'].= "value='".$File_rd->result['dwlFileName']."'";
+if($File_rd['result']['dwlFileName']){
+    $appRJ->response['result'].= "value='".$File_rd['result']['dwlFileName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
 if(isset($fileErr['catName'])){
@@ -56,8 +56,8 @@ if(isset($fileErr['catName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='catAlias'>Alias:</label>".
     "<input type='text' name='dwlFileAliace' id='targetAlias' ";
-if($File_rd->result['dwlFileAliace']){
-    $appRJ->response['result'].= "value='".$File_rd->result['dwlFileAliace']."'";
+if($File_rd['result']['dwlFileAliace']){
+    $appRJ->response['result'].= "value='".$File_rd['result']['dwlFileAliace']."'";
 }
 $appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkCatAlias'>";
 $appRJ->response['result'].= "<div class='field-err'>";
@@ -67,20 +67,20 @@ if(isset($fileErr['catAlias'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='dwlFileDescr'>Описание:</label>".
     "<textarea name='dwlFileDescr' rows='5'>";
-if($File_rd->result['dwlFileDescr']){
-    $appRJ->response['result'].= $File_rd->result['dwlFileDescr'];
+if($File_rd['result']['dwlFileDescr']){
+    $appRJ->response['result'].= $File_rd['result']['dwlFileDescr'];
 }
 $appRJ->response['result'].= "</textarea></div>".
     "<div class='input-line'><label for='fileVersion'>Версия:</label>".
     "<input type='text' name='fileVersion' ";
-if($File_rd->result['fileVersion']){
-    $appRJ->response['result'].= "value='".$File_rd->result['fileVersion']."'";
+if($File_rd['result']['fileVersion']){
+    $appRJ->response['result'].= "value='".$File_rd['result']['fileVersion']."'";
 }
 $appRJ->response['result'].= "></div>".
     "<div class='input-line'><label for='fileLicence'>Лицензия:</label>";
 $appRJ->response['result'].= "<input type='text' name='fileLicence' ";
-if($File_rd->result['fileLicence']){
-    $appRJ->response['result'].= "value='".$File_rd->result['fileLicence']."'";
+if($File_rd['result']['fileLicence']){
+    $appRJ->response['result'].= "value='".$File_rd['result']['fileLicence']."'";
 }
 $appRJ->response['result'].= "></div>".
     "<div class='input-line'><label for='dwlCat_id'>cat_id:</label>".
@@ -92,7 +92,7 @@ if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelect.= "<option value='".$categList_row['dwlCat_id']."' ";
-        if($categList_row['dwlCat_id'] == $File_rd->result['dwlCat_id']){
+        if($categList_row['dwlCat_id'] == $File_rd['result']['dwlCat_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -110,7 +110,7 @@ if(mysql_num_rows($categList_res)>0){
 $appRJ->response['result'].= $catSelect."</select></div>".
     "<div class='input-line'><label for='fileActive_flag'>Показывать:</label>".
     "<input type='checkbox' name='fileActive_flag' ";
-if($File_rd->result['fileActive_flag']){
+if($File_rd['result']['fileActive_flag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".

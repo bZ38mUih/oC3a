@@ -30,8 +30,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/artMan/views/artMan-subMenu.php"
 $appRJ->response['result'].= "<form class='editImg'>";
 $appRJ->response['result'].= "<div class='img-frame'>";
 $delImgBtn_text=null;
-if($Cat_rd->result['catImg']){
-    $appRJ->response['result'].= "<img src='".ART_CATEG_IMG_PAPH.$_GET['cat_id']."/preview/".$Cat_rd->result['catImg']."'>";
+if($Cat_rd['result']['catImg']){
+    $appRJ->response['result'].= "<img src='".ART_CATEG_IMG_PAPH.$_GET['cat_id']."/preview/".$Cat_rd['result']['catImg']."'>";
     $delImgBtn_text= "class='active'";
 }else{
     $appRJ->response['result'].= "<img src='/data/default-img.png'>";
@@ -59,13 +59,13 @@ if(isset($catErr['common']) and $catErr['common']===true){
 $appRJ->response['result'].= "<input type='hidden' name='flagField' value='editCat'>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='cat_id'>cat_id:</label>";
-$appRJ->response['result'].= "<input type='text' name='cat_id' value='".$Cat_rd->result['artCat_id']."' disabled>";
+$appRJ->response['result'].= "<input type='text' name='cat_id' value='".$Cat_rd['result']['artCat_id']."' disabled>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='catName'>Название:</label>";
 $appRJ->response['result'].= "<input type='text' name='catName' id='targetName' ";
-if($Cat_rd->result['catName']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catName']."'";
+if($Cat_rd['result']['catName']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catName']."'";
 }
 $appRJ->response['result'].= ">";
 $appRJ->response['result'].= "<div class='field-err'>";
@@ -77,8 +77,8 @@ $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='catAlias'>Alias:</label>";
 $appRJ->response['result'].= "<input type='text' name='catAlias' id='targetAlias' ";
-if($Cat_rd->result['catAlias']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catAlias']."'";
+if($Cat_rd['result']['catAlias']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catAlias']."'";
 }
 $appRJ->response['result'].= ">";
 $appRJ->response['result'].= "<input type='button' onclick='mkAlias()' value='mkCatAlias'>";
@@ -92,8 +92,8 @@ $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='catDescr'>Описание:</label>";
 $appRJ->response['result'].= "<textarea name='catDescr'>";
 
-if($Cat_rd->result['catDescr']){
-    $appRJ->response['result'].= $Cat_rd->result['catDescr'];
+if($Cat_rd['result']['catDescr']){
+    $appRJ->response['result'].= $Cat_rd['result']['catDescr'];
 }
 $appRJ->response['result'].= "</textarea>";
 $appRJ->response['result'].= "<div class='field-err'>";
@@ -108,14 +108,14 @@ $appRJ->response['result'].= "<label for='artCatPar_id'>artCatPar_id:</label>";
 $appRJ->response['result'].= "<select name='artCatPar_id'>";
 
 /*select options-->*/
-$categList_text="select artCat_id, artCatPar_id, catName from artCat_dt WHERE artCat_id<>".$Cat_rd->result['artCat_id'].
+$categList_text="select artCat_id, artCatPar_id, catName from artCat_dt WHERE artCat_id<>".$Cat_rd['result']['artCat_id'].
     " ORDER BY catName ";
 $categList_res=$DB->doQuery($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelectOptions.= "<option value='".$categList_row['artCat_id']."' ";
-        if($categList_row['artCat_id'] == $Cat_rd->result['artCatPar_id']){
+        if($categList_row['artCat_id'] == $Cat_rd['result']['artCatPar_id']){
             $findSelected=true;
             $catSelectOptions.= " selected";
         }
@@ -136,7 +136,7 @@ $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='artCat_active'>Показывать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
-if($Cat_rd->result['activeFlag']){
+if($Cat_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= ">";

@@ -25,8 +25,8 @@ $appRJ->response['result'].= "<form method='post'>".
     "<div class='input-line'>".
     "<label for='artName'>Название:</label>".
     "<input type='text' name='artName' id='targetName' ";
-if($Art_rd->result['artName']){
-    $appRJ->response['result'].= "value='".$Art_rd->result['artName']."'";
+if($Art_rd['result']['artName']){
+    $appRJ->response['result'].= "value='".$Art_rd['result']['artName']."'";
 }
 $appRJ->response['result'].= ">";
 $appRJ->response['result'].= "<div class='field-err'>";
@@ -36,8 +36,8 @@ if(isset($artErr['artName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='artAlias'>Alias:</label>".
     "<input type='text' name='artAlias' id='targetAlias' ";
-if($Art_rd->result['artAlias']){
-    $appRJ->response['result'].= "value='".$Art_rd->result['artAlias']."'";
+if($Art_rd['result']['artAlias']){
+    $appRJ->response['result'].= "value='".$Art_rd['result']['artAlias']."'";
 }
 $appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkArtAlias'>".
     "<div class='field-err'>";
@@ -47,8 +47,8 @@ if(isset($artErr['artAlias'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Мета:</label>".
     "<textarea name='artMeta' rows='3' >";
-if($Art_rd->result['artMeta']){
-    $appRJ->response['result'].= $Art_rd->result['artMeta'];
+if($Art_rd['result']['artMeta']){
+    $appRJ->response['result'].= $Art_rd['result']['artMeta'];
 }
 $appRJ->response['result'].= "</textarea>".
     "<div class='field-err'>";
@@ -65,7 +65,7 @@ if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelect.= "<option value='".$categList_row['artCat_id']."' ";
-        if($categList_row['artCat_id'] == $Art_rd->result['art_id']){
+        if($categList_row['artCat_id'] == $Art_rd['result']['art_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -85,13 +85,13 @@ $appRJ->response['result'].= "</select>".
     "</div>".
     "<div class='input-line'><label>Показывать:</label>".
     "<input type='checkbox' name='activeFlag' ";
-if($Art_rd->result['activeFlag']){
+if($Art_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>";
 $appRJ->response['result'].= "<div class='input-line'><label>Комментировать:</label>".
     "<input type='checkbox' name='allowCm' ";
-if($Art_rd->result['allowCm']){
+if($Art_rd['result']['allowCm']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".

@@ -3,26 +3,26 @@ if($_SESSION['bucket']['total']!=$_GET['sum']){
     $mkOrder_err.="недопустимое значение sum-2;";
 }
 if($_SESSION['bucket']['discont']){
-    $Order_rd->result['discont']=$_SESSION['bucket']['discont'];
+    $Order_rd['result']['discont']=$_SESSION['bucket']['discont'];
 }else{
-    $Order_rd->result['discont']=1000;
+    $Order_rd['result']['discont']=1000;
 }
 if($mkOrder_err==null) {
     if($_SESSION["bucket"]["order_id"]){
         $rmBucket_qry="delete from ordersBucket_dt WHERE order_id=".$_SESSION["bucket"]["order_id"];
         $DB->doQuery($rmBucket_qry);
-        $Order_rd ->result['order_id']=$_SESSION["bucket"]["order_id"];
+        $Order_rd ['result']['order_id']=$_SESSION["bucket"]["order_id"];
         $Order_rd->updateOne();
     }else{
         $Order_rd->putOne();
-        $_SESSION["bucket"]["order_id"]=$Order_rd ->result['order_id'];
+        $_SESSION["bucket"]["order_id"]=$Order_rd ['result']['order_id'];
     }
     $cards_cnt=0;
     foreach ($_SESSION['bucket']['prod'] as $key=>$val){
         $OrdBucket_rd=new recordDefault("ordersBucket_dt", "bucket_id");
-        $OrdBucket_rd->result['order_id']=$Order_rd->result["order_id"];
-        $OrdBucket_rd->result['card_id']=$key;
-        $OrdBucket_rd->result['bucketPrice']=$val;
+        $OrdBucket_rd['result']['order_id']=$Order_rd['result']["order_id"];
+        $OrdBucket_rd['result']['card_id']=$key;
+        $OrdBucket_rd['result']['bucketPrice']=$val;
         $OrdBucket_rd->putOne();
         $cards_cnt++;
     }

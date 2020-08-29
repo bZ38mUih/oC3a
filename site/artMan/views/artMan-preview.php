@@ -1,5 +1,5 @@
 <?php
-$h1 =$Art_rd->result['artName'];
+$h1 =$Art_rd['result']['artName'];
 
 $fndP=false;
 $slArtP_qry="select * from artLinks_dt WHERE art_id=".$_GET['art_id']." and linkType='page'";
@@ -50,10 +50,10 @@ $appRJ->response['result'].= "<div class='contentBlock-wrap'>";
 
 $appRJ->response['result'].= "<div class='art-header'>";
 $appRJ->response['result'].="<div class='art-header-img'>";
-$appRJ->response['result'].="<img src='".ARTS_IMG_PAPH.$_GET['art_id']."/preview/".$Art_rd->result['artImg']."'>";
+$appRJ->response['result'].="<img src='".ARTS_IMG_PAPH.$_GET['art_id']."/preview/".$Art_rd['result']['artImg']."'>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].="<div class='art-header-descr'>";
-$appRJ->response['result'].="<h2>".$Art_rd->result['artMeta']."</h2>";
+$appRJ->response['result'].="<h2>".$Art_rd['result']['artMeta']."</h2>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "</div>";
 

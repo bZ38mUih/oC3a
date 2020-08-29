@@ -35,8 +35,8 @@ $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='catName'>Название:</label>";
 
 $appRJ->response['result'].= "<input type='text' name='catName' id='targetName' ";
-if($Cat_rd->result['catName']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catName']."'";
+if($Cat_rd['result']['catName']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catName']."'";
 }
 $appRJ->response['result'].= ">";
 
@@ -50,8 +50,8 @@ $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='catAlias'>Alias:</label>";
 $appRJ->response['result'].= "<input type='text' name='catAlias' id='targetAlias' ";
-if($Cat_rd->result['catAlias']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catAlias']."'";
+if($Cat_rd['result']['catAlias']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catAlias']."'";
 }
 $appRJ->response['result'].= ">";
 $appRJ->response['result'].= "<input type='button' onclick='mkAlias()' value='mkCatAlias'>";
@@ -64,8 +64,8 @@ $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='catDescr'>Описание:</label>";
 $appRJ->response['result'].= "<textarea name='catDescr' rows='3'>";
-if($Cat_rd->result['catDescr']){
-    $appRJ->response['result'].= "value='".$Cat_rd->result['catDescr']."'";
+if($Cat_rd['result']['catDescr']){
+    $appRJ->response['result'].= "value='".$Cat_rd['result']['catDescr']."'";
 }
 $appRJ->response['result'].= "</textarea>";
 $appRJ->response['result'].= "<div class='field-err'>";
@@ -86,7 +86,7 @@ if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelect.= "<option value='".$categList_row['artCat_id']."' ";
-        if($categList_row['artCat_id'] == $Cat_rd->result['artCatPar_id']){
+        if($categList_row['artCat_id'] == $Cat_rd['result']['artCatPar_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -107,7 +107,7 @@ $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label>Показывать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
-if($Cat_rd->result['activeFlag']){
+if($Cat_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= ">";

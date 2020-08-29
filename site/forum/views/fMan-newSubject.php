@@ -23,8 +23,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subMenu.php");
 $appRJ->response['result'].= "<form method='post'><input type='hidden' name='flagField' value='newSubject'>".
     "<div class='input-line'><label>Название:</label>".
     "<input type='text' name='sName' id='targetName' ";
-if($Subj_rd->result['sName']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['sName']."'";
+if($Subj_rd['result']['sName']){
+    $appRJ->response['result'].= "value='".$Subj_rd['result']['sName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
 if(isset($subjErr['sName'])){
@@ -33,8 +33,8 @@ if(isset($subjErr['sName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Alias:</label>".
     "<input type='text' name='sAlias' id='targetAlias' ";
-if($Subj_rd->result['sAlias']){
-    $appRJ->response['result'].= "value='".$Subj_rd->result['sAlias']."'";
+if($Subj_rd['result']['sAlias']){
+    $appRJ->response['result'].= "value='".$Subj_rd['result']['sAlias']."'";
 }
 $appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkAlbAlias'><div class='field-err'>";
 if(isset($subjErr['sAlias'])){
@@ -42,8 +42,8 @@ if(isset($subjErr['sAlias'])){
 }
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>Мета:</label><textarea name='metaDescr' rows='3' >";
-if($Subj_rd->result['metaDescr']){
-    $appRJ->response['result'].= $Subj_rd->result['metaDescr'];
+if($Subj_rd['result']['metaDescr']){
+    $appRJ->response['result'].= $Subj_rd['result']['metaDescr'];
 }
 $appRJ->response['result'].= "</textarea><div class='field-err'>";
 if(isset($subjErr['metaDescr'])){
@@ -58,7 +58,7 @@ if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
     while ($categList_row=$DB->doFetchRow($categList_res)){
         $catSelect.= "<option value='".$categList_row['fm_id']."' ";
-        if($categList_row['fm_id'] == $Subj_rd->result['fm_id']){
+        if($categList_row['fm_id'] == $Subj_rd['result']['fm_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -76,13 +76,13 @@ if(mysql_num_rows($categList_res)>0){
 $appRJ->response['result'].= $catSelect."</select></div>".
     "<div class='input-line'><label>Показывать:</label>".
     "<input type='checkbox' name='activeFlag' ";
-if($Subj_rd->result['activeFlag']){
+if($Subj_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".
     "<div class='input-line'><label>Индексировать:</label>".
     "<input type='checkbox' name='robIndex' ";
-if($Subj_rd->result['robIndex']){
+if($Subj_rd['result']['robIndex']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".

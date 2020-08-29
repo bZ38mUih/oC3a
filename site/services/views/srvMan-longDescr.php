@@ -30,8 +30,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-subContent
 $appRJ->response['result'].= "<form name='xyi' method='post'>".
     "<input type='hidden' name='flagField' value='longDescr'>".
     "<textarea name='longDescr'>";
-if($Card_rd->result['longDescr']){
-    $appRJ->response['result'].= $Card_rd->result['longDescr'];
+if($Card_rd['result']['longDescr']){
+    $appRJ->response['result'].= $Card_rd['result']['longDescr'];
 }
 
 $appRJ->response['result'].="</textarea>";

@@ -17,7 +17,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/d/views/diaryHeader.php");
 $appRJ->response['result'].="<div class='diary-edit'>".
     "<form method='post'>".
     "<label>diary_id: <input type='text' value='".$diary_rd['result']['diary_id']."' disabled></label>".
-    //"<label>diaryType: <input type='date' value='".$diary_rd->result['diaryType']."'></label>".
+    //"<label>diaryType: <input type='date' value='".$diary_rd['result']['diaryType']."'></label>".
     "<label>diaryType: <select name='diaryType'>";
 foreach ($dType as $key=>$val){
     $appRJ->response['result'].="<option value='".$val."' ";
@@ -38,8 +38,8 @@ $appRJ->response['result'].="<div class='submt-panel'>".
     "<div class='btn-block'><input type='submit' value='Save'>".
     "</div></div>";
 /*
-    "<a href='/d/".$diary_rd->result['diaryType']."/lastNote/".$diary_rd->result['diary_id']."'>lastNote#".
-    $diary_rd->result['diary_id']."</a>".
+    "<a href='/d/".$diary_rd['result']['diaryType']."/lastNote/".$diary_rd['result']['diary_id']."'>lastNote#".
+    $diary_rd['result']['diary_id']."</a>".
     "<input type='submit' value='Save'>".*/
 $appRJ->response['result'].="<div class='pageErr'>".$pageErr."</div>".
     "</form>".

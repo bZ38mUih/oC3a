@@ -5,14 +5,14 @@ if ($_GET['receiver']){
     $appRJ->response['format']='ajax';
     $mkOrder_err=null;
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/payments/actions/mkOrder.php");
-    $Order_rd->result['discont']=0;
+    $Order_rd['result']['discont']=0;
     if($mkOrder_err==null) {
         if ($_SESSION["donate"]["order_id"]) {
-            $Order_rd->result['order_id'] = $_SESSION["donate"]["order_id"];
+            $Order_rd['result']['order_id'] = $_SESSION["donate"]["order_id"];
             $Order_rd->updateOne();
         } else {
             $Order_rd->putOne();
-            $_SESSION["donate"]["order_id"]=$Order_rd->result['order_id'];
+            $_SESSION["donate"]["order_id"]=$Order_rd['result']['order_id'];
         }
         $appRJ->response['result']="yes";
     }else{

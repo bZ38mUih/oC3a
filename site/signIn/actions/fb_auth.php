@@ -8,11 +8,11 @@ if(isset($tokenArr["access_token"]) and $tokenArr["access_token"]!=null){
         "&fields=id,first_name,last_name,link,email,gender,birthday,picture.width(60).height(60)");
     $usrArr = json_decode($usrReq, true);
     if(isset($usrArr["id"]) and $usrArr["id"]!=null){
-        $RD_accounts->result['netWork']="fb";
-        $RD_accounts->result['accLogin']=$usrArr['id'];
-        $RD_accounts->result['accAlias']=$usrArr['first_name']." ".$usrArr['last_name'];
-        $RD_accounts->result['photoLink']=$usrArr['picture']['data']['url'];
-        $RD_accounts->result['socProf']=$usrArr['link'];
+        $RD_accounts['result']['netWork']="fb";
+        $RD_accounts['result']['accLogin']=$usrArr['id'];
+        $RD_accounts['result']['accAlias']=$usrArr['first_name']." ".$usrArr['last_name'];
+        $RD_accounts['result']['photoLink']=$usrArr['picture']['data']['url'];
+        $RD_accounts['result']['socProf']=$usrArr['link'];
         $socialAuth_err = true;
     }else{
         $validErr=$usrReq;

@@ -1,7 +1,7 @@
 <?php
 $appRJ->response['result'].= "<form class='signIn' action='/signIn/' method='post' autocomplete='off'>".
-    "<span class='alerts warning'>".$required_fields->result['login']['err']."</span>".
-    "<span class='alerts warning'>".$required_fields->result['pw']['err']."</span>".
+    "<span class='alerts warning'>".$required_fields['result']['login']['err']."</span>".
+    "<span class='alerts warning'>".$required_fields['result']['pw']['err']."</span>".
     "<label for='usrLogin'  class='shown'>";
 if (isset($_COOKIE['usrLogin']) and ($_COOKIE['usrLogin']!=null)){
 

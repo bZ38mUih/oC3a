@@ -65,8 +65,8 @@ foreach ($parseLog as $key=>$value){
             $descrErr=null;
             //$tmpErr=null;
             $parseRD=new recordDefault("parseAdList_dt", "ad_id");
-            $parseRD->result['adDate']=date_format($CurDate, "Y-m-d H:i:s");
-            $parseRD->result['adType']=$key;
+            $parseRD['result']['adDate']=date_format($CurDate, "Y-m-d H:i:s");
+            $parseRD['result']['adType']=$key;
             if(!$posItem = strpos($pageCont, "item item_table ")){
                 if($parseLog[$key]['totalCnt']==0){
                     $parseLog[$key]['Esc'].="нет posItem";
@@ -89,8 +89,8 @@ foreach ($parseLog as $key=>$value){
                 $parseLog[$key]['err'].="нет posRef3";
                 break;
             }
-            $parseRD->result['prodRef']=urlencode(substr($pageCont, 0 , $posRef3));
-            if(!accessorialClass::checkDouble("parseAdList_dt", "prodRef", $parseRD->result['prodRef'])){
+            $parseRD['result']['prodRef']=urlencode(substr($pageCont, 0 , $posRef3));
+            if(!accessorialClass::checkDouble("parseAdList_dt", "prodRef", $parseRD['result']['prodRef'])){
                 $parseLog[$key]['doubleCnt']++;
             }else{
                 if(!$posProdName1=strpos($pageCont, "<span itemprop=\"name\">")){
@@ -102,41 +102,41 @@ foreach ($parseLog as $key=>$value){
                     $parseLog[$key]['Esc'].="нет posProdName2";
                     break;
                 }
-                $parseRD->result['prodName']=substr($pageCont, 0, $posProdName2);
+                $parseRD['result']['prodName']=substr($pageCont, 0, $posProdName2);
                 $pageCont=substr($pageCont, $posProdName2+7, strlen($pageCont));
 
 
                 if(!$posPrice1=strpos($pageCont,"data-marker=\"item-price\">")){
-                    $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD->result['prodName'];
+                    $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD['result']['prodName'];
                     break;
                 }
                 $pageCont=substr($pageCont, $posPrice1+25, strlen($pageCont));
                 if(!$posPrice2=strpos($pageCont, "₽")){
-                    $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD->result['prodName'];
+                    $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD['result']['prodName'];
                     break;
                 }
                 $sPrice=str_replace(" ", "", substr($pageCont, 0 ,$posPrice2));
-                $parseRD->result['prodPrice']=intval($sPrice);
+                $parseRD['result']['prodPrice']=intval($sPrice);
                 $pageCont=substr($pageCont, $posPrice2, strlen($pageCont));
 
                 /*
                 if(!$posPrice1=strpos($pageCont, "itemprop=\"price\"" )){
-                    $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD->result['prodName'];
+                    $parseLog[$key]['Esc'].="нет posPrice1-".$parseRD['result']['prodName'];
                     break;
                 }
                 $pageCont=substr($pageCont, $posPrice1+16, strlen($pageCont));
                 if(!$posPrice2=strpos($pageCont, "content=\"")){
-                    $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD->result['prodName'];
+                    $parseLog[$key]['Esc'].="нет posPrice2-".$parseRD['result']['prodName'];
                     break;
                 }
                 $pageCont=substr($pageCont, $posPrice2+9, strlen($pageCont));
                 if(!$posPrice3=strpos($pageCont, "\">")){
-                    $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD->result['prodName'];
+                    $parseLog[$key]['Esc'].="нет posPrice3-".$parseRD['result']['prodName'];
                     break;
                 }
 
 
-                $parseRD->result['prodPrice']=substr($pageCont, 0, $posPrice3);
+                $parseRD['result']['prodPrice']=substr($pageCont, 0, $posPrice3);
                 */
 
                 /*
@@ -152,11 +152,11 @@ foreach ($parseLog as $key=>$value){
                     break;
                 }
                 if(!$prodComp=substr($pageCont, 0, $posComp2-3)){
-                    $parseRD->result['prodComp']=null;
+                    $parseRD['result']['prodComp']=null;
                 }elseif(strlen($prodComp)==34){
-                    $parseRD->result['prodComp']=null;
+                    $parseRD['result']['prodComp']=null;
                 }else{
-                    $parseRD->result['prodComp']=$prodComp;
+                    $parseRD['result']['prodComp']=$prodComp;
                 }
 
                 $urlRef="https://avito.ru/".urldecode($parseRD['prodRef']);
@@ -182,19 +182,19 @@ foreach ($parseLog as $key=>$value){
                         $descrErr.="нет posDescr2<br>";
                     }
                     if($descrErr==null){
-                        $parseRD->result['prodSaler']=substr($dC, 0, $posSaler3);
-                        $parseRD->result['prodDescr']=mysql_real_escape_string(substr($descrCont, 0, $posDescr2));
+                        $parseRD['result']['prodSaler']=substr($dC, 0, $posSaler3);
+                        $parseRD['result']['prodDescr']=mysql_real_escape_string(substr($descrCont, 0, $posDescr2));
                         if($parseRD->putOne()){
                             $parseLog[$key]['sussCnt']++;
                         }else{
                             $parseLog[$key]['Esc'].="fail putOne";
                             /*
-                            $parseLog[$key]['err'].="fail putOne prodName=".$parseRD->result['prodName'].
-                                " prodPrice=".$parseRD->result['prodPrice'].
-                                " prodDescr=".$parseRD->result['prodDescr'].
-                                " prodSaler=".$parseRD->result['prodSaler'].
-                                " prodRef=".$parseRD->result['prodRef'].
-                                " prodComp=".$parseRD->result['prodComp'];
+                            $parseLog[$key]['err'].="fail putOne prodName=".$parseRD['result']['prodName'].
+                                " prodPrice=".$parseRD['result']['prodPrice'].
+                                " prodDescr=".$parseRD['result']['prodDescr'].
+                                " prodSaler=".$parseRD['result']['prodSaler'].
+                                " prodRef=".$parseRD['result']['prodRef'].
+                                " prodComp=".$parseRD['result']['prodComp'];
                             */
                             break;
                         }

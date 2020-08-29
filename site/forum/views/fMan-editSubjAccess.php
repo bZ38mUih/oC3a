@@ -44,17 +44,17 @@ $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='readRule'>Просмотр темы:</label>";
 $appRJ->response['result'].= "<select name='readRule'>";
 $appRJ->response['result'].= "<option value='off' ";
-if($Subj_rd->result['readRule']=='off'){
+if($Subj_rd['result']['readRule']=='off'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">off</option>";
 $appRJ->response['result'].= "<option value='all' ";
-if($Subj_rd->result['readRule']=='all'){
+if($Subj_rd['result']['readRule']=='all'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">all</option>";
 $appRJ->response['result'].= "<option value='users' ";
-if($Subj_rd->result['readRule']=='users'){
+if($Subj_rd['result']['readRule']=='users'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">users</option>";
@@ -67,13 +67,13 @@ $writeRule=null;
 if(mysql_num_rows($groups_res)>0){
     while ($groups_row=$DB->doFetchRow($groups_res)){
         $appRJ->response['result'].= "<option value='".$groups_row['group_id']."' ";
-        if($Subj_rd->result['readRule'] == $groups_row['group_id']){
+        if($Subj_rd['result']['readRule'] == $groups_row['group_id']){
             $appRJ->response['result'].= "selected";
         }
         $appRJ->response['result'].= ">".$groups_row['groupAlias']."</option>";
 
         $writeRule.= "<option value='".$groups_row['group_id']."' ";
-        if($Subj_rd->result['writeRule'] == $groups_row['group_id']){
+        if($Subj_rd['result']['writeRule'] == $groups_row['group_id']){
             $appRJ->response['result'].= "selected";
         }
         $writeRule.= ">".$groups_row['groupAlias']."</option>";
@@ -81,18 +81,18 @@ if(mysql_num_rows($groups_res)>0){
 }
 
 $appRJ->response['result'].= "</select>";
-//$appRJ->response['result'].= "<input type='text' name='subj_id' value='".$Subj_rd->result['subject_id']."' disabled>";
+//$appRJ->response['result'].= "<input type='text' name='subj_id' value='".$Subj_rd['result']['subject_id']."' disabled>";
 $appRJ->response['result'].= "</div>";
 $appRJ->response['result'].= "<div class='input-line'>";
 $appRJ->response['result'].= "<label for='writeRule'>Написание комментов:</label>";
 $appRJ->response['result'].= "<select name='writeRule'>";
 $appRJ->response['result'].= "<option value='off' ";
-if($Subj_rd->result['readRule']=='off'){
+if($Subj_rd['result']['readRule']=='off'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">off</option>";
 $appRJ->response['result'].= "<option value='users' ";
-if($Subj_rd->result['readRule']=='users'){
+if($Subj_rd['result']['readRule']=='users'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">users</option>";

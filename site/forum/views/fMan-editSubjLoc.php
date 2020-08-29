@@ -29,9 +29,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subMenu.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/forum/views/fMan-subjContentMenu.php");
 $appRJ->response['result'].= "<form class='s-descr'>".
     "<div id='map' style='width: 600px; height: 400px'></div>".
-    //"<input type='hidden' name='fs_id' value='".$Subj_rd->result['fs_id']."'>".
+    //"<input type='hidden' name='fs_id' value='".$Subj_rd['result']['fs_id']."'>".
     //"<input type='hidden' name='flagField' value='longDescr'>".
-    //"<textarea name='longDescr'>".$Subj_rd->result['longDescr']."</textarea>".
+    //"<textarea name='longDescr'>".$Subj_rd['result']['longDescr']."</textarea>".
     "<div class='input-line'><input type='button' value='save' onclick='updateSDescr()'></div>".
     "</form>".
     "</div></div></div>";

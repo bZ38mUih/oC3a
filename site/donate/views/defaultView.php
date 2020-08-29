@@ -1,6 +1,6 @@
 <?php
 if($_SESSION['donate']['order_id']) {
-    $Order_rd->result["order_id"] = $_SESSION['donate']['order_id'];
+    $Order_rd['result']["order_id"] = $_SESSION['donate']['order_id'];
     $Order_rd->copyOne();
 }
 $donate_qry="select SUM(amount) as dntAmount from payments_dt WHERE ".
@@ -44,8 +44,8 @@ $appRJ->response['result'].= "<div class='contentBlock-frame dark'><div class='c
     "<div class='dnt-form'>".
     "<form class='donate' method='post' action='https://money.yandex.ru/quickpay/confirm.xml'>".
     "<label class='dnt-sum'><input type='number' name='sum' value='";
-if($Order_rd->result["orderSum"]){
-    $appRJ->response['result'].=$Order_rd->result["orderSum"];
+if($Order_rd['result']["orderSum"]){
+    $appRJ->response['result'].=$Order_rd['result']["orderSum"];
 }else{
     $appRJ->response['result'].='100';
 }
@@ -59,8 +59,8 @@ $appRJ->response['result'].=$_SESSION["donate"]["total"].
     "<input type='hidden' name='quickpay-form' value='donate'>".
     "<input type='hidden' name='targets' value='Right Joint: пожертвование'>".
     "<label>Коментарий к переводу (необязательно)</label><textarea name='comment' rows='3'>";
-if($Order_rd->result["comment"]) {
-    $appRJ->response['result'].=$Order_rd->result["comment"];
+if($Order_rd['result']["comment"]) {
+    $appRJ->response['result'].=$Order_rd['result']["comment"];
 }
 $appRJ->response['result'].="</textarea>".
     "<input type='hidden' name='need-fio' value='false'>".
@@ -68,12 +68,12 @@ $appRJ->response['result'].="</textarea>".
     "<input type='hidden' name='need-phone' value='false'>".
     "<input type='hidden' name='need-address' value='false'>".
     "<label><input type='radio' name='paymentType' value='PC' ";
-if(isset($Order_rd->result["paymentType"]) and $Order_rd->result["paymentType"]=='PC'){
+if(isset($Order_rd['result']["paymentType"]) and $Order_rd['result']["paymentType"]=='PC'){
     $appRJ->response['result'].="checked";
 }
 $appRJ->response['result'].=">Яндекс.Деньгами</label>".
     "<label><input type='radio' name='paymentType' value='AC' ";
-if(!$Order_rd->result["paymentType"] or (isset($Order_rd->result["paymentType"]) and $Order_rd->result["paymentType"]=='AC')){
+if(!$Order_rd['result']["paymentType"] or (isset($Order_rd['result']["paymentType"]) and $Order_rd['result']["paymentType"]=='AC')){
     $appRJ->response['result'].="checked";
 }
 $appRJ->response['result'].=">Банковской картой</label>".

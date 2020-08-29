@@ -1,7 +1,7 @@
 <?php
 $Order_rd = new recordDefault("ordersList_dt", "order_id");
 if($_SESSION['bucket']['order_id']) {
-    $Order_rd->result["order_id"] = $_SESSION['bucket']['order_id'];
+    $Order_rd['result']["order_id"] = $_SESSION['bucket']['order_id'];
     $Order_rd->copyOne();
 }
 $h1 ="Оформление заказа - оплата";
@@ -43,14 +43,14 @@ $Card_rd=new recordDefault("srvCards_dt", "card_id");
 $prod_lst=null;
 if($_SESSION['bucket']['total']>=100){
     foreach ($_SESSION['bucket']['prod'] as $key=>$val){
-        $Card_rd->result['card_id']=$key;
+        $Card_rd['result']['card_id']=$key;
         if($Card_rd->copyOne()){
             $appRJ->response['result'].="<div class='order-line'><div class='order-img'><img src='".
-                SRV_CARD_IMG_PAPH.$Card_rd->result['card_id']."/preview/".
-                $Card_rd->result['cardImg']."'></div>".
-                "<div class='order-nm'><a href='/services/detail/".$Card_rd->result['cardAlias']."'>".
-                $Card_rd->result['cardName']."</a></div><div class='order-price'> ".$val." руб.</div></div>";
-            $prod_lst.=$Card_rd->result['cardName']."; ";
+                SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id']."/preview/".
+                $Card_rd['result']['cardImg']."'></div>".
+                "<div class='order-nm'><a href='/services/detail/".$Card_rd['result']['cardAlias']."'>".
+                $Card_rd['result']['cardName']."</a></div><div class='order-price'> ".$val." руб.</div></div>";
+            $prod_lst.=$Card_rd['result']['cardName']."; ";
         }
     }
     $prod_lst=substr($prod_lst, 0, 150);
@@ -64,24 +64,24 @@ if($_SESSION['bucket']['total']>=100){
         "<input type='hidden' name='targets' value='".$prod_lst."'>".
         "<div class='paymType'><span>Выберете вид платежа:</span><div class='paymType-selector'>".
         "<label><input type='radio' name='quickpay-form' value='donate' onclick='paymType(0)' ";
-    if(!$Order_rd->result["quickpayForm"] or (isset($Order_rd->result["quickpayForm"]) and $Order_rd->result["quickpayForm"]=='donate')){
+    if(!$Order_rd['result']["quickpayForm"] or (isset($Order_rd['result']["quickpayForm"]) and $Order_rd['result']["quickpayForm"]=='donate')){
         $appRJ->response['result'].="checked";
     }
     $appRJ->response['result'].=">Благотворительный</label>".
         "<label><input type='radio' name='quickpay-form' value='shop' onclick='paymType(1)' ";
-    if(isset($Order_rd->result["quickpayForm"]) and $Order_rd->result["quickpayForm"]=='shop'){
+    if(isset($Order_rd['result']["quickpayForm"]) and $Order_rd['result']["quickpayForm"]=='shop'){
         $appRJ->response['result'].="checked";
     }
     $appRJ->response['result'].=">Оплата услуг</label>".
         "</div><div class='paymType-descr donate ";
-    if(!$Order_rd->result["quickpayForm"] or (isset($Order_rd->result["quickpayForm"]) and
-            $Order_rd->result["quickpayForm"]=='donate')){
+    if(!$Order_rd['result']["quickpayForm"] or (isset($Order_rd['result']["quickpayForm"]) and
+            $Order_rd['result']["quickpayForm"]=='donate')){
         $appRJ->response['result'].="active";
     }
     $appRJ->response['result'].="'>когда нет необходимости официального оформления, работы будут выполнены".
         " от чистого сердца из бескорыстных побуждений</div>".
         "<div class='paymType-descr shop ";
-    if(isset($Order_rd->result["quickpayForm"]) and $Order_rd->result["quickpayForm"]=='shop'){
+    if(isset($Order_rd['result']["quickpayForm"]) and $Order_rd['result']["quickpayForm"]=='shop'){
         $appRJ->response['result'].="active";
     }
     $appRJ->response['result'].="'>когда необходимо официально оформить работы, кроме стоимости услуг".
@@ -89,8 +89,8 @@ if($_SESSION['bucket']['total']>=100){
         "услуг включая налоги, штрафы и т.п. в соответсвии с законодательством РФ.</div></div>".
         "<input type='hidden' name='sum' value='".$_SESSION["bucket"]["total"]."' data-type='number' min='100' max='10000'>".
         "<label>Комментарий к переводу (необязательно)</label><textarea name='comment' rows='3'>";
-    if($Order_rd->result["comment"]) {
-        $appRJ->response['result'].=$Order_rd->result["comment"];
+    if($Order_rd['result']["comment"]) {
+        $appRJ->response['result'].=$Order_rd['result']["comment"];
     }
     $appRJ->response['result'].="</textarea>".//your comment
         "<input type='hidden' name='need-fio' value='false'>".
@@ -98,12 +98,12 @@ if($_SESSION['bucket']['total']>=100){
         "<input type='hidden' name='need-phone' value='true'>".
         "<input type='hidden' name='need-address' value='false'>".
         "<label><input type='radio' name='paymentType' value='PC' ";
-    if(isset($Order_rd->result["paymentType"]) and $Order_rd->result["paymentType"]=='PC'){
+    if(isset($Order_rd['result']["paymentType"]) and $Order_rd['result']["paymentType"]=='PC'){
         $appRJ->response['result'].="checked";
     }
     $appRJ->response['result'].=">Яндекс.Деньгами</label>".
         "<label><input type='radio' name='paymentType' value='AC' ";
-    if(!$Order_rd->result["paymentType"] or (isset($Order_rd->result["paymentType"]) and $Order_rd->result["paymentType"]=='AC')){
+    if(!$Order_rd['result']["paymentType"] or (isset($Order_rd['result']["paymentType"]) and $Order_rd['result']["paymentType"]=='AC')){
         $appRJ->response['result'].="checked";
     }
     $appRJ->response['result'].=">Банковской картой</label>".
