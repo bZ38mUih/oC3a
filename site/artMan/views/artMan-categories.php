@@ -36,7 +36,7 @@ $appRJ->response['result'].= "<div class='contentBlock-wrap'>";
 require_once ($_SERVER["DOCUMENT_ROOT"]."/site/artMan/views/artMan-subMenu.php");
 
 $selectCat_query = "select * from artCat_dt ORDER BY artCat_id";
-$selectCat_res=$DB->doQuery($selectCat_query);
+$selectCat_res=$DB->query($selectCat_query);
 $catCount=0;
 
 if(mysql_num_rows($selectCat_res)>0){
@@ -76,7 +76,7 @@ if($catCount>0){
     $appRJ->response['result'].= "actFlag";
     $appRJ->response['result'].= "</div>";
     $appRJ->response['result'].= "</div>";
-    while ($selectCat_row=$DB->doFetchRow($selectCat_res)){
+    while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)){
 
         $appRJ->response['result'].= "<div class='item-line'>";
         $appRJ->response['result'].= "<div class='item-line-id'>";

@@ -36,14 +36,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/personal-page/views/ppMan-conten
 
 $usersGroups_text = "select * from usersToGroups_dt WHERE user_id=".$_GET['user_id'];
 
-$usersGroups_res = $DB->doQuery($usersGroups_text);
+$usersGroups_res = $DB->query($usersGroups_text);
 $usersGroups_arr=null;
-while ($usersGroups_row=$DB->doFetchRow($usersGroups_res)) {
+while ($usersGroups_row = $usersGroups_res->fetch(PDO::FETCH_ASSOC)) {
     $usersGroups_arr[$usersGroups_row['group_id']]=$usersGroups_row['rules'];
 }
 
 $groups_text = "select * from usersGroups_dt";
-$groups_res=$DB->doQuery($groups_text);
+$groups_res=$DB->query($groups_text);
 
 $groupsRules=null;
 $groupsRules['admin']=10;
@@ -58,7 +58,7 @@ $tmp = null;
 
 $appRJ->response['result'].= "<form class='userGroups' method='post'>";
 $appRJ->response['result'].= "<input type='hidden' name='editUsrGr_flag' value='Yes'>";
-while ($groups_row=$DB->doFetchRow($groups_res)){
+while ($groups_row = $groups_res->fetch(PDO::FETCH_ASSOC)){
     $appRJ->response['result'].= "<div class='item-line'>";
     $appRJ->response['result'].= "<div class='item-line-img'>";
     if($groups_row['img']){

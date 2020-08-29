@@ -3,7 +3,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/artMan/actions/printArtComments.
 if(isset($_POST['artCm_pid'])){
     if($_POST['artCm'] and $_POST['artCm']!=null){
         if(isset($_POST['art_id']) and $_POST['art_id']!=null){
-            $newCm = new recordDefault('artComments_dt', 'artCm_id');
+            $newCm = array("table" => 'artComments_dt', 'field_id' => 'artCm_id');
             $newCm['result']['user_id']=$_SESSION['user_id'];
             $newCm['result']['art_id']=$_POST['art_id'];
             $newCm['result']['commmentCont']=$_POST['artCm'];
@@ -20,10 +20,10 @@ if(isset($_POST['artCm_pid'])){
                     "where art_id=".$newCm['result']['art_id']." and artCm_pid is null";
                 $artAnsw_query="select count(artCm_id) as artAnsw from artComments_dt ".
                     "where art_id='".$newCm['result']['art_id']."' and artCm_pid is not null";
-                $artComms_res=$DB->doQuery($artComms_query);
-                $artAnsw_res=$DB->doQuery($artAnsw_query);
-                $artComms_row=$DB->doFetchRow($artComms_res);
-                $artAnsw_row=$DB->doFetchRow($artAnsw_res);
+                $artComms_res=$DB->query($artComms_query);
+                $artAnsw_res=$DB->query($artAnsw_query);
+                $artComms_row = $artComms_res->fetch(PDO::FETCH_ASSOC);
+                $artAnsw_row = $artAnsw_res->fetch(PDO::FETCH_ASSOC);
                 $refBlock['artComm']=$artComms_row['artComm'];
                 $refBlock['artAnsw']=$artAnsw_row['artAnsw'];
                 if($refBlock['cntTotal']>0){

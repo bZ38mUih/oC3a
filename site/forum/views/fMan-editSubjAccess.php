@@ -62,10 +62,10 @@ $appRJ->response['result'].= ">users</option>";
 
 $groups_text = "select * from usersGroups_dt WHERE activeFlag is true ORDER BY group_id ";
 
-$groups_res = $DB->doQuery($groups_text);
+$groups_res = $DB->query($groups_text);
 $writeRule=null;
 if(mysql_num_rows($groups_res)>0){
-    while ($groups_row=$DB->doFetchRow($groups_res)){
+    while ($groups_row = $groups_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<option value='".$groups_row['group_id']."' ";
         if($Subj_rd['result']['readRule'] == $groups_row['group_id']){
             $appRJ->response['result'].= "selected";

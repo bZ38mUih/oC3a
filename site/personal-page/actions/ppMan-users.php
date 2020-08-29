@@ -3,7 +3,7 @@
 $slUsr_qry = "select * from users_dt INNER JOIN accounts_dt ON users_dt.user_id = accounts_dt.user_id".
     " WHERE accMain_flag is TRUE ORDER BY users_dt.user_id DESC";
 
-$slUsr_res=$DB->doQuery($slUsr_qry);
+$slUsr_res=$DB->query($slUsr_qry);
 
 $usrCount=0;
 
@@ -44,7 +44,7 @@ if($usrCount>0){
     $appRJ->response['result'].= "</div>";
 
     $appRJ->response['result'].= "</div>";
-    while ($slUsr_row=$DB->doFetchRow($slUsr_res)){
+    while ($slUsr_row = $slUsr_res->fetch(PDO::FETCH_ASSOC)){
 
         $appRJ->response['result'].= "<div class='item-line'>";
         $appRJ->response['result'].= "<div class='item-line-id'>";

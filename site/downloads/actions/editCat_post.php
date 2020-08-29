@@ -1,6 +1,6 @@
 <?php
 
-$Cat_rd = new recordDefault("dwlCat_dt", "dwlCat_id");
+$Cat_rd = array("table" => "dwlCat_dt", "field_id" => "dwlCat_id");
 if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
     $Cat_rd['result']['dwlCat_id'] = $_GET['cat_id'];
     $Cat_rd->copyOne();

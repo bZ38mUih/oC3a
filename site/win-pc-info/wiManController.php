@@ -95,9 +95,9 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         if(isset($appRJ->server['reqUri_expl'][5]) and $appRJ->server['reqUri_expl'][5]!=null){
             $urlDec=urldecode($appRJ->server['reqUri_expl'][5]);
             $slHw_qry="select * from wdHwList_dt WHERE paramVal='".$urlDec."'";
-            $slHw_res=$DB->doQuery($slHw_qry);
+            $slHw_res=$DB->query($slHw_qry);
             if(mysql_num_rows($slHw_res)==1){
-                $slHw_row=$DB->doFetchRow($slHw_res);
+                $slHw_row = $slHw_res->fetch(PDO::FETCH_ASSOC);
                 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-hardware.php");
             }else{
                 $appRJ->errors['404']['description']="invalid paramName or invalid";
@@ -113,9 +113,9 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         if(isset($appRJ->server['reqUri_expl'][5]) and $appRJ->server['reqUri_expl'][5]!=null){
             $urlDec=urldecode($appRJ->server['reqUri_expl'][5]);
             $slEnv_qry="select * from wdEnvList_dt WHERE vVal='".$urlDec."' and vName='".$appRJ->server['reqUri_expl'][4]."'";
-            $slEnv_res=$DB->doQuery($slEnv_qry);
+            $slEnv_res=$DB->query($slEnv_qry);
             if(mysql_num_rows($slEnv_res)==1){
-                $slEnv_row=$DB->doFetchRow($slEnv_res);
+                $slEnv_row = $slEnv_res->fetch(PDO::FETCH_ASSOC);
                 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-environment.php");
             }else{
                 $appRJ->errors['404']['description']="invalid vName or vVal";
@@ -131,9 +131,9 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         if(isset($appRJ->server['reqUri_expl'][5]) and $appRJ->server['reqUri_expl'][5]!=null){
             $urlDec=urldecode($appRJ->server['reqUri_expl'][5]);
             $slEnv_qry="select * from wdOsList_dt WHERE osVal='".$urlDec."' and osName='".$appRJ->server['reqUri_expl'][4]."'";
-            $slEnv_res=$DB->doQuery($slEnv_qry);
+            $slEnv_res=$DB->query($slEnv_qry);
             if(mysql_num_rows($slEnv_res)==1){
-                $slEnv_row=$DB->doFetchRow($slEnv_res);
+                $slEnv_row = $slEnv_res->fetch(PDO::FETCH_ASSOC);
                 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-os.php");
             }else{
                 $appRJ->errors['404']['description']="invalid vName or vVal";
@@ -147,9 +147,9 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
 }elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="process"){
     if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
         $slProcess_qry="select * from wdProcList_dt where pName='".$appRJ->server['reqUri_expl'][4]."'";
-        $slProcess_res=$DB->doQuery($slProcess_qry);
+        $slProcess_res=$DB->query($slProcess_qry);
         if(mysql_num_rows($slProcess_res)==1){
-            $slProcess_row=$DB->doFetchRow($slProcess_res);
+            $slProcess_row = $slProcess_res->fetch(PDO::FETCH_ASSOC);
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-process.php");
         }
     }else{
@@ -158,9 +158,9 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
 }elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]=="services"){
     if(isset($appRJ->server['reqUri_expl'][4]) and $appRJ->server['reqUri_expl'][4]!=null){
         $slSrv_qry="select * from wdSrvList_dt where sName='".urldecode($appRJ->server['reqUri_expl'][4])."'";
-        $slSrv_res=$DB->doQuery($slSrv_qry);
+        $slSrv_res=$DB->query($slSrv_qry);
         if(mysql_num_rows($slSrv_res)==1){
-            $slSrv_row=$DB->doFetchRow($slSrv_res);
+            $slSrv_row = $slSrv_res->fetch(PDO::FETCH_ASSOC);
             require_once($_SERVER["DOCUMENT_ROOT"] . "/site/win-pc-info/views/wiMan-services.php");
         }
     }else{

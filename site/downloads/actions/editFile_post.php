@@ -1,6 +1,6 @@
 <?php
 
-$File_rd = new recordDefault("dwlFiles_dt", "dwlFile_id");
+$File_rd = array("table" => "dwlFiles_dt", "field_id" => "dwlFile_id");
 if(isset($_GET['file_id']) and $_GET['file_id']!=null){
     $File_rd['result']['dwlFile_id'] = $_GET['file_id'];
     $File_rd->copyOne();

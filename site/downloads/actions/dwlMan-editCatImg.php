@@ -2,7 +2,7 @@
 $editImg['result'] = false;
 $editImg['data'] = null;
 
-$Cat_rd = new recordDefault("dwlCat_dt", "dwlCat_id");
+$Cat_rd = array("table" => "dwlCat_dt", "field_id" => "dwlCat_id");
 $Cat_rd['result']['dwlCat_id']=$_POST['cat_id'];
 if($Cat_rd->copyOne()){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].DWL_CATEG_IMG_PAPH.$Cat_rd['result']['dwlCat_id'])) {

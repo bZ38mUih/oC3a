@@ -22,7 +22,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-wrap'>";
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/downloads/views/dwlMan-subMenu.php");
 $selectFiles_query = "select * from dwlFiles_dt LEFT JOIN dwlCat_dt ON dwlFiles_dt.dwlCat_id=dwlCat_dt.dwlCat_id";
-$selectFiles_res=$DB->doQuery($selectFiles_query);
+$selectFiles_res=$DB->query($selectFiles_query);
 $filesCount=0;
 if(mysql_num_rows($selectFiles_res)>0){
     $filesCount=mysql_num_rows($selectFiles_res);
@@ -37,7 +37,7 @@ if($filesCount>0){
         "<div class='item-line-img'>fileImg</div><div class='item-line-name'>fileName</div>".
         "<div class='item-line-alias'>fileAlias</div><div class='item-line-fVersion'>fileVers</div>".
         "<div class='item-line-flag'>fileFlag</div><div class='item-line-fCateg'>categ</div></div>";
-    while ($selectFile_row=$DB->doFetchRow($selectFiles_res)){
+    while ($selectFile_row = $selectFiles_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<div class='item-line'>".
             "<div class='item-line-id'>".
             "<a href='/downloads/dwlManager/editFile/?file_id=".$selectFile_row['dwlFile_id']."'>".

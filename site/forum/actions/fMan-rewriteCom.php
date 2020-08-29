@@ -3,7 +3,7 @@ $refBlock['err']=null;
 if(isset($_POST['fc_pid'])){
     if($_POST['fCm'] and $_POST['fCm']!=null){
         if(isset($_POST['fs_id']) and $_POST['fs_id']!=null){
-            $rewrCm = new recordDefault('forumComments_dt', 'fc_id');
+            $rewrCm = array("table" => 'forumComments_dt', "field_id" => 'fc_id');
             $rewrCm['result']['fc_id']=$_POST['fc_pid'];
             if($rewrCm->copyOne()){
                 $rewrCm['result']['commmentCont']=$_POST['fCm'];

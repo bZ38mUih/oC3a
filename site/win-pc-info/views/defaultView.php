@@ -60,11 +60,11 @@ if($wdList_rd->copyOne()){
         "</div></div><div class='line'><div class='td-48'>wdTag</div><div class='td-48'>".
         $wdList_rd['result']['wdTag']."</div> </div><div class='line'><div class='td-48'>loadDate</div>".
         "<div class='td-48'>".$wdList_rd['result']['diagDate']."</div></div></div></div>";
-    $wdEnv_res=$DB->doQuery($wdEnv_qry);
+    $wdEnv_res=$DB->query($wdEnv_qry);
     if(mysql_num_rows($wdEnv_res)>0){
         $appRJ->response['result'].="<div class='wi-block'><h3>Окружение</h3>".
         "<div class='wi-table'><div class='line caption'><div class='td-48'>envName</div><div class='td-48'>envVal</div></div>";
-        while ($wdEnv_row=$DB->doFetchRow($wdEnv_res)){
+        while ($wdEnv_row = $wdEnv_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<div class='line'><div class='td-48'>".$wdEnv_row['vName1'].
                 "</div><div class='td-48'>";
             if($wdEnv_row['vName1']!='MachineName' and $wdEnv_row['vName1']!='UserName'){
@@ -82,11 +82,11 @@ if($wdList_rd->copyOne()){
         }
         $appRJ->response['result'].="</div></div>";
     }
-    $wdOS_res=$DB->doQuery($wdOS_qry);
+    $wdOS_res=$DB->query($wdOS_qry);
     if(mysql_num_rows($wdOS_res)>0){
         $appRJ->response['result'].="<div class='wi-block'><h3>OS</h3>".
             "<div class='wi-table'><div class='line caption'><div class='td-48'>osName</div><div class='td-48'>osVal</div></div>";
-        while ($wdOS_row=$DB->doFetchRow($wdOS_res)){
+        while ($wdOS_row = $wdOS_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<div class='line'><div class='td-48'>".$wdOS_row['osName1'].
                 "</div><div class='td-48'>";
             if($wdOS_row['osName1']!='Name') {
@@ -105,11 +105,11 @@ if($wdList_rd->copyOne()){
         }
         $appRJ->response['result'].="</div></div>";
     }
-    $wdHw_res=$DB->doQuery($wdHw_qry);
+    $wdHw_res=$DB->query($wdHw_qry);
     if(mysql_num_rows($wdHw_res)>0){
         $appRJ->response['result'].="<div class='wi-block'><h3>Аппаратура</h3>".
             "<div class='wi-table'><div class='line caption'><div class='td-48'>hwName</div><div class='td-48'>hwVal</div></div>";;
-        while ($wdHw_row=$DB->doFetchRow($wdHw_res)){
+        while ($wdHw_row = $wdHw_res->fetch(PDO::FETCH_ASSOC)){
             $hwNum=null;
             if($wdHw_row['hwNum']!="-"){
                 $hwNum=" (".$wdHw_row['hwNum'].")";
@@ -135,14 +135,14 @@ if($wdList_rd->copyOne()){
         }
         $appRJ->response['result'].="</div></div>";
     }
-    $wdProc_res=$DB->doQuery($wdProc_qry);
+    $wdProc_res=$DB->query($wdProc_qry);
     if(mysql_num_rows($wdProc_res)>0){
         $appRJ->response['result'].="<div class='wi-block '><h3><span class='fName'>Процессы</span>".
             "<span class='fVal'>(".mysql_num_rows($wdProc_res).")</span></h3>";
         $appRJ->response['result'].=
             "<div class='wi-table'><div class='line caption'><div class='td-40'>pName</div>".
             "<div class='td-20'>PID</div><div class='td-30'>Path</div></div>";
-        while ($wdProc_row=$DB->doFetchRow($wdProc_res)){
+        while ($wdProc_row = $wdProc_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].=
                 "<div class='line'><div class='td-40'>";
             $appRJ->response['result'].="<div class='pCell-img'>";
@@ -165,13 +165,13 @@ if($wdList_rd->copyOne()){
         }
         $appRJ->response['result'].="</div></div>";
     }
-    $wdSrv_res=$DB->doQuery($wdSrv_qry);
+    $wdSrv_res=$DB->query($wdSrv_qry);
     if(mysql_num_rows($wdSrv_res)>0){
         $appRJ->response['result'].="<div class='wi-block'><h3><span class='fName'>Службы</span>".
             "<span class='fVal'>(".mysql_num_rows($wdSrv_res).")</span></h3>".
             "<div class='wi-table'><div class='line caption'><div class='td-40'>sName</div>".
             "<div class='td-20'>sSTName</div><div class='td-30'>sPath</div></div>";
-        while ($wdSrv_row=$DB->doFetchRow($wdSrv_res)){
+        while ($wdSrv_row = $wdSrv_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].=
                 "<div class='line'><div class='td-40'>";
 

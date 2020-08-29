@@ -1,5 +1,5 @@
 <?php
-$Cat_rd = new recordDefault("artCat_dt", "artCat_id");
+$Cat_rd = array("table" => "artCat_dt", "field_id" => "artCat_id");
 if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
     $Cat_rd['result']['artCat_id'] = $_GET['cat_id'];
     $Cat_rd->copyOne();

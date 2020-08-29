@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"]."/source/_conf/ym.php");
 if($_GET['addBucket']){
-    $addBucket=new recordDefault("srvCards_dt", "card_id");
+    $addBucket = array("table" => "srvCards_dt", "field_id" => "card_id");
     $addBucket['result']['card_id']=$_GET['addBucket'];
     if($addBucket->copyOne()){
         $_SESSION['bucket']['prod'][$addBucket['result']['card_id']]=$addBucket['result']['cardPrice'];
@@ -14,7 +14,7 @@ if($_GET['addBucket']){
     $appRJ->response['format']='ajax';
     //$appRJ->response['result']="test";
 
-    $Order_rd = new recordDefault("ordersList_dt", "order_id");
+    $Order_rd = array("table" => "ordersList_dt", "field_id" => "order_id");
     $mkOrder_err=null;
     $mkBucket=null;
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/payments/actions/mkOrder.php");

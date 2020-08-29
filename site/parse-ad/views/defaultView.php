@@ -11,8 +11,8 @@ if($adType=='all'){
     }
 }
 $adCount_qry="select count(*) as adCount from parseAdList_dt ".$wereCond;
-$adCount_res=$DB->doQuery($adCount_qry);
-$adCount_row=$DB->doFetchRow($adCount_res);
+$adCount_res=$DB->query($adCount_qry);
+$adCount_row = $adCount_res->fetch(PDO::FETCH_ASSOC);
 
 $pagesText=null;
 $pNum=1;
@@ -35,10 +35,10 @@ if($pNum>1){
 if($pNum>5){$pagesText.=" ...";}
 $parseRes=null;
 $parseList_text="select * from parseAdList_dt ".$wereCond." ORDER BY adDate DESC limit ".($curPage-1)*$volP.", ".$volP;
-$parseList_res=$DB->doQuery($parseList_text);
+$parseList_res=$DB->query($parseList_text);
 if(mysql_num_rows($parseList_res)>0){
     $adCountTmp=0;
-    while($parseList_row=$DB->doFetchRow($parseList_res)){
+    while($parseList_row = $parseList_res->fetch(PDO::FETCH_ASSOC)){
         $adCountTmp++;
         $parseRes.="<div class='line ad'><div class='content-wrap'> ".
             "<div class='ad_ref'><a href='https://avito.ru/".$parseList_row['prodRef']."' target='_blank'>".$adCountTmp."</a></div>".
@@ -63,8 +63,8 @@ if(mysql_num_rows($parseList_res)>0){
 }
 $logRes=null;
 $adLog_qry="select * from parseAdLog_dt order by logDate DESC";
-$adLog_res=$DB->doQuery($adLog_qry);
-$adLog_row=$DB->doFetchRow($adLog_res);
+$adLog_res=$DB->query($adLog_qry);
+$adLog_row = $adLog_res->fetch(PDO::FETCH_ASSOC);
 
 
 $h1 ="Парсинг объявлений";

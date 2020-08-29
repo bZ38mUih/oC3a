@@ -23,7 +23,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-wrap'>";
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-subMenu.php");
 $slSrv_qry = "select * from srvCards_dt LEFT JOIN srvCat_dt ON srvCards_dt.srvCat_id=srvCat_dt.srvCat_id";
-$slSrv_res=$DB->doQuery($slSrv_qry);
+$slSrv_res=$DB->query($slSrv_qry);
 $srvCnt=0;
 if(mysql_num_rows($slSrv_res)>0){
     $srvCnt=mysql_num_rows($slSrv_res);
@@ -40,7 +40,7 @@ if($srvCnt>0){
         "<div class='item-line-alias'>srvAlias</div>".
         "<div class='item-line-flag'>active</div>".
         "<div class='item-line-fCateg'>categ</div></div>";
-    while ($slSrv_row=$DB->doFetchRow($slSrv_res)){
+    while ($slSrv_row = $slSrv_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<div class='item-line'><div class='item-line-id'>".
             "<a href='/services/srvMan/cards/editCard/?card_id=".$slSrv_row['card_id']."'>".
             $slSrv_row['card_id']."</a></div>".

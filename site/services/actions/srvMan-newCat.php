@@ -1,6 +1,6 @@
 <?php
 $catErr=null;
-$Cat_rd = new recordDefault("srvCat_dt", "srvCat_id");
+$Cat_rd = array("table" => "srvCat_dt", "field_id" => "srvCat_id");
 if(isset($_POST['catName']) and $_POST['catName']!=null){
     $Cat_rd['result']['catName']=htmlspecialchars($_POST['catName']);
 }else{

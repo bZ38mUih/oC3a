@@ -5,9 +5,9 @@ if($_SESSION['donate']['order_id']) {
 }
 $donate_qry="select SUM(amount) as dntAmount from payments_dt WHERE ".
     "label IN (SELECT label FROM ordersList_dt WHERE shortDest='Right Joint: пожертвование') and hashEqual IS TRUE";
-$DB->doQuery($donate_qry);
-$donate_res=$DB->doQuery($donate_qry);
-$donate_row=$DB->doFetchRow($donate_res);
+$DB->query($donate_qry);
+$donate_res=$DB->query($donate_qry);
+$donate_row = $donate_res->fetch(PDO::FETCH_ASSOC);
 $h1 ="Пожертвования";
 $App['views']['social-block']=true;
 $appRJ->response['result'].= "<!DOCTYPE html>".

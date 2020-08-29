@@ -1,6 +1,6 @@
 <?php
 $artErr=null;
-$Art_rd = new recordDefault("art_dt", "art_id");
+$Art_rd = array("table" => "art_dt", "field_id" => "art_id");
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
 if(isset($_POST['artName']) and $_POST['artName']!=null){
     $Art_rd['result']['artName']=htmlspecialchars($_POST['artName']);

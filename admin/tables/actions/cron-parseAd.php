@@ -220,6 +220,6 @@ curl_close($ch);
 //print_r($parseLog);
 $insertLog_qry="insert into parseAdLog_dt (logDate, logContent) ".
     "VALUES ('".date_format($CurDate, "Y-m-d H:i:s")."', '". mysql_real_escape_string(json_encode($parseLog, true))."')";
-$DB->doQuery($insertLog_qry);
+$DB->query($insertLog_qry);
 //echo $insertLog_qry;
 exit;

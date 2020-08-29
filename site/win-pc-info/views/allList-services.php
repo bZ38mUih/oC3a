@@ -22,10 +22,10 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
     $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
         "<div class='contentBlock-wrap'><div class='lrp-wrap'>";
     $allS_qry="select * from wdSrvList_dt ORDER BY sName";
-    $allS_res=$DB->doQuery($allS_qry);
+    $allS_res=$DB->query($allS_qry);
     if(mysql_num_rows($allS_res)>0){
         $appRJ->response['result'].="<div class='wi-block'>";
-        while ($allS_row=$DB->doFetchRow($allS_res)){
+        while ($allS_row = $allS_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<h3><div class='line ta-left'><span class='fName'>";
             if($allS_row['sImg']){
                 $appRJ->response['result'].="<img src='".WD_SRV_IMG.$allS_row['sImg']."'>";

@@ -11,7 +11,7 @@ $slDifHw_qry="select * from (".$slHwLeft_qry.") as wdHwLeft left join (".$slHwRi
     "union select * from (".$slHwLeft_qry.") as wdHwLeft right join (".$slHwRight_qry.") as wdHwRight".
     " on wdHwLeft.paramNameLeft = wdHwRight.paramNameRight ".
     "and wdHwLeft.paramValLeft=wdHwRight.paramValRight order by paramNameLeft, paramNameRight";
-if(!$slDifHw_res=$DB->doQuery($slDifHw_qry)){
+if(!$slDifHw_res=$DB->query($slDifHw_qry)){
     $appRJ->response['result'].="---fail--";
 };
 if(mysql_num_rows($slDifHw_res)>0){
@@ -19,7 +19,7 @@ if(mysql_num_rows($slDifHw_res)>0){
     $rightDifCnt=0;
     $hwLines=null;
     $appRJ->response['result'].="<h3>Аппаратура: (".mysql_num_rows($slDifHw_res).")</h3>";
-    while ($slDifHw_row=$DB->doFetchRow($slDifHw_res)){
+    while ($slDifHw_row = $slDifHw_res->fetch(PDO::FETCH_ASSOC)){
         $hwLine=null;
         $hwLineClass=null;
         $hwLine.="<div class='td-24'>";

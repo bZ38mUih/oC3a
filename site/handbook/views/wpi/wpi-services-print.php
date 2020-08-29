@@ -1,7 +1,7 @@
 <?php
-$wdInfo_res=$DB->doQuery($wdInfo_qry);
+$wdInfo_res=$DB->query($wdInfo_qry);
 if(mysql_num_rows($wdInfo_res)==1){
-    $wdInfo_row=$DB->doFetchRow($wdInfo_res);
+    $wdInfo_row = $wdInfo_res->fetch(PDO::FETCH_ASSOC);
     $wdInfo.="<div class='wi-descr'>";
     if($wdInfo_row['sDescr']){
         $wdInfo.=$wdInfo_row['sDescr'];
@@ -13,12 +13,12 @@ if(mysql_num_rows($wdInfo_res)==1){
     $srvStat=null;
     $srvStat="<div class='wip-stat ta-left'>Частота встречаемости: ";
     $expCnt_txt="select count(distinct wd_id) as expCnt from wdSrv_dt";
-    $expCnt_res=$DB->doQuery($expCnt_txt);
-    $expCnt_row=$DB->doFetchRow($expCnt_res);
+    $expCnt_res=$DB->query($expCnt_txt);
+    $expCnt_row = $expCnt_res->fetch(PDO::FETCH_ASSOC);
 
     $expFreq_txt="select count(distinct wd_id) as expFreq from wdSrv_dt where sName='".$pVal."'";
-    $expFreq_res=$DB->doQuery($expFreq_txt);
-    $expFreq_row=$DB->doFetchRow($expFreq_res);
+    $expFreq_res=$DB->query($expFreq_txt);
+    $expFreq_row = $expFreq_res->fetch(PDO::FETCH_ASSOC);
 
     $srvStat.="в ".$expFreq_row['expFreq']." случаях из ".$expCnt_row['expCnt'];
 
@@ -26,8 +26,8 @@ if(mysql_num_rows($wdInfo_res)==1){
 on wdSrv_dt.wd_id=wdOS_dt.wd_id left join wdOsList_dt on wdOS_dt.osVal=wdOsList_dt.osVal
 where wdOS_dt.osName='BuildNumber' and  wdSrv_dt.sName='".$pVal."' group by wdOS_dt.osVal order by wdOS_dt.osVal";
 
-    $winStat_res=$DB->doQuery($winStat_txt);
-    while($winStat_row=$DB->doFetchRow($winStat_res)){
+    $winStat_res=$DB->query($winStat_txt);
+    while($winStat_row = $winStat_res->fetch(PDO::FETCH_ASSOC)){
         $srvStat.="<div>";
         if($winStat_row['osDescr']){
             $srvStat.="<a href='/handbook/win-system-info/BuildNumber/".$winStat_row['osVal']."' title='подробнее о версии сборки'>".

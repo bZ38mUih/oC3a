@@ -14,7 +14,7 @@ class requiredFields //extends recordDefault
         $DB->readSettings();
         $DB->connect_db();
         $query_text = "select * from accounts_dt where accLogin='".$login."' and netWork='".$netWork."'";
-        $query_res = $DB->doQuery($query_text);
+        $query_res = $DB->query($query_text);
         if(mysql_num_rows($query_res)===1)
         {
             return false;

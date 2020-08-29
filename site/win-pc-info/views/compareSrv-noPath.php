@@ -12,13 +12,13 @@ $slDifSrv_qry="select * from (".$slSrvLeft_qry.") as wdSrvLeft left join (".$slS
     " on wdSrvLeft.sNameLeft = wdSrvRight.sNameRight ".
     "order by sNameLeft, sNameRight";
 
-$slDifSrv_res=$DB->doQuery($slDifSrv_qry);
+$slDifSrv_res=$DB->query($slDifSrv_qry);
 if(mysql_num_rows($slDifSrv_res)>0){
     $appRJ->response['result'].="<h3>Службы (".mysql_num_rows($slDifSrv_res).")</h3>";
     $leftDifCnt=0;
     $rightDifCnt=0;
     $pLines=null;
-    while ($slDifSrv_row=$DB->doFetchRow($slDifSrv_res)){
+    while ($slDifSrv_row = $slDifSrv_res->fetch(PDO::FETCH_ASSOC)){
         $pLineClass=null;
         $pLine=null;
         $pLine.="<div class='td-48'>";

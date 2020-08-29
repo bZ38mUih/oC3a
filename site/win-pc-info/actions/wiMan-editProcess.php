@@ -20,12 +20,12 @@ if(isset($_POST['lastMod']) and $_POST['lastMod']!=null){
 }
 if(is_null($hwEdit['err'])){
     $slHw_qry="select * from wdProcList_dt WHERE pName='".$paramVal."'";
-    $slHw_res=$DB->doQuery($slHw_qry);
+    $slHw_res=$DB->query($slHw_qry);
     if(mysql_num_rows($slHw_res)===1){
-        $slHw_row=$DB->doFetchRow($slHw_res);
+        $slHw_row = $slHw_res->fetch(PDO::FETCH_ASSOC);
         $udHw_qry="update wdProcList_dt set pDescr='".$hwDescr."', lastMod='".$lastMod."' ".
             "WHERE pName='".$paramVal."'";
-        if($DB->doQuery($udHw_qry)){
+        if($DB->query($udHw_qry)){
             $hwEdit['data']="WELL";
         }else{
 

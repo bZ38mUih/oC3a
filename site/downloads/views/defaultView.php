@@ -23,14 +23,14 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'>".
     "<div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>";
 $selectCat_query = "select * from dwlCat_dt WHERE dwlCatPar_id is null and catActive_flag is TRUE";
-$selectCat_res=$DB->doQuery($selectCat_query);
+$selectCat_res=$DB->query($selectCat_query);
 $catCount=0;
 if(mysql_num_rows($selectCat_res)>0){
     $catCount=mysql_num_rows($selectCat_res);
 }
 $appRJ->response['result'].= "<div class='cat-frame'>";
 if($catCount>0){
-    while ($selectCat_row=$DB->doFetchRow($selectCat_res)){
+    while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<a href='/downloads/".$selectCat_row['catAlias']."' class='cat-line'>".
             "<div class='cat-line-img'>";
         if($selectCat_row['catImg']){

@@ -1,9 +1,9 @@
 <?php
 $srv_qry="select * from srvCards_dt INNER JOIN srvCat_dt ON srvCards_dt.srvCat_id=srvCat_dt.srvCat_id ".
     "WHERE srvCards_dt.cardAlias='".$appRJ->server['reqUri_expl'][3]."'";
-$srv_res=$DB->doQuery($srv_qry);
+$srv_res=$DB->query($srv_qry);
 if(mysql_num_rows($srv_res)==1){
-    $srv_row=$DB->doFetchRow($srv_res);
+    $srv_row = $srv_res->fetch(PDO::FETCH_ASSOC);
     $h1 ="Описание услуги";
     $App['views']['social-block']=true;
     $appRJ->response['result'].= "<!DOCTYPE html>".

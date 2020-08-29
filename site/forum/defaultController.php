@@ -37,8 +37,8 @@ if(isset($appRJ->server['reqUri_expl'][2]) and strtolower($appRJ->server['reqUri
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/actions/setCmLike.php");
     $appRJ->response['format']='ajax';
     $slCm_qry="select * from forumComments_dt WHERE fc_id=".$_GET['fc_id'];
-    $slCm_res=$DB->doQuery($slCm_qry);
-    $slCm_row=$DB->doFetchRow($slCm_res);
+    $slCm_res=$DB->query($slCm_qry);
+    $slCm_row = $slCm_res->fetch(PDO::FETCH_ASSOC);
     $tmpCm=null;
     include ($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/cmLikes.php");
     $appRJ->response['result']=$tmpCm;
@@ -47,17 +47,17 @@ elseif(!$appRJ->server['reqUri_expl'][2]){
     require_once($_SERVER['DOCUMENT_ROOT']."/site/forum/views/defaultView.php");
 }else{
     $subj_qry="select * from forumSubj_dt where sAlias='".$appRJ->server['reqUri_expl'][2]."'";
-    $subj_res=$DB->doQuery($subj_qry);
+    $subj_res=$DB->query($subj_qry);
     if(mysql_num_rows($subj_res)===1){
-        $subj_row=$DB->doFetchRow($subj_res);
+        $subj_row = $subj_res->fetch(PDO::FETCH_ASSOC);
         $subjComms_query="select count(fc_id) as subjComm from forumComments_dt ".
             "where fs_id=".$subj_row['fs_id']." and fc_pid is null";
         $subjAnsw_query="select count(fc_id) as subjAnsw from forumComments_dt ".
             "where fs_id='".$subj_row['fs_id']."' and fc_pid is not null";
-        $subjComms_res=$DB->doQuery($subjComms_query);
-        $subjAnsw_res=$DB->doQuery($subjAnsw_query);
-        $subjComms_row=$DB->doFetchRow($subjComms_res);
-        $subjAnsw_row=$DB->doFetchRow($subjAnsw_res);
+        $subjComms_res=$DB->query($subjComms_query);
+        $subjAnsw_res=$DB->query($subjAnsw_query);
+        $subjComms_row = $subjComms_res->fetch(PDO::FETCH_ASSOC);
+        $subjAnsw_row = $subjAnsw_res->fetch(PDO::FETCH_ASSOC);
         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/subjectView.php");
     }else{
         $appRJ->errors['404']['description']="темы '".$appRJ->server['reqUri_expl'][2]."' не существует";

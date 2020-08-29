@@ -5,11 +5,11 @@ if($_GET['searchArg']){
 }else{
     $appRJ->response['result'].="<h3>Список процессов ( ";
 }
-if($hwProcess_res=$DB->doQuery($hwProcess_qry)){
+if($hwProcess_res=$DB->query($hwProcess_qry)){
     if(mysql_num_rows($hwProcess_res)>0){
         $appRJ->response['result'].=mysql_num_rows($hwProcess_res)." )</h3><div class='line caption'>".
             "<div class='td-20'>pImg</div><div class='td-70'>pName</div></div>";
-        while ($hwProcess_row=$DB->doFetchRow($hwProcess_res)){
+        while ($hwProcess_row = $hwProcess_res->fetch(PDO::FETCH_ASSOC)){
 
             $appRJ->response['result'].="<div class='line'><div class='td-20'>";
             if($hwProcess_row['pImg']){

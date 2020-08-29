@@ -1,6 +1,6 @@
 <?php
 $addLnk_err=null;
-$Link_rd=new recordDefault("artRef_dt", "artRef_id");
+$Link_rd = array("table" => "artRef_dt", "field_id" => "artRef_id");
 $Link_rd['result']['art_id']=$_GET['art_id'];
 if(isset($_POST['refLnk']) and $_POST['refLnk']!=null){
     $Link_rd['result']['refLink']=$_POST['refLnk'];

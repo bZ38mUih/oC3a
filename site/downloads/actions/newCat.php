@@ -2,7 +2,7 @@
 
 $catErr=null;
 
-$Cat_rd = new recordDefault("dwlCat_dt", "dwlCat_id");
+$Cat_rd = array("table" => "dwlCat_dt", "field_id" => "dwlCat_id");
 
 if(isset($_POST['catName']) and $_POST['catName']!=null){
     $Cat_rd['result']['catName']=htmlspecialchars($_POST['catName']);

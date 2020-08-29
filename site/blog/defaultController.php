@@ -11,8 +11,8 @@ if($_POST){
     require_once ($_SERVER["DOCUMENT_ROOT"]."/site/blog/actions/setArtCmLike.php");
     $appRJ->response['format']='ajax';
     $slCm_qry="select * from artComments_dt WHERE artCm_id=".$_GET['artCm_id'];
-    $slCm_res=$DB->doQuery($slCm_qry);
-    $slCm_row=$DB->doFetchRow($slCm_res);
+    $slCm_res=$DB->query($slCm_qry);
+    $slCm_row = $slCm_res->fetch(PDO::FETCH_ASSOC);
     $tmpCm=null;
     include ($_SERVER["DOCUMENT_ROOT"]."/site/artMan/views/artCmLikes.php");
     $appRJ->response['result']=$tmpCm;

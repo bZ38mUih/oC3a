@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"]."/source/_conf/ym.php");
-$Order_rd = new recordDefault("ordersList_dt", "order_id");
+$Order_rd = array("table" => "ordersList_dt", "field_id" => "order_id");
 if ($_GET['receiver']){
     $appRJ->response['format']='ajax';
     $mkOrder_err=null;

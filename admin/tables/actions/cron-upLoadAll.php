@@ -23,7 +23,7 @@ foreach (glob("/home/p264533/public_html/rightjoint.ru/data/db/tablesList/*_dt.p
 //$tables->dbCompare();
 $query_text = "SELECT TABLE_NAME, TABLE_ROWS FROM `information_schema`.`tables` WHERE
     `table_schema` = '".$DB->connSettings['CONN_DB']."';";
-$query_res = $DB->doQuery($query_text);
+$query_res = $DB->query($query_text);
 while ($query_row = $DB->doFetchRow($query_res)) {
     //$appRJ->response['result'].= "mmm---<br>";
     foreach ($tables->tables as $table => $value) {
@@ -58,7 +58,7 @@ mkdir("/home/p264533/public_html/rightjoint.ru/data/db/".date_format($CurDate, '
 foreach ($tables->tables as $table => $value) {
     if ($tables->tables[$table]['exist']===true) {
         $query_text = "select * from ".$table." ".$orderBy;
-        $query_res = $DB->doQuery($query_text);
+        $query_res = $DB->query($query_text);
         if (mysql_num_rows($query_res)==0){
             $tables->result['log'].= $table."-->> nothing to upload<br>";
         }else{

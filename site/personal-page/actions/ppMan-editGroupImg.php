@@ -3,7 +3,7 @@ $editImg['result'] = false;
 $editImg['data'] = null;
 
 //if(isset($_POST['cat_id']) and $_POST['cat_id']!=null){
-$Gr_rd = new recordDefault("usersGroups_dt", "group_id");
+$Gr_rd = array("table" => "usersGroups_dt", "field_id" => "group_id");
 $Gr_rd['result']['group_id']=$_POST['group_id'];
 if($Gr_rd->copyOne()){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].PP_USRGR_IMG_PAPH.$Gr_rd['result']['group_id'])) {

@@ -50,10 +50,10 @@ $appRJ->response['result'].="</textarea></div>".
     "<div class='input-line'><label>srvCatPar_id:</label><select name='srvCatPar_id'>";
 /*select options-->*/
 $categList_text="select srvCat_id, srvCatPar_id, catName from srvCat_dt ORDER BY catName ";
-$categList_res=$DB->doQuery($categList_text);
+$categList_res=$DB->query($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
-    while ($categList_row=$DB->doFetchRow($categList_res)){
+    while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelect.= "<option value='".$categList_row['srvCat_id']."' ";
         if($categList_row['srvCat_id'] == $Cat_rd['result']['srvCatPar_id']){
             $findSelected=true;

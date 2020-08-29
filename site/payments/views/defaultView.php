@@ -1,6 +1,6 @@
 <?php
 $slOrders_qry="select * from ordersList_dt order by ordDate DESC";
-$slOrders_res=$DB->doQuery($slOrders_qry);
+$slOrders_res=$DB->query($slOrders_qry);
 $h1 ="Список платежей";
 $appRJ->response['result'].= "<!DOCTYPE html>".
     "<html lang='en-Us'>".
@@ -24,7 +24,7 @@ if(mysql_num_rows($slOrders_res)>0){
         "<div class='p-sum'>sum</div><div class='p-comment'>comment</div><div class='p-amount'>amount</div>".
         "<div class='p-withdraw'>withdr</div><div class='p-hash'>hash</div>".
         "<div class='p-unaccepted'>unaccept</div></div>";
-    while ($slOrders_row=$DB->doFetchRow($slOrders_res)){
+    while ($slOrders_row = $slOrders_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].="<div class='ordersList-line'><div class='p-type'>".
             "<a href='/payments/?searchPayment=".$slOrders_row['label']."'><img src='";
         if($slOrders_row['shortDest']=="Right Joint: пожертвование"){
@@ -36,13 +36,13 @@ if(mysql_num_rows($slOrders_res)>0){
             "<div class='p-sum'>".$slOrders_row['orderSum']."</div>".
         "<div class='p-comment'>".mb_substr($slOrders_row['comment'],0, 10)."</div>";
         $slPayment_txt="select * from payments_dt where label='".$slOrders_row['label']."'";
-        $slPayment_res=$DB->doQuery($slPayment_txt);
+        $slPayment_res=$DB->query($slPayment_txt);
         $amount_txt="<div class='p-amount'>";
         $withdraw_txt="<div class='p-withdraw'>";
         $hash_txt="<div class='p-hash'>";
         $unaccepted_txt="<div class='p-unaccepted'>";
         if(mysql_num_rows($slPayment_res)==1){
-            $slPayment_row=$DB->doFetchRow($slPayment_res);
+            $slPayment_row = $slPayment_res->fetch(PDO::FETCH_ASSOC);
             $amount_txt.=$slPayment_row["amount"];
             $withdraw_txt.=$slPayment_row["withdraw_amount"];
             if($slPayment_row['hashEqual']){

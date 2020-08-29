@@ -2,9 +2,9 @@
 $editImg['result'] = false;
 $editImg['data'] = null;
 $slHw_qry="select * from wdHwList_dt WHERE paramVal='".$paramVal."' and paramName='".$paramName."'";
-$slHw_res=$DB->doQuery($slHw_qry);
+$slHw_res=$DB->query($slHw_qry);
 if(mysql_num_rows($slHw_res)==1){
-    $slHw_row=$DB->doFetchRow($slHw_res);
+    $slHw_row = $slHw_res->fetch(PDO::FETCH_ASSOC);
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].WD_HW_IMG.$paramName)) {
         mkdir($_SERVER["DOCUMENT_ROOT"].WD_HW_IMG.$paramName, 0777, true);
     }
@@ -29,7 +29,7 @@ if(mysql_num_rows($slHw_res)==1){
                     $_SERVER["DOCUMENT_ROOT"].WD_HW_IMG.$paramName."/preview/".$paramVal.".".$path_parts['extension'], 150, 150);
                 //--create preview
                 $updateHw_qry="update wdHwList_dt set hwImg='".$paramVal.".".$path_parts['extension']."' WHERE paramVal='".$paramVal."' and paramName='".$paramName."'";
-                if($DB->doQuery($updateHw_qry)){
+                if($DB->query($updateHw_qry)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".WD_HW_IMG.$paramName."/preview/".$paramVal.".".$path_parts['extension']."'>";
                 }

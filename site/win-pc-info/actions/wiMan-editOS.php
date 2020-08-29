@@ -26,12 +26,12 @@ if(isset($_POST['lastMod']) and $_POST['lastMod']!=null){
 }
 if(is_null($envEdit['err'])){
     $slEnv_qry="select * from wdOsList_dt WHERE osVal='".$vVal."' and osName='".$vName."'";
-    $slEnv_res=$DB->doQuery($slEnv_qry);
+    $slEnv_res=$DB->query($slEnv_qry);
     if(mysql_num_rows($slEnv_res)===1){
-        $slEnv_row=$DB->doFetchRow($slEnv_res);
+        $slEnv_row = $slEnv_res->fetch(PDO::FETCH_ASSOC);
         $udEnv_qry="update wdOsList_dt set osDescr='".$vDescr."', lastMod='".$lastMod."' ".
             "WHERE osVal='".$vVal."' and osName='".$vName."'";
-        if($DB->doQuery($udEnv_qry)){
+        if($DB->query($udEnv_qry)){
             $envEdit['data']="WELL";
         }else{
 

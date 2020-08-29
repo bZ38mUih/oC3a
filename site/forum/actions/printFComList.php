@@ -7,8 +7,8 @@ function printFCommentsList2($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1,
             "WHERE forumComments_dt.fc_id = ".$comPar_id." and forumComments_dt.activeFlag is TRUE ".
             "and forumComments_dt.fs_id=".$fs_id." ".
             "ORDER BY forumComments_dt.writeDate ".$sortOpt;
-        $slCm_res=$DB->doQuery($slCm_qry);
-        $slCm_row=$DB->doFetchRow($slCm_res);
+        $slCm_res=$DB->query($slCm_qry);
+        $slCm_row = $slCm_res->fetch(PDO::FETCH_ASSOC);
         $pfclRes="<div class='com-quote-line'><div class='com-info'><div class='com-alias'>".
             $slCm_row['accAlias']."</div><div class='com-date'>".$slCm_row['writeDate']."</div></div>";
         $responce=printFCommentsList2($slCm_row['fc_pid'], $fs_id, $DB, 0, $page, $cLim, $sortOpt);
@@ -33,12 +33,12 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
         "and forumComments_dt.fs_id=".$fs_id." ".
         "ORDER BY (forumComments_dt.likePlus-forumComments_dt.likeMinus) DESC, forumComments_dt.writeDate ".$sortOpt." LIMIT ".(($page-1)*10).", ".$cLim;
     $comCnt=0;
-    if($slCm_res=$DB->doQuery($slCm_qry)){
+    if($slCm_res=$DB->query($slCm_qry)){
         $comCnt=mysql_num_rows($slCm_res);
     }
     if($comCnt>0){
         $tmpRes['text'].= "<ul>";
-        while ($slCm_row=$DB->doFetchRow($slCm_res)){
+        while ($slCm_row = $slCm_res->fetch(PDO::FETCH_ASSOC)){
             $cntTotal++;
             $tmpRes['text'].="<li class='cmt'>";
             if($slCm_row['fc_pid']!=null){

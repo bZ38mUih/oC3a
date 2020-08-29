@@ -3,7 +3,7 @@ $editImg['result'] = false;
 $editImg['data'] = null;
 
 //if(isset($_POST['cat_id']) and $_POST['cat_id']!=null){
-$Subj_rd = new recordDefault("forumSubj_dt", "fs_id");
+$Subj_rd = array("table" => "forumSubj_dt", "field_id" => "fs_id");
 $Subj_rd['result']['fs_id']=$_POST['forumS_id'];
 if($Subj_rd->copyOne()){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].F_SUBJ_IMG.$Subj_rd['result']['fs_id'])) {

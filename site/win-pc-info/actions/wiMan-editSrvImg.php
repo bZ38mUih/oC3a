@@ -2,9 +2,9 @@
 $editImg['result'] = false;
 $editImg['data'] = null;
 $slSrv_qry="select * from wdSrvList_dt WHERE sName='".$paramVal."'";
-$slSrv_res=$DB->doQuery($slSrv_qry);
+$slSrv_res=$DB->query($slSrv_qry);
 if(mysql_num_rows($slSrv_res)==1){
-    $slSrv_row=$DB->doFetchRow($slSrv_res);
+    $slSrv_row = $slSrv_res->fetch(PDO::FETCH_ASSOC);
     foreach ($_FILES as $file){
         if ($file['error'] !== 0){
         }else{
@@ -22,7 +22,7 @@ if(mysql_num_rows($slSrv_res)==1){
                     $_SERVER["DOCUMENT_ROOT"].WD_SRV_IMG.$paramVal.".".$path_parts['extension'], 150, 150);
                 //--create preview
                 $updateSrv_qry="update wdSrvList_dt set sImg='".$paramVal.".".$path_parts['extension']."' WHERE sName='".$paramVal."'";
-                if($DB->doQuery($updateSrv_qry)){
+                if($DB->query($updateSrv_qry)){
                     $editImg['result'] = true;
                     $editImg['data'] = "<img src='".WD_SRV_IMG.$paramVal.".".$path_parts['extension']."'>";
                 }

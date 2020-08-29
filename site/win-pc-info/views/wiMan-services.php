@@ -60,9 +60,9 @@ $appRJ->response['result'].= "<form class='wdEditParams'>".
 $appRJ->response['result'].= "<form class='sPathList'>".
     "<div class='field-err'></div>";
 $srvPathList_qry="select * from wdSrvPath_dt WHERE sName='".$slSrv_row['sName']."'";
-$srvPathList_res=$DB->doQuery($srvPathList_qry);
+$srvPathList_res=$DB->query($srvPathList_qry);
 if(mysql_num_rows($srvPathList_res)>0){
-    while ($srvPathList_row=$DB->doFetchRow($srvPathList_res)){
+    while ($srvPathList_row = $srvPathList_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].="<div class='line'>".$srvPathList_row['sPath']."</div>";
     }
 }else{
@@ -72,9 +72,9 @@ $appRJ->response['result'].="</form>";
 $appRJ->response['result'].= "<form class='pPIDList'>".
     "<div class='field-err'></div>";
 $srvSTName_qry="select * from wdSrvSTName_dt WHERE sName='".$slSrv_row['sName']."'";
-$srvSTName_res=$DB->doQuery($srvSTName_qry);
+$srvSTName_res=$DB->query($srvSTName_qry);
 if(mysql_num_rows($srvSTName_res)>0){
-    while ($srvSTName_row=$DB->doFetchRow($srvSTName_res)){
+    while ($srvSTName_row = $srvSTName_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].="<div class='line ta-left'>".$srvSTName_row['sSTName']."</div>";
     }
 }else{

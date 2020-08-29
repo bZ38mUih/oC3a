@@ -1,6 +1,6 @@
 <?php
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
-$Subj_rd = new recordDefault("forumSubj_dt", "fs_id");
+$Subj_rd = array("table" => "forumSubj_dt", "field_id" => "fs_id");
 if(isset($_GET['fs_id']) and $_GET['fs_id']!=null){
     $Subj_rd['result']['fs_id'] = $_GET['fs_id'];
     $Subj_rd->copyOne();

@@ -3,12 +3,12 @@ $varifMail = null;
 if(requiredFields::checkLogin($_GET['login'])){
     $query_text="select account_id, validDate, vldCode from accounts_dt where accLogin='".htmlspecialchars($_GET['login'])."' and ".
         "netWork='site'";
-    $query_res=$DB->doQuery($query_text);
+    $query_res=$DB->query($query_text);
     if(mysql_num_rows($query_res)==1){
-        $query_row=$DB->doFetchRow($query_res);
+        $query_row = $query_res->fetch(PDO::FETCH_ASSOC);
         if($query_row['validDate']==null){
             if($query_row['vldCode'] === $_GET['vldCode']){
-                $RD_update = new recordDefault('accounts_dt', "account_id");
+                $RD_update = array("table" => 'accounts_dt', "field_id" => "account_id");
                 $RD_update['result']['account_id']=$query_row['account_id'];
                 $RD_update->copyOne();
                 $appRJ->date['curDate'] = @date_create();

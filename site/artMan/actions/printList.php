@@ -11,12 +11,12 @@ function printList($artCatPar_id=null, $DB, $ref)
         $selectCat_query = "select * from artCat_dt WHERE artCatPar_id = ".$artCatPar_id." and activeFlag is TRUE";
         $slArt_qry="select * from art_dt WHERE artCat_id = ".$artCatPar_id." and activeFlag is TRUE ";
     }
-    $slArt_res=$DB->doQuery($slArt_qry);
+    $slArt_res=$DB->query($slArt_qry);
     $artCount=0;
     if(mysql_num_rows($slArt_res)>0){
         $artCount=mysql_num_rows($slArt_res);
     }
-    $selectCat_res=$DB->doQuery($selectCat_query);
+    $selectCat_res=$DB->query($selectCat_query);
     $catCount=0;
     if(mysql_num_rows($selectCat_res)>0){
         $catCount=mysql_num_rows($selectCat_res);
@@ -24,7 +24,7 @@ function printList($artCatPar_id=null, $DB, $ref)
     if($catCount>0 or $artCount>0){
         $tmpRes['text'].= "<ul>";
         if($artCount>0){
-            while ($slArt_row=$DB->doFetchRow($slArt_res)){
+            while ($slArt_row = $slArt_res->fetch(PDO::FETCH_ASSOC)){
                 $tmpItm=null;
                 $ref=null;
                 if($slArt_row['artCat_id']==3){
@@ -61,7 +61,7 @@ function printList($artCatPar_id=null, $DB, $ref)
             }
         }
         if($catCount>0){
-            while ($selectCat_row=$DB->doFetchRow($selectCat_res)){
+            while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)){
                 $tmpCat=null;
                 //$tmpCat.="<li class='cat-line'><a href='/".$ref."/".$selectCat_row['catAlias']."'>".
                 $tmpCat.="<li class='cat-line'><span class='ref'>".

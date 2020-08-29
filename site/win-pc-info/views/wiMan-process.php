@@ -56,9 +56,9 @@ $appRJ->response['result'].= "<form class='wdEditParams'>".
 $appRJ->response['result'].= "<form class='pPathList'>".
     "<div class='field-err'></div>";
 $prPathList_qry="select * from wdProcPath_dt WHERE pName='".$slProcess_row['pName']."'";
-$prPathList_res=$DB->doQuery($prPathList_qry);
+$prPathList_res=$DB->query($prPathList_qry);
 if(mysql_num_rows($prPathList_res)>0){
-    while ($prPathList_row=$DB->doFetchRow($prPathList_res)){
+    while ($prPathList_row = $prPathList_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].="<div class='line'>".$prPathList_row['pPath']."</div>";
     }
 }else{
@@ -68,9 +68,9 @@ $appRJ->response['result'].="</form>";
 $appRJ->response['result'].= "<form class='pPIDList'>".
     "<div class='field-err'></div>";
 $prPIDList_qry="select * from wdProcPID_dt WHERE pName='".$slProcess_row['pName']."'";
-$prPIDList_res=$DB->doQuery($prPIDList_qry);
+$prPIDList_res=$DB->query($prPIDList_qry);
 if(mysql_num_rows($prPIDList_res)>0){
-    while ($prPIDList_row=$DB->doFetchRow($prPIDList_res)){
+    while ($prPIDList_row = $prPIDList_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].="<div class='line ta-left'>".$prPIDList_row['PID']."</div>";
     }
 }else{

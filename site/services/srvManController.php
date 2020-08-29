@@ -20,7 +20,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-Cards.php");
     } else {
         $cardErr = null;
-        $Card_rd = new recordDefault("srvCards_dt", "card_id");
+        $Card_rd = array("table" => "srvCards_dt", "field_id" => "card_id");
         if ($appRJ->server['reqUri_expl'][4] and $appRJ->server['reqUri_expl'][4] == 'newService') {
             require_once($_SERVER['DOCUMENT_ROOT'] . "/site/services/views/srvMan-newService.php");
         } elseif ($appRJ->server['reqUri_expl'][4] and $appRJ->server['reqUri_expl'][4] == 'editCard') {
@@ -57,7 +57,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         $catErr=null;
         $catSelectOptions=null;
         if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
-            $Cat_rd = new recordDefault("srvCat_dt", "srvCat_id");
+            $Cat_rd = array("table" => "srvCat_dt", "field_id" => "srvCat_id");
             $Cat_rd['result']['srvCat_id']=$_GET['cat_id'];
             if($Cat_rd->copyOne()){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/services/views/srvMan-editCat.php");

@@ -1,7 +1,7 @@
 <?php
 $putFile_dest=$_POST['dest'];
 $oldFName=null;
-$ArtLk_rd = new recordDefault("artLinks_dt", "artLink_id");
+$ArtLk_rd = array("table" => "artLinks_dt", "field_id" => "artLink_id");
 $ArtLk_rd['result']['art_id']=$_GET['art_id'];
 $ArtLk_rd['result']['linkType']=$putFile_dest;
 
@@ -9,10 +9,10 @@ if (!file_exists($_SERVER["DOCUMENT_ROOT"].ARTS_IMG_PAPH.$ArtLk_rd['result']['ar
     mkdir($_SERVER["DOCUMENT_ROOT"].ARTS_IMG_PAPH.$ArtLk_rd['result']['art_id']."/".$putFile_dest, 0777, true);
 }
 $slLink_qry="select artLink_id, linkRef from artLinks_dt where linkType='".$putFile_dest."' and art_id=".$ArtLk_rd['result']['art_id'];
-$slLink_res=$DB->doQuery($slLink_qry);
+$slLink_res = $DB->query($slLink_qry);
 if(mysql_num_rows($slLink_res)==1){
     //$linkExtFlag=true;
-    $slLink_row=$DB->doFetchRow($slLink_res);
+    $slLink_row = $slLink_res->fetch(PDO::FETCH_ASSOC);
     $ArtLk_rd['result']['artLink_id']=$slLink_row['artLink_id'];
     $oldFName=$slLink_row['linkRef'];
 }

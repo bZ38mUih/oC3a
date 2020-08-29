@@ -107,7 +107,7 @@ $refList_res=$DB->query($refList_text);
 $refList_count = $refList_res->fetch(PDO::FETCH_ASSOC);
 if($refList_count>0){
     $appRJ->response['result'].= "<div class='art-ref'><h5>Ссылки:</h5><ol>";
-    while($refList_row=$DB->doFetchRow($refList_res)){
+    while($refList_row = $refList_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<li><a href='".$refList_row['refLink']."' title='".$refList_row['refLink']."' target='_blank'>".
             $refList_row['refText']."</a></li>";
     }

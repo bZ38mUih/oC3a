@@ -2,7 +2,7 @@
 $editImg['result'] = false;
 $editImg['data'] = null;
 
-$Cat_rd = new recordDefault("srvCat_dt", "srvCat_id");
+$Cat_rd = array("table" => "srvCat_dt", "field_id" => "srvCat_id");
 $Cat_rd['result']['srvCat_id']=$_POST['cat_id'];
 if($Cat_rd->copyOne()){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].SRV_CAT_IMG_PAPH.$Cat_rd['result']['srvCat_id'])) {

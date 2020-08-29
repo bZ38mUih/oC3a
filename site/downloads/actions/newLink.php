@@ -1,6 +1,6 @@
 <?php
 $addLnk_err=null;
-$Link_rd=new recordDefault("dwlLnk_dt", "dwlLnk_id");
+$Link_rd = array("table" => "dwlLnk_dt", "field_id" => "dwlLnk_id");
 $Link_rd['result']['dwlFile_id']=$_GET['file_id'];
 if(isset($_POST['refLnk']) and $_POST['refLnk']!=null){
     $Link_rd['result']['refLink']=$_POST['refLnk'];

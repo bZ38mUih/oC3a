@@ -36,7 +36,7 @@ if($selectCat_row['catDescr']){
 $appRJ->response['result'].= "</div></div></div>".
     "<div class='files-frame'><h3>Файлы: <span class='qty'>(".$selectFiles_count.")</span></h3>";
 if($selectFiles_count>0){
-    while ($selectFiles_row=$DB->doFetchRow($selectFiles_res)){
+    while ($selectFiles_row = $selectFiles_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<a href='/downloads/file/".$selectFiles_row['dwlFileAliace'].
             "' class='file-line'><div class='file-line-img'>";
         if($selectFiles_row['fileImg']){
@@ -74,7 +74,7 @@ $appRJ->response['result'].= "</div>";
 if($selectSubCat_count>0){
     $appRJ->response['result'].= "<div class='subCat-frame'>".
         "<h3>Еще в этой категории: <span class='qty'>(".$selectSubCat_count.")</span></h3>";
-    while ($selectSubCat_row=$DB->doFetchRow($selectSubCat_res)){
+    while ($selectSubCat_row = $selectSubCat_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<a href='/downloads/".$selectSubCat_row['catAlias']."' class='cat-line'>";
         $appRJ->response['result'].= "<div class='cat-line-img'>";
         if($selectSubCat_row['catImg']){

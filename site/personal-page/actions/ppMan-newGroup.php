@@ -2,7 +2,7 @@
 
 $grErr=null;
 
-$Gr_rd = new recordDefault("usersGroups_dt", "group_id");
+$Gr_rd = array("table" => "usersGroups_dt", "field_id" => "group_id");
 
 if(isset($_POST['groupAlias']) and $_POST['groupAlias']!=null){
     $Gr_rd['result']['groupAlias']=htmlspecialchars($_POST['groupAlias']);

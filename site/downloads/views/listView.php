@@ -11,12 +11,12 @@ function printList($dwlCatPar_id=null, $DB)
         $selectCat_query = "select * from dwlCat_dt WHERE dwlCatPar_id = ".$dwlCatPar_id." and catActive_flag is TRUE";
         $selectFiles_query="select * from dwlFiles_dt WHERE dwlCat_id = ".$dwlCatPar_id." and fileActive_flag is TRUE";
     }
-    $selectFiles_res=$DB->doQuery($selectFiles_query);
+    $selectFiles_res=$DB->query($selectFiles_query);
     $filesCount=0;
     if(mysql_num_rows($selectFiles_res)>0){
         $filesCount=mysql_num_rows($selectFiles_res);
     }
-    $selectCat_res=$DB->doQuery($selectCat_query);
+    $selectCat_res=$DB->query($selectCat_query);
     $catCount=0;
     if(mysql_num_rows($selectCat_res)>0){
         $catCount=mysql_num_rows($selectCat_res);
@@ -24,7 +24,7 @@ function printList($dwlCatPar_id=null, $DB)
     if($catCount>0 or $filesCount>0){
         $tmpRes['text'].= "<ul>";
         if($filesCount>0){
-            while ($selectFiles_row=$DB->doFetchRow($selectFiles_res)){
+            while ($selectFiles_row = $selectFiles_res->fetch(PDO::FETCH_ASSOC)){
                 $tmpFiles=null;
                 $tmpFiles.="<li class='itm-line'><a href='/downloads/file/".$selectFiles_row['dwlFileAliace']."'>".
                     "<div class='itm-line-img'>";
@@ -46,7 +46,7 @@ function printList($dwlCatPar_id=null, $DB)
             }
         }
         if($catCount>0){
-            while ($selectCat_row=$DB->doFetchRow($selectCat_res)){
+            while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)){
                 $tmpCat=null;
                 $tmpCat.="<li class='cat-line'><a href='/downloads/".$selectCat_row['catAlias']."'>".
                     "<div class='cat-line-img'>";

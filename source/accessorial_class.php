@@ -48,16 +48,4 @@ class accessorialClass //extends recordDefault
         }
         return $str;
     }
-
-    function checkDouble($tgTbl, $fldAlias, $alias)
-    {
-        $DB=new DB();
-        $checkDouble_qry="select COUNT(".$fldAlias.") as dblAlias from ".$tgTbl." where ".$fldAlias." = '".$alias."'";
-        $checkDouble_res=$DB->doQuery($checkDouble_qry);
-        $checkDouble_row=$DB->doFetchRow($checkDouble_res);
-        if($checkDouble_row['dblAlias']==0){
-            return true;
-        }
-        return false;
-    }
 }

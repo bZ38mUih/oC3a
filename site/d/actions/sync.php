@@ -7,7 +7,7 @@ if($syncResult=file_get_contents($sync_server."?syncMe=y&dateTo=".$_GET['dateTo'
     foreach($dNt_out['notes'] as $k=>$v){
         $appRJ->response['result'].= "<tr>";
         $dNtRep_qry="select * from diaryNotes_dt WHERE noteDate='".$v['noteDate']."' and diaryType='".$v['diaryType']."'";
-        $dNtRep_res=$DB->doQuery($dNtRep_qry);
+        $dNtRep_res=$DB->query($dNtRep_qry);
         $diary_rd['result']['diary_id']=null;
         $diary_rd['result']['diaryType']=$v['diaryType'];
         $diary_rd['result']['noteDate']=$v['noteDate'];
@@ -23,7 +23,7 @@ if($syncResult=file_get_contents($sync_server."?syncMe=y&dateTo=".$_GET['dateTo'
                     $diary_rd['result']['noteDate']." / ".$diary_rd['result']['diaryHeader']."</td>";
             }
         }else{
-            $dNtRep_row=$DB->doFetchRow($dNtRep_res);
+            $dNtRep_row = $dNtRep_res->fetch(PDO::FETCH_ASSOC);
             if($dNtRep_row['diaryHeader']!=$v['diaryHeader'] and $dNtRep_row['diaryHeader']==null){
 
                 $diary_rd['result']['diary_id']=$dNtRep_row['diary_id'];
@@ -48,16 +48,16 @@ if($syncResult=file_get_contents($sync_server."?syncMe=y&dateTo=".$_GET['dateTo'
         $appRJ->response['result'].= "<tr>";
         $dNtContRep_qry="select * from diaryNotesContent_dt ".
             "WHERE curDate='".$v['curDate']."' and curTime='".$v['curTime']."'";
-        $dNtContRep_res=$DB->doQuery($dNtContRep_qry);
+        $dNtContRep_res=$DB->query($dNtContRep_qry);
         $appRJ->response['result'].= "<td>".$v['diaryType']."</td><td>".$v['noteDate']."</td>".
             "<td>".$v['curDate']."</td><td>".$v['curTime']."</td>";
         if(mysql_num_rows($dNtContRep_res)==0){
             $appRJ->response['result'].= "<td>putOne</td>";
             $diaryId_qry="select diary_id from diaryNotes_dt ".
                 "WHERE noteDate='".$v['noteDate']."' and diaryType='".$v['diaryType']."'";
-            $diaryId_res=$DB->doQuery($diaryId_qry);
+            $diaryId_res=$DB->query($diaryId_qry);
             if(mysql_num_rows($diaryId_res) == 1){
-                $diaryId_row=$DB->doFetchRow($diaryId_res);
+                $diaryId_row = $diaryId_res->fetch(PDO::FETCH_ASSOC);
                 $note_rd['result']['note_id']=null;
                 $note_rd['result']['diary_id']=$diaryId_row['diary_id'];
                 $note_rd['result']['curDate']=$v['curDate'];

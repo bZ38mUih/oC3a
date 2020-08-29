@@ -13,13 +13,13 @@ $slDifProc_qry="select * from (".$slProcLeft_qry.") as wdProcLeft left join (".$
     " on wdProcLeft.pNameLeft = wdProcRight.pNameRight ".
     "and wdProcLeft.pPathLeft=wdProcRight.pPathRight order by pNameLeft, pNameRight";
 
-$slDifProc_res=$DB->doQuery($slDifProc_qry);
+$slDifProc_res=$DB->query($slDifProc_qry);
 if(mysql_num_rows($slDifProc_res)>0){
     $appRJ->response['result'].="<h3>Процессы (".mysql_num_rows($slDifProc_res).")</h3>";
     $leftDifCnt=0;
     $rightDifCnt=0;
     $pLines=null;
-    while ($slDifProc_row=$DB->doFetchRow($slDifProc_res)){
+    while ($slDifProc_row = $slDifProc_res->fetch(PDO::FETCH_ASSOC)){
         $pLineClass=null;
         $pLine=null;
         $pLine.="<div class='td-24'>";

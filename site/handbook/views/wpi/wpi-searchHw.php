@@ -5,13 +5,13 @@ if($_GET['searchArg']){
 }else{
     $appRJ->response['result'].="<h3>Список аппаратуры ( ";
 }
-if($hwSearch_res=$DB->doQuery($hwSearch_qry)){
+if($hwSearch_res=$DB->query($hwSearch_qry)){
     if(mysql_num_rows($hwSearch_res)>0){
         $appRJ->response['result'].=mysql_num_rows($hwSearch_res)." )</h3>";
         $appRJ->response['result'].="<ul>";
         $lastParName=null;
         $cntPName=0;
-        while ($hwSearch_row=$DB->doFetchRow($hwSearch_res)){
+        while ($hwSearch_row = $hwSearch_res->fetch(PDO::FETCH_ASSOC)){
             $cntPName++;
             if($hwSearch_row['paramName']!=$lastParName){
                 if($cntPName>1){

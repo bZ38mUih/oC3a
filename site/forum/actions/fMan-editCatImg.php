@@ -1,7 +1,7 @@
 <?php
 $editImg['result'] = false;
 $editImg['data'] = null;
-$Cat_rd = new recordDefault("forumMenu_dt", "fm_id");
+$Cat_rd = array("table" => "forumMenu_dt", "field_id" => "fm_id");
 $Cat_rd['result']['fm_id']=$_POST['fm_id'];
 if($Cat_rd->copyOne()){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].F_CAT_IMG.$Cat_rd['result']['fm_id'])) {

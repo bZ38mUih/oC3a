@@ -2,11 +2,11 @@
 $appRJ->response['result'].="<form class='wdCmp'>".
 "<input type='hidden' name='wdCmp' value=true>";
 $slDFiles_qry="select * from wdList_dt ORDER by diagDate DESC";
-$slDFiles_res=$DB->doQuery($slDFiles_qry);
+$slDFiles_res=$DB->query($slDFiles_qry);
 $selTxtLeft="<select name='cmpLeft'>";
 $selTxtRight="<select name='cmpRight'>";
 if(mysql_num_rows($slDFiles_res)>0){
-    while ($slDFiles_row=$DB->doFetchRow($slDFiles_res)){
+    while ($slDFiles_row = $slDFiles_res->fetch(PDO::FETCH_ASSOC)){
         $selTxtLeft.="<option value='".$slDFiles_row['wd_id']."'";
         $selTxtRight.="<option value='".$slDFiles_row['wd_id']."'";
         if($cmpLeft == $slDFiles_row['wd_id']){

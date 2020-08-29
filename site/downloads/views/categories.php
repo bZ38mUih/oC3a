@@ -1,6 +1,6 @@
 <?php
 $selectCat_query = "select * from dwlCat_dt";
-$selectCat_res=$DB->doQuery($selectCat_query);
+$selectCat_res=$DB->query($selectCat_query);
 $catCount=0;
 if(mysql_num_rows($selectCat_res)>0){
     $catCount=mysql_num_rows($selectCat_res);
@@ -19,7 +19,7 @@ if($catCount>0){
         "<div class='item-line-descr'>catDescr</div>".
         "<div class='item-line-flag'>actFlag</div>".
         "</div>";
-    while ($selectCat_row=$DB->doFetchRow($selectCat_res)){
+    while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<div class='item-line'><div class='item-line-id'>".
             "<a href='editCat/?cat_id=".$selectCat_row['dwlCat_id']."'>".$selectCat_row['dwlCat_id']."</a></div>".
             "<div class='item-line-par_id'>";

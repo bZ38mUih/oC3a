@@ -2,7 +2,7 @@
 $delImg['result'] = false;
 $delImg['data'] = null;
 
-$Acc_rd = new recordDefault("accounts_dt", "account_id");
+$Acc_rd = array("table" => "accounts_dt", "field_id" => "account_id");
 $Acc_rd['result']['account_id']=$_GET['delAvatarImg'];
 if($Acc_rd->copyOne()){
     unlink ($_SERVER["DOCUMENT_ROOT"].PP_USR_IMG_PAPH.$Acc_rd['result']['account_id']."/".$Acc_rd['result']['photoLink']);

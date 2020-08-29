@@ -1,8 +1,8 @@
 <?php
 $showLog_qry="select * from parseAdLog_dt order by logDate DESC LIMIT ".$_GET['logdepth'];
-$showLog_res=$DB->doQuery($showLog_qry);
+$showLog_res=$DB->query($showLog_qry);
 if(mysql_num_rows($showLog_res)>0){
-    while ($showLog_row=$DB->doFetchRow($showLog_res)){
+    while ($showLog_row = $showLog_res->fetch(PDO::FETCH_ASSOC)){
         $parseLog_arr=json_decode($showLog_row['logContent'], true);
         $appRJ->response['result'].="<div class='logRes'>".
             "<h3>Распарсил: ".$showLog_row['logDate']."</h3>";

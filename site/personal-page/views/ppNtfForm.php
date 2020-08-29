@@ -8,9 +8,9 @@ if(isset($_GET['page']) and $_GET['page']!=null){
 $slUsrNtf_cnt=0;
 $notRdnNtf=0;
 $slUsrNtf_qry="select COUNT(ntfList_id) as ntfQty, COUNT(readDate) as rdnQty from ntfList_dt WHERE user_id = ".$_SESSION['user_id'];
-$slUsrNtf_res=$DB->doQuery($slUsrNtf_qry);
+$slUsrNtf_res=$DB->query($slUsrNtf_qry);
 if(mysql_num_rows($slUsrNtf_res)>0){
-    $slUsrNtf_row=$DB->doFetchRow($slUsrNtf_res);
+    $slUsrNtf_row = $slUsrNtf_res->fetch(PDO::FETCH_ASSOC);
     $slUsrNtf_cnt=$slUsrNtf_row['ntfQty'];
     $notRdnNtf = $slUsrNtf_cnt-$slUsrNtf_row['rdnQty'];
 }
@@ -21,7 +21,7 @@ $slUsrNtfLim_qry="select ntf_dt.ntfSubj, ntf_dt.ntfDate, ntfList_dt.ntfList_id, 
     " ORDER BY ntf_dt.ntfDate DESC".
     " limit ".strval(($ntfPage-1)*$ntfLnPage).
     ", ".$ntfLnPage;
-$slUsrNtfLim_res=$DB->doQuery($slUsrNtfLim_qry);
+$slUsrNtfLim_res=$DB->query($slUsrNtfLim_qry);
 if(mysql_num_rows($slUsrNtfLim_res)>0){
     $slUsrNtfLim_cnt=mysql_num_rows($slUsrNtfLim_res);
 }
@@ -48,7 +48,7 @@ $appRJ->response['result'].= "</div><div class='newItem'></div></div>";
 if($slUsrNtfLim_cnt>0){
     $appRJ->response['result'].= "<div class='item-line caption'><div class='item-line-subj'>subj</div>".
         "<div class='item-line-date'>date</div></div>";
-    while ($slUsrNtfLim_row=$DB->doFetchRow($slUsrNtfLim_res)){
+    while ($slUsrNtfLim_row = $slUsrNtfLim_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<div class='item-line'><div class='item-line-subj'>";
         $appRJ->response['result'].= "<a href='/personal-page/notification/read?ntfList_id=".
             $slUsrNtfLim_row['ntfList_id']."'";

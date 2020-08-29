@@ -27,12 +27,12 @@ if(isset($_POST['lastMod']) and $_POST['lastMod']!=null){
 
 if(is_null($envEdit['err'])){
     $slEnv_qry="select * from wdEnvList_dt WHERE vVal='".$vVal."' and vName='".$vName."'";
-    $slEnv_res=$DB->doQuery($slEnv_qry);
+    $slEnv_res=$DB->query($slEnv_qry);
     if(mysql_num_rows($slEnv_res)===1){
-        $slEnv_row=$DB->doFetchRow($slEnv_res);
+        $slEnv_row = $slEnv_res->fetch(PDO::FETCH_ASSOC);
         $udEnv_qry="update wdEnvList_dt set vDescr='".$vDescr."', lastMod='".$lastMod."' ".
             "WHERE vVal='".$vVal."' and vName='".$vName."'";
-        if($DB->doQuery($udEnv_qry)){
+        if($DB->query($udEnv_qry)){
             $envEdit['data']="WELL";
         }else{
 

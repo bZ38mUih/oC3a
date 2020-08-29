@@ -25,13 +25,13 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
     "<div class='contentBlock-wrap'>";
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/artMan/views/artMan-subMenu.php");
 $cntArt_qry = "select COUNT(art_id) as cntArts from art_dt";
-$cntArt_res = $DB->doQuery($cntArt_qry);
-$cntArt_row = $DB->doFetchRow($cntArt_res);
+$cntArt_res = $DB->query($cntArt_qry);
+$cntArt_row = $cntArt_res->fetch(PDO::FETCH_ASSOC);
 $slArt_qry = "select art_dt.art_id, art_dt.artCat_id, art_dt.artName, art_dt.artAlias, art_dt.artMeta, ".
     "art_dt.artImg, art_dt.activeFlag, artCat_dt.catName from art_dt ".
     "LEFT JOIN artCat_dt ON art_dt.artCat_id=artCat_dt.artCat_id order by pubDate DESC limit ".strval(($curPage-1)*$itLnP).
     ", ".$itLnP;
-$slArt_res=$DB->doQuery($slArt_qry);
+$slArt_res=$DB->query($slArt_qry);
 $itmCnt=0;
 if(mysql_num_rows($slArt_res)>0){
     $itmCnt=mysql_num_rows($slArt_res);
@@ -60,7 +60,7 @@ if($itmCnt>0){
         "<div class='item-line-fCateg'>categ</div>".
         "<div class='item-line-flag'>activeFlag</div>".
         "<div class='item-line-id'>preview</div></div>";
-    while ($slArt_row=$DB->doFetchRow($slArt_res)){
+    while ($slArt_row = $slArt_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<div class='item-line'><div class='item-line-id'>".
             "<a href='/artMan/editArt/?art_id=".$slArt_row['art_id']."'>".$slArt_row['art_id']."</a></div>".
             "<div class='item-line-img'>";

@@ -28,7 +28,7 @@ if(isset($appRJ->server['reqUri_expl'][2]) and $appRJ->server['reqUri_expl'][2]=
 }
 else{
     $wdInfo=null;
-    $wdList_rd = new recordDefault("wdList_dt", "wd_id");
+    $wdList_rd = array("table" => "wdList_dt", "field_id" => "wd_id");
     if(!$appRJ->server['reqUri_expl'][2]){
         if(isset($_GET['wd_id']) and $_GET['wd_id']!=null){
             $wdList_rd['result']['wd_id']=$_GET['wd_id'];

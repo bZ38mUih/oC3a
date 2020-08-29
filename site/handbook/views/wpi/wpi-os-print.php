@@ -1,7 +1,7 @@
 <?php
-$wdInfo_res=$DB->doQuery($wdInfo_qry);
+$wdInfo_res=$DB->query($wdInfo_qry);
 if(mysql_num_rows($wdInfo_res)==1){
-    $wdInfo_row=$DB->doFetchRow($wdInfo_res);
+    $wdInfo_row = $wdInfo_res->fetch(PDO::FETCH_ASSOC);
     $wdInfo.="<div class='wi-descr'>";
     if($wdInfo_row['osDescr']){
         $wdInfo.=$wdInfo_row['osDescr'];

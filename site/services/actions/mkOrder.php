@@ -10,7 +10,7 @@ if($_SESSION['bucket']['discont']){
 if($mkOrder_err==null) {
     if($_SESSION["bucket"]["order_id"]){
         $rmBucket_qry="delete from ordersBucket_dt WHERE order_id=".$_SESSION["bucket"]["order_id"];
-        $DB->doQuery($rmBucket_qry);
+        $DB->query($rmBucket_qry);
         $Order_rd ['result']['order_id']=$_SESSION["bucket"]["order_id"];
         $Order_rd->updateOne();
     }else{
@@ -19,7 +19,7 @@ if($mkOrder_err==null) {
     }
     $cards_cnt=0;
     foreach ($_SESSION['bucket']['prod'] as $key=>$val){
-        $OrdBucket_rd=new recordDefault("ordersBucket_dt", "bucket_id");
+        $OrdBucket_rd = array("table" => "ordersBucket_dt", "field_id" => "bucket_id");
         $OrdBucket_rd['result']['order_id']=$Order_rd['result']["order_id"];
         $OrdBucket_rd['result']['card_id']=$key;
         $OrdBucket_rd['result']['bucketPrice']=$val;

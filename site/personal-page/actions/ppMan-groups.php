@@ -1,7 +1,7 @@
 <?php
 
 $slGr_qry = "select * from usersGroups_dt";
-$slGr_res=$DB->doQuery($slGr_qry);
+$slGr_res=$DB->query($slGr_qry);
 $grCount=0;
 if(mysql_num_rows($slGr_res)>0){
     $grCount=mysql_num_rows($slGr_res);
@@ -31,7 +31,7 @@ if($grCount>0){
     $appRJ->response['result'].= "active";
     $appRJ->response['result'].= "</div>";
     $appRJ->response['result'].= "</div>";
-    while ($slGr_row=$DB->doFetchRow($slGr_res)){
+    while ($slGr_row = $slGr_res->fetch(PDO::FETCH_ASSOC)){
 
         $appRJ->response['result'].= "<div class='item-line'>";
         $appRJ->response['result'].= "<div class='item-line-id'>";

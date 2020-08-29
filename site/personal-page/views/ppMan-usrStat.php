@@ -5,7 +5,7 @@ $selStat_query = "select * from inLog_dt INNER JOIN accounts_dt ON inLog_dt.acco
     "INNER JOIN users_dt ON accounts_dt.user_id = users_dt.user_id WHERE users_dt.user_id=".$_GET['user_id'].
 " ORDER BY inLog_dt.comeDate DESC limit 5";
 
-$selStat_res = $DB->doQuery($selStat_query);
+$selStat_res = $DB->query($selStat_query);
 if($DB->err){
     $appRJ->response['result'].= "some query problems";
 }
@@ -20,7 +20,7 @@ if(mysql_num_rows($selStat_res)>0){
     $appRJ->response['result'].= "<div class='list-line-date'>date</div>";
     $appRJ->response['result'].= "</div>";
 
-    while ($selStat_row=$DB->doFetchRow($selStat_res)){
+    while ($selStat_row = $selStat_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<div class='list-line'>";
         $appRJ->response['result'].= "<div class='list-line-avatar'>";
         if($selStat_row['photoLink']){

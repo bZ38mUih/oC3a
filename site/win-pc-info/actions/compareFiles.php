@@ -65,16 +65,16 @@ if($_GET['wdCmp']){
 }
 $wdLeftName_qry="select * from wdList_dt WHERE wd_id=".$cmpLeft;
 $wdRightName_qry="select * from wdList_dt WHERE wd_id=".$cmpRight;
-$wdLeftName_res=$DB->doQuery($wdLeftName_qry);
-$wdRightName_res=$DB->doQuery($wdRightName_qry);
+$wdLeftName_res=$DB->query($wdLeftName_qry);
+$wdRightName_res=$DB->query($wdRightName_qry);
 if(mysql_num_rows($wdLeftName_res)==1){
-    $wdLeftName_row=$DB->doFetchRow($wdLeftName_res);
+    $wdLeftName_row = $wdLeftName_res->fetch(PDO::FETCH_ASSOC);
 }else{
 
     $cmpErr="wron cmpLeft";
 }
 if(mysql_num_rows($wdRightName_res)==1){
-    $wdRightName_row=$DB->doFetchRow($wdRightName_res);
+    $wdRightName_row = $wdRightName_res->fetch(PDO::FETCH_ASSOC);
 }else{
     $cmpErr="wron cmpRight";
 }

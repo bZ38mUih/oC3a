@@ -1,7 +1,7 @@
 <?php
 $editImg['result'] = false;
 $editImg['data'] = null;
-$Acc_rd = new recordDefault("accounts_dt", "account_id");
+$Acc_rd = array("table" => "accounts_dt", "field_id" => "account_id");
 $Acc_rd['result']['account_id']=$_POST['avatar_id'];
 if($Acc_rd->copyOne()){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].PP_USR_IMG_PAPH.$Acc_rd['result']['account_id'])) {

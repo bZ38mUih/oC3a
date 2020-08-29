@@ -33,15 +33,15 @@ require_once ($_SERVER["DOCUMENT_ROOT"]."/site/forum/views/fMan-subMenu.php");
 $cntSubj=0;
 $cntSubj_query="select count(fs_id) as cntSubj from forumSubj_dt LEFT JOIN forumMenu_dt ON ".
     "forumMenu_dt.fm_id=forumSubj_dt.fm_id";
-$cntSubj_res=$DB->doQuery($cntSubj_query);
-$cntSubj_row=$DB->doFetchRow($cntSubj_res);
+$cntSubj_res=$DB->query($cntSubj_query);
+$cntSubj_row = $cntSubj_res->fetch(PDO::FETCH_ASSOC);
 if($cntSubj_row['cntSubj']>0){
     $cntSubj=$cntSubj_row['cntSubj'];
 }
 $selectSubj_query = "select * from forumSubj_dt LEFT JOIN forumMenu_dt ON ".
     "forumMenu_dt.fm_id=forumSubj_dt.fm_id order by forumSubj_dt.dateOfCr DESC limit ".strval(($albPage-1)*$albLnP).
     ", ".$albLnP;
-$selectSubj_res=$DB->doQuery($selectSubj_query);
+$selectSubj_res=$DB->query($selectSubj_query);
 $subjCount=0;
 if(mysql_num_rows($selectSubj_res)>0){
     $subjCount=mysql_num_rows($selectSubj_res);
@@ -72,7 +72,7 @@ if($subjCount>0){
         "<div class='item-line-alias2'>sAlias</div>".
         "<div class='item-line-flag'>active</div>".
         "<div class='item-line-id'>usr_id</div></div>";
-    while ($selectSubj_row=$DB->doFetchRow($selectSubj_res)){
+    while ($selectSubj_row = $selectSubj_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<div class='item-line'><div class='item-line-id'>".
             "<a href='/forum/forummanager/editSubject/?fs_id=".$selectSubj_row['fs_id']."'>".
             $selectSubj_row['fs_id']."</a></div>".

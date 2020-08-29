@@ -1,5 +1,5 @@
 <?php
-$Cat_rd = new recordDefault("forumMenu_dt", "fm_id");
+$Cat_rd = array("table" => "forumMenu_dt", "field_id" => "fm_id");
 if(isset($_GET['fm_id']) and $_GET['fm_id']!=null){
     $Cat_rd['result']['fm_id'] = $_GET['fm_id'];
     $Cat_rd->copyOne();

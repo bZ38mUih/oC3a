@@ -1,7 +1,7 @@
 <?php
 $subjErr=null;
 
-$Subj_rd = new recordDefault("forumSubj_dt", "fs_id");
+$Subj_rd = array("table" => "forumSubj_dt", "field_id" => "fs_id");
 
 if(isset($_POST['sName']) and $_POST['sName']!=null){
     $Subj_rd['result']['sName']=htmlspecialchars($_POST['sName']);

@@ -27,8 +27,8 @@ $artByAlias_qry="select art_dt.art_id, art_dt.artName, art_dt.artMeta, art_dt.ar
     "artCat_dt.catName, artCat_dt.artCat_id, art_dt.artAlias, art_dt.pubDate, art_dt.refreshDate from art_dt ".
     "INNER JOIN artCat_dt ON art_dt.artCat_id = artCat_dt.artCat_id ".
     "where artCat_dt.artCat_id=3 OR artCat_dt.artCat_id=1 order by art_dt.pubDate DESC LIMIT 1 ";
-$artByAlias_res=$DB->doQuery($artByAlias_qry);
-$artByAlias_row=$DB->doFetchRow($artByAlias_res);
+$artByAlias_res=$DB->query($artByAlias_qry);
+$artByAlias_row = $artByAlias_res->fetch(PDO::FETCH_ASSOC);
 $appRJ->response['result'].="<h2>Свежая статья</h2>";
 $ref=null;
 if($artByAlias_row['artCat_id']==3){

@@ -2,7 +2,7 @@
 
 $socialAuth_err=false;
 
-$RD_accounts = new recordDefault("accounts_dt", "account_id");
+$RD_accounts = array("table" => "accounts_dt", "field_id" => "account_id");
 
 $tokenArr=null;
 $usrArr=null;
@@ -23,13 +23,13 @@ if($socialAuth_err ===true){
     $query_text = "select * from accounts_dt where accLogin='".$RD_accounts['result']['accLogin'].
         "' and netWork='".$RD_accounts['result']['netWork']."'";
 
-    $query_res = $DB->doQuery($query_text);
+    $query_res = $DB->query($query_text);
 
     $addNtf_txt=null;
 
     if(mysql_num_rows($query_res)===1)
     {
-        $query_row=$DB->doFetchRow($query_res);
+        $query_row = $query_res->fetch(PDO::FETCH_ASSOC);
         $RD_accounts['result']['account_id']=$query_row['account_id'];
         $update_flag=false;
         foreach($query_row as $key=>$value){
@@ -47,7 +47,7 @@ if($socialAuth_err ===true){
     }else{
         $RD_accounts['result']['regDate']=date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');
         $RD_accounts['result']['validDate']=date_format($appRJ->date['curDate'], 'Y-m-d H:i:s');
-        $RD_users = new recordDefault("users_dt", "user_id");
+        $RD_users = array("table" => "users_dt", "field_id" => "user_id");
 
         $RD_users['result']['blackList']=false;
         $RD_users->putOne();
@@ -72,10 +72,10 @@ if($socialAuth_err ===true){
 
     $usrGroups_text="select * from usersGroups_dt INNER JOIN usersToGroups_dt ON usersGroups_dt.group_id = ".
         "usersToGroups_dt.group_id WHERE usersToGroups_dt.user_id = ".$RD_accounts['result']['user_id'];
-    $usrGroups_res = $DB->doQuery($usrGroups_text);
+    $usrGroups_res = $DB->query($usrGroups_text);
 
     if(@mysql_num_rows($usrGroups_res)>0){
-        while ($usrGroups_row = $DB->doFetchRow($usrGroups_res)){
+        while ($usrGroups_row = $usrGroups_res->fetch(PDO::FETCH_ASSOC)){
             $_SESSION['groups'][$usrGroups_row['group_id']] = $usrGroups_row['rules'];
         }
     }
@@ -83,7 +83,7 @@ if($socialAuth_err ===true){
     $queryLog_text="insert into inLog_dt (account_id, comeDate, uAgent, rmAddr, rmPort) values".
         " ('".$RD_accounts['result']['account_id']."', '".date_format($appRJ->date['curDate'], 'Y-m-d H:i:s')."', ".
         "'".$_SERVER['HTTP_USER_AGENT']."', '".$_SERVER['REMOTE_ADDR']."', '".$_SERVER['REMOTE_PORT']."')";
-    $DB->doQuery($queryLog_text);
+    $DB->query($queryLog_text);
 
     if($_SESSION['redirLoc']){
         header("Location: ".$_SESSION['redirLoc']);

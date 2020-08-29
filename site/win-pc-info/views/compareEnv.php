@@ -9,7 +9,7 @@ $slDifEnv_qry="select * from (".$slEnvLeft_qry.") as wdEnvLeft left join (".$slE
     "union select * from (".$slEnvLeft_qry.") as wdEnvLeft right join (".$slEnvRight_qry.") as wdEnvRight".
     " on wdEnvLeft.vNameLeft = wdEnvRight.vNameRight ".
     "and wdEnvLeft.vValLeft=wdEnvRight.vValRight order by vNameLeft, vNameRight";
-if(!$slDifEnv_res=$DB->doQuery($slDifEnv_qry)){
+if(!$slDifEnv_res=$DB->query($slDifEnv_qry)){
     $appRJ->response['result'].="---fail--";
 };
 if(mysql_num_rows($slDifEnv_res)>0){
@@ -17,7 +17,7 @@ if(mysql_num_rows($slDifEnv_res)>0){
     $rightDifCnt=0;
     $envLines=null;
     $appRJ->response['result'].="<h3>Окружение (".mysql_num_rows($slDifEnv_res).")</h3>";
-    while ($slDifEnv_row=$DB->doFetchRow($slDifEnv_res)){
+    while ($slDifEnv_row = $slDifEnv_res->fetch(PDO::FETCH_ASSOC)){
         $envLine=null;
         $envLineClass=null;
         $envLine.="<div class='td-24'>";

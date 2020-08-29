@@ -18,12 +18,12 @@ function printFComments($comPar_id=null, $fs_id, $DB, $cntTotal=0, $page=1, $cLi
             "ORDER BY forumComments_dt.writeDate ".$sortOpt;
     }
     $comCnt=0;
-    if($slCm_res=$DB->doQuery($slCm_qry)){
+    if($slCm_res=$DB->query($slCm_qry)){
         $comCnt=mysql_num_rows($slCm_res);
     }
     if($comCnt>0){
         $tmpRes['text'].= "<ul>";
-        while ($slCm_row=$DB->doFetchRow($slCm_res)){
+        while ($slCm_row = $slCm_res->fetch(PDO::FETCH_ASSOC)){
             $tmpCm=null;
             $tmpCm.="<li class='cmt'><div class='com-line'><div class='com-img'>";
             if($slCm_row['photoLink']){

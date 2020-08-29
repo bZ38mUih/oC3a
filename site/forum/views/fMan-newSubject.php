@@ -53,10 +53,10 @@ $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>fm_id:</label><select name='fm_id'>";
 /*select options-->*/
 $categList_text="select fm_id, fm_pid, mName from forumMenu_dt ORDER BY mName";
-$categList_res=$DB->doQuery($categList_text);
+$categList_res=$DB->query($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
-    while ($categList_row=$DB->doFetchRow($categList_res)){
+    while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelect.= "<option value='".$categList_row['fm_id']."' ";
         if($categList_row['fm_id'] == $Subj_rd['result']['fm_id']){
             $findSelected=true;

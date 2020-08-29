@@ -5,13 +5,13 @@ if($_GET['searchArg']){
 }else{
     $appRJ->response['result'].="<h3>Список служб ( ";
 }
-if($srv_res=$DB->doQuery($srv_qry)){
+if($srv_res=$DB->query($srv_qry)){
     if(mysql_num_rows($srv_res)>0){
         //$appRJ->response['result'].=mysql_num_rows($srv_res)." )</h3>";
         //$appRJ->response['result'].=mysql_num_rows($hwProcess_res)." )</h3>";
         $appRJ->response['result'].=mysql_num_rows($srv_res)." )</h3><div class='line caption'>".
             "<div class='td-20'>sImg</div><div class='td-70'>sName</div></div>";
-        while ($srv_row=$DB->doFetchRow($srv_res)){
+        while ($srv_row = $srv_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<div class='line'><div class='td-20'>";
             if($srv_row['sImg']){
                 $appRJ->response['result'].="<img src='".WD_SRV_IMG.$srv_row['sImg']."'>";

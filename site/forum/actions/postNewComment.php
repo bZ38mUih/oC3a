@@ -2,7 +2,7 @@
 if(isset($_POST['fc_pid'])){
     if($_POST['fCm'] and $_POST['fCm']!=null){
         if(isset($_POST['fs_id']) and $_POST['fs_id']!=null){
-            $newCm = new recordDefault('forumComments_dt', 'fc_id');
+            $newCm = array("table" => 'forumComments_dt', "field_id" => 'fc_id');
             $newCm['result']['user_id']=$_SESSION['user_id'];
             $newCm['result']['fs_id']=$_POST['fs_id'];
             $newCm['result']['commmentCont']=$_POST['fCm'];
@@ -22,10 +22,10 @@ if(isset($_POST['fc_pid'])){
                     "where fs_id=".$newCm['result']['fs_id']." and fc_pid is null";
                 $subjAnsw_query="select count(fc_id) as subjAnsw from forumComments_dt ".
                     "where fs_id='".$newCm['result']['fs_id']."' and fc_pid is not null";
-                $subjComms_res=$DB->doQuery($subjComms_query);
-                $subjAnsw_res=$DB->doQuery($subjAnsw_query);
-                $subjComms_row=$DB->doFetchRow($subjComms_res);
-                $subjAnsw_row=$DB->doFetchRow($subjAnsw_res);
+                $subjComms_res=$DB->query($subjComms_query);
+                $subjAnsw_res=$DB->query($subjAnsw_query);
+                $subjComms_row = $subjComms_res->fetch(PDO::FETCH_ASSOC);
+                $subjAnsw_row = $subjAnsw_res->fetch(PDO::FETCH_ASSOC);
                 $refBlock['subjComm']=$subjComms_row['subjComm'];
                 $refBlock['subjAnsw']=$subjAnsw_row['subjAnsw'];
             }else{

@@ -45,10 +45,10 @@ $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='dwlCatPar_id'>dwlCatPar_id:</label><select name='dwlCatPar_id'>";
 /*select options-->*/
 $categList_text="select dwlCat_id, dwlCatPar_id, catName from dwlCat_dt ORDER BY catName ";
-$categList_res=$DB->doQuery($categList_text);
+$categList_res=$DB->query($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
-    while ($categList_row=$DB->doFetchRow($categList_res)){
+    while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelect.= "<option value='".$categList_row['dwlCat_id']."' ";
         if($categList_row['dwlCat_id'] == $Cat_rd['result']['dwlCatPar_id']){
             $findSelected=true;

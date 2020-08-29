@@ -2,7 +2,7 @@
 $editFile['result'] = false;
 $editFile['data'] = null;
 
-$File_rd = new recordDefault("dwlFiles_dt", "dwlFile_id");
+$File_rd = array("table" => "dwlFiles_dt", "field_id" => "dwlFile_id");
 $File_rd['result']['dwlFile_id']=$_POST['file_id'];
 if($File_rd->copyOne()){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].DWL_FILES_IMG_PAPH.$File_rd['result']['dwlFile_id'])) {

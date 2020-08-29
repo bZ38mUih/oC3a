@@ -2,7 +2,7 @@
 
 $catErr=null;
 
-$Cat_rd = new recordDefault("forumMenu_dt", "fm_id");
+$Cat_rd = array("table" => "forumMenu_dt", "field_id" => "fm_id");
 
 if(isset($_POST['mName']) and $_POST['mName']!=null){
     $Cat_rd['result']['mName']=htmlspecialchars($_POST['mName']);

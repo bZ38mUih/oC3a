@@ -11,12 +11,12 @@ function printFMenuList($artCatPar_id=null, $DB)
         $selectCat_query = "select * from forumMenu_dt WHERE fm_pid = ".$artCatPar_id." and mActive is TRUE";
         $slArt_qry="select * from forumSubj_dt WHERE fm_id = ".$artCatPar_id." and activeFlag is TRUE";
     }
-    $slArt_res=$DB->doQuery($slArt_qry);
+    $slArt_res=$DB->query($slArt_qry);
     $artCount=0;
     if(mysql_num_rows($slArt_res)>0){
         $artCount=mysql_num_rows($slArt_res);
     }
-    $selectCat_res=$DB->doQuery($selectCat_query);
+    $selectCat_res=$DB->query($selectCat_query);
     $catCount=0;
     if(mysql_num_rows($selectCat_res)>0){
         $catCount=mysql_num_rows($selectCat_res);
@@ -24,7 +24,7 @@ function printFMenuList($artCatPar_id=null, $DB)
     if($catCount>0 or $artCount>0){
         $tmpRes['text'].= "<ul>";
         if($artCount>0){
-            while ($slArt_row=$DB->doFetchRow($slArt_res)){
+            while ($slArt_row = $slArt_res->fetch(PDO::FETCH_ASSOC)){
                 $tmpItm=null;
                 $tmpItm.="<li class='itm-line'><a href='/forum/".$slArt_row['sAlias']."'>".
                     "<div class='itm-line-img'>";
@@ -46,7 +46,7 @@ function printFMenuList($artCatPar_id=null, $DB)
             }
         }
         if($catCount>0){
-            while ($selectCat_row=$DB->doFetchRow($selectCat_res)){
+            while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)){
                 $tmpCat=null;
                 $tmpCat.="<li class='cat-line'><a href='javascript: Void(0)'>".
                     "<div class='cat-line-img'>";

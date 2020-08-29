@@ -2,7 +2,7 @@
 
 $fileErr=null;
 
-$File_rd = new recordDefault("dwlFiles_dt", "dwlFile_id");
+$File_rd = array("table" => "dwlFiles_dt", "field_id" => "dwlFile_id");
 
 if(isset($_POST['dwlFileName']) and $_POST['dwlFileName']!=null){
     $File_rd['result']['dwlFileName']=htmlspecialchars($_POST['dwlFileName']);

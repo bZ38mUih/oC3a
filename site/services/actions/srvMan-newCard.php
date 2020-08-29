@@ -1,6 +1,6 @@
 <?php
 $cardErr=null;
-$Card_rd = new recordDefault("srvCards_dt", "card_id");
+$Card_rd = array("table" => "srvCards_dt", "field_id" => "card_id");
 if(isset($_POST['cardName']) and $_POST['cardName']!=null){
     $Card_rd['result']['cardName']=htmlspecialchars($_POST['cardName']);
 }else{

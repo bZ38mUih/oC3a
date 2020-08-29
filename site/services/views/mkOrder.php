@@ -1,5 +1,5 @@
 <?php
-$Order_rd = new recordDefault("ordersList_dt", "order_id");
+$Order_rd = array("table" => "ordersList_dt", "field_id" => "order_id");
 if($_SESSION['bucket']['order_id']) {
     $Order_rd['result']["order_id"] = $_SESSION['bucket']['order_id'];
     $Order_rd->copyOne();

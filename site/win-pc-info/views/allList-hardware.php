@@ -22,10 +22,10 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
     $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
         "<div class='contentBlock-wrap'><div class='lrp-wrap'>";
     $allHw_qry="select * from wdHwList_dt ORDER BY paramName, paramVal";
-    $allHw_res=$DB->doQuery($allHw_qry);
+    $allHw_res=$DB->query($allHw_qry);
     if(mysql_num_rows($allHw_res)>0){
         $appRJ->response['result'].="<div class='wi-block'>";
-        while ($allHw_row=$DB->doFetchRow($allHw_res)){
+        while ($allHw_row = $allHw_res->fetch(PDO::FETCH_ASSOC)){
             $appRJ->response['result'].="<h3><div class='line ta-left'><span class='fName'>";
             if($allHw_row['hwImg']){
                 $appRJ->response['result'].="<img src='".WD_HW_IMG.$allHw_row['paramName']."/preview/".$allHw_row['hwImg']."'>";

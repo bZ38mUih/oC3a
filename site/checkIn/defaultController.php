@@ -77,10 +77,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         {
             $vldCode .= $letters[rand(0,sizeof($letters)-1)];
         }
-        $RD_users = new recordDefault("users_dt", "user_id");
+        $RD_users = array("table" => "users_dt", "field_id" => "user_id");
         $RD_users['result']['blackList']=false;
         $RD_users->putOne();
-        $RD_accounts = new recordDefault("accounts_dt", "account_id");
+        $RD_accounts = array("table" => "accounts_dt", "field_id" => "account_id");
         $RD_accounts['result']['user_id']=$RD_users['result']['user_id'];
         $RD_accounts['result']['accLogin']=$requiredFields['login']['val'];
         $RD_accounts['result']['accAlias']=$requiredFields['login']['val'];

@@ -4,7 +4,7 @@ $delImg['result'] = false;
 $delImg['data'] = null;
 
 //require_once ($_SERVER['DOCUMENT_ROOT']."/source/recordDefault_class.php");
-$Cat_rd = new recordDefault("dwlCat_dt", "dwlCat_id");
+$Cat_rd = array("table" => "dwlCat_dt", "field_id" => "dwlCat_id");
 $Cat_rd['result']['dwlCat_id']=$_GET['delCatImg'];
 if($Cat_rd->copyOne()){
     unlink ($_SERVER["DOCUMENT_ROOT"].UPLOAD_IMG_PAPH.$Cat_rd['result']['dwlCat_id']."/".$Cat_rd['result']['catImg']);

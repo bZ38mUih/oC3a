@@ -24,8 +24,8 @@ if (isset($_GET['wiSearch']) and $_GET['wiSearch']!=null){
         "artCat_dt.catName, art_dt.pubDate, art_dt.refreshDate from art_dt ".
         "INNER JOIN artCat_dt ON art_dt.artCat_id = artCat_dt.artCat_id ".
         "WHERE art_dt.artAlias='".$appRJ->server['reqUri_expl'][2]."'";
-    $artByAlias_res=$DB->doQuery($artByAlias_qry);
-    $artByAlias_row=$DB->doFetchRow($artByAlias_res);
+    $artByAlias_res=$DB->query($artByAlias_qry);
+    $artByAlias_row = $artByAlias_res->fetch(PDO::FETCH_ASSOC);
     if($appRJ->server['reqUri_expl'][2]=="win-process"){
         if(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl'][3]!=null){
             $wdInfo.="<div class='wi-block'>";

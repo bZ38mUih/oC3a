@@ -2,9 +2,9 @@
 $slUsr_qry="select account_id, accLogin, accAlias, regDate, netWork, photoLink, eMail, birthDay, socProf ".
     "from accounts_dt ".
     "where user_id=".$_SESSION['user_id'];
-$slUsr_res=$DB->doQuery($slUsr_qry);
+$slUsr_res=$DB->query($slUsr_qry);
 if(mysql_num_rows($slUsr_res)==1){
-    $slUsr_row=$DB->doFetchRow($slUsr_res);
+    $slUsr_row = $slUsr_res->fetch(PDO::FETCH_ASSOC);
     $h1 ="Настройки аккаунта";
     $appRJ->response['result'].= "<!DOCTYPE html>".
         "<html lang='en-Us'>".

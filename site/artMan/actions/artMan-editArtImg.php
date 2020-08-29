@@ -2,7 +2,7 @@
 $editImg['result'] = false;
 $editImg['data'] = null;
 
-$Art_rd = new recordDefault("art_dt", "art_id");
+$Art_rd = array("table" => "art_dt", "field_id" => "art_id");
 $Art_rd['result']['art_id']=$_POST['art_id'];
 if($Art_rd->copyOne()){
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].ARTS_IMG_PAPH.$Art_rd['result']['art_id'])) {

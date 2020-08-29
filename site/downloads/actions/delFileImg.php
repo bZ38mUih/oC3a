@@ -4,7 +4,7 @@ $delFile['result'] = false;
 $delFile['data'] = null;
 
 //require_once ($_SERVER['DOCUMENT_ROOT']."/source/recordDefault_class.php");
-$File_rd = new recordDefault("dwlFiles_dt", "dwlFile_id");
+$File_rd = array("table" => "dwlFiles_dt", "field_id" => "dwlFile_id");
 $File_rd['result']['dwlFile_id']=$_GET['delFileImg'];
 if($File_rd->copyOne()){
     unlink ($_SERVER["DOCUMENT_ROOT"].DWL_FILES_IMG_PAPH.$File_rd['result']['dwlFile_id']."/".$File_rd['result']['fileImg']);

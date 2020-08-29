@@ -96,10 +96,10 @@ $appRJ->response['result'].= "</div></div>".
 $appRJ->response['result'].= "<select name='artCat_id'>";
 /*select options-->*/
 $categList_text="select artCat_id, artCatPar_id, catName from artCat_dt ORDER BY catName ";
-$categList_res=$DB->doQuery($categList_text);
+$categList_res=$DB->query($categList_text);
 if(mysql_num_rows($categList_res)>0){
     $findSelected=false;
-    while ($categList_row=$DB->doFetchRow($categList_res)){
+    while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelect.= "<option value='".$categList_row['artCat_id']."' ";
         if($categList_row['artCat_id'] == $Art_rd['result']['artCat_id']){
             $findSelected=true;

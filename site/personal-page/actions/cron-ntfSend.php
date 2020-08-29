@@ -12,7 +12,7 @@ require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_clas
 $ntf_cnt=0;
 $ntf_qry="select * from ntf_dt WHERE activeFlag is TRUE ORDER by ntfDate DESC";
 
-if($ntf_res=$DB->doQuery($ntf_qry)){
+if($ntf_res=$DB->query($ntf_qry)){
     if(mysql_num_rows($ntf_res)>0){
         $ntf_cnt=mysql_num_rows($ntf_res);
     }
@@ -34,7 +34,7 @@ if($ntf_cnt>0) {
 
             $slUsr_qry = "select user_id, eMail from accounts_dt WHERE accMain_flag is TRUE";
 
-            if ($slUsr_res = $DB->doQuery($slUsr_qry)) {
+            if ($slUsr_res = $DB->query($slUsr_qry)) {
                 if (mysql_num_rows($slUsr_res) > 0) {
                     $slUsr_cnt = mysql_num_rows($slUsr_res);
                 }
@@ -48,7 +48,7 @@ if($ntf_cnt>0) {
 
                 while ($slUsr_row = $DB->doFetchRow($slUsr_res)) {
 
-                    $ntfList_rd = new recordDefault("ntfList_dt", "ntfList_id");
+                    $ntfList_rd = array("table" => "ntfList_dt", "field_id" => "ntfList_id");
                     $ntfList_rd['result']['ntf_id'] = $ntf_row['ntf_id'];
                     $ntfList_rd['result']['user_id'] = $slUsr_row['user_id'];
                     $ntfList_rd->putOne();
@@ -77,7 +77,7 @@ if($ntf_cnt>0) {
 
             $ntfLog['txt'].="<p>";
 
-            $ntfList_rd = new recordDefault("ntfList_dt", "ntfList_id");
+            $ntfList_rd = array("table" => "ntfList_dt", "field_id" => "ntfList_id");
             $ntfList_rd['result']['ntf_id'] = $ntf_row['ntf_id'];
             $ntfList_rd['result']['user_id'] = $ntf_row['ntfSubscr'];
             $ntfList_rd->putOne();
@@ -85,7 +85,7 @@ if($ntf_cnt>0) {
             $slUsr_qry = "select eMail from accounts_dt WHERE user_id = " . $ntfList_rd['result']['user_id'] . " and " .
                 "accMain_flag is TRUE and eMail is not NULL";
 
-            if ($slUsr_res = $DB->doQuery($slUsr_qry)) {
+            if ($slUsr_res = $DB->query($slUsr_qry)) {
                 if (mysql_num_rows($slUsr_res) > 0) {
                     $slUsr_cnt = mysql_num_rows($slUsr_res);
                 }
@@ -115,7 +115,7 @@ if($ntf_cnt>0) {
                 "INNER JOIN usersToGroups_dt ON accounts_dt.user_id = usersToGroups_dt.user_id WHERE accounts_dt.accMain_flag is TRUE " .
                 "and usersToGroups_dt.group_id=" . $ntf_row['ntfSubscr'];
 
-            if ($slUsr_res = $DB->doQuery($slUsr_qry)) {
+            if ($slUsr_res = $DB->query($slUsr_qry)) {
                 if (mysql_num_rows($slUsr_res) > 0) {
                     $slUsr_cnt = mysql_num_rows($slUsr_res);
                 }
@@ -129,7 +129,7 @@ if($ntf_cnt>0) {
 
                 while ($slUsr_row = $DB->doFetchRow($slUsr_res)) {
 
-                    $ntfList_rd = new recordDefault("ntfList_dt", "ntfList_id");
+                    $ntfList_rd = array("table" => "ntfList_dt", "field_id" => "ntfList_id");
                     $ntfList_rd['result']['ntf_id'] = $ntf_row['ntf_id'];
                     $ntfList_rd['result']['user_id'] = $slUsr_row['user_id'];
 
@@ -157,7 +157,7 @@ if($ntf_cnt>0) {
         $ntfLog['txt'].="<hr>";
     }
     $updateNtf_qry="update ntf_dt set activeFlag = false WHERE activeFlag is TRUE";
-    $DB->doQuery($updateNtf_qry);
+    $DB->query($updateNtf_qry);
 }else{
     $ntfLog['txt'].="<h2>no notifications to send</h2>";
 }

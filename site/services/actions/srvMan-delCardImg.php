@@ -1,7 +1,7 @@
 <?php
 $delImg['result'] = false;
 $delImg['data'] = null;
-$Card_rd = new recordDefault("srvCards_dt", "card_id");
+$Card_rd = array("table" => "srvCards_dt", "field_id" => "card_id");
 $Card_rd['result']['card_id']=$_GET['delCardImg'];
 if($Card_rd->copyOne()){
     unlink ($_SERVER["DOCUMENT_ROOT"].SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id']."/".
