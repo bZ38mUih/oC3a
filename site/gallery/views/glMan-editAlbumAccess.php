@@ -31,32 +31,32 @@ if(isset($albErr['common']) and $albErr['common']===true){
 $appRJ->response['result'].= "<input type='hidden' name='flagField' value='editAlbumAccess'>".
     "<div class='input-line'><label for='readRule'>Просмотр альбома:</label><select name='readRule'>".
     "<option value='off' ";
-if($Alb_rd->result['readRule']=='off'){
+if($Alb_rd['result']['readRule']=='off'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">off</option>";
 $appRJ->response['result'].= "<option value='all' ";
-if($Alb_rd->result['readRule']=='all'){
+if($Alb_rd['result']['readRule']=='all'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">all</option><option value='users' ";
-if($Alb_rd->result['readRule']=='users'){
+if($Alb_rd['result']['readRule']=='users'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">users</option>";
 $groups_text = "select * from usersGroups_dt WHERE activeFlag is true ORDER BY group_id ";
-$groups_res = $DB->doQuery($groups_text);
+$groups_res = $DB->query($groups_text);
 $writeRule=null;
-if(mysql_num_rows($groups_res)>0){
-    while ($groups_row=$DB->doFetchRow($groups_res)){
+if($groups_res->rowCount() > 0){
+    while ($groups_row = $groups_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<option value='".$groups_row['group_id']."' ";
-        if($Alb_rd->result['readRule'] == $groups_row['group_id']){
+        if($Alb_rd['result']['readRule'] == $groups_row['group_id']){
             $appRJ->response['result'].= "selected";
         }
         $appRJ->response['result'].= ">".$groups_row['groupAlias']."</option>";
 
         $writeRule.= "<option value='".$groups_row['group_id']."' ";
-        if($Alb_rd->result['writeRule'] == $groups_row['group_id']){
+        if($Alb_rd['result']['writeRule'] == $groups_row['group_id']){
             $writeRule.= "selected";
         }
         $writeRule.= ">".$groups_row['groupAlias']."</option>";
@@ -65,11 +65,11 @@ if(mysql_num_rows($groups_res)>0){
 $appRJ->response['result'].= "</select></div>".
     "<div class='input-line'><label for='writeRule'>Лайки и комменты:</label><select name='writeRule'>".
     "<option value='off' ";
-if($Alb_rd->result['writeRule']=='off'){
+if($Alb_rd['result']['writeRule']=='off'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">off</option><option value='users' ";
-if($Alb_rd->result['writeRule']=='users'){
+if($Alb_rd['result']['writeRule']=='users'){
     $appRJ->response['result'].= "selected";
 }
 $appRJ->response['result'].= ">users</option>".$writeRule."</select></div>".

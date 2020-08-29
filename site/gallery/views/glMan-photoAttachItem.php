@@ -21,12 +21,10 @@ $appRJ->response['result'].= "<input type='button' value='update' class='update'
     "<input type='button' value='delete' class='delete' onclick='deleteAttach(".
     $itemsCount_row['photo_id'].", this)'>";
 $appRJ->response['result'].= "</div>".
-
     "</div>".
     "<div class='photo-reAssignAlb'><select onchange='reAssignCateg(".$itemsCount_row['photo_id'].", this)'>".
     "<option value='void'>---</option>";
 foreach ($categ_arr as $cat_id => $catName){
-    //if($cat_id != )
     $appRJ->response['result'].= "<option value='".$cat_id."'>".$catName."</option>";
 }
 $appRJ->response['result'].=    "</select>".
@@ -41,6 +39,5 @@ $appRJ->response['result'].=    "</select>".
     " - reAssign</a>".
     "</div>".
     "</div>".
-
     "</div>".
     "</div>";

@@ -1,36 +1,36 @@
 <?php
 $editImg['result'] = false;
 $editImg['data'] = null;
-$Cat_rd = new recordDefault("galleryMenu_dt", "glCat_id");
-$Cat_rd->result['glCat_id']=$_POST['cat_id'];
-if($Cat_rd->copyOne()){
-    if (!file_exists($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id'])) {
-        mkdir($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id'], 0777, true);
+$Cat_rd = array("table" => "galleryMenu_dt", "field_id" => "glCat_id");
+$Cat_rd['result']['glCat_id']=$_POST['cat_id'];
+if($Cat_rd = $DB->copyOne($Cat_rd)){
+    if (!file_exists($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id'])) {
+        mkdir($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id'], 0777, true);
     }
-    if (!file_exists($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/preview")) {
-        mkdir($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/preview", 0777, true);
+    if (!file_exists($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id']."/preview")) {
+        mkdir($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id']."/preview", 0777, true);
     }
     foreach ($_FILES as $file){
         if ($file['error'] !== 0){
         }else{
-            if($Cat_rd->result['catImg']){
-                unlink ($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/".$Cat_rd->result['catImg']);
-                unlink ($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/preview/".$Cat_rd->result['catImg']);
+            if($Cat_rd['result']['catImg']){
+                unlink ($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id']."/".$Cat_rd['result']['catImg']);
+                unlink ($_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id']."/preview/".$Cat_rd['result']['catImg']);
             }
             $path_parts = pathinfo(basename($file['name']));
-            $Cat_rd->result['catImg']=uniqid().".".$path_parts['extension'];
+            $Cat_rd['result']['catImg']=uniqid().".".$path_parts['extension'];
             if (move_uploaded_file($file['tmp_name'], $_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.
-                $Cat_rd->result['glCat_id']."/".$Cat_rd->result['catImg'])) {
+                $Cat_rd['result']['glCat_id']."/".$Cat_rd['result']['catImg'])) {
                 /*create preview-->*/
                 require_once ($_SERVER['DOCUMENT_ROOT']."/source/imageLib_class.php");
                 $imageLib=new imageLib();
                 $imageLib->createPreview(
-                    $_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/".$Cat_rd->result['catImg'],
-                    $_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/preview/".$Cat_rd->result['catImg'], 600, 600);
+                    $_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id']."/".$Cat_rd['result']['catImg'],
+                    $_SERVER["DOCUMENT_ROOT"].GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id']."/preview/".$Cat_rd['result']['catImg'], 600, 600);
                 /*<--create preview*/
-                if($Cat_rd->updateOne()){
+                if($DB->updateOne($Cat_rd)){
                     $editImg['result'] = true;
-                    $editImg['data'] = "<img src='".GL_CATEG_IMG_PAPH.$Cat_rd->result['glCat_id']."/preview/".$Cat_rd->result['catImg']."'>";
+                    $editImg['data'] = "<img src='".GL_CATEG_IMG_PAPH.$Cat_rd['result']['glCat_id']."/preview/".$Cat_rd['result']['catImg']."'>";
                 }
             } else {
                 $editImg['data']= "Возможная атака с помощью файловой загрузки!\n";

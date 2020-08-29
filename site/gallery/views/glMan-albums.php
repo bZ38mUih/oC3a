@@ -32,18 +32,18 @@ require_once ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/views/glMan-subMenu.php")
 $cntSubj=0;
 $cntSubj_query="select count(album_id) as cntSubj from galleryAlb_dt LEFT JOIN galleryMenu_dt ON ".
     "galleryAlb_dt.glCat_id=galleryMenu_dt.glCat_id";
-$cntSubj_res=$DB->doQuery($cntSubj_query);
-$cntSubj_row=$DB->doFetchRow($cntSubj_res);
+$cntSubj_res=$DB->query($cntSubj_query);
+$cntSubj_row = $cntSubj_res->fetch(PDO::FETCH_ASSOC);
 if($cntSubj_row['cntSubj']>0){
     $cntSubj=$cntSubj_row['cntSubj'];
 }
 $selectSubj_query = "select * from galleryAlb_dt LEFT JOIN galleryMenu_dt ON ".
     "galleryAlb_dt.glCat_id=galleryMenu_dt.glCat_id order by galleryAlb_dt.dateOfCr DESC limit ".strval(($albPage-1)*$albLnP).
     ", ".$albLnP;
-$selectSubj_res=$DB->doQuery($selectSubj_query);
+$selectSubj_res = $DB->query($selectSubj_query);
 $subjCount=0;
-if(mysql_num_rows($selectSubj_res)>0){
-    $subjCount=mysql_num_rows($selectSubj_res);
+if($selectSubj_res->rowCount() > 0){
+    $subjCount= $selectSubj_res->rowCount();
 }
 $appRJ->response['result'].= "<div class='manFrame'><div class='manTopPanel'><div class='itemsCount'>".
     "Всего: <span>".$cntSubj."</span> записей";
@@ -71,7 +71,7 @@ if($subjCount>0){
         "<div class='item-line-alias2'>catName</div>".
         "<div class='item-line-flag'>active</div>".
         "<div class='item-line-id'>usr_id</div></div>";
-    while ($selectSubj_row=$DB->doFetchRow($selectSubj_res)){
+    while ($selectSubj_row = $selectSubj_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<div class='item-line'><div class='item-line-id'>".
             "<a href='/gallery/glManager/editAlbum/?alb_id=".$selectSubj_row['album_id']."'>".
             $selectSubj_row['album_id']."</a></div>".

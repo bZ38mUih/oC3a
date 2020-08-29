@@ -23,8 +23,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/views/glMan-subMenu.php"
 $appRJ->response['result'].= "<form method='post'><input type='hidden' name='flagField' value='newAlbum'>".
     "<div class='input-line'><label for='albumName'>Название:</label>".
     "<input type='text' name='albumName' id='targetName' ";
-if($Alb_rd->result['albumName']){
-    $appRJ->response['result'].= "value='".$Alb_rd->result['albumName']."'";
+if($Alb_rd['result']['albumName']){
+    $appRJ->response['result'].= "value='".$Alb_rd['result']['albumName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
 if(isset($albErr['albumName'])){
@@ -33,8 +33,8 @@ if(isset($albErr['albumName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='albumAlias'>Alias:</label>".
     "<input type='text' name='albumAlias' id='targetAlias' ";
-if($Alb_rd->result['albumAlias']){
-    $appRJ->response['result'].= "value='".$Alb_rd->result['albumAlias']."'";
+if($Alb_rd['result']['albumAlias']){
+    $appRJ->response['result'].= "value='".$Alb_rd['result']['albumAlias']."'";
 }
 $appRJ->response['result'].= "><input type='button' onclick='mkAlias()' value='mkAlbAlias'><div class='field-err'>";
 if(isset($albErr['albumAlias'])){
@@ -42,19 +42,19 @@ if(isset($albErr['albumAlias'])){
 }
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='metaDescr'>Мета:</label><textarea name='metaDescr' rows='3' >";
-if($Alb_rd->result['metaDescr']){
-    $appRJ->response['result'].= $Alb_rd->result['metaDescr'];
+if($Alb_rd['result']['metaDescr']){
+    $appRJ->response['result'].= $Alb_rd['result']['metaDescr'];
 }
 $appRJ->response['result'].= "</textarea></div>".
     "<div class='input-line'><label for='glCat_id'>glCat_id:</label><select name='glCat_id'>";
 /*select options-->*/
 $categList_text="select glCat_id, glCat_parId, catName from galleryMenu_dt ORDER BY catName ";
-$categList_res=$DB->doQuery($categList_text);
-if(mysql_num_rows($categList_res)>0){
+$categList_res = $DB->query($categList_text);
+if($categList_res->rowCount() > 0){
     $findSelected=false;
-    while ($categList_row=$DB->doFetchRow($categList_res)){
+    while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelect.= "<option value='".$categList_row['glCat_id']."' ";
-        if($categList_row['glCat_id'] == $Alb_rd->result['glCat_id']){
+        if($categList_row['glCat_id'] == $Alb_rd['result']['glCat_id']){
             $findSelected=true;
             $catSelect.= " selected";
         }
@@ -72,7 +72,7 @@ if(mysql_num_rows($categList_res)>0){
 $appRJ->response['result'].= $catSelect."</select></div>".
     "<div class='input-line'><label for='activeFlag'>Показывать:</label>".
     "<input type='checkbox' name='activeFlag' ";
-if($Alb_rd->result['activeFlag']){
+if($Alb_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".

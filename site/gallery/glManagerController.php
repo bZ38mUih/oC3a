@@ -53,23 +53,21 @@ if($_POST){
     elseif($_POST['reAssignCateg'] == 'y'){
         $ajaxRes['err']=0;
         $ajaxRes['data']= null;
-        $glCat_rd = new recordDefault("galleryMenu_dt", "glCat_id");
-        $glCat_rd->result['glCat_id'] = $_POST['glCat_id'];
-        $glPhoto = new recordDefault("galleryPhotos_dt", "photo_id");
-        $glPhoto->result['photo_id'] = $_POST['photo_id'];
-        if($glCat_rd->copyOne()){
-            if($glPhoto->copyOne()){
-                $albumsInCateg_qry = "select * from galleryAlb_dt where glCat_id = ".$glCat_rd->result['glCat_id'].
+        $glCat_rd = array("table" => "galleryMenu_dt", "field_id" => "glCat_id");
+        $glCat_rd['result']['glCat_id'] = $_POST['glCat_id'];
+        $glPhoto = array("table" => "galleryPhotos_dt", "field_id" => "photo_id");
+        $glPhoto['result']['photo_id'] = $_POST['photo_id'];
+        if($glCat_rd = $DB->copyOne($glCat_rd)){
+            if($glPhoto = $DB->copyOne($glPhoto)){
+                $albumsInCateg_qry = "select * from galleryAlb_dt where glCat_id = ".$glCat_rd['result']['glCat_id'].
                     " order by albumName";
-                $albumsInCateg_res = $DB->doQuery($albumsInCateg_qry);
-                while($albumsInCateg_row=$DB->doFetchRow($albumsInCateg_res)){
-                    if($albumsInCateg_row['album_id'] != $glPhoto->result['album_id']){
+                $albumsInCateg_res = $DB->query($albumsInCateg_qry);
+                while($albumsInCateg_row = $albumsInCateg_res->fetch(PDO::FETCH_ASSOC)){
+                    if($albumsInCateg_row['album_id'] != $glPhoto['result']['album_id']){
                         $ajaxRes['data'] .= "<option value='".$albumsInCateg_row['album_id']."'>".
                             $albumsInCateg_row['albumName']."</option>";
                     }
-                    //$ajaxRes['data'] =
                 }
-                //echo "reAssignCateg - ok";
             }else{
                 $ajaxRes['err']=1;
                 $ajaxRes['data'] = "problem reAssignCateg - 2";
@@ -87,67 +85,47 @@ if($_POST){
         $ajaxRes['err']=0;
         $ajaxRes['data']= null;
 
-        $glAlb_rd = new recordDefault("galleryAlb_dt", "album_id");
+        $glAlb_rd = array("table" => "galleryAlb_dt", "field_id" => "album_id");
 
-        $glAlb_rd->result['album_id'] = $_POST['album_id'];
-        $glPhoto = new recordDefault("galleryPhotos_dt", "photo_id");
-        $glPhoto->result['photo_id'] = $_POST['photo_id'];
+        $glAlb_rd['result']['album_id'] = $_POST['album_id'];
+        $glPhoto = array("table" => "galleryPhotos_dt", "field_id" => "photo_id");
+        $glPhoto['result']['photo_id'] = $_POST['photo_id'];
 
-        if($glAlb_rd->copyOne()){
-            if($glPhoto->copyOne()){
-                //if(copy(GL_ALBUM_IMG_PAPH."/".$glAlb_rd->result['album_id']."/photoAttach"))
-                if(rename($_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glPhoto->result['album_id']."/photoAttach/".$glPhoto->result['photoLink'],
-                    $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glAlb_rd->result['album_id']."/photoAttach/".$glPhoto->result['photoLink'])){
-                    if(rename($_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glPhoto->result['album_id']."/photoAttach/preview/".$glPhoto->result['photoLink'],
-                        $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glAlb_rd->result['album_id']."/photoAttach/preview/".$glPhoto->result['photoLink'])){
-                        //if(unlink(GL_ALBUM_IMG_PAPH.$glPhoto->result['album_id']."/photoAttach/".$glPhoto->result['photoLink'])){
-                            //if(unlink(GL_ALBUM_IMG_PAPH.$glPhoto->result['album_id']."/photoAttach/preview/".$glPhoto->result['photoLink'])){
-                                $glPhoto->result['album_id'] = $glAlb_rd->result['album_id'];
-                                if($glPhoto->updateOne()){
-                                    //http://oc3a.local/gallery/glManager/editAlbum/photo?alb_id=264
-                                    $ajaxRes['data'] = "перемещено: <a href='/gallery/glManager/editAlbum/photo?alb_id=".
-                                        $glAlb_rd->result['album_id']."'>Смотреть</a>";
-                                }else{
-                                    $ajaxRes['err']=1;
-                                    $ajaxRes['data'] = "problem reAssignPhoto - update record";
-                                }
-                            //}else{
-                            //    $ajaxRes['err']=1;
-                            //    $ajaxRes['data'] = "problem reAssignPhoto - unlink preview";
-                            //}
-                        //}else{
-                        //    $ajaxRes['err']=1;
-                        //    $ajaxRes['data'] = "problem reAssignPhoto - unlink img";
-                        //}
+        if($glAlb_rd = $DB->copyOne($glAlb_rd)){
+            if($glPhoto = $DB->copyOne($glPhoto)){
+                if(rename($_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glPhoto['result']['album_id']."/photoAttach/".$glPhoto['result']['photoLink'],
+                    $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glAlb_rd['result']['album_id']."/photoAttach/".$glPhoto['result']['photoLink'])){
+                    if(rename($_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glPhoto['result']['album_id']."/photoAttach/preview/".$glPhoto['result']['photoLink'],
+                        $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glAlb_rd['result']['album_id']."/photoAttach/preview/".$glPhoto['result']['photoLink'])){
+                        $glPhoto['result']['album_id'] = $glAlb_rd['result']['album_id'];
+                        if($DB->updateOne($glPhoto)){
+                            //http://oc3a.local/gallery/glManager/editAlbum/photo?alb_id=264
+                            $ajaxRes['data'] = "перемещено: <a href='/gallery/glManager/editAlbum/photo?alb_id=".
+                                $glAlb_rd['result']['album_id']."'>Смотреть</a>";
+                        }else{
+                            $ajaxRes['err']=1;
+                            $ajaxRes['data'] = "problem reAssignPhoto - update record";
+                        }
                     }else{
                         $ajaxRes['err']=1;
                         $ajaxRes['data'] = "problem reAssignPhoto - copy preview";
                     }
                 }else{
                     $ajaxRes['err']=1;
-                    $ajaxRes['data'] = "problem reAssignPhoto - copy img ".$_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glPhoto->result['album_id'].
-                        "/photoAttach/".$glPhoto->result['photoLink']."   xxx   ".
-                        $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glAlb_rd->result['album_id']."/photoAttach/".$glPhoto->result['photoLink'];
+                    $ajaxRes['data'] = "problem reAssignPhoto - copy img ".$_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glPhoto['result']['album_id'].
+                        "/photoAttach/".$glPhoto['result']['photoLink']."   xxx   ".
+                        $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$glAlb_rd['result']['album_id']."/photoAttach/".$glPhoto['result']['photoLink'];
                 }
-
-                    /*
-                $ajaxRes['data'] = "reAssignCateg - ok source: ".
-                    .
-                "dest: ".;
-                    */
             }else{
                 $ajaxRes['err']=1;
                 $ajaxRes['data'] = "problem reAssignPhoto - 2";
             }
         }else{
             $ajaxRes['err']=1;
-            $ajaxRes['data'] = "problem reAssignPhoto - 1 - id=".$glAlb_rd->result['album_id'];
+            $ajaxRes['data'] = "problem reAssignPhoto - 1 - id=".$glAlb_rd['result']['album_id'];
         }
-
-        //$ajaxRes['data']='la-la-2';
         $appRJ->response['format'] = "json";
         $appRJ->response['result'] = $ajaxRes;
-
     }
 }
 elseif (isset($_GET['delAlbImg']) and $_GET['delAlbImg']!=null){
@@ -186,9 +164,9 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['re
 elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['reqUri_expl'][3])=="editalbum"){
     $albErr=null;
     if(isset($_GET['alb_id']) and $_GET['alb_id']!=null){
-        $Alb_rd = new recordDefault("galleryAlb_dt", "album_id");
-        $Alb_rd->result['album_id']=$_GET['alb_id'];
-        if($Alb_rd->copyOne()){
+        $Alb_rd = array("table" => "galleryAlb_dt", "field_id" => "album_id");
+        $Alb_rd['result']['album_id']=$_GET['alb_id'];
+        if($Alb_rd = $DB->copyOne($Alb_rd)){
             if(!$appRJ->server['reqUri_expl'][4]){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/gallery/views/glMan-editAlbum.php");
             }
@@ -211,7 +189,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and strtolower($appRJ->server['re
                     if(!$rmRes){
                         require_once ($_SERVER["DOCUMENT_ROOT"]."/site/gallery/views/glMan-delAlb-form.php");
                     }else{
-                        $Alb_rd->removeOne();
+                        $DB->removeOne($Alb_rd);
                         $appRJ->response['result'].="<span class='results success'>Удаление успешно</span>";
                     }
                 }

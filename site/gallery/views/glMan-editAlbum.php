@@ -26,10 +26,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/views/glMan-subMenu.php"
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/gallery/views/glMan-subContentMenu.php");
 $appRJ->response['result'].= "<form class='editImg'><div class='img-frame'>";
 $delImgBtn_text=null;
-if($Alb_rd->result['albumImg']){
-    $appRJ->response['result'].= "<img src='".GL_ALBUM_IMG_PAPH.$_GET['alb_id']."/preview/".$Alb_rd->result['albumImg']."' ";
-    if($Alb_rd->result['transAlbImg']){
-        $appRJ->response['result'].="style='transform: rotate(".$Alb_rd->result['transAlbImg']."deg)' ";
+if($Alb_rd['result']['albumImg']){
+    $appRJ->response['result'].= "<img src='".GL_ALBUM_IMG_PAPH.$_GET['alb_id']."/preview/".$Alb_rd['result']['albumImg']."' ";
+    if($Alb_rd['result']['transAlbImg']){
+        $appRJ->response['result'].="style='transform: rotate(".$Alb_rd['result']['transAlbImg']."deg)' ";
     }
     $appRJ->response['result'].=">";
     $delImgBtn_text= "class='active'";
@@ -50,11 +50,11 @@ if(isset($albErr['common']) and $albErr['common']===true){
 }
 $appRJ->response['result'].= "<input type='hidden' name='flagField' value='editAlbum'>".
     "<div class='input-line'><label for='album_id'>album_id:</label>".
-    "<input type='text' name='album_id' value='".$Alb_rd->result['album_id']."' disabled></div>".
+    "<input type='text' name='album_id' value='".$Alb_rd['result']['album_id']."' disabled></div>".
     "<div class='input-line'><label for='albumName'>Название:</label>".
     "<input type='text' name='albumName' id='targetName' ";
-if($Alb_rd->result['albumName']){
-    $appRJ->response['result'].= "value='".$Alb_rd->result['albumName']."'";
+if($Alb_rd['result']['albumName']){
+    $appRJ->response['result'].= "value='".$Alb_rd['result']['albumName']."'";
 }
 $appRJ->response['result'].= "><div class='field-err'>";
 if(isset($albErr['albumName'])){
@@ -63,8 +63,8 @@ if(isset($albErr['albumName'])){
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='albumAlias'>Alias:</label>".
     "<input type='text' name='albumAlias' id='targetAlias' ";
-if($Alb_rd->result['albumAlias']){
-    $appRJ->response['result'].= "value='".$Alb_rd->result['albumAlias']."'";
+if($Alb_rd['result']['albumAlias']){
+    $appRJ->response['result'].= "value='".$Alb_rd['result']['albumAlias']."'";
 }
 $appRJ->response['result'].= ">".
     "<input type='button' onclick='mkAlias()' value='mkAlbAlias'><div class='field-err'>";
@@ -73,20 +73,20 @@ if(isset($albErr['albumAlias'])){
 }
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='metaDescr'>Мета:</label><textarea name='metaDescr' rows='3' >";
-if($Alb_rd->result['metaDescr']){
-    $appRJ->response['result'].= $Alb_rd->result['metaDescr'];
+if($Alb_rd['result']['metaDescr']){
+    $appRJ->response['result'].= $Alb_rd['result']['metaDescr'];
 }
 $appRJ->response['result'].= "</textarea></div>".
     "<div class='input-line'><label for='glCat_id'>glCat_id:</label><select name='glCat_id'>";
 /*select options-->*/
 $categList_text="select glCat_id, catName from galleryMenu_dt".
     " ORDER BY catName ";
-$categList_res=$DB->doQuery($categList_text);
-if(mysql_num_rows($categList_res)>0){
+$categList_res = $DB->query($categList_text);
+if($categList_res->rowCount() >0){
     $findSelected=false;
-    while ($categList_row=$DB->doFetchRow($categList_res)){
+    while ($categList_row = $categList_res->fetch(PDO::FETCH_ASSOC)){
         $catSelectOptions.= "<option value='".$categList_row['glCat_id']."' ";
-        if($categList_row['glCat_id'] == $Alb_rd->result['glCat_id']){
+        if($categList_row['glCat_id'] == $Alb_rd['result']['glCat_id']){
             $findSelected=true;
             $catSelectOptions.= " selected";
         }
@@ -103,30 +103,30 @@ if(mysql_num_rows($categList_res)>0){
 /*<--select options*/
 $appRJ->response['result'].= $catSelectOptions."</select></div>".
     "<div class='input-line'><label for='dateOfCr'>dateOfCr:</label>".
-    "<input type='date' name='dateOfCr' value='".substr($Alb_rd->result['dateOfCr'], 0, 10)."'>".
+    "<input type='date' name='dateOfCr' value='".substr($Alb_rd['result']['dateOfCr'], 0, 10)."'>".
     "<div class='field-err'>";
 if(isset($albErr['dateOfCr'])){
     $appRJ->response['result'].= $albErr['dateOfCr'];
 }
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label>refreshDate:</label>".
-    "<input type='date' name='refreshDate' value='".substr($Alb_rd->result['refreshDate'], 0, 10)."'>".
+    "<input type='date' name='refreshDate' value='".substr($Alb_rd['result']['refreshDate'], 0, 10)."'>".
     "<div class='field-err'>";
 if(isset($albErr['refreshDate'])){
     $appRJ->response['result'].= $albErr['refreshDate'];
 }
 $appRJ->response['result'].= "</div></div>".
     "<div class='input-line'><label for='transAlbImg'>transAlbImg:</label>".
-    "<input type='number' name='transAlbImg' min='-180' max='180' value='".$Alb_rd->result['transAlbImg']."'></div>".
+    "<input type='number' name='transAlbImg' min='-180' max='180' value='".$Alb_rd['result']['transAlbImg']."'></div>".
     "<div class='input-line'><label for='activeFlag'>Показывать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='activeFlag' ";
-if($Alb_rd->result['activeFlag']){
+if($Alb_rd['result']['activeFlag']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".
     "<div class='input-line'><label for='robIndex'>Индексировать:</label>";
 $appRJ->response['result'].= "<input type='checkbox' name='robIndex' ";
-if($Alb_rd->result['robIndex']){
+if($Alb_rd['result']['robIndex']){
     $appRJ->response['result'].= "checked";
 }
 $appRJ->response['result'].= "></div>".
