@@ -40,102 +40,103 @@ $selectAlbums_txt = "select galleryMenu_dt.catName, galleryMenu_dt.catAlias, gal
     "AND galleryAlb_dt.readRule <> '' ".
     "GROUP BY galleryAlb_dt.album_id ".
     "ORDER BY galleryAlb_dt.dateOfCr DESC, galleryAlb_dt.album_id DESC";
-$selectAlbums_res=$DB->query($selectAlbums_txt);
-$selectAlbums_count = $selectAlbums_res->rowCount();
-if($selectAlbums_count>0){
-    $cntAlb=0;
-    $albums_print=null;
-    $cat_print = null;
-    $catArr=null;
-    $cntCat=0;
-    while($selectAlbums_row=$selectAlbums_res->fetch(PDO::FETCH_ASSOC)){
+if($selectAlbums_res=$DB->query($selectAlbums_txt)){
+    $selectAlbums_count = $selectAlbums_res->rowCount();
+    if($selectAlbums_count>0){
+        $cntAlb=0;
+        $albums_print=null;
+        $cat_print = null;
+        $catArr=null;
+        $cntCat=0;
+        while($selectAlbums_row=$selectAlbums_res->fetch(PDO::FETCH_ASSOC)){
 
-        $alb_view=null;
+            $alb_view=null;
 
-        //read access-->
-        $rdAccRes=false;
-        if($selectAlbums_row['readRule']){
-            if($selectAlbums_row['readRule']=='all'){
-                $rdAccRes=true;
-            }elseif($selectAlbums_row['readRule']=='users' and isset($_SESSION['alias'])){
-                $rdAccRes=true;
-            }elseif(isset($_SESSION['groups'][$selectAlbums_row['readRule']])){
-                $rdAccRes=true;
+            //read access-->
+            $rdAccRes=false;
+            if($selectAlbums_row['readRule']){
+                if($selectAlbums_row['readRule']=='all'){
+                    $rdAccRes=true;
+                }elseif($selectAlbums_row['readRule']=='users' and isset($_SESSION['alias'])){
+                    $rdAccRes=true;
+                }elseif(isset($_SESSION['groups'][$selectAlbums_row['readRule']])){
+                    $rdAccRes=true;
+                }
             }
-        }
-        //<--read access
-        if($rdAccRes){
-            $cntAlb++;
-            if($cntAlb<=3){
-                $alb_view.="<div class='swiper-slide'><div class='alb-block'>";
-                $alb_view.="<a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-name'>".
-                    $selectAlbums_row['albumName'].
-                    "</a>";
-                $alb_view.="<div class='alb-img'>";
-                if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id'].
-                    "/preview/".$selectAlbums_row['albumImg'])){
-                    $alb_view.="<img src='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
-                        $selectAlbums_row['albumImg']."' ";
-                    if($selectAlbums_row['transAlbImg']){
-                        $alb_view.="style='transform: rotate(".$selectAlbums_row['transAlbImg']."deg)'";
+            //<--read access
+            if($rdAccRes){
+                $cntAlb++;
+                if($cntAlb<=3){
+                    $alb_view.="<div class='swiper-slide'><div class='alb-block'>";
+                    $alb_view.="<a href='/gallery/".$selectAlbums_row['albumAlias']."' class='alb-name'>".
+                        $selectAlbums_row['albumName'].
+                        "</a>";
+                    $alb_view.="<div class='alb-img'>";
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'].GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id'].
+                        "/preview/".$selectAlbums_row['albumImg'])){
+                        $alb_view.="<img src='".GL_ALBUM_IMG_PAPH.$selectAlbums_row['album_id']."/preview/".
+                            $selectAlbums_row['albumImg']."' ";
+                        if($selectAlbums_row['transAlbImg']){
+                            $alb_view.="style='transform: rotate(".$selectAlbums_row['transAlbImg']."deg)'";
+                        }
+                        $alb_view.=">";
+                    }else{
+                        $alb_view.="<img src='/data/default-img.png'>";
                     }
-                    $alb_view.=">";
-                }else{
-                    $alb_view.="<img src='/data/default-img.png'>";
+                    $alb_view.="</div>".
+                        "<div class='alb-descr'>";
+                    if($selectAlbums_row['metaDescr']){
+                        $alb_view.= $selectAlbums_row['metaDescr'];
+                    }else{
+                        $alb_view.="Описание не задано";
+                    }
+                    $alb_view.= "</div><div class='alb-info'>".
+                        "<span class='flName'>Категория: </span>".
+                        "<a href='/gallery/category/".$selectAlbums_row['catAlias']."' class=flVal>".
+                        $selectAlbums_row['catName']."</a>".
+                        "</div>".
+                        "<div class='alb-info'>".
+                        "<span class='flName'>В альбоме: </span>".
+                        "<span class=flVal>".$selectAlbums_row['phQty']."</span><span class='flName'>фото</span>".
+                        "</div>".
+                        "<div class='alb-info'>".
+                        "<span class='flName'>Опубликовано: </span>" .
+                        "<span class=flVal>".$selectAlbums_row['dateOfCr']."</span>".
+                        "</div>";
+                    if($selectAlbums_row['refreshDate']){
+                        $alb_view.="<div class='alb-info'><span class='flName'>Обновлено: </span>" .
+                            "<span class=flVal>".$selectAlbums_row['refreshDate']."</span></div>";
+                    }
+                    $alb_view.="<a class='viewAlb-slider' href='/gallery/".$selectAlbums_row['albumAlias']."'>Смотреть</a>".
+                        "</div></div>";
+                    $albums_print.=$alb_view;
                 }
-                $alb_view.="</div>".
-                    "<div class='alb-descr'>";
-                if($selectAlbums_row['metaDescr']){
-                    $alb_view.= $selectAlbums_row['metaDescr'];
-                }else{
-                    $alb_view.="Описание не задано";
-                }
-                $alb_view.= "</div><div class='alb-info'>".
-                    "<span class='flName'>Категория: </span>".
-                    "<a href='/gallery/category/".$selectAlbums_row['catAlias']."' class=flVal>".
-                    $selectAlbums_row['catName']."</a>".
-                    "</div>".
-                    "<div class='alb-info'>".
-                    "<span class='flName'>В альбоме: </span>".
-                    "<span class=flVal>".$selectAlbums_row['phQty']."</span><span class='flName'>фото</span>".
-                    "</div>".
-                    "<div class='alb-info'>".
-                    "<span class='flName'>Опубликовано: </span>" .
-                    "<span class=flVal>".$selectAlbums_row['dateOfCr']."</span>".
-                    "</div>";
-                if($selectAlbums_row['refreshDate']){
-                    $alb_view.="<div class='alb-info'><span class='flName'>Обновлено: </span>" .
-                        "<span class=flVal>".$selectAlbums_row['refreshDate']."</span></div>";
-                }
-                $alb_view.="<a class='viewAlb-slider' href='/gallery/".$selectAlbums_row['albumAlias']."'>Смотреть</a>".
-                "</div></div>";
-                $albums_print.=$alb_view;
-            }
 
-            if(isset($catArr[$selectAlbums_row['glCat_id']]['photoCount'])){
-                $catArr[$selectAlbums_row['glCat_id']]['photoCount']+=$selectAlbums_row['phQty'];
-                $catArr[$selectAlbums_row['glCat_id']]['albCount']++;
-
-            }else{
-                $cntCat++;
-                $catArr[$selectAlbums_row['glCat_id']]['catName'] = $selectAlbums_row['catName'];
-                $catArr[$selectAlbums_row['glCat_id']]['catAlias'] = $selectAlbums_row['catAlias'];
-                $catArr[$selectAlbums_row['glCat_id']]['catImg'] = $selectAlbums_row['catImg'];
-                $catArr[$selectAlbums_row['glCat_id']]['photoCount'] = $selectAlbums_row['phQty'];
-                $catArr[$selectAlbums_row['glCat_id']]['albCount'] = 1;
-                if($cntAlb<=3) {
-                    $catArr[$selectAlbums_row['glCat_id']]['printFlag'] = true;
+                if(isset($catArr[$selectAlbums_row['glCat_id']]['photoCount'])){
+                    $catArr[$selectAlbums_row['glCat_id']]['photoCount']+=$selectAlbums_row['phQty'];
+                    $catArr[$selectAlbums_row['glCat_id']]['albCount']++;
 
                 }else{
+                    $cntCat++;
+                    $catArr[$selectAlbums_row['glCat_id']]['catName'] = $selectAlbums_row['catName'];
+                    $catArr[$selectAlbums_row['glCat_id']]['catAlias'] = $selectAlbums_row['catAlias'];
+                    $catArr[$selectAlbums_row['glCat_id']]['catImg'] = $selectAlbums_row['catImg'];
+                    $catArr[$selectAlbums_row['glCat_id']]['photoCount'] = $selectAlbums_row['phQty'];
                     $catArr[$selectAlbums_row['glCat_id']]['albCount'] = 1;
-                    $catArr[$selectAlbums_row['glCat_id']]['printFlag'] = false;
+                    if($cntAlb<=3) {
+                        $catArr[$selectAlbums_row['glCat_id']]['printFlag'] = true;
+
+                    }else{
+                        $catArr[$selectAlbums_row['glCat_id']]['albCount'] = 1;
+                        $catArr[$selectAlbums_row['glCat_id']]['printFlag'] = false;
+                    }
                 }
             }
         }
+        $appRJ->response['result'].= $albums_print;
+    }else{
+        $appRJ->response['result'].= "there is no new albums here";
     }
-    $appRJ->response['result'].= $albums_print;
-}else{
-    $appRJ->response['result'].= "there is no new albums here";
 }
 $appRJ->response['result'].= "</div></div><div class='nav-frame'><div class='toAlbums'>".
     "<a href='/gallery/albums/'>Все альбомы (".$cntAlb.")</a></div></div></div>".

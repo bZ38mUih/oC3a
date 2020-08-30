@@ -13,14 +13,6 @@
     width: 50%;
 }
 
-/*
-label{
-    border: 1px solid blue;
-    display: inline-block;
-    width: 50%;
-    color: green;
-}
-*/
 label[for='qp-limit']{
     text-align: right;
 }

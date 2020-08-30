@@ -13,8 +13,7 @@ $connResult = false;
 
 $DB = new DB($pathToConn);
 if($DB->connectDb()){
-    $DB->connectDb();
-    $connResult = true;
+        $connResult = true;
 }
 
 if((isset($_POST['login']) and $_POST['login']!=null) or (isset($_POST['password'])and $_POST['password']!=null)){
@@ -40,9 +39,8 @@ if(isset($_SESSION['groups']['root']) and $_SESSION['groups']['root']>10){
     $sModRes=false;
     $moduleExist=false;
     if(is_null($adminModule)){
-        //$sModRes = true;
         require_once($_SERVER["DOCUMENT_ROOT"]."/admin/views/startView.php");
-        //exit;
+
     }else{
         foreach ($adminModules as $key=>$value){
             if($adminModules[$key]['active']==true and $key == $adminModule){
@@ -51,7 +49,7 @@ if(isset($_SESSION['groups']['root']) and $_SESSION['groups']['root']>10){
                     $sModRes=true;
                 }elseif($key=="server" or $key=="adminUsers"){
                     $sModRes=true;
-                }elseif($key=='sql' and $DB->connectServer()){
+                }elseif($key=='sql' and strpos(" ".$DB->err, SQLSTATE_ERR)){
                     $sModRes=true;
                 }
                 if($sModRes===true){

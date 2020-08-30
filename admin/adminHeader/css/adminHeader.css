@@ -84,7 +84,6 @@ h1
 
 .adminMenu .adminMenu-link a.disabled
 {
-    color: darkgray;
     color: red;
 }
 

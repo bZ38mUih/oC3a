@@ -15,8 +15,6 @@ foreach ($adminModules as $key=>$value){
             $printMenuItem_flag = true;
         } elseif ($key == "server" or $key == "adminUsers") {
             $printMenuItem_flag = true;
-        } elseif ($key == 'sql' and $connResult) {
-            $printMenuItem_flag = true;
         }
         if ($printMenuItem_flag) {
             $appRJ->response['result'].= "<div class='adminMenu-link'>";

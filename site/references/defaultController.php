@@ -17,54 +17,56 @@ function prtCm($comPar_id=null, $DB)
     $comCnt=0;
     if($slCm_res=$DB->query($slCm_qry)){
         $comCnt=$slCm_res->rowCount();
-    }
-    if($comCnt>0){
-        $tmpRes['text'].= "<ul>";
-        while ($slCm_row = $slCm_res->fetch(PDO::FETCH_ASSOC)){
-            $tmpCm=null;
-            $tmpCm.="<li><div class='com-line'><div class='com-img'>";
-            if($slCm_row['photoLink']){
-                if($slCm_row['netWork']=='site'){
-                    $tmpCm.= "<img src='".PP_USR_IMG_PAPH.$slCm_row['account_id']."/preview/".
-                        $slCm_row['photoLink']."'>";
+        if($comCnt>0){
+            $tmpRes['text'].= "<ul>";
+            while ($slCm_row = $slCm_res->fetch(PDO::FETCH_ASSOC)){
+                $tmpCm=null;
+                $tmpCm.="<li><div class='com-line'><div class='com-img'>";
+                if($slCm_row['photoLink']){
+                    if($slCm_row['netWork']=='site'){
+                        $tmpCm.= "<img src='".PP_USR_IMG_PAPH.$slCm_row['account_id']."/preview/".
+                            $slCm_row['photoLink']."'>";
+                    }else{
+                        $tmpCm.= "<img src='".$slCm_row['photoLink']."'>";
+                    }
                 }else{
-                    $tmpCm.= "<img src='".$slCm_row['photoLink']."'>";
+                    $tmpCm.= "<img src='/data/avatar-default.jpg'>";
                 }
-            }else{
-                $tmpCm.= "<img src='/data/avatar-default.jpg'>";
-            }
-            $tmpCm.="</div><div class='com-info'><div class='com-alias'>";
-            if(isset($_SESSION['user_id'])){
-                if($slCm_row['socProf']){
-                    $tmpCm.="<a href='".$slCm_row['socProf']."' target='_blank'>".$slCm_row['accAlias']."</a>";
+                $tmpCm.="</div><div class='com-info'><div class='com-alias'>";
+                if(isset($_SESSION['user_id'])){
+                    if($slCm_row['socProf']){
+                        $tmpCm.="<a href='".$slCm_row['socProf']."' target='_blank'>".$slCm_row['accAlias']."</a>";
+                    }else{
+                        $tmpCm.=$slCm_row['accAlias'];
+                    }
                 }else{
                     $tmpCm.=$slCm_row['accAlias'];
                 }
-            }else{
-                $tmpCm.=$slCm_row['accAlias'];
+                $tmpCm.="</div><div class='com-date'>".$slCm_row['writeDate']."</div>".
+                    "<div class='com-content-frame'><div class='com-content'>".$slCm_row['Content'].
+                    "</div></div><div class='com-lv'>";
+                if($_SESSION['user_id']){
+                    $tmpCm.="<span class='com-wrCm' id='com_".$slCm_row['com_id']."' onclick='newAnsw(".$slCm_row['com_id'].")'>Ответить</span>";
+                }
+                $tmpCm.="</div></div></div>";
+                $tmpRes['text'].=$tmpCm;
+                $responce=prtCm($slCm_row['com_id'], $DB);
+                if($comPar_id==null){
+                    $tmpRes['cntCom']++;
+                }
+                $tmpRes['text'].=$responce['text'];
+                $tmpRes['text'].="</li>";
             }
-            $tmpCm.="</div><div class='com-date'>".$slCm_row['writeDate']."</div>".
-                "<div class='com-content-frame'><div class='com-content'>".$slCm_row['Content'].
-                "</div></div><div class='com-lv'>";
-            if($_SESSION['user_id']){
-                $tmpCm.="<span class='com-wrCm' id='com_".$slCm_row['com_id']."' onclick='newAnsw(".$slCm_row['com_id'].")'>Ответить</span>";
+            $tmpRes['text'].="</ul>";
+            if($comPar_id==null) {
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/site/references/views/cmForm.php");
             }
-            $tmpCm.="</div></div></div>";
-            $tmpRes['text'].=$tmpCm;
-            $responce=prtCm($slCm_row['com_id'], $DB);
-            if($comPar_id==null){
-                $tmpRes['cntCom']++;
-            }
-            $tmpRes['text'].=$responce['text'];
-            $tmpRes['text'].="</li>";
+        }elseif($comPar_id==null){
+            $tmpRes['text'].= "Напишите отзыв первым";
+            require_once($_SERVER['DOCUMENT_ROOT']."/site/references/views/cmForm.php");
         }
-        $tmpRes['text'].="</ul>";
-        if($comPar_id==null) {
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/site/references/views/cmForm.php");
-        }
-    }elseif($comPar_id==null){
-        $tmpRes['text'].= "Напишите отзыв первым";
-        require_once($_SERVER['DOCUMENT_ROOT']."/site/references/views/cmForm.php");
+    }else{
+        return false;
     }
     return $tmpRes;
 }

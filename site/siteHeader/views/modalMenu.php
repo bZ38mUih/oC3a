@@ -20,22 +20,24 @@ if(isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10){
 if($_SESSION['user_id']){
     $ntf_cnt=0;
     $ntf_qry="select count(ntfList_id) as ntfQty from ntfList_dt WHERE user_id=".$_SESSION['user_id']." and readDate is NULL";
-    $ntf_res=$DB->query($ntf_qry);
-    if($ntf_res->rowCount()==1){
-        $ntf_row=$ntf_res->fetch(PDO::FETCH_ASSOC);
-        $ntf_cnt=$ntf_row['ntfQty'];
+    if($ntf_res=$DB->query($ntf_qry)){
+        if($ntf_res->rowCount()==1){
+            $ntf_row=$ntf_res->fetch(PDO::FETCH_ASSOC);
+            $ntf_cnt=$ntf_row['ntfQty'];
+        }
+        $appRJ->response['result'].= "<div class='modal-line'>".
+            "<div class='modal-line-img'>";
+        $appRJ->response['result'].= "<img src='".$_SESSION['photoLink']."' alt='Avatar'>";
+        $appRJ->response['result'].= "</div><div class='modal-line-text'>".
+            "<a href='/personal-page' title='Личный кабинет'>Личный кабинет</a><a href='?cmd=exit' class='exit'>Exit</a>";
+        if($ntf_cnt>0){
+            $appRJ->response['result'].= "<a href='/personal-page' class='ntf'>".
+                "<img src='/site/siteHeader/img/ntf-icon.png' alt='Оповещения'><span>".$ntf_cnt."</span></a>";
+        }
+        $appRJ->response['result'].= "</div>".
+            "</div>";
     }
-    $appRJ->response['result'].= "<div class='modal-line'>".
-        "<div class='modal-line-img'>";
-    $appRJ->response['result'].= "<img src='".$_SESSION['photoLink']."' alt='Avatar'>";
-    $appRJ->response['result'].= "</div><div class='modal-line-text'>".
-        "<a href='/personal-page' title='Личный кабинет'>Личный кабинет</a><a href='?cmd=exit' class='exit'>Exit</a>";
-    if($ntf_cnt>0){
-        $appRJ->response['result'].= "<a href='/personal-page' class='ntf'>".
-            "<img src='/site/siteHeader/img/ntf-icon.png' alt='Оповещения'><span>".$ntf_cnt."</span></a>";
-    }
-    $appRJ->response['result'].= "</div>".
-        "</div>";
+
 }else{
     $appRJ->response['result'].= "<div class='modal-line '><div class='modal-line-img'>".
         "<img src='/data/avatar-default.jpg' alt='Avatar-Default'></div><div class='modal-line-text guest'>".
@@ -81,22 +83,23 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "blog" or strtolower($appRJ-
 $appRJ->response['result'].= "<a href='/blog' title='Статьи о программирование и ПК'>it-Блог</a> <span class='opnSubMenu'>" . $dwlSign .
     "</span> ". "<ul " . $dwlStyle . ">";
 $arts_qry="select * from art_dt where artCat_id=3 OR artCat_id=1 and activeFlag is true ORDER BY pubDate DESC limit 3";
-$arts_res = $DB->query($arts_qry);
-while ($arts_row = $arts_res->fetch(PDO::FETCH_ASSOC)) {
-    $ref=null;
-    $appRJ->response['result'].= "<li><a href='/";
-    if($arts_row['artCat_id']==3){
-        $ref="dev";
-    }elseif ($arts_row['artCat_id']==1){
-        $ref="pc";
+if($arts_res = $DB->query($arts_qry)){
+    while ($arts_row = $arts_res->fetch(PDO::FETCH_ASSOC)) {
+        $ref=null;
+        $appRJ->response['result'].= "<li><a href='/";
+        if($arts_row['artCat_id']==3){
+            $ref="dev";
+        }elseif ($arts_row['artCat_id']==1){
+            $ref="pc";
+        }
+        $appRJ->response['result'].=$ref."/" . $arts_row['artAlias'] . "' class='sub-lnk light ";
+        if ($appRJ->server['reqUri_expl'][2] == $arts_row['artAlias']) {
+            $appRJ->response['result'].= "active";
+        }
+        $appRJ->response['result'].= "' title='Читать статью'>" . $arts_row['artName'] . "</a></li>";
     }
-    $appRJ->response['result'].=$ref."/" . $arts_row['artAlias'] . "' class='sub-lnk light ";
-    if ($appRJ->server['reqUri_expl'][2] == $arts_row['artAlias']) {
-        $appRJ->response['result'].= "active";
-    }
-    $appRJ->response['result'].= "' title='Читать статью'>" . $arts_row['artName'] . "</a></li>";
+    $appRJ->response['result'].= "</ul></div></div>";
 }
-$appRJ->response['result'].= "</ul></div></div>";
 /*<--blog*/
 /*handbook-->*/
 $appRJ->response['result'].= "<div class='modal-line'><div class='modal-line-img'>".
@@ -135,25 +138,26 @@ if (strtolower($appRJ->server['reqUri_expl'][1]) == "downloads") {
 $appRJ->response['result'].= "<a href='/downloads/' title='Ссылки на загрузки программ'>Загрузки</a> ".
     "<span class='opnSubMenu'>" . $dwlSign . "</span> "."<ul " . $dwlStyle . ">";
 $selectCat_query = "select * from dwlCat_dt WHERE dwlCatPar_id is null and catActive_flag is TRUE";
-$selectCat_res = $DB->query($selectCat_query);
-while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)) {
-    $appRJ->response['result'].= "<li><a href='/downloads/" . $selectCat_row['catAlias'] . "' class='sub-lnk light ";
-    if ($appRJ->server['reqUri_expl'][2] == $selectCat_row['catAlias']) {
+if($selectCat_res = $DB->query($selectCat_query)){
+    while ($selectCat_row = $selectCat_res->fetch(PDO::FETCH_ASSOC)) {
+        $appRJ->response['result'].= "<li><a href='/downloads/" . $selectCat_row['catAlias'] . "' class='sub-lnk light ";
+        if ($appRJ->server['reqUri_expl'][2] == $selectCat_row['catAlias']) {
+            $appRJ->response['result'].= "active";
+        }
+        $appRJ->response['result'].= "' title='".$selectCat_row['catName']."'>" . $selectCat_row['catName'] . "</a></li>";
+    }
+    $appRJ->response['result'].= "<li><a href='" . "/downloads/list/" . "' class='sub-lnk gold ";
+    if ($appRJ->server['reqUri_expl'][2] == 'list') {
         $appRJ->response['result'].= "active";
     }
-    $appRJ->response['result'].= "' title='".$selectCat_row['catName']."'>" . $selectCat_row['catName'] . "</a></li>";
-}
-$appRJ->response['result'].= "<li><a href='" . "/downloads/list/" . "' class='sub-lnk gold ";
-if ($appRJ->server['reqUri_expl'][2] == 'list') {
-    $appRJ->response['result'].= "active";
-}
-$appRJ->response['result'].= "'>" . "Список загрузок" . "</a></li>";
-if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
-    $appRJ->response['result'].= "<li><a href='" . "/downloads/dwlManager/" . "' class='sub-lnk blue ";
-    if (strtolower($appRJ->server['reqUri_expl'][2]) == 'dwlmanager') {
-        $appRJ->response['result'].= "active";
+    $appRJ->response['result'].= "'>" . "Список загрузок" . "</a></li>";
+    if (isset($_SESSION['groups']['1']) and $_SESSION['groups']['1']>=10) {
+        $appRJ->response['result'].= "<li><a href='" . "/downloads/dwlManager/" . "' class='sub-lnk blue ";
+        if (strtolower($appRJ->server['reqUri_expl'][2]) == 'dwlmanager') {
+            $appRJ->response['result'].= "active";
+        }
+        $appRJ->response['result'].= "' title='Управление загрузками'>" . "Управление загрузками" . "</a></li>";
     }
-    $appRJ->response['result'].= "' title='Управление загрузками'>" . "Управление загрузками" . "</a></li>";
 }
 $appRJ->response['result'].= "</ul></div></div>";
 /*<--downloads*/

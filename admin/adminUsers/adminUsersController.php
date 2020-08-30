@@ -7,20 +7,11 @@ if(isset($_POST['addAdmUsrFlag']) and $_POST['addAdmUsrFlag']==='y'){
     $checkAdmUsePass=false;
 
     if(isset($_POST['newUsrName'])and $_POST['newUsrName']!=null){
-
-        if(!accessorialClass::checkLogin($_POST['newUsrName'])){
-
-        }else{
-            $checkAdmUseName=true;
-        }
+        $checkAdmUseName = accessorialClass::checkLogin($_POST['newUsrName']);
     }
 
     if(isset($_POST['newUsrPass'])and $_POST['newUsrPass']!=null){
-        if(!accessorialClass::checkPassword($_POST['newUsrPass'])){
-
-        }else{
-            $checkAdmUsePass=true;
-        }
+        $checkAdmUsePass = accessorialClass::checkPassword($_POST['newUsrPass']);
     }
 
     if($checkAdmUseName and $checkAdmUsePass){
@@ -55,7 +46,6 @@ if(isset($_POST['addAdmUsrFlag']) and $_POST['addAdmUsrFlag']==='y'){
         }
     }
 
-
     $appRJ->response['format']='json';
     $appRJ->response['result'] = $addUsrRes;
 }elseif (isset($_GET['action']) and $_GET['action']=='refreshUsers'){
@@ -69,7 +59,6 @@ if(isset($_POST['addAdmUsrFlag']) and $_POST['addAdmUsrFlag']==='y'){
     }else{
         $appRJ->response['result'].= 'удаление неудачно';
     }
-
 }
 else{
     require_once ($_SERVER["DOCUMENT_ROOT"]."/admin/adminUsers/views/defaultView.php");

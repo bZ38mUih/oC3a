@@ -82,11 +82,6 @@ form.serverOptions
     width: 100%;
 }
 
-.form.serverOptions .optionLine
-{
-
-}
-
 form.serverOptions label, .lineBlock span
 {
     position: relative;

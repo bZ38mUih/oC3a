@@ -23,21 +23,7 @@ $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='conten
     "<div class='queryPanel'><div class='queryPanel-left'><span class='resTxt'>Результат: </span>".
     "<div class='queryResults'>-</div></div><div class='queryPanel-right'>".
     "<input type='button' value='mkQuery' onclick='mkQuery()'></div></div>";
-/*
-users_dt-->
-insert into users_dt(user_id, blackList) values (1, false)
 
-accounts_dt-->
-insert into accounts_dt (account_id, user_id, accLogin, accAlias, pw_hash, pw_salt, vldCode, regDate, netWork, validDate, photoLink, eMail, birthDay, accMain_flag) values (1, 1, 'mrSmitch', 'mrSmitch', '21b72c0b7adc5c7b4a50ffcb90d92dd6', null, 'xxx', '2018-04-17 01:00:00', 'site', '2018-04-17 01:00:00', null, null, null, true)
-
-usersGroups_dt-->
-insert into usersGroups_dt (group_id, groupAlias, img, activeFlag) values
-(1, 'admin', null, true)
-
-usersToGroups_dt-->
-insert into usersToGroups_dt(rec_id, group_id, user_id, rules) values
-(1, 1, 1, 999)
- */
 $appRJ->response['result'].= "</div></div></div>";
 require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/adminFooter/views/footerDefault.php");
 $appRJ->response['result'].= "</body></html>";

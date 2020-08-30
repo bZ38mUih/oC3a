@@ -1,15 +1,12 @@
 <?php
 $appRJ->response['result'].= "<form class='serverOptions'><h2>Настройки:</h2>".
-    "<input type='hidden' name='saveFlag' value='y'><div class='lineBlock'>".
-    "<label for='CONN_LOC'>CONN_LOC:</label>".
-    "<input type='text' name='CONN_LOC' value='".$DB->connSettings["CONN_LOC"]."' ".$formInputEnbl."></div>".
-    "<div class='lineBlock'><label for='CONN_USER'>CONN_USER:</label>".
-    "<input type='text' name='CONN_USER' value='".$DB->connSettings['CONN_USER']."' ".$formInputEnbl."></div>".
-    "<div class='lineBlock'><label for='CONN_PW'>CONN_PW:</label>".
-    "<input type='text' name='CONN_PW' value='".$DB->connSettings['CONN_PW']."' ".$formInputEnbl."></div>".
-    "<div class='lineBlock'><label for='CONN_DB'>CONN_DB:</label>".
-    "<input type='text' name='CONN_DB' value='".$DB->connSettings['CONN_DB']."' ".$formInputEnbl."></div>".
-    "<div class='feedback'>";
+    "<input type='hidden' name='saveFlag' value='y'>";
+foreach ($DB->connSettings as $opt => $oVal){
+    $appRJ->response['result'].= "<div class='lineBlock'>".
+        "<label for='CONN_LOC'>".$opt.":</label>".
+        "<input type='text' name='".$opt."' value='".$oVal."' ".$formInputEnbl."></div>";
+}
+$appRJ->response['result'].= "<div class='feedback'>";
 if(isset($svContErr) and $svContErr!=null){
     foreach($svContErr as $key=>$value){
         $appRJ->response['result'].= $key." : ".$value."<br>";
