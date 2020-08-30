@@ -1,15 +1,11 @@
 <?php
-
+$pathToConn = "/source/_conf/db_conn.php";
 $ntfLog['txt']=null;
 //$appRJ->response['result'].= "zzzz-1";
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
 //$appRJ->response['result'].= "zzzz-2";
-$DB=new DB();
-$DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/rightjoint.ru".$DB->pathToConn), true);
-$DB->connect_db();
-
-require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
-
+$DB = new DB($pathToConn);
+$DB->connectDb();
 
 require_once("/home/p264533/public_html/rightjoint.ru/admin/tables/tableClass.php");
 $tables = new tablesClass();
@@ -24,7 +20,7 @@ foreach (glob("/home/p264533/public_html/rightjoint.ru/data/db/tablesList/*_dt.p
 $query_text = "SELECT TABLE_NAME, TABLE_ROWS FROM `information_schema`.`tables` WHERE
     `table_schema` = '".$DB->connSettings['CONN_DB']."';";
 $query_res = $DB->query($query_text);
-while ($query_row = $DB->doFetchRow($query_res)) {
+while ($query_row = $query_res->fetch(PDO::FETCH_ASSOC)) {
     //$appRJ->response['result'].= "mmm---<br>";
     foreach ($tables->tables as $table => $value) {
         if ($query_row['TABLE_NAME'] == $table) {
@@ -65,7 +61,7 @@ foreach ($tables->tables as $table => $value) {
             $queryToInsert = null;
             $queryToInsert_temp = "(";
             $queryToInsert .= "insert into ".$table." (\r";
-            $query_row = $DB->doFetchRow($query_res);
+            $query_row = $query_res->fetch(PDO::FETCH_ASSOC);
             foreach ($query_row as $key => $value) {
                 if ($value == null) {
                     $queryToInsert_temp .= "null, ";
@@ -77,7 +73,7 @@ foreach ($tables->tables as $table => $value) {
             $queryToInsert = substr($queryToInsert, 0, strlen($queryToInsert) - 2) . ")\r values \r";
             $queryToInsert_temp = substr($queryToInsert_temp, 0, strlen($queryToInsert_temp) - 2) . "), \r";
             $queryToInsert .= $queryToInsert_temp;
-            while ($query_row = $DB->doFetchRow($query_res)) {
+            while ($query_row = $query_res->fetch(PDO::FETCH_ASSOC)) {
                 $queryToInsert .= "(";
                 foreach ($query_row as $key => $value) {
                     if ($value == null) {
@@ -109,7 +105,7 @@ $tables->result['log'].= 'lead time: '.($end_time-$start_time);
 //}
 //}
 
-$Ntf_rd = new recordDefault("ntf_dt", "ntf_id");
+$Ntf_rd = array("table" => "ntf_dt", "field_id" => "ntf_id");
 $Ntf_rd['result']['ntfDate']=@date_format($CurDate, 'Y-m-d H-i-s');
 $Ntf_rd['result']['activeFlag']=true;
 
@@ -117,4 +113,4 @@ $Ntf_rd['result']['ntfType']='group';
 $Ntf_rd['result']['ntfSubscr']=1;
 $Ntf_rd['result']['ntfDescr']=$tables->result['log'];
 $Ntf_rd['result']['ntfSubj']="Auto Back Up";
-$Ntf_rd->putOne();
+$DB->putOne($Ntf_rd);

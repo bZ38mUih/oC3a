@@ -56,6 +56,7 @@ if(file_exists($_SERVER['DOCUMENT_ROOT']."/".$_GET['uploadAlbums'])){
                         $glPhoto['result']['user_id']=$_SESSION['user_id'];
                         $glPhoto['result']['uploadDate']=date_format($appRJ->date['curDate'], 'Y-m-d');
                         $glPhoto['result']['album_id']=$Alb_rd['result']['album_id'];
+                        $glPhoto['result']['photoName'] = basename($photoFile);
 
                         if(copy($photoFile, $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.$Alb_rd['result']['album_id']."/photoAttach/".$glPhoto['result']['photoLink']))
                             /*create preview-->*/

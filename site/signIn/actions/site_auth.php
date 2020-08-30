@@ -1,12 +1,12 @@
 <?php
 
-require_once ($_SERVER["DOCUMENT_ROOT"]."/source/requiredFields_class.php");
+require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
 
-if(!requiredFields::checkPassword($_POST['login'])){
+if(!accessorialClass::checkPassword($_POST['login'])){
     $validErr = "недопустимый логин";
 }
 if($validErr == null){
-    if(!requiredFields::checkPassword($_POST['password'])){
+    if(!accessorialClass::checkPassword($_POST['password'])){
         $validErr = "недопустимый пароль";
     }
 }

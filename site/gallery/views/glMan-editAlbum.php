@@ -98,7 +98,7 @@ if($categList_res->rowCount() >0){
         $catSelectOptions="<option value='none' selected>---</option>".$catSelectOptions;
     }
 }else{
-    $catSelect="<option value='none' selected>---</option>";
+    $catSelectOptions="<option value='none' selected>---</option>";
 }
 /*<--select options*/
 $appRJ->response['result'].= $catSelectOptions."</select></div>".

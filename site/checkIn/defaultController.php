@@ -1,7 +1,7 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/source/captcha_class.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/source/requiredFields_class.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/source/accessorial_class.php');
 
 $captcha = new captcha_class();
 $err == false;
@@ -24,9 +24,14 @@ $vldCode=null;
 if ($_SERVER['REQUEST_METHOD']=="POST"){
     if(isset($_POST['login'])and $_POST['login']!=null){
         $requiredFields['login']['val'] = $_POST['login'];
-        if(!requiredFields::checkLogin($_POST['login'])){
+        if(!accessorialClass::checkLogin($_POST['login'])){
             $requiredFields['login']['err'] = "недопустимый логин";
-        }elseif(!requiredFields::findDoubleLogin($_POST['login'], "site")){
+        }elseif(
+            !$DB->checkDouble(
+                array("table"=>"accounts_dt", "field_alias" => "accLogin",
+                    "result"=> array("accLogin" => $_POST['login']))
+            )){
+            $requiredFields['password']['val'] = $_POST['login'];
             $requiredFields['login']['err'] = "login зарезервирован";
         }
     }else{
@@ -34,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     }
     if(isset($_POST['password'])and $_POST['password']!=null){
         $requiredFields['password']['val'] = $_POST['password'];
-        if(!requiredFields::checkPassword($_POST['password'])){
+        if(!accessorialClass::checkPassword($_POST['password'])){
             $requiredFields['password']['err'] = "недопустимый пароль";
         }
     }else{
@@ -51,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     }
     if(isset($_POST['eMail']) and $_POST['eMail']!=null){
         $requiredFields['eMail']['val'] = $_POST['eMail'];
-        if(!requiredFields::checkEmail($_POST['eMail'])){
+        if(!accessorialClass::checkEmail($_POST['eMail'])){
             $requiredFields['eMail']['err'] = "недопустимый eMail";
         }
     }else{
@@ -112,16 +117,19 @@ elseif($_SERVER['REQUEST_METHOD']=="GET" and !empty($_GET)){
         require_once($_SERVER["DOCUMENT_ROOT"] . "/site/checkIn/views/registrationFinish.php");
     }
     elseif (isset($_GET['login'])) {
-        if(!requiredFields::checkLogin($_GET['login'])){
+        if(!accessorialClass::checkLogin($_GET['login'])){
             $appRJ->response['result'] = "недопустимый логин";
-        }elseif(!requiredFields::findDoubleLogin($_GET['login'], "site")){
+        }elseif(!$DB->checkDouble(
+            array("table"=>"accounts_dt", "field_alias" => "accLogin",
+                "result"=> array("accLogin" => $_GET['login']))
+        )){
             $appRJ->response['result'] = "login зарезервирован";
         }else{
             $appRJ->response['result'] = 'true';
         }
     }
     elseif(isset($_GET['password'])){
-        if(!requiredFields::checkPassword($_GET['password'])){
+        if(!accessorialClass::checkPassword($_GET['password'])){
             $appRJ->response['result'] = "недопустимый пароль";
         }else{
             $appRJ->response['result'] = 'true';
@@ -129,7 +137,7 @@ elseif($_SERVER['REQUEST_METHOD']=="GET" and !empty($_GET)){
     }
     elseif(isset($_GET['eMail'])){
         if ($_GET['eMail']!=null){
-            if(!requiredFields::checkEmail($_GET['eMail'])){
+            if(!accessorialClass::checkEmail($_GET['eMail'])){
                 $appRJ->response['result'] = "недопустимый eMail";
             }else{
                 $appRJ->response['result'] = 'true';

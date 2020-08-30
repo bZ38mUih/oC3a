@@ -2,13 +2,13 @@
 if(isset($_POST['addAdmUsrFlag']) and $_POST['addAdmUsrFlag']==='y'){
     $addUsrRes['result']=false;
     $addUsrRes['log']=null;
-    require_once ($_SERVER["DOCUMENT_ROOT"]."/source/requiredFields_class.php");
+    require_once ($_SERVER["DOCUMENT_ROOT"]."/source/accessorial_class.php");
     $checkAdmUseName=false;
     $checkAdmUsePass=false;
 
     if(isset($_POST['newUsrName'])and $_POST['newUsrName']!=null){
 
-        if(!@requiredFields::checkLogin($_POST['newUsrName'])){
+        if(!accessorialClass::checkLogin($_POST['newUsrName'])){
 
         }else{
             $checkAdmUseName=true;
@@ -16,7 +16,7 @@ if(isset($_POST['addAdmUsrFlag']) and $_POST['addAdmUsrFlag']==='y'){
     }
 
     if(isset($_POST['newUsrPass'])and $_POST['newUsrPass']!=null){
-        if(!@requiredFields::checkPassword($_POST['newUsrPass'])){
+        if(!accessorialClass::checkPassword($_POST['newUsrPass'])){
 
         }else{
             $checkAdmUsePass=true;

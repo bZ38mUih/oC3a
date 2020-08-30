@@ -94,7 +94,7 @@ $appRJ->response['result'].= "</div></div>";
 $appRJ->response['result'].= "<div class='list-item all'>".
     "<a href='/portfolio'>все работы</a></div></div><div class='contentBlock-table-right'>".
     "<h2>Свежая работа</h2>".
-    "<img src='http://sad-primorya.ru/site/siteHeader/img/site-logo.png' alt='artCover'>".
+    "<img src='/site/portfolio/img/sad-logo.png'>".
     "<div><a href='http://sad-primorya.ru' title='Смотреть работу sad-primorya.ru' target='_blank'>Сад Приморья</a>".
     "<span>Интернет магазин саженцев плодовых и декоративных деревьев и кустарников во Владивостоке</span></div></div></div></div></div>";
 

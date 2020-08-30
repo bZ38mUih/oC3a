@@ -59,7 +59,7 @@ elseif(isset($appRJ->server['reqUri_expl'][3]) and $appRJ->server['reqUri_expl']
         if(isset($_GET['cat_id']) and $_GET['cat_id']!=null){
             $Cat_rd = array("table" => "srvCat_dt", "field_id" => "srvCat_id");
             $Cat_rd['result']['srvCat_id']=$_GET['cat_id'];
-            if($Cat_rd->copyOne()){
+            if($Cat_rd = $DB->copyOne($Cat_rd)){
                 require_once ($_SERVER['DOCUMENT_ROOT']."/site/services/views/srvMan-editCat.php");
             }else{
                 $appRJ->response['result'].= "неправильные параметры запроса cat_id";

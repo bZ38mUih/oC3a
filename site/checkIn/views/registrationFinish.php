@@ -1,6 +1,6 @@
 <?php
 $varifMail = null;
-if(requiredFields::checkLogin($_GET['login'])){
+if(accessorialClass::checkLogin($_GET['login'])){
     $query_text="select account_id, validDate, vldCode from accounts_dt where accLogin='".htmlspecialchars($_GET['login'])."' and ".
         "netWork='site'";
     $query_res=$DB->query($query_text);

@@ -48,4 +48,31 @@ class accessorialClass //extends recordDefault
         }
         return $str;
     }
+
+    function checkLogin($login)
+    {
+        if (preg_match('/^[a-z]{1}[0-9a-z-._]{2,15}$/imsiu', $login) == 0){
+            return false;
+        }
+        return true;
+    }
+
+    function checkPassword($pass)
+    {
+        if (preg_match('/^[a-z]{1}[0-9a-z-._]{2,15}$/imsiu', $pass) == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    function checkEmail($eMail)
+    {
+        if (filter_var($eMail, FILTER_VALIDATE_EMAIL)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

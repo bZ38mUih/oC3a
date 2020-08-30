@@ -24,6 +24,7 @@ if($Alb_rd = $DB->copyOne($Alb_rd)){
             $glPhoto['result']['user_id']=$_SESSION['user_id'];
             $glPhoto['result']['uploadDate']=date_format($appRJ->date['curDate'], 'Y-m-d');
             $glPhoto['result']['album_id']=$Alb_rd['result']['album_id'];
+            $glPhoto['result']['photoName'] =  $path_parts['basename'];
 
             if (move_uploaded_file($file['tmp_name'], $_SERVER["DOCUMENT_ROOT"].GL_ALBUM_IMG_PAPH.
                 $Alb_rd['result']['album_id']."/photoAttach/".$glPhoto['result']['photoLink'])) {

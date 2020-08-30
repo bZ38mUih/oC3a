@@ -39,12 +39,12 @@ if($_SESSION['bucket']['order_id']){
 }
 $appRJ->response['result'].="</h2>".
     "<div class='toSrv'><a href='/services'>Редактировать заказ</a></div>";
-$Card_rd=new recordDefault("srvCards_dt", "card_id");
+$Card_rd = array("table" => "srvCards_dt", "field_id" => "card_id");
 $prod_lst=null;
 if($_SESSION['bucket']['total']>=100){
     foreach ($_SESSION['bucket']['prod'] as $key=>$val){
         $Card_rd['result']['card_id']=$key;
-        if($Card_rd->copyOne()){
+        if($Card_rd = $DB->copyOne($Card_rd)){
             $appRJ->response['result'].="<div class='order-line'><div class='order-img'><img src='".
                 SRV_CARD_IMG_PAPH.$Card_rd['result']['card_id']."/preview/".
                 $Card_rd['result']['cardImg']."'></div>".
