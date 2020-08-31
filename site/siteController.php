@@ -20,9 +20,9 @@ elseif (isset($_GET['shareCount'])){
     require_once($_SERVER["DOCUMENT_ROOT"]."/source/shareCount.php");
 }
 else{
-    //$Ntf_rd = new recordDefault("ntf_dt", "ntf_id");
-    //$Ntf_rd['result']['ntfDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-i-s');
-    //$Ntf_rd['result']['activeFlag']=true;
+    $Ntf_rd = array("table" => "ntf_dt", "field_id" => "ntf_id");
+    $Ntf_rd['result']['ntfDate']=@date_format($appRJ->date['curDate'], 'Y-m-d H-i-s');
+    $Ntf_rd['result']['activeFlag']=true;
 
     @define(ART_CATEG_IMG_PAPH, "/data-arts/categs/");
     @define(ARTS_IMG_PAPH, "/data-arts/arts/");

@@ -61,8 +61,6 @@ if($socialAuth_err ===true){
         $addNtf_txt="НОВЫЙ ";
     }
 
-    $Ntf_rd["table"] = "ntf_dt";
-    $Ntf_rd["field_id"] = "ntf_id";
     $Ntf_rd['result']['ntfType']='group';
     $Ntf_rd['result']['ntfSubscr']=1;
     $Ntf_rd['result']['ntfDescr']=$addNtf_txt."Пользователь ".$RD_accounts['result']['accAlias']." вошел на сайт через ".$RD_accounts['result']['netWork'];
