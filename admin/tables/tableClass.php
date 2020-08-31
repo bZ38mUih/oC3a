@@ -17,17 +17,23 @@ class tablesClass
     `table_schema` = '".$DB->connSettings['CONN_DB']."';";
         $query_res = $DB->query($query_text);
         while ($query_row = $query_res->fetch(PDO::FETCH_ASSOC)) {
+            $tbl_name = null;
             foreach ($this->tables as $table => $value) {
-                if ( $query_row['TABLE_NAME'] == $table) {
+                if ( strtolower($query_row['TABLE_NAME']) == strtolower($table)) {
                     $this->tables[$table]['exist'] = true;
+                    $tbl_name = $table;
                     break;
                 }
             }
-            if (!isset($this->tables[$table])) {
-                $this->tables[$table]['list'] = false;
-                $this->tables[$table]['exist'] = true;
+
+            if (!isset($this->tables[$tbl_name])) {
+                $this->tables[$query_row['TABLE_NAME']]['list'] = false;
+                $this->tables[$query_row['TABLE_NAME']]['exist'] = true;
+                $this->tables[$query_row['TABLE_NAME']]['qty'] = $query_row['TABLE_ROWS'];
+            }else{
+                $this->tables[$table]['qty'] = $query_row['TABLE_ROWS'];
             }
-            $this->tables[$table]['qty'] = $query_row['TABLE_ROWS'];
+
         }
     }
 }

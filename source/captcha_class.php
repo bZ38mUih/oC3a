@@ -1,17 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: AVP
- * Date: 24.12.2015
- * Time: 9:44
- *
- * version 1.1.0
- */
 class captcha_class {
 
     public $keyWord = 'smoke';
 
-    //public $err;
     public function create()
     {
         ob_start();
@@ -65,16 +56,27 @@ class captcha_class {
 
     function encryptCheckCode($cod)
     {
-        $checkCode_encoded = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($this->keyWord),
-            $cod, MCRYPT_MODE_CBC, md5(md5($this->keyWord))));
-        return( $checkCode_encoded);
+        $output = false;
+        $encrypt_method = "AES-256-CBC";
+        $secret_key = "zhopa";
+        $secret_iv = "xyi-piza";
+        $key = hash('sha256', $secret_key);
+        $iv = substr(hash('sha256', $secret_iv), 0, 16);
+        $output = openssl_encrypt($cod, $encrypt_method, $key, 0, $iv);
+        $output = base64_encode($output);
+        return $output;
     }
 
     function decryptCheckCode($cod)
     {
-        $checkCode_decoded = rtrim( mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($this->keyWord), base64_decode($cod),
-            MCRYPT_MODE_CBC, md5(md5($this->keyWord))), "\0");
-        return($checkCode_decoded);
+        $output = false;
+        $encrypt_method = "AES-256-CBC";
+        $secret_key = "zhopa";
+        $secret_iv = "xyi-piza";
+        $key = hash('sha256', $secret_key);
+        $iv = substr(hash('sha256', $secret_iv), 0, 16);
+        $output = openssl_decrypt(base64_decode($cod), $encrypt_method, $key, 0, $iv);
+        return $output;
     }
 }
 ?>
