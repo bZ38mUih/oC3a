@@ -51,8 +51,6 @@ class DB extends PDO
         $queryToInsert_temp = substr($queryToInsert_temp, 0, strlen($queryToInsert_temp) - 2) . ")";
         $queryToInsert .= $queryToInsert_temp;
         if($this->query($queryToInsert)){
-            echo $queryToInsert;
-            exit;
             return true;
         }else{
             return false;
