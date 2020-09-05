@@ -1,0 +1,75 @@
+form.brackets {
+    display: inline-block;
+    width: 96%;
+    margin: 2%  1%;
+    border: 2px solid darkgreen;
+    padding: 1% 1%;
+}
+
+form.brackets label{
+    display: inline-block;
+    margin: 0 1em;
+}
+
+form.brackets label[for = br_1]:before{
+    content: "<";
+}
+form.brackets label[for = br_1]:after{
+    content: ">";
+}
+form.brackets label[for = br_2]:before{
+    content: "{";
+}
+form.brackets label[for = br_2]:after{
+    content: "}";
+}
+form.brackets label[for = br_3]:before{
+    content: "[";
+}
+form.brackets label[for = br_3]:after{
+    content: "]";
+}
+form.brackets label[for = br_4]:before{
+    content: "(";
+}
+form.brackets label[for = br_4]:after{
+    content: ")";
+}
+form.brackets button{
+    display: block;
+}
+form.brackets textarea{
+    display: inline-block;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.example .el{
+    display: inline-block;
+    width: 100%;
+}
+
+.example .el.ul1{
+    width: 95%;
+    margin-left: 5%;
+}
+.example .el.ul2{
+    width: 90%;
+    margin-left: 10%;
+}
+.example .el.ul3{
+    width: 85%;
+    margin-left: 15%;
+}
+.example .el.ul4{
+    width: 80%;
+    margin-left: 20%;
+}
+.example .el.ul5{
+    width: 75%;
+    margin-left: 25%;
+}
+.example .el.ul6{
+    width: 70%;
+    margin-left: 35%;
+}

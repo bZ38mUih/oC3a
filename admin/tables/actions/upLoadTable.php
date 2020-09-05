@@ -28,7 +28,7 @@ if ($query_res->rowCount() == 0){
             if ($value == null) {
                 $queryToInsert .= "null, ";
             } else {
-                $queryToInsert .= "'" . mysqli_real_escape_string($value)  . "', ";
+                $queryToInsert .= "'" . $value  . "', ";
             }
         }
         $queryToInsert = substr($queryToInsert, 0, strlen($queryToInsert) - 2) . "), \r";

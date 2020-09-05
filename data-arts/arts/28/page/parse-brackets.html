@@ -1,0 +1,74 @@
+<h3>Тест</h3>
+<form class="brackets">
+    <input type="hidden" name="brackets" value="1">
+    <label for="br_1"><input type="checkbox" name="br_1" checked></label>
+    <label for="br_2"><input type="checkbox" name="br_2" checked></label>
+    <label for="br_3"><input type="checkbox" name="br_3" checked></label>
+    <label for="br_4"><input type="checkbox" name="br_4" checked></label>
+    <p>Введите выражение и нажмите Check! для проверки:</p>
+    <textarea name="brackets-text"></textarea>
+    <input type="button" onclick="checkBrackets()" value="Check!">
+    <div class="brackets-result"></div>
+</form>
+
+
+<h3>Принцип работы функции</h3>
+<p>
+    В рекурсивную функцию <b>checkBrackets</b> передается массив символов обозначающих скобки <b>$bracketsSigns</b>
+</p>
+<div class="example">
+    <div class="el">$bracketsSigns['br_1']['start']="<";</div>
+    <div class="el">$bracketsSigns['br_1']['end']=">";</div>
+    <div class="el">$bracketsSigns['br_2']['start']="{";</div>
+    <div class="el">$bracketsSigns['br_2']['end']="}";</div>
+    <div class="el">$bracketsSigns['br_3']['start']="[";</div>
+    <div class="el">$bracketsSigns['br_3']['end']="]";</div>
+    <div class="el">$bracketsSigns['br_4']['start']="(";</div>
+    <div class="el">$bracketsSigns['br_4']['end']=")";</div>
+</div>
+<p>
+    Чтоб функция php <b>strpos</b> не вернула false, где надо, добавим побел к строке и вычтем один символ с номера позиции.
+    <ul>
+    <li>Считаем что если есть символ закрытой скобки в исходной строке <b>$str</b>, значит дожен быть символ и открытой скобки</li>
+    <li>Строка между скобками <b>restStr </b> проверяется рекурсивно как и исходная строка</li>
+    <li>Строка склеенная из остатков после вырезки из исходной <b>$glueStr</b> проверяется рекурсивно как и исходная строка</li>
+</ul>
+</p>
+<h3>Функция</h3>
+<p>
+Скачать готовый пример на php можно <a href="/data-arts/arts/28/brackets.php.txt" title="brackets.php.txt" download>здесь</a>.
+    надо только удалить расширение .txt
+</p>
+<div class="example">
+    <div class="el">function <b>checkBrackets</b>($str, $bracketsSigns)</div>
+    <div class="el">{</div>
+    <div class="el ul1">$str= " ".$str;</div>
+    <div class="el ul1">foreach($bracketsSigns as $brace){</div>
+    <div class="el ul2">if($endPos=strpos($str, $brace['end'])){</div>
+    <div class="el ul3">$tmpStr = substr($str, 0, $endPos)." ";</div>
+    <div class="el ul3">if($startPos = strpos(strrev($tmpStr), $brace['start'])){</div>
+    <div class="el ul4">$restStr=substr($str, strlen($tmpStr)-$startPos, $endPos-strlen($tmpStr)+$startPos);</div>
+    <div class="el ul4">$glueStr=substr($str, 0, strlen($tmpStr)-$startPos-1).substr($str, $endPos+1, strlen($str));</div>
+    <div class="el ul4">if(<b>checkBrackets</b>($glueStr, $bracketsSigns)){</div>
+    <div class="el ul5">if(<b>checkBrackets</b>($restStr, $bracketsSigns)){</div>
+    <div class="el ul6">return true;</div>
+    <div class="el ul5">}else{</div>
+    <div class="el ul6">return false;</div>
+    <div class="el ul5">}</div>
+    <div class="el ul4">}else{</div>
+    <div class="el ul5">return false;</div>
+    <div class="el ul4">}</div>
+    <div class="el ul3">}else{</div>
+    <div class="el ul4">return false;</div>
+    <div class="el ul3">}</div>
+    <div class="el ul2">}elseif($startPos=strpos($str, $brace['start'])){</div>
+    <div class="el ul3">return false;</div>
+    <div class="el ul2">}</div>
+    <div class="el ul1">}</div>
+    <div class="el ul1">return true;</div>
+    <div class="el">};</div>
+</div>
+
+<h3>Выводы</h3>
+<p>Правильное решение тестового задания не гарантирует что бы будете приняты на предложенную вакансию. Никогда не решайте
+объемных заданий, решайте только те что не составят вам труда или буду полезны лично вам</p>
