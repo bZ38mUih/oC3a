@@ -3,7 +3,6 @@ session_start();
 $pathToConn = "/source/_conf/db_conn.php";
 
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/DB_class.php");
-//require_once ($_SERVER["DOCUMENT_ROOT"]."/source/recordDefault_class.php");
 require_once ($_SERVER["DOCUMENT_ROOT"]."/source/appRJ_class.php");
 
 $appRJ = new appRJ();

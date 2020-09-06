@@ -1,15 +1,11 @@
 <?php
-
+exit;
+$pathToConn = "/home/p264533/public_html/rightjoint.ru/source/_conf/db_conn.php";
 $ntfLog['txt']=null;
-//$appRJ->response['result'].= "zzzz-1";
+
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
-//$appRJ->response['result'].= "zzzz-2";
-$DB=new DB();
-$DB->connSettings=json_decode(@file_get_contents("/home/p264533/public_html/rightjoint.ru".$DB->pathToConn), true);
-$DB->connect_db();
-
-require_once ("/home/p264533/public_html/rightjoint.ru/source/recordDefault_class.php");
-
+$DB = new DB($pathToConn);
+$DB->connectDb();
 
 require_once("/home/p264533/public_html/rightjoint.ru/admin/tables/tableClass.php");
 $tables = new tablesClass();
@@ -19,13 +15,10 @@ foreach (glob("/home/p264533/public_html/rightjoint.ru/data/db/tablesList/*_dt.p
 }
 
 
-
-//$tables->dbCompare();
 $query_text = "SELECT TABLE_NAME, TABLE_ROWS FROM `information_schema`.`tables` WHERE
     `table_schema` = '".$DB->connSettings['CONN_DB']."';";
 $query_res = $DB->doQuery($query_text);
 while ($query_row = $DB->doFetchRow($query_res)) {
-    //$appRJ->response['result'].= "mmm---<br>";
     foreach ($tables->tables as $table => $value) {
         if ($query_row['TABLE_NAME'] == $table) {
             $tables->tables[$table]['exist'] = true;
@@ -38,15 +31,10 @@ while ($query_row = $DB->doFetchRow($query_res)) {
     }
     $tables->tables[$query_row['TABLE_NAME']]['qty'] = $query_row['TABLE_ROWS'];
 }
-//$appRJ->response['result'].= "xyi-5";
-//print_r($tables);
-//$appRJ->response['result'].= "xyi-2";
+
 $tables->result['log']=null;
 $tables->result['err']=false;
-//if($_GET){
-//if(isset($_GET['action'])and($_GET['action']==="refreshTables")){
-//   require_once("/home/p264533/public_html/rightjoint.ru/admin/tables/actions/tablesView.php");
-//}else{
+
 $CurDate = @date_create();
 $start_time = microtime(true);
 $tables->result['log'].="Action: upLoadAllTables<br>";

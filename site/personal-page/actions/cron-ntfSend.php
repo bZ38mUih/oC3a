@@ -1,5 +1,5 @@
 <?php
-$pathToConn = "/source/_conf/db_conn.php";
+$pathToConn = "/home/p264533/public_html/rightjoint.ru/source/_conf/db_conn.php";
 $ntfLog['txt']=null;
 
 require_once("/home/p264533/public_html/rightjoint.ru/source/DB_class.php");
