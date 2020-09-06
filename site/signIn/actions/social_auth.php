@@ -65,6 +65,7 @@ if($socialAuth_err ===true){
     $Ntf_rd['result']['ntfSubscr']=1;
     $Ntf_rd['result']['ntfDescr']=$addNtf_txt."Пользователь ".$RD_accounts['result']['accAlias']." вошел на сайт через ".$RD_accounts['result']['netWork'];
     $Ntf_rd['result']['ntfSubj']="Вход пользователя на сайт.";
+    $Ntf_rd['result']['activeFlag '] = true;
     $DB->putOne($Ntf_rd);
 
     $_SESSION['alias']=$RD_accounts['result']['accAlias'];
