@@ -1,51 +1,158 @@
-.list-frame ul .cat-line-descr, .list-frame ul .itm-line-addInfo
+.list-frame
 {
-    padding-top: 0.5em;
-    font-size: 0.6em;
-    color: darkgreen;
-    display: inline-block;
-    width: 100%;
+    width: 95%;
+    margin-left: 2%;
+    margin-top: 2em;
 }
-h2{
-    padding-bottom: 0.5em;
-}
-.art-header{
-    font-weight: bold;
-    color: midnightblue;
-    width: 90%;
-    padding: 1.5em 5%;
-    margin-bottom: 2em;
-    border-radius: 0.5em;
-}
-.art-header-img{
-    display: inline-block;
-    width: 29%;
-    vertical-align: middle;
-}
-.art-header-img img{
-    height: 4em;
-    width: 4em;
-}
-.art-header-descr{
-    display: inline-block;
-    width: 70%;
-    vertical-align: middle;
-}
-.art-header-descr a{
-    color: darkgoldenrod;
-    font-size: 1.5em;
-}
-.art-header-descr div{
-    font-style: italic;
-    font-size: 0.8em;
-    border: 1px dotted gray;
-    padding: 2%;
-    margin: 2% 0;
-    width: 92%;
-    display: inline-block;
-}
-.art-header .dateLine{
-    font-size: 0.8em;
+.blog-menu {
     width: 100%;
     text-align: left;
+}
+.blog-menu a {
+    text-decoration: none;
+    padding-bottom: 0.2em;
+    border-bottom: 1px solid darkorange;
+    margin-right: 1em;
+    color: midnightblue;
+}
+.blog-menu a.active {
+    border-bottom: 5px solid darkorange;
+}
+.blog-menu a img {
+    height: 2em;
+    width: 2em;
+    margin-right: 0.2em;
+    vertical-align: middle;
+    word-wrap: break-spaces;
+}
+.art-list-wrap {
+    width: 100%;
+    text-align: left;
+    display: table;
+    border-collapse:separate;
+    border-spacing:1em;
+}
+.art-list{
+    vertical-align: top;
+    border: 1px solid darkorange;
+    display: table-cell;
+    padding: 0.5em 0.2em 0.2em 0.2em;
+    border-radius: 0.4em;
+    position: relative;
+    box-shadow: 0 0 0.2em rgba(0,0,0,0.5);;
+}
+.alw-2 .art-list {
+    width: 50%;
+}
+.alw-3 .art-list {
+    width: 33%;
+}
+.art-list img{
+    height: 5em;
+    width: 5em;
+    padding: 1em;
+    float: left;
+}
+.al-header {
+    display: inline;
+    vertical-align: top;
+}
+.al-header a {
+    color: navy;
+    text-decoration: none;
+    font-weight: bold;
+}
+.al-refresh {
+    display: inline;
+    float: right;
+    font-size: 0.5em;
+}
+.al-meta {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+a.viewArt {
+    vertical-align: bottom;
+    text-decoration: none;
+    background-color: darkorange;
+    color: white;
+    padding: 0.2em;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: block;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    font-size: 0.8em;
+    font-family: Serif;
+}
+
+.alw-2, .alw-3 {
+    margin-top: 1em;
+    width: 100%;
+    display: table-row;
+}
+.pagination {
+    text-align: left;
+    width: 50%;
+    margin-bottom: 1em;
+    display: inline-block;
+}
+.pl_text {
+    text-align: right;
+    width: 50%;
+    margin-bottom: 1em;
+    display: inline-block;
+}
+.pagination a.p_btn {
+    color: darkgrey;
+    cursor: default;
+    font-family: Serif;
+    text-decoration: none;
+}
+.pagination a.p_btn.prev::before {
+    content: "«";
+}
+.pagination a.p_btn.next::after {
+    content: "»";
+}
+.pagination a.p_btn.active {
+    color: darkorange;
+    cursor: pointer;
+}
+a.p_num {
+    color: black;
+    padding: 0.2em;
+    font-size: 0.8em;
+    background-color: darkorange;
+    margin: 0.2em;
+    border-radius: 0.1em;
+    text-decoration: none;
+}
+a.p_num.active {
+    font-size: 1em;
+    color: white;
+    background-color: darkgrey;
+    cursor: default;
+}
+.pl_text span {
+    color: gray;
+}
+@media only screen and (max-width : 960px) {
+    .art-list-wrap {
+        display: block;
+        margin-top: 1em;
+    }
+    .alw-2, .alw-3 {
+        display: inline-block;
+        /*width: 100%;*/
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    .alw-2 .art-list, .alw-3 .art-list {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 1em;
+    }
 }
