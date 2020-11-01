@@ -1,3 +1,17 @@
+function sfct_content(sfct_id) {
+    var sel_id = "#sc-"+$(sfct_id).attr('sf-content');
+
+    if($(sfct_id).hasClass("active") == true){
+        $(sfct_id).removeClass("active");
+        $(sel_id).removeClass("active");
+        $(".service-frame").removeClass("active");
+    }else{
+        $(sfct_id).addClass("active");
+        $(sel_id).addClass("active");
+        $(".service-frame").addClass("active");
+    }
+}
+/*
 function addBucket(prod_id) {
     $("#srv"+prod_id).preloader({
         text: 'loading',
@@ -21,7 +35,7 @@ function addBucket(prod_id) {
         $(".orderBtn span").removeClass("active");
     }, 1000);
 }
-
+*/
 function rmBucket(prod_id)
 {
     $("#srv"+prod_id).preloader({
