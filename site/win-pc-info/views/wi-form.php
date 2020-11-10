@@ -34,4 +34,4 @@ if(!$appRJ->server['reqUri_expl'][2]){
     $appRJ->response['result'].=$appRJ->server['reqUri_expl'][2];
 }
 $appRJ->response['result'].='"'.")'><img src='/source/img/search-icon.png'></button></div>".
-    "</form>";
+"<div class='diagResults'></div>"."</form>";

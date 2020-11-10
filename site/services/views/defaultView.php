@@ -11,20 +11,9 @@ $appRJ->response['result'].= "<!DOCTYPE html>".
     "<script src='/source/js/jquery-3.2.1.js'></script>".
     "<link rel='stylesheet' href='/site/css/default.css' type='text/css' media='screen, projection'/>".
     "<link rel='stylesheet' href='/site/siteHeader/css/default.css' type='text/css' media='screen, projection'/>".
-    "<link rel='stylesheet' href='/site/services/css/services-2020-11-v1.css' type='text/css' media='screen, projection'/>".
+    "<link rel='stylesheet' href='/site/services/css/services-2020-11-v2.css' type='text/css' media='screen, projection'/>".
     "<script src='/site/siteHeader/js/modalHeader.js'></script>".
-    "<script src='/site/services/js/services-2020-11-v1.js'></script>".
-    //"<link rel='stylesheet' href='/site/status/css/statBlock.css' type='text/css' media='screen, projection'/>".
-    //"<link rel='stylesheet' href='/site/status/css/statBlock.css' type='text/css' media='screen, projection'/>".
-    //"<link rel='stylesheet' href='/site/status/css/status.css' type='text/css' media='screen, projection'/>".
-    //"<link rel='stylesheet' href='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/css/preloader.css'/>".
-    //"<script src='/source/js/Elegant-Loading-Indicator-jQuery-Preloader/src/js/jquery.preloader.min.js'></script>".
-    //<link rel='stylesheet' href='/site/services/css/default.css' type='text/css' media='screen, projection'/>".
-    //"<script src='/site/status/js/status.js'></script>".
-    //" <script src='/source/js/jssor.slider-28.0.0.min.js' type='text/javascript'></script>".
-    //"<script src='/site/services/js/slider.js'></script>"
-"";
-
+    "<script src='/site/services/js/services-2020-11-v1.js'></script>";
 if($App['views']['social-block']){
     $appRJ->response['result'].= "<script src='/site/js/social-block.js'></script>";
 }
@@ -33,11 +22,19 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/defaultView.php
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'>";
 
-$appRJ->response['result'].= "<div class='services-title-wrap'><div class='services-title'>
-Успешное решение ваших задач во многом зависит от квалификации и опыта исполнителя. 
-Мой опыт позволяет решать различные по сложности и широкие по характеру задачи в области программирования, создания 
-и настройки сайтов, а заинтересованность и ответственный подход позволит вам не волноваться что все будет сделано 
-правильно и вовремя.
+$appRJ->response['result'].= "<div class='services-title-wrap'><div class='services-title-left'>
+<ul>
+<strong>Для тех, кому важны:</strong>
+<li><img src='/site/services/img/F-plus.png'><span>Высокий профессионализм</span></li>
+<li><img src='/site/services/img/responsobilities.jpg'>Ответсвенный подход</li>
+<li><img src='/site/services/img/warranty.png'>Гарантия качества</li>
+</ul>
+</div>
+<div class='services-title-right'>
+<img src='/site/services/img/mind.png'>
+<strong>
+Доверив свои задачи специалисту, вам не придется волноваться что все будет сделано 
+правильно и вовремя.</strong>
 </div></div>";
 
 $appRJ->response['result'].= "<h2 class='pop'><hr><span>Пoпулярные услуги</span></h2><div class='service-frame-wrap'><div class='service-frame'>";
@@ -228,6 +225,8 @@ $appRJ->response['result'].= "
 <p>Возможны различные формы сотрудничества, по договору или без, наличная и безналичная оплата</p> 
 </div></div>";
 $appRJ->response['result'].="</div></div></div>";
+
+
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><h2 class='portf'><hr><span>Мои работы</span></h2>";
 $appRJ->response['result'].= "<div class='portf-blok'><div class='pb-item'>".
@@ -244,6 +243,8 @@ $appRJ->response['result'].= "<div class='pb-item'>".
     "<span>Альбомы фотографий на разные темы</span>";
 $appRJ->response['result'].= "</div></div></div>";
 $appRJ->response['result'].="</div></div></div>";
+
+
 $appRJ->response['result'].= "<div class='contentBlock-frame'><div class='contentBlock-center'>".
     "<div class='contentBlock-wrap'><h2 class='ref'><hr><span>Отзывы клиентов</span></h2>";
 $appRJ->response['result'].= "<div class='ref-block'>
@@ -255,7 +256,6 @@ $appRJ->response['result'].= "<div class='ref-block'>
 </div>";
 $appRJ->response['result'].="</div></div></div>";
 
-//require_once($_SERVER["DOCUMENT_ROOT"] . "/site/status/views/contactsBlock.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteFooter/views/footerDefault.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalOrder.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/site/siteHeader/views/modalMenu.php");

@@ -14,7 +14,7 @@ function insertArray($tblName, $bindFld, $bindVal, $tgArr)
     foreach ($tgArr as $key=>$val){
         $insVals.="(".$bindVal.", ";
         foreach ($val as $kKey=>$kVal){
-            $insVals.="'".mysql_real_escape_string($kVal)."', ";
+            $insVals.="'".($kVal)."', ";
         }
         $insVals=substr($insVals, 0, strlen($insVals)-2);
         $insVals.="),\n";
@@ -22,21 +22,28 @@ function insertArray($tblName, $bindFld, $bindVal, $tgArr)
     $insVals=substr($insVals, 0, strlen($insVals)-2);
     return "insert into ".$tblName." \n".$insFld.$insVals;
 }
+
 $fileContent=null;
 foreach ($_FILES as $file){
     $fileContent = file_get_contents($file['tmp_name']);
 }
+//$diagRes['data']=
+
 $diagArr=json_decode($fileContent, true);
+
 $wdList_rd = array("table" => "wdList_dt", "field_id" => "wd_id");
 $wdList_rd['result']['wdTag']=$diagArr['fName'];
 $wdList_rd['result']['comment']=null;
 $wdList_rd['result']['diagDate']=date_format($appRJ->date['curDate'], "Y-m-d h:i:s");
 $wdList_rd['result']['user_id']=$_SESSION['user_id'];
 $bindVal=null;
+
 if($DB->putOne($wdList_rd)){
+
     $wdList_rd['result']['wd_id'] = $DB->lastInsertId();
     $bindFld="wd_id";
     $bindVal=$wdList_rd['result']['wd_id'];
+
     if(isset($diagArr['envList'])){
         $insEnv_qry=insertArray("wdEnv_dt", $bindFld, $bindVal, $diagArr['envList']);
         if($DB->query($insEnv_qry)){
@@ -69,6 +76,7 @@ if($DB->putOne($wdList_rd)){
             $diagRes['err'].="osList-FAIL<hr>";
         }
     }
+
     if(isset($diagArr['hardwareList'])){
         $insHw_qry=insertArray("wdHw_dt", $bindFld, $bindVal, $diagArr['hardwareList']);
 
@@ -135,6 +143,8 @@ if($DB->putOne($wdList_rd)){
             $diagRes['err'].="srvList-FAIL<hr>";
         }
     }
+
 }
+
 $diagRes['data']=$bindVal;
 $diagRes['wd_id']=$bindVal;
