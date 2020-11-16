@@ -104,8 +104,7 @@ if($artByAlias_row['allowCm']){
 
 $refList_text="select * from artRef_dt WHERE art_id='".$artByAlias_row['art_id']."' order by artRef_id DESC";
 $refList_res=$DB->query($refList_text);
-$refList_count = $refList_res->fetch(PDO::FETCH_ASSOC);
-if($refList_count>0){
+if($refList_res->rowCount() > 0){
     $appRJ->response['result'].= "<div class='art-ref'><h5>Ссылки:</h5><ol>";
     while($refList_row = $refList_res->fetch(PDO::FETCH_ASSOC)){
         $appRJ->response['result'].= "<li><a href='".$refList_row['refLink']."' title='".$refList_row['refLink']."' target='_blank'>".
